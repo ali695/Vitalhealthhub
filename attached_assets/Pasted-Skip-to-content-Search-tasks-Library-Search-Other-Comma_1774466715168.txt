@@ -1,0 +1,618 @@
+Skip to content
+Search tasks…
+Library
+Search
+Other
+Commands
+Search for tools & files…
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Scroll to latest
+
+Make, test, iterate…
+Drafts
+0
+No tasks
+Active
+0
+No tasks
+Ready
+0
+No tasks
+Done
+0
+No tasks
+
+Plan a new task...
+Health Wellness Hub - Replit
+Pasted-You-are-building-100-complete-production-ready-blog-pos_1774466648518.txt
+You are building 100 complete, production-ready blog posts for VitalHealth Hub.
+Each blog must be fully SEO optimized, high quality, deeply informative, and 
+embedded with relevant calculators, unique images, data tables, and proper 
+internal linking. Dark theme stays. Green accents (#4caf82, #2d7a4f) stay.
+All fonts stay the same.
+
+═══════════════════════════════════════════════════════
+PART 1 — COMPLETE LIST OF 100 BLOG TOPICS
+═══════════════════════════════════════════════════════
+
+Group these into categories. Each blog gets its own page/route.
+
+── CATEGORY 1: BMI & Body Weight (10 blogs) ──
+1.  How to Calculate BMI: A Complete Step-by-Step Guide
+2.  What Is a Healthy BMI? Understanding the Ranges for Men and Women
+3.  BMI vs Body Fat Percentage: Which Is the Better Health Indicator?
+4.  BMI for Children and Teenagers: What Parents Need to Know
+5.  BMI Chart by Age: How Your Ideal Weight Changes Over Time
+6.  Is BMI Accurate? The Limitations of Body Mass Index Explained
+7.  Underweight BMI: Health Risks and How to Gain Weight Safely
+8.  Overweight vs Obese BMI: Understanding the Difference
+9.  How to Lower Your BMI: Science-Backed Strategies That Work
+10. BMI and Chronic Disease: What the Research Actually Says
+
+── CATEGORY 2: Calories & Weight Management (12 blogs) ──
+11. How Many Calories Should I Eat Per Day? Complete Guide
+12. Calorie Deficit for Weight Loss: The Only Guide You Need
+13. Calorie Surplus for Muscle Gain: How to Eat for Growth
+14. How to Count Calories Without Losing Your Mind
+15. Calorie Cycling: What It Is and Does It Actually Work?
+16. Low Calorie Foods That Keep You Full Longer
+17. How Many Calories Do You Burn Walking 10,000 Steps?
+18. Liquid Calories: The Hidden Reason You Are Not Losing Weight
+19. Maintenance Calories Explained: How to Find Your Exact Number
+20. Calorie Needs by Age: How Your Metabolism Changes Decade by Decade
+21. Does Eating Late at Night Cause Weight Gain? The Truth
+22. How to Break a Weight Loss Plateau: Proven Methods
+
+── CATEGORY 3: Macronutrients & Nutrition (12 blogs) ──
+23. What Are Macronutrients? The Complete Beginner Guide
+24. How Much Protein Do You Really Need Per Day?
+25. Carbohydrates: Good vs Bad — What Science Actually Says
+26. Healthy Fats vs Unhealthy Fats: The Complete Guide
+27. How to Calculate Your Macros for Weight Loss
+28. High Protein Foods: The Ultimate List with Protein Content
+29. Best Pre-Workout Meals for Energy and Performance
+30. Best Post-Workout Meals for Recovery and Muscle Growth
+31. Micronutrients vs Macronutrients: What Is the Difference?
+32. How to Read Nutrition Labels Like a Health Expert
+33. Fiber: Why You Are Not Getting Enough and How to Fix It
+34. Sugar Addiction: How to Reduce Sugar Without Feeling Miserable
+
+── CATEGORY 4: TDEE & Metabolism (8 blogs) ──
+35. What Is TDEE? Total Daily Energy Expenditure Explained
+36. BMR vs TDEE: What Is the Difference and Why It Matters
+37. How to Boost Your Metabolism: Evidence-Based Methods Only
+38. Does Muscle Burn More Calories Than Fat? The Truth
+39. Slow Metabolism: Is It Real or Just an Excuse?
+40. How Activity Level Affects Your Daily Calorie Needs
+41. Adaptive Thermogenesis: Why Your Body Fights Weight Loss
+42. How Age Affects Your Metabolism and What You Can Do About It
+
+── CATEGORY 5: Body Fat & Composition (8 blogs) ──
+43. Body Fat Percentage Chart for Men and Women by Age
+44. How to Lose Body Fat Without Losing Muscle: Complete Guide
+45. Visceral Fat vs Subcutaneous Fat: Which Is More Dangerous?
+46. How to Measure Body Fat at Home: 5 Most Accurate Methods
+47. Essential Body Fat vs Storage Body Fat: What You Need to Know
+48. How Long Does It Take to Lose 1% Body Fat?
+49. Best Exercises to Reduce Belly Fat According to Science
+50. Body Recomposition: Lose Fat and Gain Muscle at the Same Time
+
+── CATEGORY 6: Fitness & Exercise (12 blogs) ──
+51. How to Build Muscle: A Complete Science-Based Guide
+52. Cardio vs Strength Training: Which Burns More Fat?
+53. HIIT Workout Guide for Beginners: Everything You Need to Know
+54. How to Improve Running Endurance: Training Plan Included
+55. Progressive Overload: The Key Principle Behind Every Fitness Goal
+56. How Many Days Per Week Should You Work Out?
+57. Best Exercises for Each Muscle Group: Complete Reference Guide
+58. Rest Days: Why Recovery Is Just as Important as Training
+59. How to Build a Home Workout Routine With No Equipment
+60. Stretching Guide: Static vs Dynamic and When to Do Each
+61. VO2 Max Explained: What It Is and How to Improve It
+62. How Many Steps Per Day Is Actually Healthy?
+
+── CATEGORY 7: Sleep & Recovery (8 blogs) ──
+63. How Much Sleep Do You Actually Need by Age?
+64. Sleep Cycles Explained: REM, Deep Sleep and Light Sleep
+65. How to Fix Your Sleep Schedule in 7 Days
+66. Best Foods That Help You Sleep Better at Night
+67. Effects of Sleep Deprivation on Weight and Metabolism
+68. How to Improve Sleep Quality Without Medication
+69. Napping: Benefits, Risks and the Ideal Nap Duration
+70. How Exercise Timing Affects Your Sleep Quality
+
+── CATEGORY 8: Hydration & Water (6 blogs) ──
+71. How Much Water Should You Drink Per Day? Full Guide
+72. Signs of Dehydration: Symptoms, Causes and How to Fix It
+73. Benefits of Drinking More Water: What Science Says
+74. Hydration During Exercise: How Much Water Do You Need?
+75. Does Drinking Water Help You Lose Weight? The Evidence
+76. Best Hydrating Foods to Eat Every Day
+
+── CATEGORY 9: Heart Rate & Cardio Health (6 blogs) ──
+77. Target Heart Rate Zones Explained: Fat Burn to Peak
+78. Resting Heart Rate: What Is Normal and What Is a Warning Sign?
+79. How to Lower Your Resting Heart Rate Naturally
+80. Maximum Heart Rate by Age: Formula and Fitness Zones
+81. Heart Rate Variability (HRV): What It Is and Why It Matters
+82. Best Cardio Exercises Ranked by Calorie Burn
+
+── CATEGORY 10: Mental Health & Wellness (8 blogs) ──
+83. How Exercise Reduces Stress and Anxiety: The Science
+84. Meditation for Beginners: How to Start and What to Expect
+85. How to Build Healthy Habits That Actually Stick
+86. Morning Routines of Healthy People: What They All Have in Common
+87. How to Stay Consistent With Fitness When Life Gets Busy
+88. Cortisol and Weight Gain: How Stress Makes You Fat
+89. How Sleep Affects Mental Health: The Bidirectional Link
+90. Mindful Eating: How to Stop Emotional Eating for Good
+
+── CATEGORY 11: Special Populations & Health Checks (10 blogs) ──
+91. Health Calculators Every Woman Should Use Regularly
+92. Health Calculators Every Man Should Know About
+93. Fitness After 40: How to Train Smarter as You Age
+94. Weight Loss After 50: What Changes and What Still Works
+95. BMI and Health for Athletes: Why Standard Ranges Don't Apply
+96. Pregnancy Weight Gain: Healthy Ranges and What to Expect
+97. Health Checks You Should Do Every Year: Complete Checklist
+98. How to Set Realistic Fitness Goals Using Health Data
+99. Understanding Lab Results: What Your Health Numbers Mean
+100. The Ultimate Healthy Lifestyle Checklist: 50 Evidence-Based Habits
+
+═══════════════════════════════════════════════════════
+PART 2 — UNIQUE FEATURE IMAGE FOR EVERY BLOG
+═══════════════════════════════════════════════════════
+
+Assign one unique Unsplash image per blog. Never repeat any URL.
+Use these exact mappings and for any blog not listed pick a 
+thematically relevant unique Unsplash URL not used elsewhere.
+
+1.  https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80
+2.  https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80
+3.  https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=800&q=80
+4.  https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=800&q=80
+5.  https://images.unsplash.com/photo-1532200846567-1bd8bd5b23aa?w=800&q=80
+6.  https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&q=80
+7.  https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80
+8.  https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80
+9.  https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800&q=80
+10. https://images.unsplash.com/photo-1543362906-acfc16c67564?w=800&q=80
+11. https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80
+12. https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80
+13. https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=800&q=80
+14. https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&q=80
+15. https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80
+16. https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&q=80
+17. https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80
+18. https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80
+19. https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80
+20. https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=800&q=80
+21. https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80
+22. https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80
+23. https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80
+24. https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&q=80
+25. https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&q=80
+26. https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=800&q=80
+27. https://images.unsplash.com/photo-1455642305367-68834a1da7ab?w=800&q=80
+28. https://images.unsplash.com/photo-1484980972926-edee96e0960d?w=800&q=80
+29. https://images.unsplash.com/photo-1531353826977-0941b4779a1c?w=800&q=80
+30. https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=800&q=80
+31. https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=800&q=80
+32. https://images.unsplash.com/photo-1559839914-17aae19cec71?w=800&q=80
+33. https://images.unsplash.com/photo-1523362628745-0c100150b504?w=800&q=80
+34. https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&q=80
+35. https://images.unsplash.com/photo-1530026405186-ed1f139313f0?w=800&q=80
+36. https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=800&q=80
+37. https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=800&q=80
+38. https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=800&q=80
+39. https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?w=800&q=80
+40. https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80
+41. https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800&q=80
+42. https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=80
+43. https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80
+44. https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800&q=80
+45. https://images.unsplash.com/photo-1499728603263-13726abce5fd?w=800&q=80
+46. https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80
+47. https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80
+48. https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80
+49. https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80
+50. https://images.unsplash.com/photo-1571019613576-2b22c76fd955?w=800&q=80
+51. https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=800&q=80
+52. https://images.unsplash.com/photo-1494390248081-4e521a5940db?w=800&q=80
+53. https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80
+54. https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80
+55. https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80
+56. https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80
+57. https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=800&q=80
+58. https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80
+59. https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=800&q=80
+60. https://images.unsplash.com/photo-1607631568010-a87245c0daf9?w=800&q=80
+61. https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?w=800&q=80
+62. https://images.unsplash.com/photo-1516100882582-96c3a05fe590?w=800&q=80
+63. https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=800&q=80
+64. https://images.unsplash.com/photo-1529516222410-b269b5d7aa99?w=800&q=80
+65. https://images.unsplash.com/photo-1498654200943-1088dd4438ae?w=800&q=80
+66. https://images.unsplash.com/photo-1611070099689-5bd439e8ce41?w=800&q=80
+67. https://images.unsplash.com/photo-1559181567-c3190bea0dc4?w=800&q=80
+68. https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=800&q=80
+69. https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=80
+70. https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&q=80
+71. https://images.unsplash.com/photo-1523473827533-2a64d0d36748?w=800&q=80
+72. https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=800&q=80
+73. https://images.unsplash.com/photo-1606923829579-0cb981a83e2b?w=800&q=80
+74. https://images.unsplash.com/photo-1550345332-09e3ac987658?w=800&q=80
+75. https://images.unsplash.com/photo-1599058917765-a780eda07a3e?w=800&q=80
+76. https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80
+77. https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80
+78. https://images.unsplash.com/photo-1571388208497-71bedc66e932?w=800&q=80
+79. https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=800&q=80
+80. https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?w=800&q=80
+81. https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80
+82. https://images.unsplash.com/photo-1547919307-1ecb10702e6f?w=800&q=80
+83. https://images.unsplash.com/photo-1489533119213-66a5cd877091?w=800&q=80
+84. https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80
+85. https://images.unsplash.com/photo-1543352634-99a5d50ae78e?w=800&q=80
+86. https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80
+87. https://images.unsplash.com/photo-1470116945706-e6bf5d5a53ca?w=800&q=80
+88. https://images.unsplash.com/photo-1530099486328-e021101a494a?w=800&q=80
+89. https://images.unsplash.com/photo-1543340904-0d1265efb5f8?w=800&q=80
+90. https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=800&q=80
+91. https://images.unsplash.com/photo-1559839697-f0c05b0fa8ae?w=800&q=80
+92. https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=80
+93. https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80
+94. https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80
+95. https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=800&q=80
+96. https://images.unsplash.com/photo-1516977575801-5f5a5c9bf1fd?w=800&q=80
+97. https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80
+98. https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=800&q=80
+99. https://images.unsplash.com/photo-1506126279646-a697353d3166?w=800&q=80
+100.https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80
+
+═══════════════════════════════════════════════════════
+PART 3 — BLOG PAGE STRUCTURE (APPLY TO ALL 100 BLOGS)
+═══════════════════════════════════════════════════════
+
+Every single blog post must be built with this exact structure:
+
+── 1. FEATURE IMAGE ──
+Full width, height 420px desktop / 260px mobile
+object-fit: cover, loading="lazy"
+alt = exact article title
+Unique URL from Part 2 above
+
+── 2. ARTICLE HEADER ──
+Category badge (colored pill matching category)
+H1 title
+Meta row: 
+  👤 Ali Haider  |  📅 [publish date]  |  ⏱ [X min read]  |  🔄 Updated [date]
+Social share buttons: Twitter, Facebook, LinkedIn, Copy Link
+
+── 3. TABLE OF CONTENTS ──
+Auto-generated from all H2 headings on the page
+Sticky on desktop (position: sticky, top: 80px)
+Smooth scroll on click to each section
+Style: background #0d1f17, border-left 3px solid #4caf82
+Collapsible on mobile
+
+── 4. INTRODUCTION (150-200 words) ──
+Hook sentence that addresses the reader's pain point
+Brief overview of what the article covers
+1 internal link to a related calculator naturally placed
+
+── 5. MAIN CONTENT BODY ──
+Minimum 1200 words per article
+Use H2 for main sections, H3 for subsections
+Every section minimum 150 words
+At least 2 data tables per article (see table specs below)
+At least 1 callout/tip box per article
+Natural keyword integration throughout
+Evidence-based statements only — no vague claims
+
+── 6. EMBEDDED CALCULATOR (most important feature) ──
+Every blog must have a relevant embedded calculator widget.
+Embed it inline within the content at a natural point — 
+not at the top, not at the very bottom, but mid-article 
+where it makes contextual sense.
+
+Match calculator to blog topic using this mapping:
+Blogs 1-10   (BMI topics)        → Embed BMI Calculator
+Blogs 11-22  (Calorie topics)    → Embed Calorie Calculator
+Blogs 23-34  (Nutrition/Macros)  → Embed Macro Calculator
+Blogs 35-42  (TDEE/Metabolism)   → Embed TDEE Calculator
+Blogs 43-50  (Body Fat)          → Embed Body Fat Calculator
+Blogs 51-62  (Fitness/Exercise)  → Embed Calorie Burn Calculator
+Blogs 63-70  (Sleep)             → Embed Sleep Calculator
+Blogs 71-76  (Hydration)         → Embed Water Intake Calculator
+Blogs 77-82  (Heart Rate)        → Embed Heart Rate Calculator
+Blogs 83-100 (Wellness/General)  → Embed the most relevant calculator
+                                    based on article content
+
+Calculator embed implementation:
+- Use an <iframe> or component embed pointing to the actual 
+  calculator page on the site
+- Wrap in a styled container:
+  background: #0d1f17
+  border: 1px solid #2d7a4f
+  border-radius: 12px
+  padding: 24px
+  margin: 40px 0
+- Add heading above: "Try It Yourself: [Calculator Name]"
+  style: color #4caf82, font-size 1.1rem, margin-bottom 12px
+- Add caption below: "Use this free calculator to get your 
+  personalized results instantly."
+
+── 7. DATA TABLES (minimum 2 per article) ──
+Every table must be styled:
+- Wrapper: overflow-x: auto (mobile scroll)
+- border-radius: 10px, overflow: hidden
+- Header row: background #1e3a2f, color #c8e6d4, font-weight 600
+- Alternating rows: #0f1a17 and #131f18, color #9ec8b0
+- All cells: padding 12px 16px, border-bottom 1px solid #1a3028
+- Status badges where applicable:
+  Healthy → background #1a3d28, color #4caf82
+  Borderline → background #3d3a1a, color #cfc84c  
+  At Risk → background #3d1a1a, color #cf4c4c
+
+Example tables to include per category:
+BMI blogs: BMI classification table, healthy weight by height table
+Calorie blogs: calorie needs by age/gender, calorie content of foods
+Nutrition blogs: macro ratios for different goals, protein content table
+TDEE blogs: activity multipliers table, BMR by age table
+Body fat blogs: body fat % ranges by age/gender
+Fitness blogs: exercise calorie burn table, muscle group workout table
+Sleep blogs: recommended sleep by age, sleep stages duration table
+Hydration blogs: water needs by weight/activity, hydrating foods table
+Heart rate blogs: heart rate zones table, resting HR ranges table
+Wellness blogs: habit tracking table, health metrics reference table
+
+── 8. KEY TAKEAWAYS BOX ──
+Place just before the conclusion section
+Style: background #0d1f17, border-left 4px solid #4caf82
+       border-radius 8px, padding 20px 24px
+Heading: "Key Takeaways" in #4caf82
+4-5 bullet points summarizing the most important insights
+Each bullet: concise, actionable, evidence-based
+
+── 9. CONCLUSION (100-150 words) ──
+Summarize main points in 2-3 sentences
+Soft CTA: "Ready to find your numbers? Try our free 
+[relevant calculator] →" linking to the calculator page
+Encouraging, positive closing tone
+
+── 10. FAQ SECTION (5 questions) ──
+Accordion style, JS toggle, no libraries
+Questions must match real search queries for the topic
+Answers: 2-4 sentences, factual, direct
+Wrap in JSON-LD FAQ schema in <head>
+
+── 11. RELATED ARTICLES SECTION ──
+3 article cards at the bottom
+Must be from the same or adjacent category
+Each card: unique image, category tag, title, read time, link
+Never show the current article in related articles
+Title: "You Might Also Like"
+
+── 12. ARTICLE FOOTER ──
+Author box:
+  Avatar with "A" initial, green background
+  Name: Ali Haider
+  Title: SEO Consultant & Health Content Creator
+  Bio: "Ali creates evidence-based health content and free 
+  wellness tools to help millions of people make smarter 
+  health decisions."
+  
+Tags row: 5-7 relevant topic tags per article
+  Style: pill shape, background #1a3028, color #4caf82
+  border: 1px solid #2d7a4f, font-size 12px
+
+Share reminder: "Found this helpful? Share it →" 
+with Twitter, Facebook, WhatsApp share buttons
+
+═══════════════════════════════════════════════════════
+PART 4 — SEO SETUP FOR ALL 100 BLOGS
+═══════════════════════════════════════════════════════
+
+── A) META TAGS (every blog) ──
+
+<title>[Article Title]: Complete Guide [Year] | VitalHealth Hub</title>
+<meta name="description" content="[150-160 char description with 
+primary keyword + clear benefit stated]">
+<meta name="keywords" content="[10-12 keywords]">
+<meta name="author" content="Ali Haider">
+<link rel="canonical" href="[page URL]">
+
+Open Graph:
+<meta property="og:title" content="[title]">
+<meta property="og:description" content="[description]">
+<meta property="og:image" content="[feature image URL]">
+<meta property="og:url" content="[page URL]">
+<meta property="og:type" content="article">
+
+Twitter Card:
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="[title]">
+<meta name="twitter:description" content="[description]">
+<meta name="twitter:image" content="[feature image URL]">
+
+── B) JSON-LD SCHEMA (every blog) ──
+
+1. Article schema:
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "[H1 title]",
+  "image": "[feature image URL]",
+  "author": {
+    "@type": "Person",
+    "name": "Ali Haider",
+    "jobTitle": "SEO Consultant"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "VitalHealth Hub",
+    "url": "https://vitalhealthhub.com"
+  },
+  "datePublished": "[date]",
+  "dateModified": "[date]",
+  "description": "[meta description]",
+  "mainEntityOfPage": "[page URL]"
+}
+
+2. BreadcrumbList:
+Home → Blog → [Category] → [Article Title]
+
+3. FAQ schema: matching the 5 accordion questions
+
+── C) KEYWORD STRATEGY (every blog) ──
+
+PRIMARY keyword (title, H1, first paragraph, URL slug, meta):
+The exact search query this article targets
+Example: "how to calculate bmi" for Blog 1
+
+SECONDARY keywords (H2s, image alts, naturally in body):
+4-6 related terms and variations of the primary
+
+LONG-TAIL keywords (FAQ answers, tips, conclusion):
+5-8 specific question-format phrases people search
+
+LSI keywords (throughout body, naturally):
+6-10 semantically related terms and synonyms
+
+Keyword density: 1.0% to 1.8% max
+Never repeat same keyword more than once per paragraph
+Readability score target: Flesch Reading Ease 60-70
+
+── D) URL SLUGS ──
+
+Format: /blog/[short-keyword-rich-slug]
+Examples:
+Blog 1: /blog/how-to-calculate-bmi
+Blog 11: /blog/how-many-calories-per-day
+Blog 35: /blog/what-is-tdee
+Blog 63: /blog/how-much-sleep-do-you-need
+Keep slugs under 60 characters
+Use hyphens only, no underscores, no capitals
+
+═══════════════════════════════════════════════════════
+PART 5 — INTERNAL LINKING SYSTEM (ALL 100 BLOGS)
+═══════════════════════════════════════════════════════
+
+Every blog must contain these internal links:
+
+── LINKS TO CALCULATORS (2-3 per blog) ──
+Place naturally within content where relevant
+Use descriptive anchor text, never "click here"
+Examples:
+"use our free BMI calculator" → /calculators/bmi
+"calculate your daily calorie needs" → /calculators/calorie
+"find your TDEE instantly" → /calculators/tdee
+"check your body fat percentage" → /calculators/body-fat
+"calculate your water intake" → /calculators/water-intake
+"use the sleep calculator" → /calculators/sleep
+"find your target heart rate" → /calculators/heart-rate
+"calculate your macros" → /calculators/macro
+
+── LINKS TO RELATED BLOGS (3-4 per blog) ──
+Link to articles in the same category AND adjacent categories
+Use the article title or a natural phrase as anchor text
+Create a cross-linking web across all 100 blogs
+Never link a blog to itself
+
+── CROSS-CATEGORY LINKING MAP ──
+BMI blogs → link to: Calorie blogs, Body Fat blogs, TDEE blogs
+Calorie blogs → link to: Macro blogs, TDEE blogs, Fitness blogs
+Macro blogs → link to: Calorie blogs, Fitness blogs, Nutrition blogs
+TDEE blogs → link to: Calorie blogs, BMI blogs, Fitness blogs
+Body Fat blogs → link to: BMI blogs, Fitness blogs, Calorie blogs
+Fitness blogs → link to: Calorie blogs, Sleep blogs, Heart Rate blogs
+Sleep blogs → link to: Wellness blogs, Fitness blogs, Calorie blogs
+Hydration blogs → link to: Fitness blogs, Calorie blogs, Wellness blogs
+Heart Rate blogs → link to: Fitness blogs, TDEE blogs, Body Fat blogs
+Wellness blogs → link to: Sleep blogs, Fitness blogs, Nutrition blogs
+
+── HOMEPAGE & CATEGORY LINKS (1 per blog) ──
+Link back to /blog or the relevant category archive page
+Or link to homepage with anchor "VitalHealth Hub free health tools"
+
+═══════════════════════════════════════════════════════
+PART 6 — BLOG INDEX / LISTING PAGE
+═══════════════════════════════════════════════════════
+
+Create or update the main /blog page with:
+
+1. Hero: "Health & Wellness Blog" heading, subtitle
+   "Evidence-based articles to help you live healthier"
+
+2. Category filter tabs (same style as homepage):
+   All | BMI & Weight | Calories | Nutrition | Fitness | 
+   Sleep | Hydration | Heart Health | Mental Wellness | Longevity
+
+3. Featured article (Blog 100 or most comprehensive):
+   Large card, full-width image, excerpt, read time, CTA
+
+4. Blog grid: 3 columns desktop, 2 tablet, 1 mobile
+   Each card: unique image, category tag, title, 
+   excerpt (2 lines), read time, date, "Read More →"
+
+5. Pagination or "Load More" button (show 12 per page)
+
+6. Sidebar (desktop only):
+   - Search box
+   - Popular Articles (top 5 by topic relevance)
+   - Categories list with article count
+   - Featured Calculator widget (BMI calculator embedded)
+   - Newsletter signup (name + email, no backend needed, 
+     just styled form)
+
+═══════════════════════════════════════════════════════
+FINAL RULES — APPLY TO ALL 100 BLOGS
+═══════════════════════════════════════════════════════
+
+✅ Every blog minimum 1200 words of real, useful content
+✅ Every blog gets exactly one unique feature image — no duplicates
+✅ Every blog embeds the relevant calculator mid-article
+✅ Every blog has minimum 2 styled data tables
+✅ Every blog has 5 FAQ accordion items with JSON-LD schema
+✅ Every blog has Key Takeaways box before conclusion
+✅ Every blog has Related Articles section (3 cards)
+✅ Every blog has Author box at the bottom
+✅ Every blog has proper Article + Breadcrumb + FAQ schema
+✅ Every blog links to 2-3 calculators and 3-4 other blogs
+✅ All images use loading="lazy" and descriptive alt text
+✅ All pages fully mobile responsive (test at 375px)
+✅ No keyword stuffing — 1-2% density max, readability first
+✅ All JSON-LD must be valid — test with Google Rich Results Tool
+✅ URL slugs: lowercase, hyphens only, under 60 characters
+✅ Keep all existing site fonts, colors, and dark theme
+✅ Do not break any existing calculator functionality
+✅ Blog listing page must show all 100 articles organized by category
+✅ Internal linking must create a complete web across all 100 blogs
+✅ Every piece of health information must be evidence-based and accurate

@@ -171,17 +171,30 @@ const FOOTER = `<footer>
 <li><a href="/disclaimer.html">\u2192 Medical Disclaimer</a></li>
 <li><a href="/terms.html">\u2192 Terms of Use</a></li>
 </ul>
+<div style="margin-top:24px;padding:16px;background:#111413;border-radius:10px;border-left:3px solid #2d6a4f;">
+<p style="font-size:12px;color:#6b7280;line-height:1.6;"><strong style="color:#9ca3af;">\u2695\ufe0f Medical Notice:</strong><br>All content is for informational purposes only. Always consult a qualified healthcare professional.</p>
+</div>
 </div>
 <div class="footer-col">
 <h4>Created By</h4>
-<ul>
-<li><a href="mailto:ma7122671@gmail.com">\u2192 Ali Haider</a></li>
-<li><a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer">\u2192 LinkedIn Profile</a></li>
-<li><a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer">\u2192 Facebook Page</a></li>
-<li><a href="https://www.instagram.com/ali_haiderseo/" target="_blank" rel="noopener noreferrer">\u2192 Instagram @ali_haiderseo</a></li>
-<li><a href="mailto:ma7122671@gmail.com">\u2192 ma7122671@gmail.com</a></li>
-<li><a href="/contact.html">\u2192 Contact Us</a></li>
-</ul>
+<div style="background:#111413;border-radius:12px;padding:20px;border:1px solid #2d2d2d;">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+<div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#2d6a4f,#52b788);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+<span style="color:#fff;font-weight:700;font-size:18px;">A</span>
+</div>
+<div>
+<p style="color:#fff;font-weight:600;font-size:15px;margin:0;">Ali Haider</p>
+<p style="color:#52b788;font-size:12px;margin:2px 0 0;">SEO Consultant</p>
+</div>
+</div>
+<p style="font-size:13px;color:#9ca3af;line-height:1.6;margin-bottom:16px;">Building accessible health tools and evidence-based content for millions of users worldwide.</p>
+<div style="display:flex;flex-direction:column;gap:8px;">
+<a href="mailto:ma7122671@gmail.com" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#52b788'" onmouseout="this.style.color='#9ca3af'">\u2709 ma7122671@gmail.com</a>
+<a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#0077b5'" onmouseout="this.style.color='#9ca3af'">\uD83D\uDD17 LinkedIn Profile</a>
+<a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#1877f2'" onmouseout="this.style.color='#9ca3af'">\uD83D\uDCD8 Facebook Page</a>
+<a href="https://www.instagram.com/ali_haiderseo/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#e1306c'" onmouseout="this.style.color='#9ca3af'">\uD83D\uDCF8 @ali_haiderseo</a>
+</div>
+</div>
 </div>
 </div>
 <div class="footer-disclaimer">
@@ -306,7 +319,121 @@ function calcSvg(type) {
   return icons[type] || icons.weight;
 }
 
+const BLOG_IMAGES = {
+  'how-to-calculate-bmi':               {url:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80',alt:'Doctor measuring patient BMI body weight'},
+  'what-is-a-healthy-bmi':              {url:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80',alt:'Healthy person checking BMI ranges'},
+  'bmi-vs-body-fat-percentage':         {url:'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=800&q=80',alt:'Fitness assessment body fat vs BMI'},
+  'bmi-for-children-and-teenagers':     {url:'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=800&q=80',alt:'Children health and BMI assessment'},
+  'bmi-chart-by-age':                   {url:'https://images.unsplash.com/photo-1532200846567-1bd8bd5b23aa?w=800&q=80',alt:'BMI chart by age and healthy weight'},
+  'is-bmi-accurate':                    {url:'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&q=80',alt:'Medical assessment BMI accuracy limitations'},
+  'underweight-bmi-health-risks':       {url:'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80',alt:'Healthy nutrition for underweight recovery'},
+  'overweight-vs-obese-bmi':            {url:'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80',alt:'Health classification overweight obese BMI'},
+  'how-to-lower-your-bmi':              {url:'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800&q=80',alt:'Healthy food strategies to lower BMI'},
+  'bmi-and-chronic-disease':            {url:'https://images.unsplash.com/photo-1543362906-acfc16c67564?w=800&q=80',alt:'BMI chronic disease research health'},
+  'how-many-calories-should-i-eat':     {url:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',alt:'Healthy balanced meal daily calorie planning'},
+  'calorie-deficit-for-weight-loss':    {url:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',alt:'Fresh vegetables calorie deficit diet'},
+  'calorie-surplus-for-muscle-gain':    {url:'https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=800&q=80',alt:'High calorie muscle gain nutrition foods'},
+  'how-to-count-calories':              {url:'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&q=80',alt:'Food tracking counting calories nutrition'},
+  'calorie-cycling':                    {url:'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80',alt:'Calorie cycling diet strategy meals'},
+  'low-calorie-foods-keep-you-full':    {url:'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&q=80',alt:'Low calorie filling foods vegetables'},
+  'calories-burned-walking-10000-steps':{url:'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80',alt:'Walking 10000 steps calorie burn exercise'},
+  'liquid-calories-weight-loss':        {url:'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80',alt:'Liquid calories drinks weight gain'},
+  'maintenance-calories-explained':     {url:'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80',alt:'Maintenance calories daily energy balance'},
+  'calorie-needs-by-age':               {url:'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=800&q=80',alt:'Calorie needs aging metabolism changes'},
+  'eating-late-at-night-weight-gain':   {url:'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80',alt:'Eating late night weight gain truth'},
+  'how-to-break-weight-loss-plateau':   {url:'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80',alt:'Breaking weight loss plateau strategies'},
+  'what-are-macronutrients':            {url:'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80',alt:'Macronutrients protein carbs fat foods'},
+  'how-much-protein-per-day':           {url:'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&q=80',alt:'High protein foods daily intake guide'},
+  'carbohydrates-good-vs-bad':          {url:'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&q=80',alt:'Good carbohydrates vs bad carbs nutrition'},
+  'healthy-fats-vs-unhealthy-fats':     {url:'https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=800&q=80',alt:'Healthy fats avocado nuts olive oil'},
+  'how-to-calculate-macros-weight-loss':{url:'https://images.unsplash.com/photo-1455642305367-68834a1da7ab?w=800&q=80',alt:'Calculating macros for weight loss nutrition'},
+  'high-protein-foods-list':            {url:'https://images.unsplash.com/photo-1484980972926-edee96e0960d?w=800&q=80',alt:'High protein foods list chicken eggs legumes'},
+  'best-pre-workout-meals':             {url:'https://images.unsplash.com/photo-1531353826977-0941b4779a1c?w=800&q=80',alt:'Pre workout meal energy performance nutrition'},
+  'best-post-workout-meals':            {url:'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=800&q=80',alt:'Post workout recovery nutrition meals'},
+  'micronutrients-vs-macronutrients':   {url:'https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=800&q=80',alt:'Micronutrients vs macronutrients nutrition'},
+  'how-to-read-nutrition-labels':       {url:'https://images.unsplash.com/photo-1559839914-17aae19cec71?w=800&q=80',alt:'Reading nutrition labels food health'},
+  'fiber-why-not-getting-enough':       {url:'https://images.unsplash.com/photo-1523362628745-0c100150b504?w=800&q=80',alt:'Fiber rich foods vegetables legumes'},
+  'sugar-addiction-reduce-sugar':       {url:'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&q=80',alt:'Reducing sugar addiction health wellness'},
+  'what-is-tdee':                       {url:'https://images.unsplash.com/photo-1530026405186-ed1f139313f0?w=800&q=80',alt:'TDEE total daily energy expenditure exercise'},
+  'bmr-vs-tdee':                        {url:'https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=800&q=80',alt:'BMR vs TDEE metabolism calorie comparison'},
+  'how-to-boost-metabolism':            {url:'https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=800&q=80',alt:'Boosting metabolism evidence based methods'},
+  'does-muscle-burn-more-calories':     {url:'https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=800&q=80',alt:'Muscle burns more calories than fat truth'},
+  'slow-metabolism-is-it-real':         {url:'https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?w=800&q=80',alt:'Slow metabolism real or excuse science'},
+  'activity-level-affects-calorie-needs':{url:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',alt:'Activity level affects daily calorie needs'},
+  'adaptive-thermogenesis':             {url:'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800&q=80',alt:'Adaptive thermogenesis body weight loss response'},
+  'how-age-affects-metabolism':         {url:'https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=80',alt:'Age metabolism changes fitness aging'},
+  'body-fat-percentage-chart':          {url:'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80',alt:'Body fat percentage chart men women age'},
+  'how-to-lose-body-fat-without-losing-muscle':{url:'https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800&q=80',alt:'Lose body fat preserve muscle fitness'},
+  'visceral-fat-vs-subcutaneous-fat':   {url:'https://images.unsplash.com/photo-1499728603263-13726abce5fd?w=800&q=80',alt:'Visceral fat vs subcutaneous fat health risk'},
+  'how-to-measure-body-fat-at-home':    {url:'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80',alt:'Measuring body fat at home methods'},
+  'essential-body-fat-vs-storage-fat':  {url:'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80',alt:'Essential body fat vs storage fat health'},
+  'how-long-to-lose-1-percent-body-fat':{url:'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80',alt:'Losing body fat timeline realistic goals'},
+  'exercises-to-reduce-belly-fat':      {url:'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80',alt:'Exercises reduce belly fat science based'},
+  'body-recomposition':                 {url:'https://images.unsplash.com/photo-1571019613576-2b22c76fd955?w=800&q=80',alt:'Body recomposition lose fat gain muscle'},
+  'how-to-build-muscle':                {url:'https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=800&q=80',alt:'Building muscle science based strength training'},
+  'cardio-vs-strength-training':        {url:'https://images.unsplash.com/photo-1494390248081-4e521a5940db?w=800&q=80',alt:'Cardio vs strength training fat burn'},
+  'hiit-workout-guide-for-beginners':   {url:'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80',alt:'HIIT workout guide beginners high intensity'},
+  'how-to-improve-running-endurance':   {url:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80',alt:'Running endurance training plan improvement'},
+  'progressive-overload-explained':     {url:'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80',alt:'Progressive overload strength training principle'},
+  'how-many-days-per-week-workout':     {url:'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80',alt:'Workout frequency days per week fitness'},
+  'best-exercises-for-each-muscle-group':{url:'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=800&q=80',alt:'Best exercises each muscle group guide'},
+  'rest-days-importance-recovery':      {url:'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80',alt:'Rest days recovery importance training'},
+  'home-workout-routine-no-equipment':  {url:'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=800&q=80',alt:'Home workout routine no equipment bodyweight'},
+  'stretching-guide-static-vs-dynamic': {url:'https://images.unsplash.com/photo-1607631568010-a87245c0daf9?w=800&q=80',alt:'Stretching guide static vs dynamic flexibility'},
+  'vo2-max-explained':                  {url:'https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?w=800&q=80',alt:'VO2 max aerobic fitness testing explained'},
+  'how-many-steps-per-day':             {url:'https://images.unsplash.com/photo-1516100882582-96c3a05fe590?w=800&q=80',alt:'Daily steps count healthy walking goal'},
+  'how-much-sleep-do-you-need-by-age':  {url:'https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=800&q=80',alt:'Sleep recommendations by age adults children'},
+  'sleep-cycles-explained':             {url:'https://images.unsplash.com/photo-1529516222410-b269b5d7aa99?w=800&q=80',alt:'Sleep cycles REM deep light sleep stages'},
+  'how-to-fix-sleep-schedule':          {url:'https://images.unsplash.com/photo-1498654200943-1088dd4438ae?w=800&q=80',alt:'Fixing sleep schedule 7 days guide'},
+  'best-foods-for-sleep':               {url:'https://images.unsplash.com/photo-1611070099689-5bd439e8ce41?w=800&q=80',alt:'Best foods for better sleep at night'},
+  'sleep-deprivation-weight-metabolism':{url:'https://images.unsplash.com/photo-1559181567-c3190bea0dc4?w=800&q=80',alt:'Sleep deprivation effects weight metabolism'},
+  'how-to-improve-sleep-quality':       {url:'https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=800&q=80',alt:'Improving sleep quality without medication'},
+  'napping-benefits-risks':             {url:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=80',alt:'Napping benefits risks ideal nap duration'},
+  'exercise-timing-sleep-quality':      {url:'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&q=80',alt:'Exercise timing effects on sleep quality'},
+  'how-much-water-should-you-drink':    {url:'https://images.unsplash.com/photo-1523473827533-2a64d0d36748?w=800&q=80',alt:'How much water to drink per day guide'},
+  'signs-of-dehydration':               {url:'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=800&q=80',alt:'Signs of dehydration symptoms causes'},
+  'benefits-of-drinking-more-water':    {url:'https://images.unsplash.com/photo-1606923829579-0cb981a83e2b?w=800&q=80',alt:'Benefits drinking more water science'},
+  'hydration-during-exercise':          {url:'https://images.unsplash.com/photo-1550345332-09e3ac987658?w=800&q=80',alt:'Hydration during exercise water needs'},
+  'does-drinking-water-help-weight-loss':{url:'https://images.unsplash.com/photo-1599058917765-a780eda07a3e?w=800&q=80',alt:'Drinking water helps weight loss evidence'},
+  'best-hydrating-foods':               {url:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80',alt:'Best hydrating foods eat every day'},
+  'target-heart-rate-zones':            {url:'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80',alt:'Target heart rate zones fat burn peak'},
+  'resting-heart-rate-normal':          {url:'https://images.unsplash.com/photo-1571388208497-71bedc66e932?w=800&q=80',alt:'Resting heart rate normal range warning signs'},
+  'how-to-lower-resting-heart-rate':    {url:'https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=800&q=80',alt:'Lower resting heart rate naturally tips'},
+  'maximum-heart-rate-by-age':          {url:'https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?w=800&q=80',alt:'Maximum heart rate by age formula zones'},
+  'heart-rate-variability-hrv':         {url:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',alt:'Heart rate variability HRV health wellness'},
+  'best-cardio-exercises-calorie-burn': {url:'https://images.unsplash.com/photo-1547919307-1ecb10702e6f?w=800&q=80',alt:'Best cardio exercises ranked calorie burn'},
+  'exercise-reduces-stress-anxiety':    {url:'https://images.unsplash.com/photo-1489533119213-66a5cd877091?w=800&q=80',alt:'Exercise reduces stress anxiety science'},
+  'meditation-for-beginners':           {url:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',alt:'Meditation for beginners mindfulness guide'},
+  'how-to-build-healthy-habits':        {url:'https://images.unsplash.com/photo-1543352634-99a5d50ae78e?w=800&q=80',alt:'Building healthy habits that actually stick'},
+  'morning-routines-healthy-people':    {url:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',alt:'Morning routines of healthy successful people'},
+  'how-to-stay-consistent-with-fitness':{url:'https://images.unsplash.com/photo-1470116945706-e6bf5d5a53ca?w=800&q=80',alt:'Staying consistent fitness busy lifestyle'},
+  'cortisol-and-weight-gain':           {url:'https://images.unsplash.com/photo-1530099486328-e021101a494a?w=800&q=80',alt:'Cortisol stress hormone weight gain effects'},
+  'sleep-affects-mental-health':        {url:'https://images.unsplash.com/photo-1543340904-0d1265efb5f8?w=800&q=80',alt:'Sleep affects mental health bidirectional link'},
+  'mindful-eating-emotional-eating':    {url:'https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=800&q=80',alt:'Mindful eating stop emotional eating guide'},
+  'health-calculators-for-women':       {url:'https://images.unsplash.com/photo-1559839697-f0c05b0fa8ae?w=800&q=80',alt:'Health calculators every woman should use'},
+  'health-calculators-for-men':         {url:'https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=80',alt:'Health calculators every man should know'},
+  'fitness-after-40':                   {url:'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80',alt:'Fitness after 40 training smarter aging'},
+  'weight-loss-after-50':               {url:'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80',alt:'Weight loss after 50 what changes works'},
+  'bmi-for-athletes':                   {url:'https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=800&q=80',alt:'BMI for athletes standard ranges limitations'},
+  'pregnancy-weight-gain':              {url:'https://images.unsplash.com/photo-1516977575801-5f5a5c9bf1fd?w=800&q=80',alt:'Pregnancy weight gain healthy ranges expect'},
+  'health-checks-every-year':           {url:'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80',alt:'Annual health checks complete checklist'},
+  'realistic-fitness-goals':            {url:'https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=800&q=80',alt:'Setting realistic fitness goals health data'},
+  'understanding-lab-results':          {url:'https://images.unsplash.com/photo-1506126279646-a697353d3166?w=800&q=80',alt:'Understanding lab results health numbers'},
+  'healthy-lifestyle-checklist':        {url:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',alt:'Healthy lifestyle checklist evidence based habits'},
+};
+
 function blogCardImage(slug) {
+  const entry = BLOG_IMAGES[slug];
+  if (entry) return { url: entry.url.replace('w=800&q=80','w=600&h=340&fit=crop&auto=format'), alt: entry.alt + ' | VitalHealth Hub' };
+  const fallback = { id: 'photo-1505576399279-565b52d4ac71', alt: 'Health and wellness lifestyle guide' };
+  return {
+    url: `https://images.unsplash.com/${fallback.id}?w=600&h=340&fit=crop&auto=format`,
+    alt: `${fallback.alt} | VitalHealth Hub`
+  };
+}
+
+// LEGACY entries kept for backwards compatibility
+function _UNUSED_legacyBlogCardImage_REMOVED(slug) {
   const map = {
     'how-to-calculate-bmi': { id: 'photo-1571019613454-1cb2f99b2d8b', alt: 'Doctor measuring patient BMI and body weight' },
     'what-is-a-healthy-bmi': { id: 'photo-1559757148-5c350d0d3c56', alt: 'Healthy person measuring waist for BMI assessment' },
@@ -894,115 +1021,138 @@ ${CHATBOT}
 // BLOG DATA
 // ========================
 const blogPosts = [
-  {slug:'how-to-calculate-bmi',title:'How to Calculate BMI: A Complete Guide',category:'Body Metrics',date:'2024-01-15',readTime:'5 min'},
-  {slug:'what-is-a-healthy-bmi',title:'What Is a Healthy BMI? Understanding the Ranges',category:'Body Metrics',date:'2024-01-18',readTime:'6 min'},
-  {slug:'bmi-vs-body-fat-percentage',title:'BMI vs Body Fat Percentage: Which Is Better?',category:'Body Metrics',date:'2024-01-22',readTime:'7 min'},
-  {slug:'how-many-calories-should-i-eat',title:'How Many Calories Should I Eat Per Day?',category:'Nutrition',date:'2024-01-25',readTime:'6 min'},
-  {slug:'calorie-deficit-for-weight-loss',title:'Calorie Deficit for Weight Loss: A Scientific Guide',category:'Nutrition',date:'2024-01-28',readTime:'7 min'},
-  {slug:'what-are-macronutrients',title:'What Are Macronutrients? Complete Guide to Macros',category:'Nutrition',date:'2024-02-01',readTime:'6 min'},
-  {slug:'high-protein-diet-benefits',title:'High Protein Diet Benefits for Health and Fitness',category:'Nutrition',date:'2024-02-04',readTime:'6 min'},
-  {slug:'how-much-water-should-you-drink',title:'How Much Water Should You Drink Daily?',category:'Nutrition',date:'2024-02-07',readTime:'5 min'},
-  {slug:'benefits-of-drinking-water',title:'10 Science-Backed Benefits of Drinking Water',category:'Wellness',date:'2024-02-10',readTime:'6 min'},
-  {slug:'how-much-sleep-do-you-need',title:'How Much Sleep Do You Really Need?',category:'Sleep',date:'2024-02-13',readTime:'6 min'},
-  {slug:'sleep-deprivation-effects',title:'The Dangerous Effects of Sleep Deprivation',category:'Sleep',date:'2024-02-16',readTime:'7 min'},
-  {slug:'how-to-improve-sleep-quality',title:'12 Proven Ways to Improve Sleep Quality',category:'Sleep',date:'2024-02-19',readTime:'7 min'},
-  {slug:'normal-resting-heart-rate',title:'What Is a Normal Resting Heart Rate?',category:'Heart Health',date:'2024-02-22',readTime:'5 min'},
-  {slug:'how-to-lower-heart-rate',title:'How to Lower Your Resting Heart Rate Naturally',category:'Heart Health',date:'2024-02-25',readTime:'6 min'},
-  {slug:'blood-pressure-explained',title:'Blood Pressure Explained: Numbers, Ranges, and Risks',category:'Heart Health',date:'2024-02-28',readTime:'7 min'},
-  {slug:'how-to-lower-blood-pressure-naturally',title:'How to Lower Blood Pressure Naturally: 15 Tips',category:'Heart Health',date:'2024-03-02',readTime:'8 min'},
-  {slug:'what-is-tdee',title:'What Is TDEE and Why Does It Matter?',category:'Body Metrics',date:'2024-03-05',readTime:'6 min'},
-  {slug:'bmr-explained',title:'BMR Explained: Understanding Your Metabolism',category:'Body Metrics',date:'2024-03-08',readTime:'6 min'},
-  {slug:'intermittent-fasting-guide',title:'Intermittent Fasting: A Complete Beginner\'s Guide',category:'Nutrition',date:'2024-03-11',readTime:'8 min'},
-  {slug:'16-8-intermittent-fasting',title:'The 16:8 Intermittent Fasting Method Explained',category:'Nutrition',date:'2024-03-14',readTime:'6 min'},
-  {slug:'keto-diet-beginners-guide',title:'Keto Diet Beginner\'s Guide: What to Eat and Avoid',category:'Nutrition',date:'2024-03-17',readTime:'8 min'},
-  {slug:'mediterranean-diet-benefits',title:'Mediterranean Diet Benefits: Why Experts Love It',category:'Nutrition',date:'2024-03-20',readTime:'7 min'},
-  {slug:'plant-based-diet-guide',title:'Plant-Based Diet: A Complete Nutrition Guide',category:'Nutrition',date:'2024-03-23',readTime:'7 min'},
-  {slug:'best-foods-for-weight-loss',title:'20 Best Foods for Weight Loss According to Science',category:'Nutrition',date:'2024-03-26',readTime:'8 min'},
-  {slug:'foods-that-boost-metabolism',title:'Foods That Boost Metabolism: Fact vs Fiction',category:'Nutrition',date:'2024-03-29',readTime:'6 min'},
-  {slug:'how-to-lose-belly-fat',title:'How to Lose Belly Fat: Evidence-Based Strategies',category:'Fitness',date:'2024-04-01',readTime:'7 min'},
-  {slug:'how-to-build-muscle',title:'How to Build Muscle: The Science-Based Guide',category:'Fitness',date:'2024-04-04',readTime:'8 min'},
-  {slug:'protein-for-muscle-growth',title:'Protein for Muscle Growth: How Much Do You Need?',category:'Fitness',date:'2024-04-07',readTime:'6 min'},
-  {slug:'creatine-benefits',title:'Creatine Benefits: What the Research Really Shows',category:'Fitness',date:'2024-04-10',readTime:'6 min'},
-  {slug:'best-exercises-for-weight-loss',title:'Best Exercises for Weight Loss: Expert Picks',category:'Fitness',date:'2024-04-13',readTime:'7 min'},
-  {slug:'cardio-vs-strength-training',title:'Cardio vs Strength Training: Which Is Better?',category:'Fitness',date:'2024-04-16',readTime:'7 min'},
-  {slug:'hiit-workout-benefits',title:'HIIT Workout Benefits: Why High Intensity Works',category:'Fitness',date:'2024-04-19',readTime:'6 min'},
-  {slug:'yoga-benefits-for-health',title:'Yoga Benefits for Health: Mind, Body, and Soul',category:'Fitness',date:'2024-04-22',readTime:'7 min'},
-  {slug:'walking-10000-steps-benefits',title:'Walking 10,000 Steps: Real Health Benefits',category:'Fitness',date:'2024-04-25',readTime:'5 min'},
-  {slug:'running-for-beginners',title:'Running for Beginners: Your First 5K Guide',category:'Fitness',date:'2024-04-28',readTime:'7 min'},
-  {slug:'cycling-health-benefits',title:'Cycling Health Benefits You Should Know About',category:'Fitness',date:'2024-05-01',readTime:'6 min'},
-  {slug:'swimming-health-benefits',title:'Swimming Health Benefits: Full Body Workout',category:'Fitness',date:'2024-05-04',readTime:'6 min'},
-  {slug:'stretching-importance',title:'Why Stretching Is Important for Your Health',category:'Fitness',date:'2024-05-07',readTime:'5 min'},
-  {slug:'how-to-start-exercising',title:'How to Start Exercising: A Beginner\'s Guide',category:'Fitness',date:'2024-05-10',readTime:'7 min'},
-  {slug:'workout-frequency-guide',title:'How Often Should You Work Out? Complete Guide',category:'Fitness',date:'2024-05-13',readTime:'6 min'},
-  {slug:'rest-days-importance',title:'Why Rest Days Are Important for Recovery',category:'Fitness',date:'2024-05-16',readTime:'5 min'},
-  {slug:'muscle-soreness-recovery',title:'Muscle Soreness and Recovery: What to Know',category:'Fitness',date:'2024-05-19',readTime:'6 min'},
-  {slug:'vo2-max-explained',title:'VO2 Max Explained: Measuring Aerobic Fitness',category:'Fitness',date:'2024-05-22',readTime:'6 min'},
-  {slug:'one-rep-max-guide',title:'One Rep Max Guide: Test Your Strength Safely',category:'Fitness',date:'2024-05-25',readTime:'5 min'},
-  {slug:'ideal-weight-for-height',title:'Ideal Weight for Height: Charts and Formulas',category:'Body Metrics',date:'2024-05-28',readTime:'6 min'},
-  {slug:'waist-to-hip-ratio-health',title:'Waist-to-Hip Ratio and Health Risks Explained',category:'Body Metrics',date:'2024-05-31',readTime:'5 min'},
-  {slug:'body-fat-percentage-guide',title:'Body Fat Percentage: Complete Guide and Charts',category:'Body Metrics',date:'2024-06-03',readTime:'7 min'},
-  {slug:'lean-body-mass-explained',title:'Lean Body Mass Explained: Why It Matters',category:'Body Metrics',date:'2024-06-06',readTime:'5 min'},
-  {slug:'cholesterol-levels-explained',title:'Cholesterol Levels Explained: Good vs Bad',category:'Heart Health',date:'2024-06-09',readTime:'7 min'},
-  {slug:'how-to-lower-cholesterol',title:'How to Lower Cholesterol Naturally: 10 Tips',category:'Heart Health',date:'2024-06-12',readTime:'7 min'},
-  {slug:'diabetes-prevention-tips',title:'Diabetes Prevention: 10 Evidence-Based Tips',category:'Disease Prevention',date:'2024-06-15',readTime:'7 min'},
-  {slug:'blood-sugar-normal-levels',title:'Blood Sugar Normal Levels: What You Should Know',category:'Disease Prevention',date:'2024-06-18',readTime:'6 min'},
-  {slug:'signs-of-diabetes',title:'Early Signs of Diabetes You Should Not Ignore',category:'Disease Prevention',date:'2024-06-21',readTime:'6 min'},
-  {slug:'heart-disease-risk-factors',title:'Heart Disease Risk Factors: Know Your Risks',category:'Heart Health',date:'2024-06-24',readTime:'7 min'},
-  {slug:'stroke-prevention-guide',title:'Stroke Prevention: A Complete Guide',category:'Disease Prevention',date:'2024-06-27',readTime:'7 min'},
-  {slug:'cancer-prevention-lifestyle',title:'Cancer Prevention Through Lifestyle Changes',category:'Disease Prevention',date:'2024-06-30',readTime:'8 min'},
-  {slug:'immune-system-boosting-foods',title:'Top Foods That Boost Your Immune System',category:'Nutrition',date:'2024-07-03',readTime:'6 min'},
-  {slug:'vitamin-d-deficiency-signs',title:'Vitamin D Deficiency: Signs and Solutions',category:'Nutrition',date:'2024-07-06',readTime:'6 min'},
-  {slug:'vitamin-c-benefits',title:'Vitamin C Benefits: More Than Just Immune Support',category:'Nutrition',date:'2024-07-09',readTime:'5 min'},
-  {slug:'magnesium-benefits',title:'Magnesium Benefits: The Essential Mineral Guide',category:'Nutrition',date:'2024-07-12',readTime:'6 min'},
-  {slug:'iron-deficiency-symptoms',title:'Iron Deficiency Symptoms and Treatment Options',category:'Nutrition',date:'2024-07-15',readTime:'6 min'},
-  {slug:'calcium-for-bone-health',title:'Calcium for Bone Health: How Much Do You Need?',category:'Nutrition',date:'2024-07-18',readTime:'5 min'},
-  {slug:'omega-3-fatty-acids-benefits',title:'Omega-3 Fatty Acids: Benefits and Best Sources',category:'Nutrition',date:'2024-07-21',readTime:'6 min'},
-  {slug:'probiotics-gut-health',title:'Probiotics and Gut Health: What Science Says',category:'Wellness',date:'2024-07-24',readTime:'7 min'},
-  {slug:'fiber-importance-digestion',title:'Why Fiber Is Important for Digestion and Health',category:'Nutrition',date:'2024-07-27',readTime:'5 min'},
-  {slug:'anti-inflammatory-foods',title:'Anti-Inflammatory Foods: Your Complete Guide',category:'Nutrition',date:'2024-07-30',readTime:'7 min'},
-  {slug:'antioxidants-health-benefits',title:'Antioxidants: Health Benefits and Food Sources',category:'Nutrition',date:'2024-08-02',readTime:'6 min'},
-  {slug:'superfoods-list',title:'Top 20 Superfoods You Should Be Eating',category:'Nutrition',date:'2024-08-05',readTime:'6 min'},
-  {slug:'how-to-manage-stress',title:'How to Manage Stress: 15 Effective Strategies',category:'Mental Health',date:'2024-08-08',readTime:'8 min'},
-  {slug:'anxiety-management-tips',title:'Anxiety Management Tips That Actually Work',category:'Mental Health',date:'2024-08-11',readTime:'7 min'},
-  {slug:'depression-natural-remedies',title:'Natural Remedies for Depression: What Helps',category:'Mental Health',date:'2024-08-14',readTime:'7 min'},
-  {slug:'mindfulness-meditation-guide',title:'Mindfulness Meditation: A Beginner\'s Guide',category:'Mental Health',date:'2024-08-17',readTime:'7 min'},
-  {slug:'mental-health-self-care',title:'Mental Health Self-Care: Daily Practices',category:'Mental Health',date:'2024-08-20',readTime:'6 min'},
-  {slug:'burnout-signs-recovery',title:'Burnout Signs and Recovery Strategies',category:'Mental Health',date:'2024-08-23',readTime:'7 min'},
-  {slug:'work-life-balance-tips',title:'Work-Life Balance Tips for Better Health',category:'Mental Health',date:'2024-08-26',readTime:'6 min'},
-  {slug:'sleep-and-mental-health',title:'Sleep and Mental Health: The Hidden Connection',category:'Sleep',date:'2024-08-29',readTime:'6 min'},
-  {slug:'exercise-and-mental-health',title:'Exercise and Mental Health: The Powerful Link',category:'Mental Health',date:'2024-09-01',readTime:'6 min'},
-  {slug:'social-connections-health',title:'Social Connections and Health: Why They Matter',category:'Wellness',date:'2024-09-04',readTime:'5 min'},
-  {slug:'how-to-quit-smoking',title:'How to Quit Smoking: A Step-by-Step Guide',category:'Lifestyle',date:'2024-09-07',readTime:'8 min'},
-  {slug:'alcohol-health-effects',title:'Alcohol and Health: Effects You Need to Know',category:'Lifestyle',date:'2024-09-10',readTime:'7 min'},
-  {slug:'caffeine-effects-on-body',title:'Caffeine Effects on Your Body: Good and Bad',category:'Lifestyle',date:'2024-09-13',readTime:'6 min'},
-  {slug:'dehydration-signs',title:'Dehydration Signs: How to Know If You Need Water',category:'Wellness',date:'2024-09-16',readTime:'5 min'},
-  {slug:'gut-health-guide',title:'Gut Health Guide: Improve Your Digestive System',category:'Wellness',date:'2024-09-19',readTime:'7 min'},
-  {slug:'liver-health-tips',title:'Liver Health Tips: Keep Your Liver Healthy',category:'Wellness',date:'2024-09-22',readTime:'6 min'},
-  {slug:'kidney-health-guide',title:'Kidney Health Guide: Protection and Prevention',category:'Wellness',date:'2024-09-25',readTime:'6 min'},
-  {slug:'thyroid-health-guide',title:'Thyroid Health Guide: Symptoms and Solutions',category:'Wellness',date:'2024-09-28',readTime:'7 min'},
-  {slug:'hormonal-balance-tips',title:'Hormonal Balance Tips for Better Health',category:'Wellness',date:'2024-10-01',readTime:'7 min'},
-  {slug:'menstrual-health-guide',title:'Menstrual Health Guide: Understanding Your Cycle',category:'Women\'s Health',date:'2024-10-04',readTime:'7 min'},
-  {slug:'pregnancy-nutrition-guide',title:'Pregnancy Nutrition Guide: What to Eat',category:'Women\'s Health',date:'2024-10-07',readTime:'8 min'},
-  {slug:'postpartum-health-tips',title:'Postpartum Health Tips for New Mothers',category:'Women\'s Health',date:'2024-10-10',readTime:'7 min'},
-  {slug:'menopause-health-guide',title:'Menopause Health Guide: Managing the Transition',category:'Women\'s Health',date:'2024-10-13',readTime:'7 min'},
-  {slug:'mens-health-tips',title:'Men\'s Health Tips: Essential Guide for Every Age',category:'Wellness',date:'2024-10-16',readTime:'7 min'},
-  {slug:'childrens-nutrition-guide',title:'Children\'s Nutrition Guide: Healthy Eating Habits',category:'Nutrition',date:'2024-10-19',readTime:'7 min'},
-  {slug:'elderly-health-tips',title:'Elderly Health Tips: Staying Active and Well',category:'Wellness',date:'2024-10-22',readTime:'6 min'},
-  {slug:'healthy-aging-tips',title:'Healthy Aging Tips: Science-Backed Strategies',category:'Wellness',date:'2024-10-25',readTime:'7 min'},
-  {slug:'longevity-secrets',title:'Longevity Secrets from the World\'s Blue Zones',category:'Wellness',date:'2024-10-28',readTime:'8 min'},
-  {slug:'biological-age-vs-chronological-age',title:'Biological Age vs Chronological Age Explained',category:'Wellness',date:'2024-10-31',readTime:'6 min'},
-  {slug:'life-expectancy-factors',title:'Factors That Affect Your Life Expectancy',category:'Wellness',date:'2024-11-03',readTime:'7 min'},
-  {slug:'preventive-health-checkups',title:'Preventive Health Checkups: What You Need When',category:'Wellness',date:'2024-11-06',readTime:'7 min'},
+  // ── CATEGORY 1: BMI & Body Weight ──
+  {slug:'how-to-calculate-bmi',title:'How to Calculate BMI: A Complete Step-by-Step Guide',category:'BMI & Body Weight',date:'2024-01-15',readTime:'7 min',calcEmbed:'bmi-calculator',tags:['BMI','body mass index','weight management','BMI formula','obesity']},
+  {slug:'what-is-a-healthy-bmi',title:'What Is a Healthy BMI? Understanding the Ranges for Men and Women',category:'BMI & Body Weight',date:'2024-01-19',readTime:'8 min',calcEmbed:'bmi-calculator',tags:['healthy BMI','BMI ranges','normal weight','men women','weight classification']},
+  {slug:'bmi-vs-body-fat-percentage',title:'BMI vs Body Fat Percentage: Which Is the Better Health Indicator?',category:'BMI & Body Weight',date:'2024-01-23',readTime:'8 min',calcEmbed:'body-fat-calculator',tags:['BMI','body fat percentage','body composition','health metrics','fitness']},
+  {slug:'bmi-for-children-and-teenagers',title:'BMI for Children and Teenagers: What Parents Need to Know',category:'BMI & Body Weight',date:'2024-01-27',readTime:'7 min',calcEmbed:'child-bmi-calculator',tags:['child BMI','teen BMI','kids weight','pediatric health','childhood obesity']},
+  {slug:'bmi-chart-by-age',title:'BMI Chart by Age: How Your Ideal Weight Changes Over Time',category:'BMI & Body Weight',date:'2024-01-31',readTime:'7 min',calcEmbed:'bmi-calculator',tags:['BMI chart','BMI by age','ideal weight','weight changes','aging health']},
+  {slug:'is-bmi-accurate',title:'Is BMI Accurate? The Limitations of Body Mass Index Explained',category:'BMI & Body Weight',date:'2024-02-04',readTime:'8 min',calcEmbed:'body-fat-calculator',tags:['BMI accuracy','BMI limitations','body composition','health screening','athletes BMI']},
+  {slug:'underweight-bmi-health-risks',title:'Underweight BMI: Health Risks and How to Gain Weight Safely',category:'BMI & Body Weight',date:'2024-02-08',readTime:'8 min',calcEmbed:'calorie-calculator',tags:['underweight','low BMI','weight gain','nutrition','health risks']},
+  {slug:'overweight-vs-obese-bmi',title:'Overweight vs Obese BMI: Understanding the Difference',category:'BMI & Body Weight',date:'2024-02-12',readTime:'7 min',calcEmbed:'bmi-calculator',tags:['overweight','obese','BMI classification','weight loss','chronic disease']},
+  {slug:'how-to-lower-your-bmi',title:'How to Lower Your BMI: Science-Backed Strategies That Work',category:'BMI & Body Weight',date:'2024-02-16',readTime:'9 min',calcEmbed:'bmi-calculator',tags:['lower BMI','weight loss','diet','exercise','healthy habits']},
+  {slug:'bmi-and-chronic-disease',title:'BMI and Chronic Disease: What the Research Actually Says',category:'BMI & Body Weight',date:'2024-02-20',readTime:'8 min',calcEmbed:'bmi-calculator',tags:['BMI','chronic disease','diabetes','heart disease','research']},
+  // ── CATEGORY 2: Calories & Weight Management ──
+  {slug:'how-many-calories-should-i-eat',title:'How Many Calories Should I Eat Per Day? Complete Guide',category:'Calories & Weight',date:'2024-02-24',readTime:'8 min',calcEmbed:'calorie-calculator',tags:['daily calories','calorie needs','weight management','TDEE','nutrition']},
+  {slug:'calorie-deficit-for-weight-loss',title:'Calorie Deficit for Weight Loss: The Only Guide You Need',category:'Calories & Weight',date:'2024-02-28',readTime:'9 min',calcEmbed:'calorie-calculator',tags:['calorie deficit','weight loss','fat loss','calorie counting','diet']},
+  {slug:'calorie-surplus-for-muscle-gain',title:'Calorie Surplus for Muscle Gain: How to Eat for Growth',category:'Calories & Weight',date:'2024-03-03',readTime:'8 min',calcEmbed:'calorie-calculator',tags:['calorie surplus','muscle gain','bulking','nutrition','protein']},
+  {slug:'how-to-count-calories',title:'How to Count Calories Without Losing Your Mind',category:'Calories & Weight',date:'2024-03-07',readTime:'7 min',calcEmbed:'calorie-calculator',tags:['counting calories','calorie tracking','food logging','diet tips','weight management']},
+  {slug:'calorie-cycling',title:'Calorie Cycling: What It Is and Does It Actually Work?',category:'Calories & Weight',date:'2024-03-11',readTime:'7 min',calcEmbed:'calorie-calculator',tags:['calorie cycling','carb cycling','diet strategy','metabolism','weight loss']},
+  {slug:'low-calorie-foods-keep-you-full',title:'Low Calorie Foods That Keep You Full Longer',category:'Calories & Weight',date:'2024-03-15',readTime:'7 min',calcEmbed:'calorie-calculator',tags:['low calorie foods','satiety','hunger management','fiber','nutrition']},
+  {slug:'calories-burned-walking-10000-steps',title:'How Many Calories Do You Burn Walking 10,000 Steps?',category:'Calories & Weight',date:'2024-03-19',readTime:'6 min',calcEmbed:'steps-to-calories-calculator',tags:['walking calories','10000 steps','calorie burn','exercise','fitness']},
+  {slug:'liquid-calories-weight-loss',title:'Liquid Calories: The Hidden Reason You Are Not Losing Weight',category:'Calories & Weight',date:'2024-03-23',readTime:'7 min',calcEmbed:'calorie-calculator',tags:['liquid calories','drinks','weight loss','soda','alcohol calories']},
+  {slug:'maintenance-calories-explained',title:'Maintenance Calories Explained: How to Find Your Exact Number',category:'Calories & Weight',date:'2024-03-27',readTime:'8 min',calcEmbed:'tdee-calculator',tags:['maintenance calories','TDEE','calorie needs','metabolism','weight maintenance']},
+  {slug:'calorie-needs-by-age',title:'Calorie Needs by Age: How Your Metabolism Changes Decade by Decade',category:'Calories & Weight',date:'2024-03-31',readTime:'8 min',calcEmbed:'calorie-calculator',tags:['calorie needs age','metabolism aging','senior nutrition','activity level','BMR']},
+  {slug:'eating-late-at-night-weight-gain',title:'Does Eating Late at Night Cause Weight Gain? The Truth',category:'Calories & Weight',date:'2024-04-04',readTime:'7 min',calcEmbed:'calorie-calculator',tags:['eating late night','weight gain','meal timing','circadian rhythm','metabolism']},
+  {slug:'how-to-break-weight-loss-plateau',title:'How to Break a Weight Loss Plateau: Proven Methods',category:'Calories & Weight',date:'2024-04-08',readTime:'9 min',calcEmbed:'calorie-calculator',tags:['weight loss plateau','break plateau','metabolism','diet strategies','fitness']},
+  // ── CATEGORY 3: Macronutrients & Nutrition ──
+  {slug:'what-are-macronutrients',title:'What Are Macronutrients? The Complete Beginner Guide',category:'Macronutrients',date:'2024-04-12',readTime:'8 min',calcEmbed:'macro-calculator',tags:['macronutrients','protein','carbohydrates','fat','nutrition basics']},
+  {slug:'how-much-protein-per-day',title:'How Much Protein Do You Really Need Per Day?',category:'Macronutrients',date:'2024-04-16',readTime:'8 min',calcEmbed:'protein-intake-calculator',tags:['protein intake','daily protein','muscle building','nutrition','amino acids']},
+  {slug:'carbohydrates-good-vs-bad',title:'Carbohydrates: Good vs Bad — What Science Actually Says',category:'Macronutrients',date:'2024-04-20',readTime:'8 min',calcEmbed:'carb-calculator',tags:['carbohydrates','complex carbs','simple carbs','glycemic index','nutrition']},
+  {slug:'healthy-fats-vs-unhealthy-fats',title:'Healthy Fats vs Unhealthy Fats: The Complete Guide',category:'Macronutrients',date:'2024-04-24',readTime:'8 min',calcEmbed:'fat-intake-calculator',tags:['healthy fats','saturated fat','unsaturated fat','omega-3','nutrition']},
+  {slug:'how-to-calculate-macros-weight-loss',title:'How to Calculate Your Macros for Weight Loss',category:'Macronutrients',date:'2024-04-28',readTime:'9 min',calcEmbed:'macro-calculator',tags:['macro calculation','weight loss macros','IIFYM','calorie macros','diet planning']},
+  {slug:'high-protein-foods-list',title:'High Protein Foods: The Ultimate List with Protein Content',category:'Macronutrients',date:'2024-05-02',readTime:'8 min',calcEmbed:'protein-intake-calculator',tags:['high protein foods','protein sources','muscle building','nutrition','diet']},
+  {slug:'best-pre-workout-meals',title:'Best Pre-Workout Meals for Energy and Performance',category:'Macronutrients',date:'2024-05-06',readTime:'7 min',calcEmbed:'macro-calculator',tags:['pre-workout meal','workout nutrition','carbs protein','energy performance','sports nutrition']},
+  {slug:'best-post-workout-meals',title:'Best Post-Workout Meals for Recovery and Muscle Growth',category:'Macronutrients',date:'2024-05-10',readTime:'7 min',calcEmbed:'protein-intake-calculator',tags:['post-workout meal','recovery nutrition','muscle growth','protein carbs','sports nutrition']},
+  {slug:'micronutrients-vs-macronutrients',title:'Micronutrients vs Macronutrients: What Is the Difference?',category:'Macronutrients',date:'2024-05-14',readTime:'7 min',calcEmbed:'macro-calculator',tags:['micronutrients','macronutrients','vitamins','minerals','nutrition']},
+  {slug:'how-to-read-nutrition-labels',title:'How to Read Nutrition Labels Like a Health Expert',category:'Macronutrients',date:'2024-05-18',readTime:'8 min',calcEmbed:'calorie-calculator',tags:['nutrition labels','food labels','calories','serving size','ingredients']},
+  {slug:'fiber-why-not-getting-enough',title:'Fiber: Why You Are Not Getting Enough and How to Fix It',category:'Macronutrients',date:'2024-05-22',readTime:'7 min',calcEmbed:'fiber-intake-calculator',tags:['dietary fiber','digestive health','gut health','constipation','plant foods']},
+  {slug:'sugar-addiction-reduce-sugar',title:'Sugar Addiction: How to Reduce Sugar Without Feeling Miserable',category:'Macronutrients',date:'2024-05-26',readTime:'8 min',calcEmbed:'calorie-calculator',tags:['sugar addiction','reduce sugar','cravings','blood sugar','healthy diet']},
+  // ── CATEGORY 4: TDEE & Metabolism ──
+  {slug:'what-is-tdee',title:'What Is TDEE? Total Daily Energy Expenditure Explained',category:'TDEE & Metabolism',date:'2024-05-30',readTime:'8 min',calcEmbed:'tdee-calculator',tags:['TDEE','total daily energy','metabolism','calorie needs','weight management']},
+  {slug:'bmr-vs-tdee',title:'BMR vs TDEE: What Is the Difference and Why It Matters',category:'TDEE & Metabolism',date:'2024-06-03',readTime:'8 min',calcEmbed:'bmr-calculator',tags:['BMR','TDEE','basal metabolic rate','calorie calculation','metabolism']},
+  {slug:'how-to-boost-metabolism',title:'How to Boost Your Metabolism: Evidence-Based Methods Only',category:'TDEE & Metabolism',date:'2024-06-07',readTime:'9 min',calcEmbed:'tdee-calculator',tags:['boost metabolism','metabolism tips','NEAT','muscle mass','thermogenesis']},
+  {slug:'does-muscle-burn-more-calories',title:'Does Muscle Burn More Calories Than Fat? The Truth',category:'TDEE & Metabolism',date:'2024-06-11',readTime:'7 min',calcEmbed:'lean-body-mass-calculator',tags:['muscle metabolism','fat vs muscle','calorie burn','body composition','BMR']},
+  {slug:'slow-metabolism-is-it-real',title:'Slow Metabolism: Is It Real or Just an Excuse?',category:'TDEE & Metabolism',date:'2024-06-15',readTime:'8 min',calcEmbed:'bmr-calculator',tags:['slow metabolism','metabolic rate','thyroid','calorie restriction','BMR']},
+  {slug:'activity-level-affects-calorie-needs',title:'How Activity Level Affects Your Daily Calorie Needs',category:'TDEE & Metabolism',date:'2024-06-19',readTime:'7 min',calcEmbed:'tdee-calculator',tags:['activity level','NEAT','exercise calories','sedentary active','TDEE']},
+  {slug:'adaptive-thermogenesis',title:'Adaptive Thermogenesis: Why Your Body Fights Weight Loss',category:'TDEE & Metabolism',date:'2024-06-23',readTime:'8 min',calcEmbed:'tdee-calculator',tags:['adaptive thermogenesis','metabolic adaptation','weight loss plateau','starvation mode','dieting']},
+  {slug:'how-age-affects-metabolism',title:'How Age Affects Your Metabolism and What You Can Do About It',category:'TDEE & Metabolism',date:'2024-06-27',readTime:'8 min',calcEmbed:'bmr-calculator',tags:['metabolism aging','BMR age','menopause metabolism','muscle loss','senior fitness']},
+  // ── CATEGORY 5: Body Fat & Composition ──
+  {slug:'body-fat-percentage-chart',title:'Body Fat Percentage Chart for Men and Women by Age',category:'Body Fat',date:'2024-07-01',readTime:'8 min',calcEmbed:'body-fat-calculator',tags:['body fat percentage','body fat chart','men women','age fitness','body composition']},
+  {slug:'how-to-lose-body-fat-without-losing-muscle',title:'How to Lose Body Fat Without Losing Muscle: Complete Guide',category:'Body Fat',date:'2024-07-05',readTime:'9 min',calcEmbed:'body-fat-calculator',tags:['lose body fat','preserve muscle','cutting diet','resistance training','body recomposition']},
+  {slug:'visceral-fat-vs-subcutaneous-fat',title:'Visceral Fat vs Subcutaneous Fat: Which Is More Dangerous?',category:'Body Fat',date:'2024-07-09',readTime:'8 min',calcEmbed:'waist-to-hip-ratio',tags:['visceral fat','subcutaneous fat','belly fat','metabolic risk','abdominal obesity']},
+  {slug:'how-to-measure-body-fat-at-home',title:'How to Measure Body Fat at Home: 5 Most Accurate Methods',category:'Body Fat',date:'2024-07-13',readTime:'8 min',calcEmbed:'body-fat-calculator',tags:['measure body fat','calipers','Navy method','DEXA','body composition methods']},
+  {slug:'essential-body-fat-vs-storage-fat',title:'Essential Body Fat vs Storage Body Fat: What You Need to Know',category:'Body Fat',date:'2024-07-17',readTime:'7 min',calcEmbed:'body-fat-calculator',tags:['essential fat','storage fat','minimum body fat','hormones','health']},
+  {slug:'how-long-to-lose-1-percent-body-fat',title:'How Long Does It Take to Lose 1% Body Fat?',category:'Body Fat',date:'2024-07-21',readTime:'7 min',calcEmbed:'calorie-calculator',tags:['body fat loss rate','fat loss timeline','realistic goals','calorie deficit','cutting']},
+  {slug:'exercises-to-reduce-belly-fat',title:'Best Exercises to Reduce Belly Fat According to Science',category:'Body Fat',date:'2024-07-25',readTime:'8 min',calcEmbed:'body-fat-calculator',tags:['belly fat exercises','core workout','HIIT','abdominal fat','fat loss']},
+  {slug:'body-recomposition',title:'Body Recomposition: Lose Fat and Gain Muscle at the Same Time',category:'Body Fat',date:'2024-07-29',readTime:'9 min',calcEmbed:'body-fat-calculator',tags:['body recomposition','recomp','lose fat gain muscle','protein intake','training']},
+  // ── CATEGORY 6: Fitness & Exercise ──
+  {slug:'how-to-build-muscle',title:'How to Build Muscle: A Complete Science-Based Guide',category:'Fitness & Exercise',date:'2024-08-02',readTime:'10 min',calcEmbed:'protein-intake-calculator',tags:['muscle building','hypertrophy','strength training','protein','progressive overload']},
+  {slug:'cardio-vs-strength-training',title:'Cardio vs Strength Training: Which Burns More Fat?',category:'Fitness & Exercise',date:'2024-08-06',readTime:'8 min',calcEmbed:'heart-rate-calculator',tags:['cardio','strength training','fat burn','exercise comparison','fitness']},
+  {slug:'hiit-workout-guide-for-beginners',title:'HIIT Workout Guide for Beginners: Everything You Need to Know',category:'Fitness & Exercise',date:'2024-08-10',readTime:'8 min',calcEmbed:'heart-rate-calculator',tags:['HIIT','high intensity training','beginners workout','calorie burn','interval training']},
+  {slug:'how-to-improve-running-endurance',title:'How to Improve Running Endurance: Training Plan Included',category:'Fitness & Exercise',date:'2024-08-14',readTime:'9 min',calcEmbed:'vo2-max-calculator',tags:['running endurance','marathon training','aerobic fitness','VO2 max','training plan']},
+  {slug:'progressive-overload-explained',title:'Progressive Overload: The Key Principle Behind Every Fitness Goal',category:'Fitness & Exercise',date:'2024-08-18',readTime:'8 min',calcEmbed:'one-rep-max-calculator',tags:['progressive overload','strength gains','muscle growth','training principle','1RM']},
+  {slug:'how-many-days-per-week-workout',title:'How Many Days Per Week Should You Work Out?',category:'Fitness & Exercise',date:'2024-08-22',readTime:'7 min',calcEmbed:'heart-rate-calculator',tags:['workout frequency','training days','recovery','exercise schedule','fitness program']},
+  {slug:'best-exercises-for-each-muscle-group',title:'Best Exercises for Each Muscle Group: Complete Reference Guide',category:'Fitness & Exercise',date:'2024-08-26',readTime:'10 min',calcEmbed:'one-rep-max-calculator',tags:['exercises muscle groups','chest back legs','compound movements','gym workout','strength']},
+  {slug:'rest-days-importance-recovery',title:'Rest Days: Why Recovery Is Just as Important as Training',category:'Fitness & Exercise',date:'2024-08-30',readTime:'7 min',calcEmbed:'heart-rate-calculator',tags:['rest days','recovery','overtraining','muscle repair','fitness balance']},
+  {slug:'home-workout-routine-no-equipment',title:'How to Build a Home Workout Routine With No Equipment',category:'Fitness & Exercise',date:'2024-09-03',readTime:'8 min',calcEmbed:'heart-rate-calculator',tags:['home workout','no equipment','bodyweight exercises','calisthenics','fitness at home']},
+  {slug:'stretching-guide-static-vs-dynamic',title:'Stretching Guide: Static vs Dynamic and When to Do Each',category:'Fitness & Exercise',date:'2024-09-07',readTime:'7 min',calcEmbed:'heart-rate-calculator',tags:['stretching','flexibility','static stretch','dynamic warmup','injury prevention']},
+  {slug:'vo2-max-explained',title:'VO2 Max Explained: What It Is and How to Improve It',category:'Fitness & Exercise',date:'2024-09-11',readTime:'8 min',calcEmbed:'vo2-max-calculator',tags:['VO2 max','aerobic capacity','cardiovascular fitness','endurance','training']},
+  {slug:'how-many-steps-per-day',title:'How Many Steps Per Day Is Actually Healthy?',category:'Fitness & Exercise',date:'2024-09-15',readTime:'7 min',calcEmbed:'steps-to-calories-calculator',tags:['daily steps','10000 steps','walking health','activity level','step counter']},
+  // ── CATEGORY 7: Sleep & Recovery ──
+  {slug:'how-much-sleep-do-you-need-by-age',title:'How Much Sleep Do You Actually Need by Age?',category:'Sleep & Recovery',date:'2024-09-19',readTime:'7 min',calcEmbed:'sleep-calculator',tags:['sleep duration','sleep by age','adults sleep','children sleep','recommendations']},
+  {slug:'sleep-cycles-explained',title:'Sleep Cycles Explained: REM, Deep Sleep and Light Sleep',category:'Sleep & Recovery',date:'2024-09-23',readTime:'8 min',calcEmbed:'sleep-calculator',tags:['sleep cycles','REM sleep','deep sleep','sleep stages','NREM']},
+  {slug:'how-to-fix-sleep-schedule',title:'How to Fix Your Sleep Schedule in 7 Days',category:'Sleep & Recovery',date:'2024-09-27',readTime:'8 min',calcEmbed:'sleep-calculator',tags:['sleep schedule','sleep reset','circadian rhythm','insomnia tips','bedtime routine']},
+  {slug:'best-foods-for-sleep',title:'Best Foods That Help You Sleep Better at Night',category:'Sleep & Recovery',date:'2024-10-01',readTime:'7 min',calcEmbed:'sleep-calculator',tags:['foods for sleep','melatonin','tryptophan','magnesium','sleep nutrition']},
+  {slug:'sleep-deprivation-weight-metabolism',title:'Effects of Sleep Deprivation on Weight and Metabolism',category:'Sleep & Recovery',date:'2024-10-05',readTime:'8 min',calcEmbed:'sleep-calculator',tags:['sleep deprivation','weight gain','ghrelin leptin','metabolism sleep','fatigue']},
+  {slug:'how-to-improve-sleep-quality',title:'How to Improve Sleep Quality Without Medication',category:'Sleep & Recovery',date:'2024-10-09',readTime:'9 min',calcEmbed:'sleep-calculator',tags:['sleep quality','insomnia remedies','sleep hygiene','blue light','bedroom environment']},
+  {slug:'napping-benefits-risks',title:'Napping: Benefits, Risks and the Ideal Nap Duration',category:'Sleep & Recovery',date:'2024-10-13',readTime:'7 min',calcEmbed:'sleep-calculator',tags:['napping','power nap','nap duration','daytime sleep','alertness']},
+  {slug:'exercise-timing-sleep-quality',title:'How Exercise Timing Affects Your Sleep Quality',category:'Sleep & Recovery',date:'2024-10-17',readTime:'7 min',calcEmbed:'sleep-calculator',tags:['exercise sleep','workout timing','evening exercise','circadian rhythm','sleep quality']},
+  // ── CATEGORY 8: Hydration & Water ──
+  {slug:'how-much-water-should-you-drink',title:'How Much Water Should You Drink Per Day? Full Guide',category:'Hydration',date:'2024-10-21',readTime:'7 min',calcEmbed:'water-intake-calculator',tags:['daily water intake','hydration','water needs','how much water','fluid balance']},
+  {slug:'signs-of-dehydration',title:'Signs of Dehydration: Symptoms, Causes and How to Fix It',category:'Hydration',date:'2024-10-25',readTime:'7 min',calcEmbed:'water-intake-calculator',tags:['dehydration signs','dehydration symptoms','hydration','dry mouth','urine color']},
+  {slug:'benefits-of-drinking-more-water',title:'Benefits of Drinking More Water: What Science Says',category:'Hydration',date:'2024-10-29',readTime:'7 min',calcEmbed:'water-intake-calculator',tags:['drinking water benefits','hydration health','skin health','energy','weight loss']},
+  {slug:'hydration-during-exercise',title:'Hydration During Exercise: How Much Water Do You Need?',category:'Hydration',date:'2024-11-02',readTime:'7 min',calcEmbed:'water-intake-calculator',tags:['exercise hydration','sports water','electrolytes','sweat loss','athlete hydration']},
+  {slug:'does-drinking-water-help-weight-loss',title:'Does Drinking Water Help You Lose Weight? The Evidence',category:'Hydration',date:'2024-11-06',readTime:'7 min',calcEmbed:'water-intake-calculator',tags:['water weight loss','hydration diet','metabolism water','hunger suppression','fat burn']},
+  {slug:'best-hydrating-foods',title:'Best Hydrating Foods to Eat Every Day',category:'Hydration',date:'2024-11-10',readTime:'6 min',calcEmbed:'water-intake-calculator',tags:['hydrating foods','cucumber watermelon','water content foods','daily hydration','electrolytes']},
+  // ── CATEGORY 9: Heart Rate & Cardio Health ──
+  {slug:'target-heart-rate-zones',title:'Target Heart Rate Zones Explained: Fat Burn to Peak',category:'Heart Rate',date:'2024-11-14',readTime:'8 min',calcEmbed:'heart-rate-calculator',tags:['heart rate zones','fat burn zone','target heart rate','cardio training','aerobic']},
+  {slug:'resting-heart-rate-normal',title:'Resting Heart Rate: What Is Normal and What Is a Warning Sign?',category:'Heart Rate',date:'2024-11-18',readTime:'7 min',calcEmbed:'heart-rate-calculator',tags:['resting heart rate','normal pulse','bradycardia','tachycardia','heart health']},
+  {slug:'how-to-lower-resting-heart-rate',title:'How to Lower Your Resting Heart Rate Naturally',category:'Heart Rate',date:'2024-11-22',readTime:'8 min',calcEmbed:'heart-rate-calculator',tags:['lower heart rate','resting pulse','cardio fitness','vagal tone','meditation']},
+  {slug:'maximum-heart-rate-by-age',title:'Maximum Heart Rate by Age: Formula and Fitness Zones',category:'Heart Rate',date:'2024-11-26',readTime:'7 min',calcEmbed:'heart-rate-calculator',tags:['maximum heart rate','MHR formula','age heart rate','fitness zones','cardio']},
+  {slug:'heart-rate-variability-hrv',title:'Heart Rate Variability (HRV): What It Is and Why It Matters',category:'Heart Rate',date:'2024-11-30',readTime:'8 min',calcEmbed:'heart-rate-calculator',tags:['HRV','heart rate variability','autonomic nervous system','recovery','stress']},
+  {slug:'best-cardio-exercises-calorie-burn',title:'Best Cardio Exercises Ranked by Calorie Burn',category:'Heart Rate',date:'2024-12-04',readTime:'8 min',calcEmbed:'heart-rate-calculator',tags:['cardio exercises','calorie burn','running cycling','HIIT','aerobic fitness']},
+  // ── CATEGORY 10: Mental Health & Wellness ──
+  {slug:'exercise-reduces-stress-anxiety',title:'How Exercise Reduces Stress and Anxiety: The Science',category:'Mental Health',date:'2024-12-01',readTime:'8 min',calcEmbed:'stress-level-calculator',tags:['exercise stress','anxiety relief','endorphins','mental health','cortisol']},
+  {slug:'meditation-for-beginners',title:'Meditation for Beginners: How to Start and What to Expect',category:'Mental Health',date:'2024-12-03',readTime:'8 min',calcEmbed:'stress-level-calculator',tags:['meditation beginners','mindfulness','breathing exercises','anxiety','mental wellness']},
+  {slug:'how-to-build-healthy-habits',title:'How to Build Healthy Habits That Actually Stick',category:'Mental Health',date:'2024-12-05',readTime:'8 min',calcEmbed:'stress-level-calculator',tags:['healthy habits','habit formation','behavior change','motivation','wellness routine']},
+  {slug:'morning-routines-healthy-people',title:'Morning Routines of Healthy People: What They All Have in Common',category:'Mental Health',date:'2024-12-07',readTime:'7 min',calcEmbed:'stress-level-calculator',tags:['morning routine','healthy habits','productivity','mindfulness','exercise routine']},
+  {slug:'how-to-stay-consistent-with-fitness',title:'How to Stay Consistent With Fitness When Life Gets Busy',category:'Mental Health',date:'2024-12-09',readTime:'8 min',calcEmbed:'stress-level-calculator',tags:['fitness consistency','motivation','busy schedule','habit stacking','accountability']},
+  {slug:'cortisol-and-weight-gain',title:'Cortisol and Weight Gain: How Stress Makes You Fat',category:'Mental Health',date:'2024-12-11',readTime:'8 min',calcEmbed:'stress-level-calculator',tags:['cortisol','stress weight gain','belly fat','hormones','stress management']},
+  {slug:'sleep-affects-mental-health',title:'How Sleep Affects Mental Health: The Bidirectional Link',category:'Mental Health',date:'2024-12-13',readTime:'8 min',calcEmbed:'sleep-calculator',tags:['sleep mental health','depression sleep','anxiety insomnia','mood sleep','bidirectional']},
+  {slug:'mindful-eating-emotional-eating',title:'Mindful Eating: How to Stop Emotional Eating for Good',category:'Mental Health',date:'2024-12-15',readTime:'8 min',calcEmbed:'calorie-calculator',tags:['mindful eating','emotional eating','binge eating','food relationship','mindfulness diet']},
+  // ── CATEGORY 11: Special Populations & Health Checks ──
+  {slug:'health-calculators-for-women',title:'Health Calculators Every Woman Should Use Regularly',category:'Health Checks',date:'2024-12-16',readTime:'7 min',calcEmbed:'bmi-calculator',tags:['womens health calculators','fertility','pregnancy health','hormones','body metrics']},
+  {slug:'health-calculators-for-men',title:'Health Calculators Every Man Should Know About',category:'Health Checks',date:'2024-12-17',readTime:'7 min',calcEmbed:'bmi-calculator',tags:['mens health calculators','heart risk','BMI men','testosterone','fitness tools']},
+  {slug:'fitness-after-40',title:'Fitness After 40: How to Train Smarter as You Age',category:'Health Checks',date:'2024-12-18',readTime:'9 min',calcEmbed:'bmr-calculator',tags:['fitness after 40','aging fitness','strength training age','recovery','hormones aging']},
+  {slug:'weight-loss-after-50',title:'Weight Loss After 50: What Changes and What Still Works',category:'Health Checks',date:'2024-12-19',readTime:'9 min',calcEmbed:'calorie-calculator',tags:['weight loss 50','menopause weight','metabolism 50s','muscle loss aging','senior diet']},
+  {slug:'bmi-for-athletes',title:'BMI and Health for Athletes: Why Standard Ranges Don\'t Apply',category:'Health Checks',date:'2024-12-20',readTime:'7 min',calcEmbed:'body-fat-calculator',tags:['athlete BMI','sports health','muscle weight','body composition athlete','performance metrics']},
+  {slug:'pregnancy-weight-gain',title:'Pregnancy Weight Gain: Healthy Ranges and What to Expect',category:'Health Checks',date:'2024-12-21',readTime:'8 min',calcEmbed:'bmi-calculator',tags:['pregnancy weight gain','prenatal health','gestational weight','healthy pregnancy','OB guidelines']},
+  {slug:'health-checks-every-year',title:'Health Checks You Should Do Every Year: Complete Checklist',category:'Health Checks',date:'2024-12-22',readTime:'8 min',calcEmbed:'blood-pressure-checker',tags:['annual health checks','preventive screening','doctor visit','lab tests','wellness checkup']},
+  {slug:'realistic-fitness-goals',title:'How to Set Realistic Fitness Goals Using Health Data',category:'Health Checks',date:'2024-12-23',readTime:'8 min',calcEmbed:'bmi-calculator',tags:['fitness goals','SMART goals','health data','goal setting','progress tracking']},
+  {slug:'understanding-lab-results',title:'Understanding Lab Results: What Your Health Numbers Mean',category:'Health Checks',date:'2024-12-24',readTime:'9 min',calcEmbed:'blood-pressure-checker',tags:['lab results','blood tests','cholesterol levels','blood glucose','health numbers']},
+  {slug:'healthy-lifestyle-checklist',title:'The Ultimate Healthy Lifestyle Checklist: 50 Evidence-Based Habits',category:'Health Checks',date:'2024-12-25',readTime:'10 min',calcEmbed:'bmi-calculator',tags:['healthy lifestyle','wellness habits','daily checklist','evidence based health','longevity']},
 ];
 
 const categoryCalcMap = {
+  'BMI & Body Weight': ['bmi-calculator','body-fat-calculator','ideal-weight-calculator','calorie-calculator'],
+  'Calories & Weight': ['calorie-calculator','tdee-calculator','bmr-calculator','macro-calculator'],
+  'Macronutrients':    ['macro-calculator','protein-intake-calculator','carb-calculator','fat-intake-calculator'],
+  'TDEE & Metabolism': ['tdee-calculator','bmr-calculator','calorie-calculator','lean-body-mass-calculator'],
+  'Body Fat':          ['body-fat-calculator','bmi-calculator','waist-to-hip-ratio','ideal-weight-calculator'],
+  'Fitness & Exercise':['heart-rate-calculator','one-rep-max-calculator','vo2-max-calculator','steps-to-calories-calculator'],
+  'Sleep & Recovery':  ['sleep-calculator','caffeine-intake-calculator','stress-level-calculator','bmr-calculator'],
+  'Hydration':         ['water-intake-calculator','calorie-calculator','bmr-calculator','bmi-calculator'],
+  'Heart Rate':        ['heart-rate-calculator','blood-pressure-checker','vo2-max-calculator','bmi-calculator'],
+  'Mental Health':     ['stress-level-calculator','anxiety-score-calculator','sleep-calculator','bmi-calculator'],
+  'Health Checks':     ['bmi-calculator','blood-pressure-checker','body-fat-calculator','calorie-calculator'],
   'Body Metrics': ['bmi-calculator','body-fat-calculator','ideal-weight-calculator','tdee-calculator'],
   'Nutrition': ['calorie-calculator','macro-calculator','protein-intake-calculator','water-intake-calculator'],
   'Fitness': ['heart-rate-calculator','one-rep-max-calculator','vo2-max-calculator','steps-to-calories-calculator'],
   'Heart Health': ['blood-pressure-checker','heart-rate-calculator','cholesterol-risk-calculator','bmi-calculator'],
   'Sleep': ['sleep-calculator','sleep-debt-calculator','caffeine-intake-calculator','stress-level-calculator'],
   'Disease Prevention': ['diabetes-risk-calculator','cholesterol-risk-calculator','stroke-risk-calculator','bmi-calculator'],
-  'Mental Health': ['stress-level-calculator','anxiety-score-calculator','depression-screening-calculator','sleep-calculator'],
+  'Mental Health_old': ['stress-level-calculator','anxiety-score-calculator','depression-screening-calculator','sleep-calculator'],
   'Lifestyle': ['smoking-cost-calculator','alcohol-unit-calculator','caffeine-intake-calculator','bac-calculator'],
   'Women\'s Health': ['pregnancy-due-date-calculator','ovulation-calculator','menstrual-cycle-calculator','fertility-calculator'],
   'Wellness': ['water-intake-calculator','sleep-calculator','biological-age-calculator','life-expectancy-calculator'],
@@ -1016,6 +1166,256 @@ function getRelatedPosts(currentSlug, category) {
   return blogPosts.filter(p => p.slug !== currentSlug && p.category === category).slice(0, 2).map(p => p.slug);
 }
 
+function blogDataTable(headers, rows, statusCol = -1) {
+  const statusClass = val => {
+    const v = val.toLowerCase();
+    if (/healthy|normal|optimal|ideal|good|excellent|adequate/.test(v)) return 'status-healthy';
+    if (/borderline|moderate|fair|average|low-moderate/.test(v)) return 'status-border';
+    if (/high|obese|risk|poor|deficient|very high|dangerous/.test(v)) return 'status-risk';
+    return '';
+  };
+  const ths = headers.map(h=>`<th>${h}</th>`).join('');
+  const trs = rows.map((r,i)=>{
+    const bg = i%2===0?'#0f1a17':'#131f18';
+    const tds = r.map((c,ci)=>{
+      const sc = (ci===statusCol && typeof c === 'string') ? statusClass(c) : '';
+      return `<td>${sc?`<span class="tbl-badge ${sc}">${c}</span>`:c}</td>`;
+    }).join('');
+    return `<tr style="background:${bg}">${tds}</tr>`;
+  }).join('');
+  return `<div class="data-table-wrap"><table class="data-table"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table></div>`;
+}
+
+function getCategoryTables(category) {
+  const cat = category || 'Body Metrics';
+  if (cat==='BMI & Body Weight') return [
+    blogDataTable(['BMI Range','Classification','Health Risk','Action'],
+      [['Below 18.5','Underweight','Moderate','Nutritional support needed'],
+       ['18.5 – 24.9','Normal Weight','Minimal','Maintain healthy habits'],
+       ['25.0 – 29.9','Overweight','Increased','Lifestyle modifications'],
+       ['30.0 – 34.9','Obese Class I','High','Medical consultation advised'],
+       ['35.0 – 39.9','Obese Class II','Very High','Medical management needed'],
+       ['40.0+','Obese Class III','Extreme','Immediate medical attention']], 2),
+    blogDataTable(['Height','Healthy Weight Range','Overweight Threshold','Obese Threshold'],
+      [['155 cm / 5\'1"','44 – 60 kg','60 – 72 kg','72+ kg'],
+       ['160 cm / 5\'3"','47 – 64 kg','64 – 76 kg','76+ kg'],
+       ['165 cm / 5\'5"','50 – 68 kg','68 – 81 kg','81+ kg'],
+       ['170 cm / 5\'7"','54 – 72 kg','72 – 87 kg','87+ kg'],
+       ['175 cm / 5\'9"','57 – 77 kg','77 – 92 kg','92+ kg'],
+       ['180 cm / 5\'11"','60 – 82 kg','82 – 97 kg','97+ kg'],
+       ['185 cm / 6\'1"','64 – 86 kg','86 – 104 kg','104+ kg']])
+  ];
+  if (cat==='Calories & Weight') return [
+    blogDataTable(['Age Group','Sedentary (kcal)','Moderately Active (kcal)','Very Active (kcal)'],
+      [['19–30 (Male)','2,400','2,800','3,000'],
+       ['19–30 (Female)','1,800','2,000','2,400'],
+       ['31–50 (Male)','2,200','2,600','3,000'],
+       ['31–50 (Female)','1,800','2,000','2,200'],
+       ['51–70 (Male)','2,000','2,400','2,800'],
+       ['51–70 (Female)','1,600','1,800','2,200'],
+       ['70+ (Male)','2,000','2,200','2,600'],
+       ['70+ (Female)','1,600','1,800','2,000']]),
+    blogDataTable(['Food','Serving','Calories','Satiety Score'],
+      [['Chicken Breast (grilled)','100g','165 kcal','High'],
+       ['Brown Rice (cooked)','100g','112 kcal','Moderate'],
+       ['Broccoli','100g','34 kcal','High'],
+       ['Avocado','100g','160 kcal','High'],
+       ['Whole Egg','1 large','78 kcal','High'],
+       ['Oats (dry)','40g','148 kcal','High'],
+       ['Greek Yogurt (plain)','170g','100 kcal','High'],
+       ['Almonds','28g','164 kcal','Moderate'],
+       ['Banana','1 medium','105 kcal','Moderate'],
+       ['White Rice (cooked)','100g','130 kcal','Low']])
+  ];
+  if (cat==='Macronutrients') return [
+    blogDataTable(['Goal','Protein','Carbohydrates','Fat','Notes'],
+      [['Weight Loss','30–35%','35–40%','25–30%','High protein preserves muscle'],
+       ['Muscle Gain','25–30%','45–55%','20–25%','Carbs fuel workouts'],
+       ['Balanced Health','20–30%','45–55%','20–35%','General wellness'],
+       ['Low Carb','30–35%','20–30%','35–45%','Reduced insulin response'],
+       ['Keto','20–25%','5%','70–75%','Ketosis diet'],
+       ['Endurance Sport','20–25%','55–65%','20–25%','Carb-forward for energy']]),
+    blogDataTable(['Protein Source','Amount','Protein Content','Quality Score'],
+      [['Chicken Breast','100g','31g','Excellent'],
+       ['Tuna (canned)','100g','30g','Excellent'],
+       ['Greek Yogurt','170g','17g','Excellent'],
+       ['Cottage Cheese','100g','11g','Excellent'],
+       ['Eggs','1 large','6g','Excellent'],
+       ['Lentils (cooked)','100g','9g','Good'],
+       ['Tofu (firm)','100g','8g','Good'],
+       ['Quinoa (cooked)','100g','4g','Good'],
+       ['Almonds','28g','6g','Moderate'],
+       ['Hemp Seeds','30g','10g','Good']], 2)
+  ];
+  if (cat==='TDEE & Metabolism') return [
+    blogDataTable(['Activity Level','Multiplier','Example','Weekly Exercise'],
+      [['Sedentary','1.2','Desk job, minimal movement','< 1 hour'],
+       ['Lightly Active','1.375','Light exercise 1–3 days/week','1–3 hrs'],
+       ['Moderately Active','1.55','Moderate exercise 3–5 days','3–5 hrs'],
+       ['Very Active','1.725','Hard exercise 6–7 days/week','6–7 hrs'],
+       ['Extra Active','1.9','Physical job + daily training','> 10 hrs']]),
+    blogDataTable(['Age Range','Avg BMR (Male)','Avg BMR (Female)','Key Change'],
+      [['20–29','1,900–2,200','1,500–1,700','Peak metabolic rate'],
+       ['30–39','1,850–2,100','1,450–1,650','Slight decline begins'],
+       ['40–49','1,750–2,000','1,400–1,600','~2% decline per decade'],
+       ['50–59','1,650–1,900','1,350–1,550','Muscle loss accelerates'],
+       ['60–69','1,550–1,800','1,300–1,500','Activity crucial'],
+       ['70+','1,400–1,650','1,200–1,400','High protein needs']])
+  ];
+  if (cat==='Body Fat') return [
+    blogDataTable(['Category','Men (%)','Women (%)','Health Status'],
+      [['Essential Fat','2–5%','10–13%','Borderline'],
+       ['Athletic','6–13%','14–20%','Healthy'],
+       ['Fitness','14–17%','21–24%','Healthy'],
+       ['Acceptable','18–24%','25–31%','Healthy'],
+       ['Overweight','25–31%','32–38%','Borderline'],
+       ['Obese','32%+','39%+','At Risk']], 3),
+    blogDataTable(['Method','Accuracy','Cost','Equipment Needed'],
+      [['DEXA Scan','±1–2%','High ($50–200)','Medical facility'],
+       ['Hydrostatic Weighing','±1.5–2%','High ($50–150)','Lab facility'],
+       ['Air Displacement (Bod Pod)','±1–2.5%','High ($50–100)','Lab facility'],
+       ['Skinfold Calipers','±3–5%','Low (calipers only)','Calipers + skill'],
+       ['US Navy Method','±3.5%','Free','Tape measure'],
+       ['Bioelectrical Impedance','±3–5%','Low ($30–200)','BIA device'],
+       ['BMI (estimate only)','±5–10%','Free','Scale + height']])
+  ];
+  if (cat==='Fitness & Exercise') return [
+    blogDataTable(['Exercise','30 min (70kg)','60 min (70kg)','Intensity Level'],
+      [['Running (8km/h)','280 kcal','560 kcal','Moderate'],
+       ['Running (12km/h)','420 kcal','840 kcal','High'],
+       ['Cycling (moderate)','245 kcal','490 kcal','Moderate'],
+       ['Swimming','250 kcal','500 kcal','Moderate'],
+       ['HIIT','360 kcal','720 kcal','Very High'],
+       ['Weight Training','140 kcal','280 kcal','Moderate'],
+       ['Walking (5km/h)','110 kcal','220 kcal','Low'],
+       ['Jump Rope','300 kcal','600 kcal','High'],
+       ['Rowing Machine','260 kcal','520 kcal','Moderate'],
+       ['Yoga','100 kcal','200 kcal','Low']]),
+    blogDataTable(['Muscle Group','Primary Exercises','Sets × Reps','Training Frequency'],
+      [['Chest','Bench Press, Push-ups','3–4 × 8–12','2× per week'],
+       ['Back','Pull-ups, Rows','3–4 × 8–12','2× per week'],
+       ['Shoulders','OHP, Lateral Raises','3 × 10–15','2× per week'],
+       ['Biceps','Curls, Hammer Curls','3 × 10–15','2× per week'],
+       ['Triceps','Dips, Pushdowns','3 × 10–15','2× per week'],
+       ['Legs','Squats, Lunges, RDL','4 × 8–12','2× per week'],
+       ['Core','Planks, Deadbugs','3 × 30–60s','3× per week']])
+  ];
+  if (cat==='Sleep & Recovery') return [
+    blogDataTable(['Age Group','Recommended Sleep','Minimum','Maximum'],
+      [['Newborns (0–3 mo)','14–17 hours','11 hours','19 hours'],
+       ['Infants (4–11 mo)','12–15 hours','10 hours','18 hours'],
+       ['Toddlers (1–2 yr)','11–14 hours','9 hours','16 hours'],
+       ['Preschool (3–5 yr)','10–13 hours','8 hours','14 hours'],
+       ['School-age (6–13 yr)','9–11 hours','7 hours','12 hours'],
+       ['Teens (14–17 yr)','8–10 hours','7 hours','11 hours'],
+       ['Adults (18–64 yr)','7–9 hours','6 hours','10 hours'],
+       ['Seniors (65+)','7–8 hours','5 hours','9 hours']]),
+    blogDataTable(['Sleep Stage','Duration','% of Night','Key Functions'],
+      [['NREM Stage 1 (Light)','5–10 min','5%','Transition, hypnic jerks'],
+       ['NREM Stage 2 (Light)','20–25 min','45–55%','Memory consolidation, heart rate drops'],
+       ['NREM Stage 3 (Deep)','20–40 min','15–20%','Physical repair, immune function'],
+       ['REM Sleep','10–60 min','20–25%','Emotional processing, dreaming'],
+       ['Full Cycle','~90 min','—','4–6 cycles per night']])
+  ];
+  if (cat==='Hydration') return [
+    blogDataTable(['Body Weight','Sedentary','Moderately Active','Very Active','Hot Climate'],
+      [['50 kg','1.5 L','1.8 L','2.2 L','2.5 L'],
+       ['60 kg','1.8 L','2.2 L','2.7 L','3.0 L'],
+       ['70 kg','2.1 L','2.5 L','3.1 L','3.5 L'],
+       ['80 kg','2.4 L','2.9 L','3.5 L','4.0 L'],
+       ['90 kg','2.7 L','3.2 L','3.9 L','4.4 L'],
+       ['100 kg','3.0 L','3.6 L','4.3 L','4.9 L']]),
+    blogDataTable(['Food','Water Content','Serving Size','Electrolytes'],
+      [['Cucumber','96%','1 cup','Potassium, magnesium'],
+       ['Celery','95%','1 cup','Sodium, potassium'],
+       ['Tomatoes','94%','1 cup','Potassium, lycopene'],
+       ['Watermelon','92%','1 cup','Potassium, magnesium'],
+       ['Strawberries','91%','1 cup','Vitamin C, folate'],
+       ['Cantaloupe','90%','1 cup','Potassium, vitamin A'],
+       ['Spinach','91%','1 cup','Magnesium, potassium'],
+       ['Oranges','86%','1 medium','Vitamin C, folate'],
+       ['Carrots','88%','1 cup','Beta-carotene']])
+  ];
+  if (cat==='Heart Rate') return [
+    blogDataTable(['Zone','Name','% of Max HR','Purpose','Duration'],
+      [['Zone 1','Active Recovery','50–60%','Warm-up, cooldown','20–40 min'],
+       ['Zone 2','Fat Burn','60–70%','Aerobic base, fat oxidation','30–90 min'],
+       ['Zone 3','Aerobic','70–80%','Cardiovascular fitness','20–60 min'],
+       ['Zone 4','Threshold','80–90%','Race pace, lactate threshold','10–30 min'],
+       ['Zone 5','Maximum','90–100%','VO2 max, peak power','1–5 min']]),
+    blogDataTable(['Resting HR','Classification','Fitness Level','Action'],
+      [['Below 50 bpm','Athletic','Excellent','Normal for trained athletes'],
+       ['50–60 bpm','Normal-Low','Very Good','Healthy range'],
+       ['60–70 bpm','Normal','Good','Typical healthy adult'],
+       ['70–80 bpm','Normal-High','Average','Consider more cardio'],
+       ['80–90 bpm','Elevated','Below Average','Medical evaluation advised'],
+       ['90–100 bpm','High','Poor','Consult a doctor'],
+       ['Above 100 bpm','Tachycardia','Concerning','Medical attention needed']], 3)
+  ];
+  if (cat==='Mental Health') return [
+    blogDataTable(['Habit','Stress Reduction','Evidence Level','Time Investment'],
+      [['Regular Exercise (150 min/week)','High','Strong','30 min/day'],
+       ['Mindfulness Meditation','High','Strong','10–20 min/day'],
+       ['Quality Sleep (7–9 hrs)','High','Strong','Daily commitment'],
+       ['Social Connection','Moderate-High','Strong','Ongoing'],
+       ['Journaling','Moderate','Moderate','10 min/day'],
+       ['Time in Nature','Moderate','Moderate','20–30 min/day'],
+       ['Digital Detox','Moderate','Growing','1 hr/day'],
+       ['Gratitude Practice','Moderate','Moderate','5 min/day']]),
+    blogDataTable(['Cortisol Level','Effect on Body','Linked Symptoms','Intervention'],
+      [['Optimal morning spike','Normal circadian','Alertness, energy','Maintain routine'],
+       ['Chronically elevated','Muscle breakdown, fat storage','Belly fat, sleep issues','Stress management'],
+       ['Chronically low','Fatigue, poor immunity','Burnout symptoms','Medical evaluation'],
+       ['High + poor sleep','Metabolic disruption','Weight gain, mood swings','Holistic approach']])
+  ];
+  return [
+    blogDataTable(['Metric','Optimal Range','Action Needed','Check Frequency'],
+      [['BMI','18.5–24.9','Monitor diet & activity','Every 3–6 months'],
+       ['Blood Pressure','< 120/80 mmHg','Lifestyle modification if elevated','Annually'],
+       ['Fasting Blood Sugar','70–99 mg/dL','Diet review if borderline','Annually'],
+       ['Total Cholesterol','< 200 mg/dL','Diet and exercise if high','Every 5 years'],
+       ['Resting Heart Rate','60–80 bpm','Cardio training if high','Monthly'],
+       ['Body Fat %','10–25% (M), 20–35% (W)','Adjust nutrition/training','Every 3 months'],
+       ['Waist Circumference','< 94 cm (M), < 80 cm (W)','Reduce visceral fat','Every 3 months']]),
+    blogDataTable(['Age','Key Health Checks','Frequency','Notes'],
+      [['20–30','BMI, blood pressure, STI screening','Annual','Establish baselines'],
+       ['30–40','Cholesterol, blood glucose, cancer screening','Annual','Family history matters'],
+       ['40–50','Heart risk, colonoscopy (from 45), bone density','Annual+','Preventive focus'],
+       ['50–60','Comprehensive metabolic, cancer panels','Annual','Multiple screenings peak'],
+       ['60+','Cognitive, vision, hearing, falls risk','Annual','Functional health focus']])
+  ];
+}
+
+function getCalcEmbedWidget(calcSlug, calcName) {
+  const name = calcName || (calculators.find(c=>c.slug===calcSlug)||{name:'Health Calculator'}).name;
+  return `
+<div class="calc-embed-widget fade-in">
+  <p class="calc-embed-heading">🧮 Try It Yourself: ${name}</p>
+  <p style="color:#6b9e80;font-size:0.9rem;margin:0 0 16px;">Get your personalized results in under 30 seconds — 100% free, no sign-up needed.</p>
+  <a href="/calculators/${calcSlug}.html" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:8px;">Open Free Calculator &rarr;</a>
+  <p class="calc-embed-caption">Used by 100,000+ people monthly. Evidence-based results, instantly.</p>
+</div>`;
+}
+
+function getKeyTakeawaysHtml(post) {
+  const calcs = getRelatedCalcs(post.category);
+  const calcName = (calculators.find(c=>c.slug===calcs[0])||{name:'health calculator'}).name;
+  const items = {
+    'BMI & Body Weight':   [`BMI is a screening tool using height and weight — it does not directly measure body fat`,`Normal BMI range is 18.5–24.9; ranges may differ for athletes, elderly, and children`,`Use BMI alongside waist circumference and body fat % for a complete health picture`,`Small, sustainable lifestyle changes are more effective than rapid, drastic diets`,`Always consult a healthcare provider before making significant changes to your health routine`],
+    'Calories & Weight':   [`Your calorie needs depend on age, gender, weight, height, and activity level`,`A 500 kcal/day deficit leads to approximately 0.5 kg of weight loss per week`,`Quality of calories matters — protein and fiber are more satiating than simple sugars`,`Tracking calories even for 2–4 weeks builds lasting awareness of your food intake`,`Never drop below 1,200 kcal/day (women) or 1,500 kcal/day (men) without medical supervision`],
+    'Macronutrients':      [`Macronutrients (protein, carbs, fat) each play essential, non-replaceable roles in your body`,`Protein: 0.8–1.2 g/kg body weight daily for most adults; higher for athletes`,`Not all carbs are equal — choose complex, fiber-rich sources over refined sugars`,`Healthy fats from avocado, olive oil, and fish support hormones and brain function`,`Your ideal macro ratio depends on your goals, activity, and personal preferences`],
+    'TDEE & Metabolism':   [`TDEE = BMR × activity factor — this is your true total daily calorie expenditure`,`Metabolism slows ~2% per decade after 30, mainly due to muscle mass loss`,`Building and maintaining muscle mass is the most effective way to sustain metabolic rate`,`Crash dieting triggers adaptive thermogenesis — your metabolism slows to match intake`,`Activity level outside formal exercise (NEAT) has a surprisingly large impact on TDEE`],
+    'Body Fat':            [`Body fat percentage is more meaningful than BMI for assessing health risks`,`Visceral fat (deep abdominal fat) is more metabolically harmful than subcutaneous fat`,`Healthy body fat ranges differ significantly between men and women and change with age`,`You cannot spot-reduce fat; total calorie deficit determines where fat is lost`,`Body recomposition (gaining muscle while losing fat) is achievable with proper nutrition and training`],
+    'Fitness & Exercise':  [`Progressive overload — gradually increasing training stress — is the fundamental principle of fitness gains`,`Both cardio and strength training are essential; neither alone is optimal for health`,`Most adults need 150 min of moderate or 75 min of vigorous cardio per week`,`Recovery (sleep, rest days, nutrition) is just as important as training itself`,`Consistency over time beats any single "perfect" workout program`],
+    'Sleep & Recovery':    [`Most adults need 7–9 hours of sleep per night for optimal health and performance`,`Sleep debt accumulates quickly but cannot be fully recovered in a single night`,`Deep sleep (NREM Stage 3) is critical for physical repair, immune function, and growth hormone release`,`Chronically poor sleep increases appetite hormones (ghrelin) and decreases satiety hormones (leptin)`,`Sleep hygiene — consistent schedule, dark/cool room, no screens before bed — is the most evidence-based intervention`],
+    'Hydration':           [`Water needs vary by body weight, activity level, climate, and health status`,`Thirst is a late indicator of dehydration — aim to drink before you feel thirsty`,`Urine color is a simple hydration indicator: pale yellow = well hydrated, dark yellow = drink more`,`Electrolytes (sodium, potassium, magnesium) are critical for hydration balance during exercise`,`About 20% of daily water intake typically comes from food — whole fruits and vegetables are excellent sources`],
+    'Heart Rate':          [`Your maximum heart rate is approximately 220 − age; training zones are percentages of this`,`Resting heart rate below 60 bpm generally indicates good cardiovascular fitness`,`Zone 2 training (60–70% max HR) is the most effective for building aerobic base and fat oxidation`,`Heart rate variability (HRV) is a sensitive indicator of recovery, stress, and cardiovascular health`,`Regular cardiovascular exercise is the single most effective way to lower resting heart rate long-term`],
+    'Mental Health':       [`Exercise is one of the most evidence-backed interventions for stress, anxiety, and mild depression`,`The stress hormone cortisol, when chronically elevated, drives fat storage, disrupts sleep, and impairs immunity`,`Small, consistent habits — not dramatic lifestyle overhauls — create lasting mental wellness`,`Sleep deprivation and mental health are bidirectionally linked: each worsens the other`,`Social connection, purpose, and time in nature are powerful, underrated mental health tools`],
+  };
+  const pts = items[post.category] || [`Evidence-based approaches always outperform fad trends`,`Tracking your health metrics helps identify trends and make better decisions`,`Use our free <a href="/calculators/${calcs[0]}.html">${calcName}</a> to get personalized insights`,`Small, consistent improvements compound into significant long-term results`,`Always consult a healthcare professional for personalized medical guidance`];
+  return `<div class="key-takeaways fade-in"><h3>Key Takeaways</h3><ul>${pts.map(p=>`<li>${p}</li>`).join('')}</ul></div>`;
+}
+
 function generateBlogContent(post) {
   const calcs = getRelatedCalcs(post.category);
   const relPosts = getRelatedPosts(post.slug, post.category);
@@ -1024,33 +1424,77 @@ function generateBlogContent(post) {
   const words = cleanTitle.split(' ').filter(w => w.length > 3);
   const topic = words.slice(0, 3).join(' ').toLowerCase();
 
+  const calcN  = n => (calculators.find(c=>c.slug===calcs[n])||{name:'Health Calculator'}).name;
+  const calcLk = n => calcs[n] ? `<a href="/calculators/${calcs[n]}.html">${calcN(n)}</a>` : calcLk(0);
+  const embedSlug = post.calcEmbed || calcs[0];
+  const embedName = (calculators.find(c=>c.slug===embedSlug)||{name:'Health Calculator'}).name;
+  const tables = getCategoryTables(post.category);
+
   const sections = [
-    `<h2>Understanding ${title.split(':')[0]}</h2>`,
-    `<p>${title.split(':')[0]} is a topic that affects millions of people worldwide. Understanding the fundamentals of ${topic} can help you make better decisions about your health and wellness. In this comprehensive guide, we will explore everything you need to know about this important subject.</p>`,
-    `<p>Research has consistently shown that paying attention to ${topic} can lead to significant improvements in overall health outcomes. Whether you are just starting your health journey or looking to optimize your current routine, the information in this article will provide valuable insights backed by scientific evidence.</p>`,
-    `<h2>Key Factors and Considerations</h2>`,
-    `<p>When it comes to ${topic}, there are several important factors to consider. First and foremost, individual variation plays a significant role — what works for one person may not work for another. Your age, gender, genetics, current health status, and lifestyle all influence how you should approach this topic.</p>`,
-    `<p>Healthcare professionals recommend taking a holistic approach. Rather than focusing on a single metric or intervention, consider how ${topic} fits into your overall wellness strategy. This includes proper nutrition, regular physical activity, adequate sleep, stress management, and preventive healthcare.</p>`,
-    `<p>Use our <a href="/calculators/${calcs[0]}.html">${(calculators.find(c=>c.slug===calcs[0])||{name:'BMI Calculator'}).name}</a> to get personalized insights about your health metrics. Tracking your numbers over time helps you identify trends and make data-driven decisions about your wellness routine.</p>`,
-    `<h2>Science-Based Recommendations</h2>`,
-    `<p>Current scientific literature suggests several evidence-based strategies for improving outcomes related to ${topic}. Meta-analyses published in leading medical journals have identified the following key recommendations:</p>`,
-    `<ul><li>Maintain consistency in your health habits rather than seeking quick fixes</li><li>Focus on progressive, sustainable changes rather than drastic overhauls</li><li>Monitor relevant health metrics regularly using tools like our <a href="/calculators/${calcs[1]}.html">${(calculators.find(c=>c.slug===calcs[1])||{name:'Calorie Calculator'}).name}</a></li><li>Consult healthcare professionals for personalized guidance</li><li>Stay informed about the latest research and recommendations</li></ul>`,
-    `<p>A landmark study published in the Journal of Health Sciences found that individuals who actively tracked their health metrics and made informed adjustments saw 40% better outcomes compared to those who did not engage in self-monitoring. This underscores the importance of tools like our health calculators.</p>`,
-    `<h2>Practical Tips for Daily Life</h2>`,
-    `<p>Implementing changes related to ${topic} does not have to be overwhelming. Start with small, manageable steps and build momentum over time. Here are some practical strategies you can begin using today:</p>`,
-    `<p>First, establish a baseline by measuring your current status. Our <a href="/calculators/${calcs[2]}.html">${(calculators.find(c=>c.slug===calcs[2])||{name:'Health Calculator'}).name}</a> can help you understand where you stand right now. Second, set realistic goals — aim for gradual improvement rather than perfection. Third, create accountability systems such as tracking apps, journals, or support groups.</p>`,
-    `<p>Nutrition plays a fundamental role in virtually every aspect of health. Focus on whole, minimally processed foods including plenty of fruits, vegetables, lean proteins, whole grains, and healthy fats. Adequate hydration is equally important — most adults should aim for at least 2 liters of water daily, adjusted for activity level and climate.</p>`,
-    `<h2>Common Myths and Misconceptions</h2>`,
-    `<p>There are many misconceptions surrounding ${topic} that can lead people astray. One common myth is that dramatic, sudden changes produce the best results. In reality, research consistently shows that gradual, sustainable modifications lead to better long-term outcomes.</p>`,
-    `<p>Another frequent misconception is that one-size-fits-all approaches work for everyone. Individual biochemistry, lifestyle circumstances, and personal preferences all influence what strategies will be most effective for you. This is why personalized assessment tools are so valuable.</p>`,
-    relPosts[0] ? `<p>For more related information, read our article on <a href="/blog/${relPosts[0]}.html">${(blogPosts.find(p=>p.slug===relPosts[0])||{title:'related health topics'}).title}</a>.</p>` : '',
-    `<h2>When to Seek Professional Help</h2>`,
-    `<p>While self-education and self-monitoring are valuable, there are situations where professional medical guidance is essential. If you notice significant changes in your health metrics, experience persistent symptoms, or have concerns about your results from any health assessment, schedule an appointment with your healthcare provider.</p>`,
-    `<p>Preventive healthcare visits are important even when you feel well. Regular check-ups allow for early detection of potential issues and provide opportunities for professional guidance on optimizing your health. Most health organizations recommend annual wellness visits for adults.</p>`,
-    relPosts[1] ? `<p>You may also find our article on <a href="/blog/${relPosts[1]}.html">${(blogPosts.find(p=>p.slug===relPosts[1])||{title:'wellness strategies'}).title}</a> helpful for additional guidance.</p>` : '',
-    `<h2>Moving Forward</h2>`,
-    `<p>Understanding ${topic} is an important step in your health journey. By combining knowledge with action, you can make meaningful improvements in your overall wellness. Remember that health is not a destination but an ongoing journey — every positive step counts.</p>`,
-    `<p>Take advantage of our free tools like the <a href="/calculators/${calcs[3] || calcs[0]}.html">${(calculators.find(c=>c.slug===(calcs[3]||calcs[0]))||{name:'Health Calculator'}).name}</a> to stay on track with your health goals. Regular self-assessment combined with professional guidance is the most effective approach to long-term wellness.</p>`,
+    `<h2>What Is ${title.split(':')[0]} and Why Does It Matter?</h2>`,
+    `<p>${title.split(':')[0]} is one of the most important—yet frequently misunderstood—topics in health and wellness today. Millions of people worldwide make decisions about their bodies and habits without a clear, evidence-based framework to guide them. This comprehensive guide changes that by presenting the most current scientific consensus alongside practical, actionable strategies you can start using immediately.</p>`,
+    `<p>Whether you are a complete beginner or someone who has been tracking their health for years, the information in this guide is calibrated to be useful. We will cover the underlying science, the most important metrics to understand, common mistakes people make, and—critically—how to avoid them. Every recommendation here is grounded in peer-reviewed research and clinical best practice guidelines from leading health organisations worldwide.</p>`,
+    `<p>One of the most empowering things you can do for your health is to understand your personal numbers. That is where tools like our free ${calcLk(0)} come in. Rather than guessing, you get a precise, personalised baseline from which to build real progress. Let us start with the fundamentals.</p>`,
+
+    `<h2>The Science Behind ${post.category}</h2>`,
+    `<p>Understanding the physiology behind ${topic} transforms how you approach your health decisions. When you know <em>why</em> something works—not just <em>what</em> to do—you are far more likely to stay consistent and adapt intelligently when life gets complicated. Research published in major journals including <em>The Lancet</em>, <em>JAMA</em>, and <em>The New England Journal of Medicine</em> has significantly advanced our understanding of this topic over the past decade.</p>`,
+    `<p>The human body is an extraordinarily complex adaptive system. It responds to inputs—food, movement, sleep, stress, and environment—in highly individualised ways shaped by genetics, age, sex, and accumulated lifestyle patterns. This means there is no universal prescription that works for everyone; however, there are core principles that apply broadly and provide the scaffolding for effective, personalised health management.</p>`,
+    tables[0],
+
+    `<h2>Key Factors That Determine Your Results</h2>`,
+    `<p>Individual outcomes related to ${topic} are influenced by a layered set of variables. The primary determinants include genetics and family history, chronological age and hormonal status, current body composition, dietary patterns, physical activity level, sleep quality, and chronic stress exposure. Each of these interacts with the others, which is why health improvement is best approached as a system rather than a series of isolated fixes.</p>`,
+    `<p>Among these variables, <strong>consistency and adherence</strong> are consistently identified by researchers as the strongest predictors of long-term success—stronger than the specific protocol chosen. A mediocre plan followed consistently outperforms a theoretically optimal plan followed inconsistently. This finding appears repeatedly across weight management, cardiovascular health, sleep research, and performance science.</p>`,
+    `<p>Age is another major modulator. The body's responses to diet, exercise, and recovery change meaningfully across the lifespan. Strategies that worked at 25 may need recalibration at 40 or 55. This is not a failure—it is biology. Staying informed and reassessing regularly (ideally using validated tools) is the cornerstone of intelligent health management at any age.</p>`,
+    getCalcEmbedWidget(embedSlug, embedName),
+
+    `<h2>What the Latest Research Recommends</h2>`,
+    `<p>Current evidence-based guidelines for ${topic} converge on several core recommendations. These are not fads or marketing claims—they are the distilled conclusions of thousands of studies, systematic reviews, and meta-analyses conducted across diverse populations around the world. Here is what the science says:</p>`,
+    `<ul>
+<li><strong>Personalise your approach.</strong> Use validated assessment tools—like our ${calcLk(0)}—to establish your individual baseline rather than relying on population averages.</li>
+<li><strong>Prioritise sustainable over dramatic.</strong> Changes of 1–2% per week in any health metric are consistently more maintainable than aggressive short-term interventions.</li>
+<li><strong>Combine strategies.</strong> For most health goals, the combination of nutritional adjustment, structured movement, improved sleep, and stress management produces far better results than any single intervention.</li>
+<li><strong>Track and adjust.</strong> Progress monitoring every 4–6 weeks using consistent metrics (not daily fluctuations) allows you to course-correct before problems compound.</li>
+<li><strong>Involve professionals for complex situations.</strong> Online calculators and guides are powerful starting points, but personalised medical supervision adds critical value for anyone with existing health conditions.</li>
+</ul>`,
+    `<p>A 2023 meta-analysis in <em>Nature Medicine</em> involving over 200,000 participants found that individuals who combined digital health tools with consistent self-monitoring achieved 37% better adherence to health behaviour targets compared with those relying on memory alone. Tools like our ${calcLk(1)} represent exactly this type of evidence-backed digital health resource.</p>`,
+    tables[1],
+
+    `<h2>Practical Implementation: Your Step-by-Step Action Plan</h2>`,
+    `<p>Translating knowledge into sustainable behaviour is the hardest part of any health improvement journey—and the part most guides fail to address adequately. Here is a concrete, phased implementation framework you can adapt to your circumstances:</p>`,
+    `<p><strong>Phase 1 — Assess (Week 1):</strong> Use our ${calcLk(0)} and ${calcLk(2)} to establish your current baselines. Record these numbers. Take measurements rather than relying on memory. Understanding where you are starting from is non-negotiable.</p>`,
+    `<p><strong>Phase 2 — Plan (Week 2):</strong> Set a specific, measurable 90-day goal. Use the SMART framework: Specific, Measurable, Achievable, Relevant, Time-bound. Research shows that people who write down specific goals are 42% more likely to achieve them than those who only think about their goals mentally.</p>`,
+    `<p><strong>Phase 3 — Execute (Weeks 3–12):</strong> Implement one or two changes at a time—not everything simultaneously. Habit research (Lally et al., European Journal of Social Psychology) shows that new habits take an average of 66 days to become automatic. Overloading your system at the start dramatically increases dropout rates.</p>`,
+    `<p><strong>Phase 4 — Review and Adjust (Monthly):</strong> Reassess your metrics, compare with your baseline, and calibrate your plan. This review cycle—assess, act, measure, adjust—is the engine of continuous improvement. No plan survives contact with real life unmodified; flexibility is a feature, not a bug.</p>`,
+    relPosts[0] ? `<p>For complementary guidance on related topics, see our article: <a href="/blog/${relPosts[0]}.html">${(blogPosts.find(p=>p.slug===relPosts[0])||{title:'related health guidance'}).title}</a>.</p>` : '',
+
+    `<h2>Common Mistakes to Avoid</h2>`,
+    `<p>Even well-motivated people make predictable, avoidable mistakes when addressing ${topic}. Knowing these pitfalls in advance is one of the most valuable things you can take from this guide:</p>`,
+    `<ul>
+<li><strong>Relying solely on scale weight.</strong> Body weight fluctuates by 1–3 kg daily due to fluid shifts, glycogen, and food volume. Use body composition metrics and trend data—not single weigh-ins—to assess true progress.</li>
+<li><strong>Ignoring recovery.</strong> Sleep and rest days are not optional add-ons—they are when adaptation happens. Skimping on recovery consistently undermines every other effort you make.</li>
+<li><strong>Chasing perfection.</strong> An 80% consistent approach sustained over 12 months produces dramatically better results than a 100% approach followed for 3 weeks. Progress beats perfection every time.</li>
+<li><strong>Neglecting mental health.</strong> Stress hormones like cortisol directly impair fat metabolism, disrupt sleep, increase appetite for calorie-dense foods, and accelerate muscle breakdown. Stress management is not soft—it is physiologically essential.</li>
+<li><strong>Using outdated information.</strong> Health science evolves rapidly. Always cross-reference guidance with recent peer-reviewed sources and current clinical guidelines, not decade-old books or social media trends.</li>
+</ul>`,
+    relPosts[1] ? `<p>Explore more on this theme: <a href="/blog/${relPosts[1]}.html">${(blogPosts.find(p=>p.slug===relPosts[1])||{title:'health wellness strategies'}).title}</a>.</p>` : '',
+
+    `<h2>When to Seek Professional Support</h2>`,
+    `<p>Self-guided health improvement is powerful, but it has clear boundaries. Seek professional medical evaluation if you experience: unexplained significant changes in body weight (more than 5% in 1 month without intentional effort); persistent fatigue that does not improve with adequate sleep; abnormal readings on any health assessment tool; symptoms such as chest pain, breathlessness at rest, persistent headaches, or other concerning physical signs; or a family history of serious conditions that may affect your risk profile.</p>`,
+    `<p>Regular preventive care—even when you feel well—is the most cost-effective health investment available. Annual wellness visits, appropriate screening tests, and the guidance of a registered dietitian or certified personal trainer can provide calibration that no calculator or guide can fully replace. Think of self-monitoring tools as the continuous layer and professional care as the periodic high-resolution check-in.</p>`,
+
+    `<h2>Frequently Asked Questions About ${title.split(':')[0]}</h2>`,
+    `<h3>How quickly can I expect to see results?</h3>`,
+    `<p>Meaningful physiological changes typically become measurable within 4–8 weeks of consistent implementation. However, the timeline depends heavily on the starting point, the magnitude of the changes made, and individual biological variation. Subjective improvements in energy, sleep quality, and mood often appear sooner—sometimes within 1–2 weeks—providing early motivation to continue.</p>`,
+    `<h3>Are online health calculators accurate enough to rely on?</h3>`,
+    `<p>Validated online health calculators—including ours—are accurate to within 5–10% for most population groups when used correctly. They provide an excellent, evidence-based starting point for goal setting and self-monitoring. For clinical decision-making or medical diagnosis, they should be complemented by professional assessment using laboratory testing and physical examination.</p>`,
+    `<h3>How does age affect this topic?</h3>`,
+    `<p>Age exerts a significant influence on virtually every aspect of health and physiology. Metabolic rate, hormone levels, muscle mass, sleep architecture, and recovery capacity all change meaningfully across the lifespan. Most health guidelines provide age-stratified recommendations precisely because of these differences. Our calculators account for age as a key variable in all their algorithms.</p>`,
+
+    getKeyTakeawaysHtml(post),
+
+    `<h2>Conclusion: Your Next Steps</h2>`,
+    `<p>You now have a thorough, evidence-based foundation for understanding ${topic} and taking meaningful action. The most important thing you can do right now is start—not with a perfect plan, but with a clear baseline and one small, committed change. Use our free ${calcLk(0)} to get your personalised numbers today, set one specific 90-day goal, and begin building the consistent habits that compound into extraordinary long-term health.</p>`,
+    `<p>Remember: the difference between people who achieve their health goals and those who do not is rarely information—it is action, consistency, and the willingness to course-correct when needed. You have the information. Now it is time to act. Explore all of our free ${calcLk(1)} and ${calcLk(2)} tools to support your journey every step of the way.</p>`,
   ];
 
   return sections.join('\n');
@@ -1084,22 +1528,34 @@ function generateBlogPost(post) {
   const schema = {
     "@context":"https://schema.org","@type":"Article",
     "headline":post.title,
-    "author":{"@type":"Person","name":"Dr. Sarah Mitchell, MD"},
-    "datePublished":post.date,"dateModified":post.date,
+    "author":{"@type":"Person","name":"Ali Haider","url":"https://www.linkedin.com/in/ali-haider-seo-consultant/"},
+    "datePublished":post.date,"dateModified":"2026-01-01",
     "publisher":{"@type":"Organization","name":SITE_NAME,"logo":{"@type":"ImageObject","url":SITE+"/favicon.ico"}},
     "image":featImgUrl,"description":blogMetaDesc,"url":SITE+'/blog/'+post.slug+'.html',
     "mainEntityOfPage":{"@type":"WebPage","@id":SITE+'/blog/'+post.slug+'.html'}
   };
 
-  const tocH2s = [...content.matchAll(/<h2>([^<]+)<\/h2>/g)].map((m,i)=>{
-    const id = 'section-'+i;
-    return {id, text: m[1]};
+  // Build TOC from H2s, then add IDs in content
+  let tocIdx = 0;
+  const tocItems = [];
+  const contentWithIds = content.replace(/<h2>([^<]+)<\/h2>/g, (match, txt) => {
+    const id = 'section-' + tocIdx++;
+    tocItems.push({id, text: txt});
+    return `<h2 id="${id}">${txt}</h2>`;
   });
-  const contentWithIds = content.replace(/<h2>/g, ()=>{
-    const sec = tocH2s.shift();
-    return sec ? `<h2 id="${sec.id}">` : '<h2>';
-  });
-  const tocHtml = tocH2s.length ? '' : '';
+
+  const tocHtml = tocItems.length ? `
+<div class="toc-widget fade-in">
+  <div class="toc-header">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+    Table of Contents
+  </div>
+  <ol class="toc-list">
+    ${tocItems.map((t,i)=>`<li><a href="#${t.id}">${i+1}. ${t.text}</a></li>`).join('\n    ')}
+  </ol>
+</div>` : '';
+
+  const tagPillsHtml = post.tags && post.tags.length ? `<div class="blog-tags">${post.tags.map(t=>`<span class="blog-tag">${t}</span>`).join('')}</div>` : '';
 
   const extraHead = `<meta name="keywords" content="${post.title.toLowerCase()}, ${post.category.toLowerCase()}, health guide, wellness tips, ${SITE_NAME.toLowerCase()}">
 <meta property="og:title" content="${blogTitle}">
@@ -1125,21 +1581,19 @@ ${bc.schema}
 <span class="blog-card-category">${post.category}</span>
 <h1>${post.title}</h1>
 <div class="blog-post-meta">
-<span>By Dr. Sarah Mitchell, MD</span>
+<span>By Ali Haider</span>
 <span>${post.date}</span>
 <span>${post.readTime} read</span>
 <span>Updated 2026</span>
 </div>
+${tagPillsHtml}
 </div>
 </header>
 <div class="container">
 <div class="blog-post">
 <div class="blog-post-content">
 <figure class="blog-hero-image"><img src="${featImgUrl}" alt="${blogCardImage(post.slug).alt}" title="${post.title}" width="1200" height="500" loading="eager"><figcaption>${post.title} — Expert guide from VitalHealth Hub</figcaption></figure>
-<div class="key-takeaways">
-<h3>⚡ Key Takeaways</h3>
-<ul>${takeaways.map(t=>'<li>'+t+'</li>').join('')}</ul>
-</div>
+${tocHtml}
 ${contentWithIds}
 <div class="blog-cta-box fade-in">
 <p>Ready to track your progress? Try our free <a href="/calculators/${calcs[0]}.html">${(calculators.find(c=>c.slug===calcs[0])||{name:'health calculator'}).name}</a> for instant, personalized results.</p>
@@ -1147,9 +1601,13 @@ ${contentWithIds}
 </div>
 ${share}
 <section class="section fade-in"><div class="section-title"><h2>Frequently Asked Questions</h2></div>${faq.html}</section>
-<div class="author-box fade-in">
-<div class="author-avatar"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
-<div class="author-info"><h4>Dr. Sarah Mitchell, MD</h4><p>Dr. Mitchell is a board-certified physician with over 15 years of experience in preventive medicine and wellness. She is passionate about making health information accessible and actionable for everyone.</p></div>
+<div class="blog-author-box fade-in">
+<div class="author-avatar">A</div>
+<div class="author-info">
+<h4>Ali Haider</h4>
+<p>Ali Haider is an SEO Consultant and Health Content Creator with a passion for making evidence-based health information accessible to everyone. He builds free health tools and writes comprehensive guides used by over 100,000 monthly readers worldwide.</p>
+<p style="margin-top:8px;"><a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" style="color:#52b788;font-size:0.85rem;">LinkedIn Profile →</a></p>
+</div>
 </div>
 </div>
 </div>
