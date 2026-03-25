@@ -1,0 +1,359 @@
+You are improving the VitalHealth Hub website. Apply ALL of the following 
+changes across the entire codebase. Do not break existing functionality, 
+fonts, or color scheme. Dark theme stays. Green accent (#4caf82, #2d7a4f) stays.
+
+═══════════════════════════════════════════════════════
+SECTION 1 — FOOTER FIXES
+═══════════════════════════════════════════════════════
+
+1. "Created By" column: Remove the card box, background, border, and shadow 
+   completely. Style it exactly like other footer columns (Popular Tools, 
+   Quick Links, Legal) — same heading style, same link style with arrow 
+   indicators, no background, no card wrapper.
+
+2. Remove the Medical Notice box from inside the footer columns entirely. 
+   It already exists as a full-width disclaimer bar above the copyright 
+   bottom bar so the duplicate column box is not needed.
+
+3. Bottom bar: Keep "© 2025 VitalHealth Hub. All rights reserved. Created 
+   with ❤️ by Ali Haider" left side and Privacy Policy | Disclaimer | 
+   Terms of Use right side. Add a subtle top border in #2d7a4f color.
+
+═══════════════════════════════════════════════════════
+SECTION 2 — BLOG/ARTICLES FEATURE IMAGES (UNIQUE PER CARD)
+═══════════════════════════════════════════════════════
+
+Replace ALL placeholder image boxes in the Latest Articles / Blog section 
+with real unique Unsplash images. Every single card must have a DIFFERENT 
+image that is visually relevant to its specific topic. Never reuse the 
+same image URL twice anywhere on the site.
+
+FOR ANY BLOG ARTICLE NOT LISTED ABOVE:
+Match the topic category from the list above and select a thematically 
+relevant unique image that has NOT already been used. Never duplicate 
+any image URL across the entire blog section.
+
+Image display rules for ALL blog cards:
+* height: 210px, width: 100%, object-fit: cover
+* border-radius matching card top corners
+* subtle dark overlay on hover: rgba(0, 40, 20, 0.35), transition 0.3s ease
+* loading="lazy" on every img tag
+* alt attribute = exact article title text
+
+═══════════════════════════════════════════════════════
+SECTION 3 — SEO FOR ALL CALCULATOR PAGES
+═══════════════════════════════════════════════════════
+
+Apply the following SEO framework to EVERY calculator page that exists 
+on the site — not just the 8 listed. This includes all current calculators 
+and any future ones added. Apply the same pattern to each one.
+
+── A) META TAGS (per calculator page) ──
+
+Title format:
+"[Calculator Name] Calculator – Free & Accurate | VitalHealth Hub"
+
+Meta description: 150-160 characters including the primary keyword naturally.
+Example for BMI: "Use our free BMI calculator to find your Body Mass Index 
+instantly. Get personalized results with healthy range guidance for men and women."
+
+Meta keywords: Generate 10-12 highly relevant keywords per calculator 
+based on its specific topic. Include:
+* Primary: "[tool name] calculator", "free [tool name] calculator"
+* Secondary: "calculate [metric] online", "[metric] for men", "[metric] for women"
+* Long-tail: "how to calculate [metric]", "what is a healthy [metric]"
+* Related: nearby topic keywords based on calculator category
+
+── B) CONTENT SECTIONS (add below every calculator tool) ──
+
+<h2>How to Use the [Calculator Name] Calculator</h2>
+Write a 3-4 step numbered guide explaining:
+* What inputs are required and what they mean
+* How to enter data correctly
+* How to read and interpret the output
+* What to do with the results
+Language: simple, clear, no medical jargon
+
+<h2>What Is [Metric] and Why Does It Matter?</h2>
+Write 180-220 words of evidence-based explanation covering:
+* Definition of the metric in plain language
+* Why it matters for health and wellness
+* Who should track it and how often
+* Any important limitations or caveats
+Naturally include these keyword types:
+"[metric] explained", "why [metric] is important", 
+"[metric] for health", "understanding your [metric]"
+
+<h2>Understanding Your [Metric] Results</h2>
+Create a styled HTML results table with:
+* Column 1: Range or Category label
+* Column 2: Value/Score range
+* Column 3: What it means for health
+Table styling:
+* Header row: background #1e3a2f, color #c8e6d4, font-weight 600
+* Alternating rows: #0f1a17 and #131f18
+* Status color badges: green=#2d7a4f (healthy), 
+  yellow=#7a6e2d (borderline), red=#7a2d2d (at risk)
+* border: 1px solid #1e3a2f on all cells
+* border-radius: 8px on table wrapper
+* fully responsive with horizontal scroll on mobile
+
+<h2>Frequently Asked Questions About [Calculator Name]</h2>
+Write 5 FAQ items in accordion/expandable style using JavaScript toggle.
+Question format: use real search queries people ask about this topic.
+Examples of question patterns to follow:
+* "How do I calculate my [metric]?"
+* "Is this [calculator name] accurate?"
+* "What is a healthy [metric] for [men/women/age group]?"
+* "How often should I check my [metric]?"
+* "What affects my [metric] reading?"
+Answers: 2-4 sentences each, factual, evidence-based, no fluff.
+Add JSON-LD FAQ schema in <head> matching these exact questions and answers.
+
+<h2>Tips to Improve Your [Metric]</h2>
+Write 4-5 actionable bullet points with practical health advice 
+relevant to the specific calculator topic.
+Keep each tip 1-2 sentences. Evidence-based. No vague advice.
+
+<h2>Related Calculators You Might Find Useful</h2>
+Show 3 cards linking to other relevant calculator pages already on the site.
+Match them by topic category (e.g. BMI page links to Body Fat, TDEE, Calorie).
+Each card: calculator name, one-line description, "Use Calculator →" link.
+
+── C) SCHEMA MARKUP (add to <head> of every calculator page) ──
+
+1. WebApplication schema:
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "[Calculator Name] Calculator",
+  "url": "[page URL]",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "[same as meta description]"
+}
+
+2. BreadcrumbList schema:
+Home → Calculators → [Calculator Name] Calculator
+
+3. FAQ schema: matching the 5 accordion questions on the page
+
+── D) KEYWORD TARGETING RULES (for ALL calculators) ──
+
+For EVERY calculator page that exists or will be added, automatically 
+generate and weave in the following keyword types based on the tool topic.
+Do this dynamically — do not limit to any fixed list of calculators.
+
+PRIMARY keywords (use in title, h1, first paragraph, meta):
+* "[tool name] calculator"
+* "free [tool name] calculator"  
+* "[tool name] calculator online"
+
+SECONDARY keywords (use in h2 headings and content body):
+* "calculate [metric] online"
+* "accurate [tool name] calculator"
+* "[tool name] calculator for men"
+* "[tool name] calculator for women"
+* "[tool name] calculator by age"
+* "how to calculate [metric]"
+
+LONG-TAIL keywords (use naturally in FAQ answers and tips sections):
+* "what is a healthy [metric]"
+* "how to improve [metric]"
+* "[metric] explained for beginners"
+* "[tool name] calculator with results"
+* "best free [tool name] calculator"
+* "[metric] ranges for adults"
+* "[metric] normal range by age"
+
+INTENT keywords (use in CTA buttons, result summaries):
+* "check my [metric]"
+* "calculate now"
+* "get my results"
+* "find my healthy [metric] range"
+
+RULE: Keyword density must stay between 1-2% per page.
+Never repeat the same keyword more than once in any single paragraph.
+Always prioritize natural readability over keyword placement.
+
+── E) INTERNAL LINKING (every calculator page) ──
+
+Within the content body of each calculator page, add 3-4 natural 
+internal links using descriptive anchor text:
+* Link to 2 related calculator pages using "[metric] calculator" as anchor
+* Link to 1-2 relevant blog posts using the article title as anchor
+* Never use "click here" or "read more" as anchor text
+
+═══════════════════════════════════════════════════════
+SECTION 4 — SEO FOR ALL BLOG PAGES
+═══════════════════════════════════════════════════════
+
+Apply this SEO framework to EVERY blog/article page on the site — 
+existing and future. Apply the same pattern dynamically based on topic.
+
+── A) META TAGS ──
+
+Title format:
+"[Article Title]: Complete Guide [Year] | VitalHealth Hub"
+
+Meta description: 150-160 chars. Include primary keyword + benefit.
+Example: "Learn how to calculate your BMI accurately. Understand healthy 
+BMI ranges for men and women with our complete evidence-based guide."
+
+── B) ARTICLE CONTENT STRUCTURE ──
+
+Every blog post must follow this structure:
+
+1. Feature image (unique, topic-relevant, from Section 2 mappings)
+   height 400px on desktop, object-fit: cover, full width, lazy loaded
+
+2. Article header:
+   - Category tag (e.g. "Body Metrics", "Nutrition", "Fitness")
+   - Title H1
+   - Meta row: Author name | Published date | Read time | Last updated date
+
+3. Table of Contents (auto-generated from H2 headings, sticky on desktop)
+   Smooth scroll to sections on click
+
+4. Content body with proper heading hierarchy:
+   H1 (title) → H2 (main sections) → H3 (subsections)
+   Minimum 800 words per article
+   Include at least one data table or comparison table per article
+
+5. Key Takeaways box (before conclusion):
+   Styled callout box with 3-5 bullet points summarizing main points
+   Style: background #0d1f17, border-left 3px solid #4caf82
+
+6. Conclusion section with soft CTA:
+   "Try our free [relevant calculator] →" linking to related tool
+
+7. Related Articles section (3 cards at bottom)
+   Must use unique images, must not show the current article
+
+── C) SCHEMA MARKUP for blog pages ──
+
+1. Article schema:
+{
+  "@type": "Article",
+  "headline": "[title]",
+  "author": { "@type": "Person", "name": "Ali Haider" },
+  "publisher": { "@type": "Organization", "name": "VitalHealth Hub" },
+  "datePublished": "[date]",
+  "dateModified": "[date]",
+  "image": "[feature image URL]",
+  "description": "[meta description]"
+}
+
+2. BreadcrumbList: Home → Blog → [Article Title]
+
+── D) KEYWORD TARGETING FOR ALL BLOG POSTS ──
+
+For every blog article, dynamically generate keywords based on its topic.
+
+PRIMARY (title, H1, first 100 words, meta):
+* Main topic keyword (e.g. "how to calculate bmi")
+* "[topic] guide", "[topic] for beginners"
+
+SECONDARY (H2 headings, subheadings, image alt text):
+* "[topic] tips", "best [topic] methods"
+* "[topic] for men", "[topic] for women"
+* "[topic] by age", "healthy [topic] range"
+
+LONG-TAIL (body paragraphs, FAQ, conclusion):
+* "how to [action] [topic]"
+* "what is [topic] and why it matters"
+* "[topic] explained simply"
+* "signs of [problem related to topic]"
+* "benefits of improving [topic]"
+
+LSI keywords (Latent Semantic Indexing — related terms):
+Automatically include 5-8 semantically related terms throughout 
+the article body. These should be natural synonyms and related 
+concepts, not just repetitions of the primary keyword.
+
+RULE: 1-2% keyword density max. Readability first always.
+
+── E) INTERNAL LINKING FOR BLOGS ──
+
+Every blog post must include:
+* 2-3 links to related calculator pages (anchor = calculator name)
+* 2-3 links to related blog posts (anchor = article title excerpt)
+* 1 link to homepage or category page
+Never use generic anchor text like "click here" or "this page"
+
+═══════════════════════════════════════════════════════
+SECTION 5 — HOMEPAGE IMPROVEMENTS
+═══════════════════════════════════════════════════════
+
+1. HERO SECTION:
+   Background image:
+   https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1600&q=80
+   Dark overlay: rgba(10, 20, 15, 0.78)
+   CSS pulse animation on CTA button: scale 1 → 1.03 → 1, 2s infinite ease
+
+2. STATS BAR (insert below hero):
+   🧮 50+ Free Tools | 👥 100K+ Monthly Users | ✅ Evidence-Based | 🔒 Always Free
+   Style: background #0d1f17, text #a8d8be, padding 18px, centered
+   border-top and border-bottom: 1px solid #1e3a2f
+
+3. ARTICLES SECTION:
+   - Apply all unique blog images from Section 2
+   - Add "View All Articles →" button below article cards
+   - Category filter tabs above cards:
+     All | Body Metrics | Nutrition | Fitness | Sleep | Hydration
+     Active: background #2d7a4f, white text
+     Inactive: transparent, border #2d7a4f, green text
+     JS filter by matching the category tag on each card
+
+4. CALCULATOR CARDS:
+   - "⭐ Most Popular" badge on BMI Calculator
+   - "🆕 New" badge on Sleep Calculator
+   - Hover lift: translateY(-4px), box-shadow 0 8px 24px rgba(0,0,0,0.4)
+   - transition: 0.25s ease on all cards
+
+5. TRUST SECTION (add between articles and footer):
+   Heading: "Why Millions Trust VitalHealth Hub"
+   Three columns:
+   🔬 Evidence-Based Content
+      All tools and articles are grounded in peer-reviewed medical research
+   👨‍⚕️ Professionally Reviewed
+      Content reviewed by certified health and wellness professionals
+   🆓 Free Forever
+      No paywalls, no subscriptions, no hidden fees — always 100% free
+   Style: background #0d1f17, heading #c8e6d4, body text #6b9e80
+   Large icons (2rem), centered, padding 60px 40px
+
+6. HOMEPAGE SCHEMA in <head>:
+   Organization schema:
+   {
+     "@type": "Organization",
+     "name": "VitalHealth Hub",
+     "url": "https://vitalhealthhub.com",
+     "email": "ma7122671@gmail.com",
+     "sameAs": [your LinkedIn URL, Facebook URL, Instagram URL]
+   }
+   WebSite schema with SearchAction for sitelinks searchbox
+   Open Graph: og:title, og:description, og:image, og:url, og:type, og:site_name
+   Twitter Card: twitter:card, twitter:title, twitter:description, twitter:image
+
+═══════════════════════════════════════════════════════
+FINAL RULES — APPLY TO EVERYTHING
+═══════════════════════════════════════════════════════
+
+✅ Keep all existing fonts exactly as they are — no new fonts
+✅ Keep all existing colors — dark theme + green accents (#4caf82, #2d7a4f)
+✅ Keep all existing navigation and page routing intact
+✅ Every image must have loading="lazy" and a descriptive alt attribute
+✅ Every image URL must be unique — never reuse across cards or pages
+✅ All new sections must be fully mobile responsive (test at 375px width)
+✅ All JSON-LD schema must be valid — test with Google Rich Results Tool
+✅ All internal links must point to real existing pages on the site
+✅ Do not add any new external CSS libraries or font families
+✅ Do not touch any calculator logic, formulas, or form functionality
+✅ FAQ accordions must work with pure JavaScript, no library required
+✅ Keyword density: 1-2% max per page, readability always comes first
+✅ Apply the SEO framework to ALL existing pages AND any new pages added
+✅ This SEO system must scale — when a new calculator or blog is added,
+   the same keyword, schema, content, and internal linking rules apply
+   automatically without needing a new prompt

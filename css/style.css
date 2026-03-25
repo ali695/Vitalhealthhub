@@ -1732,3 +1732,327 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* ======================================
+   SECTION 1 — FOOTER FIXES
+   ====================================== */
+.footer-bottom {
+  border-top: 1px solid #2d7a4f;
+}
+
+/* ======================================
+   SECTION 2 — BLOG IMAGE HOVER OVERLAY
+   ====================================== */
+.blog-img-hover {
+  position: relative;
+  overflow: hidden;
+}
+.blog-img-hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,40,20,0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.blog-card:hover .blog-img-hover::after {
+  opacity: 1;
+}
+.blog-card-image img {
+  height: 210px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* ======================================
+   SECTION 3 — CALCULATOR SEO SECTIONS
+   ====================================== */
+.seo-section {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid #1e3a2f;
+}
+.seo-section h2 {
+  font-size: 1.4rem;
+  color: #c8e6d4;
+  margin-bottom: 20px;
+}
+.how-to-steps {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: step-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.how-to-steps li {
+  background: #0d1f17;
+  border: 1px solid #1e3a2f;
+  border-radius: 10px;
+  padding: 14px 18px;
+  color: #a8d8be;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+.how-to-steps li strong {
+  color: #4caf82;
+}
+.tips-list {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tips-list li {
+  padding: 12px 16px 12px 42px;
+  background: #0d1f17;
+  border-left: 3px solid #4caf82;
+  border-radius: 0 8px 8px 0;
+  color: #a8d8be;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  position: relative;
+}
+.tips-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  color: #4caf82;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.related-calcs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 12px;
+}
+.related-calc-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #0d1f17;
+  border: 1px solid #1e3a2f;
+  border-radius: 12px;
+  padding: 18px;
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.related-calc-card:hover {
+  border-color: #4caf82;
+  transform: translateY(-2px);
+}
+.related-calc-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.related-calc-card h4 {
+  color: #c8e6d4;
+  font-size: 0.95rem;
+  margin: 0 0 4px;
+}
+.related-calc-card p {
+  color: #6b9e80;
+  font-size: 0.82rem;
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+@media (max-width: 768px) {
+  .related-calcs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ======================================
+   SECTION 4 — BLOG CTA BOX
+   ====================================== */
+.blog-cta-box {
+  background: #0d1f17;
+  border-left: 3px solid #4caf82;
+  border-radius: 0 12px 12px 0;
+  padding: 20px 24px;
+  margin: 32px 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.blog-cta-box p {
+  color: #a8d8be;
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+.blog-cta-box a.btn {
+  white-space: nowrap;
+}
+
+/* ======================================
+   SECTION 5 — HOMEPAGE IMPROVEMENTS
+   ====================================== */
+
+/* Hero with background image */
+.hero-bg {
+  background-image: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 15, 0.78);
+  z-index: 1;
+}
+@keyframes btnPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+.btn-pulse {
+  animation: btnPulse 2s infinite ease;
+}
+
+/* Home trust bar */
+.home-trust-bar {
+  background: #0d1f17;
+  border-top: 1px solid #1e3a2f;
+  border-bottom: 1px solid #1e3a2f;
+  padding: 18px 20px;
+  text-align: center;
+}
+.home-trust-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #a8d8be;
+  font-size: 0.92rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.trust-divider {
+  color: #2d7a4f;
+  font-weight: 700;
+}
+
+/* Calculator badges */
+.card {
+  position: relative;
+}
+.calc-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  z-index: 1;
+  white-space: nowrap;
+}
+.badge-popular {
+  background: linear-gradient(135deg, #f4a261, #e76f51);
+  color: #fff;
+}
+.badge-new {
+  background: linear-gradient(135deg, #52b788, #2d6a4f);
+  color: #fff;
+}
+.card-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* Home blog category filter */
+.home-blog-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.home-cat-btn {
+  background: transparent;
+  border: 1px solid #2d7a4f;
+  color: #4caf82;
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-family: inherit;
+}
+.home-cat-btn.active,
+.home-cat-btn:hover {
+  background: #2d7a4f;
+  color: #fff;
+}
+
+/* Trust section */
+.trust-section {
+  background: #0d1f17;
+  padding: 60px 20px;
+}
+.trust-section .section-title h2 {
+  color: #c8e6d4;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+.trust-item {
+  text-align: center;
+  padding: 32px 24px;
+}
+.trust-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 16px;
+}
+.trust-item h3 {
+  color: #c8e6d4;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+.trust-item p {
+  color: #6b9e80;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+@media (max-width: 768px) {
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .home-trust-bar-inner {
+    gap: 8px;
+    font-size: 0.82rem;
+  }
+  .trust-divider {
+    display: none;
+  }
+  .blog-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Hero bg: override title color for better contrast */
+.hero-bg h1 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.hero-bg p {
+  color: rgba(255,255,255,0.88) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+}

@@ -171,30 +171,17 @@ const FOOTER = `<footer>
 <li><a href="/disclaimer.html">\u2192 Medical Disclaimer</a></li>
 <li><a href="/terms.html">\u2192 Terms of Use</a></li>
 </ul>
-<div style="margin-top:24px;padding:16px;background:#111413;border-radius:10px;border-left:3px solid #2d6a4f;">
-<p style="font-size:12px;color:#6b7280;line-height:1.6;"><strong style="color:#9ca3af;">\u2695\uFE0F Medical Notice:</strong><br>All content is for informational purposes only. Always consult a qualified healthcare professional.</p>
-</div>
 </div>
 <div class="footer-col">
 <h4>Created By</h4>
-<div style="background:#111413;border-radius:12px;padding:20px;border:1px solid #2d2d2d;">
-<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-<div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#2d6a4f,#52b788);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-<span style="color:#fff;font-weight:700;font-size:18px;">A</span>
-</div>
-<div>
-<p style="color:#fff;font-weight:600;font-size:15px;margin:0;">Ali Haider</p>
-<p style="color:#52b788;font-size:12px;margin:2px 0 0;">SEO Consultant</p>
-</div>
-</div>
-<p style="font-size:13px;color:#9ca3af;line-height:1.6;margin-bottom:16px;">Building accessible health tools and evidence-based content for millions of users worldwide.</p>
-<div style="display:flex;flex-direction:column;gap:8px;">
-<a href="mailto:ma7122671@gmail.com" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#52b788'" onmouseout="this.style.color='#9ca3af'">\u2709 ma7122671@gmail.com</a>
-<a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#0077b5'" onmouseout="this.style.color='#9ca3af'">\uD83D\uDD17 LinkedIn Profile</a>
-<a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#1877f2'" onmouseout="this.style.color='#9ca3af'">\uD83D\uDCD8 Facebook Page</a>
-<a href="https://www.instagram.com/ali_haiderseo/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#e1306c'" onmouseout="this.style.color='#9ca3af'">\uD83D\uDCF8 @ali_haiderseo</a>
-</div>
-</div>
+<ul>
+<li><a href="mailto:ma7122671@gmail.com">\u2192 Ali Haider</a></li>
+<li><a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer">\u2192 LinkedIn Profile</a></li>
+<li><a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer">\u2192 Facebook Page</a></li>
+<li><a href="https://www.instagram.com/ali_haiderseo/" target="_blank" rel="noopener noreferrer">\u2192 Instagram @ali_haiderseo</a></li>
+<li><a href="mailto:ma7122671@gmail.com">\u2192 ma7122671@gmail.com</a></li>
+<li><a href="/contact.html">\u2192 Contact Us</a></li>
+</ul>
 </div>
 </div>
 <div class="footer-disclaimer">
@@ -772,10 +759,68 @@ calculators.forEach(calc => {
   }
 });
 
+function calcSeoMeta(calc) {
+  const n = calc.name.replace(/ Calculator$/i,'').replace(/ Checker$/i,'').replace(/ Calculator$/i,'');
+  const slug = calc.slug;
+  const metaDesc = `Use our free ${calc.name} online to get accurate results instantly. Get personalized ${n.toLowerCase()} results with healthy range guidance for men and women. 100% free.`;
+  const keywords = `${n.toLowerCase()} calculator, free ${n.toLowerCase()} calculator, ${n.toLowerCase()} calculator online, calculate ${n.toLowerCase()} online, accurate ${n.toLowerCase()} calculator, ${n.toLowerCase()} for men, ${n.toLowerCase()} for women, how to calculate ${n.toLowerCase()}, what is a healthy ${n.toLowerCase()}, ${n.toLowerCase()} explained, ${n.toLowerCase()} ranges for adults`;
+  return { metaDesc, keywords };
+}
+
+function calcHowToSection(calc) {
+  const n = calc.name;
+  const fieldList = calc.fields.map((f,i) => `<li><strong>Step ${i+1} — ${f.label}:</strong> Enter your ${f.label.toLowerCase()}${f.type==='select'?' by selecting the option that best matches your situation':' in the input field'}.`).join('</li>');
+  return `<section class="seo-section fade-in">
+<h2>How to Use the ${n}</h2>
+<ol class="how-to-steps">
+${fieldList}</li>
+<li><strong>Step ${calc.fields.length+1} — Click Calculate:</strong> Press the Calculate button to instantly get your personalized results.</li>
+<li><strong>Step ${calc.fields.length+2} — Read Your Results:</strong> Your result will appear color-coded — green for healthy, yellow for borderline, red for at-risk ranges.</li>
+<li><strong>Step ${calc.fields.length+3} — Take Action:</strong> Use the personalized suggestion in your results to guide your next health steps. Consult a doctor for medical decisions.</li>
+</ol>
+</section>`;
+}
+
+function calcTipsSection(calc) {
+  const tips = {
+    'Body Metrics': ['Measure yourself in the morning before eating for the most consistent readings.','Combine multiple metrics (BMI + body fat + waist) for a fuller health picture.','Track changes over weeks, not days — daily fluctuations are normal.','Focus on trends rather than single measurements.','Strength training improves body composition even if the scale doesn\'t change much.'],
+    'Nutrition': ['Prioritize whole, minimally processed foods for 80% of your intake.','Track your intake for at least 2 weeks to understand your real eating patterns.','Hydration supports metabolism — aim for pale yellow urine throughout the day.','Meal prep on weekends to make healthy choices easier during busy weekdays.','Protein at every meal helps with satiety and muscle maintenance.'],
+    'Fitness': ['Consistency beats intensity — exercising 4× per week moderately beats 1 exhausting session.','Warm up for 5 minutes before training and cool down to prevent injury.','Progressive overload — gradually increase weight or reps to keep improving.','Rest at least 1-2 days per week for muscle recovery and performance gains.','Track your workouts to see long-term progress and stay motivated.'],
+    'Heart Health': ['Aim for 150+ minutes of moderate aerobic activity per week for heart health.','Reduce sodium intake to keep blood pressure in the healthy range.','Monitor your numbers regularly — many cardiovascular issues have no symptoms.','Mediterranean-style diet has the strongest evidence for heart disease prevention.','Stress management directly impacts heart health — prioritize relaxation techniques.'],
+    'Sleep': ['Maintain a consistent sleep and wake time, even on weekends.','Keep your bedroom cool (60-67°F / 15-19°C) for optimal sleep quality.','Avoid screens 30-60 minutes before bed — blue light suppresses melatonin.','Limit caffeine after 2 PM as it can stay in your system for 6+ hours.','Regular exercise improves sleep quality, but avoid vigorous exercise within 3 hours of bedtime.'],
+    'Wellness': ['Small daily habits compound over time — focus on consistency, not perfection.','Regular preventive health checkups catch issues before they become serious.','Social connections and mental well-being are just as important as physical health.','Spend time outdoors — sunlight, fresh air, and nature have measurable health benefits.','Adequate sleep (7-9 hours) is foundational to every other aspect of health.'],
+    'Disease Prevention': ['Annual blood work gives early warning signs of developing conditions.','A 5-10% weight loss can significantly reduce risk for metabolic diseases.','Quitting smoking is the single most impactful lifestyle change for disease prevention.','Regular physical activity reduces risk of type 2 diabetes, cancer, and heart disease.','Manage chronic stress through mindfulness, exercise, and social support.'],
+    'Health Risk': ['Annual blood work gives early warning signs of developing conditions.','A 5-10% weight loss can significantly reduce risk for metabolic diseases.','Quitting smoking is the single most impactful lifestyle change for disease prevention.','Regular physical activity reduces risk of type 2 diabetes, cancer, and heart disease.','Manage chronic stress through mindfulness, exercise, and social support.'],
+    "Women's Health": ['Track your cycle regularly — irregularities can signal underlying health conditions.','Bone density peaks in your 30s — adequate calcium and vitamin D matter from a young age.','Hormonal changes affect metabolism — adjust nutrition and exercise plans accordingly.','Regular gynecological checkups are essential regardless of age or symptoms.','Iron needs are higher during reproductive years — ensure adequate dietary intake.'],
+  };
+  const t = tips[calc.category] || tips['Wellness'];
+  return `<section class="seo-section fade-in">
+<h2>Tips to Improve Your ${calc.name.replace(/ Calculator$/i,'').replace(/ Checker$/i,'')}</h2>
+<ul class="tips-list">
+${t.map(tip=>`<li>${tip}</li>`).join('')}
+</ul>
+</section>`;
+}
+
+function calcRelatedCards(calc) {
+  const related = (calc.related||[]).slice(0,3);
+  if (!related.length) return '';
+  const cards = related.map(r => {
+    const rc = calculators.find(c => c.slug === r);
+    return rc ? `<a href="/calculators/${r}.html" class="related-calc-card"><div class="related-calc-icon">${calcSvg(rc.icon)}</div><div><h4>${rc.name}</h4><p>${rc.desc}</p><span class="read-more">Use Calculator &rarr;</span></div></a>` : '';
+  }).filter(Boolean).join('');
+  return `<section class="seo-section fade-in">
+<h2>Related Calculators You Might Find Useful</h2>
+<div class="related-calcs-grid">${cards}</div>
+</section>`;
+}
+
 function generateCalculatorPage(calc) {
-  const bc = breadcrumb([{name:'Home',url:'/'},{name:'Calculators',url:'/calculators/bmi-calculator.html'},{name:calc.name,url:'/calculators/'+calc.slug+'.html'}]);
+  const bc = breadcrumb([{name:'Home',url:'/'},{name:'Calculators',url:'/calculators/'},{name:calc.name,url:'/calculators/'+calc.slug+'.html'}]);
   const faq = faqSection(calc.faqs);
   const share = shareButtons('/calculators/'+calc.slug+'.html', calc.name+' - '+SITE_NAME);
+  const seo = calcSeoMeta(calc);
+  const n = calc.name.replace(/ Calculator$/i,'').replace(/ Checker$/i,'');
 
   let formFields = '';
   calc.fields.forEach(f => {
@@ -793,30 +838,28 @@ function generateCalculatorPage(calc) {
     return rc ? `<a href="/calculators/${r}.html" class="card"><div class="card-icon">${calcSvg(rc.icon)}</div><h3>${rc.name}</h3><p>${rc.desc}</p></a>` : '';
   }).join('');
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    "name": calc.name,
-    "description": calc.desc,
-    "url": SITE + '/calculators/' + calc.slug + '.html'
-  };
+  const pageTitle = calc.name.endsWith('Calculator') || calc.name.endsWith('Checker') ? `${calc.name} – Free & Accurate | ${SITE_NAME}` : `${calc.name} Calculator – Free & Accurate | ${SITE_NAME}`;
 
-  return `${head(calc.name+' | '+SITE_NAME, calc.desc, '/calculators/'+calc.slug+'.html')}
+  const webAppSchema = {"@context":"https://schema.org","@type":"WebApplication","name":calc.name,"url":SITE+'/calculators/'+calc.slug+'.html',"applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":seo.metaDesc};
+
+  const extraHead = `<meta name="keywords" content="${seo.keywords}">
+<script type="application/ld+json">${JSON.stringify(webAppSchema)}</script>
+${faq.schema}`;
+
+  return `${head(pageTitle, seo.metaDesc, '/calculators/'+calc.slug+'.html', extraHead)}
 <body>
 ${NAV}
 ${bc.html}
 ${bc.schema}
-<script type="application/ld+json">${JSON.stringify(schema)}</script>
-${faq.schema}
 <section class="section" style="padding-top:40px;">
 <div class="container">
 <div class="calc-container">
 ${getCalcHeroSvg(calc.slug)}
 <h1 class="fade-in">${calc.name}</h1>
-<p class="fade-in" style="margin-bottom:30px;color:var(--gray-500);">${calc.desc}</p>
+<p class="fade-in" style="margin-bottom:30px;color:var(--gray-500);">Use our free ${calc.name.toLowerCase()} online to get accurate, personalized results. ${calc.desc}</p>
 <div class="calc-form fade-in">
 ${formFields}
-<button class="btn btn-primary" onclick="${calc.logic.replace(/"/g,'&quot;')}" style="width:100%;justify-content:center;">Calculate</button>
+<button class="btn btn-primary" onclick="${calc.logic.replace(/"/g,'&quot;')}" style="width:100%;justify-content:center;">Calculate Now &rarr;</button>
 </div>
 <div id="result" class="result-box">
 <div class="result-value"></div>
@@ -824,12 +867,20 @@ ${formFields}
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
 <div class="result-suggestion"></div>
 </div>
-<div class="disclaimer-box fade-in">This tool is for informational purposes only. Consult a qualified healthcare professional for medical advice.</div>
+<div class="disclaimer-box fade-in">⚕️ This tool is for informational purposes only. Always consult a qualified healthcare professional for medical advice.</div>
 ${share}
-<div class="fade-in" style="margin-top:40px;">${calc.article}</div>
-<section class="section fade-in"><div class="section-title"><h2>Frequently Asked Questions</h2></div>${faq.html}</section>
-<section class="related-section fade-in"><div class="section-title"><h2>Related Calculators</h2></div><div class="grid-4">${relatedHtml}</div></section>
 </div>
+</div>
+</section>
+
+<section class="section section-alt">
+<div class="container">
+${calcHowToSection(calc)}
+<div class="fade-in" style="margin-top:40px;">${calc.article}</div>
+<section class="section fade-in"><div class="section-title"><h2>Frequently Asked Questions About ${n}</h2></div>${faq.html}</section>
+${calcTipsSection(calc)}
+${calcRelatedCards(calc)}
+<section class="related-section fade-in"><div class="section-title"><h2>More Calculators</h2></div><div class="grid-4">${relatedHtml}</div></section>
 </div>
 </section>
 ${FOOTER}
@@ -1009,34 +1060,65 @@ function generateBlogPost(post) {
   const bc = breadcrumb([{name:'Home',url:'/'},{name:'Blog',url:'/blog.html'},{name:post.title,url:'/blog/'+post.slug+'.html'}]);
   const faqItems = [
     {q:`What is the main takeaway from "${post.title}"?`,a:`The main takeaway is to take a proactive, evidence-based approach to your health. Understanding the topic and using available tools can lead to better health outcomes.`},
-    {q:'How can I apply this information to my daily life?',a:'Start by assessing your current status using our health calculators, then make small, sustainable changes to your daily routine.'},
-    {q:'Should I consult a doctor before making changes?',a:'Yes, always consult a healthcare professional before making significant changes to your diet, exercise routine, or health regimen.'},
-    {q:'How reliable is the health information in this article?',a:'Our content is reviewed by healthcare professionals and based on peer-reviewed research. However, individual needs vary — always seek personalized medical advice.'},
-    {q:'Where can I learn more about this topic?',a:'Explore our related articles and health calculators for more in-depth information on this and related health topics.'},
+    {q:'How can I apply this information to my daily life?',a:'Start by assessing your current status using our health calculators, then make small, sustainable changes to your daily routine based on your personalized results.'},
+    {q:'Should I consult a doctor before making changes?',a:'Yes, always consult a healthcare professional before making significant changes to your diet, exercise routine, or health regimen, especially if you have existing health conditions.'},
+    {q:'How reliable is the health information in this article?',a:'Our content is reviewed by healthcare professionals and based on peer-reviewed research. However, individual needs vary — always seek personalized medical advice from a qualified provider.'},
+    {q:'Where can I find tools to track my progress?',a:'Explore our free health calculators for personalized, evidence-based assessments. All tools are free, require no registration, and provide instant results.'},
   ];
   const faq = faqSection(faqItems);
   const share = shareButtons('/blog/'+post.slug+'.html', post.title);
   const content = generateBlogContent(post);
-
   const calcs = getRelatedCalcs(post.category);
   const takeaways = [
-    'Understand the fundamentals and key concepts of this health topic',
-    'Learn evidence-based strategies backed by scientific research',
-    `Use our <a href="/calculators/${calcs[0]}.html">health calculators</a> for personalized assessment`,
+    'Understand the fundamentals and key concepts of this important health topic',
+    'Learn evidence-based strategies backed by peer-reviewed scientific research',
+    `Use our free <a href="/calculators/${calcs[0]}.html">${(calculators.find(c=>c.slug===calcs[0])||{name:'health calculator'}).name}</a> for your personalized assessment`,
     'Make gradual, sustainable changes for long-term health improvement',
-    'Know when to seek professional medical guidance',
+    'Know when to seek professional medical guidance for your specific situation',
   ];
 
-  const schema = {"@context":"https://schema.org","@type":"Article","headline":post.title,"author":{"@type":"Person","name":"Dr. Sarah Mitchell, MD"},"datePublished":post.date,"publisher":{"@type":"Organization","name":SITE_NAME}};
+  const featImgUrl = blogUnsplashUrl(post.slug);
+  const blogMetaDesc = `${post.title} — Learn evidence-based strategies, key insights, and practical tips. Expert health guidance from VitalHealth Hub. Free, no registration needed.`;
+  const blogTitle = `${post.title}: Complete Guide 2026 | ${SITE_NAME}`;
 
-  return `${head(post.title+' | '+SITE_NAME, 'Learn about '+post.title.toLowerCase()+'. Expert health advice, practical tips, and evidence-based information from '+SITE_NAME+'.', '/blog/'+post.slug+'.html')}
+  const schema = {
+    "@context":"https://schema.org","@type":"Article",
+    "headline":post.title,
+    "author":{"@type":"Person","name":"Dr. Sarah Mitchell, MD"},
+    "datePublished":post.date,"dateModified":post.date,
+    "publisher":{"@type":"Organization","name":SITE_NAME,"logo":{"@type":"ImageObject","url":SITE+"/favicon.ico"}},
+    "image":featImgUrl,"description":blogMetaDesc,"url":SITE+'/blog/'+post.slug+'.html',
+    "mainEntityOfPage":{"@type":"WebPage","@id":SITE+'/blog/'+post.slug+'.html'}
+  };
+
+  const tocH2s = [...content.matchAll(/<h2>([^<]+)<\/h2>/g)].map((m,i)=>{
+    const id = 'section-'+i;
+    return {id, text: m[1]};
+  });
+  const contentWithIds = content.replace(/<h2>/g, ()=>{
+    const sec = tocH2s.shift();
+    return sec ? `<h2 id="${sec.id}">` : '<h2>';
+  });
+  const tocHtml = tocH2s.length ? '' : '';
+
+  const extraHead = `<meta name="keywords" content="${post.title.toLowerCase()}, ${post.category.toLowerCase()}, health guide, wellness tips, ${SITE_NAME.toLowerCase()}">
+<meta property="og:title" content="${blogTitle}">
+<meta property="og:description" content="${blogMetaDesc}">
+<meta property="og:image" content="${featImgUrl}">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${blogTitle}">
+<meta name="twitter:description" content="${blogMetaDesc}">
+<meta name="twitter:image" content="${featImgUrl}">
+<script type="application/ld+json">${JSON.stringify(schema)}</script>
+${faq.schema}`;
+
+  return `${head(blogTitle, blogMetaDesc, '/blog/'+post.slug+'.html', extraHead)}
 <body>
 ${NAV}
 <div class="reading-progress"><div class="reading-progress-fill"></div></div>
 ${bc.html}
 ${bc.schema}
-<script type="application/ld+json">${JSON.stringify(schema)}</script>
-${faq.schema}
 <article>
 <header class="blog-post-header">
 <div class="container">
@@ -1046,18 +1128,23 @@ ${faq.schema}
 <span>By Dr. Sarah Mitchell, MD</span>
 <span>${post.date}</span>
 <span>${post.readTime} read</span>
+<span>Updated 2026</span>
 </div>
 </div>
 </header>
 <div class="container">
 <div class="blog-post">
 <div class="blog-post-content">
-<figure class="blog-hero-image"><img src="${blogUnsplashUrl(post.slug)}" alt="${blogCardImage(post.slug).alt}" title="${post.title}" width="1200" height="500" loading="eager"><figcaption>${post.title} — Expert guide from VitalHealth Hub</figcaption></figure>
+<figure class="blog-hero-image"><img src="${featImgUrl}" alt="${blogCardImage(post.slug).alt}" title="${post.title}" width="1200" height="500" loading="eager"><figcaption>${post.title} — Expert guide from VitalHealth Hub</figcaption></figure>
 <div class="key-takeaways">
-<h3>Key Takeaways</h3>
+<h3>⚡ Key Takeaways</h3>
 <ul>${takeaways.map(t=>'<li>'+t+'</li>').join('')}</ul>
 </div>
-${content}
+${contentWithIds}
+<div class="blog-cta-box fade-in">
+<p>Ready to track your progress? Try our free <a href="/calculators/${calcs[0]}.html">${(calculators.find(c=>c.slug===calcs[0])||{name:'health calculator'}).name}</a> for instant, personalized results.</p>
+<a href="/calculators/${calcs[0]}.html" class="btn btn-primary">Try Free Calculator &rarr;</a>
+</div>
 ${share}
 <section class="section fade-in"><div class="section-title"><h2>Frequently Asked Questions</h2></div>${faq.html}</section>
 <div class="author-box fade-in">
@@ -1184,21 +1271,50 @@ console.log(`Generated ${blogPosts.length} blog posts`);
 const featuredCalcs = calculators.slice(0, 8);
 const featuredPosts = blogPosts.slice(0, 6);
 
-const indexHtml = `${head(SITE_NAME+' - Your Guide to a Healthier Life', 'Free health calculators, wellness tools, and expert health articles. BMI calculator, calorie counter, and 50+ tools to help you live healthier.', '/')}
+const homeOrgSchema = {"@context":"https://schema.org","@type":"Organization","name":SITE_NAME,"url":SITE,"email":"ma7122671@gmail.com","sameAs":["https://www.linkedin.com/in/ali-haider-seo-consultant/","https://www.facebook.com/AliHadi768","https://www.instagram.com/ali_haiderseo/"]};
+const homeWebSiteSchema = {"@context":"https://schema.org","@type":"WebSite","name":SITE_NAME,"url":SITE,"description":"Free health calculators and expert wellness articles.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":SITE+"/blog.html?q={search_term_string}"},"query-input":"required name=search_term_string"}};
+const homeOgImage = "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&q=80";
+const homeExtraHead = `<meta name="keywords" content="health calculators, free health tools, bmi calculator, calorie calculator, wellness tools, health articles">
+<meta property="og:title" content="${SITE_NAME} - Your Guide to a Healthier Life">
+<meta property="og:description" content="Free health calculators, evidence-based articles, and wellness tools. BMI calculator, calorie counter, and 50+ tools to help you live healthier.">
+<meta property="og:image" content="${homeOgImage}">
+<meta property="og:url" content="${SITE}/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="${SITE_NAME}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${SITE_NAME} - Your Guide to a Healthier Life">
+<meta name="twitter:description" content="Free health calculators, evidence-based articles, and wellness tools trusted by millions.">
+<meta name="twitter:image" content="${homeOgImage}">
+<script type="application/ld+json">${JSON.stringify(homeOrgSchema)}</script>
+<script type="application/ld+json">${JSON.stringify(homeWebSiteSchema)}</script>`;
+
+const indexHtml = `${head(SITE_NAME+' - Your Guide to a Healthier Life', 'Free health calculators, wellness tools, and expert health articles. BMI calculator, calorie counter, and 50+ tools to help you live healthier.', '/', homeExtraHead)}
 <body>
 ${NAV}
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"${SITE_NAME}","url":"${SITE}","description":"Free health calculators and expert wellness articles."}</script>
 
-<section class="hero">
-<div class="container">
+<section class="hero hero-bg">
+<div class="hero-overlay"></div>
+<div class="container" style="position:relative;z-index:2;">
 <h1 class="fade-in">Your Guide to a Healthier Life</h1>
 <p class="fade-in">Free health calculators, evidence-based articles, and wellness tools trusted by millions. Take control of your health journey today.</p>
 <div class="hero-buttons fade-in">
-<a href="/calculators/bmi-calculator.html" class="btn btn-primary">Explore Calculators</a>
+<a href="/calculators/" class="btn btn-primary btn-pulse">Explore Calculators</a>
 <a href="/blog.html" class="btn btn-highlight">Read Blog</a>
 </div>
 </div>
 </section>
+
+<div class="home-trust-bar">
+<div class="home-trust-bar-inner">
+<span>🧮 50+ Free Tools</span>
+<span class="trust-divider">|</span>
+<span>👥 100K+ Monthly Users</span>
+<span class="trust-divider">|</span>
+<span>✅ Evidence-Based</span>
+<span class="trust-divider">|</span>
+<span>🔒 Always Free</span>
+</div>
+</div>
 
 <section class="stats-bar">
 <div class="container">
@@ -1214,7 +1330,12 @@ ${NAV}
 <div class="container">
 <div class="section-title fade-in"><h2>Featured Calculators</h2><p>Powerful, free health tools to help you understand your body better.</p></div>
 <div class="grid-4">
-${featuredCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="card fade-in"><div class="card-icon">${calcSvg(c.icon)}</div><h3>${c.name}</h3><p>${c.desc}</p></a>`).join('')}
+${featuredCalcs.map(c => {
+  let badge = '';
+  if (c.slug === 'bmi-calculator') badge = '<span class="calc-badge badge-popular">⭐ Most Popular</span>';
+  else if (c.slug === 'sleep-calculator') badge = '<span class="calc-badge badge-new">🆕 New</span>';
+  return `<a href="/calculators/${c.slug}.html" class="card card-lift fade-in">${badge}<div class="card-icon">${calcSvg(c.icon)}</div><h3>${c.name}</h3><p>${c.desc}</p></a>`;
+}).join('')}
 </div>
 </div>
 </section>
@@ -1233,8 +1354,45 @@ ${featuredCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="card fade
 <section class="section">
 <div class="container">
 <div class="section-title fade-in"><h2>Latest Articles</h2><p>Expert-written health and wellness content to guide your journey.</p></div>
-<div class="grid-3">
-${featuredPosts.map(p => `<a href="/blog/${p.slug}.html" class="blog-card fade-in"><div class="blog-card-image"><svg viewBox="0 0 80 80" fill="none"><rect x="10" y="20" width="60" height="40" rx="4" stroke="#2d6a4f" stroke-width="2"/><path d="M20 35h40M20 45h30" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div class="blog-card-body"><div class="blog-card-meta"><span class="blog-card-category">${p.category}</span><span>${p.date}</span><span>${p.readTime}</span></div><h3>${p.title}</h3><p>Discover evidence-based insights and practical tips in this comprehensive health guide.</p><span class="read-more">Read More →</span></div></a>`).join('')}
+<div class="home-blog-filter fade-in">
+<button class="home-cat-btn active" onclick="homeFilterCat('all',this)">All</button>
+<button class="home-cat-btn" onclick="homeFilterCat('Body Metrics',this)">Body Metrics</button>
+<button class="home-cat-btn" onclick="homeFilterCat('Nutrition',this)">Nutrition</button>
+<button class="home-cat-btn" onclick="homeFilterCat('Fitness',this)">Fitness</button>
+<button class="home-cat-btn" onclick="homeFilterCat('Sleep',this)">Sleep</button>
+<button class="home-cat-btn" onclick="homeFilterCat('Heart Health',this)">Heart Health</button>
+</div>
+<div class="grid-3" id="homeBlogGrid">
+${featuredPosts.map(p => {
+  const img = blogCardImage(p.slug);
+  return `<a href="/blog/${p.slug}.html" class="blog-card fade-in" data-hcat="${p.category}"><div class="blog-card-image blog-img-hover"><img src="${img.url}" alt="${p.title}" title="${p.title}" width="600" height="210" loading="lazy"></div><div class="blog-card-body"><div class="blog-card-meta"><span class="blog-card-category">${p.category}</span><span>${p.date}</span><span>${p.readTime}</span></div><h3>${p.title}</h3><p>Evidence-based insights and practical tips to guide your health journey.</p><span class="read-more">Read More &rarr;</span></div></a>`;
+}).join('')}
+</div>
+<div style="text-align:center;margin-top:32px;">
+<a href="/blog.html" class="btn btn-highlight fade-in">View All Articles &rarr;</a>
+</div>
+</div>
+</section>
+
+<section class="trust-section">
+<div class="container">
+<div class="section-title fade-in"><h2>Why Millions Trust VitalHealth Hub</h2></div>
+<div class="trust-grid">
+<div class="trust-item fade-in">
+<span class="trust-icon">🔬</span>
+<h3>Evidence-Based Content</h3>
+<p>All tools and articles are grounded in peer-reviewed medical research and validated formulas from leading health organizations.</p>
+</div>
+<div class="trust-item fade-in">
+<span class="trust-icon">👨‍⚕️</span>
+<h3>Professionally Reviewed</h3>
+<p>Content reviewed by certified health and wellness professionals to ensure accuracy, safety, and practical value for our users.</p>
+</div>
+<div class="trust-item fade-in">
+<span class="trust-icon">🆓</span>
+<h3>Free Forever</h3>
+<p>No paywalls, no subscriptions, no hidden fees — all 50+ health calculators and 100+ articles are always 100% free to use.</p>
+</div>
 </div>
 </div>
 </section>
@@ -1329,6 +1487,19 @@ ${featuredPosts.map(p => `<a href="/blog/${p.slug}.html" class="blog-card fade-i
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js"></script>
+<script>
+function homeFilterCat(cat,btn){
+  document.querySelectorAll('.home-cat-btn').forEach(function(b){b.classList.remove('active');});
+  if(btn)btn.classList.add('active');
+  document.querySelectorAll('#homeBlogGrid .blog-card').forEach(function(card){
+    if(cat==='all'||card.getAttribute('data-hcat')===cat){
+      card.style.display='';
+    } else {
+      card.style.display='none';
+    }
+  });
+}
+</script>
 ${CHATBOT}
 </body></html>`;
 
