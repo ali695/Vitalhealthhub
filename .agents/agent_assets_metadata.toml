@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "7D3qP-ujagsEMXWC6Ywzj"
+uri = "file://vitalhealth-tools.zip"
+type = "unspecified"
+title = "vitalhealth-tools.zip — WordPress Plugin"
