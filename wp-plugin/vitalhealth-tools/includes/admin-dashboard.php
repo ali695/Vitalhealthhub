@@ -26,8 +26,7 @@ function vht_render_dashboard() {
     // ── Counts ─────────────────────────────────────────────────────────────
     $calc_pages   = get_pages( [ 'meta_key' => '_vht_calculator_id', 'number' => 200 ] );
     $total_calcs  = count( $calc_pages );
-    $blog_posts   = get_posts( [ 'numberposts' => -1, 'post_status' => 'publish', 'category_name' => 'Health Calculators,Nutrition,Fitness,Sleep,Mental Wellness,Lifestyle,Preventive Health,Wellness Guides,Pregnancy & Baby' ] );
-    $total_posts  = count( get_posts( [ 'numberposts' => -1, 'post_type' => 'post', 'post_status' => 'publish', 'suppress_filters' => true ] ) );
+    $total_posts  = (int) wp_count_posts( 'post' )->publish;
     $missing_seo  = 0;
     $missing_desc = 0;
     foreach ( $calc_pages as $p ) {

@@ -6,3 +6,9 @@ id = "7D3qP-ujagsEMXWC6Ywzj"
 uri = "file://vitalhealth-tools.zip"
 type = "unspecified"
 title = "vitalhealth-tools.zip — WordPress Plugin"
+
+[[outputs]]
+id = "2l-w64q6oOMBjDGl6WA8d"
+uri = "file://vitalhealth-tools-fixed.zip"
+type = "unspecified"
+title = "vitalhealth-tools-fixed.zip — Fixed WordPress Plugin"

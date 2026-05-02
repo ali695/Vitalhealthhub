@@ -1,10 +1,9 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
- * Alias kept for backward compat — actual schema output
- * is in seo-meta.php via vht_output_schema().
+ * Schema Markup — reserved for future custom schema extensions.
+ *
+ * JSON-LD Article, WebPage, and FAQPage schema output is handled
+ * by vht_output_schema() and vht_faq_schema_html() in seo-meta.php.
+ * Do NOT redefine vht_output_schema() here.
  */
-function vht_output_schema() {
-    // Delegated to seo-meta.php
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
