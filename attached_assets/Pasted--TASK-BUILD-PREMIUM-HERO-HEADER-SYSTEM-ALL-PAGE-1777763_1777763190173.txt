@@ -1,0 +1,216 @@
+--------------------------------------------------
+TASK: BUILD PREMIUM HERO HEADER SYSTEM (ALL PAGES)
+--------------------------------------------------
+
+I want you to completely redesign the header/hero sections across my entire website.
+
+This must look like a modern SaaS product, not a basic content site.
+
+--------------------------------------------------
+GLOBAL GOAL
+--------------------------------------------------
+
+Transform all page headers into:
+
+- Visually engaging
+- Conversion-focused
+- Informative
+- Interactive
+- Consistent across all pages
+
+--------------------------------------------------
+SECTION 1: GLOBAL HERO STRUCTURE (NEW SYSTEM)
+--------------------------------------------------
+
+Replace boring headers with a dynamic hero system.
+
+Each hero must include:
+
+1. SMALL TOP BADGE
+- Example:
+  "🔥 150+ Tools • Expert Content • Free Access"
+- Pill style
+- Subtle background
+
+--------------------------------------------------
+2. MAIN HEADLINE (H1)
+--------------------------------------------------
+
+Large, bold, premium typography.
+
+Examples:
+
+Blog:
+"Explore Smarter Health Insights"
+
+Tools:
+"Powerful Health Tools for Better Decisions"
+
+Quiz:
+"Test Your Health Knowledge Instantly"
+
+--------------------------------------------------
+3. SUBTEXT (IMPORTANT)
+--------------------------------------------------
+
+Short, benefit-focused:
+
+Example:
+"Science-backed tools, quizzes, and guides designed to help you understand your health better."
+
+--------------------------------------------------
+4. INTERACTIVE SEARCH BAR (VERY IMPORTANT)
+--------------------------------------------------
+
+Replace simple search with:
+
+- Large rounded input
+- Icon inside (search icon)
+- Placeholder:
+  "Search tools, blogs, quizzes..."
+
+Add:
+- Suggestions dropdown
+- Fast response
+
+--------------------------------------------------
+5. QUICK ACTION BUTTONS
+--------------------------------------------------
+
+Add buttons like:
+
+- Explore Tools
+- Take a Quiz
+- Read Articles
+
+Style:
+- Primary (gradient green)
+- Secondary (outline)
+
+--------------------------------------------------
+6. STATS SECTION (SOCIAL PROOF)
+--------------------------------------------------
+
+Keep but improve:
+
+- 150+ Articles
+- 100+ Tools
+- 50+ Quizzes
+- Expert Reviewed
+
+Add:
+- Icons
+- Divider lines
+- Animation on load
+
+--------------------------------------------------
+SECTION 2: VISUAL DESIGN UPGRADE
+--------------------------------------------------
+
+Make hero visually rich:
+
+BACKGROUND:
+- Gradient (green tones)
+- Subtle pattern or glow effect
+
+ADD:
+- Floating shapes
+- Soft blurred circles
+- Depth layers
+
+OPTIONAL:
+- Illustration (health + tech style)
+
+--------------------------------------------------
+SECTION 3: PAGE-SPECIFIC VARIATIONS
+--------------------------------------------------
+
+Each page type should adapt:
+
+--------------------------------------------------
+BLOG PAGE HERO
+--------------------------------------------------
+
+- Focus on discovery
+- Show:
+   → categories
+   → trending topics
+
+--------------------------------------------------
+TOOLS / CALCULATORS HERO
+--------------------------------------------------
+
+- Focus on utility
+- Show:
+   → quick tool links
+   → popular tools
+
+--------------------------------------------------
+QUIZ PAGE HERO
+--------------------------------------------------
+
+- Focus on engagement
+- Show:
+   → featured quizzes
+   → categories
+
+--------------------------------------------------
+INDIVIDUAL PAGE (BLOG / TOOL / QUIZ)
+--------------------------------------------------
+
+Replace boring title header with:
+
+- Category badge
+- Large title
+- Short description
+- Breadcrumb navigation
+
+--------------------------------------------------
+SECTION 4: MICRO INTERACTIONS (IMPORTANT)
+--------------------------------------------------
+
+Add:
+
+- Smooth fade-in animations
+- Button hover effects
+- Input focus glow
+- Subtle movement
+
+--------------------------------------------------
+SECTION 5: CONSISTENCY SYSTEM
+--------------------------------------------------
+
+Ensure:
+
+- Same layout across all pages
+- Same spacing system
+- Same color palette
+- Same typography scale
+
+--------------------------------------------------
+SECTION 6: MOBILE OPTIMIZATION
+--------------------------------------------------
+
+- Stack layout vertically
+- Center align content
+- Full-width search bar
+- Buttons stacked
+
+--------------------------------------------------
+SECTION 7: PERFORMANCE
+--------------------------------------------------
+
+- Lightweight animations
+- No heavy libraries
+- Fast load
+
+--------------------------------------------------
+FINAL GOAL
+--------------------------------------------------
+
+Create a premium hero system that:
+
+- Looks like a high-end SaaS product
+- Improves user engagement
+- Increases clicks
+- Makes the site feel professional and modern

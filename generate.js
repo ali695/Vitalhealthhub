@@ -1760,18 +1760,37 @@ fs.writeFileSync('calculators/index.html', `${head('50+ Free Health Calculators 
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'All Calculators',url:'/calculators/'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'All Calculators',url:'/calculators/'}]).schema}
-<section class="content-page">
-<div class="container">
-<h1 class="fade-in" style="text-align:center;">Free Health Calculators</h1>
-<p class="fade-in" style="text-align:center;max-width:600px;margin:0 auto 30px;color:var(--gray-500);">Browse our collection of 115+ free, science-backed health calculators. No registration needed.</p>
-<div class="search-bar fade-in">
+<section class="calc-index-hero">
+<div class="calc-index-hero-inner">
+<div class="calc-index-hero-badge">&#9889; ${calculators.length}+ Free Health Calculators</div>
+<h1 class="calc-index-hero-title">Powerful Health Tools<br>for Better Decisions</h1>
+<p class="calc-index-hero-sub">Science-backed calculators for BMI, calories, macros, heart rate, pregnancy, and more &mdash; free, instant, no sign-up needed.</p>
+<div class="calc-index-search-bar">
 <svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-<input type="text" id="calcSearch" placeholder="Search calculators..." oninput="filterCalcs()">
+<input type="text" id="calcSearch" placeholder="Search ${calculators.length}+ calculators..." oninput="filterCalcs()">
 </div>
+<div class="calc-index-hero-btns">
+<a href="#calcGrid" class="calc-index-btn-primary">&#128270; Browse All Tools</a>
+<a href="/quizzes/" class="calc-index-btn-outline">&#129504; Take a Health Quiz</a>
+<a href="/blog.html" class="calc-index-btn-outline">&#128214; Read Articles</a>
+</div>
+<div class="calc-index-hero-stats">
+<div class="calc-index-stat"><strong>${calculators.length}+</strong><span>Calculators</span></div>
+<div class="calc-index-stat"><strong>${catNames.length}</strong><span>Categories</span></div>
+<div class="calc-index-stat"><strong>Instant</strong><span>Results</span></div>
+<div class="calc-index-stat"><strong>Free</strong><span>Always</span></div>
+</div>
+</div>
+</section>
+
+<div class="calc-index-filter-section">
 <div class="filter-buttons fade-in" id="calcFilterBtns">
 <button class="filter-btn active" onclick="filterCat('all',this)">All</button>
 ${catNames.map(c=>`<button class="filter-btn" onclick="filterCat('${c.replace(/'/g,"\\'")}',this)">${c}</button>`).join('')}
 </div>
+</div>
+
+<div class="calc-index-grid-section">
 <div class="grid-4" id="calcGrid">
 ${calculators.map(c => {
   let cat = 'Other';
@@ -1780,7 +1799,6 @@ ${calculators.map(c => {
 }).join('')}
 </div>
 </div>
-</section>
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js"></script>
@@ -2406,14 +2424,23 @@ fs.writeFileSync('blog.html', `${head('Health & Wellness Blog \u2014 150+ Expert
 ${NAV}
 
 <section class="blog-page-hero">
+<div class="blog-page-hero-glow2"></div>
 <div class="blog-hero-inner">
-<div class="blog-hero-badge">&#9997;&#65039; ${blogPosts.length}+ Expert Health Articles</div>
-<h1 class="blog-hero-title">Health &amp; Wellness Blog</h1>
-<p class="blog-hero-subtitle">Evidence-based guides on nutrition, fitness, mental health, and more &mdash; written by health experts, free forever.</p>
+<div class="blog-hero-badge">&#128293; ${blogPosts.length}+ Expert Health Articles</div>
+<h1 class="blog-hero-title">Explore Smarter<br>Health Insights</h1>
+<p class="blog-hero-subtitle">Science-backed articles on nutrition, fitness, mental health, and more &mdash; written by experts, free forever.</p>
+<div class="blog-hero-search-wrap">
 <div class="blog-hero-search-bar">
 <svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-<input type="text" placeholder="Search ${blogPosts.length}+ health articles..." onfocus="openBlogSearch()" readonly>
-<button class="blog-hero-search-btn" onclick="openBlogSearch()">Search</button>
+<input type="text" id="blogHeroInput" placeholder="Search ${blogPosts.length}+ health articles..." oninput="blogHeroSearch(this.value)" onkeydown="if(event.key==='Enter'){openBlogSearch(this.value)}" autocomplete="off">
+<button class="blog-hero-search-btn" onclick="openBlogSearch(document.getElementById('blogHeroInput').value)">Search</button>
+</div>
+<div class="blog-hero-suggestions" id="blogHeroSugg"></div>
+</div>
+<div class="blog-hero-btns">
+<a href="/calculators/" class="blog-hero-btn-primary">&#9889; Explore Tools</a>
+<a href="/quizzes/" class="blog-hero-btn-outline">&#129504; Take a Quiz</a>
+<a href="#all-articles" class="blog-hero-btn-outline">&#128214; Browse Articles</a>
 </div>
 <div class="blog-hero-stats">
 <div class="blog-hero-stat"><strong>${blogPosts.length}+</strong><span>Articles</span></div>
@@ -2452,6 +2479,21 @@ ${sidebarPosts.map(sp => {
 </a>`;
 }).join('')}
 </div>
+</div>
+</section>
+
+<section class="blog-trow-section">
+<div class="blog-trow-header">
+<h2>&#128293; Trending This Week</h2>
+<a href="#all-articles">See all articles &rarr;</a>
+</div>
+<div class="blog-trow" id="blogTrendingRow">
+${trendingItems.map(t => {
+  const tp = blogPosts.find(x => x.slug === t.slug);
+  const tImg = blogCardImage(t.slug);
+  const tImgUrl = tImg.url.includes('?') ? tImg.url.split('?')[0]+'?w=320&h=180&fit=crop&auto=format' : tImg.url+'?w=320&h=180&fit=crop&auto=format';
+  return `<a href="/blog/${t.slug}.html" class="blog-tcard"><div class="blog-tcard-img"><img src="${tImgUrl}" alt="${tImg.alt}" width="260" height="150" loading="lazy"></div><div class="blog-tcard-body"><span class="blog-card-category">${tp ? tp.category : 'Health'}</span><h4>${t.text}</h4><span class="blog-tcard-meta">${tp ? tp.readTime+' read' : '5 min read'}</span></div></a>`;
+}).join('')}
 </div>
 </section>
 
@@ -2634,9 +2676,27 @@ function blogSort(val){
   applyBlogFilters();
 }
 
-function openBlogSearch(){
-  document.getElementById('blogSearchOverlay').classList.add('active');
-  document.getElementById('blogSearchInput').focus();
+function blogHeroSearch(q){
+  var sugg=document.getElementById('blogHeroSugg');
+  if(!sugg)return;
+  q=(q||'').toLowerCase().trim();
+  if(!q){sugg.classList.remove('active');sugg.innerHTML='';return;}
+  var matches=allBlogData.filter(function(p){return p.title.toLowerCase().indexOf(q)!==-1||p.category.toLowerCase().indexOf(q)!==-1;}).slice(0,6);
+  if(!matches.length){sugg.classList.remove('active');return;}
+  sugg.innerHTML=matches.map(function(p){return '<a href="/blog/'+p.slug+'.html" class="blog-hero-sugg-item"><span class="blog-hero-sugg-cat">'+p.category+'</span><span class="blog-hero-sugg-title">'+p.title+'</span></a>';}).join('');
+  sugg.classList.add('active');
+}
+document.addEventListener('click',function(e){
+  var wrap=document.getElementById('blogHeroSugg');
+  var inp=document.getElementById('blogHeroInput');
+  if(wrap&&inp&&!wrap.contains(e.target)&&e.target!==inp){wrap.classList.remove('active');}
+});
+
+function openBlogSearch(q){
+  var overlay=document.getElementById('blogSearchOverlay');
+  var inp=document.getElementById('blogSearchInput');
+  if(overlay)overlay.classList.add('active');
+  if(inp){inp.focus();if(q){inp.value=q;liveSearchBlog();}}
   document.body.style.overflow='hidden';
 }
 

@@ -135,14 +135,23 @@
 </div></nav>
 
 <section class="blog-page-hero">
+<div class="blog-page-hero-glow2"></div>
 <div class="blog-hero-inner">
-<div class="blog-hero-badge">&#9997;&#65039; 155+ Expert Health Articles</div>
-<h1 class="blog-hero-title">Health &amp; Wellness Blog</h1>
-<p class="blog-hero-subtitle">Evidence-based guides on nutrition, fitness, mental health, and more &mdash; written by health experts, free forever.</p>
+<div class="blog-hero-badge">&#128293; 155+ Expert Health Articles</div>
+<h1 class="blog-hero-title">Explore Smarter<br>Health Insights</h1>
+<p class="blog-hero-subtitle">Science-backed articles on nutrition, fitness, mental health, and more &mdash; written by experts, free forever.</p>
+<div class="blog-hero-search-wrap">
 <div class="blog-hero-search-bar">
 <svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-<input type="text" placeholder="Search 155+ health articles..." onfocus="openBlogSearch()" readonly>
-<button class="blog-hero-search-btn" onclick="openBlogSearch()">Search</button>
+<input type="text" id="blogHeroInput" placeholder="Search 155+ health articles..." oninput="blogHeroSearch(this.value)" onkeydown="if(event.key==='Enter'){openBlogSearch(this.value)}" autocomplete="off">
+<button class="blog-hero-search-btn" onclick="openBlogSearch(document.getElementById('blogHeroInput').value)">Search</button>
+</div>
+<div class="blog-hero-suggestions" id="blogHeroSugg"></div>
+</div>
+<div class="blog-hero-btns">
+<a href="/calculators/" class="blog-hero-btn-primary">&#9889; Explore Tools</a>
+<a href="/quizzes/" class="blog-hero-btn-outline">&#129504; Take a Quiz</a>
+<a href="#all-articles" class="blog-hero-btn-outline">&#128214; Browse Articles</a>
 </div>
 <div class="blog-hero-stats">
 <div class="blog-hero-stat"><strong>155+</strong><span>Articles</span></div>
@@ -178,6 +187,16 @@
 </div>
 </a>
 </div>
+</div>
+</section>
+
+<section class="blog-trow-section">
+<div class="blog-trow-header">
+<h2>&#128293; Trending This Week</h2>
+<a href="#all-articles">See all articles &rarr;</a>
+</div>
+<div class="blog-trow" id="blogTrendingRow">
+<a href="/blog/intermittent-fasting-for-weight-loss.html" class="blog-tcard"><div class="blog-tcard-img"><img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=320&h=180&fit=crop&auto=format" alt="Health and wellness lifestyle guide | VitalHealth Hub" width="260" height="150" loading="lazy"></div><div class="blog-tcard-body"><span class="blog-card-category">Weight Loss</span><h4>Intermittent Fasting Guide</h4><span class="blog-tcard-meta">9 min read</span></div></a><a href="/blog/bmi-vs-body-fat-percentage.html" class="blog-tcard"><div class="blog-tcard-img"><img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=320&h=180&fit=crop&auto=format" alt="Fitness assessment body fat vs BMI | VitalHealth Hub" width="260" height="150" loading="lazy"></div><div class="blog-tcard-body"><span class="blog-card-category">BMI & Body Weight</span><h4>BMI vs Body Fat</h4><span class="blog-tcard-meta">8 min read</span></div></a><a href="/blog/how-much-sleep-do-you-need-by-age.html" class="blog-tcard"><div class="blog-tcard-img"><img src="https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=320&h=180&fit=crop&auto=format" alt="Sleep recommendations by age adults children | VitalHealth Hub" width="260" height="150" loading="lazy"></div><div class="blog-tcard-body"><span class="blog-card-category">Sleep & Recovery</span><h4>Best Foods for Sleep</h4><span class="blog-tcard-meta">7 min read</span></div></a><a href="/blog/how-to-calculate-bmi.html" class="blog-tcard"><div class="blog-tcard-img"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=320&h=180&fit=crop&auto=format" alt="Doctor measuring patient BMI body weight | VitalHealth Hub" width="260" height="150" loading="lazy"></div><div class="blog-tcard-body"><span class="blog-card-category">BMI & Body Weight</span><h4>Diabetes Risk Factors</h4><span class="blog-tcard-meta">7 min read</span></div></a><a href="/blog/target-heart-rate-zones.html" class="blog-tcard"><div class="blog-tcard-img"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=320&h=180&fit=crop&auto=format" alt="Target heart rate zones fat burn peak | VitalHealth Hub" width="260" height="150" loading="lazy"></div><div class="blog-tcard-body"><span class="blog-card-category">Heart Rate</span><h4>Heart Rate Zones</h4><span class="blog-tcard-meta">8 min read</span></div></a><a href="/blog/how-much-protein-per-day.html" class="blog-tcard"><div class="blog-tcard-img"><img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=320&h=180&fit=crop&auto=format" alt="High protein foods daily intake guide | VitalHealth Hub" width="260" height="150" loading="lazy"></div><div class="blog-tcard-body"><span class="blog-card-category">Macronutrients</span><h4>Protein Intake Guide</h4><span class="blog-tcard-meta">8 min read</span></div></a><a href="/blog/calorie-deficit-for-weight-loss.html" class="blog-tcard"><div class="blog-tcard-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=320&h=180&fit=crop&auto=format" alt="Fresh vegetables calorie deficit diet | VitalHealth Hub" width="260" height="150" loading="lazy"></div><div class="blog-tcard-body"><span class="blog-card-category">Calories & Weight</span><h4>Calorie Deficit Guide</h4><span class="blog-tcard-meta">9 min read</span></div></a><a href="/blog/exercise-reduces-stress-anxiety.html" class="blog-tcard"><div class="blog-tcard-img"><img src="https://images.unsplash.com/photo-1489533119213-66a5cd877091?w=320&h=180&fit=crop&auto=format" alt="Exercise reduces stress anxiety science | VitalHealth Hub" width="260" height="150" loading="lazy"></div><div class="blog-tcard-body"><span class="blog-card-category">Mental Health</span><h4>Manage Stress Naturally</h4><span class="blog-tcard-meta">8 min read</span></div></a>
 </div>
 </section>
 
@@ -2086,9 +2105,27 @@ function blogSort(val){
   applyBlogFilters();
 }
 
-function openBlogSearch(){
-  document.getElementById('blogSearchOverlay').classList.add('active');
-  document.getElementById('blogSearchInput').focus();
+function blogHeroSearch(q){
+  var sugg=document.getElementById('blogHeroSugg');
+  if(!sugg)return;
+  q=(q||'').toLowerCase().trim();
+  if(!q){sugg.classList.remove('active');sugg.innerHTML='';return;}
+  var matches=allBlogData.filter(function(p){return p.title.toLowerCase().indexOf(q)!==-1||p.category.toLowerCase().indexOf(q)!==-1;}).slice(0,6);
+  if(!matches.length){sugg.classList.remove('active');return;}
+  sugg.innerHTML=matches.map(function(p){return '<a href="/blog/'+p.slug+'.html" class="blog-hero-sugg-item"><span class="blog-hero-sugg-cat">'+p.category+'</span><span class="blog-hero-sugg-title">'+p.title+'</span></a>';}).join('');
+  sugg.classList.add('active');
+}
+document.addEventListener('click',function(e){
+  var wrap=document.getElementById('blogHeroSugg');
+  var inp=document.getElementById('blogHeroInput');
+  if(wrap&&inp&&!wrap.contains(e.target)&&e.target!==inp){wrap.classList.remove('active');}
+});
+
+function openBlogSearch(q){
+  var overlay=document.getElementById('blogSearchOverlay');
+  var inp=document.getElementById('blogSearchInput');
+  if(overlay)overlay.classList.add('active');
+  if(inp){inp.focus();if(q){inp.value=q;liveSearchBlog();}}
   document.body.style.overflow='hidden';
 }
 

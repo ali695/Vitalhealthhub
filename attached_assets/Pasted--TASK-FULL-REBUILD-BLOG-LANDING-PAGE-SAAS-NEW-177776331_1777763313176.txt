@@ -1,0 +1,247 @@
+--------------------------------------------------
+TASK: FULL REBUILD BLOG LANDING PAGE (SAAS / NEWS LEVEL)
+--------------------------------------------------
+
+The current blog page is NOT acceptable.
+It looks basic and does not match a modern SaaS or premium content platform.
+
+I want you to completely rebuild the blog landing page to match the quality of top SaaS/blog platforms (Notion, HubSpot, Stripe blog, Medium-level UX).
+
+DO NOT PATCH. REBUILD PROPERLY.
+
+--------------------------------------------------
+GLOBAL REQUIREMENTS (STRICT)
+--------------------------------------------------
+
+- Clean SaaS-style UI
+- Modern typography
+- Strong hierarchy
+- High-quality spacing system
+- Mobile-first design
+- Fast performance
+- No clutter or outdated UI patterns
+
+--------------------------------------------------
+SECTION 1: HERO SECTION (PREMIUM)
+--------------------------------------------------
+
+Replace current header with:
+
+1. TOP BADGE:
+   "🔥 150+ Expert Health Articles"
+
+2. LARGE HEADLINE:
+   Clear, bold, premium typography
+
+3. SUBTEXT:
+   Short, benefit-driven
+
+4. SMART SEARCH BAR:
+   - Large rounded input
+   - Icon inside
+   - Placeholder:
+     "Search health articles, tools, quizzes..."
+   - Instant filtering (live search)
+
+5. STATS ROW:
+   - Articles count
+   - Categories
+   - Expert reviewed
+   - Always free
+
+Add:
+- subtle gradient background
+- light blur shapes for depth
+
+--------------------------------------------------
+SECTION 2: TRENDING / FEATURED ROW
+--------------------------------------------------
+
+Add horizontal scrolling row:
+
+- "Trending This Week"
+- Cards with:
+   → title
+   → category
+   → small image
+- Smooth scroll
+- Hover highlight
+
+--------------------------------------------------
+SECTION 3: CATEGORY FILTER SYSTEM (ADVANCED)
+--------------------------------------------------
+
+Upgrade pill filters:
+
+- Sticky on scroll
+- Smooth animation
+- Active state clearly visible
+
+Add:
+- Category filters
+- Sort dropdown:
+   → Latest
+   → Popular
+   → Trending
+
+Add:
+- Horizontal scroll on mobile
+
+--------------------------------------------------
+SECTION 4: FEATURED ARTICLE (VERY IMPORTANT)
+--------------------------------------------------
+
+Add a large featured article section:
+
+- Full-width card
+- Large image
+- Overlay gradient
+- Title + excerpt
+- CTA: "Read Article"
+
+This should look like a hero news feature.
+
+--------------------------------------------------
+SECTION 5: BLOG GRID (MAIN CONTENT)
+--------------------------------------------------
+
+Redesign all blog cards:
+
+Each card must include:
+
+- High-quality image
+- Category badge
+- Title (strong typography)
+- Short excerpt
+- Reading time
+- Publish date
+
+CARD DESIGN:
+- Rounded corners
+- Soft shadow
+- Hover:
+   → lift
+   → shadow increase
+   → image zoom
+
+GRID:
+- 3 columns (desktop)
+- 2 columns (tablet)
+- 1 column (mobile)
+
+--------------------------------------------------
+SECTION 6: CONTENT DISCOVERY SYSTEM
+--------------------------------------------------
+
+Add sections:
+
+1. "Popular Articles"
+2. "Editor's Picks"
+3. "Recently Updated"
+
+Each with small card layout.
+
+--------------------------------------------------
+SECTION 7: LOAD MORE / PAGINATION (FIX PROPERLY)
+--------------------------------------------------
+
+Replace weak system.
+
+Implement:
+
+OPTION A (preferred):
+- Pagination:
+   → Page 1, 2, 3
+
+OPTION B:
+- Load more with smooth animation
+
+IMPORTANT:
+- All blogs must be accessible
+- No hidden content
+
+--------------------------------------------------
+SECTION 8: SEARCH SYSTEM (CRITICAL)
+--------------------------------------------------
+
+Implement real search:
+
+- Instant filtering
+- Search by:
+   → title
+   → keywords
+   → category
+
+- Highlight results
+
+--------------------------------------------------
+SECTION 9: INTERNAL LINKING BLOCKS
+--------------------------------------------------
+
+Add inside page:
+
+- "Explore by Topic"
+- "Recommended for You"
+- "Related Tools"
+
+--------------------------------------------------
+SECTION 10: FINAL SECTIONS (IMPORTANT)
+--------------------------------------------------
+
+At the end of blog page:
+
+1. "Browse by Health Topic"
+   - pill layout
+   - interactive
+
+2. Newsletter section
+   - premium design
+   - CTA for email signup
+
+--------------------------------------------------
+SECTION 11: IMAGE SYSTEM (STRICT)
+--------------------------------------------------
+
+- Every blog must have UNIQUE image
+- No repeated images
+- Use:
+   → relevant visuals
+   → clean style
+   → consistent ratio
+
+Add:
+- ALT text
+- optimized filenames
+
+--------------------------------------------------
+SECTION 12: SEO (MANDATORY)
+--------------------------------------------------
+
+Ensure:
+
+- Proper internal linking
+- Clean URLs
+- Indexable structure
+- No hidden content
+- Fast load
+
+--------------------------------------------------
+SECTION 13: MOBILE UX (VERY IMPORTANT)
+--------------------------------------------------
+
+- Stack layout properly
+- Scrollable filters
+- Large tap targets
+- Fast performance
+
+--------------------------------------------------
+FINAL GOAL
+--------------------------------------------------
+
+The blog page must look like:
+
+- A premium SaaS product
+- A modern news platform
+- A high-quality content hub
+
+NOT like a simple blog list.
