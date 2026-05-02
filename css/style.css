@@ -88,10 +88,13 @@ img, svg { max-width: 100%; height: auto; }
   height: 70px;
 }
 .nav-logo {
-  font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800;
-  color: var(--primary); display: flex; align-items: center; gap: 8px;
+  display: flex; align-items: center; text-decoration: none; flex-shrink: 0;
 }
-.nav-logo svg { width: 32px; height: 32px; }
+.nav-logo-img {
+  height: 46px; width: auto; display: block;
+  transition: opacity 0.2s;
+}
+.nav-logo:hover .nav-logo-img { opacity: 0.88; }
 .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
 .nav-links a {
   font-weight: 500; font-size: 0.95rem; color: var(--dark);

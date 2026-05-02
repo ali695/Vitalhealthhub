@@ -163,7 +163,9 @@ pre  { padding: 1em 1.25em; overflow-x: auto; }
     text-transform: uppercase;
 }
 .custom-logo-link { display: flex; align-items: center; }
-.custom-logo { max-height: 44px; width: auto; }
+.custom-logo { max-height: 46px; width: auto; }
+.vhh-default-logo { height: 46px; width: auto; display: block; transition: opacity .2s; }
+.vhh-logo-link:hover .vhh-default-logo { opacity: .88; }
 
 /* Primary Navigation */
 .vhh-primary-nav { display: flex; align-items: center; }

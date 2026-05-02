@@ -110,11 +110,13 @@ function vhh_logo_html() {
         the_custom_logo();
     } else { ?>
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="vhh-logo-link" rel="home" aria-label="<?php bloginfo( 'name' ); ?>">
-            <span class="vhh-logo-mark" aria-hidden="true">VH</span>
-            <span class="vhh-logo-text">
-                <strong><?php bloginfo( 'name' ); ?></strong>
-                <span><?php bloginfo( 'description' ); ?></span>
-            </span>
+            <img
+                src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>"
+                alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
+                class="vhh-default-logo"
+                height="46"
+                loading="eager"
+            >
         </a>
     <?php }
     return ob_get_clean();
