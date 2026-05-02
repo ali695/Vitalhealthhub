@@ -1,0 +1,365 @@
+/* VitalHealth Tools — Plugin Stylesheet
+   Brand: #2D6A4F (primary) | #F4A261 (accent)
+   ============================================ */
+
+/* ── Calculator Container ── */
+.vht-calculator {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 32px;
+    margin: 28px 0;
+    font-family: inherit;
+}
+.vht-calculator h2 {
+    color: #1a3a28;
+    font-size: 1.4rem;
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #2D6A4F;
+}
+
+/* ── Form Fields ── */
+.vht-form-group {
+    margin-bottom: 18px;
+}
+.vht-form-group label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+.vht-form-group input[type="number"],
+.vht-form-group input[type="text"],
+.vht-form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #111827;
+    background: #ffffff;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+.vht-form-group input:focus,
+.vht-form-group select:focus {
+    outline: none;
+    border-color: #2D6A4F;
+    box-shadow: 0 0 0 3px rgba(45,106,79,0.12);
+}
+.vht-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+@media (max-width: 600px) {
+    .vht-form-row { grid-template-columns: 1fr; }
+}
+
+/* ── Radio / Toggle Groups ── */
+.vht-radio-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+.vht-radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+/* ── Calculate Button ── */
+.vht-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: #2D6A4F;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+}
+.vht-btn:hover {
+    background: #1e5239;
+    transform: translateY(-1px);
+}
+.vht-btn:active {
+    transform: translateY(0);
+}
+.vht-btn-accent {
+    background: #F4A261;
+    color: #fff;
+}
+.vht-btn-accent:hover {
+    background: #e8894a;
+}
+
+/* ── Result Box ── */
+.vht-result {
+    display: none;
+    margin-top: 24px;
+    padding: 24px;
+    background: #ffffff;
+    border-left: 5px solid #2D6A4F;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(45,106,79,0.1);
+}
+.vht-result.vht-visible {
+    display: block;
+    animation: vhtFadeIn 0.3s ease;
+}
+@keyframes vhtFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.vht-result-primary {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #2D6A4F;
+    line-height: 1.1;
+    margin-bottom: 6px;
+}
+.vht-result-label {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+.vht-result-breakdown {
+    background: #f9fafb;
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    color: #374151;
+    line-height: 1.8;
+    margin-top: 12px;
+}
+.vht-result-breakdown strong {
+    color: #2D6A4F;
+}
+
+/* ── Status Badges in Results ── */
+.vht-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-left: 8px;
+}
+.vht-badge-green  { background: #dcfce7; color: #166534; }
+.vht-badge-yellow { background: #fef9c3; color: #854d0e; }
+.vht-badge-orange { background: #ffedd5; color: #9a3412; }
+.vht-badge-red    { background: #fee2e2; color: #991b1b; }
+
+/* ── Progress Bar ── */
+.vht-progress-wrap {
+    background: #e5e7eb;
+    border-radius: 50px;
+    height: 12px;
+    margin: 12px 0;
+    overflow: hidden;
+}
+.vht-progress-bar {
+    height: 100%;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #2D6A4F, #52b788);
+    transition: width 0.6s ease;
+}
+
+/* ── Data Table ── */
+.vht-table-wrap {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    margin: 20px 0;
+}
+.vht-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 420px;
+}
+.vht-table thead tr {
+    background: #2D6A4F;
+    color: #ffffff;
+}
+.vht-table thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+}
+.vht-table tbody td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #374151;
+}
+.vht-table tbody tr:nth-child(even) {
+    background: #f9fafb;
+}
+.vht-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ── Range Input ── */
+.vht-range-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.vht-range-wrap input[type="range"] {
+    flex: 1;
+    accent-color: #2D6A4F;
+    height: 6px;
+}
+.vht-range-val {
+    min-width: 44px;
+    text-align: right;
+    font-weight: 600;
+    color: #2D6A4F;
+}
+
+/* ── Disclaimer ── */
+.vht-disclaimer {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #F4A261;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 28px 0;
+    font-size: 0.85rem;
+    color: #6b7280;
+    line-height: 1.7;
+}
+.vht-disclaimer p { margin: 0; }
+
+/* ── FAQ ── */
+.vht-faq { margin: 28px 0; }
+.vht-faq h2 {
+    color: #1a3a28;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+}
+.vht-faq-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.vht-faq-q {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a3a28;
+    padding: 16px 20px;
+    margin: 0;
+    cursor: pointer;
+    background: #f9fafb;
+}
+.vht-faq-q:hover { background: #f0fdf4; }
+.vht-faq-a {
+    padding: 0 20px 16px;
+    color: #4b5563;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ── Related Calculators ── */
+.vht-related {
+    background: #f0fdf4;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 24px 0;
+}
+.vht-related h3 {
+    color: #2D6A4F;
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+}
+.vht-related ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.vht-related ul li a {
+    display: inline-block;
+    padding: 6px 16px;
+    background: #2D6A4F;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.87rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.vht-related ul li a:hover { background: #1e5239; }
+
+/* ── Intro Paragraph ── */
+.vht-intro {
+    font-size: 1.05rem;
+    color: #374151;
+    line-height: 1.75;
+    margin-bottom: 20px;
+}
+
+/* ── Error / Notice ── */
+.vht-error {
+    background: #fee2e2;
+    border-left: 4px solid #ef4444;
+    padding: 12px 16px;
+    border-radius: 6px;
+    color: #991b1b;
+    font-size: 0.9rem;
+}
+.vht-notice {
+    background: #fffbeb;
+    border-left: 4px solid #F4A261;
+    padding: 12px 16px;
+    border-radius: 6px;
+    color: #92400e;
+    font-size: 0.9rem;
+    margin: 12px 0;
+}
+
+/* ── Score / Gauge Display ── */
+.vht-score-display {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 10px;
+    margin-top: 16px;
+}
+.vht-score-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #2D6A4F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+.vht-score-text h3 { margin: 0 0 4px; color: #1a3a28; }
+.vht-score-text p  { margin: 0; font-size: 0.9rem; color: #6b7280; }
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+    .vht-calculator { padding: 20px 16px; }
+    .vht-result-primary { font-size: 1.8rem; }
+    .vht-score-display { flex-direction: column; text-align: center; }
+}
