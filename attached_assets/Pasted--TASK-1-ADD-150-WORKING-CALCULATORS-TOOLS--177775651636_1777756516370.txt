@@ -1,0 +1,203 @@
+--------------------------------------------------
+TASK 1: ADD 150+ WORKING CALCULATORS & TOOLS
+--------------------------------------------------
+
+I want you to expand the platform into a high-traffic tool hub.
+
+IMPORTANT:
+Every tool must be:
+- Fully functional (real calculations / logic)
+- Mobile responsive
+- SEO optimized (300–800 words content)
+- Include meta title + meta description
+- Include schema markup (WebPage / FAQ)
+- Include internal linking (tools + blogs)
+- Fast loading (no heavy libraries unless needed)
+
+--------------------------------------------------
+A. ADVANCED HEALTH CALCULATORS (WORKING LOGIC REQUIRED)
+--------------------------------------------------
+
+Build real calculation logic for:
+
+- Glycemic Index Calculator (based on foods)
+- HOMA-IR Calculator (glucose + insulin)
+- Heart Age Calculator
+- Metabolic Age Calculator
+- Visceral Fat Estimator
+- Macronutrient Timing Calculator
+- Refeed Day Calculator
+- Reverse Diet Calculator
+- Body Recomposition Calculator
+- Hydration Level Calculator (weight + activity)
+- Electrolyte Needs Calculator
+- Sodium Intake Calculator
+- Potassium Balance Calculator
+- Magnesium Intake Calculator
+- Zinc Intake Calculator
+- Omega-3 Intake Calculator
+- Testosterone Level Estimator (age-based estimation)
+- Hormone Balance Quiz (scoring system)
+- Thyroid Risk Calculator
+- PCOS Risk Calculator
+- Menopause Symptom Tracker (scoring)
+- Pregnancy Weight Gain Calculator
+- Baby Growth Tracker (weekly)
+- Breastfeeding Calorie Calculator
+- Child Growth Chart Tool
+- Pediatric Dose Calculator (safe reference logic only)
+
+--------------------------------------------------
+B. MENTAL HEALTH & WELLNESS TOOLS
+--------------------------------------------------
+
+- Burnout Risk Test (score system)
+- Focus Score Test
+- Productivity Planner Tool (task-based UI)
+- Daily Habit Tracker (save state in localStorage)
+- Mood Tracker (daily logs)
+- Gratitude Journal Tool (text storage locally)
+- Digital Detox Timer
+- Dopamine Detox Planner
+- Screen Time Tracker (manual input)
+- Sleep Hygiene Checklist Tool
+- Meditation Timer Tool
+- Stress Recovery Planner
+
+--------------------------------------------------
+C. FITNESS & PERFORMANCE TOOLS
+--------------------------------------------------
+
+- Workout Split Generator (goal-based)
+- Home Workout Generator
+- Calisthenics Progression Tool
+- Strength Level Calculator (bench/squat/deadlift)
+- Running VO2 Max Predictor
+- Marathon Time Predictor
+- Cycling FTP Estimator
+- HIIT Interval Timer
+- Step Goal Calculator
+- Steps Counter Tool (manual + simple logic tracker)
+- Injury Risk Estimator
+
+--------------------------------------------------
+D. NUTRITION & FOOD TOOLS
+--------------------------------------------------
+
+- Meal Planner Tool
+- Grocery List Generator
+- Food Calorie Lookup (static JSON dataset)
+- Restaurant Calories Estimator
+- Sugar Intake Calculator
+- Processed Food Score Tool
+- Fiber Score Tool
+- Water Reminder Tool
+- Intermittent Fasting Tracker
+- Diet Comparison Tool (Keto vs Balanced vs High Protein)
+
+--------------------------------------------------
+E. HIGH-SEARCH GENERAL TOOLS (VERY IMPORTANT FOR SEO TRAFFIC)
+--------------------------------------------------
+
+These tools must be FULLY WORKING (not placeholders):
+
+- Age Calculator (date of birth → exact age)
+- Birthday Calculator (next birthday countdown)
+- Date Difference Calculator
+- Time Duration Calculator
+- Pregnancy Week Calculator (from due date)
+- Ovulation Tracker (advanced cycle logic)
+- Period Tracker (calendar UI)
+- Random Number Generator
+- Password Generator (secure)
+- Unit Converter (weight, height, kcal, etc.)
+- Percentage Calculator (all types)
+- Loan EMI Calculator (with formula)
+- Budget Planner Tool
+- Daily Planner Tool
+- Habit Streak Tracker (localStorage)
+- Countdown Timer (real-time)
+- Stopwatch Tool
+- QR Code Generator
+- Text Counter (words, characters)
+- Case Converter Tool (upper/lower/title)
+- Image Compressor Tool (client-side)
+- PDF Merge Tool (basic frontend handling)
+- PDF Split Tool
+
+--------------------------------------------------
+F. CORE TRAFFIC TOOLS (MUST BE PERFECT)
+--------------------------------------------------
+
+These are VERY IMPORTANT for Google traffic:
+
+- Steps Counter Tool (clean UI + daily goal tracking)
+- Age Calculator (accurate + multiple formats)
+- Birthday Calculator (next birthday + days left)
+- BMI Calculator (already exists → improve UI)
+- Calorie Calculator (optimize UX)
+- Sleep Calculator (visual cycles)
+- Water Intake Calculator (interactive)
+- Period Tracker (calendar based)
+- Ovulation Calculator (detailed results)
+
+These must:
+- Have BEST UI/UX
+- Be fast
+- Be mobile-first
+- Have strong SEO content
+
+--------------------------------------------------
+GLOBAL REQUIREMENTS FOR EVERY TOOL PAGE
+--------------------------------------------------
+
+Each page must include:
+
+1. SEO CONTENT
+- 300–800 words explanation
+- How it works
+- Why it matters
+- FAQs section
+
+2. META TAGS
+- Meta title
+- Meta description
+- Canonical URL
+
+3. SOCIAL TAGS
+- Open Graph tags
+- Twitter card
+
+4. SCHEMA
+- WebPage schema
+- FAQ schema
+
+5. INTERNAL LINKING
+- Link to:
+   → related tools
+   → relevant blogs
+
+6. UI STRUCTURE
+- Title (H1)
+- Tool input section
+- Result display
+- Explanation section
+- FAQ section
+- Related tools section
+
+7. PERFORMANCE
+- No heavy frameworks unless required
+- Use vanilla JS where possible
+- Lazy load images
+
+--------------------------------------------------
+FINAL GOAL
+--------------------------------------------------
+
+Build a high-quality, production-ready tool platform with:
+
+- 150+ working tools
+- Strong SEO pages
+- High Google ranking potential
+- AdSense-ready structure
+- Clean, modern UI
