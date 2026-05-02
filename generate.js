@@ -2695,11 +2695,26 @@ function genQuizPage(quiz) {
     return b ? b.title : slug.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
   }
 
-  const relTools = (quiz.relatedTools || []).map(s =>
-    '<a href="/calculators/' + s + '.html" class="quiz-related-link">' + calcName(s) + '</a>'
+  const funnelToolIcons = {'bmi-calculator':'⚖️','calorie-calculator':'🔥','macro-calculator':'🥗','tdee-calculator':'📊','body-fat-calculator':'📏','water-intake-calculator':'💧','sleep-calculator':'😴','heart-rate-calculator':'❤️','protein-calculator':'💪','step-counter':'👟','ideal-weight-calculator':'🎯','blood-pressure-calculator':'🩺'};
+
+  const funnelTools = (quiz.relatedTools || []).map(s =>
+    '<a href="/calculators/' + s + '.html" class="quiz-funnel-tool"><span class="quiz-funnel-tool-icon">' + (funnelToolIcons[s]||'🔧') + '</span>' + calcName(s) + '</a>'
   ).join('');
-  const relBlogs = (quiz.relatedBlogs || []).map(s =>
-    '<a href="/blog/' + s + '.html" class="quiz-related-link">' + blogTitle(s) + '</a>'
+
+  const funnelBlogs = (quiz.relatedBlogs || []).map(s =>
+    '<a href="/blog/' + s + '.html" class="quiz-funnel-blog-link">' + blogTitle(s) + '</a>'
+  ).join('');
+
+  const otherQuizzes = quizzesData.filter(q => q.slug !== quiz.slug).slice(0, 3);
+  const nextQuizCards = otherQuizzes.map(q =>
+    '<a href="/quizzes/' + q.slug + '.html" class="quiz-next-card">' +
+    '<div class="quiz-next-icon">' + q.icon + '</div>' +
+    '<div class="quiz-next-content">' +
+    '<span class="quiz-next-badge">' + q.category + '</span>' +
+    '<h4>' + q.name + '</h4>' +
+    '</div>' +
+    '<span class="quiz-next-arrow">→</span>' +
+    '</a>'
   ).join('');
 
   const disclaimerHTML = quiz.disclaimer
@@ -2735,25 +2750,32 @@ ${bc.schema}
 
 <div class="quiz-app-wrap">
 ${disclaimerHTML}
+
 <div id="quiz-diff-screen" class="quiz-diff-screen">
 <h2>Choose Your Difficulty</h2>
-<p>Select a level to begin. You can retake the quiz at any difficulty.</p>
+<p>Select a level to begin. You can retake at any difficulty anytime.</p>
 <div class="quiz-diff-grid">
-<div class="quiz-diff-card" data-diff="easy" onclick="startQuiz('easy')">
+<div class="quiz-diff-card" data-diff="easy" onclick="selectDiff('easy')">
 <span class="quiz-diff-icon">🌱</span>
 <span class="quiz-diff-label">Easy</span>
 <span class="quiz-diff-count">5 Questions</span>
+<span class="quiz-diff-time">~3 min</span>
 </div>
-<div class="quiz-diff-card" data-diff="medium" onclick="startQuiz('medium')">
+<div class="quiz-diff-card" data-diff="medium" onclick="selectDiff('medium')">
 <span class="quiz-diff-icon">⚡</span>
 <span class="quiz-diff-label">Medium</span>
 <span class="quiz-diff-count">8 Questions</span>
+<span class="quiz-diff-time">~5 min</span>
 </div>
-<div class="quiz-diff-card" data-diff="hard" onclick="startQuiz('hard')">
+<div class="quiz-diff-card" data-diff="hard" onclick="selectDiff('hard')">
 <span class="quiz-diff-icon">🔥</span>
 <span class="quiz-diff-label">Hard</span>
 <span class="quiz-diff-count">10 Questions</span>
+<span class="quiz-diff-time">~7 min</span>
 </div>
+</div>
+<div style="text-align:center;">
+<button class="quiz-start-btn" id="quiz-start-btn" onclick="startQuiz()" disabled>Select a difficulty to begin</button>
 </div>
 </div>
 
@@ -2763,6 +2785,7 @@ ${disclaimerHTML}
 <div class="quiz-progress-text"><span id="quiz-prog-txt">Question 1 of 5</span><span id="quiz-score-live">Score: 0</span></div>
 </div>
 <div class="quiz-q-box">
+<p class="quiz-q-num" id="quiz-q-num"></p>
 <p class="quiz-q-text" id="quiz-q-text"></p>
 <div class="quiz-options" id="quiz-opts"></div>
 <div class="quiz-explanation" id="quiz-exp"></div>
@@ -2771,9 +2794,16 @@ ${disclaimerHTML}
 </div>
 
 <div id="quiz-result-screen" class="quiz-result-screen">
-<div class="quiz-score-circle">
+<div class="quiz-result-ring-wrap">
+<svg class="quiz-result-ring" viewBox="0 0 120 120">
+<defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1f4d3a"/><stop offset="100%" stop-color="#52b788"/></linearGradient></defs>
+<circle cx="60" cy="60" r="52" fill="none" stroke="#e3f2e9" stroke-width="9"/>
+<circle id="res-ring" cx="60" cy="60" r="52" fill="none" stroke="url(#ringGrad)" stroke-width="9" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset 1.2s ease;"/>
+</svg>
+<div class="quiz-ring-text">
 <span class="quiz-score-pct" id="res-pct">0%</span>
 <span class="quiz-score-label">Score</span>
+</div>
 </div>
 <h2 class="quiz-result-label" id="res-label"></h2>
 <p class="quiz-result-correct" id="res-correct"></p>
@@ -2784,8 +2814,21 @@ ${disclaimerHTML}
 </div>
 </div>
 
-${relTools ? '<div class="quiz-related" id="quiz-related-tools"><h3>&#x1F527; Related Calculators</h3><div class="quiz-related-grid">' + relTools + '</div></div>' : ''}
-${relBlogs ? '<div class="quiz-related" style="margin-top:32px;"><h3>&#x1F4F0; Related Articles</h3><div class="quiz-related-grid">' + relBlogs + '</div></div>' : ''}
+<div class="quiz-funnel" id="quiz-funnel">
+${funnelTools ? '<div class="quiz-funnel-section"><h3>🔧 Improve Your Results — Try These Tools</h3><div class="quiz-funnel-tools">' + funnelTools + '</div></div>' : ''}
+${funnelBlogs ? '<div class="quiz-funnel-section"><h3>📖 Learn More — Related Articles</h3><div class="quiz-funnel-blogs">' + funnelBlogs + '</div></div>' : ''}
+${nextQuizCards ? '<div class="quiz-funnel-section"><h3>🧠 You Might Also Like</h3><div class="quiz-next-cards">' + nextQuizCards + '</div></div>' : ''}
+<div class="quiz-email-capture">
+<h3>📬 Get Weekly Health Insights</h3>
+<p>Personalised tips based on your quiz results, delivered free every week.</p>
+<div class="quiz-email-form">
+<input type="email" class="quiz-email-input" id="quiz-email-input" placeholder="Your email address">
+<button class="quiz-email-submit" onclick="quizEmailSubmit()">Subscribe</button>
+</div>
+<p class="quiz-email-success" id="quiz-email-success">✅ You're subscribed! Check your inbox soon.</p>
+</div>
+</div>
+
 </div>
 
 <div class="quiz-content-section">
@@ -2794,7 +2837,7 @@ ${relBlogs ? '<div class="quiz-related" style="margin-top:32px;"><h3>&#x1F4F0; R
 <h2>How Difficulty Levels Work</h2>
 <p>Easy mode presents 5 questions — ideal if you are new to the topic or want a quick check. Medium mode gives you 8 questions for a more thorough test. Hard mode challenges you with all 10 questions drawn from the full question bank, shuffled randomly each time.</p>
 <h2>Scoring &amp; Feedback</h2>
-<p>Your score is shown as a percentage. Based on your result you receive a personalised performance label and actionable feedback with recommended tools and articles to deepen your understanding. Your quiz history is saved locally so you can track improvement over time.</p>
+<p>Your score is shown as a percentage with an animated progress ring. Based on your result you receive a personalised performance label and actionable feedback with recommended tools and articles to deepen your understanding. Your quiz history is saved locally so you can track improvement over time.</p>
 <h2>Why Health Knowledge Matters</h2>
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
@@ -2809,18 +2852,37 @@ function showScreen(s){
 gi('quiz-diff-screen').style.display=s==='diff'?'block':'none';
 gi('quiz-q-screen').style.display=s==='q'?'block':'none';
 gi('quiz-result-screen').style.display=s==='res'?'block':'none';
+var funnel=gi('quiz-funnel');
+if(funnel)funnel.style.display=s==='res'?'block':'none';
 }
 function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
-window.startQuiz=function(d){
-mode=d;sc=0;ci=0;done=false;
-qs=shuffle(QD.questions).slice(0,COUNTS[d]);
+var selectedDiff='';
+window.selectDiff=function(d){
+selectedDiff=d;
+document.querySelectorAll('.quiz-diff-card').forEach(function(c){
+c.className='quiz-diff-card';
+});
+var card=document.querySelector('[data-diff="'+d+'"]');
+if(card)card.className='quiz-diff-card diff-selected-'+d;
+var btn=gi('quiz-start-btn');
+var labels={easy:'Start Easy — 5 Questions →',medium:'Start Medium — 8 Questions →',hard:'Start Hard — 10 Questions →'};
+btn.textContent=labels[d]||'Start Quiz →';
+btn.disabled=false;
+};
+window.startQuiz=function(){
+if(!selectedDiff)return;
+mode=selectedDiff;sc=0;ci=0;done=false;
+qs=shuffle(QD.questions).slice(0,COUNTS[mode]);
 showScreen('q');renderQ();
 };
 function renderQ(){
 var q=qs[ci];var total=qs.length;
-gi('quiz-prog-fill').style.width=Math.round(ci/total*100)+'%';
+var pct=Math.round(ci/total*100);
+gi('quiz-prog-fill').style.width=pct+'%';
 gi('quiz-prog-txt').textContent='Question '+(ci+1)+' of '+total;
 gi('quiz-score-live').textContent='Score: '+sc;
+var numEl=gi('quiz-q-num');
+if(numEl)numEl.textContent='Question '+(ci+1)+' of '+total;
 gi('quiz-q-text').textContent=q.q;
 gi('quiz-opts').innerHTML=q.opts.map(function(o,i){return '<button class="quiz-opt" onclick="quizAns('+i+')">'+o+'</button>';}).join('');
 gi('quiz-exp').style.display='none';gi('quiz-exp').className='quiz-explanation';gi('quiz-exp').textContent='';
@@ -2838,9 +2900,16 @@ var ex=gi('quiz-exp');
 ex.textContent=(ok?'\u2713 Correct! ':'\u2717 Incorrect. ')+q.exp;
 ex.className='quiz-explanation'+(ok?'':' wrong-exp');ex.style.display='block';
 gi('quiz-next-btn').style.display='block';
-gi('quiz-next-btn').textContent=ci>=qs.length-1?'See Results \u2192':'Next Question \u2192';
+gi('quiz-next-btn').textContent=ci>=qs.length-1?'See My Results \u2192':'Next Question \u2192';
 };
 window.quizNext=function(){ci++;if(ci>=qs.length){showResult();return;}renderQ();};
+function animateRing(pct){
+var ring=gi('res-ring');
+if(!ring)return;
+var circumference=326.7;
+var offset=circumference-(pct/100)*circumference;
+setTimeout(function(){ring.style.strokeDashoffset=offset;},120);
+}
 function showResult(){
 var pct=Math.round(sc/qs.length*100);
 var range=QD.scoring[0];
@@ -2855,13 +2924,27 @@ h.unshift({slug:QD.slug,name:QD.name,pct:pct,mode:mode,date:new Date().toISOStri
 if(h.length>20)h=h.slice(0,20);
 localStorage.setItem('vhh_quiz_hist',JSON.stringify(h));
 }catch(e){}
+var ring=gi('res-ring');
+if(ring)ring.style.strokeDashoffset='326.7';
 showScreen('res');
+animateRing(pct);
+window.scrollTo({top:0,behavior:'smooth'});
 }
-window.quizRetry=function(){showScreen('diff');};
+window.quizRetry=function(){selectedDiff='';showScreen('diff');};
 window.quizShare=function(){
 var txt='I scored '+gi('res-pct').textContent+' on the '+QD.name+' quiz at VitalHealth Hub! '+window.location.href;
 if(navigator.share){navigator.share({title:QD.name,text:txt,url:window.location.href});}
-else if(navigator.clipboard){navigator.clipboard.writeText(txt);alert('Result copied to clipboard!');}
+else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){alert('Result copied to clipboard!');});}
+else{alert(txt);}
+};
+window.quizEmailSubmit=function(){
+var inp=gi('quiz-email-input');
+var suc=gi('quiz-email-success');
+if(!inp||!inp.value||!inp.value.includes('@'))return;
+inp.style.display='none';
+document.querySelector('.quiz-email-submit').style.display='none';
+if(suc)suc.style.display='block';
+try{localStorage.setItem('vhh_email_sub',inp.value);}catch(e){}
 };
 showScreen('diff');
 })();
@@ -2887,12 +2970,14 @@ const quizCatPills = quizCategories.map((c, i) =>
 
 const quizCards = quizzesData.map(quiz =>
   '<a href="/quizzes/' + quiz.slug + '.html" class="quiz-card" data-category="' + quiz.category + '">' +
-  '<div class="quiz-card-icon">' + quiz.icon + '</div>' +
-  '<div class="quiz-card-category">' + quiz.category + '</div>' +
+  '<div class="quiz-card-icon-wrap">' + quiz.icon + '</div>' +
+  '<span class="quiz-card-badge">' + quiz.category + '</span>' +
   '<h3>' + quiz.name + '</h3>' +
   '<p>' + quiz.desc + '</p>' +
-  '<div class="quiz-card-meta"><span class="quiz-card-questions">&#x2713; ' + quiz.questions.length + ' questions &bull; 3 difficulty levels</span>' +
-  '<span class="quiz-card-cta">Take Quiz &rarr;</span></div>' +
+  '<div class="quiz-card-bottom">' +
+  '<span class="quiz-card-questions">&#x2713; ' + quiz.questions.length + ' questions &bull; 3 levels</span>' +
+  '<span class="quiz-card-cta">Take Quiz <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle;"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+  '</div>' +
   '</a>'
 ).join('');
 
@@ -2910,8 +2995,9 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'Quizzes',url:'/quizzes/'}]).schema}
 
 <section class="quiz-index-hero">
 <div class="container">
-<h1>&#x1F9E0; Free Health &amp; Wellness Quizzes</h1>
-<p>Test your knowledge across nutrition, fitness, mental health, women's health, and more. Instant scoring, personalised feedback, and three difficulty levels.</p>
+<span style="display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:30px;padding:6px 18px;font-size:.85rem;font-weight:600;letter-spacing:.04em;margin-bottom:18px;">🧠 ${quizzesData.length}+ Free Health Quizzes</span>
+<h1>Test Your Health Knowledge</h1>
+<p>Evidence-based quizzes on nutrition, fitness, mental health, and more. Instant scoring, personalised feedback, three difficulty levels.</p>
 <div class="quiz-index-stats">
 <div class="quiz-index-stat"><strong>${quizzesData.length}+</strong><span>Quizzes</span></div>
 <div class="quiz-index-stat"><strong>3</strong><span>Difficulty Levels</span></div>
@@ -2927,6 +3013,10 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'Quizzes',url:'/quizzes/'}]).schema}
 
 <section class="quiz-grid-section">
 <div class="container">
+<div class="quiz-grid-header">
+<h2>All Health Quizzes</h2>
+<span class="quiz-grid-count">${quizzesData.length} quizzes available</span>
+</div>
 <div class="quiz-grid" id="quiz-grid">${quizCards}</div>
 </div>
 </section>
