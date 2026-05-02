@@ -2405,29 +2405,51 @@ fs.writeFileSync('blog.html', `${head('Health & Wellness Blog \u2014 150+ Expert
 <body>
 ${NAV}
 
-<section class="blog-editorial-hero">
-<div class="blog-editorial-hero-grid">
-<a href="/blog/${featuredPost.slug}.html" class="blog-editorial-featured">
-<img src="https://images.unsplash.com/${featuredImg.url.split('unsplash.com/')[1].split('?')[0]}?w=1200&h=520&fit=crop&auto=format&q=80" alt="${featuredImg.alt}" width="1200" height="520" loading="eager">
-<div class="blog-editorial-featured-overlay">
-<span class="badge-editors-pick">EDITOR'S PICK</span>
-<h1>The Complete Guide to Understanding Your Body's Daily Calorie Needs</h1>
+<section class="blog-page-hero">
+<div class="blog-hero-inner">
+<div class="blog-hero-badge">&#9997;&#65039; ${blogPosts.length}+ Expert Health Articles</div>
+<h1 class="blog-hero-title">Health &amp; Wellness Blog</h1>
+<p class="blog-hero-subtitle">Evidence-based guides on nutrition, fitness, mental health, and more &mdash; written by health experts, free forever.</p>
+<div class="blog-hero-search-bar">
+<svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<input type="text" placeholder="Search ${blogPosts.length}+ health articles..." onfocus="openBlogSearch()" readonly>
+<button class="blog-hero-search-btn" onclick="openBlogSearch()">Search</button>
+</div>
+<div class="blog-hero-stats">
+<div class="blog-hero-stat"><strong>${blogPosts.length}+</strong><span>Articles</span></div>
+<div class="blog-hero-stat"><strong>${blogCategories.length}</strong><span>Categories</span></div>
+<div class="blog-hero-stat"><strong>Expert</strong><span>Reviewed</span></div>
+<div class="blog-hero-stat"><strong>Free</strong><span>Always</span></div>
+</div>
+</div>
+</section>
+
+<section class="blog-featured-section">
+<div class="blog-featured-header">
+<h2>&#11088; Featured Articles</h2>
+<a href="/blog.html#all-articles">Browse all ${blogPosts.length} articles &rarr;</a>
+</div>
+<div class="blog-featured-grid">
+<a href="/blog/${featuredPost.slug}.html" class="blog-featured-main">
+<img src="https://images.unsplash.com/${featuredImg.url.split('unsplash.com/')[1].split('?')[0]}?w=900&h=520&fit=crop&auto=format&q=85" alt="${featuredImg.alt}" width="900" height="520" loading="eager">
+<div class="blog-featured-main-overlay">
+<span class="blog-featured-badge">EDITOR'S PICK</span>
+<h2>${featuredPost.title}</h2>
 <p>Discover the science behind calorie counting and learn how to fuel your body for optimal health and performance.</p>
-<span class="featured-meta">Ali Haider \u2022 ${featuredPost.date} \u2022 ${featuredPost.readTime} read</span>
-<span class="btn-outline-white">Read Article \u2192</span>
+<span class="blog-featured-meta">Ali Haider &bull; ${featuredPost.date} &bull; ${featuredPost.readTime} read</span>
 </div>
 </a>
-<div class="blog-editorial-sidebar">
+<div class="blog-featured-side">
 ${sidebarPosts.map(sp => {
   const sImg = blogCardImage(sp.slug);
-  return `<div class="blog-editorial-sidebar-item">
-<img src="https://images.unsplash.com/${sImg.url.split('unsplash.com/')[1].split('?')[0]}?w=200&h=160&fit=crop&auto=format" alt="${sImg.alt}" width="100" height="80" loading="eager">
-<div class="sidebar-item-content">
+  return `<a href="/blog/${sp.slug}.html" class="blog-featured-side-card">
+<img src="https://images.unsplash.com/${sImg.url.split('unsplash.com/')[1].split('?')[0]}?w=220&h=180&fit=crop&auto=format" alt="${sImg.alt}" width="115" height="110" loading="eager">
+<div class="blog-featured-side-content">
 <span class="blog-card-category">${sp.category}</span>
-<h4><a href="/blog/${sp.slug}.html">${sp.title}</a></h4>
-<span class="sidebar-item-meta">${sp.date} \u2022 ${sp.readTime}</span>
+<h4>${sp.title}</h4>
+<div class="blog-featured-side-meta">${sp.date} &bull; ${sp.readTime}</div>
 </div>
-</div>`;
+</a>`;
 }).join('')}
 </div>
 </div>
