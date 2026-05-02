@@ -8,11 +8,13 @@
             <!-- Brand Column -->
             <div class="vhh-footer-brand">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="vhh-logo-link" rel="home">
-                    <span class="vhh-logo-mark" style="background:rgba(255,255,255,.15);font-size:.95rem;">VH</span>
-                    <span class="vhh-logo-text">
-                        <strong><?php bloginfo( 'name' ); ?></strong>
-                        <span><?php bloginfo( 'description' ); ?></span>
-                    </span>
+                    <img
+                        src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>"
+                        alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
+                        class="vhh-footer-logo"
+                        height="48"
+                        loading="lazy"
+                    >
                 </a>
                 <p><?php esc_html_e( 'Free, evidence-based health calculators and wellness guides — trusted by readers worldwide. No sign-up required.', 'vitalhealth-hub' ); ?></p>
                 <div class="vhh-social-links" style="margin-top:1rem;">
