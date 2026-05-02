@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60" role="img" aria-label="VitalHealth Hub logo">
+  <circle cx="30" cy="30" r="26" fill="#2D6A4F"/>
+  <text x="30" y="36" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">VH</text>
+  <text x="66" y="22" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#1B4332">VitalHealth</text>
+  <text x="66" y="38" font-family="Arial,sans-serif" font-size="11" fill="#2D6A4F">Hub</text>
+</svg>
