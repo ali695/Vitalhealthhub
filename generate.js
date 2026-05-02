@@ -1770,7 +1770,7 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'All Calculators',url:'/calculators/'}
 </div>
 <div class="filter-buttons fade-in" id="calcFilterBtns">
 <button class="filter-btn active" onclick="filterCat('all',this)">All</button>
-${catNames.map(c=>`<button class="filter-btn" onclick="filterCat('${c}',this)">${c}</button>`).join('')}
+${catNames.map(c=>`<button class="filter-btn" onclick="filterCat('${c.replace(/'/g,"\\'")}',this)">${c}</button>`).join('')}
 </div>
 <div class="grid-4" id="calcGrid">
 ${calculators.map(c => {
@@ -2786,7 +2786,7 @@ console.log('Generated ' + quizzesData.length + ' quiz pages');
 // QUIZ INDEX PAGE
 const quizCategories = ['All', ...new Set(quizzesData.map(q => q.category))];
 const quizCatPills = quizCategories.map((c, i) =>
-  '<button class="quiz-cat-pill' + (i === 0 ? ' active' : '') + '" onclick="quizFilter(\'' + c + '\',this)">' + c + '</button>'
+  '<button class="quiz-cat-pill' + (i === 0 ? ' active' : '') + '" onclick="quizFilter(\'' + c.replace(/'/g, "\\'") + '\',this)">' + c + '</button>'
 ).join('');
 
 const quizCards = quizzesData.map(quiz =>
