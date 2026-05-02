@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free JPG to PDF Converter Online — Convert Images to PDF | VitalHealth Hub</title>
-<meta name="description" content="Convert JPG images to PDF online for free. Add multiple images and create a multi-page PDF. No upload required — works in your browser with jsPDF.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/jpg-to-pdf.html">
-<meta property="og:title" content="Free JPG to PDF Converter Online — Convert Images to PDF | VitalHealth Hub">
-<meta property="og:description" content="Convert JPG images to PDF online for free. Add multiple images and create a multi-page PDF. No upload required — works in your browser with jsPDF.">
+<title>Free Daily Planner Online — Time Blocks & Task Priorities | VitalHealth Hub</title>
+<meta name="description" content="Plan your day with a free online daily planner. Add time-blocked tasks with priority levels (High/Medium/Low), check them off, and auto-save to your browser.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/daily-planner.html">
+<meta property="og:title" content="Free Daily Planner Online — Time Blocks & Task Priorities | VitalHealth Hub">
+<meta property="og:description" content="Plan your day with a free online daily planner. Add time-blocked tasks with priority levels (High/Medium/Low), check them off, and auto-save to your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/jpg-to-pdf.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/daily-planner.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,71 +134,109 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>JPG to PDF Converter</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"JPG to PDF Converter","item":"https://vitalhealthhub.com/tools/jpg-to-pdf.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Daily Planner</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Daily Planner","item":"https://vitalhealthhub.com/tools/daily-planner.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">PDF Tools</span>
-<h1>JPG to PDF Converter</h1>
-<p>Convert one or more JPG images into a PDF document instantly.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Productivity</div>
+<h1>Daily Planner</h1>
+<p class="saas-hero-sub">Plan your day with time-blocked tasks, priority levels, and a clean checklist that auto-saves to your browser.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<div class="tool-dropzone" id="toolDrop">
-  <div class="tool-dropzone-icon">📄</div>
-  <h3>Drop images here (one or more)</h3>
-  <p>or click to browse • JPG, PNG, WebP supported</p>
-  <input type="file" id="toolFile" accept="image/*" multiple>
-  <div class="tool-dropzone-or">— or —</div>
-  <button class="tool-browse-btn" type="button" onclick="event.stopPropagation();document.getElementById('toolFile').click()">📁 Browse Files</button>
+<div class="planner-date-header">
+  <div class="planner-today" id="plannerDate"></div>
+  <button class="saas-btn saas-btn-ghost saas-btn-sm" onclick="clearDone()">Clear Completed</button>
 </div>
-<div class="tool-file-list" id="toolFileList"></div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processJpgToPdf()" disabled>Create PDF ↓</button>
+<div class="planner-add-form">
+  <input class="saas-input" id="plannerTask" placeholder="Add a task…" maxlength="120">
+  <input class="saas-input" type="time" id="plannerTime" style="max-width:130px" value="09:00">
+  <select class="planner-select" id="plannerPriority">
+    <option value="high">🔴 High</option>
+    <option value="medium" selected>🟡 Medium</option>
+    <option value="low">🟢 Low</option>
+  </select>
+  <button class="saas-btn saas-btn-primary" onclick="addTask()">+ Add</button>
 </div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>PDF created successfully!</h3></div>
-  <div style="text-align:center;margin-top:8px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download PDF</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
-  </div>
+<div id="plannerList" class="planner-task-list"></div>
+<div id="plannerEmpty" class="saas-empty-state" style="display:none">
+  <div class="saas-empty-icon">📋</div>
+  <p class="saas-empty-text">No tasks yet. Add your first task for today!</p>
 </div>
+<div class="planner-stats" id="plannerStats"></div>
 <script>
-var toolFiles=[];
-var dropEl=document.getElementById('toolDrop');
-dropEl.addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-over');});
-dropEl.addEventListener('dragleave',function(){this.classList.remove('drag-over');});
-dropEl.addEventListener('drop',function(e){e.preventDefault();this.classList.remove('drag-over');addFiles(Array.from(e.dataTransfer.files));});
-dropEl.addEventListener('click',function(e){if(e.target===dropEl||e.target.tagName==='P'||e.target.tagName==='H3'||e.target.classList.contains('tool-dropzone-icon'))document.getElementById('toolFile').click();});
-document.getElementById('toolFile').addEventListener('change',function(){addFiles(Array.from(this.files));this.value='';});
-function addFiles(files){files.forEach(function(f){if(f.type.startsWith('image/'))toolFiles.push(f);});renderFileList();}
-function renderFileList(){var list=document.getElementById('toolFileList');list.innerHTML=toolFiles.map(function(f,i){return'<div class="tool-file-item"><span class="tool-file-item-icon">🖼️</span><span class="tool-file-item-name">'+f.name+'</span><span class="tool-file-item-size">'+Math.round(f.size/1024)+'KB</span><button class="tool-file-remove" onclick="removeFile('+i+')">✕</button></div>';}).join('');document.getElementById('toolProcessBtn').disabled=toolFiles.length===0;}
-function removeFile(i){toolFiles.splice(i,1);renderFileList();}
-function processJpgToPdf(){if(!toolFiles.length)return;var btn=document.getElementById('toolProcessBtn');btn.textContent='Creating PDF…';btn.disabled=true;var {jsPDF}=window.jspdf;var pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});var loaded=0;toolFiles.forEach(function(f,i){var img=new Image();img.onload=function(){var pw=210,ph=297,m=10,aw=pw-2*m,ah=ph-2*m;var ar=img.naturalWidth/img.naturalHeight;var w,h;if(ar>aw/ah){w=aw;h=aw/ar;}else{h=ah;w=ah*ar;}var x=m+(aw-w)/2,y=m+(ah-h)/2;if(i>0)pdf.addPage();pdf.addImage(img,'JPEG',x,y,w,h);loaded++;if(loaded===toolFiles.length){var blob=pdf.output('blob');var url=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=url;dl.download='images_vhh.pdf';document.getElementById('toolFileInfo').textContent=toolFiles.length+' image'+(toolFiles.length>1?'s':'')+' converted to '+toolFiles.length+'-page PDF';document.getElementById('toolResult').classList.add('visible');btn.textContent='Create Another PDF';btn.disabled=false;}};img.src=URL.createObjectURL(f);});}</script>
+var TODAY=new Date().toISOString().split('T')[0];
+var PKEY='vhh_planner_'+TODAY;
+var PLABELS={high:'🔴 High',medium:'🟡 Medium',low:'🟢 Low'};
+document.getElementById('plannerDate').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+function loadTasks(){return JSON.parse(localStorage.getItem(PKEY)||'[]');}
+function saveTasks(d){localStorage.setItem(PKEY,JSON.stringify(d));}
+function addTask(){
+  var name=document.getElementById('plannerTask').value.trim();
+  if(!name)return;
+  var time=document.getElementById('plannerTime').value;
+  var pri=document.getElementById('plannerPriority').value;
+  var tasks=loadTasks();
+  tasks.push({id:Date.now().toString(),name:name,time:time,priority:pri,done:false});
+  tasks.sort(function(a,b){var o={high:0,medium:1,low:2};return o[a.priority]-o[b.priority];});
+  saveTasks(tasks);document.getElementById('plannerTask').value='';renderTasks();
+}
+function toggleTask(id){var t=loadTasks();var tk=t.find(function(x){return x.id===id;});if(tk)tk.done=!tk.done;saveTasks(t);renderTasks();}
+function deleteTask(id){var t=loadTasks().filter(function(x){return x.id!==id;});saveTasks(t);renderTasks();}
+function clearDone(){var t=loadTasks().filter(function(x){return !x.done;});saveTasks(t);renderTasks();}
+function renderTasks(){
+  var tasks=loadTasks();var list=document.getElementById('plannerList');var empty=document.getElementById('plannerEmpty');
+  if(!tasks.length){list.innerHTML='';empty.style.display='block';document.getElementById('plannerStats').innerHTML='';return;}
+  empty.style.display='none';
+  list.innerHTML=tasks.map(function(tk){
+    var badgeMap={high:'saas-badge-red',medium:'saas-badge-yellow',low:'saas-badge-green'};
+    return '<div class="planner-task'+(tk.done?' done-task':'')+'">'+
+      '<input type="checkbox" class="planner-task-cb"'+(tk.done?' checked':'')+' onclick="toggleTask(''+tk.id+'')">'+
+      '<span class="planner-task-time">'+tk.time+'</span>'+
+      '<span class="planner-task-name">'+tk.name+'</span>'+
+      '<span class="planner-priority"><span class="saas-badge '+badgeMap[tk.priority]+'">'+PLABELS[tk.priority]+'</span></span>'+
+      '<button class="planner-task-del" onclick="deleteTask(''+tk.id+'')">✕</button>'+
+    '</div>';
+  }).join('');
+  var done=tasks.filter(function(t){return t.done;}).length;
+  document.getElementById('plannerStats').innerHTML='<span class="planner-stat"><strong>'+tasks.length+'</strong> total</span><span class="planner-stat"><strong>'+done+'</strong> done</span><span class="planner-stat"><strong>'+(tasks.length-done)+'</strong> remaining</span>';
+}
+document.getElementById('plannerTask').addEventListener('keydown',function(e){if(e.key==='Enter')addTask();});
+renderTasks();
+</script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>Why Convert JPG to PDF?</h2><p>PDF is the universal format for sharing documents. Converting images to PDF makes them easier to print, share professionally, and view consistently across all devices and operating systems without any software dependencies. PDFs cannot be accidentally edited and preserve layout perfectly.</p><h2>How This Converter Works</h2><p>This tool uses jsPDF, a well-established open-source JavaScript library, to create a PDF document from your images entirely in the browser. Each image is placed on a separate PDF page, scaled to fit an A4 page while maintaining its aspect ratio. No files are uploaded to any server.</p><h2>Use Cases</h2><p>Common use cases include: converting scanned document photos into PDF for filing, combining multiple product images into a catalogue PDF, creating photo albums in PDF format, and converting receipts or invoices photographed on a smartphone into PDF for expense reporting.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Why Time Blocking Works</h2><p>Time blocking — assigning specific tasks to specific time slots — is one of the most effective productivity techniques used by high performers including Elon Musk, Cal Newport, and Bill Gates. When you write down what you will do and when, you eliminate decision fatigue and significantly reduce the mental overhead of deciding what to work on next. Research shows that people who write down their plans are up to 42% more likely to achieve their goals.</p><h2>Priority Levels Explained</h2><p>This planner uses three priority levels: High (critical tasks that must be done today), Medium (important but not urgent tasks), and Low (nice-to-do tasks or small admin items). The Eisenhower Matrix recommends doing high-priority items first thing in the morning when your cognitive energy is at its peak. Schedule creative and strategic work earlier in the day, and administrative tasks later.</p><h2>Building a Productive Day</h2><p>Start each morning by reviewing yesterday's incomplete tasks and adding today's new ones. Block your most important task (MIT) in your first time slot. Schedule similar tasks together to benefit from context-switching efficiency. Build in buffer time between tasks — research shows that tasks almost always take 1.5–2x longer than estimated. End with a brief review of what was completed.</p><h2>The Science of Task Completion</h2><p>Checking off completed tasks triggers a small dopamine release in the brain, reinforcing productive behaviour. The "Zeigarnik Effect" means that uncompleted tasks occupy mental bandwidth — writing them down and planning them frees up cognitive resources for focused work. The daily planner works as a cognitive offload system, freeing your mind to focus on execution rather than organisation.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Can I add multiple images to create a multi-page PDF?</div>
-<div class="tool-faq-a">Yes! Add multiple images and each will become a separate page in the PDF document.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is my planner saved for tomorrow?</div>
+<div class="tool-faq-a">Each day has its own task list saved in localStorage. When you open the planner tomorrow, you will start fresh. Previous days' lists are preserved.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What image formats are supported?</div>
-<div class="tool-faq-a">JPG, PNG, WebP, and most common image formats are supported.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How many tasks can I add?</div>
+<div class="tool-faq-a">There is no hard limit. However, research suggests that planning more than 5–7 significant tasks per day leads to incomplete days and lower satisfaction. Prioritise ruthlessly.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Is my data sent to a server?</div>
-<div class="tool-faq-a">No. The PDF is created entirely in your browser using the jsPDF library.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I move a task to tomorrow?</div>
+<div class="tool-faq-a">Uncheck the task and it will appear again when you visit the planner tomorrow. Manually copy the task name to tomorrow's list if needed.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">What page size does the PDF use?</div>
-<div class="tool-faq-a">Images are fitted to A4 pages (210×297mm) with margins maintained.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Is there a mobile version?</div>
+<div class="tool-faq-a">The planner is fully responsive and works on mobile browsers. All functionality including saving is available on any device.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/pdf-merge.html" class="tool-related-card"><span class="tool-related-icon">📎</span>PDF Merge Tool →</a><a href="/tools/image-to-jpg.html" class="tool-related-card"><span class="tool-related-icon">🖼️</span>Image to JPG Converter →</a><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/focus-timer.html" class="tool-related-card"><span class="tool-related-icon">⏱️</span>Focus Timer →</a><a href="/tools/goal-tracker.html" class="tool-related-card"><span class="tool-related-icon">🎯</span>Goal Tracker →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a></div></div>
 
 <footer>
 <div class="footer-top">

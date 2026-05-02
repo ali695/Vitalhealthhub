@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free WebP to JPG Converter Online — Instant, No Upload | VitalHealth Hub</title>
-<meta name="description" content="Convert WebP images to JPG format instantly. Free WebP to JPG converter — no server upload, works in your browser. Perfect for compatibility.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/webp-to-jpg.html">
-<meta property="og:title" content="Free WebP to JPG Converter Online — Instant, No Upload | VitalHealth Hub">
-<meta property="og:description" content="Convert WebP images to JPG format instantly. Free WebP to JPG converter — no server upload, works in your browser. Perfect for compatibility.">
+<title>Free Sleep Tracker Online — Log Sleep & Get Quality Insights | VitalHealth Hub</title>
+<meta name="description" content="Track your sleep duration, quality, and patterns with our free online sleep tracker. Get a personalised sleep score and insights. No sign-up required.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/sleep-tracker.html">
+<meta property="og:title" content="Free Sleep Tracker Online — Log Sleep & Get Quality Insights | VitalHealth Hub">
+<meta property="og:description" content="Track your sleep duration, quality, and patterns with our free online sleep tracker. Get a personalised sleep score and insights. No sign-up required.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/webp-to-jpg.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/sleep-tracker.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,64 +134,120 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>WebP to JPG Converter</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"WebP to JPG Converter","item":"https://vitalhealthhub.com/tools/webp-to-jpg.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Sleep Tracker</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Sleep Tracker","item":"https://vitalhealthhub.com/tools/sleep-tracker.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Image Tools</span>
-<h1>WebP to JPG Converter</h1>
-<p>Convert WebP images back to JPG format for maximum compatibility.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Health & Tracking</div>
+<h1>Sleep Tracker</h1>
+<p class="saas-hero-sub">Log your sleep, get a quality score, and discover patterns in your sleep history with personalised insights.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<div class="tool-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
-  <div class="tool-dropzone-icon">🖼️</div>
-  <h3>Drop your image here</h3>
-  <p>or click to browse • JPG, PNG, WebP, GIF, BMP supported</p>
-  <input type="file" id="toolFile" accept="image/*">
-</div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processImageConvert()" disabled>Convert to JPG ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Conversion complete!</h3></div>
-  <img id="toolPreview" class="tool-result-preview" alt="Preview">
-  <div style="text-align:center;margin-top:14px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download JPG</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
+<div class="saas-card-title">😴 Log Tonight's Sleep</div>
+<div class="saas-form-row">
+  <div class="saas-form-group">
+    <label class="saas-label">Bedtime</label>
+    <input class="saas-input" type="time" id="sleepBed" value="22:30">
+  </div>
+  <div class="saas-form-group">
+    <label class="saas-label">Wake Time</label>
+    <input class="saas-input" type="time" id="sleepWake" value="06:30">
   </div>
 </div>
+<div class="saas-form-group">
+  <label class="saas-label">Sleep Quality</label>
+  <div style="display:flex;gap:8px;margin-top:4px;" id="qualityBtns">
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(1)" data-q="1">😞 Poor</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(2)" data-q="2">😕 Fair</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(3)" data-q="3">😐 OK</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(4)" data-q="4">😊 Good</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(5)" data-q="5">😄 Great</button>
+  </div>
+</div>
+<div class="saas-form-group">
+  <label class="saas-label">Notes (optional)</label>
+  <input class="saas-input" id="sleepNote" placeholder="Any factors affecting sleep tonight?">
+</div>
+<button class="saas-btn saas-btn-primary" onclick="logSleep()" style="width:100%">Log Sleep Entry</button>
+<div id="sleepResult" class="saas-result-section hidden" style="margin-top:24px;"></div>
+<hr class="saas-divider">
+<div class="saas-section-heading">📅 Sleep History</div>
+<div id="sleepHistory"></div>
 <script>
-var toolFile=null;
-var dropEl=document.getElementById('toolDrop');
-var fileEl=document.getElementById('toolFile');
-dropEl.addEventListener('dragover',function(e){e.preventDefault();dropEl.classList.add('drag-over');});
-dropEl.addEventListener('dragleave',function(){dropEl.classList.remove('drag-over');});
-dropEl.addEventListener('drop',function(e){e.preventDefault();dropEl.classList.remove('drag-over');var f=e.dataTransfer.files[0];if(f)loadToolFile(f);});
-fileEl.addEventListener('change',function(){if(this.files[0])loadToolFile(this.files[0]);});
-function loadToolFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}if(f.size>20*1024*1024){alert('File too large. Max 20MB.');return;}toolFile=f;dropEl.querySelector('h3').textContent=f.name;dropEl.querySelector('p').textContent='File loaded — ready to convert';document.getElementById('toolProcessBtn').disabled=false;}
-function processImageConvert(){if(!toolFile)return;var btn=document.getElementById('toolProcessBtn');btn.textContent='Converting…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(toolFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');if('image/jpeg'==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);}ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=oUrl;dl.download='converted_vhh.jpg';document.getElementById('toolPreview').src=oUrl;document.getElementById('toolPreview').style.display='block';document.getElementById('toolFileInfo').textContent='Size: '+Math.round(blob.size/1024)+'KB | '+img.naturalWidth+'×'+img.naturalHeight+'px';document.getElementById('toolResult').classList.add('visible');btn.textContent='Convert Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/jpeg',0.92);};img.src=url;}
+var selQ=4;
+function setQ(q){selQ=q;document.querySelectorAll('#qualityBtns button').forEach(function(b){b.classList.toggle('saas-btn-primary',parseInt(b.dataset.q)===q);b.classList.toggle('saas-btn-secondary',parseInt(b.dataset.q)!==q);});}
+setQ(4);
+function loadSleep(){return JSON.parse(localStorage.getItem('vhh_sleep')||'[]');}
+function saveSleep(d){localStorage.setItem('vhh_sleep',JSON.stringify(d));}
+function calcScore(hrs,q){var durScore=Math.min(100,Math.max(0,(hrs/8)*60+(hrs>=7&&hrs<=9?20:0)));var qScore=(q/5)*40;return Math.round(Math.min(100,durScore+qScore));}
+function scoreGrade(s){return s>=80?['Excellent','saas-badge-green']:s>=60?['Good','saas-badge-blue']:s>=40?['Fair','saas-badge-yellow']:['Poor','saas-badge-red'];}
+function timeToMins(t){var p=t.split(':');return parseInt(p[0])*60+parseInt(p[1]);}
+function minsToHrs(m){return (m/60).toFixed(1);}
+function logSleep(){
+  var bed=document.getElementById('sleepBed').value;
+  var wake=document.getElementById('sleepWake').value;
+  var note=document.getElementById('sleepNote').value.trim();
+  if(!bed||!wake){alert('Please enter bedtime and wake time.');return;}
+  var bm=timeToMins(bed);var wm=timeToMins(wake);
+  var dur=wm>bm?wm-bm:wm+(24*60-bm);
+  var hrs=dur/60;
+  var score=calcScore(hrs,selQ);
+  var g=scoreGrade(score);
+  var entry={date:new Date().toISOString().split('T')[0],bed:bed,wake:wake,hrs:hrs.toFixed(1),quality:selQ,score:score,note:note};
+  var data=loadSleep();data.unshift(entry);if(data.length>14)data=data.slice(0,14);saveSleep(data);
+  var res=document.getElementById('sleepResult');
+  res.classList.remove('hidden');
+  res.innerHTML='<div class="saas-result-header"><span class="saas-result-check">✅</span><span class="saas-result-title">Sleep logged successfully!</span></div>'+
+    '<div class="saas-stat-grid" style="grid-template-columns:repeat(3,1fr)">'+
+    '<div class="saas-stat-card"><div class="saas-stat-value">'+hrs.toFixed(1)+'h</div><div class="saas-stat-label">Duration</div></div>'+
+    '<div class="saas-stat-card"><div class="saas-stat-value">'+score+'</div><div class="saas-stat-label">Score</div></div>'+
+    '<div class="saas-stat-card"><div class="saas-stat-value"><span class="saas-badge '+g[1]+'">'+g[0]+'</span></div><div class="saas-stat-label">Quality</div></div>'+
+    '</div>';
+  renderSleepHistory();
+}
+function renderSleepHistory(){
+  var data=loadSleep();var el=document.getElementById('sleepHistory');
+  if(!data.length){el.innerHTML='<div class="saas-empty-state"><div class="saas-empty-icon">📋</div><p class="saas-empty-text">No sleep entries yet. Log your first night above!</p></div>';return;}
+  var html='<table class="sleep-history-table"><thead><tr><th>Date</th><th>Hours</th><th>Quality</th><th>Score</th><th>Notes</th></tr></thead><tbody>';
+  data.forEach(function(e){var g=scoreGrade(e.score);html+='<tr><td>'+e.date+'</td><td>'+e.hrs+'h</td><td>'+(['','😞','😕','😐','😊','😄'][e.quality]||'-')+'</td><td><span class="saas-badge '+g[1]+'">'+e.score+'</span></td><td style="color:#9ca3af;font-size:0.8rem">'+e.note+'</td></tr>';});
+  html+='</tbody></table>';el.innerHTML=html;
+}
+renderSleepHistory();
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>Why Convert WebP to JPG?</h2><p>While WebP is the superior format for web use, there are situations where JPG is required — older applications, certain email clients, photo editors that do not support WebP, and some social media upload tools may not accept WebP files. Converting to JPG ensures universal compatibility.</p><h2>When You Need JPG Instead of WebP</h2><p>You may need JPG when: sending images to clients who use older software, uploading to platforms that do not accept WebP (such as some print services), using image editing software that does not support WebP, or when sharing images with people using older devices.</p><h2>How the Conversion Works</h2><p>Your WebP file is loaded into a browser Image object, drawn onto an HTML5 Canvas, and then exported as a JPEG with 92% quality. This produces excellent image quality while keeping file sizes manageable. The entire process is local — your file is never uploaded to any server.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Why Sleep Tracking Matters</h2><p>Sleep is one of the most powerful levers for health, performance, and longevity. The National Sleep Foundation recommends 7–9 hours per night for adults, yet surveys consistently show that over 35% of adults report getting fewer than 7 hours. Tracking your sleep creates awareness of patterns that you would otherwise miss.</p><h2>Understanding Your Sleep Score</h2><p>This tracker calculates a sleep score based on two key factors: sleep duration (how many hours you slept) and sleep quality (your subjective rating of how rested you feel). A score of 80–100 indicates excellent sleep; 60–79 is good; 40–59 suggests room for improvement; below 40 indicates poor sleep that may be affecting your health.</p><h2>Sleep Duration Guidelines</h2><p>Adults aged 18–64 need 7–9 hours per night. Adults 65+ typically need 7–8 hours. Chronic sleep deprivation — consistently sleeping less than 7 hours — is associated with increased risk of obesity, diabetes, cardiovascular disease, and impaired cognitive function. Even one hour less than your personal optimum can affect alertness, mood, and decision-making.</p><h2>Tips for Better Sleep</h2><p>Maintain a consistent sleep schedule even on weekends. Keep your bedroom cool (around 18°C/65°F), dark, and quiet. Avoid screens for 60 minutes before bed. Limit caffeine after 2 PM. Exercise regularly but not within 3 hours of bedtime. These evidence-based practices consistently produce improvements in both sleep duration and quality.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Will the WebP to JPG conversion lose quality?</div>
-<div class="tool-faq-a">A small amount of quality may be lost due to JPEG's lossy compression, but at 92% quality the difference is imperceptible for most images.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">How is my sleep score calculated?</div>
+<div class="tool-faq-a">The score combines sleep duration (weighted 60%) and your quality rating (weighted 40%). 8 hours at quality 5 produces a perfect 100 score.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Can I convert animated WebP files?</div>
-<div class="tool-faq-a">Only the first frame of an animated WebP will be converted to JPG, as JPG does not support animation.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How many sleep entries does the tracker store?</div>
+<div class="tool-faq-a">The tracker keeps your last 14 days of sleep entries for trend analysis.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Is there a size limit?</div>
-<div class="tool-faq-a">We recommend files under 20MB for smooth in-browser processing.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">What if I take naps?</div>
+<div class="tool-faq-a">Log each sleep session separately. You can add a note to indicate it was a nap.</div>
+</div><div class="tool-faq-item" id="tfaq3">
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Why does my score vary even when I sleep the same hours?</div>
+<div class="tool-faq-a">Sleep quality matters as much as duration. Poor quality sleep (restless, frequent waking) can produce worse outcomes than slightly shorter but higher quality sleep.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-to-jpg.html" class="tool-related-card"><span class="tool-related-icon">🖼️</span>Image to JPG Converter →</a><a href="/tools/jpg-to-webp.html" class="tool-related-card"><span class="tool-related-icon">🔄</span>JPG to WebP Converter →</a><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/mood-tracker.html" class="tool-related-card"><span class="tool-related-icon">🌈</span>Mood Tracker →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a><a href="/tools/health-dashboard.html" class="tool-related-card"><span class="tool-related-icon">📊</span>Health Dashboard →</a></div></div>
 
 <footer>
 <div class="footer-top">

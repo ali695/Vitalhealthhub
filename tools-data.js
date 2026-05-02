@@ -1,492 +1,304 @@
 module.exports = [
 
-  // ─── IMAGE TOOLS ──────────────────────────────────────────────────────────
+  // ─── HEALTH & TRACKING ─────────────────────────────────────────────────────
   {
-    slug: 'image-to-jpg',
-    name: 'Image to JPG Converter',
-    category: 'Image Tools',
-    categorySlug: 'image',
-    icon: '🖼️',
-    desc: 'Convert PNG, WebP, GIF, BMP or any image to JPG format instantly in your browser.',
-    type: 'image-convert',
-    outputMime: 'image/jpeg',
-    outputExt: 'jpg',
-    outputQuality: 0.92,
-    metaTitle: 'Free Image to JPG Converter Online — No Upload Required',
-    metaDesc: 'Convert PNG, WebP, GIF, BMP to JPG instantly. Free online image to JPG converter — no upload, works entirely in your browser. Fast and private.',
-    content: `<h2>What Is an Image to JPG Converter?</h2><p>An image to JPG converter is a tool that transforms any image format — PNG, WebP, GIF, BMP, TIFF — into the universally compatible JPG (JPEG) format. JPG is the most widely supported image format on the web, in email clients, and across virtually all devices.</p><h2>Why Convert Images to JPG?</h2><p>JPG is ideal for photographs and complex images with many colours. It uses lossy compression, making file sizes significantly smaller than PNG while maintaining excellent visual quality at the right compression settings. Smaller files load faster on websites, use less storage space, and are easier to share via email or messaging apps.</p><h2>How This Tool Works</h2><p>Our converter uses the HTML5 Canvas API to process images entirely within your browser. Your file never leaves your device — no upload to any server, no privacy risk. Simply drop your image, click Convert, and download the result in seconds. The tool preserves the original dimensions of your image while applying efficient JPEG compression.</p><h2>When to Use JPG Format</h2><p>Use JPG for photographs, social media images, product photos, and any image where file size matters more than perfect pixel accuracy. Avoid JPG for logos, screenshots with text, or images requiring transparent backgrounds — use PNG for those cases instead.</p>`,
+    slug: 'habit-tracker',
+    name: 'Habit Tracker',
+    category: 'Health & Tracking',
+    categorySlug: 'health',
+    icon: '🔥',
+    desc: 'Build lasting habits with streak tracking, weekly views, and progress analytics — all saved privately in your browser.',
+    type: 'habit-tracker',
+    metaTitle: 'Free Habit Tracker Online — Build Streaks & Stay Consistent',
+    metaDesc: 'Track daily habits, build streaks, and visualise your progress with our free online habit tracker. No account needed — data saved locally in your browser.',
+    content: `<h2>Why Habit Tracking Works</h2><p>Habit tracking is one of the most evidence-backed strategies for behaviour change. When you mark a habit as complete each day, you create a visual record of progress — and the desire to maintain that streak becomes a powerful motivational force. Research published in the British Journal of General Practice found that tracking behaviour significantly increases the likelihood of achieving health goals.</p><h2>The Compound Effect of Daily Habits</h2><p>Small habits compound over time. Exercising for 20 minutes daily might seem insignificant, but over a year that is over 120 hours of exercise. Habits do not produce instant results, but they accumulate into extraordinary outcomes. The key is consistency, not perfection — even maintaining a 90% completion rate over months produces enormous positive change.</p><h2>How to Use This Habit Tracker</h2><p>Add habits that matter to your health journey — drinking 8 glasses of water, meditating for 10 minutes, exercising, reading, or any other daily practice. Check off each habit as you complete it. The tracker shows your current streak, a weekly completion grid, and your overall consistency. Your data is saved privately in your browser and persists across sessions.</p><h2>The Science of Streaks</h2><p>James Clear, author of Atomic Habits, recommends the "never miss twice" rule — if you miss a day, make it a rule to never miss two in a row. The tracker's streak counter helps you apply this principle by making your streak visible and motivating you to keep it alive.</p>`,
     faq: [
-      { q: 'Is my image uploaded to any server?', a: 'No. All conversion happens inside your browser using the Canvas API. Your image never leaves your device.' },
-      { q: 'What image formats can I convert to JPG?', a: 'You can convert PNG, WebP, GIF, BMP, TIFF, and other common formats to JPG.' },
-      { q: 'Will the image quality be reduced?', a: 'We apply 92% quality by default, which produces excellent results that are visually indistinguishable from the original for most photos.' },
-      { q: 'Is there a file size limit?', a: 'We recommend files under 20MB for best performance in your browser.' }
+      { q: 'Is my habit data saved permanently?', a: 'Your data is saved in your browser\'s localStorage and persists as long as you use the same browser on the same device without clearing site data.' },
+      { q: 'How is the streak calculated?', a: 'The streak counts consecutive days you have completed a habit, going back from today. Missing one day resets the streak to zero.' },
+      { q: 'Can I track multiple habits?', a: 'Yes, add as many habits as you like. Research suggests starting with 2–3 habits and adding more once they feel automatic.' },
+      { q: 'Is my data synced across devices?', a: 'No, data is stored locally in your browser. For cross-device access, we recommend using a cloud-based app like Habitica.' }
     ],
-    relatedTools: ['image-to-png', 'image-compressor', 'jpg-to-webp', 'image-resizer'],
+    relatedTools: ['sleep-tracker', 'mood-tracker', 'goal-tracker', 'health-dashboard'],
     relatedBlogs: []
   },
   {
-    slug: 'image-to-png',
-    name: 'Image to PNG Converter',
-    category: 'Image Tools',
-    categorySlug: 'image',
-    icon: '🖼️',
-    desc: 'Convert JPG, WebP, GIF, BMP or any image to lossless PNG format in your browser.',
-    type: 'image-convert',
-    outputMime: 'image/png',
-    outputExt: 'png',
-    outputQuality: 1,
-    metaTitle: 'Free Image to PNG Converter Online — Lossless, No Upload',
-    metaDesc: 'Convert JPG, WebP, GIF, BMP to PNG lossless format instantly. Free image to PNG converter — no server upload, fully private, works in browser.',
-    content: `<h2>What Is PNG Format?</h2><p>PNG (Portable Network Graphics) is a lossless image format that preserves every pixel perfectly. Unlike JPG, PNG supports full transparency (alpha channel), making it the preferred format for logos, icons, UI elements, and any image that requires a transparent background.</p><h2>Why Convert to PNG?</h2><p>PNG is the format of choice when image quality is paramount. Because it uses lossless compression, there is zero quality degradation — every pixel in the output is identical to the input. It is ideal for graphics with sharp edges, text, and illustrations.</p><h2>How the Conversion Works</h2><p>This tool uses the browser's built-in Canvas API to draw your image and export it as a PNG file. The entire process is client-side — nothing is sent to a server. This means your images remain completely private and the conversion is nearly instant regardless of internet speed.</p><h2>PNG vs JPG: Which Should You Choose?</h2><p>Choose PNG for graphics, logos, screenshots, and images with transparency. Choose JPG for photographs where smaller file size matters. PNG files are typically larger than JPG for photographs, but smaller and sharper for graphics and UI elements.</p>`,
+    slug: 'sleep-tracker',
+    name: 'Sleep Tracker',
+    category: 'Health & Tracking',
+    categorySlug: 'health',
+    icon: '😴',
+    desc: 'Log your sleep, get a quality score, and discover patterns in your sleep history with personalised insights.',
+    type: 'sleep-tracker',
+    metaTitle: 'Free Sleep Tracker Online — Log Sleep & Get Quality Insights',
+    metaDesc: 'Track your sleep duration, quality, and patterns with our free online sleep tracker. Get a personalised sleep score and insights. No sign-up required.',
+    content: `<h2>Why Sleep Tracking Matters</h2><p>Sleep is one of the most powerful levers for health, performance, and longevity. The National Sleep Foundation recommends 7–9 hours per night for adults, yet surveys consistently show that over 35% of adults report getting fewer than 7 hours. Tracking your sleep creates awareness of patterns that you would otherwise miss.</p><h2>Understanding Your Sleep Score</h2><p>This tracker calculates a sleep score based on two key factors: sleep duration (how many hours you slept) and sleep quality (your subjective rating of how rested you feel). A score of 80–100 indicates excellent sleep; 60–79 is good; 40–59 suggests room for improvement; below 40 indicates poor sleep that may be affecting your health.</p><h2>Sleep Duration Guidelines</h2><p>Adults aged 18–64 need 7–9 hours per night. Adults 65+ typically need 7–8 hours. Chronic sleep deprivation — consistently sleeping less than 7 hours — is associated with increased risk of obesity, diabetes, cardiovascular disease, and impaired cognitive function. Even one hour less than your personal optimum can affect alertness, mood, and decision-making.</p><h2>Tips for Better Sleep</h2><p>Maintain a consistent sleep schedule even on weekends. Keep your bedroom cool (around 18°C/65°F), dark, and quiet. Avoid screens for 60 minutes before bed. Limit caffeine after 2 PM. Exercise regularly but not within 3 hours of bedtime. These evidence-based practices consistently produce improvements in both sleep duration and quality.</p>`,
     faq: [
-      { q: 'Does PNG support transparent backgrounds?', a: 'Yes, PNG fully supports transparency (alpha channel), making it perfect for logos and graphics.' },
-      { q: 'Will converting a JPG to PNG improve its quality?', a: 'No. Converting from a lossy format like JPG to PNG will not recover lost data. It will preserve exactly what the JPG currently looks like.' },
-      { q: 'Are my images safe?', a: 'Completely. All processing happens in your browser — no files are ever uploaded to any server.' },
-      { q: 'Why is my PNG file larger than the original JPG?', a: 'PNG uses lossless compression which preserves all pixel data, resulting in larger files than JPG for photographic content.' }
+      { q: 'How is my sleep score calculated?', a: 'The score combines sleep duration (weighted 60%) and your quality rating (weighted 40%). 8 hours at quality 5 produces a perfect 100 score.' },
+      { q: 'How many sleep entries does the tracker store?', a: 'The tracker keeps your last 14 days of sleep entries for trend analysis.' },
+      { q: 'What if I take naps?', a: 'Log each sleep session separately. You can add a note to indicate it was a nap.' },
+      { q: 'Why does my score vary even when I sleep the same hours?', a: 'Sleep quality matters as much as duration. Poor quality sleep (restless, frequent waking) can produce worse outcomes than slightly shorter but higher quality sleep.' }
     ],
-    relatedTools: ['image-to-jpg', 'image-compressor', 'image-metadata-remover'],
+    relatedTools: ['mood-tracker', 'habit-tracker', 'health-dashboard'],
     relatedBlogs: []
   },
   {
-    slug: 'jpg-to-webp',
-    name: 'JPG to WebP Converter',
-    category: 'Image Tools',
-    categorySlug: 'image',
-    icon: '🔄',
-    desc: 'Convert JPG and PNG images to WebP format for faster web performance.',
-    type: 'image-convert',
-    outputMime: 'image/webp',
-    outputExt: 'webp',
-    outputQuality: 0.85,
-    metaTitle: 'Free JPG to WebP Converter Online — Faster Web Images',
-    metaDesc: 'Convert JPG and PNG to WebP format for up to 30% smaller file sizes. Free JPG to WebP converter — no upload, works in your browser instantly.',
-    content: `<h2>What Is WebP Format?</h2><p>WebP is a modern image format developed by Google, designed specifically for the web. It achieves 25–34% smaller file sizes compared to JPEG at equivalent visual quality, and 26% smaller than PNG for lossless images. All major browsers support WebP as of 2020.</p><h2>Why Convert to WebP?</h2><p>Smaller images mean faster page loads, better Core Web Vitals scores, and improved SEO performance. Google's PageSpeed Insights explicitly recommends serving images in next-gen formats like WebP. Switching to WebP can dramatically reduce your site's bandwidth usage and improve user experience.</p><h2>How This Converter Works</h2><p>Using the HTML5 Canvas API, your image is drawn to a canvas element and exported as a WebP blob. The whole process runs locally in your browser — no uploads, no waiting for server processing. The result is ready to download in under a second for most images.</p><h2>WebP Compatibility</h2><p>WebP is supported by Chrome, Firefox, Edge, Safari (since 14), and Opera. For maximum browser compatibility, you can serve WebP with a JPG fallback using the HTML picture element.</p>`,
+    slug: 'mood-tracker',
+    name: 'Mood Tracker',
+    category: 'Health & Tracking',
+    categorySlug: 'health',
+    icon: '🌈',
+    desc: 'Log your daily mood, spot emotional patterns in your calendar view, and track your mental wellness over time.',
+    type: 'mood-tracker',
+    metaTitle: 'Free Mood Tracker Online — Daily Mood Log with Calendar View',
+    metaDesc: 'Track your daily mood and mental wellness with our free online mood tracker. Visualise emotional patterns with a colour-coded calendar. No sign-up needed.',
+    content: `<h2>Why Track Your Mood?</h2><p>Mood tracking is a core tool in Cognitive Behavioural Therapy (CBT) and is recommended by mental health professionals for identifying triggers, patterns, and the effectiveness of lifestyle interventions. When you can see that your mood consistently dips on certain days or after certain activities, you gain actionable insight to make positive changes.</p><h2>Mood and Physical Health</h2><p>Your emotional state is deeply connected to physical health. Chronic low mood is associated with increased inflammation, disrupted sleep, reduced immune function, and higher cortisol levels. Conversely, positive mood states correlate with better cardiovascular health, stronger immune response, and greater longevity. Tracking both mood and sleep together reveals powerful connections between the two.</p><h2>How to Use the Mood Calendar</h2><p>Log your mood once daily — ideally at the same time each day, such as before bed. Select the emoji that best represents how you felt overall during the day. Add an optional note to capture context. Over weeks, the calendar view will reveal patterns: days of the week when you feel best, the impact of exercise on your mood, correlations with sleep quality, and more.</p><h2>Understanding Your Mood Trends</h2><p>A 7-day average provides a more reliable measure than any single day. Focus on your weekly trend rather than daily fluctuations. If your average mood has been below 3 (neutral) for two or more weeks, consider speaking with a mental health professional — this may indicate clinical depression which benefits from professional support.</p>`,
     faq: [
-      { q: 'Does WebP support transparency?', a: 'Yes, WebP supports both lossy and lossless compression, as well as transparency (alpha channel).' },
-      { q: 'How much smaller will my WebP file be?', a: 'Typically 25–35% smaller than an equivalent quality JPG, depending on image content.' },
-      { q: 'Do all browsers support WebP?', a: 'Yes, all modern browsers support WebP including Chrome, Firefox, Edge, Safari 14+, and Opera.' },
-      { q: 'Is my image sent to any server?', a: 'No. Conversion is entirely client-side using the Canvas API in your browser.' }
+      { q: 'What do the mood levels mean?', a: '1 = Very Low / Struggling, 2 = Low, 3 = Neutral / OK, 4 = Good, 5 = Excellent / Thriving.' },
+      { q: 'How much history does the mood calendar show?', a: 'The calendar shows the last 35 days (5 weeks), giving you a clear visual of recent patterns.' },
+      { q: 'Can I add notes to my mood entries?', a: 'Yes, there is an optional notes field. Use it to capture what may have influenced your mood — sleep, exercise, diet, stress, or social events.' },
+      { q: 'Is this a replacement for mental health support?', a: 'No. This is a self-awareness tool, not a medical or therapeutic service. If you are struggling, please seek support from a qualified mental health professional.' }
     ],
-    relatedTools: ['image-to-jpg', 'image-compressor', 'image-resizer'],
+    relatedTools: ['sleep-tracker', 'habit-tracker', 'health-dashboard'],
     relatedBlogs: []
   },
   {
-    slug: 'webp-to-jpg',
-    name: 'WebP to JPG Converter',
-    category: 'Image Tools',
-    categorySlug: 'image',
-    icon: '🔄',
-    desc: 'Convert WebP images back to JPG format for maximum compatibility.',
-    type: 'image-convert',
-    outputMime: 'image/jpeg',
-    outputExt: 'jpg',
-    outputQuality: 0.92,
-    metaTitle: 'Free WebP to JPG Converter Online — Instant, No Upload',
-    metaDesc: 'Convert WebP images to JPG format instantly. Free WebP to JPG converter — no server upload, works in your browser. Perfect for compatibility.',
-    content: `<h2>Why Convert WebP to JPG?</h2><p>While WebP is the superior format for web use, there are situations where JPG is required — older applications, certain email clients, photo editors that do not support WebP, and some social media upload tools may not accept WebP files. Converting to JPG ensures universal compatibility.</p><h2>When You Need JPG Instead of WebP</h2><p>You may need JPG when: sending images to clients who use older software, uploading to platforms that do not accept WebP (such as some print services), using image editing software that does not support WebP, or when sharing images with people using older devices.</p><h2>How the Conversion Works</h2><p>Your WebP file is loaded into a browser Image object, drawn onto an HTML5 Canvas, and then exported as a JPEG with 92% quality. This produces excellent image quality while keeping file sizes manageable. The entire process is local — your file is never uploaded to any server.</p>`,
+    slug: 'step-tracker',
+    name: 'Step Tracker',
+    category: 'Health & Tracking',
+    categorySlug: 'health',
+    icon: '👟',
+    desc: 'Log your daily steps, track progress toward your goal, and visualise your weekly activity with an animated progress ring.',
+    type: 'step-tracker',
+    metaTitle: 'Free Step Tracker Online — Daily Steps Log with Progress Ring',
+    metaDesc: 'Track your daily steps and walking goal with our free online step tracker. Visual progress ring and 7-day history chart. No app download required.',
+    content: `<h2>Why 10,000 Steps a Day?</h2><p>The 10,000-step goal originated from a 1960s Japanese marketing campaign for a pedometer, but research has since validated it as a meaningful target. A landmark 2019 study in JAMA Internal Medicine found that women who averaged 7,500 steps per day had significantly lower mortality rates. More recent research suggests benefits plateau around 7,500–8,000 steps for older adults, but higher step counts benefit younger, more active populations.</p><h2>The Health Benefits of Walking</h2><p>Regular walking improves cardiovascular fitness, reduces body fat, builds muscular endurance, lowers blood pressure, improves blood sugar regulation, boosts mood through endorphin release, and reduces the risk of type 2 diabetes, heart disease, and certain cancers. It is the most accessible form of exercise — requiring no equipment, gym membership, or specific fitness level.</p><h2>How to Increase Your Daily Steps</h2><p>Park farther from your destination. Take the stairs. Walk during phone calls. Schedule "walking meetings." Get off public transit one stop early. Walk for 10 minutes after every meal — research shows post-meal walking is particularly effective for blood sugar management. Use a lunch break walk as a mental reset. Small additions compound into significant daily totals.</p><h2>Tracking Progress Over Time</h2><p>Log your steps daily (either from a fitness tracker, phone health app, or manual estimation). The 7-day chart lets you spot patterns — are you more active on weekdays or weekends? Do you have consistent low-step days that you could target for improvement? Consistency over weeks builds the habit that makes physical activity automatic.</p>`,
     faq: [
-      { q: 'Will the WebP to JPG conversion lose quality?', a: 'A small amount of quality may be lost due to JPEG\'s lossy compression, but at 92% quality the difference is imperceptible for most images.' },
-      { q: 'Can I convert animated WebP files?', a: 'Only the first frame of an animated WebP will be converted to JPG, as JPG does not support animation.' },
-      { q: 'Is there a size limit?', a: 'We recommend files under 20MB for smooth in-browser processing.' }
+      { q: 'Is 10,000 steps the right goal for everyone?', a: 'No. Research suggests 7,500 steps provides most health benefits. Start with a goal 20% above your current average and gradually increase over weeks.' },
+      { q: 'How do I estimate steps without a tracker?', a: 'A rough estimate: walking briskly burns about 100 steps per minute. A 30-minute walk ≈ 3,000 steps. A 10-minute walk ≈ 1,000 steps.' },
+      { q: 'Does running count as steps?', a: 'Yes, running steps are generally counted at 1:1 with walking steps. Running produces more health benefit per step due to higher intensity.' },
+      { q: 'How long is step history stored?', a: 'The last 7 days are shown in the chart. All entries are stored in your browser\'s localStorage.' }
     ],
-    relatedTools: ['image-to-jpg', 'jpg-to-webp', 'image-compressor'],
+    relatedTools: ['habit-tracker', 'health-dashboard', 'goal-tracker'],
     relatedBlogs: []
   },
   {
-    slug: 'image-compressor',
-    name: 'Image Compressor',
-    category: 'Image Tools',
-    categorySlug: 'image',
-    icon: '⚡',
-    desc: 'Compress and reduce image file size without visible quality loss.',
-    type: 'image-compress',
-    metaTitle: 'Free Online Image Compressor — Reduce File Size Instantly',
-    metaDesc: 'Compress images online for free. Reduce JPG, PNG, WebP file sizes without visible quality loss. No upload required — works entirely in your browser.',
-    content: `<h2>Why Compress Images?</h2><p>Large image files slow down your website, cost mobile users data, and hurt your search engine rankings. Google uses page speed as a ranking factor, and images are typically the largest contributor to page weight. Compressing your images can reduce load times by 40–80%.</p><h2>How Image Compression Works</h2><p>Our compressor uses the HTML5 Canvas API with adjustable JPEG quality settings. By reducing the quality factor slightly — from 100% to 75–85% — you can achieve dramatic file size reductions that are invisible to the naked eye. The tool also lets you preview the result before downloading.</p><h2>How Much Can You Compress?</h2><p>Most photographs can be compressed to 60–80% of their original size with no perceptible quality loss. Images with large flat colour areas compress even more efficiently. The default 75% quality setting provides an excellent balance between file size and visual fidelity.</p><h2>Best Practices for Web Images</h2><p>For web images, aim for JPEG quality between 70–85%. Images above 200KB should be considered for compression. Always compress images before uploading to your website or CMS to improve performance from the start.</p>`,
+    slug: 'health-dashboard',
+    name: 'Health Dashboard',
+    category: 'Health & Tracking',
+    categorySlug: 'health',
+    icon: '📊',
+    desc: 'Your personal health command centre — see sleep, mood, steps, and habit streaks all in one place.',
+    type: 'health-dashboard',
+    metaTitle: 'Free Health Dashboard — Track Sleep, Mood, Steps & Habits',
+    metaDesc: 'View all your health metrics in one place. Your personal health dashboard shows sleep scores, mood trends, daily steps, and habit streaks from our free trackers.',
+    content: `<h2>Your Personal Health Command Centre</h2><p>A health dashboard brings all your key wellness metrics together in one view, giving you the big picture at a glance. Rather than checking each tracker separately, the dashboard surfaces your most important numbers and shows how they relate to each other. Research consistently shows that what gets measured gets improved — and a unified view makes it easy to spot correlations between sleep, mood, activity, and habits.</p><h2>How the Dashboard Works</h2><p>The Health Dashboard reads data from your other VitalHealth Hub trackers — Sleep Tracker, Mood Tracker, Step Tracker, and Habit Tracker. All data is stored locally in your browser, so the dashboard simply reads and displays your latest entries. No account, no sync, no privacy concerns. Start with any tracker and the dashboard will display those metrics immediately.</p><h2>Reading Your Health Metrics</h2><p>The dashboard shows your most recent entry for each metric alongside a trend indicator (up, down, or stable) based on your 7-day average. Green indicators mean you are meeting your targets; amber indicates room for improvement; red suggests this metric needs attention. Use the dashboard as a daily health check — 30 seconds to see your overall wellness picture.</p><h2>The Power of Connected Metrics</h2><p>When you track multiple metrics, patterns emerge that are invisible in isolation. Poor sleep correlates with lower mood. Fewer steps on weekends correlates with lower habit completion. High stress correlates with worse sleep quality. The dashboard makes these connections visible, giving you data-driven insight to make targeted improvements to your lifestyle.</p>`,
     faq: [
-      { q: 'How much can I compress without visible quality loss?', a: 'For most photos, 70–85% quality produces results that look identical to the original but are 30–60% smaller.' },
-      { q: 'Does this tool work for PNG files?', a: 'The quality slider affects JPEG output. For PNG, use the Image to PNG converter — PNG uses lossless compression.' },
-      { q: 'Are my images uploaded to a server?', a: 'No. All compression happens inside your browser using the Canvas API. Your files stay on your device.' },
-      { q: 'Can I compress multiple images at once?', a: 'Currently the tool processes one image at a time for best results.' }
+      { q: 'Where does the dashboard data come from?', a: 'It reads from the same localStorage used by the Sleep Tracker, Mood Tracker, Step Tracker, and Habit Tracker. Use those tools first to populate the dashboard.' },
+      { q: 'What if I haven\'t used any trackers yet?', a: 'The dashboard will show empty states with links to each tracker. Start with whichever tracker matters most to you.' },
+      { q: 'Can I see historical trends on the dashboard?', a: 'The dashboard shows your latest entry and 7-day averages. For detailed history, visit the individual tracker pages.' },
+      { q: 'Will the dashboard work across devices?', a: 'No. Each browser stores its own data locally. The dashboard reflects what you have tracked on that specific browser.' }
     ],
-    relatedTools: ['image-to-jpg', 'image-resizer', 'jpg-to-webp', 'image-quality-reducer'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'image-resizer',
-    name: 'Image Resizer',
-    category: 'Image Tools',
-    categorySlug: 'image',
-    icon: '📐',
-    desc: 'Resize images to exact pixel dimensions while maintaining quality.',
-    type: 'image-resize',
-    metaTitle: 'Free Online Image Resizer — Resize to Exact Dimensions',
-    metaDesc: 'Resize images to exact width and height in pixels. Free online image resizer — no upload, works in browser, maintains aspect ratio option.',
-    content: `<h2>Why Resize Images?</h2><p>Oversized images are one of the most common causes of slow websites. If you upload a 4000×3000 pixel photo but display it at 800×600 pixels, the browser still has to download all 12 megapixels. Resizing images to the exact dimensions you need can reduce file size by 80–95%.</p><h2>Common Use Cases for Image Resizing</h2><p>Profile pictures typically require 400×400 pixels. Blog featured images are commonly 1200×630 pixels. Social media posts vary: Instagram is 1080×1080 pixels, Twitter header images are 1500×500 pixels, and Facebook cover photos are 820×312 pixels. Knowing the exact size you need helps you resize precisely.</p><h2>How This Resizer Works</h2><p>Enter your target width and height in pixels. Optionally lock the aspect ratio to prevent distortion. The tool draws your image onto an HTML5 Canvas at the specified dimensions and exports it as a high-quality JPEG. Everything runs in your browser — no upload, instant results.</p>`,
-    faq: [
-      { q: 'Does resizing affect image quality?', a: 'Resizing down (reducing dimensions) generally maintains good quality. Resizing up (upscaling) will reduce sharpness as there is no additional pixel data to work with.' },
-      { q: 'Can I lock the aspect ratio?', a: 'Yes, check the "Lock Aspect Ratio" option and the height will automatically adjust when you change the width.' },
-      { q: 'What format will the resized image be saved as?', a: 'The resized image is saved as a high-quality JPEG by default.' },
-      { q: 'Is my image sent to a server?', a: 'No. Everything happens in your browser via the Canvas API.' }
-    ],
-    relatedTools: ['image-compressor', 'image-to-jpg', 'image-crop'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'image-crop',
-    name: 'Image Crop Tool',
-    category: 'Image Tools',
-    categorySlug: 'image',
-    icon: '✂️',
-    desc: 'Crop images by specifying exact pixel coordinates and dimensions.',
-    type: 'image-crop',
-    metaTitle: 'Free Online Image Crop Tool — Crop to Exact Dimensions',
-    metaDesc: 'Crop images online for free. Specify x, y coordinates and width/height in pixels. No upload required — all processing in your browser.',
-    content: `<h2>Why Crop Images?</h2><p>Cropping removes unwanted areas from an image, focuses attention on the subject, and optimises images for specific display contexts. Whether you're removing a distracting background, creating a square profile photo, or preparing a banner image, precise cropping is an essential editing tool.</p><h2>How to Crop an Image</h2><p>Upload your image, then specify the starting X and Y coordinates (from the top-left corner) and the width and height of the crop area. You can preview the crop area before processing. The tool uses the HTML5 Canvas API to extract exactly the pixels you specify and export them as a new image file.</p><h2>Common Crop Sizes</h2><p>Square crops (e.g. 1:1) are used for profile pictures and Instagram posts. 16:9 crops are standard for YouTube thumbnails and video backgrounds. 4:3 is common for blog post images. 2:1 or 3:1 ratios work well for wide banner images.</p>`,
-    faq: [
-      { q: 'Are coordinates measured from which corner?', a: 'X and Y coordinates are measured from the top-left corner of the image, where (0, 0) is the top-left pixel.' },
-      { q: 'What if I enter coordinates that exceed the image size?', a: 'The tool will clamp the crop area to the image boundaries so no empty space is included.' },
-      { q: 'Is my image uploaded to any server?', a: 'No. All cropping is done client-side using the HTML5 Canvas API.' }
-    ],
-    relatedTools: ['image-resizer', 'image-compressor', 'image-to-jpg'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'image-metadata-remover',
-    name: 'Image Metadata Remover',
-    category: 'Image Tools',
-    categorySlug: 'image',
-    icon: '🔒',
-    desc: 'Strip EXIF data and metadata from images to protect your privacy.',
-    type: 'image-convert',
-    outputMime: 'image/png',
-    outputExt: 'png',
-    outputQuality: 1,
-    metaTitle: 'Free Image Metadata Remover — Strip EXIF Data Online',
-    metaDesc: 'Remove EXIF metadata from images to protect your privacy. Free online tool — no upload, removes GPS location, camera info, and other hidden data.',
-    content: `<h2>What Is Image Metadata (EXIF Data)?</h2><p>When you take a photo with a smartphone or digital camera, the device automatically embeds metadata into the image file. This EXIF (Exchangeable Image File Format) data can include your GPS location, the exact time the photo was taken, your device model, camera settings (aperture, shutter speed, ISO), and even the photographer's name.</p><h2>Why Remove EXIF Data?</h2><p>EXIF data can reveal sensitive information you might not want to share publicly. When you upload a photo to social media or share it by email, the recipient may be able to see exactly where the photo was taken, which could be your home address. Removing metadata before sharing protects your privacy.</p><h2>How Metadata Removal Works</h2><p>This tool draws your image onto an HTML5 Canvas and exports it as a fresh PNG file. The Canvas API does not copy EXIF or metadata from the source image, so the exported file contains only pixel data — no location, no timestamps, no device information. This is a simple, reliable method for stripping metadata entirely.</p>`,
-    faq: [
-      { q: 'Does this tool remove GPS location data?', a: 'Yes. Re-exporting via Canvas removes all EXIF metadata including GPS coordinates.' },
-      { q: 'Will this change how my image looks?', a: 'No. Only the hidden metadata is removed. The visible image remains identical.' },
-      { q: 'Is my image safe to process here?', a: 'Completely. Everything runs in your browser — your image is never uploaded to any server.' },
-      { q: 'Which formats does this work on?', a: 'Any image format your browser can display: JPG, PNG, WebP, GIF, BMP, and more.' }
-    ],
-    relatedTools: ['image-to-png', 'image-to-jpg', 'image-compressor'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'image-quality-reducer',
-    name: 'Image Quality Reducer',
-    category: 'Image Tools',
-    categorySlug: 'image',
-    icon: '📉',
-    desc: 'Reduce image quality and file size with a custom compression slider.',
-    type: 'image-compress',
-    metaTitle: 'Free Image Quality Reducer — Reduce File Size with Custom Quality',
-    metaDesc: 'Reduce image quality and file size online. Set custom compression level from 10–95%. Free tool — no upload, instant preview in your browser.',
-    content: `<h2>What Does Reducing Image Quality Do?</h2><p>Reducing an image's quality level applies stronger JPEG compression, which discards subtle colour variations and detail that are mostly imperceptible to the human eye. The result is a smaller file that looks nearly identical at moderate compression levels but becomes noticeably degraded at very high compression (very low quality settings).</p><h2>Use Cases for Quality Reduction</h2><p>Reducing image quality is useful when you need to: meet a file size limit for email attachments, reduce page load times for web images, save storage space in bulk image collections, or prepare images for thumbnails and previews where perfect quality is not needed.</p><h2>Finding the Right Balance</h2><p>Quality settings between 60–80% typically produce excellent results that are difficult to distinguish from the original. Below 50%, image artefacts become visible, particularly in areas of fine detail and gradients. Use the preview to compare before downloading.</p>`,
-    faq: [
-      { q: 'What quality level should I use?', a: 'For web images, 70–80% is ideal. For thumbnails and previews, 50–65% is acceptable.' },
-      { q: 'Can I reduce PNG files?', a: 'The quality slider produces JPEG output. PNG is lossless and cannot be quality-reduced in the same way.' },
-      { q: 'How is this different from the Image Compressor?', a: 'This tool focuses on quality control with a fine-grained slider. The Image Compressor uses optimised default settings.' }
-    ],
-    relatedTools: ['image-compressor', 'image-to-jpg', 'image-resizer'],
+    relatedTools: ['sleep-tracker', 'mood-tracker', 'step-tracker', 'habit-tracker'],
     relatedBlogs: []
   },
 
-  // ─── PDF TOOLS ────────────────────────────────────────────────────────────
+  // ─── PRODUCTIVITY ──────────────────────────────────────────────────────────
   {
-    slug: 'jpg-to-pdf',
-    name: 'JPG to PDF Converter',
-    category: 'PDF Tools',
-    categorySlug: 'pdf',
-    icon: '📄',
-    desc: 'Convert one or more JPG images into a PDF document instantly.',
-    type: 'jpg-to-pdf',
-    metaTitle: 'Free JPG to PDF Converter Online — Convert Images to PDF',
-    metaDesc: 'Convert JPG images to PDF online for free. Add multiple images and create a multi-page PDF. No upload required — works in your browser with jsPDF.',
-    content: `<h2>Why Convert JPG to PDF?</h2><p>PDF is the universal format for sharing documents. Converting images to PDF makes them easier to print, share professionally, and view consistently across all devices and operating systems without any software dependencies. PDFs cannot be accidentally edited and preserve layout perfectly.</p><h2>How This Converter Works</h2><p>This tool uses jsPDF, a well-established open-source JavaScript library, to create a PDF document from your images entirely in the browser. Each image is placed on a separate PDF page, scaled to fit an A4 page while maintaining its aspect ratio. No files are uploaded to any server.</p><h2>Use Cases</h2><p>Common use cases include: converting scanned document photos into PDF for filing, combining multiple product images into a catalogue PDF, creating photo albums in PDF format, and converting receipts or invoices photographed on a smartphone into PDF for expense reporting.</p>`,
+    slug: 'daily-planner',
+    name: 'Daily Planner',
+    category: 'Productivity',
+    categorySlug: 'productivity',
+    icon: '📅',
+    desc: 'Plan your day with time-blocked tasks, priority levels, and a clean checklist that auto-saves to your browser.',
+    type: 'daily-planner',
+    metaTitle: 'Free Daily Planner Online — Time Blocks & Task Priorities',
+    metaDesc: 'Plan your day with a free online daily planner. Add time-blocked tasks with priority levels (High/Medium/Low), check them off, and auto-save to your browser.',
+    content: `<h2>Why Time Blocking Works</h2><p>Time blocking — assigning specific tasks to specific time slots — is one of the most effective productivity techniques used by high performers including Elon Musk, Cal Newport, and Bill Gates. When you write down what you will do and when, you eliminate decision fatigue and significantly reduce the mental overhead of deciding what to work on next. Research shows that people who write down their plans are up to 42% more likely to achieve their goals.</p><h2>Priority Levels Explained</h2><p>This planner uses three priority levels: High (critical tasks that must be done today), Medium (important but not urgent tasks), and Low (nice-to-do tasks or small admin items). The Eisenhower Matrix recommends doing high-priority items first thing in the morning when your cognitive energy is at its peak. Schedule creative and strategic work earlier in the day, and administrative tasks later.</p><h2>Building a Productive Day</h2><p>Start each morning by reviewing yesterday's incomplete tasks and adding today's new ones. Block your most important task (MIT) in your first time slot. Schedule similar tasks together to benefit from context-switching efficiency. Build in buffer time between tasks — research shows that tasks almost always take 1.5–2x longer than estimated. End with a brief review of what was completed.</p><h2>The Science of Task Completion</h2><p>Checking off completed tasks triggers a small dopamine release in the brain, reinforcing productive behaviour. The "Zeigarnik Effect" means that uncompleted tasks occupy mental bandwidth — writing them down and planning them frees up cognitive resources for focused work. The daily planner works as a cognitive offload system, freeing your mind to focus on execution rather than organisation.</p>`,
     faq: [
-      { q: 'Can I add multiple images to create a multi-page PDF?', a: 'Yes! Add multiple images and each will become a separate page in the PDF document.' },
-      { q: 'What image formats are supported?', a: 'JPG, PNG, WebP, and most common image formats are supported.' },
-      { q: 'Is my data sent to a server?', a: 'No. The PDF is created entirely in your browser using the jsPDF library.' },
-      { q: 'What page size does the PDF use?', a: 'Images are fitted to A4 pages (210×297mm) with margins maintained.' }
+      { q: 'Is my planner saved for tomorrow?', a: 'Each day has its own task list saved in localStorage. When you open the planner tomorrow, you will start fresh. Previous days\' lists are preserved.' },
+      { q: 'How many tasks can I add?', a: 'There is no hard limit. However, research suggests that planning more than 5–7 significant tasks per day leads to incomplete days and lower satisfaction. Prioritise ruthlessly.' },
+      { q: 'Can I move a task to tomorrow?', a: 'Uncheck the task and it will appear again when you visit the planner tomorrow. Manually copy the task name to tomorrow\'s list if needed.' },
+      { q: 'Is there a mobile version?', a: 'The planner is fully responsive and works on mobile browsers. All functionality including saving is available on any device.' }
     ],
-    relatedTools: ['pdf-merge', 'image-to-jpg', 'image-compressor'],
+    relatedTools: ['focus-timer', 'goal-tracker', 'habit-tracker'],
+    relatedBlogs: []
+  },
+  {
+    slug: 'focus-timer',
+    name: 'Focus Timer',
+    category: 'Productivity',
+    categorySlug: 'productivity',
+    icon: '⏱️',
+    desc: 'Boost deep focus with a Pomodoro timer. Customisable work and break intervals with session tracking.',
+    type: 'focus-timer',
+    metaTitle: 'Free Pomodoro Focus Timer Online — Deep Work Sessions',
+    metaDesc: 'Boost productivity with our free Pomodoro focus timer. Customise work and break intervals, track completed sessions, and build deep focus habits.',
+    content: `<h2>The Pomodoro Technique</h2><p>Developed by Francesco Cirillo in the late 1980s (named after his tomato-shaped kitchen timer), the Pomodoro Technique breaks work into 25-minute focused sessions separated by 5-minute breaks. After four sessions (pomodoros), take a longer 15–30 minute break. This structure leverages the brain's natural attention cycles and prevents mental fatigue.</p><h2>Why Timed Work Sessions Work</h2><p>The human brain can sustain high-quality focused attention for approximately 90 minutes before needing rest, but most people find 25-minute intervals more practical for starting difficult tasks. The timer creates a sense of urgency (the "artificial deadline effect") that reduces procrastination and increases the ability to begin. Knowing a break is coming also makes sustained focus more mentally accessible.</p><h2>Customising Your Focus Intervals</h2><p>The traditional 25/5 minute split is a starting point. Some people find 50/10 works better for complex creative tasks. Students often prefer 45/15. Knowledge workers doing deep analytical work sometimes use 90-minute sessions. Experiment to find what works for your cognitive profile, the type of task, and time of day. The key is consistency — use the same structure for a week before changing it.</p><h2>Maximising Your Focus Sessions</h2><p>Before starting a session, define exactly what you will work on. Silence notifications. Close irrelevant browser tabs. Keep water nearby. During the session, if a distracting thought occurs, write it down quickly and return to work — do not act on it. During breaks, step away from screens: stretch, walk, breathe. This prevents eye strain and allows the default mode network (critical for creativity and insight) to activate.</p>`,
+    faq: [
+      { q: 'Can I customise the work and break times?', a: 'Yes. Set any work duration (1–120 minutes) and break duration (1–60 minutes) using the settings inputs.' },
+      { q: 'Will the timer continue if I switch tabs?', a: 'Yes, the timer runs in the background. The page title updates with the remaining time so you can see it in your browser tab.' },
+      { q: 'Does the timer make a sound when finished?', a: 'Yes, a browser notification alert sounds when each session completes. Ensure your browser allows notifications from this site.' },
+      { q: 'How many sessions should I do per day?', a: 'Most people find 4–8 Pomodoro sessions (2–4 hours of focused work) realistic. Quality of focus matters more than quantity of sessions.' }
+    ],
+    relatedTools: ['daily-planner', 'goal-tracker', 'habit-tracker'],
+    relatedBlogs: []
+  },
+  {
+    slug: 'goal-tracker',
+    name: 'Goal Tracker',
+    category: 'Productivity',
+    categorySlug: 'productivity',
+    icon: '🎯',
+    desc: 'Set measurable goals, update your progress, and watch your progress bars fill as you move toward each target.',
+    type: 'goal-tracker',
+    metaTitle: 'Free Goal Tracker Online — Track Progress Toward Any Goal',
+    metaDesc: 'Track progress toward any goal with our free online goal tracker. Set targets, update current values, and watch progress bars fill. Saved in your browser.',
+    content: `<h2>The SMART Goal Framework</h2><p>Goals that are Specific, Measurable, Achievable, Relevant, and Time-bound (SMART) are dramatically more likely to be achieved than vague intentions. "Exercise more" is an intention; "Run 5km three times per week by March" is a SMART goal. This tracker is designed for measurable goals — ones where you can assign a number to your current progress and a target number to aim for.</p><h2>Why Visual Progress Tracking Works</h2><p>Visual feedback on progress triggers motivational psychology that purely mental goal-keeping cannot. Seeing a progress bar at 67% creates a powerful drive to reach 100% — psychologists call this "goal gradient effect" — the closer you are to your goal, the faster and harder you work. This is why the final stretch of a project often moves faster than the beginning.</p><h2>Examples of Trackable Goals</h2><p>This tracker works for any measurable goal: weight loss (current weight vs target), strength training (current max lifts vs PR goals), water intake (glasses per day), books read (current vs annual target), savings (current balance vs savings goal), steps (weekly average vs target), sleep hours, business revenue, or any other quantifiable target.</p><h2>Goal Setting and Health</h2><p>Health-specific goals benefit enormously from clear targets. Research from the American Journal of Health Promotion shows that people who set specific health targets and track progress are three times more likely to achieve their goals than those who rely on motivation alone. The act of setting a goal changes your unconscious behaviour — you begin to notice opportunities that align with your goal without consciously looking for them.</p>`,
+    faq: [
+      { q: 'What types of goals can I track?', a: 'Any goal with a numerical current value and a target. Examples: weight (75kg → 70kg), pushups (20 → 50), water glasses (4 → 8 per day), books read (3 → 12 per year).' },
+      { q: 'Can I track multiple goals at once?', a: 'Yes. Add as many goals as you like. Research suggests focusing on 3–5 key goals at a time for best results.' },
+      { q: 'How do I update my progress?', a: 'Click the "Update" button on any goal and enter your new current value. The progress bar will animate to the new percentage.' },
+      { q: 'What happens when I reach 100%?', a: 'The goal card shows a completion celebration. You can then set a new, higher target to continue progress.' }
+    ],
+    relatedTools: ['daily-planner', 'focus-timer', 'habit-tracker'],
+    relatedBlogs: []
+  },
+
+  // ─── TEXT & CONTENT ────────────────────────────────────────────────────────
+  {
+    slug: 'advanced-text-analyzer',
+    name: 'Advanced Text Analyzer',
+    category: 'Text & Content',
+    categorySlug: 'text',
+    icon: '📝',
+    desc: 'All-in-one text analysis: word count, readability score, reading time, keyword density, sentence stats — live as you type.',
+    type: 'advanced-text-analyzer',
+    metaTitle: 'Free Advanced Text Analyzer — Word Count, Readability & Keyword Density',
+    metaDesc: 'Analyse your text in real time: word count, character count, readability score, reading time, keyword density, sentence and paragraph stats. Free online tool.',
+    content: `<h2>Everything You Need to Analyse Your Content</h2><p>Professional content writers and SEO specialists need multiple metrics to evaluate their work. Word count alone does not tell the full story — you also need to know how readable your content is, how long it will take to read, which keywords are most prominent, and whether your sentence structure is optimised. This Advanced Text Analyzer delivers all these metrics simultaneously as you type, with no need to submit your text to any server.</p><h2>Key Metrics Explained</h2><p>Words and characters are counted by detecting whitespace-separated tokens and individual characters respectively. Sentences are counted by full stops, exclamation marks, and question marks. Reading time is calculated at 200 words per minute — the average adult silent reading speed. Paragraphs are detected by blank lines. The Flesch Reading Ease score uses the formula: 206.835 – (1.015 × ASL) – (84.6 × ASW), where ASL is average sentence length and ASW is average syllables per word.</p><h2>Readability for SEO and UX</h2><p>Google's search quality raters evaluate content readability as part of content quality assessment. For general web audiences, target a Flesch Reading Ease score of 60–70. Health content should target 60–75 to be accessible to the widest audience. Academic and technical content may score 30–50. The analyzer also shows grade level — most web content should target Grade 8 or below for maximum accessibility.</p><h2>Keyword Density for SEO</h2><p>The keyword density section shows the top 10 most-used meaningful words in your content (excluding common stop words). Ideal keyword density for your primary target keyword is 1–2%. Above 3–4% risks being flagged as keyword stuffing. Use this section to ensure your main topic keywords appear naturally and with appropriate frequency throughout your content.</p>`,
+    faq: [
+      { q: 'Does this tool save or transmit my text?', a: 'No. All analysis runs in your browser using JavaScript. Your text is never sent to any server.' },
+      { q: 'What readability score should I aim for?', a: 'For general web content: 60–70 (Plain English). For health content targeting general public: 65–80. For academic writing: 30–50 is typical.' },
+      { q: 'How is reading time calculated?', a: 'Based on 200 words per minute, the average adult reading speed. Adjust mentally if your audience includes slow readers (children, non-native speakers) or fast readers (experts in the field).' },
+      { q: 'Why are some common words excluded from keyword density?', a: 'Stop words (the, a, is, of, and, etc.) are filtered out because they appear in all text and have no keyword significance.' }
+    ],
+    relatedTools: ['headline-analyzer', 'content-idea-generator'],
+    relatedBlogs: []
+  },
+  {
+    slug: 'headline-analyzer',
+    name: 'Headline Analyzer',
+    category: 'Text & Content',
+    categorySlug: 'text',
+    icon: '📰',
+    desc: 'Score your headline and get specific improvements. Analyses power words, emotional language, length, and SEO impact.',
+    type: 'headline-analyzer',
+    metaTitle: 'Free Headline Analyzer — Score Headlines for SEO & Engagement',
+    metaDesc: 'Analyse and score your headlines with our free Headline Analyzer. Get scores for power words, emotional language, length, and SEO. Instant feedback.',
+    content: `<h2>Why Headlines Are So Important</h2><p>On average, 8 out of 10 people read a headline, but only 2 out of 10 read the body content. Your headline is the most important piece of text you write — it determines whether anyone will read anything else. A well-crafted headline can produce 5–10x more clicks, shares, and engagement than a poorly written one for the same underlying content.</p><h2>What Makes a Great Headline</h2><p>Data from CoSchedule's analysis of millions of headlines identifies several factors that predict headline performance: overall character length (optimal is 55–70 characters for SEO, 6–12 words for social sharing), inclusion of specific numbers (listicles and numbered guides consistently outperform other formats), power words that trigger emotion or curiosity, and a clear value proposition that tells the reader exactly what they will gain.</p><h2>Power Words Explained</h2><p>Power words are psychologically charged words that trigger a strong emotional or cognitive response. They include: urgency words (now, today, immediate, last chance), curiosity words (secret, hidden, discover, surprising), benefit words (proven, guaranteed, transform, master), and authority words (expert, ultimate, definitive, complete). Studies show headlines with 2–3 power words significantly outperform headlines with none.</p><h2>The Emotional Value of Headlines</h2><p>Headlines with high emotional value (both positive emotions like excitement, inspiration, and amusement, or negative emotions like fear, anger, and disgust) outperform neutral headlines in terms of click-through rates and social sharing. The highest-performing headlines often combine a clear benefit with an emotional trigger and a specific number — for example: "7 Proven Tricks to Finally Stop Feeling Exhausted Every Day."</p>`,
+    faq: [
+      { q: 'What score should I aim for?', a: 'A score of 70+ is excellent. 50–69 is good with room to improve. Below 50 suggests the headline needs significant work before publishing.' },
+      { q: 'How are power words defined?', a: 'The analyzer checks your headline against a curated list of 200+ power words categorised as action, curiosity, urgency, benefit, and emotional triggers.' },
+      { q: 'Does headline length really matter for SEO?', a: 'Yes. Google typically shows 50–60 characters in search results before truncating. Headlines over 70 characters may get cut off, reducing click-through rates from search.' },
+      { q: 'Can I analyse multiple variations?', a: 'Yes. Clear the input and enter a new headline to score any number of variations. We recommend testing 3–5 variants and choosing the highest-scoring one.' }
+    ],
+    relatedTools: ['advanced-text-analyzer', 'content-idea-generator'],
+    relatedBlogs: []
+  },
+  {
+    slug: 'content-idea-generator',
+    name: 'Content Idea Generator',
+    category: 'Text & Content',
+    categorySlug: 'text',
+    icon: '💡',
+    desc: 'Generate blog post ideas, social media angles, and reader FAQs for any health topic in seconds.',
+    type: 'content-idea-generator',
+    metaTitle: 'Free Health Content Idea Generator — Blog Post & Social Media Ideas',
+    metaDesc: 'Generate blog post ideas, social media content angles, and FAQ topics for any health subject. Free health content idea generator — instant results, no sign-up.',
+    content: `<h2>The Content Creator's Biggest Challenge</h2><p>Coming up with fresh, relevant content ideas consistently is one of the hardest parts of content marketing. Research shows that health and wellness is one of the most searched categories online, with billions of monthly searches covering nutrition, fitness, mental health, sleep, and chronic conditions. Yet many health content creators run out of ideas or default to writing about the same general topics as everyone else.</p><h2>How the Idea Generator Works</h2><p>Enter any health topic or keyword, select a content type, and the generator produces a list of targeted content ideas derived from high-traffic health content categories and proven content frameworks. Ideas are grouped into: long-form blog posts (best for SEO and authority building), social media content angles (optimised for engagement and sharing), FAQ content (targets question-based search queries and featured snippets), and tool-specific content (helps readers take action).</p><h2>SEO-First Content Strategy for Health Sites</h2><p>The most effective health content strategy combines: evergreen educational content that ranks for high-volume keywords, question-based content that targets featured snippets and voice search, case studies and personal stories that generate social sharing, and data-driven content that earns backlinks from other health sites. This generator helps you produce ideas across all four content types for any health topic you choose.</p><h2>E-E-A-T and Health Content</h2><p>Google applies especially high quality standards to health content under its E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) guidelines. Health topics are classified as "Your Money or Your Life" (YMYL) content, meaning they require demonstrated expertise, accurate information, clear authorship, and references to credible sources. Use the generated ideas as starting points and ensure the final content meets these high standards.</p>`,
+    faq: [
+      { q: 'How many ideas does the generator produce?', a: 'The generator produces 12–16 ideas per topic, across four content types: blog posts, social media, FAQs, and action-oriented content.' },
+      { q: 'Are the ideas unique to my topic?', a: 'Ideas are generated by combining your topic with proven content frameworks and health-specific angles. They are tailored to your input but based on patterns from successful health content.' },
+      { q: 'Can I generate ideas for non-health topics?', a: 'The generator is optimised for health and wellness topics. It will produce ideas for other topics but the results may be less targeted.' },
+      { q: 'Can I copy the generated ideas?', a: 'Yes, each idea has a copy button. You can also select and copy the full output to paste into your content planning tool.' }
+    ],
+    relatedTools: ['headline-analyzer', 'advanced-text-analyzer'],
+    relatedBlogs: []
+  },
+
+  // ─── UTILITY TOOLS (Minimal) ──────────────────────────────────────────────
+  {
+    slug: 'image-compressor',
+    name: 'Image Compressor',
+    category: 'Utility Tools',
+    categorySlug: 'utility',
+    icon: '⚡',
+    desc: 'Compress and reduce image file size without visible quality loss. No upload required.',
+    type: 'image-compressor',
+    metaTitle: 'Free Image Compressor Online — Reduce File Size Instantly',
+    metaDesc: 'Compress JPG, PNG, WebP images online for free. Reduce file size without visible quality loss. No upload — all processing happens in your browser.',
+    content: `<h2>Why Compress Images?</h2><p>Large image files are one of the biggest causes of slow websites. Google uses page speed as a direct ranking factor, and images are typically the heaviest assets on any web page. Compressing images before uploading can reduce load times by 40–80% with no visible quality difference. This tool processes images entirely in your browser using the Canvas API — your files never leave your device.</p><h2>How Much Can You Compress?</h2><p>Most photographs can be compressed to 65–80% quality with no perceptible quality loss to the naked eye. At 75% quality, a 2MB photo typically compresses to 300–500KB — a 75–85% reduction. For website images, this dramatically improves Core Web Vitals scores, which directly affect search rankings. The preview lets you compare before downloading.</p>`,
+    faq: [
+      { q: 'Are my images uploaded to a server?', a: 'No. All compression happens in your browser using the HTML5 Canvas API. Your files never leave your device.' },
+      { q: 'What quality level should I use?', a: 'For web images, 70–80% produces excellent results with significant size savings. For print, use 85–90%.' }
+    ],
+    relatedTools: ['image-converter', 'pdf-merge'],
+    relatedBlogs: []
+  },
+  {
+    slug: 'image-converter',
+    name: 'Image Converter',
+    category: 'Utility Tools',
+    categorySlug: 'utility',
+    icon: '🔄',
+    desc: 'Convert any image to JPG, PNG, or WebP format instantly in your browser. No upload required.',
+    type: 'image-converter',
+    metaTitle: 'Free Image Converter Online — Convert to JPG, PNG, WebP',
+    metaDesc: 'Convert images between JPG, PNG, and WebP formats instantly. Free online image converter — no server upload, works in your browser. Fast and private.',
+    content: `<h2>Convert Between Image Formats</h2><p>Different contexts require different image formats. JPG is best for photographs and complex images where file size matters. PNG is ideal for graphics, logos, and images requiring transparency. WebP is Google's modern format that achieves 25–35% smaller file sizes than JPG at equivalent quality — recommended for web performance. This converter handles all three formats using the browser's Canvas API, with no uploads to any server.</p><h2>Which Format Should You Use?</h2><p>For web images: WebP is the best choice for performance (all modern browsers support it). For photographs shared by email or social media: JPG for photos, PNG for graphics. For images requiring transparent backgrounds: PNG only. JPG does not support transparency. WebP supports both lossy and lossless compression plus transparency.</p>`,
+    faq: [
+      { q: 'Is my image sent to any server?', a: 'No. All conversion happens in your browser using the HTML5 Canvas API.' },
+      { q: 'Can I convert multiple images at once?', a: 'Currently the tool processes one image at a time. For batch conversion, process each image separately.' }
+    ],
+    relatedTools: ['image-compressor', 'pdf-merge'],
     relatedBlogs: []
   },
   {
     slug: 'pdf-merge',
     name: 'PDF Merge Tool',
-    category: 'PDF Tools',
-    categorySlug: 'pdf',
-    icon: '📎',
-    desc: 'Merge multiple PDF files into one document instantly.',
+    category: 'Utility Tools',
+    categorySlug: 'utility',
+    icon: '📄',
+    desc: 'Combine multiple PDF files into one document. Drag, drop, order, and merge — no upload required.',
     type: 'pdf-merge',
     metaTitle: 'Free PDF Merge Tool Online — Combine PDF Files Instantly',
-    metaDesc: 'Merge multiple PDF files into one document for free. No upload, no sign-up — uses pdf-lib to combine PDFs entirely in your browser.',
-    content: `<h2>What Is PDF Merging?</h2><p>PDF merging (or combining) takes two or more separate PDF files and joins them together into a single PDF document. The pages from each input file are concatenated in the order you specify, creating one unified document.</p><h2>Common Use Cases</h2><p>PDF merging is essential for: combining chapters of a report written by different authors, joining a cover letter with a CV and supporting documents, assembling invoices and receipts into a single financial report, and combining scanned pages of a multi-page document into one file.</p><h2>How This Tool Works</h2><p>This tool uses pdf-lib, a powerful open-source PDF library for JavaScript. All processing happens in your browser — the PDF files are read as ArrayBuffers using the FileReader API, merged using pdf-lib's document copying functions, and the result is downloaded directly to your device. No data is ever sent to a server.</p><h2>File Order Matters</h2><p>PDFs are merged in the order you add them. Drag and drop files in the order you want them to appear in the final document. You can reorder files before merging.</p>`,
+    metaDesc: 'Merge multiple PDF files into one document online for free. No upload, no sign-up — uses pdf-lib to combine PDFs entirely in your browser.',
+    content: `<h2>Merge PDFs Instantly in Your Browser</h2><p>Combining multiple PDFs into one document is a common need — assembling report chapters, combining a CV with cover letter and supporting documents, or joining scanned pages into one file. This tool uses pdf-lib, a powerful open-source JavaScript library, to merge your PDFs entirely in your browser. No files are uploaded to any server — all processing is local, fast, and completely private.</p><h2>Maintaining PDF Quality</h2><p>PDF merging using pdf-lib preserves the original quality of all content including text, vector graphics, images, and embedded fonts. The merged output is identical in quality to the source files. Page order is maintained exactly as you add the files — drag and arrange them before merging for precise control.</p>`,
     faq: [
-      { q: 'How many PDFs can I merge at once?', a: 'You can merge multiple PDFs in one operation. Performance depends on your browser and the total file size.' },
-      { q: 'Are there file size limits?', a: 'There is no hard limit, but very large files may be slow to process in the browser. We recommend keeping total size under 50MB.' },
-      { q: 'Is the order of PDFs preserved?', a: 'Yes. PDFs are merged in the exact order they are listed in the tool.' },
-      { q: 'Are my PDFs uploaded to any server?', a: 'No. All merging happens entirely in your browser using pdf-lib. Your files never leave your device.' }
+      { q: 'Are my PDFs uploaded to any server?', a: 'No. Merging happens entirely in your browser using pdf-lib. Your files never leave your device.' },
+      { q: 'How many PDFs can I merge?', a: 'There is no hard limit. Performance depends on file sizes and your browser\'s available memory. Keep total file size under 100MB for best results.' }
     ],
-    relatedTools: ['jpg-to-pdf', 'pdf-rotate'],
+    relatedTools: ['image-converter', 'image-compressor', 'pdf-split'],
     relatedBlogs: []
   },
   {
-    slug: 'pdf-rotate',
-    name: 'Rotate PDF Pages',
-    category: 'PDF Tools',
-    categorySlug: 'pdf',
-    icon: '🔃',
-    desc: 'Rotate all pages in a PDF by 90, 180, or 270 degrees.',
-    type: 'pdf-rotate',
-    metaTitle: 'Free PDF Page Rotator Online — Rotate PDF Pages Instantly',
-    metaDesc: 'Rotate PDF pages by 90, 180, or 270 degrees online for free. No upload required — uses pdf-lib to rotate pages in your browser.',
-    content: `<h2>Why Rotate PDF Pages?</h2><p>Scanned documents often end up with pages in the wrong orientation — a portrait document scanned sideways, or a landscape document appearing upside-down. Rotating PDF pages corrects the orientation so the document reads correctly in any PDF viewer.</p><h2>How This Tool Works</h2><p>This tool uses pdf-lib to load your PDF in the browser, apply a rotation to every page, and export the corrected PDF. No server is involved — the entire operation runs locally in your browser using JavaScript. Processing is fast, even for multi-page documents.</p><h2>Rotation Options</h2><p>You can rotate pages by 90° clockwise (to fix a document rotated left), 180° (to flip an upside-down document), or 270° clockwise (equivalent to 90° counter-clockwise, to fix a document rotated right).</p>`,
-    faq: [
-      { q: 'Can I rotate only specific pages?', a: 'This tool currently rotates all pages by the same angle. For selective page rotation, consider our PDF Split tool to isolate pages first.' },
-      { q: 'Will the rotation be saved permanently?', a: 'Yes, the downloaded PDF will have all pages permanently rotated to the specified angle.' },
-      { q: 'Is my PDF uploaded to any server?', a: 'No. All processing is done in your browser with pdf-lib.' }
-    ],
-    relatedTools: ['pdf-merge', 'jpg-to-pdf'],
-    relatedBlogs: []
-  },
-
-  // ─── TEXT TOOLS ───────────────────────────────────────────────────────────
-  {
-    slug: 'word-counter',
-    name: 'Word Counter',
-    category: 'Text Tools',
-    categorySlug: 'text',
-    icon: '📝',
-    desc: 'Count words, characters, sentences, and paragraphs in any text.',
-    type: 'word-counter',
-    metaTitle: 'Free Word Counter Online — Count Words, Characters, Sentences',
-    metaDesc: 'Count words, characters, sentences, paragraphs, and reading time instantly. Free online word counter — paste text and get results in real time.',
-    content: `<h2>Why Use a Word Counter?</h2><p>Word count matters in many contexts: blog posts typically perform best at 1,500–2,500 words for SEO. Academic essays have strict word limits. Social media platforms have character limits. Job applications often request cover letters within a specific word range. Knowing your word count precisely is essential.</p><h2>What This Tool Measures</h2><p>This word counter provides: total word count, character count (with and without spaces), sentence count, paragraph count, and estimated reading time (based on the average adult reading speed of 200 words per minute). All metrics update in real time as you type.</p><h2>Tips for Content Writers</h2><p>For SEO blog posts, aim for a minimum of 1,000 words on core topics and 2,000+ words for comprehensive guides. Short-form content (300–600 words) works well for news updates and simple how-to articles. Always prioritise quality over hitting an arbitrary word count target.</p>`,
-    faq: [
-      { q: 'How does reading time get calculated?', a: 'Reading time is based on 200 words per minute, which is the average adult reading speed.' },
-      { q: 'Does the word counter include numbers as words?', a: 'Yes, numbers are counted as words just like any other token separated by spaces.' },
-      { q: 'Is my text stored or logged?', a: 'No. All processing happens in your browser. Your text is never sent to any server.' },
-      { q: 'What counts as a sentence?', a: 'Sentences are counted by detecting periods, exclamation marks, and question marks followed by a space or end of text.' }
-    ],
-    relatedTools: ['character-counter', 'case-converter', 'readability-analyzer', 'keyword-density'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'character-counter',
-    name: 'Character Counter',
-    category: 'Text Tools',
-    categorySlug: 'text',
-    icon: '🔢',
-    desc: 'Count characters with and without spaces for tweets, bios, and more.',
-    type: 'character-counter',
-    metaTitle: 'Free Character Counter Online — Count Characters Instantly',
-    metaDesc: 'Count characters with and without spaces in real time. Free online character counter — perfect for Twitter, Instagram bios, meta descriptions, and SMS.',
-    content: `<h2>Why Character Count Matters</h2><p>Many platforms enforce strict character limits. Twitter (X) allows 280 characters per tweet. Instagram bios are limited to 150 characters. Meta descriptions for SEO should be 150–160 characters. SMS messages are 160 characters per segment. Knowing your character count prevents your content from being cut off.</p><h2>Platform Character Limits Reference</h2><p>Twitter/X: 280 characters. Instagram caption: 2,200 characters (but only the first 125 show before "more"). Instagram bio: 150 characters. Facebook post: 63,206 characters (practically unlimited). LinkedIn post: 3,000 characters. Meta description: 155–160 characters. SMS: 160 characters.</p><h2>Characters With vs Without Spaces</h2><p>Some platforms count spaces as characters; others do not. This tool shows both counts so you can check against either type of limit. URLs and special characters always count as individual characters on most platforms.</p>`,
-    faq: [
-      { q: 'Does this count spaces as characters?', a: 'Both counts are shown: total characters (including spaces) and characters without spaces.' },
-      { q: 'What is the Twitter character limit?', a: 'Twitter/X allows 280 characters per tweet. URLs are counted as 23 characters regardless of actual length.' },
-      { q: 'Does this tool save my text?', a: 'No. All counting happens locally in your browser. Your text is never sent to any server.' }
-    ],
-    relatedTools: ['word-counter', 'case-converter', 'text-cleaner'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'case-converter',
-    name: 'Case Converter',
-    category: 'Text Tools',
-    categorySlug: 'text',
-    icon: 'Aa',
-    desc: 'Convert text to uppercase, lowercase, title case, and sentence case instantly.',
-    type: 'case-converter',
-    metaTitle: 'Free Case Converter Online — UPPER, lower, Title, Sentence Case',
-    metaDesc: 'Convert text to uppercase, lowercase, title case, sentence case, and camelCase instantly. Free online case converter tool.',
-    content: `<h2>Text Case Conversion Explained</h2><p>Different writing contexts require different text cases. Titles use Title Case (every major word capitalised). Programming uses camelCase and snake_case. Legal documents use ALL CAPS for certain terms. Sentence case (capitalising only the first word) is standard for body text and UI labels.</p><h2>Available Case Formats</h2><p>This converter supports: UPPERCASE (all capitals), lowercase (no capitals), Title Case (each word capitalised), Sentence case (first word capitalised), camelCase (no spaces, each word after first capitalised), snake_case (words joined by underscores), and kebab-case (words joined by hyphens).</p><h2>Programming Use Cases</h2><p>Developers frequently need to convert between naming conventions. Variable names in JavaScript use camelCase. CSS classes use kebab-case. Python variables use snake_case. Database column names often use snake_case. This tool handles all these conversions instantly.</p>`,
-    faq: [
-      { q: 'What is Title Case?', a: 'Title Case capitalises the first letter of each major word. Small words like "a", "the", "and" are not capitalised unless they start the title.' },
-      { q: 'What is camelCase?', a: 'camelCase joins words without spaces, capitalising the first letter of each word after the first (e.g. myVariableName).' },
-      { q: 'Is my text saved anywhere?', a: 'No. All conversions happen in your browser. Your text is never sent to any server.' }
-    ],
-    relatedTools: ['word-counter', 'text-cleaner', 'character-counter'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'text-cleaner',
-    name: 'Text Cleaner',
-    category: 'Text Tools',
-    categorySlug: 'text',
-    icon: '🧹',
-    desc: 'Remove extra spaces, line breaks, special characters, and clean messy text.',
-    type: 'text-cleaner',
-    metaTitle: 'Free Text Cleaner Online — Remove Spaces, Line Breaks, Special Characters',
-    metaDesc: 'Clean messy text online for free. Remove extra spaces, line breaks, special characters, and HTML tags. Free text cleaner tool — works in your browser.',
-    content: `<h2>What Is Text Cleaning?</h2><p>Text cleaning removes unwanted characters, extra whitespace, HTML tags, and formatting artefacts from text. When copying text from PDFs, websites, or word processors, hidden characters and inconsistent spacing often get carried along. Cleaning produces clean, plain text ready for any use.</p><h2>Common Text Problems</h2><p>Text copied from PDFs often contains line breaks in the middle of sentences. Text from websites may include HTML tags. Content from Word documents may include special curly quotes, em-dashes, and other non-standard characters that cause issues in code or databases. This cleaner handles all these cases.</p><h2>Use Cases for Text Cleaning</h2><p>Developers use text cleaners to sanitise user input. Content writers use them to clean up copied research. Data analysts use them to normalise text fields before processing. Email marketers use them to ensure consistent formatting in campaigns.</p>`,
-    faq: [
-      { q: 'Can this remove HTML tags from text?', a: 'Yes, the "Remove HTML Tags" option strips all HTML markup leaving only the plain text content.' },
-      { q: 'What does "Remove Extra Spaces" do?', a: 'It replaces multiple consecutive spaces with a single space and trims leading/trailing whitespace from each line.' },
-      { q: 'Is my text sent to any server?', a: 'No. All text processing happens locally in your browser.' }
-    ],
-    relatedTools: ['word-counter', 'case-converter', 'character-counter'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'readability-analyzer',
-    name: 'Readability Analyzer',
-    category: 'Text Tools',
-    categorySlug: 'text',
-    icon: '📊',
-    desc: 'Analyse the readability of your text with Flesch-Kincaid and other scores.',
-    type: 'readability-analyzer',
-    metaTitle: 'Free Readability Analyzer — Flesch-Kincaid Score Online',
-    metaDesc: 'Analyse text readability with Flesch-Kincaid Reading Ease, Grade Level, and more. Free online readability checker — works instantly in your browser.',
-    content: `<h2>What Is Readability?</h2><p>Readability measures how easy text is to read and understand. It considers factors like sentence length, word complexity, and syllable count. High readability means your content is accessible to a wider audience; low readability means it requires more education or effort to comprehend.</p><h2>Readability Scores Explained</h2><p>The Flesch Reading Ease score ranges from 0 to 100. Scores of 70–80 are easily understood by 13–15 year olds and are ideal for general web content. Scores of 60–70 are standard (plain English). Scores below 30 are very difficult (academic, technical writing). Most web content should aim for 60–70.</p><h2>Why Readability Matters for SEO</h2><p>Google's algorithm favours content that matches the reading level of its target audience. Content that is too complex for its audience has higher bounce rates, which signals poor quality to search engines. Writing at the right readability level improves time-on-page and engagement metrics.</p>`,
-    faq: [
-      { q: 'What readability score should I aim for?', a: 'For general web content, aim for a Flesch Reading Ease score of 60–70. For health content targeting the general public, 70–80 is ideal.' },
-      { q: 'What is Flesch-Kincaid Grade Level?', a: 'It estimates the US school grade level required to understand the text. Grade 8 is suitable for most general audiences.' },
-      { q: 'How many words do I need for an accurate score?', a: 'At least 100 words are recommended for an accurate readability score.' }
-    ],
-    relatedTools: ['word-counter', 'keyword-density', 'character-counter'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'keyword-density',
-    name: 'Keyword Density Checker',
-    category: 'Text Tools',
-    categorySlug: 'text',
-    icon: '🔍',
-    desc: 'Analyse keyword density and frequency in your content for SEO optimisation.',
-    type: 'keyword-density',
-    metaTitle: 'Free Keyword Density Checker Online — SEO Content Analysis',
-    metaDesc: 'Check keyword density and word frequency in your content. Free online keyword density checker for SEO — analyse your text instantly in browser.',
-    content: `<h2>What Is Keyword Density?</h2><p>Keyword density is the percentage of times a specific keyword or phrase appears in a piece of content relative to the total word count. It is calculated as: (keyword occurrences / total words) × 100. It has historically been used as a basic SEO metric.</p><h2>Ideal Keyword Density for SEO</h2><p>The generally recommended keyword density for SEO is 1–2% for your primary keyword. Above 3–4% risks being flagged as keyword stuffing by search engines, which can result in ranking penalties. Focus on natural, contextual use of keywords rather than hitting a specific percentage.</p><h2>Beyond Simple Keyword Density</h2><p>Modern SEO focuses on semantic relevance rather than raw keyword density. Google's algorithms understand synonyms, related terms, and topic clusters. Use keyword density as a sanity check to ensure you haven't overused or underused your primary terms, but prioritise writing for humans first.</p>`,
-    faq: [
-      { q: 'What keyword density is good for SEO?', a: 'Aim for 1–2% for your primary keyword. Anything above 3% risks being seen as keyword stuffing.' },
-      { q: 'Does this tool analyse multi-word phrases?', a: 'This tool shows single word frequencies. Look for your target keyword in the results and note its frequency and percentage.' },
-      { q: 'Are stop words included?', a: 'Common stop words (the, a, is, etc.) are filtered out so you see meaningful keyword data.' }
-    ],
-    relatedTools: ['word-counter', 'readability-analyzer', 'character-counter'],
-    relatedBlogs: []
-  },
-
-  // ─── UTILITY TOOLS ────────────────────────────────────────────────────────
-  {
-    slug: 'qr-code-generator',
-    name: 'QR Code Generator',
+    slug: 'pdf-split',
+    name: 'PDF Splitter',
     category: 'Utility Tools',
     categorySlug: 'utility',
-    icon: '◼',
-    desc: 'Generate QR codes for URLs, text, emails, and phone numbers instantly.',
-    type: 'qr-code',
-    metaTitle: 'Free QR Code Generator Online — Create QR Codes Instantly',
-    metaDesc: 'Generate QR codes for URLs, text, email, and phone numbers online for free. No sign-up — download as PNG instantly. Free QR code generator.',
-    content: `<h2>What Is a QR Code?</h2><p>A QR (Quick Response) code is a two-dimensional barcode that can store various types of information — URLs, plain text, contact details, Wi-Fi credentials, and more. Smartphone cameras can scan QR codes instantly, making them a fast way to share links and information in the physical world.</p><h2>Uses for QR Codes</h2><p>QR codes are used in: restaurant menus (linking to digital menus), business cards (linking to contact pages), marketing materials (linking to landing pages), product packaging (linking to instructions or promotions), event tickets, and Wi-Fi sharing. They bridge the gap between physical print and digital content.</p><h2>QR Code Best Practices</h2><p>Always test your QR code before printing. Include a call-to-action near the QR code (e.g. "Scan to visit our website"). Ensure adequate contrast (dark code on light background). For print materials, make the QR code at least 2.5cm × 2.5cm for reliable scanning. Consider where the QR code will take users and ensure that destination is mobile-optimised.</p>`,
+    icon: '✂️',
+    desc: 'Extract specific pages from a PDF by entering a page range. No upload, no account required.',
+    type: 'pdf-split',
+    metaTitle: 'Free PDF Splitter Online — Extract Pages from PDF Instantly',
+    metaDesc: 'Extract and save specific pages from any PDF online for free. Enter a page range, split instantly. No server upload — uses pdf-lib in your browser.',
+    content: `<h2>Extract Exactly the Pages You Need</h2><p>Sometimes you need just a few pages from a large PDF — a single chapter from a report, specific pages from a legal document, or selected slides from a presentation. This PDF Splitter lets you extract any pages by specifying a range (e.g., "1-5" or "3, 7, 12"). Powered by pdf-lib, all processing happens in your browser with no upload required.</p><h2>How Page Extraction Works</h2><p>Enter the PDF page range you want to keep. The tool loads your PDF, copies only the specified pages to a new PDF document, and prepares it for download. The original PDF is not modified. Text, images, fonts, and vector graphics are preserved at full quality in the extracted pages.</p>`,
     faq: [
-      { q: 'Can I customise the colour of my QR code?', a: 'The standard black-on-white QR code provides the best scanning reliability. Always maintain high contrast between the code and background.' },
-      { q: 'How long do QR codes last?', a: 'QR codes themselves do not expire. However, if the URL they link to goes offline or changes, the QR code will become non-functional.' },
-      { q: 'What is the maximum amount of text a QR code can hold?', a: 'QR codes can hold up to around 4,000 characters, though shorter content produces simpler, more easily scanned codes.' },
-      { q: 'Can I download the QR code as an image?', a: 'Yes, the generated QR code can be downloaded as a PNG image for use in documents and print materials.' }
+      { q: 'Is my PDF uploaded to any server?', a: 'No. The splitting happens entirely in your browser using pdf-lib.' },
+      { q: 'What page range format should I use?', a: 'Enter pages as "1-5" for a range, "3,7,12" for specific pages, or combine: "1-3, 7, 10-12".' },
+      { q: 'Will the original PDF be changed?', a: 'No. The tool creates a new PDF with the extracted pages. Your original file is untouched.' }
     ],
-    relatedTools: ['url-encoder', 'password-generator', 'uuid-generator'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'password-generator',
-    name: 'Password Generator',
-    category: 'Utility Tools',
-    categorySlug: 'utility',
-    icon: '🔐',
-    desc: 'Generate strong, secure random passwords with custom length and character sets.',
-    type: 'password-generator',
-    metaTitle: 'Free Strong Password Generator Online — Secure & Random',
-    metaDesc: 'Generate strong, random passwords instantly. Customise length and character types. Free online password generator — no server, works in browser.',
-    content: `<h2>Why Use a Password Generator?</h2><p>Human-created passwords tend to be predictable — they use dictionary words, names, dates, and common substitutions. A strong password is truly random, long enough to resist brute-force attacks, and unique to each account. A password generator eliminates human bias and creates maximally secure passwords.</p><h2>What Makes a Strong Password?</h2><p>A strong password should be: at least 12 characters long (16+ is ideal), use a mix of uppercase and lowercase letters, numbers, and symbols, not be based on any real word or personal information, and be unique to each account. Shorter passwords with just lowercase letters can be cracked in seconds; a 16-character mixed password would take billions of years.</p><h2>Password Security Best Practices</h2><p>Use a password manager to store unique passwords for every account — you only need to remember one master password. Enable two-factor authentication (2FA) wherever possible. Never reuse passwords across different accounts. Change passwords for critical accounts regularly, especially after any data breach notification.</p>`,
-    faq: [
-      { q: 'Is this password generator truly random?', a: 'Yes. We use the Web Crypto API (crypto.getRandomValues) which generates cryptographically secure random values — the same technology used in security software.' },
-      { q: 'Are my generated passwords saved or logged?', a: 'No. Password generation happens entirely in your browser. Nothing is ever sent to any server.' },
-      { q: 'What length should my password be?', a: 'We recommend at least 16 characters for all important accounts. For master passwords, use 20+ characters.' },
-      { q: 'Should I use symbols in passwords?', a: 'Yes, including symbols dramatically increases the number of possible combinations, making passwords much harder to crack.' }
-    ],
-    relatedTools: ['uuid-generator', 'base64-encoder', 'qr-code-generator'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'uuid-generator',
-    name: 'UUID Generator',
-    category: 'Utility Tools',
-    categorySlug: 'utility',
-    icon: '🔑',
-    desc: 'Generate version 4 UUIDs instantly for use in databases and applications.',
-    type: 'uuid-generator',
-    metaTitle: 'Free UUID Generator Online — Generate UUIDs Instantly',
-    metaDesc: 'Generate version 4 UUIDs (GUIDs) instantly online for free. Generate single or bulk UUIDs for databases, APIs, and software development.',
-    content: `<h2>What Is a UUID?</h2><p>A UUID (Universally Unique Identifier), also known as a GUID (Globally Unique Identifier), is a 128-bit identifier that is guaranteed to be unique across all space and time. UUIDs are formatted as 32 hexadecimal characters separated by hyphens: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.</p><h2>UUID Version 4</h2><p>Version 4 UUIDs (the most commonly used) are randomly generated. With 122 random bits, the probability of generating two identical UUIDs is astronomically small — you would need to generate over a billion UUIDs per second for 85 years before there is a 50% chance of a single collision.</p><h2>Common Uses for UUIDs</h2><p>UUIDs are used as: primary keys in databases (especially distributed systems where auto-increment integers cause conflicts), unique identifiers for API resources, session tokens, tracking IDs, file names for uploaded assets, and any context where globally unique identifiers are needed without central coordination.</p>`,
-    faq: [
-      { q: 'What is the difference between UUID v1 and v4?', a: 'UUID v1 is based on the current timestamp and device MAC address. UUID v4 is randomly generated. v4 is preferred for most use cases as it does not expose device information.' },
-      { q: 'Are UUIDs truly unique?', a: 'Statistically yes. The chance of collision is so astronomically small that for practical purposes, UUIDs can be treated as globally unique.' },
-      { q: 'Can I generate multiple UUIDs at once?', a: 'Yes, use the bulk generation option to generate up to 100 UUIDs in one click.' }
-    ],
-    relatedTools: ['password-generator', 'base64-encoder', 'json-formatter'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'base64-encoder',
-    name: 'Base64 Encoder / Decoder',
-    category: 'Utility Tools',
-    categorySlug: 'utility',
-    icon: '⚙️',
-    desc: 'Encode and decode Base64 strings for data transmission and storage.',
-    type: 'base64',
-    metaTitle: 'Free Base64 Encoder Decoder Online — Instant Conversion',
-    metaDesc: 'Encode or decode Base64 strings online for free. Instant Base64 conversion for developers — no sign-up, works entirely in your browser.',
-    content: `<h2>What Is Base64?</h2><p>Base64 is an encoding scheme that converts binary data into a text string using 64 printable ASCII characters. It is not encryption — it is purely an encoding format used to safely transmit binary data over text-based protocols like HTTP, email (MIME), and JSON.</p><h2>Why Use Base64?</h2><p>Many text-based protocols cannot handle binary data safely. Base64 encodes binary into plain text that can travel through any text channel without corruption. Common uses include: embedding images directly in HTML/CSS as data URIs, sending binary data in JSON APIs, storing binary data in databases that accept only text, and encoding authentication credentials in HTTP headers.</p><h2>Base64 and Email</h2><p>Email attachments are Base64-encoded to ensure binary files (images, PDFs, executables) can pass through email servers that only handle 7-bit ASCII text. This is why email files appear as a long string of random characters when viewed in raw format.</p>`,
-    faq: [
-      { q: 'Is Base64 encoding the same as encryption?', a: 'No. Base64 is encoding only — it is easily reversible and provides no security. Anyone can decode a Base64 string instantly.' },
-      { q: 'How much does Base64 increase file size?', a: 'Base64-encoded data is approximately 33% larger than the original binary data.' },
-      { q: 'Can I encode images to Base64?', a: 'Yes. Images encoded as Base64 can be embedded directly in HTML using data URIs: <img src="data:image/png;base64,..."/>' }
-    ],
-    relatedTools: ['url-encoder', 'json-formatter', 'uuid-generator'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'json-formatter',
-    name: 'JSON Formatter',
-    category: 'Utility Tools',
-    categorySlug: 'utility',
-    icon: '{}',
-    desc: 'Format, validate, and minify JSON data with syntax highlighting.',
-    type: 'json-formatter',
-    metaTitle: 'Free JSON Formatter & Validator Online — Pretty Print JSON',
-    metaDesc: 'Format, validate, and minify JSON online for free. Pretty print JSON with syntax highlighting. Free JSON formatter — works in your browser instantly.',
-    content: `<h2>What Is JSON?</h2><p>JSON (JavaScript Object Notation) is a lightweight, human-readable data format used for exchanging data between systems. It is the standard format for REST APIs, configuration files, database exports, and web application data. JSON uses key-value pairs, arrays, and nested objects.</p><h2>Why Format JSON?</h2><p>Raw JSON from APIs and systems is often minified — all on one line with no whitespace. While this is efficient for data transfer, it is very difficult to read. Formatting (or "pretty printing") adds indentation and line breaks to make the structure clear and easy to understand and debug.</p><h2>JSON Validation</h2><p>Invalid JSON causes errors in applications and APIs. Common JSON errors include: missing or extra commas, unquoted property names, using single quotes instead of double quotes, trailing commas after the last element. This tool validates your JSON and reports specific errors with their location.</p>`,
-    faq: [
-      { q: 'What is the difference between formatting and minifying JSON?', a: 'Formatting adds whitespace and indentation for readability. Minifying removes all whitespace to reduce file size for production use.' },
-      { q: 'Can this tool validate my JSON?', a: 'Yes. If your JSON has syntax errors, the tool will display an error message describing the problem.' },
-      { q: 'Is my JSON data sent to any server?', a: 'No. All JSON processing happens in your browser using JavaScript\'s built-in JSON.parse and JSON.stringify.' }
-    ],
-    relatedTools: ['base64-encoder', 'url-encoder', 'uuid-generator'],
-    relatedBlogs: []
-  },
-  {
-    slug: 'url-encoder',
-    name: 'URL Encoder / Decoder',
-    category: 'Utility Tools',
-    categorySlug: 'utility',
-    icon: '🔗',
-    desc: 'Encode and decode URL components for safe use in web addresses.',
-    type: 'url-encoder',
-    metaTitle: 'Free URL Encoder Decoder Online — Percent Encoding Tool',
-    metaDesc: 'Encode or decode URL strings online for free. Convert special characters to percent encoding and back. Free URL encoder — works instantly in browser.',
-    content: `<h2>What Is URL Encoding?</h2><p>URL encoding (also called percent encoding) converts special characters in a URL into a format that can be safely transmitted over the internet. Characters that are not allowed in URLs (spaces, &, =, ?, #, and others) are replaced with a % followed by their hexadecimal ASCII code. For example, a space becomes %20 or +.</p><h2>Why URL Encoding Is Necessary</h2><p>URLs can only contain a limited set of ASCII characters. When you need to include special characters — like accented letters, spaces, symbols, or characters from other alphabets — in a URL, they must be percent-encoded. Without encoding, these characters can break URLs or be misinterpreted by servers and browsers.</p><h2>URL Encoding in Practice</h2><p>When you perform a Google search for "weight loss tips", your browser encodes the URL as ?q=weight+loss+tips or ?q=weight%20loss%20tips. Form data submitted via GET requests is URL-encoded. API query parameters must be URL-encoded to safely include special characters in parameter values.</p>`,
-    faq: [
-      { q: 'What is the difference between encodeURI and encodeURIComponent?', a: 'encodeURI encodes a full URL, preserving characters like / and ?. encodeURIComponent encodes a URL component, encoding everything except alphanumerics and a few safe symbols. Use encodeURIComponent for parameter values.' },
-      { q: 'Is URL encoding the same as URL shortening?', a: 'No. URL encoding modifies characters within a URL to make them safe. URL shortening creates a different, shorter URL that redirects to the original.' },
-      { q: 'Is my data sent to any server?', a: 'No. URL encoding and decoding uses JavaScript\'s built-in encodeURIComponent and decodeURIComponent — entirely in your browser.' }
-    ],
-    relatedTools: ['base64-encoder', 'json-formatter', 'qr-code-generator'],
+    relatedTools: ['pdf-merge', 'image-converter', 'image-compressor'],
     relatedBlogs: []
   }
+
 ];

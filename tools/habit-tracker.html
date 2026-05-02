@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Text Cleaner Online — Remove Spaces, Line Breaks, Special Characters | VitalHealth Hub</title>
-<meta name="description" content="Clean messy text online for free. Remove extra spaces, line breaks, special characters, and HTML tags. Free text cleaner tool — works in your browser.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/text-cleaner.html">
-<meta property="og:title" content="Free Text Cleaner Online — Remove Spaces, Line Breaks, Special Characters | VitalHealth Hub">
-<meta property="og:description" content="Clean messy text online for free. Remove extra spaces, line breaks, special characters, and HTML tags. Free text cleaner tool — works in your browser.">
+<title>Free Habit Tracker Online — Build Streaks & Stay Consistent | VitalHealth Hub</title>
+<meta name="description" content="Track daily habits, build streaks, and visualise your progress with our free online habit tracker. No account needed — data saved locally in your browser.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/habit-tracker.html">
+<meta property="og:title" content="Free Habit Tracker Online — Build Streaks & Stay Consistent | VitalHealth Hub">
+<meta property="og:description" content="Track daily habits, build streaks, and visualise your progress with our free online habit tracker. No account needed — data saved locally in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/text-cleaner.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/habit-tracker.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,55 +134,93 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Text Cleaner</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Text Cleaner","item":"https://vitalhealthhub.com/tools/text-cleaner.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Habit Tracker</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Habit Tracker","item":"https://vitalhealthhub.com/tools/habit-tracker.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Text Tools</span>
-<h1>Text Cleaner</h1>
-<p>Remove extra spaces, line breaks, special characters, and clean messy text.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Health & Tracking</div>
+<h1>Habit Tracker</h1>
+<p class="saas-hero-sub">Build lasting habits with streak tracking, weekly views, and progress analytics — all saved privately in your browser.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<textarea class="tool-textarea" id="toolInput" placeholder="Paste messy text here..."></textarea>
-<div class="tool-btn-group" style="margin-top:16px;">
-  <button class="tool-action-btn" onclick="cleanText('spaces')">Remove Extra Spaces</button>
-  <button class="tool-action-btn" onclick="cleanText('lines')">Remove Blank Lines</button>
-  <button class="tool-action-btn" onclick="cleanText('html')">Strip HTML Tags</button>
-  <button class="tool-action-btn" onclick="cleanText('special')">Remove Special Chars</button>
-  <button class="tool-action-btn" onclick="cleanText('trim')">Trim Each Line</button>
-  <button class="tool-action-btn" onclick="cleanText('all')">Clean All</button>
+<div class="saas-card-title">🔥 Today's Habits
+  <span id="habitDateLabel" style="margin-left:auto;font-size:0.82rem;font-weight:500;color:#6b7280;"></span>
 </div>
-<div class="tool-panel-label" style="margin-top:18px;">Cleaned Result</div>
-<textarea class="tool-output-box" id="toolOutput" readonly placeholder="Cleaned text will appear here..."></textarea>
-<div style="display:flex;gap:10px;margin-top:10px;">
-  <button class="tool-copy-btn" onclick="copyCleaned()">📋 Copy Result</button>
-  <button class="tool-action-btn" onclick="document.getElementById('toolInput').value='';document.getElementById('toolOutput').value=''">Clear</button>
+<div class="habit-add-form">
+  <input class="saas-input" id="habitInput" placeholder="Add a new habit (e.g. Drink 8 glasses of water)…" maxlength="80">
+  <button class="saas-btn saas-btn-primary" onclick="addHabit()">+ Add</button>
+</div>
+<div id="habitList" class="habit-list"></div>
+<div id="habitEmpty" class="saas-empty-state" style="display:none">
+  <div class="saas-empty-icon">🌱</div>
+  <p class="saas-empty-text">No habits yet. Add your first habit above to get started!</p>
 </div>
 <script>
-function cleanText(type){var t=document.getElementById('toolInput').value;if(type==='spaces'||type==='all')t=t.replace(/[ \t]+/g,' ').replace(/^ | $/gm,'');if(type==='lines'||type==='all')t=t.replace(/^\s*\n/gm,'').replace(/\n{2,}/g,'\n\n');if(type==='html'||type==='all')t=t.replace(/<[^>]+>/g,'');if(type==='special')t=t.replace(/[^\w\s.,!?'"()-]/g,'');if(type==='trim'||type==='all')t=t.split('\n').map(function(l){return l.trim();}).join('\n');document.getElementById('toolOutput').value=t.trim();}
-function copyCleaned(){navigator.clipboard.writeText(document.getElementById('toolOutput').value).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy Result';},2000);});}
+var TODAY=new Date().toISOString().split('T')[0];
+document.getElementById('habitDateLabel').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+function loadData(){return JSON.parse(localStorage.getItem('vhh_habits')||'{"habits":[]}');}
+function saveData(d){localStorage.setItem('vhh_habits',JSON.stringify(d));}
+function getStreak(hist){var s=0;var d=new Date();for(var i=0;i<365;i++){var k=new Date(d);k.setDate(k.getDate()-i);var ks=k.toISOString().split('T')[0];if(hist[ks]){s++;}else if(i>0){break;}}return s;}
+function getLast7(hist){var days=[];for(var i=6;i>=0;i--){var d=new Date();d.setDate(d.getDate()-i);days.push(d.toISOString().split('T')[0]);}return days;}
+function addHabit(){var inp=document.getElementById('habitInput');var name=inp.value.trim();if(!name)return;var d=loadData();d.habits.push({id:Date.now().toString(),name:name,history:{}});saveData(d);inp.value='';renderHabits();}
+function toggleHabit(id){var d=loadData();var h=d.habits.find(function(h){return h.id===id;});if(!h)return;if(h.history[TODAY]){delete h.history[TODAY];}else{h.history[TODAY]=true;}saveData(d);renderHabits();}
+function deleteHabit(id){var d=loadData();d.habits=d.habits.filter(function(h){return h.id!==id;});saveData(d);renderHabits();}
+function renderHabits(){
+  var d=loadData();var list=document.getElementById('habitList');var empty=document.getElementById('habitEmpty');
+  if(!d.habits.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  var days=getLast7({});
+  list.innerHTML=d.habits.map(function(h){
+    var done=!!h.history[TODAY];
+    var streak=getStreak(h.history);
+    var dots=getLast7(h.history).map(function(dk){return '<div class="habit-dot'+(h.history[dk]?' done':'')+'"></div>';}).join('');
+    var hotClass=streak>=3?' hot':'';
+    return '<div class="habit-item'+(done?' done-today':'')+'" id="hi-'+h.id+'">'+
+      '<div class="habit-checkbox" onclick="toggleHabit(''+h.id+'')" title="Mark as done">'+(done?'✓':'')+'</div>'+
+      '<span class="habit-name">'+h.name+'</span>'+
+      '<div class="habit-weekly">'+dots+'</div>'+
+      '<span class="habit-streak-badge'+hotClass+'">'+(streak>=3?'🔥':'')+streak+' day'+(streak===1?'':'s')+'</span>'+
+      '<button class="habit-del-btn" onclick="deleteHabit(''+h.id+'')" title="Delete habit">✕</button>'+
+    '</div>';
+  }).join('');
+}
+document.getElementById('habitInput').addEventListener('keydown',function(e){if(e.key==='Enter')addHabit();});
+renderHabits();
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>What Is Text Cleaning?</h2><p>Text cleaning removes unwanted characters, extra whitespace, HTML tags, and formatting artefacts from text. When copying text from PDFs, websites, or word processors, hidden characters and inconsistent spacing often get carried along. Cleaning produces clean, plain text ready for any use.</p><h2>Common Text Problems</h2><p>Text copied from PDFs often contains line breaks in the middle of sentences. Text from websites may include HTML tags. Content from Word documents may include special curly quotes, em-dashes, and other non-standard characters that cause issues in code or databases. This cleaner handles all these cases.</p><h2>Use Cases for Text Cleaning</h2><p>Developers use text cleaners to sanitise user input. Content writers use them to clean up copied research. Data analysts use them to normalise text fields before processing. Email marketers use them to ensure consistent formatting in campaigns.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Why Habit Tracking Works</h2><p>Habit tracking is one of the most evidence-backed strategies for behaviour change. When you mark a habit as complete each day, you create a visual record of progress — and the desire to maintain that streak becomes a powerful motivational force. Research published in the British Journal of General Practice found that tracking behaviour significantly increases the likelihood of achieving health goals.</p><h2>The Compound Effect of Daily Habits</h2><p>Small habits compound over time. Exercising for 20 minutes daily might seem insignificant, but over a year that is over 120 hours of exercise. Habits do not produce instant results, but they accumulate into extraordinary outcomes. The key is consistency, not perfection — even maintaining a 90% completion rate over months produces enormous positive change.</p><h2>How to Use This Habit Tracker</h2><p>Add habits that matter to your health journey — drinking 8 glasses of water, meditating for 10 minutes, exercising, reading, or any other daily practice. Check off each habit as you complete it. The tracker shows your current streak, a weekly completion grid, and your overall consistency. Your data is saved privately in your browser and persists across sessions.</p><h2>The Science of Streaks</h2><p>James Clear, author of Atomic Habits, recommends the "never miss twice" rule — if you miss a day, make it a rule to never miss two in a row. The tracker's streak counter helps you apply this principle by making your streak visible and motivating you to keep it alive.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Can this remove HTML tags from text?</div>
-<div class="tool-faq-a">Yes, the "Remove HTML Tags" option strips all HTML markup leaving only the plain text content.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is my habit data saved permanently?</div>
+<div class="tool-faq-a">Your data is saved in your browser's localStorage and persists as long as you use the same browser on the same device without clearing site data.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What does "Remove Extra Spaces" do?</div>
-<div class="tool-faq-a">It replaces multiple consecutive spaces with a single space and trims leading/trailing whitespace from each line.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How is the streak calculated?</div>
+<div class="tool-faq-a">The streak counts consecutive days you have completed a habit, going back from today. Missing one day resets the streak to zero.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Is my text sent to any server?</div>
-<div class="tool-faq-a">No. All text processing happens locally in your browser.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I track multiple habits?</div>
+<div class="tool-faq-a">Yes, add as many habits as you like. Research suggests starting with 2–3 habits and adding more once they feel automatic.</div>
+</div><div class="tool-faq-item" id="tfaq3">
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Is my data synced across devices?</div>
+<div class="tool-faq-a">No, data is stored locally in your browser. For cross-device access, we recommend using a cloud-based app like Habitica.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/word-counter.html" class="tool-related-card"><span class="tool-related-icon">📝</span>Word Counter →</a><a href="/tools/case-converter.html" class="tool-related-card"><span class="tool-related-icon">Aa</span>Case Converter →</a><a href="/tools/character-counter.html" class="tool-related-card"><span class="tool-related-icon">🔢</span>Character Counter →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/sleep-tracker.html" class="tool-related-card"><span class="tool-related-icon">😴</span>Sleep Tracker →</a><a href="/tools/mood-tracker.html" class="tool-related-card"><span class="tool-related-icon">🌈</span>Mood Tracker →</a><a href="/tools/goal-tracker.html" class="tool-related-card"><span class="tool-related-icon">🎯</span>Goal Tracker →</a><a href="/tools/health-dashboard.html" class="tool-related-card"><span class="tool-related-icon">📊</span>Health Dashboard →</a></div></div>
 
 <footer>
 <div class="footer-top">

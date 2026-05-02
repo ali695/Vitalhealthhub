@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Online Image Compressor — Reduce File Size Instantly | VitalHealth Hub</title>
-<meta name="description" content="Compress images online for free. Reduce JPG, PNG, WebP file sizes without visible quality loss. No upload required — works entirely in your browser.">
+<title>Free Image Compressor Online — Reduce File Size Instantly | VitalHealth Hub</title>
+<meta name="description" content="Compress JPG, PNG, WebP images online for free. Reduce file size without visible quality loss. No upload — all processing happens in your browser.">
 <link rel="canonical" href="https://vitalhealthhub.com/tools/image-compressor.html">
-<meta property="og:title" content="Free Online Image Compressor — Reduce File Size Instantly | VitalHealth Hub">
-<meta property="og:description" content="Compress images online for free. Reduce JPG, PNG, WebP file sizes without visible quality loss. No upload required — works entirely in your browser.">
+<meta property="og:title" content="Free Image Compressor Online — Reduce File Size Instantly | VitalHealth Hub">
+<meta property="og:description" content="Compress JPG, PNG, WebP images online for free. Reduce file size without visible quality loss. No upload — all processing happens in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vitalhealthhub.com/tools/image-compressor.html">
 <link rel="stylesheet" href="/css/style.css">
@@ -135,72 +135,72 @@
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Image Compressor</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Image Compressor","item":"https://vitalhealthhub.com/tools/image-compressor.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Image Tools</span>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Utility Tools</div>
 <h1>Image Compressor</h1>
-<p>Compress and reduce image file size without visible quality loss.</p>
+<p class="saas-hero-sub">Compress and reduce image file size without visible quality loss. No upload required.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<div class="tool-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
-  <div class="tool-dropzone-icon">⚡</div>
+<div class="saas-card-title">⚡ Image Compressor</div>
+<div class="util-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
+  <div class="util-dropzone-icon">🖼️</div>
   <h3>Drop your image here</h3>
-  <p>or click to browse • JPG, PNG, WebP, GIF supported</p>
+  <p>JPG, PNG, WebP, GIF supported — or click to browse</p>
   <input type="file" id="toolFile" accept="image/*">
 </div>
-<div class="tool-options">
-  <div class="tool-option-group" style="flex:2">
-    <label>Quality: <span id="qualityVal">75</span>%</label>
-    <input type="range" id="qualitySlider" min="10" max="95" value="75" oninput="document.getElementById('qualityVal').textContent=this.value">
-  </div>
+<div class="saas-form-group" style="margin-top:18px">
+  <label class="saas-label">Quality: <span id="qualVal">75</span>%</label>
+  <input type="range" id="qualSlider" min="10" max="95" value="75" oninput="document.getElementById('qualVal').textContent=this.value" style="width:100%;accent-color:#2d6a4f;margin-top:8px">
 </div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processCompress()" disabled>Compress Image ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Compressed successfully!</h3></div>
-  <img id="toolPreview" class="tool-result-preview" alt="Preview">
-  <div style="text-align:center;margin-top:14px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download Compressed Image</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
+<button class="saas-btn saas-btn-primary" id="compressBtn" onclick="doCompress()" disabled style="width:100%;margin-top:4px">Compress Image</button>
+<div class="util-result" id="compResult">
+  <div class="util-result-inner">
+    <div>✅ <span id="compInfo" class="util-result-info"></span></div>
+    <a id="compDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download</a>
   </div>
+  <img id="compPreview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
 </div>
 <script>
-var toolFile=null;
-var origSize=0;
-document.getElementById('toolDrop').addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-over');});
-document.getElementById('toolDrop').addEventListener('dragleave',function(){this.classList.remove('drag-over');});
-document.getElementById('toolDrop').addEventListener('drop',function(e){e.preventDefault();this.classList.remove('drag-over');if(e.dataTransfer.files[0])loadToolFile(e.dataTransfer.files[0]);});
-document.getElementById('toolDrop').addEventListener('click',function(){document.getElementById('toolFile').click();});
-document.getElementById('toolFile').addEventListener('change',function(){if(this.files[0])loadToolFile(this.files[0]);});
-function loadToolFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}toolFile=f;origSize=f.size;document.getElementById('toolDrop').querySelector('h3').textContent=f.name;document.getElementById('toolDrop').querySelector('p').textContent='File loaded ('+Math.round(f.size/1024)+'KB)';document.getElementById('toolProcessBtn').disabled=false;}
-function processCompress(){if(!toolFile)return;var q=parseInt(document.getElementById('qualitySlider').value)/100;var btn=document.getElementById('toolProcessBtn');btn.textContent='Compressing…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(toolFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=oUrl;dl.download='compressed_vhh.jpg';document.getElementById('toolPreview').src=oUrl;document.getElementById('toolPreview').style.display='block';var saved=Math.round((1-blob.size/origSize)*100);document.getElementById('toolFileInfo').textContent='Original: '+Math.round(origSize/1024)+'KB → Compressed: '+Math.round(blob.size/1024)+'KB ('+saved+'% saved)';document.getElementById('toolResult').classList.add('visible');btn.textContent='Compress Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/jpeg',q);}; img.src=url;}
+var cFile=null,cOrigSize=0;
+var drop=document.getElementById('toolDrop');
+var fileInp=document.getElementById('toolFile');
+drop.addEventListener('dragover',function(e){e.preventDefault();drop.classList.add('drag-over');});
+drop.addEventListener('dragleave',function(){drop.classList.remove('drag-over');});
+drop.addEventListener('drop',function(e){e.preventDefault();drop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadImgFile(e.dataTransfer.files[0]);});
+fileInp.addEventListener('change',function(){if(this.files[0])loadImgFile(this.files[0]);});
+function loadImgFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}cFile=f;cOrigSize=f.size;drop.querySelector('h3').textContent=f.name;drop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB) — ready to compress';document.getElementById('compressBtn').disabled=false;}
+function doCompress(){if(!cFile)return;var q=parseInt(document.getElementById('qualSlider').value)/100;var btn=document.getElementById('compressBtn');btn.textContent='Compressing…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(cFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('compDl');dl.href=oUrl;dl.download='compressed.jpg';var saved=Math.round((1-blob.size/cOrigSize)*100);document.getElementById('compInfo').textContent='Original: '+Math.round(cOrigSize/1024)+'KB → '+Math.round(blob.size/1024)+'KB (saved '+saved+'%)';var prev=document.getElementById('compPreview');prev.src=oUrl;prev.style.display='block';document.getElementById('compResult').classList.add('visible');btn.textContent='Compress Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/jpeg',q);};img.src=url;}
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>Why Compress Images?</h2><p>Large image files slow down your website, cost mobile users data, and hurt your search engine rankings. Google uses page speed as a ranking factor, and images are typically the largest contributor to page weight. Compressing your images can reduce load times by 40–80%.</p><h2>How Image Compression Works</h2><p>Our compressor uses the HTML5 Canvas API with adjustable JPEG quality settings. By reducing the quality factor slightly — from 100% to 75–85% — you can achieve dramatic file size reductions that are invisible to the naked eye. The tool also lets you preview the result before downloading.</p><h2>How Much Can You Compress?</h2><p>Most photographs can be compressed to 60–80% of their original size with no perceptible quality loss. Images with large flat colour areas compress even more efficiently. The default 75% quality setting provides an excellent balance between file size and visual fidelity.</p><h2>Best Practices for Web Images</h2><p>For web images, aim for JPEG quality between 70–85%. Images above 200KB should be considered for compression. Always compress images before uploading to your website or CMS to improve performance from the start.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Why Compress Images?</h2><p>Large image files are one of the biggest causes of slow websites. Google uses page speed as a direct ranking factor, and images are typically the heaviest assets on any web page. Compressing images before uploading can reduce load times by 40–80% with no visible quality difference. This tool processes images entirely in your browser using the Canvas API — your files never leave your device.</p><h2>How Much Can You Compress?</h2><p>Most photographs can be compressed to 65–80% quality with no perceptible quality loss to the naked eye. At 75% quality, a 2MB photo typically compresses to 300–500KB — a 75–85% reduction. For website images, this dramatically improves Core Web Vitals scores, which directly affect search rankings. The preview lets you compare before downloading.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">How much can I compress without visible quality loss?</div>
-<div class="tool-faq-a">For most photos, 70–85% quality produces results that look identical to the original but are 30–60% smaller.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Are my images uploaded to a server?</div>
+<div class="tool-faq-a">No. All compression happens in your browser using the HTML5 Canvas API. Your files never leave your device.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Does this tool work for PNG files?</div>
-<div class="tool-faq-a">The quality slider affects JPEG output. For PNG, use the Image to PNG converter — PNG uses lossless compression.</div>
-</div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Are my images uploaded to a server?</div>
-<div class="tool-faq-a">No. All compression happens inside your browser using the Canvas API. Your files stay on your device.</div>
-</div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Can I compress multiple images at once?</div>
-<div class="tool-faq-a">Currently the tool processes one image at a time for best results.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What quality level should I use?</div>
+<div class="tool-faq-a">For web images, 70–80% produces excellent results with significant size savings. For print, use 85–90%.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-to-jpg.html" class="tool-related-card"><span class="tool-related-icon">🖼️</span>Image to JPG Converter →</a><a href="/tools/image-resizer.html" class="tool-related-card"><span class="tool-related-icon">📐</span>Image Resizer →</a><a href="/tools/jpg-to-webp.html" class="tool-related-card"><span class="tool-related-icon">🔄</span>JPG to WebP Converter →</a><a href="/tools/image-quality-reducer.html" class="tool-related-card"><span class="tool-related-icon">📉</span>Image Quality Reducer →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-converter.html" class="tool-related-card"><span class="tool-related-icon">🔄</span>Image Converter →</a><a href="/tools/pdf-merge.html" class="tool-related-card"><span class="tool-related-icon">📄</span>PDF Merge Tool →</a></div></div>
 
 <footer>
 <div class="footer-top">

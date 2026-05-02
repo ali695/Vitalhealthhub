@@ -3110,561 +3110,968 @@ console.log('Generated quiz index page');
 // ============================================================
 ensureDir('tools');
 
+// Clean up old tool HTML files that no longer exist in tools-data.js
+(function cleanOldTools() {
+  const oldSlugs = [
+    'image-to-jpg','image-to-png','jpg-to-webp','webp-to-jpg',
+    'image-resizer','image-crop','image-metadata-remover','image-quality-reducer',
+    'jpg-to-pdf','pdf-rotate',
+    'word-counter','character-counter','case-converter','text-cleaner',
+    'readability-analyzer','keyword-density',
+    'qr-code-generator','password-generator','uuid-generator',
+    'base64-encoder','json-formatter','url-encoder'
+  ];
+  oldSlugs.forEach(function(slug) {
+    try { fs.unlinkSync('tools/' + slug + '.html'); } catch(e) {}
+  });
+})();
+
+// Inject tool visit tracking on every tool page
+const TOOL_TRACKER_JS = `<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>`;
+
+// ── TOOL UI REGISTRY ─────────────────────────────────────────────────────────
 function toolUIByType(tool) {
   const t = tool.type;
 
-  // ── IMAGE CONVERT ─────────────────────────────────────────
-  if (t === 'image-convert') {
+  // ── HABIT TRACKER ────────────────────────────────────────────────────────
+  if (t === 'habit-tracker') {
     return `
-<div class="tool-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
-  <div class="tool-dropzone-icon">🖼️</div>
-  <h3>Drop your image here</h3>
-  <p>or click to browse • JPG, PNG, WebP, GIF, BMP supported</p>
-  <input type="file" id="toolFile" accept="image/*">
+<div class="saas-card-title">🔥 Today's Habits
+  <span id="habitDateLabel" style="margin-left:auto;font-size:0.82rem;font-weight:500;color:#6b7280;"></span>
 </div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processImageConvert()" disabled>Convert to ${tool.outputExt.toUpperCase()} ↓</button>
+<div class="habit-add-form">
+  <input class="saas-input" id="habitInput" placeholder="Add a new habit (e.g. Drink 8 glasses of water)…" maxlength="80">
+  <button class="saas-btn saas-btn-primary" onclick="addHabit()">+ Add</button>
 </div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Conversion complete!</h3></div>
-  <img id="toolPreview" class="tool-result-preview" alt="Preview">
-  <div style="text-align:center;margin-top:14px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download ${tool.outputExt.toUpperCase()}</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
-  </div>
+<div id="habitList" class="habit-list"></div>
+<div id="habitEmpty" class="saas-empty-state" style="display:none">
+  <div class="saas-empty-icon">🌱</div>
+  <p class="saas-empty-text">No habits yet. Add your first habit above to get started!</p>
 </div>
 <script>
-var toolFile=null;
-var dropEl=document.getElementById('toolDrop');
-var fileEl=document.getElementById('toolFile');
-dropEl.addEventListener('dragover',function(e){e.preventDefault();dropEl.classList.add('drag-over');});
-dropEl.addEventListener('dragleave',function(){dropEl.classList.remove('drag-over');});
-dropEl.addEventListener('drop',function(e){e.preventDefault();dropEl.classList.remove('drag-over');var f=e.dataTransfer.files[0];if(f)loadToolFile(f);});
-fileEl.addEventListener('change',function(){if(this.files[0])loadToolFile(this.files[0]);});
-function loadToolFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}if(f.size>20*1024*1024){alert('File too large. Max 20MB.');return;}toolFile=f;dropEl.querySelector('h3').textContent=f.name;dropEl.querySelector('p').textContent='File loaded — ready to convert';document.getElementById('toolProcessBtn').disabled=false;}
-function processImageConvert(){if(!toolFile)return;var btn=document.getElementById('toolProcessBtn');btn.textContent='Converting…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(toolFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');if('${tool.outputMime}'==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);}ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=oUrl;dl.download='converted_vhh.${tool.outputExt}';document.getElementById('toolPreview').src=oUrl;document.getElementById('toolPreview').style.display='block';document.getElementById('toolFileInfo').textContent='Size: '+Math.round(blob.size/1024)+'KB | '+img.naturalWidth+'×'+img.naturalHeight+'px';document.getElementById('toolResult').classList.add('visible');btn.textContent='Convert Again';btn.disabled=false;URL.revokeObjectURL(url);},'${tool.outputMime}',${tool.outputQuality||1});};img.src=url;}
+var TODAY=new Date().toISOString().split('T')[0];
+document.getElementById('habitDateLabel').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+function loadData(){return JSON.parse(localStorage.getItem('vhh_habits')||'{"habits":[]}');}
+function saveData(d){localStorage.setItem('vhh_habits',JSON.stringify(d));}
+function getStreak(hist){var s=0;var d=new Date();for(var i=0;i<365;i++){var k=new Date(d);k.setDate(k.getDate()-i);var ks=k.toISOString().split('T')[0];if(hist[ks]){s++;}else if(i>0){break;}}return s;}
+function getLast7(hist){var days=[];for(var i=6;i>=0;i--){var d=new Date();d.setDate(d.getDate()-i);days.push(d.toISOString().split('T')[0]);}return days;}
+function addHabit(){var inp=document.getElementById('habitInput');var name=inp.value.trim();if(!name)return;var d=loadData();d.habits.push({id:Date.now().toString(),name:name,history:{}});saveData(d);inp.value='';renderHabits();}
+function toggleHabit(id){var d=loadData();var h=d.habits.find(function(h){return h.id===id;});if(!h)return;if(h.history[TODAY]){delete h.history[TODAY];}else{h.history[TODAY]=true;}saveData(d);renderHabits();}
+function deleteHabit(id){var d=loadData();d.habits=d.habits.filter(function(h){return h.id!==id;});saveData(d);renderHabits();}
+function renderHabits(){
+  var d=loadData();var list=document.getElementById('habitList');var empty=document.getElementById('habitEmpty');
+  if(!d.habits.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  var days=getLast7({});
+  list.innerHTML=d.habits.map(function(h){
+    var done=!!h.history[TODAY];
+    var streak=getStreak(h.history);
+    var dots=getLast7(h.history).map(function(dk){return '<div class="habit-dot'+(h.history[dk]?' done':'')+'"></div>';}).join('');
+    var hotClass=streak>=3?' hot':'';
+    return '<div class="habit-item'+(done?' done-today':'')+'" id="hi-'+h.id+'">'+
+      '<div class="habit-checkbox" onclick="toggleHabit(\''+h.id+'\')" title="Mark as done">'+(done?'✓':'')+'</div>'+
+      '<span class="habit-name">'+h.name+'</span>'+
+      '<div class="habit-weekly">'+dots+'</div>'+
+      '<span class="habit-streak-badge'+hotClass+'">'+(streak>=3?'🔥':'')+streak+' day'+(streak===1?'':'s')+'</span>'+
+      '<button class="habit-del-btn" onclick="deleteHabit(\''+h.id+'\')" title="Delete habit">✕</button>'+
+    '</div>';
+  }).join('');
+}
+document.getElementById('habitInput').addEventListener('keydown',function(e){if(e.key==='Enter')addHabit();});
+renderHabits();
 </script>`;
   }
 
-  // ── IMAGE COMPRESS ────────────────────────────────────────
-  if (t === 'image-compress') {
+  // ── SLEEP TRACKER ────────────────────────────────────────────────────────
+  if (t === 'sleep-tracker') {
     return `
-<div class="tool-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
-  <div class="tool-dropzone-icon">⚡</div>
-  <h3>Drop your image here</h3>
-  <p>or click to browse • JPG, PNG, WebP, GIF supported</p>
-  <input type="file" id="toolFile" accept="image/*">
-</div>
-<div class="tool-options">
-  <div class="tool-option-group" style="flex:2">
-    <label>Quality: <span id="qualityVal">75</span>%</label>
-    <input type="range" id="qualitySlider" min="10" max="95" value="75" oninput="document.getElementById('qualityVal').textContent=this.value">
+<div class="saas-card-title">😴 Log Tonight's Sleep</div>
+<div class="saas-form-row">
+  <div class="saas-form-group">
+    <label class="saas-label">Bedtime</label>
+    <input class="saas-input" type="time" id="sleepBed" value="22:30">
+  </div>
+  <div class="saas-form-group">
+    <label class="saas-label">Wake Time</label>
+    <input class="saas-input" type="time" id="sleepWake" value="06:30">
   </div>
 </div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processCompress()" disabled>Compress Image ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Compressed successfully!</h3></div>
-  <img id="toolPreview" class="tool-result-preview" alt="Preview">
-  <div style="text-align:center;margin-top:14px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download Compressed Image</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
+<div class="saas-form-group">
+  <label class="saas-label">Sleep Quality</label>
+  <div style="display:flex;gap:8px;margin-top:4px;" id="qualityBtns">
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(1)" data-q="1">😞 Poor</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(2)" data-q="2">😕 Fair</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(3)" data-q="3">😐 OK</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(4)" data-q="4">😊 Good</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(5)" data-q="5">😄 Great</button>
   </div>
 </div>
+<div class="saas-form-group">
+  <label class="saas-label">Notes (optional)</label>
+  <input class="saas-input" id="sleepNote" placeholder="Any factors affecting sleep tonight?">
+</div>
+<button class="saas-btn saas-btn-primary" onclick="logSleep()" style="width:100%">Log Sleep Entry</button>
+<div id="sleepResult" class="saas-result-section hidden" style="margin-top:24px;"></div>
+<hr class="saas-divider">
+<div class="saas-section-heading">📅 Sleep History</div>
+<div id="sleepHistory"></div>
 <script>
-var toolFile=null;
-var origSize=0;
-document.getElementById('toolDrop').addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-over');});
-document.getElementById('toolDrop').addEventListener('dragleave',function(){this.classList.remove('drag-over');});
-document.getElementById('toolDrop').addEventListener('drop',function(e){e.preventDefault();this.classList.remove('drag-over');if(e.dataTransfer.files[0])loadToolFile(e.dataTransfer.files[0]);});
-document.getElementById('toolDrop').addEventListener('click',function(){document.getElementById('toolFile').click();});
-document.getElementById('toolFile').addEventListener('change',function(){if(this.files[0])loadToolFile(this.files[0]);});
-function loadToolFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}toolFile=f;origSize=f.size;document.getElementById('toolDrop').querySelector('h3').textContent=f.name;document.getElementById('toolDrop').querySelector('p').textContent='File loaded ('+Math.round(f.size/1024)+'KB)';document.getElementById('toolProcessBtn').disabled=false;}
-function processCompress(){if(!toolFile)return;var q=parseInt(document.getElementById('qualitySlider').value)/100;var btn=document.getElementById('toolProcessBtn');btn.textContent='Compressing…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(toolFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=oUrl;dl.download='compressed_vhh.jpg';document.getElementById('toolPreview').src=oUrl;document.getElementById('toolPreview').style.display='block';var saved=Math.round((1-blob.size/origSize)*100);document.getElementById('toolFileInfo').textContent='Original: '+Math.round(origSize/1024)+'KB → Compressed: '+Math.round(blob.size/1024)+'KB ('+saved+'% saved)';document.getElementById('toolResult').classList.add('visible');btn.textContent='Compress Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/jpeg',q);}; img.src=url;}
+var selQ=4;
+function setQ(q){selQ=q;document.querySelectorAll('#qualityBtns button').forEach(function(b){b.classList.toggle('saas-btn-primary',parseInt(b.dataset.q)===q);b.classList.toggle('saas-btn-secondary',parseInt(b.dataset.q)!==q);});}
+setQ(4);
+function loadSleep(){return JSON.parse(localStorage.getItem('vhh_sleep')||'[]');}
+function saveSleep(d){localStorage.setItem('vhh_sleep',JSON.stringify(d));}
+function calcScore(hrs,q){var durScore=Math.min(100,Math.max(0,(hrs/8)*60+(hrs>=7&&hrs<=9?20:0)));var qScore=(q/5)*40;return Math.round(Math.min(100,durScore+qScore));}
+function scoreGrade(s){return s>=80?['Excellent','saas-badge-green']:s>=60?['Good','saas-badge-blue']:s>=40?['Fair','saas-badge-yellow']:['Poor','saas-badge-red'];}
+function timeToMins(t){var p=t.split(':');return parseInt(p[0])*60+parseInt(p[1]);}
+function minsToHrs(m){return (m/60).toFixed(1);}
+function logSleep(){
+  var bed=document.getElementById('sleepBed').value;
+  var wake=document.getElementById('sleepWake').value;
+  var note=document.getElementById('sleepNote').value.trim();
+  if(!bed||!wake){alert('Please enter bedtime and wake time.');return;}
+  var bm=timeToMins(bed);var wm=timeToMins(wake);
+  var dur=wm>bm?wm-bm:wm+(24*60-bm);
+  var hrs=dur/60;
+  var score=calcScore(hrs,selQ);
+  var g=scoreGrade(score);
+  var entry={date:new Date().toISOString().split('T')[0],bed:bed,wake:wake,hrs:hrs.toFixed(1),quality:selQ,score:score,note:note};
+  var data=loadSleep();data.unshift(entry);if(data.length>14)data=data.slice(0,14);saveSleep(data);
+  var res=document.getElementById('sleepResult');
+  res.classList.remove('hidden');
+  res.innerHTML='<div class="saas-result-header"><span class="saas-result-check">✅</span><span class="saas-result-title">Sleep logged successfully!</span></div>'+
+    '<div class="saas-stat-grid" style="grid-template-columns:repeat(3,1fr)">'+
+    '<div class="saas-stat-card"><div class="saas-stat-value">'+hrs.toFixed(1)+'h</div><div class="saas-stat-label">Duration</div></div>'+
+    '<div class="saas-stat-card"><div class="saas-stat-value">'+score+'</div><div class="saas-stat-label">Score</div></div>'+
+    '<div class="saas-stat-card"><div class="saas-stat-value"><span class="saas-badge '+g[1]+'">'+g[0]+'</span></div><div class="saas-stat-label">Quality</div></div>'+
+    '</div>';
+  renderSleepHistory();
+}
+function renderSleepHistory(){
+  var data=loadSleep();var el=document.getElementById('sleepHistory');
+  if(!data.length){el.innerHTML='<div class="saas-empty-state"><div class="saas-empty-icon">📋</div><p class="saas-empty-text">No sleep entries yet. Log your first night above!</p></div>';return;}
+  var html='<table class="sleep-history-table"><thead><tr><th>Date</th><th>Hours</th><th>Quality</th><th>Score</th><th>Notes</th></tr></thead><tbody>';
+  data.forEach(function(e){var g=scoreGrade(e.score);html+='<tr><td>'+e.date+'</td><td>'+e.hrs+'h</td><td>'+(['','😞','😕','😐','😊','😄'][e.quality]||'-')+'</td><td><span class="saas-badge '+g[1]+'">'+e.score+'</span></td><td style="color:#9ca3af;font-size:0.8rem">'+e.note+'</td></tr>';});
+  html+='</tbody></table>';el.innerHTML=html;
+}
+renderSleepHistory();
 </script>`;
   }
 
-  // ── IMAGE RESIZE ──────────────────────────────────────────
-  if (t === 'image-resize') {
+  // ── MOOD TRACKER ─────────────────────────────────────────────────────────
+  if (t === 'mood-tracker') {
     return `
-<div class="tool-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
-  <div class="tool-dropzone-icon">📐</div>
-  <h3>Drop your image here</h3>
-  <p>or click to browse • any image format</p>
-  <input type="file" id="toolFile" accept="image/*">
+<div class="saas-card-title">🌈 How are you feeling today?</div>
+<div class="mood-selector" id="moodSelector">
+  <button class="mood-btn" onclick="selectMood(1)" data-m="1">😞<span class="mood-label">Low</span></button>
+  <button class="mood-btn" onclick="selectMood(2)" data-m="2">😟<span class="mood-label">Down</span></button>
+  <button class="mood-btn" onclick="selectMood(3)" data-m="3">😐<span class="mood-label">OK</span></button>
+  <button class="mood-btn" onclick="selectMood(4)" data-m="4">😊<span class="mood-label">Good</span></button>
+  <button class="mood-btn" onclick="selectMood(5)" data-m="5">😄<span class="mood-label">Great</span></button>
 </div>
-<div class="tool-options">
-  <div class="tool-option-group">
-    <label>Width (px)</label>
-    <input type="number" id="rszW" placeholder="e.g. 800" min="1" max="8000" oninput="if(document.getElementById('lockAR').checked&&origW)document.getElementById('rszH').value=Math.round(this.value/origW*origH)">
-  </div>
-  <div class="tool-option-group">
-    <label>Height (px)</label>
-    <input type="number" id="rszH" placeholder="e.g. 600" min="1" max="8000" oninput="if(document.getElementById('lockAR').checked&&origH)document.getElementById('rszW').value=Math.round(this.value/origH*origW)">
-  </div>
-  <div class="tool-option-group" style="justify-content:flex-end;">
-    <div class="tool-option-row"><input type="checkbox" id="lockAR" checked><label for="lockAR">Lock aspect ratio</label></div>
-  </div>
+<div class="saas-form-group">
+  <label class="saas-label">Note (optional)</label>
+  <input class="saas-input" id="moodNote" placeholder="What influenced your mood today?">
 </div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processResize()" disabled>Resize Image ↓</button>
+<button class="saas-btn saas-btn-primary" onclick="logMood()" style="width:100%">Log Today's Mood</button>
+<div id="moodConfirm" style="display:none;text-align:center;padding:14px;color:#166534;font-weight:600;font-size:0.9rem;"></div>
+<hr class="saas-divider">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+  <div class="saas-section-heading" style="margin:0">📅 Last 35 Days</div>
+  <div id="moodAvg" style="font-size:0.88rem;color:#6b7280;"></div>
 </div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Resized successfully!</h3></div>
-  <img id="toolPreview" class="tool-result-preview" alt="Preview">
-  <div style="text-align:center;margin-top:14px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download Resized Image</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
-  </div>
+<div class="mood-calendar" id="moodCal"></div>
+<div class="mood-legend">
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#fca5a5"></span>Low</span>
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#fdba74"></span>Down</span>
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#fde68a"></span>OK</span>
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#a7f3d0"></span>Good</span>
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#34d399"></span>Great</span>
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#f3f4f6"></span>No entry</span>
 </div>
 <script>
-var toolFile=null,origW=0,origH=0;
-document.getElementById('toolDrop').addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-over');});
-document.getElementById('toolDrop').addEventListener('dragleave',function(){this.classList.remove('drag-over');});
-document.getElementById('toolDrop').addEventListener('drop',function(e){e.preventDefault();this.classList.remove('drag-over');if(e.dataTransfer.files[0])loadToolFile(e.dataTransfer.files[0]);});
-document.getElementById('toolDrop').addEventListener('click',function(){document.getElementById('toolFile').click();});
-document.getElementById('toolFile').addEventListener('change',function(){if(this.files[0])loadToolFile(this.files[0]);});
-function loadToolFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}toolFile=f;var img=new Image();img.onload=function(){origW=img.naturalWidth;origH=img.naturalHeight;document.getElementById('rszW').value=origW;document.getElementById('rszH').value=origH;document.getElementById('toolDrop').querySelector('h3').textContent=f.name;document.getElementById('toolDrop').querySelector('p').textContent=origW+'×'+origH+'px — ready to resize';document.getElementById('toolProcessBtn').disabled=false;URL.revokeObjectURL(img.src);};img.src=URL.createObjectURL(f);}
-function processResize(){if(!toolFile)return;var w=parseInt(document.getElementById('rszW').value);var h=parseInt(document.getElementById('rszH').value);if(!w||!h||w<1||h<1){alert('Please enter valid dimensions.');return;}var btn=document.getElementById('toolProcessBtn');btn.textContent='Resizing…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(toolFile);img.onload=function(){var c=document.createElement('canvas');c.width=w;c.height=h;var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=oUrl;dl.download='resized_vhh.jpg';document.getElementById('toolPreview').src=oUrl;document.getElementById('toolPreview').style.display='block';document.getElementById('toolFileInfo').textContent='Resized to '+w+'×'+h+'px | '+Math.round(blob.size/1024)+'KB';document.getElementById('toolResult').classList.add('visible');btn.textContent='Resize Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/jpeg',0.92);};img.src=url;}
+var selMood=0;
+function selectMood(m){selMood=m;document.querySelectorAll('#moodSelector .mood-btn').forEach(function(b){b.classList.toggle('active',parseInt(b.dataset.m)===m);});}
+function loadMoods(){return JSON.parse(localStorage.getItem('vhh_mood')||'{}');}
+function saveMoods(d){localStorage.setItem('vhh_mood',JSON.stringify(d));}
+function logMood(){
+  if(!selMood){alert('Please select a mood first.');return;}
+  var today=new Date().toISOString().split('T')[0];
+  var data=loadMoods();data[today]={mood:selMood,note:document.getElementById('moodNote').value.trim()};
+  saveMoods(data);
+  var conf=document.getElementById('moodConfirm');
+  conf.style.display='block';conf.textContent='✅ Mood logged for today!';
+  setTimeout(function(){conf.style.display='none';},3000);
+  renderCalendar();
+}
+function renderCalendar(){
+  var data=loadMoods();var cal=document.getElementById('moodCal');var cells='';
+  var total=0;var count=0;
+  for(var i=34;i>=0;i--){
+    var d=new Date();d.setDate(d.getDate()-i);var k=d.toISOString().split('T')[0];
+    var e=data[k];var m=e?e.mood:0;
+    if(m){total+=m;count++;}
+    var title=k+(e?(' — '+(e.note||['','Low','Down','OK','Good','Great'][m])):'');
+    cells+='<div class="mood-cal-cell" data-mood="'+m+'" title="'+title+'"></div>';
+  }
+  cal.innerHTML=cells;
+  if(count>0){document.getElementById('moodAvg').textContent='7-day avg: '+(['','😞','😟','😐','😊','😄'][Math.round(total/count)]+' '+(['','Low','Down','OK','Good','Great'][Math.round(total/count)]));}
+}
+renderCalendar();
 </script>`;
   }
 
-  // ── IMAGE CROP ────────────────────────────────────────────
-  if (t === 'image-crop') {
+  // ── STEP TRACKER ─────────────────────────────────────────────────────────
+  if (t === 'step-tracker') {
     return `
-<div class="tool-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
-  <div class="tool-dropzone-icon">✂️</div>
-  <h3>Drop your image here</h3>
-  <p>or click to browse • any image format</p>
-  <input type="file" id="toolFile" accept="image/*">
-</div>
-<div id="cropOptions" style="display:none;">
-  <p style="font-size:0.85rem;color:var(--gray-500);margin:16px 0 6px;">Image size: <strong id="imgDims"></strong></p>
-  <div class="tool-options">
-    <div class="tool-option-group"><label>X (left offset px)</label><input type="number" id="cropX" value="0" min="0"></div>
-    <div class="tool-option-group"><label>Y (top offset px)</label><input type="number" id="cropY" value="0" min="0"></div>
-    <div class="tool-option-group"><label>Width (px)</label><input type="number" id="cropW" placeholder="auto"></div>
-    <div class="tool-option-group"><label>Height (px)</label><input type="number" id="cropH" placeholder="auto"></div>
+<div class="saas-card-title">👟 Log Today's Steps</div>
+<div class="saas-form-row" style="margin-bottom:18px">
+  <div class="saas-form-group">
+    <label class="saas-label">Steps Today</label>
+    <input class="saas-input" type="number" id="stepInput" placeholder="e.g. 8500" min="0" max="100000">
+  </div>
+  <div class="saas-form-group">
+    <label class="saas-label">Daily Goal</label>
+    <input class="saas-input" type="number" id="stepGoal" value="10000" min="1000" max="50000">
   </div>
 </div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processCrop()" disabled>Crop Image ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Cropped successfully!</h3></div>
-  <img id="toolPreview" class="tool-result-preview" alt="Preview">
-  <div style="text-align:center;margin-top:14px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download Cropped Image</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
+<button class="saas-btn saas-btn-primary" onclick="logSteps()" style="width:100%">Log Steps</button>
+<div class="step-ring-wrap" id="stepRingWrap" style="display:none">
+  <svg class="timer-svg" width="160" height="160" viewBox="0 0 160 160" id="stepRingSvg">
+    <circle cx="80" cy="80" r="68" fill="none" stroke="#e5e7eb" stroke-width="12"/>
+    <circle cx="80" cy="80" r="68" fill="none" stroke="url(#stepGrad)" stroke-width="12" stroke-linecap="round" id="stepCircle" style="transition:stroke-dashoffset 0.8s ease"/>
+    <defs><linearGradient id="stepGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#2d6a4f"/><stop offset="100%" style="stop-color:#52b788"/></linearGradient></defs>
+  </svg>
+  <div style="margin-top:-90px;text-align:center;position:relative;z-index:1;margin-bottom:60px">
+    <div class="step-ring-value" id="stepPct">0%</div>
+    <div class="step-ring-label" id="stepCount">0 / 0 steps</div>
   </div>
 </div>
+<hr class="saas-divider">
+<div class="saas-section-heading">📊 Last 7 Days</div>
+<div id="stepChart" class="step-chart-wrap"></div>
 <script>
-var toolFile=null,imgW=0,imgH=0;
-document.getElementById('toolDrop').addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-over');});
-document.getElementById('toolDrop').addEventListener('dragleave',function(){this.classList.remove('drag-over');});
-document.getElementById('toolDrop').addEventListener('drop',function(e){e.preventDefault();this.classList.remove('drag-over');if(e.dataTransfer.files[0])loadToolFile(e.dataTransfer.files[0]);});
-document.getElementById('toolDrop').addEventListener('click',function(){document.getElementById('toolFile').click();});
-document.getElementById('toolFile').addEventListener('change',function(){if(this.files[0])loadToolFile(this.files[0]);});
-function loadToolFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}toolFile=f;var img=new Image();img.onload=function(){imgW=img.naturalWidth;imgH=img.naturalHeight;document.getElementById('imgDims').textContent=imgW+'×'+imgH+'px';document.getElementById('cropW').value=imgW;document.getElementById('cropH').value=imgH;document.getElementById('cropOptions').style.display='block';document.getElementById('toolDrop').querySelector('h3').textContent=f.name;document.getElementById('toolProcessBtn').disabled=false;URL.revokeObjectURL(img.src);};img.src=URL.createObjectURL(f);}
-function processCrop(){if(!toolFile)return;var x=Math.max(0,parseInt(document.getElementById('cropX').value)||0);var y=Math.max(0,parseInt(document.getElementById('cropY').value)||0);var w=Math.min(parseInt(document.getElementById('cropW').value)||imgW,imgW-x);var h=Math.min(parseInt(document.getElementById('cropH').value)||imgH,imgH-y);if(w<1||h<1){alert('Invalid crop dimensions.');return;}var btn=document.getElementById('toolProcessBtn');btn.textContent='Cropping…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(toolFile);img.onload=function(){var c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,x,y,w,h,0,0,w,h);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=oUrl;dl.download='cropped_vhh.png';document.getElementById('toolPreview').src=oUrl;document.getElementById('toolPreview').style.display='block';document.getElementById('toolFileInfo').textContent='Cropped to '+w+'×'+h+'px | '+Math.round(blob.size/1024)+'KB';document.getElementById('toolResult').classList.add('visible');btn.textContent='Crop Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/png');};img.src=url;}
+function loadSteps(){return JSON.parse(localStorage.getItem('vhh_steps')||'[]');}
+function saveSteps(d){localStorage.setItem('vhh_steps',JSON.stringify(d));}
+var C=2*Math.PI*68;var stepCircle=document.getElementById('stepCircle');
+stepCircle.style.strokeDasharray=C;stepCircle.style.strokeDashoffset=C;
+function setRing(pct){stepCircle.style.strokeDashoffset=C-(pct/100)*C;}
+function logSteps(){
+  var steps=parseInt(document.getElementById('stepInput').value);
+  var goal=parseInt(document.getElementById('stepGoal').value)||10000;
+  if(!steps||steps<0){alert('Please enter a valid step count.');return;}
+  var today=new Date().toISOString().split('T')[0];
+  var data=loadSteps();
+  data=data.filter(function(e){return e.date!==today;});
+  data.unshift({date:today,steps:steps,goal:goal});
+  if(data.length>14)data=data.slice(0,14);
+  saveSteps(data);
+  var pct=Math.min(100,Math.round((steps/goal)*100));
+  document.getElementById('stepRingWrap').style.display='flex';
+  document.getElementById('stepPct').textContent=pct+'%';
+  document.getElementById('stepCount').textContent=steps.toLocaleString()+' / '+goal.toLocaleString()+' steps';
+  setTimeout(function(){setRing(pct);},50);
+  renderStepChart();
+}
+function renderStepChart(){
+  var data=loadSteps().slice(0,7).reverse();var el=document.getElementById('stepChart');
+  if(!data.length){el.innerHTML='<div class="saas-empty-state"><div class="saas-empty-icon">👣</div><p class="saas-empty-text">Log steps to see your weekly chart!</p></div>';return;}
+  var maxS=Math.max.apply(null,data.map(function(e){return e.steps;}));
+  var today=new Date().toISOString().split('T')[0];
+  var bars=data.map(function(e){
+    var pct=maxS>0?Math.max(8,Math.round((e.steps/maxS)*100)):8;
+    var isToday=e.date===today;
+    var day=new Date(e.date+'T12:00:00').toLocaleDateString('en-GB',{weekday:'short'});
+    return '<div class="step-bar-col"><div class="step-bar'+(isToday?' active':'')+'" style="height:'+pct+'px" title="'+e.steps.toLocaleString()+' steps"></div><div class="step-bar-label">'+day+'</div></div>';
+  }).join('');
+  el.innerHTML='<div class="step-bar-chart">'+bars+'</div>';
+}
+renderStepChart();
 </script>`;
   }
 
-  // ── JPG TO PDF ────────────────────────────────────────────
-  if (t === 'jpg-to-pdf') {
+  // ── HEALTH DASHBOARD ─────────────────────────────────────────────────────
+  if (t === 'health-dashboard') {
     return `
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<div class="tool-dropzone" id="toolDrop">
-  <div class="tool-dropzone-icon">📄</div>
-  <h3>Drop images here (one or more)</h3>
-  <p>or click to browse • JPG, PNG, WebP supported</p>
-  <input type="file" id="toolFile" accept="image/*" multiple>
-  <div class="tool-dropzone-or">— or —</div>
-  <button class="tool-browse-btn" type="button" onclick="event.stopPropagation();document.getElementById('toolFile').click()">📁 Browse Files</button>
+<div class="saas-card-title">📊 Your Health Overview
+  <span style="margin-left:auto;font-size:0.78rem;font-weight:500;color:#9ca3af;" id="dashDate"></span>
 </div>
-<div class="tool-file-list" id="toolFileList"></div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processJpgToPdf()" disabled>Create PDF ↓</button>
+<div id="dashNotice" class="saas-notice saas-notice-info" style="margin-bottom:24px">
+  ℹ️ This dashboard reads data from your other trackers. Use the individual tools to log data, and it will appear here automatically.
 </div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>PDF created successfully!</h3></div>
-  <div style="text-align:center;margin-top:8px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download PDF</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
+<div class="dashboard-grid" id="dashGrid"></div>
+<div style="margin-top:24px;padding-top:20px;border-top:1px solid #f0f5f1;">
+  <div class="saas-section-heading">Quick Access</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+    <a href="/tools/sleep-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">😴 Sleep Tracker</a>
+    <a href="/tools/mood-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">🌈 Mood Tracker</a>
+    <a href="/tools/step-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">👟 Step Tracker</a>
+    <a href="/tools/habit-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">🔥 Habit Tracker</a>
   </div>
 </div>
 <script>
-var toolFiles=[];
-var dropEl=document.getElementById('toolDrop');
-dropEl.addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-over');});
-dropEl.addEventListener('dragleave',function(){this.classList.remove('drag-over');});
-dropEl.addEventListener('drop',function(e){e.preventDefault();this.classList.remove('drag-over');addFiles(Array.from(e.dataTransfer.files));});
-dropEl.addEventListener('click',function(e){if(e.target===dropEl||e.target.tagName==='P'||e.target.tagName==='H3'||e.target.classList.contains('tool-dropzone-icon'))document.getElementById('toolFile').click();});
-document.getElementById('toolFile').addEventListener('change',function(){addFiles(Array.from(this.files));this.value='';});
-function addFiles(files){files.forEach(function(f){if(f.type.startsWith('image/'))toolFiles.push(f);});renderFileList();}
-function renderFileList(){var list=document.getElementById('toolFileList');list.innerHTML=toolFiles.map(function(f,i){return'<div class="tool-file-item"><span class="tool-file-item-icon">🖼️</span><span class="tool-file-item-name">'+f.name+'</span><span class="tool-file-item-size">'+Math.round(f.size/1024)+'KB</span><button class="tool-file-remove" onclick="removeFile('+i+')">✕</button></div>';}).join('');document.getElementById('toolProcessBtn').disabled=toolFiles.length===0;}
-function removeFile(i){toolFiles.splice(i,1);renderFileList();}
-function processJpgToPdf(){if(!toolFiles.length)return;var btn=document.getElementById('toolProcessBtn');btn.textContent='Creating PDF…';btn.disabled=true;var {jsPDF}=window.jspdf;var pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});var loaded=0;toolFiles.forEach(function(f,i){var img=new Image();img.onload=function(){var pw=210,ph=297,m=10,aw=pw-2*m,ah=ph-2*m;var ar=img.naturalWidth/img.naturalHeight;var w,h;if(ar>aw/ah){w=aw;h=aw/ar;}else{h=ah;w=ah*ar;}var x=m+(aw-w)/2,y=m+(ah-h)/2;if(i>0)pdf.addPage();pdf.addImage(img,'JPEG',x,y,w,h);loaded++;if(loaded===toolFiles.length){var blob=pdf.output('blob');var url=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=url;dl.download='images_vhh.pdf';document.getElementById('toolFileInfo').textContent=toolFiles.length+' image'+(toolFiles.length>1?'s':'')+' converted to '+toolFiles.length+'-page PDF';document.getElementById('toolResult').classList.add('visible');btn.textContent='Create Another PDF';btn.disabled=false;}};img.src=URL.createObjectURL(f);});}</script>`;
+document.getElementById('dashDate').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+function buildDash(){
+  var sleepData=JSON.parse(localStorage.getItem('vhh_sleep')||'[]');
+  var moodData=JSON.parse(localStorage.getItem('vhh_mood')||'{}');
+  var stepData=JSON.parse(localStorage.getItem('vhh_steps')||'[]');
+  var habitData=JSON.parse(localStorage.getItem('vhh_habits')||'{"habits":[]}');
+  var today=new Date().toISOString().split('T')[0];
+  var metrics=[];
+  // Sleep
+  var ls=sleepData[0];
+  metrics.push({icon:'😴',label:'Last Sleep',val:ls?ls.hrs+'h (score '+ls.score+')':'Not logged yet',sub:ls?ls.date:'',href:'/tools/sleep-tracker.html',empty:!ls});
+  // Mood
+  var todayMood=moodData[today];
+  var moodLabels=['','😞 Low','😟 Down','😐 OK','😊 Good','😄 Great'];
+  metrics.push({icon:'🌈',label:"Today's Mood",val:todayMood?moodLabels[todayMood.mood]:'Not logged yet',sub:todayMood?todayMood.note:'',href:'/tools/mood-tracker.html',empty:!todayMood});
+  // Steps
+  var ts=stepData.find(function(e){return e.date===today;});
+  metrics.push({icon:'👟',label:"Today's Steps",val:ts?ts.steps.toLocaleString()+' / '+ts.goal.toLocaleString():'Not logged yet',sub:ts?Math.round((ts.steps/ts.goal)*100)+'% of goal':'',href:'/tools/step-tracker.html',empty:!ts});
+  // Habits
+  var total=habitData.habits.length;
+  var done=habitData.habits.filter(function(h){return h.history&&h.history[today];}).length;
+  metrics.push({icon:'🔥',label:'Habits Today',val:total?done+' / '+total+' done':'No habits set',sub:total?Math.round((done/total)*100)+'% completion':'',href:'/tools/habit-tracker.html',empty:!total});
+  var grid=document.getElementById('dashGrid');
+  grid.innerHTML=metrics.map(function(m){
+    return '<a href="'+m.href+'" class="dashboard-metric-card'+(m.empty?' empty-metric':'')+'">'+
+      '<div class="dashboard-metric-icon">'+m.icon+'</div>'+
+      '<div class="dashboard-metric-label">'+m.label+'</div>'+
+      '<div class="dashboard-metric-value">'+m.val+'</div>'+
+      (m.sub?'<div class="dashboard-metric-sub">'+m.sub+'</div>':'')+
+    '</a>';
+  }).join('');
+  var hasAny=sleepData.length||Object.keys(moodData).length||stepData.length||habitData.habits.length;
+  document.getElementById('dashNotice').style.display=hasAny?'none':'flex';
+}
+buildDash();
+</script>`;
   }
 
-  // ── PDF MERGE ─────────────────────────────────────────────
+  // ── DAILY PLANNER ────────────────────────────────────────────────────────
+  if (t === 'daily-planner') {
+    return `
+<div class="planner-date-header">
+  <div class="planner-today" id="plannerDate"></div>
+  <button class="saas-btn saas-btn-ghost saas-btn-sm" onclick="clearDone()">Clear Completed</button>
+</div>
+<div class="planner-add-form">
+  <input class="saas-input" id="plannerTask" placeholder="Add a task…" maxlength="120">
+  <input class="saas-input" type="time" id="plannerTime" style="max-width:130px" value="09:00">
+  <select class="planner-select" id="plannerPriority">
+    <option value="high">🔴 High</option>
+    <option value="medium" selected>🟡 Medium</option>
+    <option value="low">🟢 Low</option>
+  </select>
+  <button class="saas-btn saas-btn-primary" onclick="addTask()">+ Add</button>
+</div>
+<div id="plannerList" class="planner-task-list"></div>
+<div id="plannerEmpty" class="saas-empty-state" style="display:none">
+  <div class="saas-empty-icon">📋</div>
+  <p class="saas-empty-text">No tasks yet. Add your first task for today!</p>
+</div>
+<div class="planner-stats" id="plannerStats"></div>
+<script>
+var TODAY=new Date().toISOString().split('T')[0];
+var PKEY='vhh_planner_'+TODAY;
+var PLABELS={high:'🔴 High',medium:'🟡 Medium',low:'🟢 Low'};
+document.getElementById('plannerDate').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+function loadTasks(){return JSON.parse(localStorage.getItem(PKEY)||'[]');}
+function saveTasks(d){localStorage.setItem(PKEY,JSON.stringify(d));}
+function addTask(){
+  var name=document.getElementById('plannerTask').value.trim();
+  if(!name)return;
+  var time=document.getElementById('plannerTime').value;
+  var pri=document.getElementById('plannerPriority').value;
+  var tasks=loadTasks();
+  tasks.push({id:Date.now().toString(),name:name,time:time,priority:pri,done:false});
+  tasks.sort(function(a,b){var o={high:0,medium:1,low:2};return o[a.priority]-o[b.priority];});
+  saveTasks(tasks);document.getElementById('plannerTask').value='';renderTasks();
+}
+function toggleTask(id){var t=loadTasks();var tk=t.find(function(x){return x.id===id;});if(tk)tk.done=!tk.done;saveTasks(t);renderTasks();}
+function deleteTask(id){var t=loadTasks().filter(function(x){return x.id!==id;});saveTasks(t);renderTasks();}
+function clearDone(){var t=loadTasks().filter(function(x){return !x.done;});saveTasks(t);renderTasks();}
+function renderTasks(){
+  var tasks=loadTasks();var list=document.getElementById('plannerList');var empty=document.getElementById('plannerEmpty');
+  if(!tasks.length){list.innerHTML='';empty.style.display='block';document.getElementById('plannerStats').innerHTML='';return;}
+  empty.style.display='none';
+  list.innerHTML=tasks.map(function(tk){
+    var badgeMap={high:'saas-badge-red',medium:'saas-badge-yellow',low:'saas-badge-green'};
+    return '<div class="planner-task'+(tk.done?' done-task':'')+'">'+
+      '<input type="checkbox" class="planner-task-cb"'+(tk.done?' checked':'')+' onclick="toggleTask(\''+tk.id+'\')">'+
+      '<span class="planner-task-time">'+tk.time+'</span>'+
+      '<span class="planner-task-name">'+tk.name+'</span>'+
+      '<span class="planner-priority"><span class="saas-badge '+badgeMap[tk.priority]+'">'+PLABELS[tk.priority]+'</span></span>'+
+      '<button class="planner-task-del" onclick="deleteTask(\''+tk.id+'\')">✕</button>'+
+    '</div>';
+  }).join('');
+  var done=tasks.filter(function(t){return t.done;}).length;
+  document.getElementById('plannerStats').innerHTML='<span class="planner-stat"><strong>'+tasks.length+'</strong> total</span><span class="planner-stat"><strong>'+done+'</strong> done</span><span class="planner-stat"><strong>'+(tasks.length-done)+'</strong> remaining</span>';
+}
+document.getElementById('plannerTask').addEventListener('keydown',function(e){if(e.key==='Enter')addTask();});
+renderTasks();
+</script>`;
+  }
+
+  // ── FOCUS TIMER ──────────────────────────────────────────────────────────
+  if (t === 'focus-timer') {
+    return `
+<div class="timer-container">
+  <div class="timer-mode-badge timer-work" id="timerModeBadge">Work Session</div>
+  <div class="timer-svg-wrap">
+    <svg class="timer-svg" width="200" height="200" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="88" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="url(#timerGrad)" stroke-width="10" stroke-linecap="round" id="timerCircle" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset 1s linear;"/>
+      <defs><linearGradient id="timerGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#2d6a4f"/><stop offset="100%" style="stop-color:#52b788"/></linearGradient></defs>
+    </svg>
+    <div class="timer-time-display" id="timerDisplay">25:00</div>
+  </div>
+  <div class="timer-sessions" id="timerSessions">Sessions completed: <strong>0</strong></div>
+  <div class="timer-controls">
+    <button class="saas-btn saas-btn-primary" onclick="timerToggle()" id="timerStartBtn">▶ Start</button>
+    <button class="saas-btn saas-btn-secondary" onclick="timerReset()">↺ Reset</button>
+    <button class="saas-btn saas-btn-ghost" onclick="timerSkip()">⏭ Skip</button>
+  </div>
+</div>
+<div class="timer-settings">
+  <div class="timer-setting-group">
+    <label class="timer-setting-label">Work (min)</label>
+    <input type="number" class="timer-setting-input" id="workMin" value="25" min="1" max="120" onchange="resetOnChange()">
+  </div>
+  <div class="timer-setting-group">
+    <label class="timer-setting-label">Short Break</label>
+    <input type="number" class="timer-setting-input" id="breakMin" value="5" min="1" max="60" onchange="resetOnChange()">
+  </div>
+  <div class="timer-setting-group">
+    <label class="timer-setting-label">Long Break</label>
+    <input type="number" class="timer-setting-input" id="longBreakMin" value="20" min="1" max="120" onchange="resetOnChange()">
+  </div>
+  <div class="timer-setting-group">
+    <label class="timer-setting-label">Sessions to Long Break</label>
+    <input type="number" class="timer-setting-input" id="sessionsToLong" value="4" min="1" max="10" onchange="resetOnChange()">
+  </div>
+</div>
+<script>
+var timerInterval=null;var isRunning=false;var isBreak=false;var sessionsCompleted=0;
+var totalSecs=25*60;var secsLeft=totalSecs;
+var C=2*Math.PI*88;var tc=document.getElementById('timerCircle');
+tc.style.strokeDasharray=C;tc.style.strokeDashoffset=0;
+function getWorkSecs(){return parseInt(document.getElementById('workMin').value||25)*60;}
+function getBreakSecs(){return parseInt(document.getElementById('breakMin').value||5)*60;}
+function getLongBreakSecs(){return parseInt(document.getElementById('longBreakMin').value||20)*60;}
+function getSessToLong(){return parseInt(document.getElementById('sessionsToLong').value||4);}
+function updateDisplay(){
+  var m=Math.floor(secsLeft/60);var s=secsLeft%60;
+  document.getElementById('timerDisplay').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  document.title=document.getElementById('timerDisplay').textContent+' — '+(isBreak?'Break':'Focus');
+  var pct=1-(secsLeft/totalSecs);tc.style.strokeDashoffset=C*pct;
+}
+function timerToggle(){
+  if(isRunning){clearInterval(timerInterval);isRunning=false;document.getElementById('timerStartBtn').textContent='▶ Start';}
+  else{isRunning=true;document.getElementById('timerStartBtn').textContent='⏸ Pause';timerInterval=setInterval(tick,1000);}
+}
+function tick(){
+  if(secsLeft<=0){clearInterval(timerInterval);isRunning=false;
+    if(!isBreak){sessionsCompleted++;document.getElementById('timerSessions').innerHTML='Sessions completed: <strong>'+sessionsCompleted+'</strong>';}
+    timerSkip();
+    try{new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAA').play().catch(function(){});}catch(e){}
+    alert(isBreak?'Break time! Back to work.':'Great work! Time for a break.');
+    return;
+  }
+  secsLeft--;updateDisplay();
+}
+function timerReset(){
+  clearInterval(timerInterval);isRunning=false;
+  isBreak=false;totalSecs=getWorkSecs();secsLeft=totalSecs;
+  document.getElementById('timerStartBtn').textContent='▶ Start';
+  document.getElementById('timerModeBadge').textContent='Work Session';
+  document.getElementById('timerModeBadge').className='timer-mode-badge timer-work';
+  tc.style.strokeDashoffset=0;document.title='Focus Timer';
+  updateDisplay();
+}
+function timerSkip(){
+  clearInterval(timerInterval);isRunning=false;
+  if(isBreak){isBreak=false;totalSecs=getWorkSecs();document.getElementById('timerModeBadge').textContent='Work Session';document.getElementById('timerModeBadge').className='timer-mode-badge timer-work';}
+  else{isBreak=true;var isLong=(sessionsCompleted%getSessToLong()===0&&sessionsCompleted>0);totalSecs=isLong?getLongBreakSecs():getBreakSecs();document.getElementById('timerModeBadge').textContent=isLong?'Long Break':'Short Break';document.getElementById('timerModeBadge').className='timer-mode-badge timer-break';}
+  secsLeft=totalSecs;document.getElementById('timerStartBtn').textContent='▶ Start';tc.style.strokeDashoffset=0;updateDisplay();
+}
+function resetOnChange(){if(!isRunning)timerReset();}
+updateDisplay();
+</script>`;
+  }
+
+  // ── GOAL TRACKER ─────────────────────────────────────────────────────────
+  if (t === 'goal-tracker') {
+    return `
+<div class="saas-card-title">🎯 Your Goals</div>
+<div class="goal-add-form">
+  <div class="saas-form-row">
+    <div class="saas-form-group">
+      <label class="saas-label">Goal Name</label>
+      <input class="saas-input" id="goalName" placeholder="e.g. Lose weight">
+    </div>
+    <div class="saas-form-group">
+      <label class="saas-label">Unit</label>
+      <input class="saas-input" id="goalUnit" placeholder="e.g. kg, steps, pages">
+    </div>
+  </div>
+  <div class="saas-form-row">
+    <div class="saas-form-group">
+      <label class="saas-label">Current Value</label>
+      <input class="saas-input" type="number" id="goalCurrent" placeholder="e.g. 80">
+    </div>
+    <div class="saas-form-group">
+      <label class="saas-label">Target Value</label>
+      <input class="saas-input" type="number" id="goalTarget" placeholder="e.g. 70">
+    </div>
+  </div>
+  <button class="saas-btn saas-btn-primary" onclick="addGoal()" style="width:100%">+ Add Goal</button>
+</div>
+<div id="goalList" class="goal-list"></div>
+<div id="goalEmpty" class="saas-empty-state" style="display:none">
+  <div class="saas-empty-icon">🎯</div>
+  <p class="saas-empty-text">No goals yet. Add your first goal above to start tracking!</p>
+</div>
+<script>
+function loadGoals(){return JSON.parse(localStorage.getItem('vhh_goals')||'[]');}
+function saveGoals(d){localStorage.setItem('vhh_goals',JSON.stringify(d));}
+function calcPct(c,t){if(t===0)return 0;var p=Math.round((c/t)*100);return Math.min(100,Math.max(0,p));}
+function addGoal(){
+  var name=document.getElementById('goalName').value.trim();
+  var unit=document.getElementById('goalUnit').value.trim()||'units';
+  var cur=parseFloat(document.getElementById('goalCurrent').value);
+  var tgt=parseFloat(document.getElementById('goalTarget').value);
+  if(!name||isNaN(cur)||isNaN(tgt)){alert('Please fill in all goal fields.');return;}
+  var goals=loadGoals();
+  goals.push({id:Date.now().toString(),name:name,unit:unit,current:cur,target:tgt});
+  saveGoals(goals);
+  ['goalName','goalUnit','goalCurrent','goalTarget'].forEach(function(id){document.getElementById(id).value='';});
+  renderGoals();
+}
+function deleteGoal(id){saveGoals(loadGoals().filter(function(g){return g.id!==id;}));renderGoals();}
+function updateGoal(id){
+  var inp=document.getElementById('gupd-'+id);if(!inp)return;
+  var val=parseFloat(inp.value);if(isNaN(val)){alert('Please enter a valid number.');return;}
+  var goals=loadGoals();var g=goals.find(function(g){return g.id===id;});if(g)g.current=val;
+  saveGoals(goals);renderGoals();
+}
+function renderGoals(){
+  var goals=loadGoals();var list=document.getElementById('goalList');var empty=document.getElementById('goalEmpty');
+  if(!goals.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  list.innerHTML=goals.map(function(g){
+    var pct=calcPct(g.current,g.target);
+    var fillClass=pct>=80?'':pct>=50?'':pct<30?'danger':'warn';
+    var complete=pct>=100;
+    return '<div class="goal-card">'+
+      '<div class="goal-card-header">'+
+        '<div><div class="goal-name">'+g.name+'</div><div class="goal-target-info">'+g.current+' / '+g.target+' '+g.unit+'</div></div>'+
+        '<div class="goal-card-actions">'+
+          '<span class="saas-badge '+(pct>=100?'saas-badge-green':pct>=70?'saas-badge-blue':pct>=40?'saas-badge-yellow':'saas-badge-red')+'">'+pct+'%</span>'+
+          '<button class="saas-btn saas-btn-danger saas-btn-sm" onclick="deleteGoal(\''+g.id+'\')">Delete</button>'+
+        '</div>'+
+      '</div>'+
+      '<div class="saas-progress-wrap"><div class="saas-progress-bar"><div class="saas-progress-fill '+fillClass+'" style="width:'+pct+'%"></div></div></div>'+
+      (complete?'<div class="goal-complete-badge">🎉 Goal achieved!</div>':
+        '<div class="goal-update-form"><span style="font-size:0.85rem;color:#6b7280">Update:</span><input class="goal-update-input" id="gupd-'+g.id+'" type="number" placeholder="New value"><button class="saas-btn saas-btn-ghost saas-btn-sm" onclick="updateGoal(\''+g.id+'\')">Save</button></div>')+
+    '</div>';
+  }).join('');
+}
+renderGoals();
+</script>`;
+  }
+
+  // ── ADVANCED TEXT ANALYZER ───────────────────────────────────────────────
+  if (t === 'advanced-text-analyzer') {
+    return `
+<div class="text-analyzer-layout">
+  <div class="text-analyzer-input-col">
+    <div>
+      <label class="saas-label">Paste or type your text below</label>
+      <textarea class="saas-textarea text-analyzer-textarea" id="textInput" placeholder="Paste your article, blog post, essay, or any text here…" oninput="analyzeText()"></textarea>
+    </div>
+    <div>
+      <div class="saas-section-heading">Text Cleaning Tools</div>
+      <div class="text-clean-options">
+        <button class="text-clean-btn" onclick="cleanAction('trim')">Trim Spaces</button>
+        <button class="text-clean-btn" onclick="cleanAction('breaks')">Remove Extra Line Breaks</button>
+        <button class="text-clean-btn" onclick="cleanAction('special')">Remove Special Chars</button>
+        <button class="text-clean-btn" onclick="cleanAction('html')">Strip HTML Tags</button>
+        <button class="text-clean-btn" onclick="cleanAction('lower')">Lowercase</button>
+      </div>
+    </div>
+    <button class="saas-btn saas-btn-secondary saas-btn-sm" onclick="copyText()" style="align-self:flex-start">📋 Copy Text</button>
+  </div>
+  <div class="text-analyzer-stats-col">
+    <div class="saas-stat-grid" style="grid-template-columns:repeat(2,1fr)">
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statWords">0</div><div class="saas-stat-label">Words</div></div>
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statChars">0</div><div class="saas-stat-label">Chars</div></div>
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statSents">0</div><div class="saas-stat-label">Sentences</div></div>
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statParas">0</div><div class="saas-stat-label">Paragraphs</div></div>
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statRead">0 min</div><div class="saas-stat-label">Read Time</div></div>
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statFlesch">—</div><div class="saas-stat-label">Readability</div></div>
+    </div>
+    <div style="margin-top:8px;text-align:center">
+      <span id="statGrade" class="readability-grade saas-badge saas-badge-gray">Grade: —</span>
+    </div>
+    <hr class="saas-divider">
+    <div class="saas-section-heading">Top Keywords</div>
+    <table class="keyword-table" id="kwTable">
+      <thead><tr><th>Word</th><th>Count</th><th>Density</th><th class="keyword-bar-cell"></th></tr></thead>
+      <tbody id="kwBody"><tr><td colspan="4" style="color:#9ca3af;text-align:center;padding:16px">Start typing to see keywords…</td></tr></tbody>
+    </table>
+  </div>
+</div>
+<script>
+var STOP=['the','a','an','and','or','but','in','on','at','to','for','of','with','is','it','this','that','are','was','as','by','be','from','they','we','our','you','he','she','his','her','their','have','had','has','do','did','not','if','its','my','i','me','your','we','us','all','can','will','would','could','should','more','so','up','also','about','into','what','which','when','where','who','been'];
+function countSyllables(w){w=w.toLowerCase().replace(/[^a-z]/g,'');var c=0;var m=w.match(/[aeiou]+/g);if(m)c=m.length;if(w.endsWith('e')&&c>1)c--;return Math.max(1,c);}
+function analyzeText(){
+  var text=document.getElementById('textInput').value;
+  var words=text.trim()?text.trim().split(/\s+/).filter(function(w){return w.length>0;}):[];
+  var chars=text.length;
+  var sents=text.split(/[.!?]+/).filter(function(s){return s.trim().length>1;}).length;
+  var paras=text.split(/\n\s*\n/).filter(function(p){return p.trim().length>0;}).length;
+  var readMins=Math.ceil(words.length/200);
+  document.getElementById('statWords').textContent=words.length.toLocaleString();
+  document.getElementById('statChars').textContent=chars.toLocaleString();
+  document.getElementById('statSents').textContent=sents;
+  document.getElementById('statParas').textContent=paras||0;
+  document.getElementById('statRead').textContent=(readMins||0)+' min';
+  // Flesch
+  if(words.length>10&&sents>0){
+    var sylls=words.reduce(function(t,w){return t+countSyllables(w);},0);
+    var asl=words.length/sents;var asw=sylls/words.length;
+    var flesch=Math.round(206.835-1.015*asl-84.6*asw);
+    flesch=Math.max(0,Math.min(100,flesch));
+    document.getElementById('statFlesch').textContent=flesch;
+    var grade=flesch>=90?'5th':flesch>=80?'6th':flesch>=70?'7th':flesch>=60?'8-9th':flesch>=50?'10-12th':flesch>=30?'College':'Professional';
+    var gradeClass=flesch>=70?'saas-badge-green':flesch>=50?'saas-badge-yellow':'saas-badge-red';
+    document.getElementById('statGrade').textContent='Grade: '+grade;
+    document.getElementById('statGrade').className='readability-grade saas-badge '+gradeClass;
+  } else { document.getElementById('statFlesch').textContent='—';document.getElementById('statGrade').textContent='Grade: —';document.getElementById('statGrade').className='readability-grade saas-badge saas-badge-gray'; }
+  // Keywords
+  if(words.length>0){
+    var freq={};words.forEach(function(w){var k=w.toLowerCase().replace(/[^a-z]/g,'');if(k.length>2&&STOP.indexOf(k)===-1)freq[k]=(freq[k]||0)+1;});
+    var sorted=Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,10);
+    var maxF=sorted.length?freq[sorted[0]]:1;
+    var rows=sorted.map(function(w){var pct=Math.round((freq[w]/words.length)*100);var barPct=Math.round((freq[w]/maxF)*100);return '<tr><td>'+w+'</td><td>'+freq[w]+'</td><td>'+pct+'%</td><td class="keyword-bar-cell"><div class="keyword-mini-bar"><div class="keyword-mini-fill" style="width:'+barPct+'%"></div></div></td></tr>';}).join('');
+    document.getElementById('kwBody').innerHTML=rows||'<tr><td colspan="4" style="color:#9ca3af;text-align:center">No meaningful keywords found</td></tr>';
+  }
+}
+function cleanAction(type){
+  var el=document.getElementById('textInput');var t=el.value;
+  if(type==='trim')t=t.replace(/[ \\t]+/g,' ').trim();
+  else if(type==='breaks')t=t.replace(/\\n{3,}/g,'\\n\\n').trim();
+  else if(type==='special')t=t.replace(/[^a-zA-Z0-9\\s.,!?;:\\'"-]/g,'');
+  else if(type==='html')t=t.replace(/<[^>]+>/g,'');
+  else if(type==='lower')t=t.toLowerCase();
+  el.value=t;analyzeText();
+}
+function copyText(){navigator.clipboard.writeText(document.getElementById('textInput').value).then(function(){alert('Text copied to clipboard!');});}
+</script>`;
+  }
+
+  // ── HEADLINE ANALYZER ────────────────────────────────────────────────────
+  if (t === 'headline-analyzer') {
+    const powerWords = ['proven','secret','exclusive','ultimate','powerful','effective','guaranteed','transform','discover','instantly','best','free','new','amazing','breakthrough','critical','essential','hidden','revealed','simple','easy','fast','quick','boost','master','expert','complete','definitive','shocking','surprising','warning','important','hurry','limited','now','today','last','urgent','never','always','stop','start','save','earn','lose','gain'];
+    return `
+<div class="saas-form-group">
+  <label class="saas-label">Enter your headline</label>
+  <input class="saas-input" id="headlineInput" placeholder="e.g. 7 Proven Ways to Sleep Better Tonight and Wake Up Energised" oninput="analyzeHeadline()" maxlength="200" style="font-size:1.1rem;padding:16px 18px">
+  <div style="margin-top:6px;font-size:0.78rem;color:#9ca3af"><span id="headlineLen">0</span> characters (ideal: 55–70)</div>
+</div>
+<div id="headlineResults" style="display:none">
+  <div class="headline-score-section">
+    <div class="headline-score-ring">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="50" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="url(#hlGrad)" stroke-width="10" stroke-linecap="round" id="hlCircle" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset 0.6s ease"/>
+        <defs><linearGradient id="hlGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#2d6a4f"/><stop offset="100%" style="stop-color:#52b788"/></linearGradient></defs>
+      </svg>
+      <div class="headline-score-number">
+        <div class="headline-score-val" id="hlScoreVal">0</div>
+        <div class="headline-score-lbl">Score</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-start">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <span style="font-size:1.1rem;font-weight:800;color:#1b4332">Overall Rating:</span>
+        <span class="headline-grade-badge saas-badge" id="hlGradeBadge">—</span>
+      </div>
+      <div class="headline-breakdown" id="hlBreakdown"></div>
+    </div>
+  </div>
+  <div class="headline-suggestions" id="hlSuggestions"></div>
+  <div class="headline-power-words" id="hlPowerWords" style="display:none">
+    <div class="saas-section-heading">✨ Power Words Found</div>
+    <div class="headline-pw-list" id="hlPwList"></div>
+  </div>
+</div>
+<script>
+var HL_POWER=${JSON.stringify(powerWords)};
+var HL_C=2*Math.PI*50;
+var hlCircle=document.getElementById('hlCircle');hlCircle.style.strokeDasharray=HL_C;hlCircle.style.strokeDashoffset=HL_C;
+function analyzeHeadline(){
+  var h=document.getElementById('headlineInput').value.trim();
+  document.getElementById('headlineLen').textContent=h.length;
+  if(h.length<3){document.getElementById('headlineResults').style.display='none';return;}
+  document.getElementById('headlineResults').style.display='block';
+  var words=h.split(/\\s+/).filter(function(w){return w.length>0;});
+  var wCount=words.length;
+  // Length score
+  var lenScore=0;if(h.length>=55&&h.length<=70)lenScore=100;else if(h.length>=40&&h.length<55)lenScore=70;else if(h.length>70&&h.length<=90)lenScore=60;else if(h.length<40)lenScore=Math.round((h.length/40)*60);else lenScore=Math.max(20,60-Math.round((h.length-90)/3)*5);
+  // Power words
+  var lowerWords=words.map(function(w){return w.toLowerCase().replace(/[^a-z]/g,'');});
+  var foundPw=HL_POWER.filter(function(pw){return lowerWords.indexOf(pw)!==-1;});
+  var pwScore=Math.min(100,foundPw.length*25);
+  // Numbers
+  var hasNum=/\\d/.test(h);var numScore=hasNum?100:0;
+  // Word count score
+  var wcScore=wCount>=6&&wCount<=12?100:wCount>=4&&wCount<6?70:wCount>12&&wCount<=16?75:Math.max(0,50-(Math.abs(wCount-9)*8));
+  // Sentiment/emotional score (simple: check for emotion words)
+  var emotWords=['amazing','incredible','shocking','surprising','life-changing','revolutionary','game-changer','powerful','essential','critical','never','always','every','guaranteed','simple','easy','faster'];
+  var hasEmot=emotWords.some(function(w){return h.toLowerCase().indexOf(w)!==-1;});
+  var emotScore=hasEmot?80:foundPw.length>0?50:20;
+  // Total score
+  var total=Math.round(lenScore*0.25+pwScore*0.30+numScore*0.20+wcScore*0.15+emotScore*0.10);
+  // Update UI
+  var pct=total/100;hlCircle.style.strokeDashoffset=HL_C-(pct*HL_C);
+  document.getElementById('hlScoreVal').textContent=total;
+  var grade=total>=70?['Excellent!','saas-badge-green']:total>=50?['Good','saas-badge-blue']:total>=35?['Needs Work','saas-badge-yellow']:['Weak','saas-badge-red'];
+  document.getElementById('hlGradeBadge').textContent=grade[0];document.getElementById('hlGradeBadge').className='headline-grade-badge saas-badge '+grade[1];
+  // Breakdown
+  var breakdown=[
+    {label:'Length',score:lenScore,color:'#52b788'},
+    {label:'Power Words',score:pwScore,color:'#2d6a4f'},
+    {label:'Has Number',score:numScore,color:'#40916c'},
+    {label:'Word Count',score:wcScore,color:'#74c69d'},
+    {label:'Emotion',score:emotScore,color:'#95d5b2'},
+  ];
+  document.getElementById('hlBreakdown').innerHTML=breakdown.map(function(b){
+    return '<div class="headline-breakdown-row"><span class="headline-breakdown-label">'+b.label+'</span>'+
+      '<div class="headline-breakdown-bar"><div class="headline-breakdown-fill" style="width:'+b.score+'%;background:'+b.color+'"></div></div>'+
+      '<span class="headline-breakdown-score">'+b.score+'</span></div>';
+  }).join('');
+  // Suggestions
+  var suggs=[];
+  if(h.length<55)suggs.push({icon:'📏',text:'Your headline is too short. Aim for 55–70 characters for best SEO performance.'});
+  if(h.length>70)suggs.push({icon:'✂️',text:'Your headline is long. Google may truncate it in search results. Try to keep under 70 characters.'});
+  if(!hasNum)suggs.push({icon:'🔢',text:'Add a specific number to your headline (e.g. "7 Ways...", "3 Proven..."). Headlines with numbers get significantly more clicks.'});
+  if(foundPw.length===0)suggs.push({icon:'⚡',text:'Add a power word to trigger an emotional response. Try: proven, secret, ultimate, transform, discover, boost.'});
+  if(wCount<6)suggs.push({icon:'➕',text:'Your headline is too short — add more detail. Aim for 8–12 words for optimal engagement.'});
+  if(wCount>16)suggs.push({icon:'✂️',text:'Your headline is quite long. Consider trimming to 8–12 words for better impact.'});
+  if(total>=70)suggs.push({icon:'🎉',text:'Great headline! It has strong length, power words, and structure. Test it against an alternative for best results.'});
+  document.getElementById('hlSuggestions').innerHTML='<div class="saas-section-heading">💡 Suggestions</div>'+suggs.map(function(s){return '<div class="headline-suggestion-item"><span class="headline-suggestion-icon">'+s.icon+'</span>'+s.text+'</div>';}).join('');
+  if(foundPw.length>0){document.getElementById('hlPowerWords').style.display='block';document.getElementById('hlPwList').innerHTML=foundPw.map(function(w){return '<span class="headline-pw-chip">'+w+'</span>';}).join('');}else{document.getElementById('hlPowerWords').style.display='none';}
+}
+</script>`;
+  }
+
+  // ── CONTENT IDEA GENERATOR ───────────────────────────────────────────────
+  if (t === 'content-idea-generator') {
+    return `
+<div class="saas-card-title">💡 Generate Content Ideas</div>
+<div class="idea-gen-form">
+  <input class="saas-input" id="ideaTopic" placeholder="Enter a health topic (e.g. intermittent fasting, sleep quality, stress…)" maxlength="80">
+  <select class="saas-select" id="ideaAudience" style="max-width:180px">
+    <option value="general">General audience</option>
+    <option value="beginners">Beginners</option>
+    <option value="athletes">Athletes</option>
+    <option value="seniors">Seniors (50+)</option>
+    <option value="women">Women's health</option>
+  </select>
+  <button class="saas-btn saas-btn-primary" onclick="generateIdeas()">✨ Generate Ideas</button>
+</div>
+<div id="ideaOutput" class="idea-results"></div>
+<script>
+var FRAMEWORKS={
+  blog:['The Definitive Guide to {topic} for {audience}','How {topic} Changed My Life (And How It Can Change Yours)','X Things Nobody Tells You About {topic}','Is {topic} Right for You? A Complete Breakdown','The Science Behind {topic}: What Research Actually Says','Common {topic} Myths Debunked by Health Experts','How to Get Started with {topic} This Week','The Beginner\'s Roadmap to {topic}: Step by Step','Why {topic} Is the Health Habit You\'ve Been Missing','Top {topic} Mistakes and How to Avoid Them','How to Build a {topic} Routine That Actually Sticks','The {audience}\'s Complete Guide to {topic}'],
+  social:['Swipe to see why {topic} could transform your health 👉','Hot take: {topic} is more important than you think 🔥','I tried {topic} for 30 days — here\'s what happened','3 {topic} tips I wish I knew sooner (save this!)','Myth vs. Fact: Everything you think you know about {topic}','Tag someone who needs this {topic} tip 👇','The one {topic} habit that changed everything for me','Your weekly reminder to prioritise your {topic} journey'],
+  faq:['What is {topic} and is it right for me?','How does {topic} actually work?','What are the benefits of {topic}?','Are there any risks or side effects to {topic}?','How long does it take to see results from {topic}?','Can beginners start {topic} right away?','What does the science say about {topic}?','How is {topic} different from similar approaches?'],
+  action:['Create a free {topic} checklist for beginners','Build a 30-day {topic} challenge for your audience','Design a {topic} tracker template for download','Write a {topic} quiz to assess reader knowledge','Produce a step-by-step {topic} infographic']
+};
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+function fillTemplate(t,topic,audience){return t.replace(/\\{topic\\}/g,topic).replace(/\\{audience\\}/g,audience).replace(/X /,'7 ');}
+function generateIdeas(){
+  var topic=document.getElementById('ideaTopic').value.trim();
+  if(!topic){alert('Please enter a health topic first.');return;}
+  var audience=document.getElementById('ideaAudience').options[document.getElementById('ideaAudience').selectedIndex].text;
+  var output=document.getElementById('ideaOutput');
+  output.innerHTML='<div class="idea-gen-generating">⚡ Generating ideas for "<strong>'+topic+'</strong>"…</div>';
+  setTimeout(function(){
+    var sections=[
+      {label:'📝 Blog Post Ideas',key:'blog',icon:'📝'},
+      {label:'📲 Social Media Angles',key:'social',icon:'📲'},
+      {label:'❓ FAQs to Answer',key:'faq',icon:'❓'},
+      {label:'⚡ Action Content',key:'action',icon:'⚡'}
+    ];
+    var html=sections.map(function(s){
+      var ideas=FRAMEWORKS[s.key].slice(0,s.key==='action'?4:6).map(function(t){return fillTemplate(t,topic,audience);});
+      var cards=ideas.map(function(idea){
+        return '<div class="idea-card"><span class="idea-card-text">'+cap(idea)+'</span><button class="idea-copy-btn" onclick="copyIdea(this,\''+idea.replace(/\'/g,'\\\\\'').replace(/"/g,'&quot;')+'\')" >Copy</button></div>';
+      }).join('');
+      return '<div class="idea-category-block"><div class="idea-category-title">'+s.icon+' '+s.label+'</div><div class="idea-cards">'+cards+'</div></div>';
+    }).join('');
+    output.innerHTML=html;
+  },600);
+}
+function copyIdea(btn,text){navigator.clipboard.writeText(text).then(function(){btn.textContent='✓ Copied!';setTimeout(function(){btn.textContent='Copy';},2000);});}
+document.getElementById('ideaTopic').addEventListener('keydown',function(e){if(e.key==='Enter')generateIdeas();});
+</script>`;
+  }
+
+  // ── IMAGE COMPRESSOR (Utility/Minimal) ───────────────────────────────────
+  if (t === 'image-compressor') {
+    return `
+<div class="saas-card-title">⚡ Image Compressor</div>
+<div class="util-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
+  <div class="util-dropzone-icon">🖼️</div>
+  <h3>Drop your image here</h3>
+  <p>JPG, PNG, WebP, GIF supported — or click to browse</p>
+  <input type="file" id="toolFile" accept="image/*">
+</div>
+<div class="saas-form-group" style="margin-top:18px">
+  <label class="saas-label">Quality: <span id="qualVal">75</span>%</label>
+  <input type="range" id="qualSlider" min="10" max="95" value="75" oninput="document.getElementById('qualVal').textContent=this.value" style="width:100%;accent-color:#2d6a4f;margin-top:8px">
+</div>
+<button class="saas-btn saas-btn-primary" id="compressBtn" onclick="doCompress()" disabled style="width:100%;margin-top:4px">Compress Image</button>
+<div class="util-result" id="compResult">
+  <div class="util-result-inner">
+    <div>✅ <span id="compInfo" class="util-result-info"></span></div>
+    <a id="compDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download</a>
+  </div>
+  <img id="compPreview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
+</div>
+<script>
+var cFile=null,cOrigSize=0;
+var drop=document.getElementById('toolDrop');
+var fileInp=document.getElementById('toolFile');
+drop.addEventListener('dragover',function(e){e.preventDefault();drop.classList.add('drag-over');});
+drop.addEventListener('dragleave',function(){drop.classList.remove('drag-over');});
+drop.addEventListener('drop',function(e){e.preventDefault();drop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadImgFile(e.dataTransfer.files[0]);});
+fileInp.addEventListener('change',function(){if(this.files[0])loadImgFile(this.files[0]);});
+function loadImgFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}cFile=f;cOrigSize=f.size;drop.querySelector('h3').textContent=f.name;drop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB) — ready to compress';document.getElementById('compressBtn').disabled=false;}
+function doCompress(){if(!cFile)return;var q=parseInt(document.getElementById('qualSlider').value)/100;var btn=document.getElementById('compressBtn');btn.textContent='Compressing…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(cFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('compDl');dl.href=oUrl;dl.download='compressed.jpg';var saved=Math.round((1-blob.size/cOrigSize)*100);document.getElementById('compInfo').textContent='Original: '+Math.round(cOrigSize/1024)+'KB → '+Math.round(blob.size/1024)+'KB (saved '+saved+'%)';var prev=document.getElementById('compPreview');prev.src=oUrl;prev.style.display='block';document.getElementById('compResult').classList.add('visible');btn.textContent='Compress Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/jpeg',q);};img.src=url;}
+</script>`;
+  }
+
+  // ── IMAGE CONVERTER (Utility/Minimal) ────────────────────────────────────
+  if (t === 'image-converter') {
+    return `
+<div class="saas-card-title">🔄 Image Converter</div>
+<div class="util-format-tabs">
+  <button class="util-format-tab active" onclick="setFmt('image/jpeg','jpg',this)">JPG</button>
+  <button class="util-format-tab" onclick="setFmt('image/png','png',this)">PNG</button>
+  <button class="util-format-tab" onclick="setFmt('image/webp','webp',this)">WebP</button>
+</div>
+<div class="util-dropzone" id="convDrop" onclick="document.getElementById('convFile').click()">
+  <div class="util-dropzone-icon">🖼️</div>
+  <h3>Drop your image here</h3>
+  <p>Any image format — PNG, JPG, WebP, GIF, BMP</p>
+  <input type="file" id="convFile" accept="image/*">
+</div>
+<button class="saas-btn saas-btn-primary" id="convBtn" onclick="doConvert()" disabled style="width:100%;margin-top:16px">Convert Image</button>
+<div class="util-result" id="convResult">
+  <div class="util-result-inner">
+    <div>✅ <span id="convInfo" class="util-result-info"></span></div>
+    <a id="convDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download</a>
+  </div>
+  <img id="convPreview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
+</div>
+<script>
+var convFile=null,fmtMime='image/jpeg',fmtExt='jpg';
+var convDrop=document.getElementById('convDrop');
+var convFileInp=document.getElementById('convFile');
+function setFmt(mime,ext,btn){fmtMime=mime;fmtExt=ext;document.querySelectorAll('.util-format-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
+convDrop.addEventListener('dragover',function(e){e.preventDefault();convDrop.classList.add('drag-over');});
+convDrop.addEventListener('dragleave',function(){convDrop.classList.remove('drag-over');});
+convDrop.addEventListener('drop',function(e){e.preventDefault();convDrop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadConvFile(e.dataTransfer.files[0]);});
+convFileInp.addEventListener('change',function(){if(this.files[0])loadConvFile(this.files[0]);});
+function loadConvFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}convFile=f;convDrop.querySelector('h3').textContent=f.name;convDrop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB) — select format and convert';document.getElementById('convBtn').disabled=false;}
+function doConvert(){if(!convFile)return;var btn=document.getElementById('convBtn');btn.textContent='Converting…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(convFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');if(fmtMime==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);}ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('convDl');dl.href=oUrl;dl.download='converted.'+fmtExt;document.getElementById('convInfo').textContent='Converted to '+fmtExt.toUpperCase()+' ('+Math.round(blob.size/1024)+'KB)';var prev=document.getElementById('convPreview');prev.src=oUrl;prev.style.display='block';document.getElementById('convResult').classList.add('visible');btn.textContent='Convert Another';btn.disabled=false;URL.revokeObjectURL(url);},fmtMime,fmtMime==='image/jpeg'?0.92:1);};img.src=url;}
+</script>`;
+  }
+
+  // ── PDF MERGE (Utility/Minimal) ───────────────────────────────────────────
   if (t === 'pdf-merge') {
     return `
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-<div class="tool-dropzone" id="toolDrop">
-  <div class="tool-dropzone-icon">📎</div>
+<div class="saas-card-title">📄 PDF Merge Tool</div>
+<div class="util-dropzone" id="mergeDrop">
+  <div class="util-dropzone-icon">📄</div>
   <h3>Drop PDF files here</h3>
-  <p>Add two or more PDFs to merge</p>
-  <input type="file" id="toolFile" accept="application/pdf" multiple>
-  <div class="tool-dropzone-or">— or —</div>
-  <button class="tool-browse-btn" type="button" onclick="event.stopPropagation();document.getElementById('toolFile').click()">📁 Browse PDFs</button>
+  <p>Add two or more PDFs to merge into one document</p>
+  <input type="file" id="mergeFile" accept="application/pdf" multiple>
+  <div style="margin-top:12px"><button class="saas-btn saas-btn-ghost saas-btn-sm" type="button" onclick="event.stopPropagation();document.getElementById('mergeFile').click()">📁 Browse Files</button></div>
 </div>
-<div class="tool-file-list" id="toolFileList"></div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processMerge()" disabled>Merge PDFs ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>PDFs merged successfully!</h3></div>
-  <div style="text-align:center;margin-top:8px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download Merged PDF</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
+<div class="util-file-list" id="mergeFileList"></div>
+<button class="saas-btn saas-btn-primary" id="mergeBtn" onclick="doMerge()" disabled style="width:100%;margin-top:4px">Merge PDFs</button>
+<div class="util-result" id="mergeResult">
+  <div class="util-result-inner">
+    <div>✅ <span id="mergeInfo" class="util-result-info"></span></div>
+    <a id="mergeDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download PDF</a>
   </div>
 </div>
 <script>
-var toolFiles=[];
-var dropEl=document.getElementById('toolDrop');
-dropEl.addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-over');});
-dropEl.addEventListener('dragleave',function(){this.classList.remove('drag-over');});
-dropEl.addEventListener('drop',function(e){e.preventDefault();this.classList.remove('drag-over');addFiles(Array.from(e.dataTransfer.files));});
-dropEl.addEventListener('click',function(e){if(e.target===dropEl||e.target.tagName==='P'||e.target.tagName==='H3'||e.target.classList.contains('tool-dropzone-icon'))document.getElementById('toolFile').click();});
-document.getElementById('toolFile').addEventListener('change',function(){addFiles(Array.from(this.files));this.value='';});
-function addFiles(files){files.forEach(function(f){if(f.type==='application/pdf')toolFiles.push(f);});renderFileList();}
-function renderFileList(){var list=document.getElementById('toolFileList');list.innerHTML=toolFiles.map(function(f,i){return'<div class="tool-file-item"><span class="tool-file-item-icon">📄</span><span class="tool-file-item-name">'+f.name+'</span><span class="tool-file-item-size">'+Math.round(f.size/1024)+'KB</span><button class="tool-file-remove" onclick="removeFile('+i+')">✕</button></div>';}).join('');document.getElementById('toolProcessBtn').disabled=toolFiles.length<2;}
-function removeFile(i){toolFiles.splice(i,1);renderFileList();}
-async function processMerge(){if(toolFiles.length<2)return;var btn=document.getElementById('toolProcessBtn');btn.textContent='Merging…';btn.disabled=true;try{var merged=await PDFLib.PDFDocument.create();for(var f of toolFiles){var buf=await f.arrayBuffer();var src=await PDFLib.PDFDocument.load(buf);var pages=await merged.copyPages(src,src.getPageIndices());pages.forEach(function(p){merged.addPage(p);});}var bytes=await merged.save();var blob=new Blob([bytes],{type:'application/pdf'});var url=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=url;dl.download='merged_vhh.pdf';document.getElementById('toolFileInfo').textContent=toolFiles.length+' PDFs merged | '+Math.round(blob.size/1024)+'KB';document.getElementById('toolResult').classList.add('visible');btn.textContent='Merge Again';btn.disabled=false;}catch(e){alert('Error merging PDFs: '+e.message);btn.textContent='Merge PDFs';btn.disabled=false;}}
+var mFiles=[];
+var mDrop=document.getElementById('mergeDrop');
+mDrop.addEventListener('dragover',function(e){e.preventDefault();mDrop.classList.add('drag-over');});
+mDrop.addEventListener('dragleave',function(){mDrop.classList.remove('drag-over');});
+mDrop.addEventListener('drop',function(e){e.preventDefault();mDrop.classList.remove('drag-over');addMFiles(Array.from(e.dataTransfer.files));});
+mDrop.addEventListener('click',function(e){if(e.target===mDrop||['H3','P','DIV'].indexOf(e.target.tagName)!==-1&&!e.target.classList.contains('saas-btn'))document.getElementById('mergeFile').click();});
+document.getElementById('mergeFile').addEventListener('change',function(){addMFiles(Array.from(this.files));this.value='';});
+function addMFiles(files){files.forEach(function(f){if(f.type==='application/pdf')mFiles.push(f);});renderMFiles();}
+function renderMFiles(){var el=document.getElementById('mergeFileList');el.innerHTML=mFiles.map(function(f,i){return '<div class="util-file-item"><span>📄</span><span class="util-file-name">'+f.name+'</span><span class="util-file-size">'+Math.round(f.size/1024)+'KB</span><button class="util-file-del" onclick="removeMFile('+i+')">✕</button></div>';}).join('');document.getElementById('mergeBtn').disabled=mFiles.length<2;}
+function removeMFile(i){mFiles.splice(i,1);renderMFiles();}
+async function doMerge(){if(mFiles.length<2)return;var btn=document.getElementById('mergeBtn');btn.textContent='Merging…';btn.disabled=true;try{var merged=await PDFLib.PDFDocument.create();for(var f of mFiles){var buf=await f.arrayBuffer();var src=await PDFLib.PDFDocument.load(buf);var pages=await merged.copyPages(src,src.getPageIndices());pages.forEach(function(p){merged.addPage(p);});}var bytes=await merged.save();var blob=new Blob([bytes],{type:'application/pdf'});var url=URL.createObjectURL(blob);var dl=document.getElementById('mergeDl');dl.href=url;dl.download='merged.pdf';document.getElementById('mergeInfo').textContent=mFiles.length+' PDFs merged successfully';document.getElementById('mergeResult').classList.add('visible');btn.textContent='Merge Again';btn.disabled=false;}catch(e){alert('Error merging PDFs: '+e.message);btn.textContent='Merge PDFs';btn.disabled=false;}}
 </script>`;
   }
 
-  // ── PDF ROTATE ────────────────────────────────────────────
-  if (t === 'pdf-rotate') {
+  // ── PDF SPLIT (Utility/Minimal) ───────────────────────────────────────────
+  if (t === 'pdf-split') {
     return `
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-<div class="tool-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
-  <div class="tool-dropzone-icon">🔃</div>
+<div class="saas-card-title">✂️ PDF Splitter</div>
+<div class="util-dropzone" id="splitDrop" onclick="document.getElementById('splitFile').click()">
+  <div class="util-dropzone-icon">✂️</div>
   <h3>Drop your PDF here</h3>
-  <p>or click to browse</p>
-  <input type="file" id="toolFile" accept="application/pdf">
+  <p>Select a single PDF file to extract pages from</p>
+  <input type="file" id="splitFile" accept="application/pdf">
 </div>
-<div class="tool-options">
-  <div class="tool-option-group">
-    <label>Rotation Angle</label>
-    <select id="rotDeg">
-      <option value="90">90° Clockwise</option>
-      <option value="180">180° (Flip)</option>
-      <option value="270">270° (90° Counter-Clockwise)</option>
-    </select>
-  </div>
+<div id="splitPageInfo" style="display:none;margin:14px 0;font-size:0.88rem;color:#6b7280;"></div>
+<div class="saas-form-group" style="margin-top:12px">
+  <label class="saas-label">Page Range</label>
+  <input class="saas-input" id="splitRange" placeholder="e.g. 1-3 or 1,3,5 or 2-4,7" style="font-family:monospace">
+  <p style="font-size:0.78rem;color:#9ca3af;margin-top:6px">Use ranges (1-5), specific pages (1,3,7), or combine (1-3,7,10-12)</p>
 </div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processRotate()" disabled>Rotate PDF ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>PDF rotated successfully!</h3></div>
-  <div style="text-align:center;margin-top:8px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download Rotated PDF</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
+<button class="saas-btn saas-btn-primary" id="splitBtn" onclick="doSplit()" disabled style="width:100%">Extract Pages</button>
+<div class="util-result" id="splitResult">
+  <div class="util-result-inner">
+    <div>✅ <span id="splitInfo" class="util-result-info"></span></div>
+    <a id="splitDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download PDF</a>
   </div>
 </div>
 <script>
-var toolFile=null;
-var dropEl=document.getElementById('toolDrop');
-dropEl.addEventListener('dragover',function(e){e.preventDefault();dropEl.classList.add('drag-over');});
-dropEl.addEventListener('dragleave',function(){dropEl.classList.remove('drag-over');});
-dropEl.addEventListener('drop',function(e){e.preventDefault();dropEl.classList.remove('drag-over');var f=e.dataTransfer.files[0];if(f&&f.type==='application/pdf')loadPdf(f);});
-document.getElementById('toolFile').addEventListener('change',function(){if(this.files[0])loadPdf(this.files[0]);});
-function loadPdf(f){toolFile=f;dropEl.querySelector('h3').textContent=f.name;dropEl.querySelector('p').textContent=Math.round(f.size/1024)+'KB — ready to rotate';document.getElementById('toolProcessBtn').disabled=false;}
-async function processRotate(){if(!toolFile)return;var btn=document.getElementById('toolProcessBtn');btn.textContent='Rotating…';btn.disabled=true;var deg=parseInt(document.getElementById('rotDeg').value);try{var buf=await toolFile.arrayBuffer();var doc=await PDFLib.PDFDocument.load(buf);var angleMap={90:PDFLib.degrees(90),180:PDFLib.degrees(180),270:PDFLib.degrees(270)};doc.getPages().forEach(function(p){p.setRotation(angleMap[deg]);});var bytes=await doc.save();var blob=new Blob([bytes],{type:'application/pdf'});var url=URL.createObjectURL(blob);document.getElementById('toolDownload').href=url;document.getElementById('toolDownload').download='rotated_vhh.pdf';document.getElementById('toolFileInfo').textContent='All pages rotated '+deg+'° | '+Math.round(blob.size/1024)+'KB';document.getElementById('toolResult').classList.add('visible');btn.textContent='Rotate Again';btn.disabled=false;}catch(e){alert('Error: '+e.message);btn.textContent='Rotate PDF';btn.disabled=false;}}
+var splitPdfFile=null;
+var sDrop=document.getElementById('splitDrop');
+sDrop.addEventListener('dragover',function(e){e.preventDefault();sDrop.classList.add('drag-over');});
+sDrop.addEventListener('dragleave',function(){sDrop.classList.remove('drag-over');});
+sDrop.addEventListener('drop',function(e){e.preventDefault();sDrop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadSplitFile(e.dataTransfer.files[0]);});
+document.getElementById('splitFile').addEventListener('change',function(){if(this.files[0])loadSplitFile(this.files[0]);});
+function loadSplitFile(f){if(f.type!=='application/pdf'){alert('Please upload a PDF file.');return;}splitPdfFile=f;sDrop.querySelector('h3').textContent=f.name;sDrop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB)';PDFLib.PDFDocument.load(f.arrayBuffer()).then(function(doc){var n=doc.getPageCount();document.getElementById('splitPageInfo').style.display='block';document.getElementById('splitPageInfo').textContent='PDF has '+n+' page'+(n===1?'':'s')+'. Enter the page range you want to extract.';document.getElementById('splitBtn').disabled=false;});}
+function parseRange(str,total){var pages=new Set();str.split(',').forEach(function(part){part=part.trim();if(part.indexOf('-')!==-1){var pts=part.split('-');var a=parseInt(pts[0]);var b=parseInt(pts[1]);for(var i=a;i<=b&&i<=total;i++)if(i>=1)pages.add(i-1);}else{var p=parseInt(part);if(p>=1&&p<=total)pages.add(p-1);}});return Array.from(pages).sort(function(a,b){return a-b;});}
+async function doSplit(){if(!splitPdfFile)return;var rangeStr=document.getElementById('splitRange').value.trim();if(!rangeStr){alert('Please enter a page range.');return;}var btn=document.getElementById('splitBtn');btn.textContent='Extracting…';btn.disabled=true;try{var buf=await splitPdfFile.arrayBuffer();var src=await PDFLib.PDFDocument.load(buf);var total=src.getPageCount();var indices=parseRange(rangeStr,total);if(!indices.length){alert('No valid pages found. Check your range and try again.');btn.textContent='Extract Pages';btn.disabled=false;return;}var out=await PDFLib.PDFDocument.create();var pages=await out.copyPages(src,indices);pages.forEach(function(p){out.addPage(p);});var bytes=await out.save();var blob=new Blob([bytes],{type:'application/pdf'});var url=URL.createObjectURL(blob);document.getElementById('splitDl').href=url;document.getElementById('splitDl').download='extracted_pages.pdf';document.getElementById('splitInfo').textContent='Extracted '+indices.length+' page'+(indices.length===1?'':'s')+' from '+total+'-page PDF';document.getElementById('splitResult').classList.add('visible');btn.textContent='Extract Again';btn.disabled=false;}catch(e){alert('Error processing PDF: '+e.message);btn.textContent='Extract Pages';btn.disabled=false;}}
 </script>`;
   }
 
-  // ── WORD / CHARACTER COUNTER ──────────────────────────────
-  if (t === 'word-counter' || t === 'character-counter') {
-    return `
-<textarea class="tool-textarea" id="toolInput" placeholder="Paste or type your text here..." oninput="updateCounts()"></textarea>
-<div class="tool-stats-grid">
-  <div class="tool-stat-box"><div class="stat-val" id="cntWords">0</div><div class="stat-label">Words</div></div>
-  <div class="tool-stat-box"><div class="stat-val" id="cntChars">0</div><div class="stat-label">Characters</div></div>
-  <div class="tool-stat-box"><div class="stat-val" id="cntCharsNS">0</div><div class="stat-label">Chars (no spaces)</div></div>
-  <div class="tool-stat-box"><div class="stat-val" id="cntSent">0</div><div class="stat-label">Sentences</div></div>
-  <div class="tool-stat-box"><div class="stat-val" id="cntPara">0</div><div class="stat-label">Paragraphs</div></div>
-  <div class="tool-stat-box"><div class="stat-val" id="cntRead">0</div><div class="stat-label">Min Read</div></div>
-  <div class="tool-stat-box" style="grid-column:span 2"><div class="stat-val" id="cntLines">0</div><div class="stat-label">Lines</div></div>
-</div>
-<div style="text-align:right;margin-top:12px;"><button class="tool-action-btn" onclick="document.getElementById('toolInput').value='';updateCounts()">Clear</button></div>
-<script>
-function updateCounts(){var t=document.getElementById('toolInput').value;document.getElementById('cntWords').textContent=t.trim()===''?0:t.trim().split(/\\s+/).length;document.getElementById('cntChars').textContent=t.length;document.getElementById('cntCharsNS').textContent=t.replace(/\\s/g,'').length;document.getElementById('cntSent').textContent=(t.match(/[.!?]+(?=\\s|$)/g)||[]).length;document.getElementById('cntPara').textContent=t.trim()===''?0:t.split(/\\n\\s*\\n/).filter(function(p){return p.trim()!=='';}).length||1;document.getElementById('cntRead').textContent=t.trim()===''?0:Math.max(1,Math.ceil(t.trim().split(/\\s+/).length/200));document.getElementById('cntLines').textContent=t.split('\\n').length;}
-</script>`;
-  }
-
-  // ── CASE CONVERTER ────────────────────────────────────────
-  if (t === 'case-converter') {
-    return `
-<textarea class="tool-textarea" id="toolInput" placeholder="Paste or type your text here..."></textarea>
-<div class="tool-btn-group">
-  <button class="tool-action-btn" onclick="convertCase('upper')">UPPERCASE</button>
-  <button class="tool-action-btn" onclick="convertCase('lower')">lowercase</button>
-  <button class="tool-action-btn" onclick="convertCase('title')">Title Case</button>
-  <button class="tool-action-btn" onclick="convertCase('sentence')">Sentence case</button>
-  <button class="tool-action-btn" onclick="convertCase('camel')">camelCase</button>
-  <button class="tool-action-btn" onclick="convertCase('snake')">snake_case</button>
-  <button class="tool-action-btn" onclick="convertCase('kebab')">kebab-case</button>
-</div>
-<div class="tool-panel-label" style="margin-top:18px;">Result</div>
-<textarea class="tool-output-box" id="toolOutput" readonly placeholder="Converted text will appear here..."></textarea>
-<div style="display:flex;gap:10px;margin-top:10px;">
-  <button class="tool-copy-btn" onclick="copyOutput()">📋 Copy Result</button>
-  <button class="tool-action-btn" onclick="document.getElementById('toolInput').value='';document.getElementById('toolOutput').value=''">Clear</button>
-</div>
-<script>
-function convertCase(type){var t=document.getElementById('toolInput').value;var r='';if(type==='upper')r=t.toUpperCase();else if(type==='lower')r=t.toLowerCase();else if(type==='title')r=t.toLowerCase().replace(/(?:^|\\s)\\S/g,function(a){return a.toUpperCase();});else if(type==='sentence')r=t.toLowerCase().replace(/(^|[.!?]\\s+)([a-z])/g,function(m,p1,p2){return p1+p2.toUpperCase();});else if(type==='camel')r=t.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g,function(m,c){return c.toUpperCase();});else if(type==='snake')r=t.toLowerCase().replace(/\\s+/g,'_').replace(/[^a-z0-9_]/g,'');else if(type==='kebab')r=t.toLowerCase().replace(/\\s+/g,'-').replace(/[^a-z0-9-]/g,'');document.getElementById('toolOutput').value=r;}
-function copyOutput(){var o=document.getElementById('toolOutput').value;if(!o)return;navigator.clipboard.writeText(o).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy Result';},2000);});}
-</script>`;
-  }
-
-  // ── TEXT CLEANER ──────────────────────────────────────────
-  if (t === 'text-cleaner') {
-    return `
-<textarea class="tool-textarea" id="toolInput" placeholder="Paste messy text here..."></textarea>
-<div class="tool-btn-group" style="margin-top:16px;">
-  <button class="tool-action-btn" onclick="cleanText('spaces')">Remove Extra Spaces</button>
-  <button class="tool-action-btn" onclick="cleanText('lines')">Remove Blank Lines</button>
-  <button class="tool-action-btn" onclick="cleanText('html')">Strip HTML Tags</button>
-  <button class="tool-action-btn" onclick="cleanText('special')">Remove Special Chars</button>
-  <button class="tool-action-btn" onclick="cleanText('trim')">Trim Each Line</button>
-  <button class="tool-action-btn" onclick="cleanText('all')">Clean All</button>
-</div>
-<div class="tool-panel-label" style="margin-top:18px;">Cleaned Result</div>
-<textarea class="tool-output-box" id="toolOutput" readonly placeholder="Cleaned text will appear here..."></textarea>
-<div style="display:flex;gap:10px;margin-top:10px;">
-  <button class="tool-copy-btn" onclick="copyCleaned()">📋 Copy Result</button>
-  <button class="tool-action-btn" onclick="document.getElementById('toolInput').value='';document.getElementById('toolOutput').value=''">Clear</button>
-</div>
-<script>
-function cleanText(type){var t=document.getElementById('toolInput').value;if(type==='spaces'||type==='all')t=t.replace(/[ \\t]+/g,' ').replace(/^ | $/gm,'');if(type==='lines'||type==='all')t=t.replace(/^\\s*\\n/gm,'').replace(/\\n{2,}/g,'\\n\\n');if(type==='html'||type==='all')t=t.replace(/<[^>]+>/g,'');if(type==='special')t=t.replace(/[^\\w\\s.,!?'"()-]/g,'');if(type==='trim'||type==='all')t=t.split('\\n').map(function(l){return l.trim();}).join('\\n');document.getElementById('toolOutput').value=t.trim();}
-function copyCleaned(){navigator.clipboard.writeText(document.getElementById('toolOutput').value).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy Result';},2000);});}
-</script>`;
-  }
-
-  // ── READABILITY ANALYZER ──────────────────────────────────
-  if (t === 'readability-analyzer') {
-    return `
-<textarea class="tool-textarea" id="toolInput" placeholder="Paste your text here (minimum 100 words for accurate results)..." style="min-height:220px;"></textarea>
-<div style="text-align:center;">
-  <button class="tool-process-btn" onclick="analyzeReadability()">Analyze Readability ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Analysis complete</h3></div>
-  <div class="tool-scores-grid">
-    <div class="tool-score-card"><div class="score-val" id="scoreFlesh">—</div><div class="score-label">Flesch Reading Ease</div><div class="score-level" id="scoreLevelFlesh">—</div></div>
-    <div class="tool-score-card"><div class="score-val" id="scoreGrade">—</div><div class="score-label">Grade Level (FK)</div><div class="score-level" id="scoreLevelGrade">—</div></div>
-    <div class="tool-score-card"><div class="score-val" id="scoreAvgWrd">—</div><div class="score-label">Avg Words/Sentence</div><div class="score-level" id="scoreLevelWrd">—</div></div>
-  </div>
-  <div class="tool-stats-grid" style="margin-top:16px;">
-    <div class="tool-stat-box"><div class="stat-val" id="stWords">0</div><div class="stat-label">Words</div></div>
-    <div class="tool-stat-box"><div class="stat-val" id="stSents">0</div><div class="stat-label">Sentences</div></div>
-    <div class="tool-stat-box"><div class="stat-val" id="stSylls">0</div><div class="stat-label">Syllables</div></div>
-    <div class="tool-stat-box"><div class="stat-val" id="stRead">0</div><div class="stat-label">Min Read</div></div>
-  </div>
-</div>
-<script>
-function syllableCount(w){w=w.toLowerCase().replace(/[^a-z]/g,'');if(w.length<=3)return 1;w=w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/,'').replace(/^y/,'');var m=w.match(/[aeiouy]{1,2}/g);return m?m.length:1;}
-function analyzeReadability(){var t=document.getElementById('toolInput').value.trim();if(!t){alert('Please enter some text.');return;}var words=t.split(/\\s+/).filter(function(w){return w.length>0;});var sents=(t.match(/[.!?]+(?=\\s|$)/g)||[]).length||1;var sylls=words.reduce(function(a,w){return a+syllableCount(w);},0);var wc=words.length;var asl=wc/sents;var asw=sylls/wc;var fre=Math.round(206.835-1.015*asl-84.6*asw);fre=Math.max(0,Math.min(100,fre));var fkgl=Math.round((0.39*asl+11.8*asw-15.59)*10)/10;var flLevel=fre>=70?'level-easy':fre>=50?'level-medium':'level-hard';var flText=fre>=70?'Easy':fre>=50?'Standard':'Difficult';var grLevel=fkgl<=8?'level-easy':fkgl<=12?'level-medium':'level-hard';var grText=fkgl<=8?'General Audience':fkgl<=12?'High School':'College+';document.getElementById('scoreFlesh').textContent=fre;document.getElementById('scoreLevelFlesh').textContent=flText;document.getElementById('scoreLevelFlesh').className='score-level '+flLevel;document.getElementById('scoreGrade').textContent='Grade '+fkgl;document.getElementById('scoreLevelGrade').textContent=grText;document.getElementById('scoreLevelGrade').className='score-level '+grLevel;var wrdLevel=asl<=15?'level-easy':asl<=20?'level-medium':'level-hard';var wrdText=asl<=15?'Short':asl<=20?'Average':'Long';document.getElementById('scoreAvgWrd').textContent=Math.round(asl*10)/10;document.getElementById('scoreLevelWrd').textContent=wrdText+' sentences';document.getElementById('scoreLevelWrd').className='score-level '+wrdLevel;document.getElementById('stWords').textContent=wc;document.getElementById('stSents').textContent=sents;document.getElementById('stSylls').textContent=sylls;document.getElementById('stRead').textContent=Math.max(1,Math.ceil(wc/200));document.getElementById('toolResult').classList.add('visible');}
-</script>`;
-  }
-
-  // ── KEYWORD DENSITY ───────────────────────────────────────
-  if (t === 'keyword-density') {
-    return `
-<textarea class="tool-textarea" id="toolInput" placeholder="Paste your content here to analyze keyword density..." style="min-height:200px;"></textarea>
-<div style="text-align:center;">
-  <button class="tool-process-btn" onclick="analyzeKeywords()">Analyze Keywords ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Keyword analysis complete</h3></div>
-  <div class="tool-stats-grid" style="grid-template-columns:repeat(3,1fr);">
-    <div class="tool-stat-box"><div class="stat-val" id="kwTotal">0</div><div class="stat-label">Total Words</div></div>
-    <div class="tool-stat-box"><div class="stat-val" id="kwUnique">0</div><div class="stat-label">Unique Words</div></div>
-    <div class="tool-stat-box"><div class="stat-val" id="kwSents">0</div><div class="stat-label">Sentences</div></div>
-  </div>
-  <div id="kwTableWrap" style="margin-top:16px;overflow-x:auto;"></div>
-</div>
-<script>
-var stopWords=new Set(['the','a','an','and','or','but','in','on','at','to','for','of','with','by','from','is','are','was','were','be','been','being','have','has','had','do','does','did','will','would','could','should','may','might','shall','can','this','that','these','those','it','its','i','you','he','she','we','they','their','your','our','my','his','her','its','which','who','whom','what','when','where','how','if','as','so','than','not','no','more','also','about','into','up','out','just','than','then','them','there','here','all','each','every','some','any','few','most','other','such','new','first','last','long','great','good','more','also','through','over','after','before','between','since','without','within','along','following','across','behind','beyond','plus','except','up','down']);
-function analyzeKeywords(){var t=document.getElementById('toolInput').value.trim().toLowerCase();if(!t){alert('Please enter text.');return;}var words=t.replace(/[^a-z\\s]/g,' ').split(/\\s+/).filter(function(w){return w.length>2&&!stopWords.has(w);});var sents=(t.match(/[.!?]+/g)||[]).length||1;var all=t.replace(/[^a-z\\s]/g,' ').split(/\\s+/).filter(function(w){return w.length>0;});var freq={};words.forEach(function(w){freq[w]=(freq[w]||0)+1;});var sorted=Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,25);document.getElementById('kwTotal').textContent=all.length;document.getElementById('kwUnique').textContent=Object.keys(freq).length;document.getElementById('kwSents').textContent=sents;var maxF=freq[sorted[0]]||1;document.getElementById('kwTableWrap').innerHTML='<table class="tool-keyword-table"><thead><tr><th>#</th><th>Keyword</th><th>Count</th><th>Density</th><th>Bar</th></tr></thead><tbody>'+sorted.map(function(w,i){var pct=((freq[w]/all.length)*100).toFixed(2);var barW=Math.round((freq[w]/maxF)*100);return'<tr><td>'+(i+1)+'</td><td><strong>'+w+'</strong></td><td>'+freq[w]+'</td><td>'+pct+'%</td><td><div class="tool-kw-bar-wrap"><div class="tool-kw-bar" style="width:'+barW+'%"></div></div></td></tr>';}).join('')+'</tbody></table>';document.getElementById('toolResult').classList.add('visible');}
-</script>`;
-  }
-
-  // ── QR CODE ───────────────────────────────────────────────
-  if (t === 'qr-code') {
-    return `
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-<div class="tool-option-group" style="margin-bottom:16px;">
-  <label>Enter Text or URL</label>
-  <input type="text" id="qrInput" placeholder="https://yourwebsite.com or any text..." style="width:100%;padding:14px 16px;border:2px solid var(--gray-200);border-radius:12px;font-size:1rem;font-family:DM Sans,sans-serif;" oninput="qrPreview()">
-</div>
-<div class="tool-options">
-  <div class="tool-option-group">
-    <label>Size (px)</label>
-    <input type="number" id="qrSize" value="256" min="128" max="512" step="64" oninput="qrPreview()">
-  </div>
-</div>
-<div id="qrOutput" style="min-height:80px;display:flex;justify-content:center;margin:20px 0;"></div>
-<div id="qrActions" style="text-align:center;display:none;">
-  <button class="tool-download-btn" onclick="downloadQR()">⬇ Download QR Code (PNG)</button>
-</div>
-<script>
-var qrObj=null;
-function qrPreview(){var txt=document.getElementById('qrInput').value.trim();var sz=parseInt(document.getElementById('qrSize').value)||256;sz=Math.max(128,Math.min(512,sz));var out=document.getElementById('qrOutput');if(!txt){out.innerHTML='';document.getElementById('qrActions').style.display='none';if(qrObj){qrObj.clear();qrObj=null;}return;}out.innerHTML='';try{qrObj=new QRCode(out,{text:txt,width:sz,height:sz,colorDark:'#1b4332',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});document.getElementById('qrActions').style.display='block';}catch(e){out.innerHTML='<p style="color:red;">Error generating QR code: '+e.message+'</p>';}}
-function downloadQR(){var canvas=document.getElementById('qrOutput').querySelector('canvas');if(!canvas)return;var a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download='qrcode_vhh.png';a.click();}
-qrPreview();
-</script>`;
-  }
-
-  // ── PASSWORD GENERATOR ────────────────────────────────────
-  if (t === 'password-generator') {
-    return `
-<div class="tool-options">
-  <div class="tool-option-group" style="flex:2">
-    <label>Length: <span id="pwLenVal">16</span> characters</label>
-    <input type="range" id="pwLen" min="8" max="64" value="16" oninput="document.getElementById('pwLenVal').textContent=this.value;generatePw()">
-  </div>
-</div>
-<div style="display:flex;flex-wrap:wrap;gap:16px;margin:16px 0;">
-  <div class="tool-option-row"><input type="checkbox" id="pwUpper" checked oninput="generatePw()"><label for="pwUpper">Uppercase (A–Z)</label></div>
-  <div class="tool-option-row"><input type="checkbox" id="pwLower" checked oninput="generatePw()"><label for="pwLower">Lowercase (a–z)</label></div>
-  <div class="tool-option-row"><input type="checkbox" id="pwNums" checked oninput="generatePw()"><label for="pwNums">Numbers (0–9)</label></div>
-  <div class="tool-option-row"><input type="checkbox" id="pwSyms" checked oninput="generatePw()"><label for="pwSyms">Symbols (!@#$...)</label></div>
-</div>
-<div class="tool-pw-output" id="pwOutput">
-  <span id="pwValue">Click Generate to create a password</span>
-</div>
-<div class="tool-strength-bar"><div class="tool-strength-fill" id="pwStrFill" style="width:0%;background:#ccc;"></div></div>
-<p id="pwStrLabel" style="font-size:0.82rem;color:var(--gray-500);margin-top:6px;text-align:center;"></p>
-<div style="display:flex;gap:10px;justify-content:center;margin-top:16px;">
-  <button class="tool-process-btn" onclick="generatePw()">🔄 Generate Password</button>
-  <button class="tool-copy-btn" onclick="copyPw()" style="padding:13px 22px;">📋 Copy</button>
-</div>
-<script>
-function generatePw(){var len=parseInt(document.getElementById('pwLen').value);var chars='';if(document.getElementById('pwUpper').checked)chars+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';if(document.getElementById('pwLower').checked)chars+='abcdefghijklmnopqrstuvwxyz';if(document.getElementById('pwNums').checked)chars+='0123456789';if(document.getElementById('pwSyms').checked)chars+='!@#$%^&*()-_=+[]{}|;:,.<>?';if(!chars){alert('Select at least one character type.');return;}var arr=new Uint32Array(len);crypto.getRandomValues(arr);var pw='';for(var i=0;i<len;i++)pw+=chars[arr[i]%chars.length];document.getElementById('pwValue').textContent=pw;var str=0;if(len>=12)str+=25;if(len>=16)str+=25;if(document.getElementById('pwUpper').checked)str+=15;if(document.getElementById('pwLower').checked)str+=10;if(document.getElementById('pwNums').checked)str+=15;if(document.getElementById('pwSyms').checked)str+=20;str=Math.min(100,str);var col=str<40?'#e74c3c':str<70?'#f39c12':'#27ae60';var lbl=str<40?'Weak':str<70?'Moderate':'Strong';document.getElementById('pwStrFill').style.width=str+'%';document.getElementById('pwStrFill').style.background=col;document.getElementById('pwStrLabel').textContent='Strength: '+lbl+' ('+str+'%)';document.getElementById('pwStrLabel').style.color=col;}
-function copyPw(){var pw=document.getElementById('pwValue').textContent;if(pw==='Click Generate to create a password')return;navigator.clipboard.writeText(pw).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy';},2000);});}
-generatePw();
-</script>`;
-  }
-
-  // ── UUID GENERATOR ────────────────────────────────────────
-  if (t === 'uuid-generator') {
-    return `
-<div class="tool-options">
-  <div class="tool-option-group">
-    <label>Number of UUIDs</label>
-    <input type="number" id="uuidCount" value="1" min="1" max="100">
-  </div>
-</div>
-<div style="text-align:center;margin-top:16px;">
-  <button class="tool-process-btn" onclick="generateUUIDs()">🔑 Generate UUID(s)</button>
-</div>
-<div class="tool-uuid-list" id="uuidList" style="display:none;"></div>
-<div style="display:flex;gap:10px;margin-top:12px;justify-content:center;" id="uuidActions" style="display:none;">
-  <button class="tool-copy-btn" id="uuidCopyBtn" onclick="copyUUIDs()">📋 Copy All</button>
-</div>
-<script>
-function uuidv4(){if(crypto.randomUUID)return crypto.randomUUID();return([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,function(c){return(c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>c/4).toString(16);});}
-function generateUUIDs(){var n=Math.max(1,Math.min(100,parseInt(document.getElementById('uuidCount').value)||1));var uuids=[];for(var i=0;i<n;i++)uuids.push(uuidv4());var list=document.getElementById('uuidList');list.innerHTML=uuids.join('<br>');list.style.display='block';document.getElementById('uuidActions').style.display='flex';list._uuids=uuids;}
-function copyUUIDs(){var list=document.getElementById('uuidList');var uuids=list._uuids||[];navigator.clipboard.writeText(uuids.join('\\n')).then(function(){var b=document.getElementById('uuidCopyBtn');b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy All';},2000);});}
-</script>`;
-  }
-
-  // ── BASE64 ────────────────────────────────────────────────
-  if (t === 'base64') {
-    return `
-<div class="tool-dual-panel">
-  <div>
-    <div class="tool-panel-label">Input</div>
-    <textarea class="tool-textarea" id="b64Input" placeholder="Enter text to encode or Base64 to decode..." style="min-height:180px;"></textarea>
-    <div class="tool-btn-group" style="margin-top:10px;">
-      <button class="tool-action-btn" onclick="doBase64('encode')">Encode →</button>
-      <button class="tool-action-btn" onclick="doBase64('decode')">← Decode</button>
-    </div>
-  </div>
-  <div>
-    <div class="tool-panel-label">Output</div>
-    <textarea class="tool-output-box" id="b64Output" readonly placeholder="Result appears here..." style="min-height:180px;"></textarea>
-    <div class="tool-error-msg" id="b64Err"></div>
-    <button class="tool-copy-btn" onclick="copyB64()" style="margin-top:10px;">📋 Copy Output</button>
-  </div>
-</div>
-<script>
-function doBase64(mode){var inp=document.getElementById('b64Input').value;var err=document.getElementById('b64Err');err.classList.remove('visible');try{var out=mode==='encode'?btoa(unescape(encodeURIComponent(inp))):decodeURIComponent(escape(atob(inp)));document.getElementById('b64Output').value=out;}catch(e){err.textContent='Error: '+e.message;err.classList.add('visible');}}
-function copyB64(){navigator.clipboard.writeText(document.getElementById('b64Output').value).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy Output';},2000);});}
-</script>`;
-  }
-
-  // ── JSON FORMATTER ────────────────────────────────────────
-  if (t === 'json-formatter') {
-    return `
-<div class="tool-dual-panel">
-  <div>
-    <div class="tool-panel-label">Input JSON</div>
-    <textarea class="tool-textarea" id="jsonInput" placeholder='{"key": "value", "array": [1,2,3]}' style="min-height:240px;font-family:monospace;font-size:0.88rem;"></textarea>
-    <div class="tool-btn-group" style="margin-top:10px;">
-      <button class="tool-action-btn" onclick="formatJson('format')">✨ Format</button>
-      <button class="tool-action-btn" onclick="formatJson('minify')">⚡ Minify</button>
-      <button class="tool-action-btn" onclick="formatJson('validate')">✓ Validate</button>
-    </div>
-  </div>
-  <div>
-    <div class="tool-panel-label">Output</div>
-    <textarea class="tool-output-box" id="jsonOutput" readonly placeholder="Formatted JSON appears here..." style="min-height:240px;font-family:monospace;font-size:0.88rem;"></textarea>
-    <div class="tool-error-msg" id="jsonErr"></div>
-    <button class="tool-copy-btn" onclick="copyJson()" style="margin-top:10px;">📋 Copy Output</button>
-  </div>
-</div>
-<script>
-function formatJson(mode){var inp=document.getElementById('jsonInput').value.trim();var err=document.getElementById('jsonErr');var out=document.getElementById('jsonOutput');err.classList.remove('visible');if(!inp){alert('Please enter JSON.');return;}try{var obj=JSON.parse(inp);if(mode==='format')out.value=JSON.stringify(obj,null,2);else if(mode==='minify')out.value=JSON.stringify(obj);else{out.value='✓ Valid JSON!\\n\\nType: '+(Array.isArray(obj)?'Array':typeof obj)+'\\nKeys: '+(obj&&typeof obj==='object'&&!Array.isArray(obj)?Object.keys(obj).length:'N/A');}}catch(e){err.textContent='JSON Error: '+e.message;err.classList.add('visible');out.value='';}}
-function copyJson(){navigator.clipboard.writeText(document.getElementById('jsonOutput').value).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy Output';},2000);});}
-</script>`;
-  }
-
-  // ── URL ENCODER ───────────────────────────────────────────
-  if (t === 'url-encoder') {
-    return `
-<div class="tool-dual-panel">
-  <div>
-    <div class="tool-panel-label">Input</div>
-    <textarea class="tool-textarea" id="urlInput" placeholder="Enter URL or text to encode..." style="min-height:160px;"></textarea>
-    <div class="tool-btn-group" style="margin-top:10px;">
-      <button class="tool-action-btn" onclick="doUrl('encode')">Encode →</button>
-      <button class="tool-action-btn" onclick="doUrl('decode')">← Decode</button>
-    </div>
-  </div>
-  <div>
-    <div class="tool-panel-label">Output</div>
-    <textarea class="tool-output-box" id="urlOutput" readonly placeholder="Result appears here..." style="min-height:160px;word-break:break-all;"></textarea>
-    <div class="tool-error-msg" id="urlErr"></div>
-    <button class="tool-copy-btn" onclick="copyUrl()" style="margin-top:10px;">📋 Copy Output</button>
-  </div>
-</div>
-<script>
-function doUrl(mode){var inp=document.getElementById('urlInput').value;var err=document.getElementById('urlErr');err.classList.remove('visible');try{document.getElementById('urlOutput').value=mode==='encode'?encodeURIComponent(inp):decodeURIComponent(inp);}catch(e){err.textContent='Error: '+e.message;err.classList.add('visible');}}
-function copyUrl(){navigator.clipboard.writeText(document.getElementById('urlOutput').value).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy Output';},2000);});}
-</script>`;
-  }
-
-  return '<p>Tool UI coming soon.</p>';
+  return `<div class="saas-empty-state"><div class="saas-empty-icon">🔧</div><p class="saas-empty-text">Tool UI coming soon.</p></div>`;
 }
 
+// ── PREMIUM SAAS TOOL PAGE TEMPLATE ─────────────────────────────────────────
 function genToolPage(tool) {
+  const isUtility = tool.categorySlug === 'utility';
   const bc = breadcrumb([
     { name: 'Home', url: '/' },
     { name: 'Tools Hub', url: '/tools/' },
@@ -3688,17 +4095,25 @@ function genToolPage(tool) {
 <body>
 ${NAV}
 ${bc.html}${bc.schema}
+${TOOL_TRACKER_JS}
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">${tool.category}</span>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">${tool.category}</div>
 <h1>${tool.name}</h1>
-<p>${tool.desc}</p>
+<p class="saas-hero-sub">${tool.desc}</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 ${toolUIByType(tool)}
 </div>
 </div>
@@ -3714,88 +4129,134 @@ ${CHATBOT}
 </body></html>`;
 }
 
-// ── GENERATE INDIVIDUAL TOOL PAGES ────────────────────────────
+// ── GENERATE INDIVIDUAL TOOL PAGES ────────────────────────────────────────────
 toolsData.forEach(tool => {
   fs.writeFileSync(`tools/${tool.slug}.html`, genToolPage(tool));
 });
 console.log('Generated ' + toolsData.length + ' tool pages');
 
-// ── TOOLS INDEX PAGE ──────────────────────────────────────────
-const toolCategories = [
-  { id: 'image', name: 'Image Tools', icon: '🖼️', desc: 'Convert, compress, resize and edit images in your browser' },
-  { id: 'pdf', name: 'PDF Tools', icon: '📄', desc: 'Merge, rotate and convert PDF files instantly' },
-  { id: 'text', name: 'Text Tools', icon: '📝', desc: 'Count words, convert case, clean and analyse text' },
-  { id: 'utility', name: 'Utility Tools', icon: '⚙️', desc: 'QR codes, passwords, UUIDs, Base64, JSON and more' }
+// ── TOOLS INDEX (Premium Hub Page) ───────────────────────────────────────────
+const hubCategories = [
+  { id: 'health', name: 'Health & Tracking', icon: '💪', desc: 'Habit streaks, sleep analysis, mood calendar, step goals' },
+  { id: 'productivity', name: 'Productivity', icon: '⚡', desc: 'Pomodoro timer, daily planner, goal tracking' },
+  { id: 'text', name: 'Text & Content', icon: '📝', desc: 'Text analysis, headline scoring, content idea generation' },
 ];
+const utilityTools = toolsData.filter(t => t.categorySlug === 'utility');
 
-const toolsIndexHtml = toolCategories.map(cat => {
+const catSections = hubCategories.map(cat => {
   const catTools = toolsData.filter(t => t.categorySlug === cat.id);
+  const cards = catTools.map(tool => `
+<a href="/tools/${tool.slug}.html" class="tool-premium-card" data-name="${tool.name.toLowerCase()} ${tool.desc.toLowerCase()}" data-cat="${tool.categorySlug}">
+<div class="tool-premium-icon">${tool.icon}</div>
+<div class="tool-premium-name">${tool.name}</div>
+<div class="tool-premium-desc">${tool.desc}</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a>`).join('');
   return `
-<section class="tools-section" id="cat-${cat.id}">
-<div class="tools-section-header">
-<span class="tools-section-icon">${cat.icon}</span>
-<div><h2>${cat.name}</h2><p>${cat.desc}</p></div>
+<div class="tools-hub-section" data-section="${cat.id}">
+<div class="tools-hub-section-header">
+<div class="tools-hub-section-icon">${cat.icon}</div>
+<div><div class="tools-hub-section-title">${cat.name}</div><div class="tools-hub-section-desc">${cat.desc}</div></div>
 </div>
-<div class="tools-cards-grid">
-${catTools.map(tool => `<a href="/tools/${tool.slug}.html" class="tool-index-card" data-name="${tool.name.toLowerCase()}"><div class="tool-index-icon">${tool.icon}</div><div class="tool-index-body"><h4>${tool.name}</h4><p>${tool.desc}</p></div><span class="tool-index-arrow">→</span></a>`).join('')}
-</div>
-</section>`;
+<div class="tools-premium-grid">${cards}</div>
+</div>`;
 }).join('');
 
-fs.writeFileSync('tools/index.html', `${head('Free Online Tools Hub — Image, PDF, Text & Utility Tools | ' + SITE_NAME, 'Free online tools for images, PDFs, text, and utilities. Convert images, merge PDFs, count words, generate QR codes and more — all free, no upload, instant.', '/tools/')}
+const utilityCards = utilityTools.map(tool => `
+<a href="/tools/${tool.slug}.html" class="utility-minimal-card" data-name="${tool.name.toLowerCase()}" data-cat="utility">
+<span class="utility-minimal-icon">${tool.icon}</span>${tool.name}
+</a>`).join('');
+
+fs.writeFileSync('tools/index.html', `${head('Free Premium Health & Productivity Tools — VitalHealth Hub Tools Platform | ' + SITE_NAME, 'Premium free online tools: habit tracker, sleep tracker, mood tracker, focus timer, daily planner, text analyzer, headline analyzer and more. No sign-up, all data stays private.', '/tools/')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Tools Hub',url:'/tools/'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Tools Hub',url:'/tools/'}]).schema}
 
-<section class="tools-hero">
-<div class="tools-hero-inner">
-<div class="tools-hero-badge">🛠️ ${toolsData.length}+ Free Online Tools</div>
-<h1 class="tools-hero-title">Free Tools Hub</h1>
-<p class="tools-hero-sub">Convert, compress, edit, and manage files instantly &mdash; all client-side, no upload, no sign-up.</p>
-<div class="tools-hero-search-bar">
-<svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-<input type="text" id="toolsSearch" placeholder="Search ${toolsData.length}+ tools..." oninput="filterTools(this.value)" autocomplete="off">
+<section class="tools-saas-hero">
+<div class="tools-saas-hero-inner">
+<div class="tools-saas-badge">✦ Premium Free Tools — No Sign-Up Required</div>
+<h1 class="tools-saas-title">Your Health &amp;<br>Productivity Hub</h1>
+<p class="tools-saas-sub">Habit trackers, sleep analysis, focus timers, text analytics and more — all free, all private, all in your browser.</p>
+<div class="tools-saas-search-wrap">
+<span class="tools-saas-search-icon">🔍</span>
+<input class="tools-saas-search" id="toolsSearch" placeholder="Search tools…" oninput="filterHub(this.value)" autocomplete="off">
 </div>
-<div class="tools-hero-stats">
-<div class="tools-hero-stat"><strong>${toolsData.filter(t=>t.categorySlug==='image').length}</strong><span>Image Tools</span></div>
-<div class="tools-hero-stat"><strong>${toolsData.filter(t=>t.categorySlug==='pdf').length}</strong><span>PDF Tools</span></div>
-<div class="tools-hero-stat"><strong>${toolsData.filter(t=>t.categorySlug==='text').length}</strong><span>Text Tools</span></div>
-<div class="tools-hero-stat"><strong>${toolsData.filter(t=>t.categorySlug==='utility').length}</strong><span>Utility Tools</span></div>
+<div class="tools-saas-stats">
+<div class="tools-saas-stat"><span class="tools-saas-stat-num">${toolsData.length}</span><span class="tools-saas-stat-label">Tools</span></div>
+<div class="tools-saas-stat"><span class="tools-saas-stat-num">4</span><span class="tools-saas-stat-label">Categories</span></div>
+<div class="tools-saas-stat"><span class="tools-saas-stat-num">100%</span><span class="tools-saas-stat-label">Free</span></div>
+<div class="tools-saas-stat"><span class="tools-saas-stat-num">Private</span><span class="tools-saas-stat-label">Data stays local</span></div>
 </div>
 </div>
 </section>
 
-<div class="tools-category-section">
-<h2>Browse by Category</h2>
-<p>Choose a category to jump straight to those tools, or search above.</p>
-<div class="tools-category-grid">
-${toolCategories.map(cat => {
-  const count = toolsData.filter(t => t.categorySlug === cat.id).length;
-  return `<a href="#cat-${cat.id}" class="tools-cat-card"><span class="tools-cat-icon">${cat.icon}</span><h3>${cat.name}</h3><p>${cat.desc}</p><span class="tools-cat-count">${count} tools</span></a>`;
-}).join('')}
+<div class="tools-cat-nav">
+<div class="tools-cat-tabs">
+<button class="tools-cat-tab active" onclick="filterCat('all',this)">All Tools</button>
+<button class="tools-cat-tab" onclick="filterCat('health',this)">💪 Health &amp; Tracking</button>
+<button class="tools-cat-tab" onclick="filterCat('productivity',this)">⚡ Productivity</button>
+<button class="tools-cat-tab" onclick="filterCat('text',this)">📝 Text &amp; Content</button>
+<button class="tools-cat-tab" onclick="filterCat('utility',this)">🔧 Utility Tools</button>
 </div>
 </div>
 
-${toolsIndexHtml}
+<div class="tools-hub-content">
+
+<div class="tools-activity-panel" id="activityPanel">
+<div class="tools-activity-head">⏱ Recently Used</div>
+<div class="tools-activity-list" id="activityList"></div>
+</div>
+
+${catSections}
+
+<div class="tools-hub-section utility-minimal-section" data-section="utility">
+<div class="tools-hub-section-header">
+<div class="tools-hub-section-icon">🔧</div>
+<div><div class="tools-hub-section-title">Utility Tools</div><div class="tools-hub-section-desc">File conversion, PDF tools — minimal, fast, private</div></div>
+</div>
+<div class="utility-minimal-grid">${utilityCards}</div>
+</div>
+
+</div>
 
 ${FOOTER}
 ${CHATBOT}
-</body>
 <script>
-function filterTools(q){
+// Recent activity
+(function(){
+  try{
+    var toolNames=${JSON.stringify(toolsData.reduce((acc,t)=>{acc[t.slug]={name:t.name,icon:t.icon};return acc;},{}))};
+    var recent=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');
+    if(recent.length){
+      var panel=document.getElementById('activityPanel');panel.classList.add('has-activity');
+      var list=document.getElementById('activityList');
+      list.innerHTML=recent.filter(function(s){return toolNames[s];}).map(function(s){
+        var t=toolNames[s];return '<a href="/tools/'+s+'.html" class="tools-activity-pill">'+t.icon+' '+t.name+'</a>';
+      }).join('');
+    }
+  }catch(e){}
+})();
+
+function filterCat(cat,btn){
+  document.querySelectorAll('.tools-cat-tab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('[data-section]').forEach(function(s){s.style.display=(cat==='all'||s.dataset.section===cat)?'':'none';});
+  document.querySelectorAll('[data-cat]').forEach(function(c){c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';});
+}
+
+function filterHub(q){
   q=(q||'').toLowerCase().trim();
-  document.querySelectorAll('.tool-index-card').forEach(function(card){
-    card.classList.toggle('tools-search-hidden',q!==''&&card.getAttribute('data-name').indexOf(q)===-1);
-  });
-  document.querySelectorAll('.tools-section').forEach(function(sec){
-    var vis=sec.querySelectorAll('.tool-index-card:not(.tools-search-hidden)').length;
-    sec.style.display=vis===0&&q!==''?'none':'';
+  document.querySelectorAll('[data-name]').forEach(function(card){card.style.display=(q&&card.dataset.name.indexOf(q)===-1)?'none':'';});
+  document.querySelectorAll('[data-section]').forEach(function(sec){
+    var vis=Array.from(sec.querySelectorAll('[data-name]')).filter(function(c){return c.style.display!=='none';}).length;
+    sec.style.display=(vis===0&&q)?'none':'';
   });
 }
 </script>
-</html>`);
+</body></html>`);
 console.log('Generated tools/index.html');
+
 
 // SITEMAP.XML
 let sitemapXml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';

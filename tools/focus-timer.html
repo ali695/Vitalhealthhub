@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Image Metadata Remover — Strip EXIF Data Online | VitalHealth Hub</title>
-<meta name="description" content="Remove EXIF metadata from images to protect your privacy. Free online tool — no upload, removes GPS location, camera info, and other hidden data.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/image-metadata-remover.html">
-<meta property="og:title" content="Free Image Metadata Remover — Strip EXIF Data Online | VitalHealth Hub">
-<meta property="og:description" content="Remove EXIF metadata from images to protect your privacy. Free online tool — no upload, removes GPS location, camera info, and other hidden data.">
+<title>Free Pomodoro Focus Timer Online — Deep Work Sessions | VitalHealth Hub</title>
+<meta name="description" content="Boost productivity with our free Pomodoro focus timer. Customise work and break intervals, track completed sessions, and build deep focus habits.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/focus-timer.html">
+<meta property="og:title" content="Free Pomodoro Focus Timer Online — Deep Work Sessions | VitalHealth Hub">
+<meta property="og:description" content="Boost productivity with our free Pomodoro focus timer. Customise work and break intervals, track completed sessions, and build deep focus habits.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/image-metadata-remover.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/focus-timer.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,67 +134,131 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Image Metadata Remover</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Image Metadata Remover","item":"https://vitalhealthhub.com/tools/image-metadata-remover.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Focus Timer</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Focus Timer","item":"https://vitalhealthhub.com/tools/focus-timer.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Image Tools</span>
-<h1>Image Metadata Remover</h1>
-<p>Strip EXIF data and metadata from images to protect your privacy.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Productivity</div>
+<h1>Focus Timer</h1>
+<p class="saas-hero-sub">Boost deep focus with a Pomodoro timer. Customisable work and break intervals with session tracking.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<div class="tool-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
-  <div class="tool-dropzone-icon">🖼️</div>
-  <h3>Drop your image here</h3>
-  <p>or click to browse • JPG, PNG, WebP, GIF, BMP supported</p>
-  <input type="file" id="toolFile" accept="image/*">
+<div class="timer-container">
+  <div class="timer-mode-badge timer-work" id="timerModeBadge">Work Session</div>
+  <div class="timer-svg-wrap">
+    <svg class="timer-svg" width="200" height="200" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="88" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="url(#timerGrad)" stroke-width="10" stroke-linecap="round" id="timerCircle" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset 1s linear;"/>
+      <defs><linearGradient id="timerGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#2d6a4f"/><stop offset="100%" style="stop-color:#52b788"/></linearGradient></defs>
+    </svg>
+    <div class="timer-time-display" id="timerDisplay">25:00</div>
+  </div>
+  <div class="timer-sessions" id="timerSessions">Sessions completed: <strong>0</strong></div>
+  <div class="timer-controls">
+    <button class="saas-btn saas-btn-primary" onclick="timerToggle()" id="timerStartBtn">▶ Start</button>
+    <button class="saas-btn saas-btn-secondary" onclick="timerReset()">↺ Reset</button>
+    <button class="saas-btn saas-btn-ghost" onclick="timerSkip()">⏭ Skip</button>
+  </div>
 </div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processImageConvert()" disabled>Convert to PNG ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Conversion complete!</h3></div>
-  <img id="toolPreview" class="tool-result-preview" alt="Preview">
-  <div style="text-align:center;margin-top:14px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download PNG</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
+<div class="timer-settings">
+  <div class="timer-setting-group">
+    <label class="timer-setting-label">Work (min)</label>
+    <input type="number" class="timer-setting-input" id="workMin" value="25" min="1" max="120" onchange="resetOnChange()">
+  </div>
+  <div class="timer-setting-group">
+    <label class="timer-setting-label">Short Break</label>
+    <input type="number" class="timer-setting-input" id="breakMin" value="5" min="1" max="60" onchange="resetOnChange()">
+  </div>
+  <div class="timer-setting-group">
+    <label class="timer-setting-label">Long Break</label>
+    <input type="number" class="timer-setting-input" id="longBreakMin" value="20" min="1" max="120" onchange="resetOnChange()">
+  </div>
+  <div class="timer-setting-group">
+    <label class="timer-setting-label">Sessions to Long Break</label>
+    <input type="number" class="timer-setting-input" id="sessionsToLong" value="4" min="1" max="10" onchange="resetOnChange()">
   </div>
 </div>
 <script>
-var toolFile=null;
-var dropEl=document.getElementById('toolDrop');
-var fileEl=document.getElementById('toolFile');
-dropEl.addEventListener('dragover',function(e){e.preventDefault();dropEl.classList.add('drag-over');});
-dropEl.addEventListener('dragleave',function(){dropEl.classList.remove('drag-over');});
-dropEl.addEventListener('drop',function(e){e.preventDefault();dropEl.classList.remove('drag-over');var f=e.dataTransfer.files[0];if(f)loadToolFile(f);});
-fileEl.addEventListener('change',function(){if(this.files[0])loadToolFile(this.files[0]);});
-function loadToolFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}if(f.size>20*1024*1024){alert('File too large. Max 20MB.');return;}toolFile=f;dropEl.querySelector('h3').textContent=f.name;dropEl.querySelector('p').textContent='File loaded — ready to convert';document.getElementById('toolProcessBtn').disabled=false;}
-function processImageConvert(){if(!toolFile)return;var btn=document.getElementById('toolProcessBtn');btn.textContent='Converting…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(toolFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');if('image/png'==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);}ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=oUrl;dl.download='converted_vhh.png';document.getElementById('toolPreview').src=oUrl;document.getElementById('toolPreview').style.display='block';document.getElementById('toolFileInfo').textContent='Size: '+Math.round(blob.size/1024)+'KB | '+img.naturalWidth+'×'+img.naturalHeight+'px';document.getElementById('toolResult').classList.add('visible');btn.textContent='Convert Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/png',1);};img.src=url;}
+var timerInterval=null;var isRunning=false;var isBreak=false;var sessionsCompleted=0;
+var totalSecs=25*60;var secsLeft=totalSecs;
+var C=2*Math.PI*88;var tc=document.getElementById('timerCircle');
+tc.style.strokeDasharray=C;tc.style.strokeDashoffset=0;
+function getWorkSecs(){return parseInt(document.getElementById('workMin').value||25)*60;}
+function getBreakSecs(){return parseInt(document.getElementById('breakMin').value||5)*60;}
+function getLongBreakSecs(){return parseInt(document.getElementById('longBreakMin').value||20)*60;}
+function getSessToLong(){return parseInt(document.getElementById('sessionsToLong').value||4);}
+function updateDisplay(){
+  var m=Math.floor(secsLeft/60);var s=secsLeft%60;
+  document.getElementById('timerDisplay').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  document.title=document.getElementById('timerDisplay').textContent+' — '+(isBreak?'Break':'Focus');
+  var pct=1-(secsLeft/totalSecs);tc.style.strokeDashoffset=C*pct;
+}
+function timerToggle(){
+  if(isRunning){clearInterval(timerInterval);isRunning=false;document.getElementById('timerStartBtn').textContent='▶ Start';}
+  else{isRunning=true;document.getElementById('timerStartBtn').textContent='⏸ Pause';timerInterval=setInterval(tick,1000);}
+}
+function tick(){
+  if(secsLeft<=0){clearInterval(timerInterval);isRunning=false;
+    if(!isBreak){sessionsCompleted++;document.getElementById('timerSessions').innerHTML='Sessions completed: <strong>'+sessionsCompleted+'</strong>';}
+    timerSkip();
+    try{new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAA').play().catch(function(){});}catch(e){}
+    alert(isBreak?'Break time! Back to work.':'Great work! Time for a break.');
+    return;
+  }
+  secsLeft--;updateDisplay();
+}
+function timerReset(){
+  clearInterval(timerInterval);isRunning=false;
+  isBreak=false;totalSecs=getWorkSecs();secsLeft=totalSecs;
+  document.getElementById('timerStartBtn').textContent='▶ Start';
+  document.getElementById('timerModeBadge').textContent='Work Session';
+  document.getElementById('timerModeBadge').className='timer-mode-badge timer-work';
+  tc.style.strokeDashoffset=0;document.title='Focus Timer';
+  updateDisplay();
+}
+function timerSkip(){
+  clearInterval(timerInterval);isRunning=false;
+  if(isBreak){isBreak=false;totalSecs=getWorkSecs();document.getElementById('timerModeBadge').textContent='Work Session';document.getElementById('timerModeBadge').className='timer-mode-badge timer-work';}
+  else{isBreak=true;var isLong=(sessionsCompleted%getSessToLong()===0&&sessionsCompleted>0);totalSecs=isLong?getLongBreakSecs():getBreakSecs();document.getElementById('timerModeBadge').textContent=isLong?'Long Break':'Short Break';document.getElementById('timerModeBadge').className='timer-mode-badge timer-break';}
+  secsLeft=totalSecs;document.getElementById('timerStartBtn').textContent='▶ Start';tc.style.strokeDashoffset=0;updateDisplay();
+}
+function resetOnChange(){if(!isRunning)timerReset();}
+updateDisplay();
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>What Is Image Metadata (EXIF Data)?</h2><p>When you take a photo with a smartphone or digital camera, the device automatically embeds metadata into the image file. This EXIF (Exchangeable Image File Format) data can include your GPS location, the exact time the photo was taken, your device model, camera settings (aperture, shutter speed, ISO), and even the photographer's name.</p><h2>Why Remove EXIF Data?</h2><p>EXIF data can reveal sensitive information you might not want to share publicly. When you upload a photo to social media or share it by email, the recipient may be able to see exactly where the photo was taken, which could be your home address. Removing metadata before sharing protects your privacy.</p><h2>How Metadata Removal Works</h2><p>This tool draws your image onto an HTML5 Canvas and exports it as a fresh PNG file. The Canvas API does not copy EXIF or metadata from the source image, so the exported file contains only pixel data — no location, no timestamps, no device information. This is a simple, reliable method for stripping metadata entirely.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>The Pomodoro Technique</h2><p>Developed by Francesco Cirillo in the late 1980s (named after his tomato-shaped kitchen timer), the Pomodoro Technique breaks work into 25-minute focused sessions separated by 5-minute breaks. After four sessions (pomodoros), take a longer 15–30 minute break. This structure leverages the brain's natural attention cycles and prevents mental fatigue.</p><h2>Why Timed Work Sessions Work</h2><p>The human brain can sustain high-quality focused attention for approximately 90 minutes before needing rest, but most people find 25-minute intervals more practical for starting difficult tasks. The timer creates a sense of urgency (the "artificial deadline effect") that reduces procrastination and increases the ability to begin. Knowing a break is coming also makes sustained focus more mentally accessible.</p><h2>Customising Your Focus Intervals</h2><p>The traditional 25/5 minute split is a starting point. Some people find 50/10 works better for complex creative tasks. Students often prefer 45/15. Knowledge workers doing deep analytical work sometimes use 90-minute sessions. Experiment to find what works for your cognitive profile, the type of task, and time of day. The key is consistency — use the same structure for a week before changing it.</p><h2>Maximising Your Focus Sessions</h2><p>Before starting a session, define exactly what you will work on. Silence notifications. Close irrelevant browser tabs. Keep water nearby. During the session, if a distracting thought occurs, write it down quickly and return to work — do not act on it. During breaks, step away from screens: stretch, walk, breathe. This prevents eye strain and allows the default mode network (critical for creativity and insight) to activate.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Does this tool remove GPS location data?</div>
-<div class="tool-faq-a">Yes. Re-exporting via Canvas removes all EXIF metadata including GPS coordinates.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Can I customise the work and break times?</div>
+<div class="tool-faq-a">Yes. Set any work duration (1–120 minutes) and break duration (1–60 minutes) using the settings inputs.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Will this change how my image looks?</div>
-<div class="tool-faq-a">No. Only the hidden metadata is removed. The visible image remains identical.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Will the timer continue if I switch tabs?</div>
+<div class="tool-faq-a">Yes, the timer runs in the background. The page title updates with the remaining time so you can see it in your browser tab.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Is my image safe to process here?</div>
-<div class="tool-faq-a">Completely. Everything runs in your browser — your image is never uploaded to any server.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Does the timer make a sound when finished?</div>
+<div class="tool-faq-a">Yes, a browser notification alert sounds when each session completes. Ensure your browser allows notifications from this site.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Which formats does this work on?</div>
-<div class="tool-faq-a">Any image format your browser can display: JPG, PNG, WebP, GIF, BMP, and more.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">How many sessions should I do per day?</div>
+<div class="tool-faq-a">Most people find 4–8 Pomodoro sessions (2–4 hours of focused work) realistic. Quality of focus matters more than quantity of sessions.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-to-png.html" class="tool-related-card"><span class="tool-related-icon">🖼️</span>Image to PNG Converter →</a><a href="/tools/image-to-jpg.html" class="tool-related-card"><span class="tool-related-icon">🖼️</span>Image to JPG Converter →</a><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/daily-planner.html" class="tool-related-card"><span class="tool-related-icon">📅</span>Daily Planner →</a><a href="/tools/goal-tracker.html" class="tool-related-card"><span class="tool-related-icon">🎯</span>Goal Tracker →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a></div></div>
 
 <footer>
 <div class="footer-top">

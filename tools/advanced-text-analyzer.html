@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Image to JPG Converter Online — No Upload Required | VitalHealth Hub</title>
-<meta name="description" content="Convert PNG, WebP, GIF, BMP to JPG instantly. Free online image to JPG converter — no upload, works entirely in your browser. Fast and private.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/image-to-jpg.html">
-<meta property="og:title" content="Free Image to JPG Converter Online — No Upload Required | VitalHealth Hub">
-<meta property="og:description" content="Convert PNG, WebP, GIF, BMP to JPG instantly. Free online image to JPG converter — no upload, works entirely in your browser. Fast and private.">
+<title>Free Advanced Text Analyzer — Word Count, Readability & Keyword Density | VitalHealth Hub</title>
+<meta name="description" content="Analyse your text in real time: word count, character count, readability score, reading time, keyword density, sentence and paragraph stats. Free online tool.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/advanced-text-analyzer.html">
+<meta property="og:title" content="Free Advanced Text Analyzer — Word Count, Readability & Keyword Density | VitalHealth Hub">
+<meta property="og:description" content="Analyse your text in real time: word count, character count, readability score, reading time, keyword density, sentence and paragraph stats. Free online tool.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/image-to-jpg.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/advanced-text-analyzer.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,67 +134,136 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Image to JPG Converter</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Image to JPG Converter","item":"https://vitalhealthhub.com/tools/image-to-jpg.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Advanced Text Analyzer</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Advanced Text Analyzer","item":"https://vitalhealthhub.com/tools/advanced-text-analyzer.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Image Tools</span>
-<h1>Image to JPG Converter</h1>
-<p>Convert PNG, WebP, GIF, BMP or any image to JPG format instantly in your browser.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Text & Content</div>
+<h1>Advanced Text Analyzer</h1>
+<p class="saas-hero-sub">All-in-one text analysis: word count, readability score, reading time, keyword density, sentence stats — live as you type.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<div class="tool-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
-  <div class="tool-dropzone-icon">🖼️</div>
-  <h3>Drop your image here</h3>
-  <p>or click to browse • JPG, PNG, WebP, GIF, BMP supported</p>
-  <input type="file" id="toolFile" accept="image/*">
-</div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processImageConvert()" disabled>Convert to JPG ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Conversion complete!</h3></div>
-  <img id="toolPreview" class="tool-result-preview" alt="Preview">
-  <div style="text-align:center;margin-top:14px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download JPG</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
+<div class="text-analyzer-layout">
+  <div class="text-analyzer-input-col">
+    <div>
+      <label class="saas-label">Paste or type your text below</label>
+      <textarea class="saas-textarea text-analyzer-textarea" id="textInput" placeholder="Paste your article, blog post, essay, or any text here…" oninput="analyzeText()"></textarea>
+    </div>
+    <div>
+      <div class="saas-section-heading">Text Cleaning Tools</div>
+      <div class="text-clean-options">
+        <button class="text-clean-btn" onclick="cleanAction('trim')">Trim Spaces</button>
+        <button class="text-clean-btn" onclick="cleanAction('breaks')">Remove Extra Line Breaks</button>
+        <button class="text-clean-btn" onclick="cleanAction('special')">Remove Special Chars</button>
+        <button class="text-clean-btn" onclick="cleanAction('html')">Strip HTML Tags</button>
+        <button class="text-clean-btn" onclick="cleanAction('lower')">Lowercase</button>
+      </div>
+    </div>
+    <button class="saas-btn saas-btn-secondary saas-btn-sm" onclick="copyText()" style="align-self:flex-start">📋 Copy Text</button>
+  </div>
+  <div class="text-analyzer-stats-col">
+    <div class="saas-stat-grid" style="grid-template-columns:repeat(2,1fr)">
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statWords">0</div><div class="saas-stat-label">Words</div></div>
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statChars">0</div><div class="saas-stat-label">Chars</div></div>
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statSents">0</div><div class="saas-stat-label">Sentences</div></div>
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statParas">0</div><div class="saas-stat-label">Paragraphs</div></div>
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statRead">0 min</div><div class="saas-stat-label">Read Time</div></div>
+      <div class="saas-stat-card"><div class="saas-stat-value" id="statFlesch">—</div><div class="saas-stat-label">Readability</div></div>
+    </div>
+    <div style="margin-top:8px;text-align:center">
+      <span id="statGrade" class="readability-grade saas-badge saas-badge-gray">Grade: —</span>
+    </div>
+    <hr class="saas-divider">
+    <div class="saas-section-heading">Top Keywords</div>
+    <table class="keyword-table" id="kwTable">
+      <thead><tr><th>Word</th><th>Count</th><th>Density</th><th class="keyword-bar-cell"></th></tr></thead>
+      <tbody id="kwBody"><tr><td colspan="4" style="color:#9ca3af;text-align:center;padding:16px">Start typing to see keywords…</td></tr></tbody>
+    </table>
   </div>
 </div>
 <script>
-var toolFile=null;
-var dropEl=document.getElementById('toolDrop');
-var fileEl=document.getElementById('toolFile');
-dropEl.addEventListener('dragover',function(e){e.preventDefault();dropEl.classList.add('drag-over');});
-dropEl.addEventListener('dragleave',function(){dropEl.classList.remove('drag-over');});
-dropEl.addEventListener('drop',function(e){e.preventDefault();dropEl.classList.remove('drag-over');var f=e.dataTransfer.files[0];if(f)loadToolFile(f);});
-fileEl.addEventListener('change',function(){if(this.files[0])loadToolFile(this.files[0]);});
-function loadToolFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}if(f.size>20*1024*1024){alert('File too large. Max 20MB.');return;}toolFile=f;dropEl.querySelector('h3').textContent=f.name;dropEl.querySelector('p').textContent='File loaded — ready to convert';document.getElementById('toolProcessBtn').disabled=false;}
-function processImageConvert(){if(!toolFile)return;var btn=document.getElementById('toolProcessBtn');btn.textContent='Converting…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(toolFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');if('image/jpeg'==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);}ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=oUrl;dl.download='converted_vhh.jpg';document.getElementById('toolPreview').src=oUrl;document.getElementById('toolPreview').style.display='block';document.getElementById('toolFileInfo').textContent='Size: '+Math.round(blob.size/1024)+'KB | '+img.naturalWidth+'×'+img.naturalHeight+'px';document.getElementById('toolResult').classList.add('visible');btn.textContent='Convert Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/jpeg',0.92);};img.src=url;}
+var STOP=['the','a','an','and','or','but','in','on','at','to','for','of','with','is','it','this','that','are','was','as','by','be','from','they','we','our','you','he','she','his','her','their','have','had','has','do','did','not','if','its','my','i','me','your','we','us','all','can','will','would','could','should','more','so','up','also','about','into','what','which','when','where','who','been'];
+function countSyllables(w){w=w.toLowerCase().replace(/[^a-z]/g,'');var c=0;var m=w.match(/[aeiou]+/g);if(m)c=m.length;if(w.endsWith('e')&&c>1)c--;return Math.max(1,c);}
+function analyzeText(){
+  var text=document.getElementById('textInput').value;
+  var words=text.trim()?text.trim().split(/s+/).filter(function(w){return w.length>0;}):[];
+  var chars=text.length;
+  var sents=text.split(/[.!?]+/).filter(function(s){return s.trim().length>1;}).length;
+  var paras=text.split(/
+s*
+/).filter(function(p){return p.trim().length>0;}).length;
+  var readMins=Math.ceil(words.length/200);
+  document.getElementById('statWords').textContent=words.length.toLocaleString();
+  document.getElementById('statChars').textContent=chars.toLocaleString();
+  document.getElementById('statSents').textContent=sents;
+  document.getElementById('statParas').textContent=paras||0;
+  document.getElementById('statRead').textContent=(readMins||0)+' min';
+  // Flesch
+  if(words.length>10&&sents>0){
+    var sylls=words.reduce(function(t,w){return t+countSyllables(w);},0);
+    var asl=words.length/sents;var asw=sylls/words.length;
+    var flesch=Math.round(206.835-1.015*asl-84.6*asw);
+    flesch=Math.max(0,Math.min(100,flesch));
+    document.getElementById('statFlesch').textContent=flesch;
+    var grade=flesch>=90?'5th':flesch>=80?'6th':flesch>=70?'7th':flesch>=60?'8-9th':flesch>=50?'10-12th':flesch>=30?'College':'Professional';
+    var gradeClass=flesch>=70?'saas-badge-green':flesch>=50?'saas-badge-yellow':'saas-badge-red';
+    document.getElementById('statGrade').textContent='Grade: '+grade;
+    document.getElementById('statGrade').className='readability-grade saas-badge '+gradeClass;
+  } else { document.getElementById('statFlesch').textContent='—';document.getElementById('statGrade').textContent='Grade: —';document.getElementById('statGrade').className='readability-grade saas-badge saas-badge-gray'; }
+  // Keywords
+  if(words.length>0){
+    var freq={};words.forEach(function(w){var k=w.toLowerCase().replace(/[^a-z]/g,'');if(k.length>2&&STOP.indexOf(k)===-1)freq[k]=(freq[k]||0)+1;});
+    var sorted=Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,10);
+    var maxF=sorted.length?freq[sorted[0]]:1;
+    var rows=sorted.map(function(w){var pct=Math.round((freq[w]/words.length)*100);var barPct=Math.round((freq[w]/maxF)*100);return '<tr><td>'+w+'</td><td>'+freq[w]+'</td><td>'+pct+'%</td><td class="keyword-bar-cell"><div class="keyword-mini-bar"><div class="keyword-mini-fill" style="width:'+barPct+'%"></div></div></td></tr>';}).join('');
+    document.getElementById('kwBody').innerHTML=rows||'<tr><td colspan="4" style="color:#9ca3af;text-align:center">No meaningful keywords found</td></tr>';
+  }
+}
+function cleanAction(type){
+  var el=document.getElementById('textInput');var t=el.value;
+  if(type==='trim')t=t.replace(/[ \t]+/g,' ').trim();
+  else if(type==='breaks')t=t.replace(/\n{3,}/g,'\n\n').trim();
+  else if(type==='special')t=t.replace(/[^a-zA-Z0-9\s.,!?;:\'"-]/g,'');
+  else if(type==='html')t=t.replace(/<[^>]+>/g,'');
+  else if(type==='lower')t=t.toLowerCase();
+  el.value=t;analyzeText();
+}
+function copyText(){navigator.clipboard.writeText(document.getElementById('textInput').value).then(function(){alert('Text copied to clipboard!');});}
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>What Is an Image to JPG Converter?</h2><p>An image to JPG converter is a tool that transforms any image format — PNG, WebP, GIF, BMP, TIFF — into the universally compatible JPG (JPEG) format. JPG is the most widely supported image format on the web, in email clients, and across virtually all devices.</p><h2>Why Convert Images to JPG?</h2><p>JPG is ideal for photographs and complex images with many colours. It uses lossy compression, making file sizes significantly smaller than PNG while maintaining excellent visual quality at the right compression settings. Smaller files load faster on websites, use less storage space, and are easier to share via email or messaging apps.</p><h2>How This Tool Works</h2><p>Our converter uses the HTML5 Canvas API to process images entirely within your browser. Your file never leaves your device — no upload to any server, no privacy risk. Simply drop your image, click Convert, and download the result in seconds. The tool preserves the original dimensions of your image while applying efficient JPEG compression.</p><h2>When to Use JPG Format</h2><p>Use JPG for photographs, social media images, product photos, and any image where file size matters more than perfect pixel accuracy. Avoid JPG for logos, screenshots with text, or images requiring transparent backgrounds — use PNG for those cases instead.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Everything You Need to Analyse Your Content</h2><p>Professional content writers and SEO specialists need multiple metrics to evaluate their work. Word count alone does not tell the full story — you also need to know how readable your content is, how long it will take to read, which keywords are most prominent, and whether your sentence structure is optimised. This Advanced Text Analyzer delivers all these metrics simultaneously as you type, with no need to submit your text to any server.</p><h2>Key Metrics Explained</h2><p>Words and characters are counted by detecting whitespace-separated tokens and individual characters respectively. Sentences are counted by full stops, exclamation marks, and question marks. Reading time is calculated at 200 words per minute — the average adult silent reading speed. Paragraphs are detected by blank lines. The Flesch Reading Ease score uses the formula: 206.835 – (1.015 × ASL) – (84.6 × ASW), where ASL is average sentence length and ASW is average syllables per word.</p><h2>Readability for SEO and UX</h2><p>Google's search quality raters evaluate content readability as part of content quality assessment. For general web audiences, target a Flesch Reading Ease score of 60–70. Health content should target 60–75 to be accessible to the widest audience. Academic and technical content may score 30–50. The analyzer also shows grade level — most web content should target Grade 8 or below for maximum accessibility.</p><h2>Keyword Density for SEO</h2><p>The keyword density section shows the top 10 most-used meaningful words in your content (excluding common stop words). Ideal keyword density for your primary target keyword is 1–2%. Above 3–4% risks being flagged as keyword stuffing. Use this section to ensure your main topic keywords appear naturally and with appropriate frequency throughout your content.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is my image uploaded to any server?</div>
-<div class="tool-faq-a">No. All conversion happens inside your browser using the Canvas API. Your image never leaves your device.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Does this tool save or transmit my text?</div>
+<div class="tool-faq-a">No. All analysis runs in your browser using JavaScript. Your text is never sent to any server.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What image formats can I convert to JPG?</div>
-<div class="tool-faq-a">You can convert PNG, WebP, GIF, BMP, TIFF, and other common formats to JPG.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What readability score should I aim for?</div>
+<div class="tool-faq-a">For general web content: 60–70 (Plain English). For health content targeting general public: 65–80. For academic writing: 30–50 is typical.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Will the image quality be reduced?</div>
-<div class="tool-faq-a">We apply 92% quality by default, which produces excellent results that are visually indistinguishable from the original for most photos.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">How is reading time calculated?</div>
+<div class="tool-faq-a">Based on 200 words per minute, the average adult reading speed. Adjust mentally if your audience includes slow readers (children, non-native speakers) or fast readers (experts in the field).</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Is there a file size limit?</div>
-<div class="tool-faq-a">We recommend files under 20MB for best performance in your browser.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Why are some common words excluded from keyword density?</div>
+<div class="tool-faq-a">Stop words (the, a, is, of, and, etc.) are filtered out because they appear in all text and have no keyword significance.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-to-png.html" class="tool-related-card"><span class="tool-related-icon">🖼️</span>Image to PNG Converter →</a><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a><a href="/tools/jpg-to-webp.html" class="tool-related-card"><span class="tool-related-icon">🔄</span>JPG to WebP Converter →</a><a href="/tools/image-resizer.html" class="tool-related-card"><span class="tool-related-icon">📐</span>Image Resizer →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/headline-analyzer.html" class="tool-related-card"><span class="tool-related-icon">📰</span>Headline Analyzer →</a><a href="/tools/content-idea-generator.html" class="tool-related-card"><span class="tool-related-icon">💡</span>Content Idea Generator →</a></div></div>
 
 <footer>
 <div class="footer-top">

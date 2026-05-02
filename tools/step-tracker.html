@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Case Converter Online — UPPER, lower, Title, Sentence Case | VitalHealth Hub</title>
-<meta name="description" content="Convert text to uppercase, lowercase, title case, sentence case, and camelCase instantly. Free online case converter tool.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/case-converter.html">
-<meta property="og:title" content="Free Case Converter Online — UPPER, lower, Title, Sentence Case | VitalHealth Hub">
-<meta property="og:description" content="Convert text to uppercase, lowercase, title case, sentence case, and camelCase instantly. Free online case converter tool.">
+<title>Free Step Tracker Online — Daily Steps Log with Progress Ring | VitalHealth Hub</title>
+<meta name="description" content="Track your daily steps and walking goal with our free online step tracker. Visual progress ring and 7-day history chart. No app download required.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/step-tracker.html">
+<meta property="og:title" content="Free Step Tracker Online — Daily Steps Log with Progress Ring | VitalHealth Hub">
+<meta property="og:description" content="Track your daily steps and walking goal with our free online step tracker. Visual progress ring and 7-day history chart. No app download required.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/case-converter.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/step-tracker.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,56 +134,113 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Case Converter</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Case Converter","item":"https://vitalhealthhub.com/tools/case-converter.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Step Tracker</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Step Tracker","item":"https://vitalhealthhub.com/tools/step-tracker.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Text Tools</span>
-<h1>Case Converter</h1>
-<p>Convert text to uppercase, lowercase, title case, and sentence case instantly.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Health & Tracking</div>
+<h1>Step Tracker</h1>
+<p class="saas-hero-sub">Log your daily steps, track progress toward your goal, and visualise your weekly activity with an animated progress ring.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<textarea class="tool-textarea" id="toolInput" placeholder="Paste or type your text here..."></textarea>
-<div class="tool-btn-group">
-  <button class="tool-action-btn" onclick="convertCase('upper')">UPPERCASE</button>
-  <button class="tool-action-btn" onclick="convertCase('lower')">lowercase</button>
-  <button class="tool-action-btn" onclick="convertCase('title')">Title Case</button>
-  <button class="tool-action-btn" onclick="convertCase('sentence')">Sentence case</button>
-  <button class="tool-action-btn" onclick="convertCase('camel')">camelCase</button>
-  <button class="tool-action-btn" onclick="convertCase('snake')">snake_case</button>
-  <button class="tool-action-btn" onclick="convertCase('kebab')">kebab-case</button>
+<div class="saas-card-title">👟 Log Today's Steps</div>
+<div class="saas-form-row" style="margin-bottom:18px">
+  <div class="saas-form-group">
+    <label class="saas-label">Steps Today</label>
+    <input class="saas-input" type="number" id="stepInput" placeholder="e.g. 8500" min="0" max="100000">
+  </div>
+  <div class="saas-form-group">
+    <label class="saas-label">Daily Goal</label>
+    <input class="saas-input" type="number" id="stepGoal" value="10000" min="1000" max="50000">
+  </div>
 </div>
-<div class="tool-panel-label" style="margin-top:18px;">Result</div>
-<textarea class="tool-output-box" id="toolOutput" readonly placeholder="Converted text will appear here..."></textarea>
-<div style="display:flex;gap:10px;margin-top:10px;">
-  <button class="tool-copy-btn" onclick="copyOutput()">📋 Copy Result</button>
-  <button class="tool-action-btn" onclick="document.getElementById('toolInput').value='';document.getElementById('toolOutput').value=''">Clear</button>
+<button class="saas-btn saas-btn-primary" onclick="logSteps()" style="width:100%">Log Steps</button>
+<div class="step-ring-wrap" id="stepRingWrap" style="display:none">
+  <svg class="timer-svg" width="160" height="160" viewBox="0 0 160 160" id="stepRingSvg">
+    <circle cx="80" cy="80" r="68" fill="none" stroke="#e5e7eb" stroke-width="12"/>
+    <circle cx="80" cy="80" r="68" fill="none" stroke="url(#stepGrad)" stroke-width="12" stroke-linecap="round" id="stepCircle" style="transition:stroke-dashoffset 0.8s ease"/>
+    <defs><linearGradient id="stepGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#2d6a4f"/><stop offset="100%" style="stop-color:#52b788"/></linearGradient></defs>
+  </svg>
+  <div style="margin-top:-90px;text-align:center;position:relative;z-index:1;margin-bottom:60px">
+    <div class="step-ring-value" id="stepPct">0%</div>
+    <div class="step-ring-label" id="stepCount">0 / 0 steps</div>
+  </div>
 </div>
+<hr class="saas-divider">
+<div class="saas-section-heading">📊 Last 7 Days</div>
+<div id="stepChart" class="step-chart-wrap"></div>
 <script>
-function convertCase(type){var t=document.getElementById('toolInput').value;var r='';if(type==='upper')r=t.toUpperCase();else if(type==='lower')r=t.toLowerCase();else if(type==='title')r=t.toLowerCase().replace(/(?:^|\s)\S/g,function(a){return a.toUpperCase();});else if(type==='sentence')r=t.toLowerCase().replace(/(^|[.!?]\s+)([a-z])/g,function(m,p1,p2){return p1+p2.toUpperCase();});else if(type==='camel')r=t.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g,function(m,c){return c.toUpperCase();});else if(type==='snake')r=t.toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');else if(type==='kebab')r=t.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');document.getElementById('toolOutput').value=r;}
-function copyOutput(){var o=document.getElementById('toolOutput').value;if(!o)return;navigator.clipboard.writeText(o).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy Result';},2000);});}
+function loadSteps(){return JSON.parse(localStorage.getItem('vhh_steps')||'[]');}
+function saveSteps(d){localStorage.setItem('vhh_steps',JSON.stringify(d));}
+var C=2*Math.PI*68;var stepCircle=document.getElementById('stepCircle');
+stepCircle.style.strokeDasharray=C;stepCircle.style.strokeDashoffset=C;
+function setRing(pct){stepCircle.style.strokeDashoffset=C-(pct/100)*C;}
+function logSteps(){
+  var steps=parseInt(document.getElementById('stepInput').value);
+  var goal=parseInt(document.getElementById('stepGoal').value)||10000;
+  if(!steps||steps<0){alert('Please enter a valid step count.');return;}
+  var today=new Date().toISOString().split('T')[0];
+  var data=loadSteps();
+  data=data.filter(function(e){return e.date!==today;});
+  data.unshift({date:today,steps:steps,goal:goal});
+  if(data.length>14)data=data.slice(0,14);
+  saveSteps(data);
+  var pct=Math.min(100,Math.round((steps/goal)*100));
+  document.getElementById('stepRingWrap').style.display='flex';
+  document.getElementById('stepPct').textContent=pct+'%';
+  document.getElementById('stepCount').textContent=steps.toLocaleString()+' / '+goal.toLocaleString()+' steps';
+  setTimeout(function(){setRing(pct);},50);
+  renderStepChart();
+}
+function renderStepChart(){
+  var data=loadSteps().slice(0,7).reverse();var el=document.getElementById('stepChart');
+  if(!data.length){el.innerHTML='<div class="saas-empty-state"><div class="saas-empty-icon">👣</div><p class="saas-empty-text">Log steps to see your weekly chart!</p></div>';return;}
+  var maxS=Math.max.apply(null,data.map(function(e){return e.steps;}));
+  var today=new Date().toISOString().split('T')[0];
+  var bars=data.map(function(e){
+    var pct=maxS>0?Math.max(8,Math.round((e.steps/maxS)*100)):8;
+    var isToday=e.date===today;
+    var day=new Date(e.date+'T12:00:00').toLocaleDateString('en-GB',{weekday:'short'});
+    return '<div class="step-bar-col"><div class="step-bar'+(isToday?' active':'')+'" style="height:'+pct+'px" title="'+e.steps.toLocaleString()+' steps"></div><div class="step-bar-label">'+day+'</div></div>';
+  }).join('');
+  el.innerHTML='<div class="step-bar-chart">'+bars+'</div>';
+}
+renderStepChart();
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>Text Case Conversion Explained</h2><p>Different writing contexts require different text cases. Titles use Title Case (every major word capitalised). Programming uses camelCase and snake_case. Legal documents use ALL CAPS for certain terms. Sentence case (capitalising only the first word) is standard for body text and UI labels.</p><h2>Available Case Formats</h2><p>This converter supports: UPPERCASE (all capitals), lowercase (no capitals), Title Case (each word capitalised), Sentence case (first word capitalised), camelCase (no spaces, each word after first capitalised), snake_case (words joined by underscores), and kebab-case (words joined by hyphens).</p><h2>Programming Use Cases</h2><p>Developers frequently need to convert between naming conventions. Variable names in JavaScript use camelCase. CSS classes use kebab-case. Python variables use snake_case. Database column names often use snake_case. This tool handles all these conversions instantly.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Why 10,000 Steps a Day?</h2><p>The 10,000-step goal originated from a 1960s Japanese marketing campaign for a pedometer, but research has since validated it as a meaningful target. A landmark 2019 study in JAMA Internal Medicine found that women who averaged 7,500 steps per day had significantly lower mortality rates. More recent research suggests benefits plateau around 7,500–8,000 steps for older adults, but higher step counts benefit younger, more active populations.</p><h2>The Health Benefits of Walking</h2><p>Regular walking improves cardiovascular fitness, reduces body fat, builds muscular endurance, lowers blood pressure, improves blood sugar regulation, boosts mood through endorphin release, and reduces the risk of type 2 diabetes, heart disease, and certain cancers. It is the most accessible form of exercise — requiring no equipment, gym membership, or specific fitness level.</p><h2>How to Increase Your Daily Steps</h2><p>Park farther from your destination. Take the stairs. Walk during phone calls. Schedule "walking meetings." Get off public transit one stop early. Walk for 10 minutes after every meal — research shows post-meal walking is particularly effective for blood sugar management. Use a lunch break walk as a mental reset. Small additions compound into significant daily totals.</p><h2>Tracking Progress Over Time</h2><p>Log your steps daily (either from a fitness tracker, phone health app, or manual estimation). The 7-day chart lets you spot patterns — are you more active on weekdays or weekends? Do you have consistent low-step days that you could target for improvement? Consistency over weeks builds the habit that makes physical activity automatic.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What is Title Case?</div>
-<div class="tool-faq-a">Title Case capitalises the first letter of each major word. Small words like "a", "the", "and" are not capitalised unless they start the title.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is 10,000 steps the right goal for everyone?</div>
+<div class="tool-faq-a">No. Research suggests 7,500 steps provides most health benefits. Start with a goal 20% above your current average and gradually increase over weeks.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What is camelCase?</div>
-<div class="tool-faq-a">camelCase joins words without spaces, capitalising the first letter of each word after the first (e.g. myVariableName).</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How do I estimate steps without a tracker?</div>
+<div class="tool-faq-a">A rough estimate: walking briskly burns about 100 steps per minute. A 30-minute walk ≈ 3,000 steps. A 10-minute walk ≈ 1,000 steps.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Is my text saved anywhere?</div>
-<div class="tool-faq-a">No. All conversions happen in your browser. Your text is never sent to any server.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Does running count as steps?</div>
+<div class="tool-faq-a">Yes, running steps are generally counted at 1:1 with walking steps. Running produces more health benefit per step due to higher intensity.</div>
+</div><div class="tool-faq-item" id="tfaq3">
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">How long is step history stored?</div>
+<div class="tool-faq-a">The last 7 days are shown in the chart. All entries are stored in your browser's localStorage.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/word-counter.html" class="tool-related-card"><span class="tool-related-icon">📝</span>Word Counter →</a><a href="/tools/text-cleaner.html" class="tool-related-card"><span class="tool-related-icon">🧹</span>Text Cleaner →</a><a href="/tools/character-counter.html" class="tool-related-card"><span class="tool-related-icon">🔢</span>Character Counter →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a><a href="/tools/health-dashboard.html" class="tool-related-card"><span class="tool-related-icon">📊</span>Health Dashboard →</a><a href="/tools/goal-tracker.html" class="tool-related-card"><span class="tool-related-icon">🎯</span>Goal Tracker →</a></div></div>
 
 <footer>
 <div class="footer-top">

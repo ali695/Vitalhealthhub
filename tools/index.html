@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Online Tools Hub — Image, PDF, Text & Utility Tools | VitalHealth Hub</title>
-<meta name="description" content="Free online tools for images, PDFs, text, and utilities. Convert images, merge PDFs, count words, generate QR codes and more — all free, no upload, instant.">
+<title>Free Premium Health & Productivity Tools — VitalHealth Hub Tools Platform | VitalHealth Hub</title>
+<meta name="description" content="Premium free online tools: habit tracker, sleep tracker, mood tracker, focus timer, daily planner, text analyzer, headline analyzer and more. No sign-up, all data stays private.">
 <link rel="canonical" href="https://vitalhealthhub.com/tools/">
-<meta property="og:title" content="Free Online Tools Hub — Image, PDF, Text & Utility Tools | VitalHealth Hub">
-<meta property="og:description" content="Free online tools for images, PDFs, text, and utilities. Convert images, merge PDFs, count words, generate QR codes and more — all free, no upload, instant.">
+<meta property="og:title" content="Free Premium Health & Productivity Tools — VitalHealth Hub Tools Platform | VitalHealth Hub">
+<meta property="og:description" content="Premium free online tools: habit tracker, sleep tracker, mood tracker, focus timer, daily planner, text analyzer, headline analyzer and more. No sign-up, all data stays private.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vitalhealthhub.com/tools/">
 <link rel="stylesheet" href="/css/style.css">
@@ -137,69 +137,151 @@
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><span>Tools Hub</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"}]}</script>
 
-<section class="tools-hero">
-<div class="tools-hero-inner">
-<div class="tools-hero-badge">🛠️ 24+ Free Online Tools</div>
-<h1 class="tools-hero-title">Free Tools Hub</h1>
-<p class="tools-hero-sub">Convert, compress, edit, and manage files instantly &mdash; all client-side, no upload, no sign-up.</p>
-<div class="tools-hero-search-bar">
-<svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-<input type="text" id="toolsSearch" placeholder="Search 24+ tools..." oninput="filterTools(this.value)" autocomplete="off">
+<section class="tools-saas-hero">
+<div class="tools-saas-hero-inner">
+<div class="tools-saas-badge">✦ Premium Free Tools — No Sign-Up Required</div>
+<h1 class="tools-saas-title">Your Health &amp;<br>Productivity Hub</h1>
+<p class="tools-saas-sub">Habit trackers, sleep analysis, focus timers, text analytics and more — all free, all private, all in your browser.</p>
+<div class="tools-saas-search-wrap">
+<span class="tools-saas-search-icon">🔍</span>
+<input class="tools-saas-search" id="toolsSearch" placeholder="Search tools…" oninput="filterHub(this.value)" autocomplete="off">
 </div>
-<div class="tools-hero-stats">
-<div class="tools-hero-stat"><strong>9</strong><span>Image Tools</span></div>
-<div class="tools-hero-stat"><strong>3</strong><span>PDF Tools</span></div>
-<div class="tools-hero-stat"><strong>6</strong><span>Text Tools</span></div>
-<div class="tools-hero-stat"><strong>6</strong><span>Utility Tools</span></div>
+<div class="tools-saas-stats">
+<div class="tools-saas-stat"><span class="tools-saas-stat-num">15</span><span class="tools-saas-stat-label">Tools</span></div>
+<div class="tools-saas-stat"><span class="tools-saas-stat-num">4</span><span class="tools-saas-stat-label">Categories</span></div>
+<div class="tools-saas-stat"><span class="tools-saas-stat-num">100%</span><span class="tools-saas-stat-label">Free</span></div>
+<div class="tools-saas-stat"><span class="tools-saas-stat-num">Private</span><span class="tools-saas-stat-label">Data stays local</span></div>
 </div>
 </div>
 </section>
 
-<div class="tools-category-section">
-<h2>Browse by Category</h2>
-<p>Choose a category to jump straight to those tools, or search above.</p>
-<div class="tools-category-grid">
-<a href="#cat-image" class="tools-cat-card"><span class="tools-cat-icon">🖼️</span><h3>Image Tools</h3><p>Convert, compress, resize and edit images in your browser</p><span class="tools-cat-count">9 tools</span></a><a href="#cat-pdf" class="tools-cat-card"><span class="tools-cat-icon">📄</span><h3>PDF Tools</h3><p>Merge, rotate and convert PDF files instantly</p><span class="tools-cat-count">3 tools</span></a><a href="#cat-text" class="tools-cat-card"><span class="tools-cat-icon">📝</span><h3>Text Tools</h3><p>Count words, convert case, clean and analyse text</p><span class="tools-cat-count">6 tools</span></a><a href="#cat-utility" class="tools-cat-card"><span class="tools-cat-icon">⚙️</span><h3>Utility Tools</h3><p>QR codes, passwords, UUIDs, Base64, JSON and more</p><span class="tools-cat-count">6 tools</span></a>
+<div class="tools-cat-nav">
+<div class="tools-cat-tabs">
+<button class="tools-cat-tab active" onclick="filterCat('all',this)">All Tools</button>
+<button class="tools-cat-tab" onclick="filterCat('health',this)">💪 Health &amp; Tracking</button>
+<button class="tools-cat-tab" onclick="filterCat('productivity',this)">⚡ Productivity</button>
+<button class="tools-cat-tab" onclick="filterCat('text',this)">📝 Text &amp; Content</button>
+<button class="tools-cat-tab" onclick="filterCat('utility',this)">🔧 Utility Tools</button>
 </div>
 </div>
 
+<div class="tools-hub-content">
 
-<section class="tools-section" id="cat-image">
-<div class="tools-section-header">
-<span class="tools-section-icon">🖼️</span>
-<div><h2>Image Tools</h2><p>Convert, compress, resize and edit images in your browser</p></div>
+<div class="tools-activity-panel" id="activityPanel">
+<div class="tools-activity-head">⏱ Recently Used</div>
+<div class="tools-activity-list" id="activityList"></div>
 </div>
-<div class="tools-cards-grid">
-<a href="/tools/image-to-jpg.html" class="tool-index-card" data-name="image to jpg converter"><div class="tool-index-icon">🖼️</div><div class="tool-index-body"><h4>Image to JPG Converter</h4><p>Convert PNG, WebP, GIF, BMP or any image to JPG format instantly in your browser.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/image-to-png.html" class="tool-index-card" data-name="image to png converter"><div class="tool-index-icon">🖼️</div><div class="tool-index-body"><h4>Image to PNG Converter</h4><p>Convert JPG, WebP, GIF, BMP or any image to lossless PNG format in your browser.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/jpg-to-webp.html" class="tool-index-card" data-name="jpg to webp converter"><div class="tool-index-icon">🔄</div><div class="tool-index-body"><h4>JPG to WebP Converter</h4><p>Convert JPG and PNG images to WebP format for faster web performance.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/webp-to-jpg.html" class="tool-index-card" data-name="webp to jpg converter"><div class="tool-index-icon">🔄</div><div class="tool-index-body"><h4>WebP to JPG Converter</h4><p>Convert WebP images back to JPG format for maximum compatibility.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/image-compressor.html" class="tool-index-card" data-name="image compressor"><div class="tool-index-icon">⚡</div><div class="tool-index-body"><h4>Image Compressor</h4><p>Compress and reduce image file size without visible quality loss.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/image-resizer.html" class="tool-index-card" data-name="image resizer"><div class="tool-index-icon">📐</div><div class="tool-index-body"><h4>Image Resizer</h4><p>Resize images to exact pixel dimensions while maintaining quality.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/image-crop.html" class="tool-index-card" data-name="image crop tool"><div class="tool-index-icon">✂️</div><div class="tool-index-body"><h4>Image Crop Tool</h4><p>Crop images by specifying exact pixel coordinates and dimensions.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/image-metadata-remover.html" class="tool-index-card" data-name="image metadata remover"><div class="tool-index-icon">🔒</div><div class="tool-index-body"><h4>Image Metadata Remover</h4><p>Strip EXIF data and metadata from images to protect your privacy.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/image-quality-reducer.html" class="tool-index-card" data-name="image quality reducer"><div class="tool-index-icon">📉</div><div class="tool-index-body"><h4>Image Quality Reducer</h4><p>Reduce image quality and file size with a custom compression slider.</p></div><span class="tool-index-arrow">→</span></a>
+
+
+<div class="tools-hub-section" data-section="health">
+<div class="tools-hub-section-header">
+<div class="tools-hub-section-icon">💪</div>
+<div><div class="tools-hub-section-title">Health & Tracking</div><div class="tools-hub-section-desc">Habit streaks, sleep analysis, mood calendar, step goals</div></div>
 </div>
-</section>
-<section class="tools-section" id="cat-pdf">
-<div class="tools-section-header">
-<span class="tools-section-icon">📄</span>
-<div><h2>PDF Tools</h2><p>Merge, rotate and convert PDF files instantly</p></div>
+<div class="tools-premium-grid">
+<a href="/tools/habit-tracker.html" class="tool-premium-card" data-name="habit tracker build lasting habits with streak tracking, weekly views, and progress analytics — all saved privately in your browser." data-cat="health">
+<div class="tool-premium-icon">🔥</div>
+<div class="tool-premium-name">Habit Tracker</div>
+<div class="tool-premium-desc">Build lasting habits with streak tracking, weekly views, and progress analytics — all saved privately in your browser.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a>
+<a href="/tools/sleep-tracker.html" class="tool-premium-card" data-name="sleep tracker log your sleep, get a quality score, and discover patterns in your sleep history with personalised insights." data-cat="health">
+<div class="tool-premium-icon">😴</div>
+<div class="tool-premium-name">Sleep Tracker</div>
+<div class="tool-premium-desc">Log your sleep, get a quality score, and discover patterns in your sleep history with personalised insights.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a>
+<a href="/tools/mood-tracker.html" class="tool-premium-card" data-name="mood tracker log your daily mood, spot emotional patterns in your calendar view, and track your mental wellness over time." data-cat="health">
+<div class="tool-premium-icon">🌈</div>
+<div class="tool-premium-name">Mood Tracker</div>
+<div class="tool-premium-desc">Log your daily mood, spot emotional patterns in your calendar view, and track your mental wellness over time.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a>
+<a href="/tools/step-tracker.html" class="tool-premium-card" data-name="step tracker log your daily steps, track progress toward your goal, and visualise your weekly activity with an animated progress ring." data-cat="health">
+<div class="tool-premium-icon">👟</div>
+<div class="tool-premium-name">Step Tracker</div>
+<div class="tool-premium-desc">Log your daily steps, track progress toward your goal, and visualise your weekly activity with an animated progress ring.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a>
+<a href="/tools/health-dashboard.html" class="tool-premium-card" data-name="health dashboard your personal health command centre — see sleep, mood, steps, and habit streaks all in one place." data-cat="health">
+<div class="tool-premium-icon">📊</div>
+<div class="tool-premium-name">Health Dashboard</div>
+<div class="tool-premium-desc">Your personal health command centre — see sleep, mood, steps, and habit streaks all in one place.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a></div>
 </div>
-<div class="tools-cards-grid">
-<a href="/tools/jpg-to-pdf.html" class="tool-index-card" data-name="jpg to pdf converter"><div class="tool-index-icon">📄</div><div class="tool-index-body"><h4>JPG to PDF Converter</h4><p>Convert one or more JPG images into a PDF document instantly.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/pdf-merge.html" class="tool-index-card" data-name="pdf merge tool"><div class="tool-index-icon">📎</div><div class="tool-index-body"><h4>PDF Merge Tool</h4><p>Merge multiple PDF files into one document instantly.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/pdf-rotate.html" class="tool-index-card" data-name="rotate pdf pages"><div class="tool-index-icon">🔃</div><div class="tool-index-body"><h4>Rotate PDF Pages</h4><p>Rotate all pages in a PDF by 90, 180, or 270 degrees.</p></div><span class="tool-index-arrow">→</span></a>
+<div class="tools-hub-section" data-section="productivity">
+<div class="tools-hub-section-header">
+<div class="tools-hub-section-icon">⚡</div>
+<div><div class="tools-hub-section-title">Productivity</div><div class="tools-hub-section-desc">Pomodoro timer, daily planner, goal tracking</div></div>
 </div>
-</section>
-<section class="tools-section" id="cat-text">
-<div class="tools-section-header">
-<span class="tools-section-icon">📝</span>
-<div><h2>Text Tools</h2><p>Count words, convert case, clean and analyse text</p></div>
+<div class="tools-premium-grid">
+<a href="/tools/daily-planner.html" class="tool-premium-card" data-name="daily planner plan your day with time-blocked tasks, priority levels, and a clean checklist that auto-saves to your browser." data-cat="productivity">
+<div class="tool-premium-icon">📅</div>
+<div class="tool-premium-name">Daily Planner</div>
+<div class="tool-premium-desc">Plan your day with time-blocked tasks, priority levels, and a clean checklist that auto-saves to your browser.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a>
+<a href="/tools/focus-timer.html" class="tool-premium-card" data-name="focus timer boost deep focus with a pomodoro timer. customisable work and break intervals with session tracking." data-cat="productivity">
+<div class="tool-premium-icon">⏱️</div>
+<div class="tool-premium-name">Focus Timer</div>
+<div class="tool-premium-desc">Boost deep focus with a Pomodoro timer. Customisable work and break intervals with session tracking.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a>
+<a href="/tools/goal-tracker.html" class="tool-premium-card" data-name="goal tracker set measurable goals, update your progress, and watch your progress bars fill as you move toward each target." data-cat="productivity">
+<div class="tool-premium-icon">🎯</div>
+<div class="tool-premium-name">Goal Tracker</div>
+<div class="tool-premium-desc">Set measurable goals, update your progress, and watch your progress bars fill as you move toward each target.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a></div>
 </div>
-<div class="tools-cards-grid">
-<a href="/tools/word-counter.html" class="tool-index-card" data-name="word counter"><div class="tool-index-icon">📝</div><div class="tool-index-body"><h4>Word Counter</h4><p>Count words, characters, sentences, and paragraphs in any text.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/character-counter.html" class="tool-index-card" data-name="character counter"><div class="tool-index-icon">🔢</div><div class="tool-index-body"><h4>Character Counter</h4><p>Count characters with and without spaces for tweets, bios, and more.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/case-converter.html" class="tool-index-card" data-name="case converter"><div class="tool-index-icon">Aa</div><div class="tool-index-body"><h4>Case Converter</h4><p>Convert text to uppercase, lowercase, title case, and sentence case instantly.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/text-cleaner.html" class="tool-index-card" data-name="text cleaner"><div class="tool-index-icon">🧹</div><div class="tool-index-body"><h4>Text Cleaner</h4><p>Remove extra spaces, line breaks, special characters, and clean messy text.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/readability-analyzer.html" class="tool-index-card" data-name="readability analyzer"><div class="tool-index-icon">📊</div><div class="tool-index-body"><h4>Readability Analyzer</h4><p>Analyse the readability of your text with Flesch-Kincaid and other scores.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/keyword-density.html" class="tool-index-card" data-name="keyword density checker"><div class="tool-index-icon">🔍</div><div class="tool-index-body"><h4>Keyword Density Checker</h4><p>Analyse keyword density and frequency in your content for SEO optimisation.</p></div><span class="tool-index-arrow">→</span></a>
+<div class="tools-hub-section" data-section="text">
+<div class="tools-hub-section-header">
+<div class="tools-hub-section-icon">📝</div>
+<div><div class="tools-hub-section-title">Text & Content</div><div class="tools-hub-section-desc">Text analysis, headline scoring, content idea generation</div></div>
 </div>
-</section>
-<section class="tools-section" id="cat-utility">
-<div class="tools-section-header">
-<span class="tools-section-icon">⚙️</span>
-<div><h2>Utility Tools</h2><p>QR codes, passwords, UUIDs, Base64, JSON and more</p></div>
+<div class="tools-premium-grid">
+<a href="/tools/advanced-text-analyzer.html" class="tool-premium-card" data-name="advanced text analyzer all-in-one text analysis: word count, readability score, reading time, keyword density, sentence stats — live as you type." data-cat="text">
+<div class="tool-premium-icon">📝</div>
+<div class="tool-premium-name">Advanced Text Analyzer</div>
+<div class="tool-premium-desc">All-in-one text analysis: word count, readability score, reading time, keyword density, sentence stats — live as you type.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a>
+<a href="/tools/headline-analyzer.html" class="tool-premium-card" data-name="headline analyzer score your headline and get specific improvements. analyses power words, emotional language, length, and seo impact." data-cat="text">
+<div class="tool-premium-icon">📰</div>
+<div class="tool-premium-name">Headline Analyzer</div>
+<div class="tool-premium-desc">Score your headline and get specific improvements. Analyses power words, emotional language, length, and SEO impact.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a>
+<a href="/tools/content-idea-generator.html" class="tool-premium-card" data-name="content idea generator generate blog post ideas, social media angles, and reader faqs for any health topic in seconds." data-cat="text">
+<div class="tool-premium-icon">💡</div>
+<div class="tool-premium-name">Content Idea Generator</div>
+<div class="tool-premium-desc">Generate blog post ideas, social media angles, and reader FAQs for any health topic in seconds.</div>
+<div class="tool-premium-cta">Open Tool <span class="tool-premium-cta-arrow">→</span></div>
+</a></div>
 </div>
-<div class="tools-cards-grid">
-<a href="/tools/qr-code-generator.html" class="tool-index-card" data-name="qr code generator"><div class="tool-index-icon">◼</div><div class="tool-index-body"><h4>QR Code Generator</h4><p>Generate QR codes for URLs, text, emails, and phone numbers instantly.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/password-generator.html" class="tool-index-card" data-name="password generator"><div class="tool-index-icon">🔐</div><div class="tool-index-body"><h4>Password Generator</h4><p>Generate strong, secure random passwords with custom length and character sets.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/uuid-generator.html" class="tool-index-card" data-name="uuid generator"><div class="tool-index-icon">🔑</div><div class="tool-index-body"><h4>UUID Generator</h4><p>Generate version 4 UUIDs instantly for use in databases and applications.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/base64-encoder.html" class="tool-index-card" data-name="base64 encoder / decoder"><div class="tool-index-icon">⚙️</div><div class="tool-index-body"><h4>Base64 Encoder / Decoder</h4><p>Encode and decode Base64 strings for data transmission and storage.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/json-formatter.html" class="tool-index-card" data-name="json formatter"><div class="tool-index-icon">{}</div><div class="tool-index-body"><h4>JSON Formatter</h4><p>Format, validate, and minify JSON data with syntax highlighting.</p></div><span class="tool-index-arrow">→</span></a><a href="/tools/url-encoder.html" class="tool-index-card" data-name="url encoder / decoder"><div class="tool-index-icon">🔗</div><div class="tool-index-body"><h4>URL Encoder / Decoder</h4><p>Encode and decode URL components for safe use in web addresses.</p></div><span class="tool-index-arrow">→</span></a>
+
+<div class="tools-hub-section utility-minimal-section" data-section="utility">
+<div class="tools-hub-section-header">
+<div class="tools-hub-section-icon">🔧</div>
+<div><div class="tools-hub-section-title">Utility Tools</div><div class="tools-hub-section-desc">File conversion, PDF tools — minimal, fast, private</div></div>
 </div>
-</section>
+<div class="utility-minimal-grid">
+<a href="/tools/image-compressor.html" class="utility-minimal-card" data-name="image compressor" data-cat="utility">
+<span class="utility-minimal-icon">⚡</span>Image Compressor
+</a>
+<a href="/tools/image-converter.html" class="utility-minimal-card" data-name="image converter" data-cat="utility">
+<span class="utility-minimal-icon">🔄</span>Image Converter
+</a>
+<a href="/tools/pdf-merge.html" class="utility-minimal-card" data-name="pdf merge tool" data-cat="utility">
+<span class="utility-minimal-icon">📄</span>PDF Merge Tool
+</a>
+<a href="/tools/pdf-split.html" class="utility-minimal-card" data-name="pdf splitter" data-cat="utility">
+<span class="utility-minimal-icon">✂️</span>PDF Splitter
+</a></div>
+</div>
+
+</div>
 
 <footer>
 <div class="footer-top">
@@ -329,17 +411,36 @@
 <p id="vh-chat-disclaimer">⚕️ For informational purposes only. Not medical advice. Consult your doctor.</p>
 </div>
 </div>
-</body>
 <script>
-function filterTools(q){
+// Recent activity
+(function(){
+  try{
+    var toolNames={"habit-tracker":{"name":"Habit Tracker","icon":"🔥"},"sleep-tracker":{"name":"Sleep Tracker","icon":"😴"},"mood-tracker":{"name":"Mood Tracker","icon":"🌈"},"step-tracker":{"name":"Step Tracker","icon":"👟"},"health-dashboard":{"name":"Health Dashboard","icon":"📊"},"daily-planner":{"name":"Daily Planner","icon":"📅"},"focus-timer":{"name":"Focus Timer","icon":"⏱️"},"goal-tracker":{"name":"Goal Tracker","icon":"🎯"},"advanced-text-analyzer":{"name":"Advanced Text Analyzer","icon":"📝"},"headline-analyzer":{"name":"Headline Analyzer","icon":"📰"},"content-idea-generator":{"name":"Content Idea Generator","icon":"💡"},"image-compressor":{"name":"Image Compressor","icon":"⚡"},"image-converter":{"name":"Image Converter","icon":"🔄"},"pdf-merge":{"name":"PDF Merge Tool","icon":"📄"},"pdf-split":{"name":"PDF Splitter","icon":"✂️"}};
+    var recent=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');
+    if(recent.length){
+      var panel=document.getElementById('activityPanel');panel.classList.add('has-activity');
+      var list=document.getElementById('activityList');
+      list.innerHTML=recent.filter(function(s){return toolNames[s];}).map(function(s){
+        var t=toolNames[s];return '<a href="/tools/'+s+'.html" class="tools-activity-pill">'+t.icon+' '+t.name+'</a>';
+      }).join('');
+    }
+  }catch(e){}
+})();
+
+function filterCat(cat,btn){
+  document.querySelectorAll('.tools-cat-tab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('[data-section]').forEach(function(s){s.style.display=(cat==='all'||s.dataset.section===cat)?'':'none';});
+  document.querySelectorAll('[data-cat]').forEach(function(c){c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';});
+}
+
+function filterHub(q){
   q=(q||'').toLowerCase().trim();
-  document.querySelectorAll('.tool-index-card').forEach(function(card){
-    card.classList.toggle('tools-search-hidden',q!==''&&card.getAttribute('data-name').indexOf(q)===-1);
-  });
-  document.querySelectorAll('.tools-section').forEach(function(sec){
-    var vis=sec.querySelectorAll('.tool-index-card:not(.tools-search-hidden)').length;
-    sec.style.display=vis===0&&q!==''?'none':'';
+  document.querySelectorAll('[data-name]').forEach(function(card){card.style.display=(q&&card.dataset.name.indexOf(q)===-1)?'none':'';});
+  document.querySelectorAll('[data-section]').forEach(function(sec){
+    var vis=Array.from(sec.querySelectorAll('[data-name]')).filter(function(c){return c.style.display!=='none';}).length;
+    sec.style.display=(vis===0&&q)?'none':'';
   });
 }
 </script>
-</html>
+</body></html>

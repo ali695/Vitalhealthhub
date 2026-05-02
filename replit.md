@@ -17,7 +17,7 @@ A complete health and wellness website built with pure HTML, CSS, and vanilla Ja
 - **Generator**: `generate.js` — Node.js script that generates all 315 HTML pages programmatically
 - **Extra Calculators**: `calculators-extra.js` — Module exporting 65 additional calculators
 - **Quiz Data**: `quizzes-data.js` — Module exporting 22 quiz objects with full questions, scoring, and metadata
-- **Tools Data**: `tools-data.js` — Module exporting 24 tool objects with SEO content, FAQs, and related tools
+- **Tools Data**: `tools-data.js` — Module exporting 15 premium tool objects with SEO content, FAQs, and related tools
 
 ## File Structure
 ```

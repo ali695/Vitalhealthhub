@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free JSON Formatter & Validator Online — Pretty Print JSON | VitalHealth Hub</title>
-<meta name="description" content="Format, validate, and minify JSON online for free. Pretty print JSON with syntax highlighting. Free JSON formatter — works in your browser instantly.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/json-formatter.html">
-<meta property="og:title" content="Free JSON Formatter & Validator Online — Pretty Print JSON | VitalHealth Hub">
-<meta property="og:description" content="Format, validate, and minify JSON online for free. Pretty print JSON with syntax highlighting. Free JSON formatter — works in your browser instantly.">
+<title>Free PDF Splitter Online — Extract Pages from PDF Instantly | VitalHealth Hub</title>
+<meta name="description" content="Extract and save specific pages from any PDF online for free. Enter a page range, split instantly. No server upload — uses pdf-lib in your browser.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/pdf-split.html">
+<meta property="og:title" content="Free PDF Splitter Online — Extract Pages from PDF Instantly | VitalHealth Hub">
+<meta property="og:description" content="Extract and save specific pages from any PDF online for free. Enter a page range, split instantly. No server upload — uses pdf-lib in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/json-formatter.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/pdf-split.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,57 +134,78 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>JSON Formatter</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"JSON Formatter","item":"https://vitalhealthhub.com/tools/json-formatter.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>PDF Splitter</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"PDF Splitter","item":"https://vitalhealthhub.com/tools/pdf-split.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Utility Tools</span>
-<h1>JSON Formatter</h1>
-<p>Format, validate, and minify JSON data with syntax highlighting.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Utility Tools</div>
+<h1>PDF Splitter</h1>
+<p class="saas-hero-sub">Extract specific pages from a PDF by entering a page range. No upload, no account required.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<div class="tool-dual-panel">
-  <div>
-    <div class="tool-panel-label">Input JSON</div>
-    <textarea class="tool-textarea" id="jsonInput" placeholder='{"key": "value", "array": [1,2,3]}' style="min-height:240px;font-family:monospace;font-size:0.88rem;"></textarea>
-    <div class="tool-btn-group" style="margin-top:10px;">
-      <button class="tool-action-btn" onclick="formatJson('format')">✨ Format</button>
-      <button class="tool-action-btn" onclick="formatJson('minify')">⚡ Minify</button>
-      <button class="tool-action-btn" onclick="formatJson('validate')">✓ Validate</button>
-    </div>
-  </div>
-  <div>
-    <div class="tool-panel-label">Output</div>
-    <textarea class="tool-output-box" id="jsonOutput" readonly placeholder="Formatted JSON appears here..." style="min-height:240px;font-family:monospace;font-size:0.88rem;"></textarea>
-    <div class="tool-error-msg" id="jsonErr"></div>
-    <button class="tool-copy-btn" onclick="copyJson()" style="margin-top:10px;">📋 Copy Output</button>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<div class="saas-card-title">✂️ PDF Splitter</div>
+<div class="util-dropzone" id="splitDrop" onclick="document.getElementById('splitFile').click()">
+  <div class="util-dropzone-icon">✂️</div>
+  <h3>Drop your PDF here</h3>
+  <p>Select a single PDF file to extract pages from</p>
+  <input type="file" id="splitFile" accept="application/pdf">
+</div>
+<div id="splitPageInfo" style="display:none;margin:14px 0;font-size:0.88rem;color:#6b7280;"></div>
+<div class="saas-form-group" style="margin-top:12px">
+  <label class="saas-label">Page Range</label>
+  <input class="saas-input" id="splitRange" placeholder="e.g. 1-3 or 1,3,5 or 2-4,7" style="font-family:monospace">
+  <p style="font-size:0.78rem;color:#9ca3af;margin-top:6px">Use ranges (1-5), specific pages (1,3,7), or combine (1-3,7,10-12)</p>
+</div>
+<button class="saas-btn saas-btn-primary" id="splitBtn" onclick="doSplit()" disabled style="width:100%">Extract Pages</button>
+<div class="util-result" id="splitResult">
+  <div class="util-result-inner">
+    <div>✅ <span id="splitInfo" class="util-result-info"></span></div>
+    <a id="splitDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download PDF</a>
   </div>
 </div>
 <script>
-function formatJson(mode){var inp=document.getElementById('jsonInput').value.trim();var err=document.getElementById('jsonErr');var out=document.getElementById('jsonOutput');err.classList.remove('visible');if(!inp){alert('Please enter JSON.');return;}try{var obj=JSON.parse(inp);if(mode==='format')out.value=JSON.stringify(obj,null,2);else if(mode==='minify')out.value=JSON.stringify(obj);else{out.value='✓ Valid JSON!\n\nType: '+(Array.isArray(obj)?'Array':typeof obj)+'\nKeys: '+(obj&&typeof obj==='object'&&!Array.isArray(obj)?Object.keys(obj).length:'N/A');}}catch(e){err.textContent='JSON Error: '+e.message;err.classList.add('visible');out.value='';}}
-function copyJson(){navigator.clipboard.writeText(document.getElementById('jsonOutput').value).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy Output';},2000);});}
+var splitPdfFile=null;
+var sDrop=document.getElementById('splitDrop');
+sDrop.addEventListener('dragover',function(e){e.preventDefault();sDrop.classList.add('drag-over');});
+sDrop.addEventListener('dragleave',function(){sDrop.classList.remove('drag-over');});
+sDrop.addEventListener('drop',function(e){e.preventDefault();sDrop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadSplitFile(e.dataTransfer.files[0]);});
+document.getElementById('splitFile').addEventListener('change',function(){if(this.files[0])loadSplitFile(this.files[0]);});
+function loadSplitFile(f){if(f.type!=='application/pdf'){alert('Please upload a PDF file.');return;}splitPdfFile=f;sDrop.querySelector('h3').textContent=f.name;sDrop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB)';PDFLib.PDFDocument.load(f.arrayBuffer()).then(function(doc){var n=doc.getPageCount();document.getElementById('splitPageInfo').style.display='block';document.getElementById('splitPageInfo').textContent='PDF has '+n+' page'+(n===1?'':'s')+'. Enter the page range you want to extract.';document.getElementById('splitBtn').disabled=false;});}
+function parseRange(str,total){var pages=new Set();str.split(',').forEach(function(part){part=part.trim();if(part.indexOf('-')!==-1){var pts=part.split('-');var a=parseInt(pts[0]);var b=parseInt(pts[1]);for(var i=a;i<=b&&i<=total;i++)if(i>=1)pages.add(i-1);}else{var p=parseInt(part);if(p>=1&&p<=total)pages.add(p-1);}});return Array.from(pages).sort(function(a,b){return a-b;});}
+async function doSplit(){if(!splitPdfFile)return;var rangeStr=document.getElementById('splitRange').value.trim();if(!rangeStr){alert('Please enter a page range.');return;}var btn=document.getElementById('splitBtn');btn.textContent='Extracting…';btn.disabled=true;try{var buf=await splitPdfFile.arrayBuffer();var src=await PDFLib.PDFDocument.load(buf);var total=src.getPageCount();var indices=parseRange(rangeStr,total);if(!indices.length){alert('No valid pages found. Check your range and try again.');btn.textContent='Extract Pages';btn.disabled=false;return;}var out=await PDFLib.PDFDocument.create();var pages=await out.copyPages(src,indices);pages.forEach(function(p){out.addPage(p);});var bytes=await out.save();var blob=new Blob([bytes],{type:'application/pdf'});var url=URL.createObjectURL(blob);document.getElementById('splitDl').href=url;document.getElementById('splitDl').download='extracted_pages.pdf';document.getElementById('splitInfo').textContent='Extracted '+indices.length+' page'+(indices.length===1?'':'s')+' from '+total+'-page PDF';document.getElementById('splitResult').classList.add('visible');btn.textContent='Extract Again';btn.disabled=false;}catch(e){alert('Error processing PDF: '+e.message);btn.textContent='Extract Pages';btn.disabled=false;}}
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>What Is JSON?</h2><p>JSON (JavaScript Object Notation) is a lightweight, human-readable data format used for exchanging data between systems. It is the standard format for REST APIs, configuration files, database exports, and web application data. JSON uses key-value pairs, arrays, and nested objects.</p><h2>Why Format JSON?</h2><p>Raw JSON from APIs and systems is often minified — all on one line with no whitespace. While this is efficient for data transfer, it is very difficult to read. Formatting (or "pretty printing") adds indentation and line breaks to make the structure clear and easy to understand and debug.</p><h2>JSON Validation</h2><p>Invalid JSON causes errors in applications and APIs. Common JSON errors include: missing or extra commas, unquoted property names, using single quotes instead of double quotes, trailing commas after the last element. This tool validates your JSON and reports specific errors with their location.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Extract Exactly the Pages You Need</h2><p>Sometimes you need just a few pages from a large PDF — a single chapter from a report, specific pages from a legal document, or selected slides from a presentation. This PDF Splitter lets you extract any pages by specifying a range (e.g., "1-5" or "3, 7, 12"). Powered by pdf-lib, all processing happens in your browser with no upload required.</p><h2>How Page Extraction Works</h2><p>Enter the PDF page range you want to keep. The tool loads your PDF, copies only the specified pages to a new PDF document, and prepares it for download. The original PDF is not modified. Text, images, fonts, and vector graphics are preserved at full quality in the extracted pages.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What is the difference between formatting and minifying JSON?</div>
-<div class="tool-faq-a">Formatting adds whitespace and indentation for readability. Minifying removes all whitespace to reduce file size for production use.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is my PDF uploaded to any server?</div>
+<div class="tool-faq-a">No. The splitting happens entirely in your browser using pdf-lib.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Can this tool validate my JSON?</div>
-<div class="tool-faq-a">Yes. If your JSON has syntax errors, the tool will display an error message describing the problem.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What page range format should I use?</div>
+<div class="tool-faq-a">Enter pages as "1-5" for a range, "3,7,12" for specific pages, or combine: "1-3, 7, 10-12".</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Is my JSON data sent to any server?</div>
-<div class="tool-faq-a">No. All JSON processing happens in your browser using JavaScript's built-in JSON.parse and JSON.stringify.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Will the original PDF be changed?</div>
+<div class="tool-faq-a">No. The tool creates a new PDF with the extracted pages. Your original file is untouched.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/base64-encoder.html" class="tool-related-card"><span class="tool-related-icon">⚙️</span>Base64 Encoder / Decoder →</a><a href="/tools/url-encoder.html" class="tool-related-card"><span class="tool-related-icon">🔗</span>URL Encoder / Decoder →</a><a href="/tools/uuid-generator.html" class="tool-related-card"><span class="tool-related-icon">🔑</span>UUID Generator →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/pdf-merge.html" class="tool-related-card"><span class="tool-related-icon">📄</span>PDF Merge Tool →</a><a href="/tools/image-converter.html" class="tool-related-card"><span class="tool-related-icon">🔄</span>Image Converter →</a><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a></div></div>
 
 <footer>
 <div class="footer-top">

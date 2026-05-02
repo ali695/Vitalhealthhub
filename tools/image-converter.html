@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free UUID Generator Online — Generate UUIDs Instantly | VitalHealth Hub</title>
-<meta name="description" content="Generate version 4 UUIDs (GUIDs) instantly online for free. Generate single or bulk UUIDs for databases, APIs, and software development.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/uuid-generator.html">
-<meta property="og:title" content="Free UUID Generator Online — Generate UUIDs Instantly | VitalHealth Hub">
-<meta property="og:description" content="Generate version 4 UUIDs (GUIDs) instantly online for free. Generate single or bulk UUIDs for databases, APIs, and software development.">
+<title>Free Image Converter Online — Convert to JPG, PNG, WebP | VitalHealth Hub</title>
+<meta name="description" content="Convert images between JPG, PNG, and WebP formats instantly. Free online image converter — no server upload, works in your browser. Fast and private.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/image-converter.html">
+<meta property="og:title" content="Free Image Converter Online — Convert to JPG, PNG, WebP | VitalHealth Hub">
+<meta property="og:description" content="Convert images between JPG, PNG, and WebP formats instantly. Free online image converter — no server upload, works in your browser. Fast and private.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/uuid-generator.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/image-converter.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,54 +134,75 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>UUID Generator</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"UUID Generator","item":"https://vitalhealthhub.com/tools/uuid-generator.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Image Converter</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Image Converter","item":"https://vitalhealthhub.com/tools/image-converter.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Utility Tools</span>
-<h1>UUID Generator</h1>
-<p>Generate version 4 UUIDs instantly for use in databases and applications.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Utility Tools</div>
+<h1>Image Converter</h1>
+<p class="saas-hero-sub">Convert any image to JPG, PNG, or WebP format instantly in your browser. No upload required.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<div class="tool-options">
-  <div class="tool-option-group">
-    <label>Number of UUIDs</label>
-    <input type="number" id="uuidCount" value="1" min="1" max="100">
+<div class="saas-card-title">🔄 Image Converter</div>
+<div class="util-format-tabs">
+  <button class="util-format-tab active" onclick="setFmt('image/jpeg','jpg',this)">JPG</button>
+  <button class="util-format-tab" onclick="setFmt('image/png','png',this)">PNG</button>
+  <button class="util-format-tab" onclick="setFmt('image/webp','webp',this)">WebP</button>
+</div>
+<div class="util-dropzone" id="convDrop" onclick="document.getElementById('convFile').click()">
+  <div class="util-dropzone-icon">🖼️</div>
+  <h3>Drop your image here</h3>
+  <p>Any image format — PNG, JPG, WebP, GIF, BMP</p>
+  <input type="file" id="convFile" accept="image/*">
+</div>
+<button class="saas-btn saas-btn-primary" id="convBtn" onclick="doConvert()" disabled style="width:100%;margin-top:16px">Convert Image</button>
+<div class="util-result" id="convResult">
+  <div class="util-result-inner">
+    <div>✅ <span id="convInfo" class="util-result-info"></span></div>
+    <a id="convDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download</a>
   </div>
-</div>
-<div style="text-align:center;margin-top:16px;">
-  <button class="tool-process-btn" onclick="generateUUIDs()">🔑 Generate UUID(s)</button>
-</div>
-<div class="tool-uuid-list" id="uuidList" style="display:none;"></div>
-<div style="display:flex;gap:10px;margin-top:12px;justify-content:center;" id="uuidActions" style="display:none;">
-  <button class="tool-copy-btn" id="uuidCopyBtn" onclick="copyUUIDs()">📋 Copy All</button>
+  <img id="convPreview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
 </div>
 <script>
-function uuidv4(){if(crypto.randomUUID)return crypto.randomUUID();return([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,function(c){return(c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>c/4).toString(16);});}
-function generateUUIDs(){var n=Math.max(1,Math.min(100,parseInt(document.getElementById('uuidCount').value)||1));var uuids=[];for(var i=0;i<n;i++)uuids.push(uuidv4());var list=document.getElementById('uuidList');list.innerHTML=uuids.join('<br>');list.style.display='block';document.getElementById('uuidActions').style.display='flex';list._uuids=uuids;}
-function copyUUIDs(){var list=document.getElementById('uuidList');var uuids=list._uuids||[];navigator.clipboard.writeText(uuids.join('\n')).then(function(){var b=document.getElementById('uuidCopyBtn');b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy All';},2000);});}
+var convFile=null,fmtMime='image/jpeg',fmtExt='jpg';
+var convDrop=document.getElementById('convDrop');
+var convFileInp=document.getElementById('convFile');
+function setFmt(mime,ext,btn){fmtMime=mime;fmtExt=ext;document.querySelectorAll('.util-format-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
+convDrop.addEventListener('dragover',function(e){e.preventDefault();convDrop.classList.add('drag-over');});
+convDrop.addEventListener('dragleave',function(){convDrop.classList.remove('drag-over');});
+convDrop.addEventListener('drop',function(e){e.preventDefault();convDrop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadConvFile(e.dataTransfer.files[0]);});
+convFileInp.addEventListener('change',function(){if(this.files[0])loadConvFile(this.files[0]);});
+function loadConvFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}convFile=f;convDrop.querySelector('h3').textContent=f.name;convDrop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB) — select format and convert';document.getElementById('convBtn').disabled=false;}
+function doConvert(){if(!convFile)return;var btn=document.getElementById('convBtn');btn.textContent='Converting…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(convFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');if(fmtMime==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);}ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('convDl');dl.href=oUrl;dl.download='converted.'+fmtExt;document.getElementById('convInfo').textContent='Converted to '+fmtExt.toUpperCase()+' ('+Math.round(blob.size/1024)+'KB)';var prev=document.getElementById('convPreview');prev.src=oUrl;prev.style.display='block';document.getElementById('convResult').classList.add('visible');btn.textContent='Convert Another';btn.disabled=false;URL.revokeObjectURL(url);},fmtMime,fmtMime==='image/jpeg'?0.92:1);};img.src=url;}
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>What Is a UUID?</h2><p>A UUID (Universally Unique Identifier), also known as a GUID (Globally Unique Identifier), is a 128-bit identifier that is guaranteed to be unique across all space and time. UUIDs are formatted as 32 hexadecimal characters separated by hyphens: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.</p><h2>UUID Version 4</h2><p>Version 4 UUIDs (the most commonly used) are randomly generated. With 122 random bits, the probability of generating two identical UUIDs is astronomically small — you would need to generate over a billion UUIDs per second for 85 years before there is a 50% chance of a single collision.</p><h2>Common Uses for UUIDs</h2><p>UUIDs are used as: primary keys in databases (especially distributed systems where auto-increment integers cause conflicts), unique identifiers for API resources, session tokens, tracking IDs, file names for uploaded assets, and any context where globally unique identifiers are needed without central coordination.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Convert Between Image Formats</h2><p>Different contexts require different image formats. JPG is best for photographs and complex images where file size matters. PNG is ideal for graphics, logos, and images requiring transparency. WebP is Google's modern format that achieves 25–35% smaller file sizes than JPG at equivalent quality — recommended for web performance. This converter handles all three formats using the browser's Canvas API, with no uploads to any server.</p><h2>Which Format Should You Use?</h2><p>For web images: WebP is the best choice for performance (all modern browsers support it). For photographs shared by email or social media: JPG for photos, PNG for graphics. For images requiring transparent backgrounds: PNG only. JPG does not support transparency. WebP supports both lossy and lossless compression plus transparency.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What is the difference between UUID v1 and v4?</div>
-<div class="tool-faq-a">UUID v1 is based on the current timestamp and device MAC address. UUID v4 is randomly generated. v4 is preferred for most use cases as it does not expose device information.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is my image sent to any server?</div>
+<div class="tool-faq-a">No. All conversion happens in your browser using the HTML5 Canvas API.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Are UUIDs truly unique?</div>
-<div class="tool-faq-a">Statistically yes. The chance of collision is so astronomically small that for practical purposes, UUIDs can be treated as globally unique.</div>
-</div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I generate multiple UUIDs at once?</div>
-<div class="tool-faq-a">Yes, use the bulk generation option to generate up to 100 UUIDs in one click.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Can I convert multiple images at once?</div>
+<div class="tool-faq-a">Currently the tool processes one image at a time. For batch conversion, process each image separately.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/password-generator.html" class="tool-related-card"><span class="tool-related-icon">🔐</span>Password Generator →</a><a href="/tools/base64-encoder.html" class="tool-related-card"><span class="tool-related-icon">⚙️</span>Base64 Encoder / Decoder →</a><a href="/tools/json-formatter.html" class="tool-related-card"><span class="tool-related-icon">{}</span>JSON Formatter →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a><a href="/tools/pdf-merge.html" class="tool-related-card"><span class="tool-related-icon">📄</span>PDF Merge Tool →</a></div></div>
 
 <footer>
 <div class="footer-top">

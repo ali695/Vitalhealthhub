@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free URL Encoder Decoder Online — Percent Encoding Tool | VitalHealth Hub</title>
-<meta name="description" content="Encode or decode URL strings online for free. Convert special characters to percent encoding and back. Free URL encoder — works instantly in browser.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/url-encoder.html">
-<meta property="og:title" content="Free URL Encoder Decoder Online — Percent Encoding Tool | VitalHealth Hub">
-<meta property="og:description" content="Encode or decode URL strings online for free. Convert special characters to percent encoding and back. Free URL encoder — works instantly in browser.">
+<title>Free Health Dashboard — Track Sleep, Mood, Steps & Habits | VitalHealth Hub</title>
+<meta name="description" content="View all your health metrics in one place. Your personal health dashboard shows sleep scores, mood trends, daily steps, and habit streaks from our free trackers.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/health-dashboard.html">
+<meta property="og:title" content="Free Health Dashboard — Track Sleep, Mood, Steps & Habits | VitalHealth Hub">
+<meta property="og:description" content="View all your health metrics in one place. Your personal health dashboard shows sleep scores, mood trends, daily steps, and habit streaks from our free trackers.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/url-encoder.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/health-dashboard.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,56 +134,102 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>URL Encoder / Decoder</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"URL Encoder / Decoder","item":"https://vitalhealthhub.com/tools/url-encoder.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Health Dashboard</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Health Dashboard","item":"https://vitalhealthhub.com/tools/health-dashboard.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Utility Tools</span>
-<h1>URL Encoder / Decoder</h1>
-<p>Encode and decode URL components for safe use in web addresses.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Health & Tracking</div>
+<h1>Health Dashboard</h1>
+<p class="saas-hero-sub">Your personal health command centre — see sleep, mood, steps, and habit streaks all in one place.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<div class="tool-dual-panel">
-  <div>
-    <div class="tool-panel-label">Input</div>
-    <textarea class="tool-textarea" id="urlInput" placeholder="Enter URL or text to encode..." style="min-height:160px;"></textarea>
-    <div class="tool-btn-group" style="margin-top:10px;">
-      <button class="tool-action-btn" onclick="doUrl('encode')">Encode →</button>
-      <button class="tool-action-btn" onclick="doUrl('decode')">← Decode</button>
-    </div>
-  </div>
-  <div>
-    <div class="tool-panel-label">Output</div>
-    <textarea class="tool-output-box" id="urlOutput" readonly placeholder="Result appears here..." style="min-height:160px;word-break:break-all;"></textarea>
-    <div class="tool-error-msg" id="urlErr"></div>
-    <button class="tool-copy-btn" onclick="copyUrl()" style="margin-top:10px;">📋 Copy Output</button>
+<div class="saas-card-title">📊 Your Health Overview
+  <span style="margin-left:auto;font-size:0.78rem;font-weight:500;color:#9ca3af;" id="dashDate"></span>
+</div>
+<div id="dashNotice" class="saas-notice saas-notice-info" style="margin-bottom:24px">
+  ℹ️ This dashboard reads data from your other trackers. Use the individual tools to log data, and it will appear here automatically.
+</div>
+<div class="dashboard-grid" id="dashGrid"></div>
+<div style="margin-top:24px;padding-top:20px;border-top:1px solid #f0f5f1;">
+  <div class="saas-section-heading">Quick Access</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+    <a href="/tools/sleep-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">😴 Sleep Tracker</a>
+    <a href="/tools/mood-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">🌈 Mood Tracker</a>
+    <a href="/tools/step-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">👟 Step Tracker</a>
+    <a href="/tools/habit-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">🔥 Habit Tracker</a>
   </div>
 </div>
 <script>
-function doUrl(mode){var inp=document.getElementById('urlInput').value;var err=document.getElementById('urlErr');err.classList.remove('visible');try{document.getElementById('urlOutput').value=mode==='encode'?encodeURIComponent(inp):decodeURIComponent(inp);}catch(e){err.textContent='Error: '+e.message;err.classList.add('visible');}}
-function copyUrl(){navigator.clipboard.writeText(document.getElementById('urlOutput').value).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy Output';},2000);});}
+document.getElementById('dashDate').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+function buildDash(){
+  var sleepData=JSON.parse(localStorage.getItem('vhh_sleep')||'[]');
+  var moodData=JSON.parse(localStorage.getItem('vhh_mood')||'{}');
+  var stepData=JSON.parse(localStorage.getItem('vhh_steps')||'[]');
+  var habitData=JSON.parse(localStorage.getItem('vhh_habits')||'{"habits":[]}');
+  var today=new Date().toISOString().split('T')[0];
+  var metrics=[];
+  // Sleep
+  var ls=sleepData[0];
+  metrics.push({icon:'😴',label:'Last Sleep',val:ls?ls.hrs+'h (score '+ls.score+')':'Not logged yet',sub:ls?ls.date:'',href:'/tools/sleep-tracker.html',empty:!ls});
+  // Mood
+  var todayMood=moodData[today];
+  var moodLabels=['','😞 Low','😟 Down','😐 OK','😊 Good','😄 Great'];
+  metrics.push({icon:'🌈',label:"Today's Mood",val:todayMood?moodLabels[todayMood.mood]:'Not logged yet',sub:todayMood?todayMood.note:'',href:'/tools/mood-tracker.html',empty:!todayMood});
+  // Steps
+  var ts=stepData.find(function(e){return e.date===today;});
+  metrics.push({icon:'👟',label:"Today's Steps",val:ts?ts.steps.toLocaleString()+' / '+ts.goal.toLocaleString():'Not logged yet',sub:ts?Math.round((ts.steps/ts.goal)*100)+'% of goal':'',href:'/tools/step-tracker.html',empty:!ts});
+  // Habits
+  var total=habitData.habits.length;
+  var done=habitData.habits.filter(function(h){return h.history&&h.history[today];}).length;
+  metrics.push({icon:'🔥',label:'Habits Today',val:total?done+' / '+total+' done':'No habits set',sub:total?Math.round((done/total)*100)+'% completion':'',href:'/tools/habit-tracker.html',empty:!total});
+  var grid=document.getElementById('dashGrid');
+  grid.innerHTML=metrics.map(function(m){
+    return '<a href="'+m.href+'" class="dashboard-metric-card'+(m.empty?' empty-metric':'')+'">'+
+      '<div class="dashboard-metric-icon">'+m.icon+'</div>'+
+      '<div class="dashboard-metric-label">'+m.label+'</div>'+
+      '<div class="dashboard-metric-value">'+m.val+'</div>'+
+      (m.sub?'<div class="dashboard-metric-sub">'+m.sub+'</div>':'')+
+    '</a>';
+  }).join('');
+  var hasAny=sleepData.length||Object.keys(moodData).length||stepData.length||habitData.habits.length;
+  document.getElementById('dashNotice').style.display=hasAny?'none':'flex';
+}
+buildDash();
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>What Is URL Encoding?</h2><p>URL encoding (also called percent encoding) converts special characters in a URL into a format that can be safely transmitted over the internet. Characters that are not allowed in URLs (spaces, &, =, ?, #, and others) are replaced with a % followed by their hexadecimal ASCII code. For example, a space becomes %20 or +.</p><h2>Why URL Encoding Is Necessary</h2><p>URLs can only contain a limited set of ASCII characters. When you need to include special characters — like accented letters, spaces, symbols, or characters from other alphabets — in a URL, they must be percent-encoded. Without encoding, these characters can break URLs or be misinterpreted by servers and browsers.</p><h2>URL Encoding in Practice</h2><p>When you perform a Google search for "weight loss tips", your browser encodes the URL as ?q=weight+loss+tips or ?q=weight%20loss%20tips. Form data submitted via GET requests is URL-encoded. API query parameters must be URL-encoded to safely include special characters in parameter values.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Your Personal Health Command Centre</h2><p>A health dashboard brings all your key wellness metrics together in one view, giving you the big picture at a glance. Rather than checking each tracker separately, the dashboard surfaces your most important numbers and shows how they relate to each other. Research consistently shows that what gets measured gets improved — and a unified view makes it easy to spot correlations between sleep, mood, activity, and habits.</p><h2>How the Dashboard Works</h2><p>The Health Dashboard reads data from your other VitalHealth Hub trackers — Sleep Tracker, Mood Tracker, Step Tracker, and Habit Tracker. All data is stored locally in your browser, so the dashboard simply reads and displays your latest entries. No account, no sync, no privacy concerns. Start with any tracker and the dashboard will display those metrics immediately.</p><h2>Reading Your Health Metrics</h2><p>The dashboard shows your most recent entry for each metric alongside a trend indicator (up, down, or stable) based on your 7-day average. Green indicators mean you are meeting your targets; amber indicates room for improvement; red suggests this metric needs attention. Use the dashboard as a daily health check — 30 seconds to see your overall wellness picture.</p><h2>The Power of Connected Metrics</h2><p>When you track multiple metrics, patterns emerge that are invisible in isolation. Poor sleep correlates with lower mood. Fewer steps on weekends correlates with lower habit completion. High stress correlates with worse sleep quality. The dashboard makes these connections visible, giving you data-driven insight to make targeted improvements to your lifestyle.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What is the difference between encodeURI and encodeURIComponent?</div>
-<div class="tool-faq-a">encodeURI encodes a full URL, preserving characters like / and ?. encodeURIComponent encodes a URL component, encoding everything except alphanumerics and a few safe symbols. Use encodeURIComponent for parameter values.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Where does the dashboard data come from?</div>
+<div class="tool-faq-a">It reads from the same localStorage used by the Sleep Tracker, Mood Tracker, Step Tracker, and Habit Tracker. Use those tools first to populate the dashboard.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Is URL encoding the same as URL shortening?</div>
-<div class="tool-faq-a">No. URL encoding modifies characters within a URL to make them safe. URL shortening creates a different, shorter URL that redirects to the original.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What if I haven't used any trackers yet?</div>
+<div class="tool-faq-a">The dashboard will show empty states with links to each tracker. Start with whichever tracker matters most to you.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Is my data sent to any server?</div>
-<div class="tool-faq-a">No. URL encoding and decoding uses JavaScript's built-in encodeURIComponent and decodeURIComponent — entirely in your browser.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I see historical trends on the dashboard?</div>
+<div class="tool-faq-a">The dashboard shows your latest entry and 7-day averages. For detailed history, visit the individual tracker pages.</div>
+</div><div class="tool-faq-item" id="tfaq3">
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Will the dashboard work across devices?</div>
+<div class="tool-faq-a">No. Each browser stores its own data locally. The dashboard reflects what you have tracked on that specific browser.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/base64-encoder.html" class="tool-related-card"><span class="tool-related-icon">⚙️</span>Base64 Encoder / Decoder →</a><a href="/tools/json-formatter.html" class="tool-related-card"><span class="tool-related-icon">{}</span>JSON Formatter →</a><a href="/tools/qr-code-generator.html" class="tool-related-card"><span class="tool-related-icon">◼</span>QR Code Generator →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/sleep-tracker.html" class="tool-related-card"><span class="tool-related-icon">😴</span>Sleep Tracker →</a><a href="/tools/mood-tracker.html" class="tool-related-card"><span class="tool-related-icon">🌈</span>Mood Tracker →</a><a href="/tools/step-tracker.html" class="tool-related-card"><span class="tool-related-icon">👟</span>Step Tracker →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a></div></div>
 
 <footer>
 <div class="footer-top">

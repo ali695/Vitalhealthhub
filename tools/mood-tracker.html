@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Keyword Density Checker Online — SEO Content Analysis | VitalHealth Hub</title>
-<meta name="description" content="Check keyword density and word frequency in your content. Free online keyword density checker for SEO — analyse your text instantly in browser.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/keyword-density.html">
-<meta property="og:title" content="Free Keyword Density Checker Online — SEO Content Analysis | VitalHealth Hub">
-<meta property="og:description" content="Check keyword density and word frequency in your content. Free online keyword density checker for SEO — analyse your text instantly in browser.">
+<title>Free Mood Tracker Online — Daily Mood Log with Calendar View | VitalHealth Hub</title>
+<meta name="description" content="Track your daily mood and mental wellness with our free online mood tracker. Visualise emotional patterns with a colour-coded calendar. No sign-up needed.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/mood-tracker.html">
+<meta property="og:title" content="Free Mood Tracker Online — Daily Mood Log with Calendar View | VitalHealth Hub">
+<meta property="og:description" content="Track your daily mood and mental wellness with our free online mood tracker. Visualise emotional patterns with a colour-coded calendar. No sign-up needed.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/keyword-density.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/mood-tracker.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,53 +134,107 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Keyword Density Checker</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Keyword Density Checker","item":"https://vitalhealthhub.com/tools/keyword-density.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Mood Tracker</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Mood Tracker","item":"https://vitalhealthhub.com/tools/mood-tracker.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Text Tools</span>
-<h1>Keyword Density Checker</h1>
-<p>Analyse keyword density and frequency in your content for SEO optimisation.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Health & Tracking</div>
+<h1>Mood Tracker</h1>
+<p class="saas-hero-sub">Log your daily mood, spot emotional patterns in your calendar view, and track your mental wellness over time.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<textarea class="tool-textarea" id="toolInput" placeholder="Paste your content here to analyze keyword density..." style="min-height:200px;"></textarea>
-<div style="text-align:center;">
-  <button class="tool-process-btn" onclick="analyzeKeywords()">Analyze Keywords ↓</button>
+<div class="saas-card-title">🌈 How are you feeling today?</div>
+<div class="mood-selector" id="moodSelector">
+  <button class="mood-btn" onclick="selectMood(1)" data-m="1">😞<span class="mood-label">Low</span></button>
+  <button class="mood-btn" onclick="selectMood(2)" data-m="2">😟<span class="mood-label">Down</span></button>
+  <button class="mood-btn" onclick="selectMood(3)" data-m="3">😐<span class="mood-label">OK</span></button>
+  <button class="mood-btn" onclick="selectMood(4)" data-m="4">😊<span class="mood-label">Good</span></button>
+  <button class="mood-btn" onclick="selectMood(5)" data-m="5">😄<span class="mood-label">Great</span></button>
 </div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Keyword analysis complete</h3></div>
-  <div class="tool-stats-grid" style="grid-template-columns:repeat(3,1fr);">
-    <div class="tool-stat-box"><div class="stat-val" id="kwTotal">0</div><div class="stat-label">Total Words</div></div>
-    <div class="tool-stat-box"><div class="stat-val" id="kwUnique">0</div><div class="stat-label">Unique Words</div></div>
-    <div class="tool-stat-box"><div class="stat-val" id="kwSents">0</div><div class="stat-label">Sentences</div></div>
-  </div>
-  <div id="kwTableWrap" style="margin-top:16px;overflow-x:auto;"></div>
+<div class="saas-form-group">
+  <label class="saas-label">Note (optional)</label>
+  <input class="saas-input" id="moodNote" placeholder="What influenced your mood today?">
+</div>
+<button class="saas-btn saas-btn-primary" onclick="logMood()" style="width:100%">Log Today's Mood</button>
+<div id="moodConfirm" style="display:none;text-align:center;padding:14px;color:#166534;font-weight:600;font-size:0.9rem;"></div>
+<hr class="saas-divider">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+  <div class="saas-section-heading" style="margin:0">📅 Last 35 Days</div>
+  <div id="moodAvg" style="font-size:0.88rem;color:#6b7280;"></div>
+</div>
+<div class="mood-calendar" id="moodCal"></div>
+<div class="mood-legend">
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#fca5a5"></span>Low</span>
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#fdba74"></span>Down</span>
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#fde68a"></span>OK</span>
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#a7f3d0"></span>Good</span>
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#34d399"></span>Great</span>
+  <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#f3f4f6"></span>No entry</span>
 </div>
 <script>
-var stopWords=new Set(['the','a','an','and','or','but','in','on','at','to','for','of','with','by','from','is','are','was','were','be','been','being','have','has','had','do','does','did','will','would','could','should','may','might','shall','can','this','that','these','those','it','its','i','you','he','she','we','they','their','your','our','my','his','her','its','which','who','whom','what','when','where','how','if','as','so','than','not','no','more','also','about','into','up','out','just','than','then','them','there','here','all','each','every','some','any','few','most','other','such','new','first','last','long','great','good','more','also','through','over','after','before','between','since','without','within','along','following','across','behind','beyond','plus','except','up','down']);
-function analyzeKeywords(){var t=document.getElementById('toolInput').value.trim().toLowerCase();if(!t){alert('Please enter text.');return;}var words=t.replace(/[^a-z\s]/g,' ').split(/\s+/).filter(function(w){return w.length>2&&!stopWords.has(w);});var sents=(t.match(/[.!?]+/g)||[]).length||1;var all=t.replace(/[^a-z\s]/g,' ').split(/\s+/).filter(function(w){return w.length>0;});var freq={};words.forEach(function(w){freq[w]=(freq[w]||0)+1;});var sorted=Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,25);document.getElementById('kwTotal').textContent=all.length;document.getElementById('kwUnique').textContent=Object.keys(freq).length;document.getElementById('kwSents').textContent=sents;var maxF=freq[sorted[0]]||1;document.getElementById('kwTableWrap').innerHTML='<table class="tool-keyword-table"><thead><tr><th>#</th><th>Keyword</th><th>Count</th><th>Density</th><th>Bar</th></tr></thead><tbody>'+sorted.map(function(w,i){var pct=((freq[w]/all.length)*100).toFixed(2);var barW=Math.round((freq[w]/maxF)*100);return'<tr><td>'+(i+1)+'</td><td><strong>'+w+'</strong></td><td>'+freq[w]+'</td><td>'+pct+'%</td><td><div class="tool-kw-bar-wrap"><div class="tool-kw-bar" style="width:'+barW+'%"></div></div></td></tr>';}).join('')+'</tbody></table>';document.getElementById('toolResult').classList.add('visible');}
+var selMood=0;
+function selectMood(m){selMood=m;document.querySelectorAll('#moodSelector .mood-btn').forEach(function(b){b.classList.toggle('active',parseInt(b.dataset.m)===m);});}
+function loadMoods(){return JSON.parse(localStorage.getItem('vhh_mood')||'{}');}
+function saveMoods(d){localStorage.setItem('vhh_mood',JSON.stringify(d));}
+function logMood(){
+  if(!selMood){alert('Please select a mood first.');return;}
+  var today=new Date().toISOString().split('T')[0];
+  var data=loadMoods();data[today]={mood:selMood,note:document.getElementById('moodNote').value.trim()};
+  saveMoods(data);
+  var conf=document.getElementById('moodConfirm');
+  conf.style.display='block';conf.textContent='✅ Mood logged for today!';
+  setTimeout(function(){conf.style.display='none';},3000);
+  renderCalendar();
+}
+function renderCalendar(){
+  var data=loadMoods();var cal=document.getElementById('moodCal');var cells='';
+  var total=0;var count=0;
+  for(var i=34;i>=0;i--){
+    var d=new Date();d.setDate(d.getDate()-i);var k=d.toISOString().split('T')[0];
+    var e=data[k];var m=e?e.mood:0;
+    if(m){total+=m;count++;}
+    var title=k+(e?(' — '+(e.note||['','Low','Down','OK','Good','Great'][m])):'');
+    cells+='<div class="mood-cal-cell" data-mood="'+m+'" title="'+title+'"></div>';
+  }
+  cal.innerHTML=cells;
+  if(count>0){document.getElementById('moodAvg').textContent='7-day avg: '+(['','😞','😟','😐','😊','😄'][Math.round(total/count)]+' '+(['','Low','Down','OK','Good','Great'][Math.round(total/count)]));}
+}
+renderCalendar();
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>What Is Keyword Density?</h2><p>Keyword density is the percentage of times a specific keyword or phrase appears in a piece of content relative to the total word count. It is calculated as: (keyword occurrences / total words) × 100. It has historically been used as a basic SEO metric.</p><h2>Ideal Keyword Density for SEO</h2><p>The generally recommended keyword density for SEO is 1–2% for your primary keyword. Above 3–4% risks being flagged as keyword stuffing by search engines, which can result in ranking penalties. Focus on natural, contextual use of keywords rather than hitting a specific percentage.</p><h2>Beyond Simple Keyword Density</h2><p>Modern SEO focuses on semantic relevance rather than raw keyword density. Google's algorithms understand synonyms, related terms, and topic clusters. Use keyword density as a sanity check to ensure you haven't overused or underused your primary terms, but prioritise writing for humans first.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Why Track Your Mood?</h2><p>Mood tracking is a core tool in Cognitive Behavioural Therapy (CBT) and is recommended by mental health professionals for identifying triggers, patterns, and the effectiveness of lifestyle interventions. When you can see that your mood consistently dips on certain days or after certain activities, you gain actionable insight to make positive changes.</p><h2>Mood and Physical Health</h2><p>Your emotional state is deeply connected to physical health. Chronic low mood is associated with increased inflammation, disrupted sleep, reduced immune function, and higher cortisol levels. Conversely, positive mood states correlate with better cardiovascular health, stronger immune response, and greater longevity. Tracking both mood and sleep together reveals powerful connections between the two.</p><h2>How to Use the Mood Calendar</h2><p>Log your mood once daily — ideally at the same time each day, such as before bed. Select the emoji that best represents how you felt overall during the day. Add an optional note to capture context. Over weeks, the calendar view will reveal patterns: days of the week when you feel best, the impact of exercise on your mood, correlations with sleep quality, and more.</p><h2>Understanding Your Mood Trends</h2><p>A 7-day average provides a more reliable measure than any single day. Focus on your weekly trend rather than daily fluctuations. If your average mood has been below 3 (neutral) for two or more weeks, consider speaking with a mental health professional — this may indicate clinical depression which benefits from professional support.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What keyword density is good for SEO?</div>
-<div class="tool-faq-a">Aim for 1–2% for your primary keyword. Anything above 3% risks being seen as keyword stuffing.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What do the mood levels mean?</div>
+<div class="tool-faq-a">1 = Very Low / Struggling, 2 = Low, 3 = Neutral / OK, 4 = Good, 5 = Excellent / Thriving.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Does this tool analyse multi-word phrases?</div>
-<div class="tool-faq-a">This tool shows single word frequencies. Look for your target keyword in the results and note its frequency and percentage.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How much history does the mood calendar show?</div>
+<div class="tool-faq-a">The calendar shows the last 35 days (5 weeks), giving you a clear visual of recent patterns.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Are stop words included?</div>
-<div class="tool-faq-a">Common stop words (the, a, is, etc.) are filtered out so you see meaningful keyword data.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I add notes to my mood entries?</div>
+<div class="tool-faq-a">Yes, there is an optional notes field. Use it to capture what may have influenced your mood — sleep, exercise, diet, stress, or social events.</div>
+</div><div class="tool-faq-item" id="tfaq3">
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Is this a replacement for mental health support?</div>
+<div class="tool-faq-a">No. This is a self-awareness tool, not a medical or therapeutic service. If you are struggling, please seek support from a qualified mental health professional.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/word-counter.html" class="tool-related-card"><span class="tool-related-icon">📝</span>Word Counter →</a><a href="/tools/readability-analyzer.html" class="tool-related-card"><span class="tool-related-icon">📊</span>Readability Analyzer →</a><a href="/tools/character-counter.html" class="tool-related-card"><span class="tool-related-icon">🔢</span>Character Counter →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/sleep-tracker.html" class="tool-related-card"><span class="tool-related-icon">😴</span>Sleep Tracker →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a><a href="/tools/health-dashboard.html" class="tool-related-card"><span class="tool-related-icon">📊</span>Health Dashboard →</a></div></div>
 
 <footer>
 <div class="footer-top">

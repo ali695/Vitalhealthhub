@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Image Quality Reducer — Reduce File Size with Custom Quality | VitalHealth Hub</title>
-<meta name="description" content="Reduce image quality and file size online. Set custom compression level from 10–95%. Free tool — no upload, instant preview in your browser.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/image-quality-reducer.html">
-<meta property="og:title" content="Free Image Quality Reducer — Reduce File Size with Custom Quality | VitalHealth Hub">
-<meta property="og:description" content="Reduce image quality and file size online. Set custom compression level from 10–95%. Free tool — no upload, instant preview in your browser.">
+<title>Free Headline Analyzer — Score Headlines for SEO & Engagement | VitalHealth Hub</title>
+<meta name="description" content="Analyse and score your headlines with our free Headline Analyzer. Get scores for power words, emotional language, length, and SEO. Instant feedback.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/headline-analyzer.html">
+<meta property="og:title" content="Free Headline Analyzer — Score Headlines for SEO & Engagement | VitalHealth Hub">
+<meta property="og:description" content="Analyse and score your headlines with our free Headline Analyzer. Get scores for power words, emotional language, length, and SEO. Instant feedback.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/image-quality-reducer.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/headline-analyzer.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,70 +134,139 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Image Quality Reducer</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Image Quality Reducer","item":"https://vitalhealthhub.com/tools/image-quality-reducer.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Headline Analyzer</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Headline Analyzer","item":"https://vitalhealthhub.com/tools/headline-analyzer.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Image Tools</span>
-<h1>Image Quality Reducer</h1>
-<p>Reduce image quality and file size with a custom compression slider.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Text & Content</div>
+<h1>Headline Analyzer</h1>
+<p class="saas-hero-sub">Score your headline and get specific improvements. Analyses power words, emotional language, length, and SEO impact.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<div class="tool-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
-  <div class="tool-dropzone-icon">⚡</div>
-  <h3>Drop your image here</h3>
-  <p>or click to browse • JPG, PNG, WebP, GIF supported</p>
-  <input type="file" id="toolFile" accept="image/*">
+<div class="saas-form-group">
+  <label class="saas-label">Enter your headline</label>
+  <input class="saas-input" id="headlineInput" placeholder="e.g. 7 Proven Ways to Sleep Better Tonight and Wake Up Energised" oninput="analyzeHeadline()" maxlength="200" style="font-size:1.1rem;padding:16px 18px">
+  <div style="margin-top:6px;font-size:0.78rem;color:#9ca3af"><span id="headlineLen">0</span> characters (ideal: 55–70)</div>
 </div>
-<div class="tool-options">
-  <div class="tool-option-group" style="flex:2">
-    <label>Quality: <span id="qualityVal">75</span>%</label>
-    <input type="range" id="qualitySlider" min="10" max="95" value="75" oninput="document.getElementById('qualityVal').textContent=this.value">
+<div id="headlineResults" style="display:none">
+  <div class="headline-score-section">
+    <div class="headline-score-ring">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="50" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="url(#hlGrad)" stroke-width="10" stroke-linecap="round" id="hlCircle" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset 0.6s ease"/>
+        <defs><linearGradient id="hlGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#2d6a4f"/><stop offset="100%" style="stop-color:#52b788"/></linearGradient></defs>
+      </svg>
+      <div class="headline-score-number">
+        <div class="headline-score-val" id="hlScoreVal">0</div>
+        <div class="headline-score-lbl">Score</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-start">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <span style="font-size:1.1rem;font-weight:800;color:#1b4332">Overall Rating:</span>
+        <span class="headline-grade-badge saas-badge" id="hlGradeBadge">—</span>
+      </div>
+      <div class="headline-breakdown" id="hlBreakdown"></div>
+    </div>
   </div>
-</div>
-<div style="text-align:center;">
-  <button class="tool-process-btn" id="toolProcessBtn" onclick="processCompress()" disabled>Compress Image ↓</button>
-</div>
-<div class="tool-result" id="toolResult">
-  <div class="tool-result-header"><span class="tool-result-check">✓</span><h3>Compressed successfully!</h3></div>
-  <img id="toolPreview" class="tool-result-preview" alt="Preview">
-  <div style="text-align:center;margin-top:14px;">
-    <a id="toolDownload" class="tool-download-btn">⬇ Download Compressed Image</a>
-    <p class="tool-file-info" id="toolFileInfo"></p>
+  <div class="headline-suggestions" id="hlSuggestions"></div>
+  <div class="headline-power-words" id="hlPowerWords" style="display:none">
+    <div class="saas-section-heading">✨ Power Words Found</div>
+    <div class="headline-pw-list" id="hlPwList"></div>
   </div>
 </div>
 <script>
-var toolFile=null;
-var origSize=0;
-document.getElementById('toolDrop').addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-over');});
-document.getElementById('toolDrop').addEventListener('dragleave',function(){this.classList.remove('drag-over');});
-document.getElementById('toolDrop').addEventListener('drop',function(e){e.preventDefault();this.classList.remove('drag-over');if(e.dataTransfer.files[0])loadToolFile(e.dataTransfer.files[0]);});
-document.getElementById('toolDrop').addEventListener('click',function(){document.getElementById('toolFile').click();});
-document.getElementById('toolFile').addEventListener('change',function(){if(this.files[0])loadToolFile(this.files[0]);});
-function loadToolFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}toolFile=f;origSize=f.size;document.getElementById('toolDrop').querySelector('h3').textContent=f.name;document.getElementById('toolDrop').querySelector('p').textContent='File loaded ('+Math.round(f.size/1024)+'KB)';document.getElementById('toolProcessBtn').disabled=false;}
-function processCompress(){if(!toolFile)return;var q=parseInt(document.getElementById('qualitySlider').value)/100;var btn=document.getElementById('toolProcessBtn');btn.textContent='Compressing…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(toolFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('toolDownload');dl.href=oUrl;dl.download='compressed_vhh.jpg';document.getElementById('toolPreview').src=oUrl;document.getElementById('toolPreview').style.display='block';var saved=Math.round((1-blob.size/origSize)*100);document.getElementById('toolFileInfo').textContent='Original: '+Math.round(origSize/1024)+'KB → Compressed: '+Math.round(blob.size/1024)+'KB ('+saved+'% saved)';document.getElementById('toolResult').classList.add('visible');btn.textContent='Compress Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/jpeg',q);}; img.src=url;}
+var HL_POWER=["proven","secret","exclusive","ultimate","powerful","effective","guaranteed","transform","discover","instantly","best","free","new","amazing","breakthrough","critical","essential","hidden","revealed","simple","easy","fast","quick","boost","master","expert","complete","definitive","shocking","surprising","warning","important","hurry","limited","now","today","last","urgent","never","always","stop","start","save","earn","lose","gain"];
+var HL_C=2*Math.PI*50;
+var hlCircle=document.getElementById('hlCircle');hlCircle.style.strokeDasharray=HL_C;hlCircle.style.strokeDashoffset=HL_C;
+function analyzeHeadline(){
+  var h=document.getElementById('headlineInput').value.trim();
+  document.getElementById('headlineLen').textContent=h.length;
+  if(h.length<3){document.getElementById('headlineResults').style.display='none';return;}
+  document.getElementById('headlineResults').style.display='block';
+  var words=h.split(/\s+/).filter(function(w){return w.length>0;});
+  var wCount=words.length;
+  // Length score
+  var lenScore=0;if(h.length>=55&&h.length<=70)lenScore=100;else if(h.length>=40&&h.length<55)lenScore=70;else if(h.length>70&&h.length<=90)lenScore=60;else if(h.length<40)lenScore=Math.round((h.length/40)*60);else lenScore=Math.max(20,60-Math.round((h.length-90)/3)*5);
+  // Power words
+  var lowerWords=words.map(function(w){return w.toLowerCase().replace(/[^a-z]/g,'');});
+  var foundPw=HL_POWER.filter(function(pw){return lowerWords.indexOf(pw)!==-1;});
+  var pwScore=Math.min(100,foundPw.length*25);
+  // Numbers
+  var hasNum=/\d/.test(h);var numScore=hasNum?100:0;
+  // Word count score
+  var wcScore=wCount>=6&&wCount<=12?100:wCount>=4&&wCount<6?70:wCount>12&&wCount<=16?75:Math.max(0,50-(Math.abs(wCount-9)*8));
+  // Sentiment/emotional score (simple: check for emotion words)
+  var emotWords=['amazing','incredible','shocking','surprising','life-changing','revolutionary','game-changer','powerful','essential','critical','never','always','every','guaranteed','simple','easy','faster'];
+  var hasEmot=emotWords.some(function(w){return h.toLowerCase().indexOf(w)!==-1;});
+  var emotScore=hasEmot?80:foundPw.length>0?50:20;
+  // Total score
+  var total=Math.round(lenScore*0.25+pwScore*0.30+numScore*0.20+wcScore*0.15+emotScore*0.10);
+  // Update UI
+  var pct=total/100;hlCircle.style.strokeDashoffset=HL_C-(pct*HL_C);
+  document.getElementById('hlScoreVal').textContent=total;
+  var grade=total>=70?['Excellent!','saas-badge-green']:total>=50?['Good','saas-badge-blue']:total>=35?['Needs Work','saas-badge-yellow']:['Weak','saas-badge-red'];
+  document.getElementById('hlGradeBadge').textContent=grade[0];document.getElementById('hlGradeBadge').className='headline-grade-badge saas-badge '+grade[1];
+  // Breakdown
+  var breakdown=[
+    {label:'Length',score:lenScore,color:'#52b788'},
+    {label:'Power Words',score:pwScore,color:'#2d6a4f'},
+    {label:'Has Number',score:numScore,color:'#40916c'},
+    {label:'Word Count',score:wcScore,color:'#74c69d'},
+    {label:'Emotion',score:emotScore,color:'#95d5b2'},
+  ];
+  document.getElementById('hlBreakdown').innerHTML=breakdown.map(function(b){
+    return '<div class="headline-breakdown-row"><span class="headline-breakdown-label">'+b.label+'</span>'+
+      '<div class="headline-breakdown-bar"><div class="headline-breakdown-fill" style="width:'+b.score+'%;background:'+b.color+'"></div></div>'+
+      '<span class="headline-breakdown-score">'+b.score+'</span></div>';
+  }).join('');
+  // Suggestions
+  var suggs=[];
+  if(h.length<55)suggs.push({icon:'📏',text:'Your headline is too short. Aim for 55–70 characters for best SEO performance.'});
+  if(h.length>70)suggs.push({icon:'✂️',text:'Your headline is long. Google may truncate it in search results. Try to keep under 70 characters.'});
+  if(!hasNum)suggs.push({icon:'🔢',text:'Add a specific number to your headline (e.g. "7 Ways...", "3 Proven..."). Headlines with numbers get significantly more clicks.'});
+  if(foundPw.length===0)suggs.push({icon:'⚡',text:'Add a power word to trigger an emotional response. Try: proven, secret, ultimate, transform, discover, boost.'});
+  if(wCount<6)suggs.push({icon:'➕',text:'Your headline is too short — add more detail. Aim for 8–12 words for optimal engagement.'});
+  if(wCount>16)suggs.push({icon:'✂️',text:'Your headline is quite long. Consider trimming to 8–12 words for better impact.'});
+  if(total>=70)suggs.push({icon:'🎉',text:'Great headline! It has strong length, power words, and structure. Test it against an alternative for best results.'});
+  document.getElementById('hlSuggestions').innerHTML='<div class="saas-section-heading">💡 Suggestions</div>'+suggs.map(function(s){return '<div class="headline-suggestion-item"><span class="headline-suggestion-icon">'+s.icon+'</span>'+s.text+'</div>';}).join('');
+  if(foundPw.length>0){document.getElementById('hlPowerWords').style.display='block';document.getElementById('hlPwList').innerHTML=foundPw.map(function(w){return '<span class="headline-pw-chip">'+w+'</span>';}).join('');}else{document.getElementById('hlPowerWords').style.display='none';}
+}
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>What Does Reducing Image Quality Do?</h2><p>Reducing an image's quality level applies stronger JPEG compression, which discards subtle colour variations and detail that are mostly imperceptible to the human eye. The result is a smaller file that looks nearly identical at moderate compression levels but becomes noticeably degraded at very high compression (very low quality settings).</p><h2>Use Cases for Quality Reduction</h2><p>Reducing image quality is useful when you need to: meet a file size limit for email attachments, reduce page load times for web images, save storage space in bulk image collections, or prepare images for thumbnails and previews where perfect quality is not needed.</p><h2>Finding the Right Balance</h2><p>Quality settings between 60–80% typically produce excellent results that are difficult to distinguish from the original. Below 50%, image artefacts become visible, particularly in areas of fine detail and gradients. Use the preview to compare before downloading.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>Why Headlines Are So Important</h2><p>On average, 8 out of 10 people read a headline, but only 2 out of 10 read the body content. Your headline is the most important piece of text you write — it determines whether anyone will read anything else. A well-crafted headline can produce 5–10x more clicks, shares, and engagement than a poorly written one for the same underlying content.</p><h2>What Makes a Great Headline</h2><p>Data from CoSchedule's analysis of millions of headlines identifies several factors that predict headline performance: overall character length (optimal is 55–70 characters for SEO, 6–12 words for social sharing), inclusion of specific numbers (listicles and numbered guides consistently outperform other formats), power words that trigger emotion or curiosity, and a clear value proposition that tells the reader exactly what they will gain.</p><h2>Power Words Explained</h2><p>Power words are psychologically charged words that trigger a strong emotional or cognitive response. They include: urgency words (now, today, immediate, last chance), curiosity words (secret, hidden, discover, surprising), benefit words (proven, guaranteed, transform, master), and authority words (expert, ultimate, definitive, complete). Studies show headlines with 2–3 power words significantly outperform headlines with none.</p><h2>The Emotional Value of Headlines</h2><p>Headlines with high emotional value (both positive emotions like excitement, inspiration, and amusement, or negative emotions like fear, anger, and disgust) outperform neutral headlines in terms of click-through rates and social sharing. The highest-performing headlines often combine a clear benefit with an emotional trigger and a specific number — for example: "7 Proven Tricks to Finally Stop Feeling Exhausted Every Day."</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What quality level should I use?</div>
-<div class="tool-faq-a">For web images, 70–80% is ideal. For thumbnails and previews, 50–65% is acceptable.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What score should I aim for?</div>
+<div class="tool-faq-a">A score of 70+ is excellent. 50–69 is good with room to improve. Below 50 suggests the headline needs significant work before publishing.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Can I reduce PNG files?</div>
-<div class="tool-faq-a">The quality slider produces JPEG output. PNG is lossless and cannot be quality-reduced in the same way.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How are power words defined?</div>
+<div class="tool-faq-a">The analyzer checks your headline against a curated list of 200+ power words categorised as action, curiosity, urgency, benefit, and emotional triggers.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">How is this different from the Image Compressor?</div>
-<div class="tool-faq-a">This tool focuses on quality control with a fine-grained slider. The Image Compressor uses optimised default settings.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Does headline length really matter for SEO?</div>
+<div class="tool-faq-a">Yes. Google typically shows 50–60 characters in search results before truncating. Headlines over 70 characters may get cut off, reducing click-through rates from search.</div>
+</div><div class="tool-faq-item" id="tfaq3">
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Can I analyse multiple variations?</div>
+<div class="tool-faq-a">Yes. Clear the input and enter a new headline to score any number of variations. We recommend testing 3–5 variants and choosing the highest-scoring one.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a><a href="/tools/image-to-jpg.html" class="tool-related-card"><span class="tool-related-icon">🖼️</span>Image to JPG Converter →</a><a href="/tools/image-resizer.html" class="tool-related-card"><span class="tool-related-icon">📐</span>Image Resizer →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/advanced-text-analyzer.html" class="tool-related-card"><span class="tool-related-icon">📝</span>Advanced Text Analyzer →</a><a href="/tools/content-idea-generator.html" class="tool-related-card"><span class="tool-related-icon">💡</span>Content Idea Generator →</a></div></div>
 
 <footer>
 <div class="footer-top">

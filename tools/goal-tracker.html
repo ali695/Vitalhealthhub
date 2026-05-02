@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Base64 Encoder Decoder Online — Instant Conversion | VitalHealth Hub</title>
-<meta name="description" content="Encode or decode Base64 strings online for free. Instant Base64 conversion for developers — no sign-up, works entirely in your browser.">
-<link rel="canonical" href="https://vitalhealthhub.com/tools/base64-encoder.html">
-<meta property="og:title" content="Free Base64 Encoder Decoder Online — Instant Conversion | VitalHealth Hub">
-<meta property="og:description" content="Encode or decode Base64 strings online for free. Instant Base64 conversion for developers — no sign-up, works entirely in your browser.">
+<title>Free Goal Tracker Online — Track Progress Toward Any Goal | VitalHealth Hub</title>
+<meta name="description" content="Track progress toward any goal with our free online goal tracker. Set targets, update current values, and watch progress bars fill. Saved in your browser.">
+<link rel="canonical" href="https://vitalhealthhub.com/tools/goal-tracker.html">
+<meta property="og:title" content="Free Goal Tracker Online — Track Progress Toward Any Goal | VitalHealth Hub">
+<meta property="og:description" content="Track progress toward any goal with our free online goal tracker. Set targets, update current values, and watch progress bars fill. Saved in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com/tools/base64-encoder.html">
+<meta property="og:url" content="https://vitalhealthhub.com/tools/goal-tracker.html">
 <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -134,56 +134,125 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Base64 Encoder / Decoder</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Base64 Encoder / Decoder","item":"https://vitalhealthhub.com/tools/base64-encoder.html"}]}</script>
+<div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Goal Tracker</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.com/tools/"},{"@type":"ListItem","position":3,"name":"Goal Tracker","item":"https://vitalhealthhub.com/tools/goal-tracker.html"}]}</script>
+<script>
+(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
+</script>
 
-<section class="tool-page-hero">
-<div class="tool-page-hero-inner">
-<span class="tool-cat-badge">Utility Tools</span>
-<h1>Base64 Encoder / Decoder</h1>
-<p>Encode and decode Base64 strings for data transmission and storage.</p>
+<section class="saas-tool-hero">
+<div class="saas-tool-hero-inner">
+<a href="/tools/" class="saas-back-link">← Back to Tools Hub</a>
+<div class="saas-hero-tag">Productivity</div>
+<h1>Goal Tracker</h1>
+<p class="saas-hero-sub">Set measurable goals, update your progress, and watch your progress bars fill as you move toward each target.</p>
+<div class="saas-hero-badges">
+<span class="saas-hero-badge">✓ Free forever</span>
+<span class="saas-hero-badge">✓ No sign-up</span>
+<span class="saas-hero-badge">✓ Private &amp; secure</span>
+<span class="saas-hero-badge">✓ Works offline</span>
+</div>
 </div>
 </section>
 
-<div class="tool-workspace">
-<div class="tool-panel">
+<div class="saas-workspace">
+<div class="saas-card">
 
-<div class="tool-dual-panel">
-  <div>
-    <div class="tool-panel-label">Input</div>
-    <textarea class="tool-textarea" id="b64Input" placeholder="Enter text to encode or Base64 to decode..." style="min-height:180px;"></textarea>
-    <div class="tool-btn-group" style="margin-top:10px;">
-      <button class="tool-action-btn" onclick="doBase64('encode')">Encode →</button>
-      <button class="tool-action-btn" onclick="doBase64('decode')">← Decode</button>
+<div class="saas-card-title">🎯 Your Goals</div>
+<div class="goal-add-form">
+  <div class="saas-form-row">
+    <div class="saas-form-group">
+      <label class="saas-label">Goal Name</label>
+      <input class="saas-input" id="goalName" placeholder="e.g. Lose weight">
+    </div>
+    <div class="saas-form-group">
+      <label class="saas-label">Unit</label>
+      <input class="saas-input" id="goalUnit" placeholder="e.g. kg, steps, pages">
     </div>
   </div>
-  <div>
-    <div class="tool-panel-label">Output</div>
-    <textarea class="tool-output-box" id="b64Output" readonly placeholder="Result appears here..." style="min-height:180px;"></textarea>
-    <div class="tool-error-msg" id="b64Err"></div>
-    <button class="tool-copy-btn" onclick="copyB64()" style="margin-top:10px;">📋 Copy Output</button>
+  <div class="saas-form-row">
+    <div class="saas-form-group">
+      <label class="saas-label">Current Value</label>
+      <input class="saas-input" type="number" id="goalCurrent" placeholder="e.g. 80">
+    </div>
+    <div class="saas-form-group">
+      <label class="saas-label">Target Value</label>
+      <input class="saas-input" type="number" id="goalTarget" placeholder="e.g. 70">
+    </div>
   </div>
+  <button class="saas-btn saas-btn-primary" onclick="addGoal()" style="width:100%">+ Add Goal</button>
+</div>
+<div id="goalList" class="goal-list"></div>
+<div id="goalEmpty" class="saas-empty-state" style="display:none">
+  <div class="saas-empty-icon">🎯</div>
+  <p class="saas-empty-text">No goals yet. Add your first goal above to start tracking!</p>
 </div>
 <script>
-function doBase64(mode){var inp=document.getElementById('b64Input').value;var err=document.getElementById('b64Err');err.classList.remove('visible');try{var out=mode==='encode'?btoa(unescape(encodeURIComponent(inp))):decodeURIComponent(escape(atob(inp)));document.getElementById('b64Output').value=out;}catch(e){err.textContent='Error: '+e.message;err.classList.add('visible');}}
-function copyB64(){navigator.clipboard.writeText(document.getElementById('b64Output').value).then(function(){var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='📋 Copy Output';},2000);});}
+function loadGoals(){return JSON.parse(localStorage.getItem('vhh_goals')||'[]');}
+function saveGoals(d){localStorage.setItem('vhh_goals',JSON.stringify(d));}
+function calcPct(c,t){if(t===0)return 0;var p=Math.round((c/t)*100);return Math.min(100,Math.max(0,p));}
+function addGoal(){
+  var name=document.getElementById('goalName').value.trim();
+  var unit=document.getElementById('goalUnit').value.trim()||'units';
+  var cur=parseFloat(document.getElementById('goalCurrent').value);
+  var tgt=parseFloat(document.getElementById('goalTarget').value);
+  if(!name||isNaN(cur)||isNaN(tgt)){alert('Please fill in all goal fields.');return;}
+  var goals=loadGoals();
+  goals.push({id:Date.now().toString(),name:name,unit:unit,current:cur,target:tgt});
+  saveGoals(goals);
+  ['goalName','goalUnit','goalCurrent','goalTarget'].forEach(function(id){document.getElementById(id).value='';});
+  renderGoals();
+}
+function deleteGoal(id){saveGoals(loadGoals().filter(function(g){return g.id!==id;}));renderGoals();}
+function updateGoal(id){
+  var inp=document.getElementById('gupd-'+id);if(!inp)return;
+  var val=parseFloat(inp.value);if(isNaN(val)){alert('Please enter a valid number.');return;}
+  var goals=loadGoals();var g=goals.find(function(g){return g.id===id;});if(g)g.current=val;
+  saveGoals(goals);renderGoals();
+}
+function renderGoals(){
+  var goals=loadGoals();var list=document.getElementById('goalList');var empty=document.getElementById('goalEmpty');
+  if(!goals.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  list.innerHTML=goals.map(function(g){
+    var pct=calcPct(g.current,g.target);
+    var fillClass=pct>=80?'':pct>=50?'':pct<30?'danger':'warn';
+    var complete=pct>=100;
+    return '<div class="goal-card">'+
+      '<div class="goal-card-header">'+
+        '<div><div class="goal-name">'+g.name+'</div><div class="goal-target-info">'+g.current+' / '+g.target+' '+g.unit+'</div></div>'+
+        '<div class="goal-card-actions">'+
+          '<span class="saas-badge '+(pct>=100?'saas-badge-green':pct>=70?'saas-badge-blue':pct>=40?'saas-badge-yellow':'saas-badge-red')+'">'+pct+'%</span>'+
+          '<button class="saas-btn saas-btn-danger saas-btn-sm" onclick="deleteGoal(''+g.id+'')">Delete</button>'+
+        '</div>'+
+      '</div>'+
+      '<div class="saas-progress-wrap"><div class="saas-progress-bar"><div class="saas-progress-fill '+fillClass+'" style="width:'+pct+'%"></div></div></div>'+
+      (complete?'<div class="goal-complete-badge">🎉 Goal achieved!</div>':
+        '<div class="goal-update-form"><span style="font-size:0.85rem;color:#6b7280">Update:</span><input class="goal-update-input" id="gupd-'+g.id+'" type="number" placeholder="New value"><button class="saas-btn saas-btn-ghost saas-btn-sm" onclick="updateGoal(''+g.id+'')">Save</button></div>')+
+    '</div>';
+  }).join('');
+}
+renderGoals();
 </script>
 </div>
 </div>
 
-<div class="tool-content-section"><div class="tool-content-inner"><h2>What Is Base64?</h2><p>Base64 is an encoding scheme that converts binary data into a text string using 64 printable ASCII characters. It is not encryption — it is purely an encoding format used to safely transmit binary data over text-based protocols like HTTP, email (MIME), and JSON.</p><h2>Why Use Base64?</h2><p>Many text-based protocols cannot handle binary data safely. Base64 encodes binary into plain text that can travel through any text channel without corruption. Common uses include: embedding images directly in HTML/CSS as data URIs, sending binary data in JSON APIs, storing binary data in databases that accept only text, and encoding authentication credentials in HTTP headers.</p><h2>Base64 and Email</h2><p>Email attachments are Base64-encoded to ensure binary files (images, PDFs, executables) can pass through email servers that only handle 7-bit ASCII text. This is why email files appear as a long string of random characters when viewed in raw format.</p></div></div>
+<div class="tool-content-section"><div class="tool-content-inner"><h2>The SMART Goal Framework</h2><p>Goals that are Specific, Measurable, Achievable, Relevant, and Time-bound (SMART) are dramatically more likely to be achieved than vague intentions. "Exercise more" is an intention; "Run 5km three times per week by March" is a SMART goal. This tracker is designed for measurable goals — ones where you can assign a number to your current progress and a target number to aim for.</p><h2>Why Visual Progress Tracking Works</h2><p>Visual feedback on progress triggers motivational psychology that purely mental goal-keeping cannot. Seeing a progress bar at 67% creates a powerful drive to reach 100% — psychologists call this "goal gradient effect" — the closer you are to your goal, the faster and harder you work. This is why the final stretch of a project often moves faster than the beginning.</p><h2>Examples of Trackable Goals</h2><p>This tracker works for any measurable goal: weight loss (current weight vs target), strength training (current max lifts vs PR goals), water intake (glasses per day), books read (current vs annual target), savings (current balance vs savings goal), steps (weekly average vs target), sleep hours, business revenue, or any other quantifiable target.</p><h2>Goal Setting and Health</h2><p>Health-specific goals benefit enormously from clear targets. Research from the American Journal of Health Promotion shows that people who set specific health targets and track progress are three times more likely to achieve their goals than those who rely on motivation alone. The act of setting a goal changes your unconscious behaviour — you begin to notice opportunities that align with your goal without consciously looking for them.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is Base64 encoding the same as encryption?</div>
-<div class="tool-faq-a">No. Base64 is encoding only — it is easily reversible and provides no security. Anyone can decode a Base64 string instantly.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What types of goals can I track?</div>
+<div class="tool-faq-a">Any goal with a numerical current value and a target. Examples: weight (75kg → 70kg), pushups (20 → 50), water glasses (4 → 8 per day), books read (3 → 12 per year).</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How much does Base64 increase file size?</div>
-<div class="tool-faq-a">Base64-encoded data is approximately 33% larger than the original binary data.</div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Can I track multiple goals at once?</div>
+<div class="tool-faq-a">Yes. Add as many goals as you like. Research suggests focusing on 3–5 key goals at a time for best results.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I encode images to Base64?</div>
-<div class="tool-faq-a">Yes. Images encoded as Base64 can be embedded directly in HTML using data URIs: <img src="data:image/png;base64,..."/></div>
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">How do I update my progress?</div>
+<div class="tool-faq-a">Click the "Update" button on any goal and enter your new current value. The progress bar will animate to the new percentage.</div>
+</div><div class="tool-faq-item" id="tfaq3">
+<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">What happens when I reach 100%?</div>
+<div class="tool-faq-a">The goal card shows a completion celebration. You can then set a new, higher target to continue progress.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/url-encoder.html" class="tool-related-card"><span class="tool-related-icon">🔗</span>URL Encoder / Decoder →</a><a href="/tools/json-formatter.html" class="tool-related-card"><span class="tool-related-icon">{}</span>JSON Formatter →</a><a href="/tools/uuid-generator.html" class="tool-related-card"><span class="tool-related-icon">🔑</span>UUID Generator →</a></div></div>
+<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/daily-planner.html" class="tool-related-card"><span class="tool-related-icon">📅</span>Daily Planner →</a><a href="/tools/focus-timer.html" class="tool-related-card"><span class="tool-related-icon">⏱️</span>Focus Timer →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a></div></div>
 
 <footer>
 <div class="footer-top">
