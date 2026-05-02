@@ -1144,6 +1144,77 @@ const blogPosts = [
   {slug:'realistic-fitness-goals',title:'How to Set Realistic Fitness Goals Using Health Data',category:'Health Checks',date:'2024-12-23',readTime:'8 min',calcEmbed:'bmi-calculator',tags:['fitness goals','SMART goals','health data','goal setting','progress tracking']},
   {slug:'understanding-lab-results',title:'Understanding Lab Results: What Your Health Numbers Mean',category:'Health Checks',date:'2024-12-24',readTime:'9 min',calcEmbed:'blood-pressure-checker',tags:['lab results','blood tests','cholesterol levels','blood glucose','health numbers']},
   {slug:'healthy-lifestyle-checklist',title:'The Ultimate Healthy Lifestyle Checklist: 50 Evidence-Based Habits',category:'Health Checks',date:'2024-12-25',readTime:'10 min',calcEmbed:'bmi-calculator',tags:['healthy lifestyle','wellness habits','daily checklist','evidence based health','longevity']},
+
+  // ── CATEGORY 12: Weight Loss & Fat Loss ──
+  {slug:'how-many-steps-to-lose-weight',title:'How Many Steps Per Day Do You Need to Lose Weight?',category:'Weight Loss',date:'2025-01-02',readTime:'8 min',calcEmbed:'steps-to-calories-calculator',tags:['steps to lose weight','walking weight loss','10000 steps','daily steps','calorie burn walking']},
+  {slug:'intermittent-fasting-for-weight-loss',title:'Intermittent Fasting for Weight Loss: Does It Really Work?',category:'Weight Loss',date:'2025-01-05',readTime:'9 min',calcEmbed:'intermittent-fasting-calculator',tags:['intermittent fasting','IF weight loss','16:8 fasting','time restricted eating','fat loss fasting']},
+  {slug:'keto-diet-beginners-guide',title:'Keto Diet for Beginners: What to Eat, Avoid and Expect',category:'Weight Loss',date:'2025-01-08',readTime:'10 min',calcEmbed:'keto-calculator',tags:['keto diet beginners','ketogenic diet','keto foods','ketosis','low carb weight loss']},
+  {slug:'best-time-to-walk-for-fat-loss',title:'Best Time of Day to Walk for Maximum Fat Loss',category:'Weight Loss',date:'2025-01-11',readTime:'7 min',calcEmbed:'steps-to-calories-calculator',tags:['best time to walk','morning walk fat loss','fasted walking','walking schedule','fat burn timing']},
+  {slug:'walking-vs-running-for-weight-loss',title:'Walking vs Running for Weight Loss: Which Burns More Fat?',category:'Weight Loss',date:'2025-01-14',readTime:'8 min',calcEmbed:'steps-to-calories-calculator',tags:['walking vs running','fat burn comparison','running calories','walking calories','weight loss exercise']},
+  {slug:'protein-for-fat-loss',title:'How Protein Helps You Burn Fat and Keep Muscle',category:'Weight Loss',date:'2025-01-17',readTime:'8 min',calcEmbed:'protein-intake-calculator',tags:['protein fat loss','high protein diet','muscle preservation','thermic effect','satiety protein']},
+  {slug:'why-you-are-not-losing-weight',title:'Why You Are Not Losing Weight: 10 Common Reasons Explained',category:'Weight Loss',date:'2025-01-20',readTime:'9 min',calcEmbed:'calorie-calculator',tags:['not losing weight','weight loss mistakes','hidden calories','metabolism plateau','fat loss tips']},
+  {slug:'fat-loss-vs-weight-loss-difference',title:'Fat Loss vs Weight Loss: Why the Difference Matters',category:'Weight Loss',date:'2025-01-23',readTime:'7 min',calcEmbed:'body-fat-calculator',tags:['fat loss vs weight loss','body composition','scale weight','muscle fat ratio','true fat loss']},
+
+  // ── CATEGORY 13: Nutrition & Diet ──
+  {slug:'mediterranean-diet-complete-guide',title:'Mediterranean Diet: Complete Beginner Guide With Meal Ideas',category:'Nutrition & Diet',date:'2025-01-26',readTime:'10 min',calcEmbed:'macro-calculator',tags:['mediterranean diet','heart healthy eating','olive oil','diet guide','anti-inflammatory diet']},
+  {slug:'plant-based-diet-for-beginners',title:'Plant-Based Diet for Beginners: Getting Enough Protein and Nutrients',category:'Nutrition & Diet',date:'2025-01-29',readTime:'9 min',calcEmbed:'protein-intake-calculator',tags:['plant based diet','vegan protein','vegetarian nutrition','whole food plant based','meat alternatives']},
+  {slug:'omega-3-fatty-acids-complete-guide',title:'Omega-3 Fatty Acids: Benefits, Sources and How Much You Need',category:'Nutrition & Diet',date:'2025-02-01',readTime:'8 min',calcEmbed:'omega-3-calculator',tags:['omega-3 benefits','fish oil','EPA DHA','omega-3 sources','heart brain health']},
+  {slug:'anti-inflammatory-diet-guide',title:'Anti-Inflammatory Diet: Foods to Eat and Avoid for Better Health',category:'Nutrition & Diet',date:'2025-02-04',readTime:'9 min',calcEmbed:'anti-inflammatory-score-calculator',tags:['anti-inflammatory foods','inflammation diet','turmeric berries','chronic inflammation','healing diet']},
+  {slug:'gut-health-and-weight-loss',title:'Gut Health and Weight Loss: The Microbiome Connection',category:'Nutrition & Diet',date:'2025-02-07',readTime:'8 min',calcEmbed:'fiber-intake-calculator',tags:['gut health weight loss','microbiome','probiotics','fiber gut','digestive health diet']},
+  {slug:'daily-sodium-intake-guide',title:'Daily Sodium Intake: How Much Salt Is Too Much?',category:'Nutrition & Diet',date:'2025-02-10',readTime:'7 min',calcEmbed:'sodium-intake-calculator',tags:['sodium intake','daily salt','high sodium diet','blood pressure salt','sodium limits']},
+  {slug:'best-vitamins-for-energy-and-health',title:'Best Vitamins and Minerals for Energy, Immunity and Health',category:'Nutrition & Diet',date:'2025-02-13',readTime:'8 min',calcEmbed:'vitamin-d-calculator',tags:['vitamins for energy','vitamin D B12','iron deficiency','supplement guide','micronutrients health']},
+  {slug:'how-to-track-macros-guide',title:'How to Track Your Macros: Step-by-Step Beginner Guide',category:'Nutrition & Diet',date:'2025-02-16',readTime:'8 min',calcEmbed:'macro-calculator',tags:['track macros','macro tracking','IIFYM','food logging','calorie counting guide']},
+
+  // ── CATEGORY 14: Fitness & Exercise ──
+  {slug:'beginner-workout-plan-30-days',title:'30-Day Beginner Workout Plan: Build a Habit That Lasts',category:'Fitness & Exercise',date:'2025-02-19',readTime:'9 min',calcEmbed:'heart-rate-calculator',tags:['beginner workout plan','30 day fitness','exercise routine','workout schedule','beginner gym']},
+  {slug:'how-to-run-5k-training-plan',title:'How to Run a 5K: 8-Week Training Plan for Beginners',category:'Fitness & Exercise',date:'2025-02-22',readTime:'9 min',calcEmbed:'vo2-max-calculator',tags:['how to run 5k','5k training plan','beginner running','couch to 5k','running pace']},
+  {slug:'strength-training-for-women-guide',title:'Strength Training for Women: Why You Need It and How to Start',category:'Fitness & Exercise',date:'2025-02-25',readTime:'9 min',calcEmbed:'strength-level-calculator',tags:['strength training women','female weightlifting','women gym guide','resistance training','toning vs bulking']},
+  {slug:'cycling-calories-and-benefits',title:'Cycling for Weight Loss: Calories Burned and Full Benefits Guide',category:'Fitness & Exercise',date:'2025-02-28',readTime:'8 min',calcEmbed:'heart-rate-calculator',tags:['cycling weight loss','cycling calories','biking benefits','indoor cycling','fat burn cycling']},
+  {slug:'yoga-for-weight-loss',title:'Does Yoga Help With Weight Loss? What the Research Shows',category:'Fitness & Exercise',date:'2025-03-03',readTime:'7 min',calcEmbed:'calorie-calculator',tags:['yoga weight loss','yoga calories','vinyasa yoga','hot yoga benefits','mindful movement']},
+  {slug:'swimming-calories-and-fitness',title:'Swimming for Fitness: Calories Burned and Full-Body Benefits',category:'Fitness & Exercise',date:'2025-03-06',readTime:'7 min',calcEmbed:'heart-rate-calculator',tags:['swimming calories','swimming fitness','low impact exercise','swimming benefits','cardio swimming']},
+  {slug:'jump-rope-workout-benefits',title:'Jump Rope Workout: Calories Burned and Why It Beats Running',category:'Fitness & Exercise',date:'2025-03-09',readTime:'7 min',calcEmbed:'hiit-calories-calculator',tags:['jump rope calories','skipping rope workout','jump rope vs running','cardio jump rope','HIIT jump rope']},
+
+  // ── CATEGORY 15: Women's Health ──
+  {slug:'ovulation-calculator-complete-guide',title:'Ovulation Calculator Guide: How to Find Your Most Fertile Days',category:"Women's Health",date:'2025-03-12',readTime:'8 min',calcEmbed:'ovulation-calculator',tags:['ovulation calculator','fertile window','ovulation symptoms','cycle tracking','TTC ovulation']},
+  {slug:'pregnancy-week-by-week-guide',title:'Pregnancy Week by Week: What to Expect at Every Stage',category:"Women's Health",date:'2025-03-15',readTime:'10 min',calcEmbed:'pregnancy-due-date-calculator',tags:['pregnancy week by week','fetal development','trimester guide','pregnancy symptoms','prenatal care']},
+  {slug:'pcos-symptoms-and-management',title:'PCOS Symptoms: How to Manage Polycystic Ovary Syndrome Naturally',category:"Women's Health",date:'2025-03-18',readTime:'9 min',calcEmbed:'pcos-risk-calculator',tags:['PCOS symptoms','polycystic ovary syndrome','PCOS diet','PCOS weight loss','hormonal imbalance']},
+  {slug:'breastfeeding-calorie-and-nutrition-guide',title:'Breastfeeding Nutrition: How Many Calories Do You Need?',category:"Women's Health",date:'2025-03-21',readTime:'8 min',calcEmbed:'breastfeeding-calories-calculator',tags:['breastfeeding calories','nursing nutrition','lactation diet','postpartum nutrition','breastfeeding needs']},
+  {slug:'menopause-weight-gain-tips',title:'Menopause and Weight Gain: Why It Happens and How to Fight It',category:"Women's Health",date:'2025-03-24',readTime:'9 min',calcEmbed:'menopause-symptoms-calculator',tags:['menopause weight gain','perimenopause','hormone weight gain','menopause diet','estrogen weight']},
+  {slug:'menstrual-cycle-and-fitness',title:'How Your Menstrual Cycle Affects Your Workouts and Energy',category:"Women's Health",date:'2025-03-27',readTime:'8 min',calcEmbed:'menstrual-cycle-calculator',tags:['menstrual cycle fitness','cycle syncing','period workout','hormones exercise','female fitness']},
+  {slug:'fertility-boosting-nutrition',title:'Fertility-Boosting Foods and Nutrients: What Science Actually Says',category:"Women's Health",date:'2025-03-30',readTime:'9 min',calcEmbed:'fertility-calculator',tags:['fertility foods','nutrition fertility','folate CoQ10','fertility diet','conception nutrition']},
+  {slug:'hormone-balance-for-women',title:'How to Balance Hormones Naturally: Diet and Lifestyle Changes',category:"Women's Health",date:'2025-04-02',readTime:'9 min',calcEmbed:'ovulation-calculator',tags:['hormone balance','estrogen progesterone','hormonal imbalance symptoms','natural hormone health','womens hormones']},
+
+  // ── CATEGORY 16: Mental Health & Productivity ──
+  {slug:'burnout-symptoms-and-recovery',title:'Burnout Symptoms: How to Recognize It and Recover Fully',category:'Mental Health & Productivity',date:'2025-04-05',readTime:'9 min',calcEmbed:'burnout-risk-calculator',tags:['burnout symptoms','work burnout','burnout recovery','chronic stress','exhaustion signs']},
+  {slug:'dopamine-detox-complete-guide',title:'Dopamine Detox: What It Is, What the Science Says and How to Do It',category:'Mental Health & Productivity',date:'2025-04-08',readTime:'8 min',calcEmbed:'digital-detox-calculator',tags:['dopamine detox','digital detox','dopamine reset','brain reward','screen addiction']},
+  {slug:'stress-level-test-meaning',title:'Stress Level Test: Understanding Your Score and What to Do Next',category:'Mental Health & Productivity',date:'2025-04-11',readTime:'8 min',calcEmbed:'stress-level-calculator',tags:['stress level test','stress score meaning','perceived stress scale','chronic stress','stress management tips']},
+  {slug:'productivity-score-and-improvement',title:'How to Measure and Improve Your Productivity Score',category:'Mental Health & Productivity',date:'2025-04-14',readTime:'8 min',calcEmbed:'productivity-score-calculator',tags:['productivity score','measure productivity','deep work','time management','focus habits']},
+  {slug:'work-life-balance-practical-guide',title:'Work-Life Balance: Practical Strategies That Actually Work',category:'Mental Health & Productivity',date:'2025-04-17',readTime:'8 min',calcEmbed:'work-life-balance-calculator',tags:['work life balance','burnout prevention','boundary setting','remote work balance','stress reduction']},
+  {slug:'digital-detox-how-to-guide',title:'Digital Detox: How to Break Your Screen Addiction Step by Step',category:'Mental Health & Productivity',date:'2025-04-20',readTime:'8 min',calcEmbed:'digital-detox-calculator',tags:['digital detox','screen time reduction','social media detox','phone addiction','offline habits']},
+  {slug:'how-to-improve-focus-and-concentration',title:'How to Improve Focus and Concentration: Science-Backed Methods',category:'Mental Health & Productivity',date:'2025-04-23',readTime:'9 min',calcEmbed:'focus-score-calculator',tags:['improve focus','concentration tips','ADHD focus','deep work','attention span']},
+
+  // ── CATEGORY 17: Sleep & Recovery ──
+  {slug:'sleep-debt-how-to-recover',title:'Sleep Debt: What It Is and the Only Way to Pay It Back',category:'Sleep & Recovery',date:'2025-04-26',readTime:'8 min',calcEmbed:'sleep-debt-calculator',tags:['sleep debt','sleep deficit','catch up sleep','chronic sleep deprivation','sleep recovery']},
+  {slug:'best-sleep-position-for-health',title:'Best Sleep Position for Your Health: Back, Side or Stomach?',category:'Sleep & Recovery',date:'2025-04-29',readTime:'7 min',calcEmbed:'sleep-calculator',tags:['sleep position','sleeping on side','back sleeper','stomach sleep','sleep posture health']},
+  {slug:'insomnia-natural-remedies',title:'Insomnia Natural Remedies: 10 Evidence-Based Solutions',category:'Sleep & Recovery',date:'2025-05-02',readTime:'9 min',calcEmbed:'sleep-hygiene-calculator',tags:['insomnia remedies','natural sleep aids','melatonin','sleep without medication','CBT-I insomnia']},
+  {slug:'magnesium-for-better-sleep',title:'Magnesium for Sleep: Does It Work and How Much to Take?',category:'Sleep & Recovery',date:'2025-05-05',readTime:'7 min',calcEmbed:'sleep-calculator',tags:['magnesium sleep','magnesium glycinate','sleep supplement','GABA magnesium','mineral sleep']},
+  {slug:'sleep-hygiene-complete-checklist',title:'Sleep Hygiene Checklist: 15 Habits for Deeper, Better Sleep',category:'Sleep & Recovery',date:'2025-05-08',readTime:'8 min',calcEmbed:'sleep-hygiene-calculator',tags:['sleep hygiene','sleep habits checklist','bedtime routine','better sleep tips','sleep environment']},
+
+  // ── CATEGORY 18: Lifestyle & Habits ──
+  {slug:'how-age-calculator-works',title:'How to Calculate Your Exact Age: Guide to Age Calculators',category:'Lifestyle & Habits',date:'2025-05-11',readTime:'6 min',calcEmbed:'age-calculator',tags:['age calculator','calculate exact age','age in days','birthday age','how old am I']},
+  {slug:'how-birthday-calculator-works',title:'Birthday Calculator: Find Your Day, Age and Next Birthday Countdown',category:'Lifestyle & Habits',date:'2025-05-14',readTime:'6 min',calcEmbed:'birthday-calculator',tags:['birthday calculator','day of week birthday','birthday countdown','age birthday','birthday finder']},
+  {slug:'date-difference-calculator-guide',title:'Date Difference Calculator: Calculate Days Between Any Two Dates',category:'Lifestyle & Habits',date:'2025-05-17',readTime:'6 min',calcEmbed:'date-difference-calculator',tags:['date difference','days between dates','calculate date gap','time between dates','date calculator']},
+  {slug:'healthy-morning-routine-guide',title:'Healthy Morning Routine: 10 Habits That Transform Your Day',category:'Lifestyle & Habits',date:'2025-05-20',readTime:'8 min',calcEmbed:'productivity-score-calculator',tags:['healthy morning routine','morning habits','wake up routine','morning ritual','daily routine']},
+  {slug:'how-to-quit-sugar-21-days',title:'How to Quit Sugar in 21 Days: A Step-by-Step Detox Plan',category:'Lifestyle & Habits',date:'2025-05-23',readTime:'9 min',calcEmbed:'sugar-intake-calculator',tags:['quit sugar','sugar detox','reduce sugar intake','sugar cravings','no sugar challenge']},
+  {slug:'alcohol-effects-on-health-and-weight',title:'Alcohol and Your Health: What It Does to Your Body and Weight',category:'Lifestyle & Habits',date:'2025-05-26',readTime:'8 min',calcEmbed:'alcohol-unit-calculator',tags:['alcohol health effects','alcohol weight gain','drinking calories','alcohol metabolism','safe drinking limits']},
+
+  // ── CATEGORY 19: General Health Tools & Guides ──
+  {slug:'how-to-use-bmi-calculator-correctly',title:'How to Use a BMI Calculator: Common Mistakes and Better Metrics',category:'General Tools',date:'2025-05-29',readTime:'7 min',calcEmbed:'bmi-calculator',tags:['how to use BMI calculator','BMI calculator guide','BMI accuracy','BMI limitations','body mass index tool']},
+  {slug:'calorie-calculator-complete-guide',title:'Calorie Calculator Guide: How to Find Your Exact Calorie Needs',category:'General Tools',date:'2025-06-01',readTime:'8 min',calcEmbed:'calorie-calculator',tags:['calorie calculator guide','TDEE calculator','how many calories','calorie needs tool','calorie tracking']},
+  {slug:'protein-calculator-how-to-use',title:'Protein Calculator: How to Find Your Daily Protein Target',category:'General Tools',date:'2025-06-04',readTime:'7 min',calcEmbed:'protein-intake-calculator',tags:['protein calculator','daily protein target','protein intake tool','how much protein','protein goal']},
+  {slug:'blood-pressure-ranges-explained',title:'Blood Pressure Numbers Explained: What Your Reading Means',category:'General Tools',date:'2025-06-07',readTime:'8 min',calcEmbed:'blood-pressure-checker',tags:['blood pressure ranges','systolic diastolic','normal blood pressure','hypertension stages','blood pressure chart']},
+  {slug:'testosterone-levels-by-age-guide',title:'Testosterone Levels by Age: What Is Normal and Signs of Low T',category:'General Tools',date:'2025-06-10',readTime:'8 min',calcEmbed:'testosterone-estimator',tags:['testosterone levels','low testosterone symptoms','normal T levels','testosterone by age','testosterone health']},
+  {slug:'heart-age-calculator-guide',title:'Heart Age Calculator: Is Your Heart Older Than You Are?',category:'General Tools',date:'2025-06-13',readTime:'8 min',calcEmbed:'heart-age-calculator',tags:['heart age calculator','cardiovascular age','heart health score','biological heart age','heart risk']},
 ];
 
 const categoryCalcMap = {
@@ -1168,6 +1239,12 @@ const categoryCalcMap = {
   'Lifestyle': ['smoking-cost-calculator','alcohol-unit-calculator','caffeine-intake-calculator','bac-calculator'],
   'Women\'s Health': ['pregnancy-due-date-calculator','ovulation-calculator','menstrual-cycle-calculator','fertility-calculator'],
   'Wellness': ['water-intake-calculator','sleep-calculator','biological-age-calculator','life-expectancy-calculator'],
+  'Weight Loss': ['calorie-calculator','steps-to-calories-calculator','body-fat-calculator','intermittent-fasting-calculator'],
+  'Nutrition & Diet': ['macro-calculator','protein-intake-calculator','calorie-calculator','fiber-intake-calculator'],
+  "Women's Health": ['ovulation-calculator','pregnancy-due-date-calculator','menstrual-cycle-calculator','fertility-calculator'],
+  'Mental Health & Productivity': ['stress-level-calculator','burnout-risk-calculator','sleep-calculator','anxiety-score-calculator'],
+  'Lifestyle & Habits': ['age-calculator','birthday-calculator','date-difference-calculator','sugar-intake-calculator'],
+  'General Tools': ['bmi-calculator','calorie-calculator','protein-intake-calculator','blood-pressure-checker'],
 };
 
 function getRelatedCalcs(category) {
@@ -1790,7 +1867,7 @@ ${NAV}
 <div class="container">
 <div class="stats-grid">
 <div class="stat-item"><div class="stat-number" data-target="115" data-suffix="+">0</div><div class="stat-label">Free Tools</div></div>
-<div class="stat-item"><div class="stat-number" data-target="100" data-suffix="+">0</div><div class="stat-label">Expert Articles</div></div>
+<div class="stat-item"><div class="stat-number" data-target="150" data-suffix="+">0</div><div class="stat-label">Expert Articles</div></div>
 <div class="stat-item"><div class="stat-number" data-target="1" data-suffix="M+">0</div><div class="stat-label">Trusted Users</div></div>
 </div>
 </div>
@@ -1999,8 +2076,8 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'About Us',url:'/about.html'}]).schema
 <p class="fade-in">We strive to bridge the gap between complex medical data and everyday health understanding, ensuring that everyone — regardless of background, location, or income — has access to reliable health assessment tools.</p>
 <h2 class="fade-in">What We Offer</h2>
 <ul class="fade-in">
-<li><strong>50+ Free Health Calculators:</strong> From BMI and calorie calculators to specialized tools for fitness, nutrition, mental health, pregnancy, and disease risk assessment.</li>
-<li><strong>100+ Expert Articles:</strong> Comprehensive health and wellness content written and reviewed by healthcare professionals, updated regularly with the latest research.</li>
+<li><strong>115+ Free Health Calculators:</strong> From BMI and calorie calculators to specialized tools for fitness, nutrition, mental health, pregnancy, and disease risk assessment.</li>
+<li><strong>150+ Expert Articles:</strong> Comprehensive health and wellness content written and reviewed by healthcare professionals, updated regularly with the latest research.</li>
 <li><strong>Evidence-Based Information:</strong> All our calculators use established medical formulas (Mifflin-St Jeor, Harris-Benedict, WHO standards) and our content references peer-reviewed research.</li>
 <li><strong>Privacy-First Approach:</strong> Your health data stays on your device. We do not store, transmit, or sell personal health information. All computations happen locally in your browser.</li>
 </ul>
@@ -2294,7 +2371,7 @@ const blogCardHtml = blogPosts.map((p, i) => {
 
 const blogSchemaItems = blogPosts.map((p, i) => `{"@type":"ListItem","position":${i+1},"url":"${SITE}/blog/${p.slug}.html","name":"${p.title.replace(/"/g,'\\"')}"}`).join(',');
 
-fs.writeFileSync('blog.html', `${head('Health & Wellness Blog \u2014 100+ Expert Articles | '+SITE_NAME, 'Browse 100+ evidence-based health articles covering weight loss, nutrition, fitness, mental health, heart health and more. Free expert wellness guides.', '/blog.html', '<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Health & Wellness Blog","description":"100+ evidence-based health articles","url":"'+SITE+'/blog.html","mainEntity":{"@type":"ItemList","numberOfItems":'+blogPosts.length+',"itemListElement":['+blogSchemaItems+']}}</script>')}
+fs.writeFileSync('blog.html', `${head('Health & Wellness Blog \u2014 150+ Expert Articles | '+SITE_NAME, 'Browse 150+ evidence-based health articles covering weight loss, nutrition, fitness, mental health, heart health and more. Free expert wellness guides.', '/blog.html', '<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Health & Wellness Blog","description":"100+ evidence-based health articles","url":"'+SITE+'/blog.html","mainEntity":{"@type":"ItemList","numberOfItems":'+blogPosts.length+',"itemListElement":['+blogSchemaItems+']}}</script>')}
 <body>
 ${NAV}
 
@@ -2354,7 +2431,7 @@ ${blogCategories.map(c => `<button class="blog-category-pill" onclick="blogFilte
 
 <div class="blog-search-overlay" id="blogSearchOverlay">
 <button class="blog-search-overlay-close" onclick="closeBlogSearch()" aria-label="Close search">\u2715</button>
-<input class="blog-search-overlay-input" id="blogSearchInput" type="text" placeholder="Search 100+ health articles..." oninput="liveSearchBlog()">
+<input class="blog-search-overlay-input" id="blogSearchInput" type="text" placeholder="Search 150+ health articles..." oninput="liveSearchBlog()">
 <div class="blog-search-overlay-results" id="blogSearchResults"></div>
 </div>
 

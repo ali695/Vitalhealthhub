@@ -1,0 +1,172 @@
+--------------------------------------------------
+TASK: GENERATE 150+ SEO-OPTIMIZED BLOGS (HIGH QUALITY)
+--------------------------------------------------
+
+I want you to generate 150+ HIGH-QUALITY, SEO-OPTIMIZED blog articles for my website VitalHealth Hub.
+
+These blogs must NOT be thin or generic.
+They must be written like real, helpful, rankable content.
+
+--------------------------------------------------
+CONTENT CATEGORIES (DISTRIBUTE BLOGS ACROSS THESE)
+--------------------------------------------------
+
+1. Weight Loss & Fat Loss
+2. Nutrition & Diet
+3. Fitness & Exercise
+4. Women’s Health
+5. Mental Health & Productivity
+6. Sleep & Recovery
+7. Lifestyle & Habits
+8. General Health Tools & Guides
+
+--------------------------------------------------
+IMPORTANT: CONNECT BLOGS WITH MY TOOLS
+--------------------------------------------------
+
+You MUST internally link blogs with my tools.
+
+Example:
+- BMI Calculator → weight blogs
+- Calorie Calculator → diet blogs
+- Ovulation Calculator → women health blogs
+- Step Counter → fitness blogs
+- Age Calculator → general blogs
+- Sleep Calculator → sleep blogs
+
+My platform already includes 150+ tools (calculators, trackers, planners, etc.) :contentReference[oaicite:0]{index=0}
+
+Use them naturally in blogs.
+
+--------------------------------------------------
+BLOG STRUCTURE (STRICT)
+--------------------------------------------------
+
+Each blog MUST include:
+
+1. SEO META DATA
+- Meta Title (max 60 characters)
+- Meta Description (140–155 characters)
+- URL Slug (short, keyword optimized)
+- Focus Keyword
+
+2. CONTENT STRUCTURE
+- H1 (Title)
+- At least 7 H2 sections
+- Each section must be informative (NOT fluff)
+
+3. LENGTH
+- Minimum 900–1200 words
+- No thin content
+
+4. WRITING STYLE
+- Humanized
+- Easy to read (B1–B2 level English)
+- Informative tone (NOT generic)
+
+5. INTERNAL LINKING
+- Link to:
+   → 2–3 tools
+   → 2–3 related blogs
+
+6. IMAGE PLACEHOLDER
+- Add:
+   → Featured image idea
+   → ALT text (keyword optimized)
+
+7. SCHEMA
+- Article schema
+- FAQ schema (2–4 questions)
+
+--------------------------------------------------
+KEYWORD STRATEGY (VERY IMPORTANT)
+--------------------------------------------------
+
+Each blog must:
+
+- Target ONE main keyword
+- Include 5–10 related keywords (semantic SEO)
+- Avoid keyword stuffing
+- Place keywords naturally
+
+--------------------------------------------------
+BLOG TOPIC GENERATION (SMART SEO)
+--------------------------------------------------
+
+Generate topics using HIGH SEARCH INTENT.
+
+Examples:
+
+WEIGHT LOSS:
+- how many steps to lose weight
+- calorie deficit explained
+- how to calculate BMI correctly
+- best time to walk for fat loss
+
+NUTRITION:
+- how many calories per day
+- protein intake for beginners
+- how to track macros properly
+
+FITNESS:
+- how many steps per day
+- beginner workout plans
+- home workout routines
+
+WOMEN’S HEALTH:
+- ovulation calculator guide
+- pregnancy week tracking
+- menstrual cycle explained
+
+MENTAL HEALTH:
+- stress level test meaning
+- burnout symptoms explained
+- dopamine detox guide
+
+SLEEP:
+- best sleep cycle calculator guide
+- how much sleep do you need
+
+GENERAL TOOLS (HIGH TRAFFIC):
+- how to calculate age
+- how birthday calculator works
+- date difference explained
+
+--------------------------------------------------
+OUTPUT FORMAT (VERY IMPORTANT)
+--------------------------------------------------
+
+For EACH blog return:
+
+1. Title
+2. Meta Title
+3. Meta Description
+4. URL Slug
+5. Focus Keyword
+6. Full Blog Content (structured)
+7. Internal Linking Suggestions
+8. Image Prompt + ALT text
+
+--------------------------------------------------
+QUALITY RULES (STRICT)
+--------------------------------------------------
+
+- NO duplicate content
+- NO AI spam style
+- NO meaningless filler
+- NO keyword stuffing
+- Must feel like real expert content
+
+--------------------------------------------------
+FINAL GOAL
+--------------------------------------------------
+
+Create 150+ blogs that:
+
+- Rank on Google
+- Bring organic traffic
+- Support AdSense approval
+- Interlink with tools
+- Build topical authority
+
+--------------------------------------------------
