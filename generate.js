@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { getCalcHeroSvg } = require('./calculator-svgs.js');
+const quizzesData = require('./quizzes-data.js');
 
 const SITE = 'https://vitalhealthhub.com';
 const SITE_NAME = 'VitalHealth Hub';
@@ -121,6 +122,7 @@ const NAV = `${TOPBAR}<nav class="navbar">
 </div>
 </li>
 <li><a href="/blog.html">Blog</a></li>
+<li><a href="/quizzes/">Quizzes</a></li>
 <li><a href="/about.html">About</a></li>
 <li><a href="/contact.html">Contact</a></li>
 <li><a href="/faq.html">FAQ</a></li>
@@ -2576,9 +2578,288 @@ function blogTagClick(tag){
 ${CHATBOT}
 </body></html>`);
 
+// ============================================================
+// QUIZ PAGES
+// ============================================================
+ensureDir('quizzes');
+
+function genQuizPage(quiz) {
+  const bc = breadcrumb([
+    { name: 'Home', url: '/' },
+    { name: 'Quizzes', url: '/quizzes/' },
+    { name: quiz.name, url: '/quizzes/' + quiz.slug + '.html' }
+  ]);
+
+  function calcName(slug) {
+    const c = calculators.find(x => x.slug === slug);
+    return c ? c.name : slug.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+  }
+  function blogTitle(slug) {
+    const b = blogPosts.find(x => x.slug === slug);
+    return b ? b.title : slug.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+  }
+
+  const relTools = (quiz.relatedTools || []).map(s =>
+    '<a href="/calculators/' + s + '.html" class="quiz-related-link">' + calcName(s) + '</a>'
+  ).join('');
+  const relBlogs = (quiz.relatedBlogs || []).map(s =>
+    '<a href="/blog/' + s + '.html" class="quiz-related-link">' + blogTitle(s) + '</a>'
+  ).join('');
+
+  const disclaimerHTML = quiz.disclaimer
+    ? '<div class="quiz-disclaimer-box"><strong>⚠️ Medical Notice:</strong> ' + quiz.disclaimer + '</div>'
+    : '';
+
+  const quizJSON = JSON.stringify({
+    slug: quiz.slug,
+    name: quiz.name,
+    questions: quiz.questions,
+    scoring: quiz.scoring
+  }).replace(/<\/script>/gi, '<\\/script>');
+
+  const schemaExtra = '<script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"' + quiz.name.replace(/"/g, '\\"') + '","description":"' + quiz.desc.replace(/"/g, '\\"') + '","url":"' + SITE + '/quizzes/' + quiz.slug + '.html","provider":{"@type":"Organization","name":"VitalHealth Hub","url":"' + SITE + '"}}</script>';
+
+  return head(
+    quiz.name + ' — Free Online Health Quiz | VitalHealth Hub',
+    quiz.desc + ' Three difficulty levels, instant scoring, and personalised feedback.',
+    '/quizzes/' + quiz.slug + '.html',
+    schemaExtra
+  ) + `<body>
+${NAV}
+${bc.html}
+${bc.schema}
+<section class="quiz-hero">
+<div class="container">
+<div class="quiz-hero-icon">${quiz.icon}</div>
+<div class="quiz-hero-cat">${quiz.category}</div>
+<h1>${quiz.name}</h1>
+<p>${quiz.desc}</p>
+</div>
+</section>
+
+<div class="quiz-app-wrap">
+${disclaimerHTML}
+<div id="quiz-diff-screen" class="quiz-diff-screen">
+<h2>Choose Your Difficulty</h2>
+<p>Select a level to begin. You can retake the quiz at any difficulty.</p>
+<div class="quiz-diff-grid">
+<div class="quiz-diff-card" data-diff="easy" onclick="startQuiz('easy')">
+<span class="quiz-diff-icon">🌱</span>
+<span class="quiz-diff-label">Easy</span>
+<span class="quiz-diff-count">5 Questions</span>
+</div>
+<div class="quiz-diff-card" data-diff="medium" onclick="startQuiz('medium')">
+<span class="quiz-diff-icon">⚡</span>
+<span class="quiz-diff-label">Medium</span>
+<span class="quiz-diff-count">8 Questions</span>
+</div>
+<div class="quiz-diff-card" data-diff="hard" onclick="startQuiz('hard')">
+<span class="quiz-diff-icon">🔥</span>
+<span class="quiz-diff-label">Hard</span>
+<span class="quiz-diff-count">10 Questions</span>
+</div>
+</div>
+</div>
+
+<div id="quiz-q-screen" class="quiz-q-screen">
+<div class="quiz-progress-wrap">
+<div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-prog-fill" style="width:0%"></div></div>
+<div class="quiz-progress-text"><span id="quiz-prog-txt">Question 1 of 5</span><span id="quiz-score-live">Score: 0</span></div>
+</div>
+<div class="quiz-q-box">
+<p class="quiz-q-text" id="quiz-q-text"></p>
+<div class="quiz-options" id="quiz-opts"></div>
+<div class="quiz-explanation" id="quiz-exp"></div>
+<button class="quiz-next-btn" id="quiz-next-btn" onclick="quizNext()">Next Question &rarr;</button>
+</div>
+</div>
+
+<div id="quiz-result-screen" class="quiz-result-screen">
+<div class="quiz-score-circle">
+<span class="quiz-score-pct" id="res-pct">0%</span>
+<span class="quiz-score-label">Score</span>
+</div>
+<h2 class="quiz-result-label" id="res-label"></h2>
+<p class="quiz-result-correct" id="res-correct"></p>
+<div class="quiz-result-feedback" id="res-feedback"></div>
+<div class="quiz-result-actions">
+<button class="quiz-retry-btn" onclick="quizRetry()">&#x1F504; Try Again</button>
+<button class="quiz-share-btn" onclick="quizShare()">&#x1F4E4; Share Result</button>
+</div>
+</div>
+
+${relTools ? '<div class="quiz-related" id="quiz-related-tools"><h3>&#x1F527; Related Calculators</h3><div class="quiz-related-grid">' + relTools + '</div></div>' : ''}
+${relBlogs ? '<div class="quiz-related" style="margin-top:32px;"><h3>&#x1F4F0; Related Articles</h3><div class="quiz-related-grid">' + relBlogs + '</div></div>' : ''}
+</div>
+
+<div class="quiz-content-section">
+<h2>About This Quiz</h2>
+<p>The <strong>${quiz.name}</strong> tests your knowledge with ${quiz.questions.length} carefully researched questions covering key concepts in ${quiz.category.toLowerCase()}. Every answer includes a full explanation so you learn as you go, not just test what you already know.</p>
+<h2>How Difficulty Levels Work</h2>
+<p>Easy mode presents 5 questions — ideal if you are new to the topic or want a quick check. Medium mode gives you 8 questions for a more thorough test. Hard mode challenges you with all 10 questions drawn from the full question bank, shuffled randomly each time.</p>
+<h2>Scoring &amp; Feedback</h2>
+<p>Your score is shown as a percentage. Based on your result you receive a personalised performance label and actionable feedback with recommended tools and articles to deepen your understanding. Your quiz history is saved locally so you can track improvement over time.</p>
+<h2>Why Health Knowledge Matters</h2>
+<p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
+</div>
+
+<script>
+(function(){
+var QD=${quizJSON};
+var COUNTS={easy:5,medium:8,hard:Math.min(QD.questions.length,10)};
+var qs=[],ci=0,sc=0,done=false,mode='';
+function gi(id){return document.getElementById(id);}
+function showScreen(s){
+gi('quiz-diff-screen').style.display=s==='diff'?'block':'none';
+gi('quiz-q-screen').style.display=s==='q'?'block':'none';
+gi('quiz-result-screen').style.display=s==='res'?'block':'none';
+}
+function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
+window.startQuiz=function(d){
+mode=d;sc=0;ci=0;done=false;
+qs=shuffle(QD.questions).slice(0,COUNTS[d]);
+showScreen('q');renderQ();
+};
+function renderQ(){
+var q=qs[ci];var total=qs.length;
+gi('quiz-prog-fill').style.width=Math.round(ci/total*100)+'%';
+gi('quiz-prog-txt').textContent='Question '+(ci+1)+' of '+total;
+gi('quiz-score-live').textContent='Score: '+sc;
+gi('quiz-q-text').textContent=q.q;
+gi('quiz-opts').innerHTML=q.opts.map(function(o,i){return '<button class="quiz-opt" onclick="quizAns('+i+')">'+o+'</button>';}).join('');
+gi('quiz-exp').style.display='none';gi('quiz-exp').className='quiz-explanation';gi('quiz-exp').textContent='';
+gi('quiz-next-btn').style.display='none';done=false;
+}
+window.quizAns=function(idx){
+if(done)return;done=true;
+var q=qs[ci];var ok=idx===q.ans;if(ok)sc++;
+document.querySelectorAll('.quiz-opt').forEach(function(b,i){
+b.disabled=true;
+if(i===q.ans)b.classList.add('correct');
+else if(i===idx&&!ok)b.classList.add('wrong');
+});
+var ex=gi('quiz-exp');
+ex.textContent=(ok?'\u2713 Correct! ':'\u2717 Incorrect. ')+q.exp;
+ex.className='quiz-explanation'+(ok?'':' wrong-exp');ex.style.display='block';
+gi('quiz-next-btn').style.display='block';
+gi('quiz-next-btn').textContent=ci>=qs.length-1?'See Results \u2192':'Next Question \u2192';
+};
+window.quizNext=function(){ci++;if(ci>=qs.length){showResult();return;}renderQ();};
+function showResult(){
+var pct=Math.round(sc/qs.length*100);
+var range=QD.scoring[0];
+for(var i=0;i<QD.scoring.length;i++){if(pct>=QD.scoring[i].min&&pct<=QD.scoring[i].max){range=QD.scoring[i];break;}}
+gi('res-pct').textContent=pct+'%';
+gi('res-label').textContent=range.icon+' '+range.label;
+gi('res-correct').textContent=sc+' out of '+qs.length+' correct';
+gi('res-feedback').textContent=range.feedback;
+try{
+var h=JSON.parse(localStorage.getItem('vhh_quiz_hist')||'[]');
+h.unshift({slug:QD.slug,name:QD.name,pct:pct,mode:mode,date:new Date().toISOString()});
+if(h.length>20)h=h.slice(0,20);
+localStorage.setItem('vhh_quiz_hist',JSON.stringify(h));
+}catch(e){}
+showScreen('res');
+}
+window.quizRetry=function(){showScreen('diff');};
+window.quizShare=function(){
+var txt='I scored '+gi('res-pct').textContent+' on the '+QD.name+' quiz at VitalHealth Hub! '+window.location.href;
+if(navigator.share){navigator.share({title:QD.name,text:txt,url:window.location.href});}
+else if(navigator.clipboard){navigator.clipboard.writeText(txt);alert('Result copied to clipboard!');}
+};
+showScreen('diff');
+})();
+</script>
+${FOOTER}
+${CHATBOT}
+</body></html>`;
+}
+
+quizzesData.forEach(quiz => {
+  fs.writeFileSync(
+    path.join('quizzes', quiz.slug + '.html'),
+    genQuizPage(quiz)
+  );
+});
+console.log('Generated ' + quizzesData.length + ' quiz pages');
+
+// QUIZ INDEX PAGE
+const quizCategories = ['All', ...new Set(quizzesData.map(q => q.category))];
+const quizCatPills = quizCategories.map((c, i) =>
+  '<button class="quiz-cat-pill' + (i === 0 ? ' active' : '') + '" onclick="quizFilter(\'' + c + '\',this)">' + c + '</button>'
+).join('');
+
+const quizCards = quizzesData.map(quiz =>
+  '<a href="/quizzes/' + quiz.slug + '.html" class="quiz-card" data-category="' + quiz.category + '">' +
+  '<div class="quiz-card-icon">' + quiz.icon + '</div>' +
+  '<div class="quiz-card-category">' + quiz.category + '</div>' +
+  '<h3>' + quiz.name + '</h3>' +
+  '<p>' + quiz.desc + '</p>' +
+  '<div class="quiz-card-meta"><span class="quiz-card-questions">&#x2713; ' + quiz.questions.length + ' questions &bull; 3 difficulty levels</span>' +
+  '<span class="quiz-card-cta">Take Quiz &rarr;</span></div>' +
+  '</a>'
+).join('');
+
+const quizIndexSchema = '{"@context":"https://schema.org","@type":"CollectionPage","name":"Free Health Quizzes","description":"Test your health, fitness, nutrition, and mental wellness knowledge with ' + quizzesData.length + '+ interactive quizzes at VitalHealth Hub.","url":"' + SITE + '/quizzes/"}';
+
+fs.writeFileSync('quizzes/index.html', head(
+  'Free Health & Wellness Quizzes — VitalHealth Hub',
+  'Test your health knowledge with ' + quizzesData.length + '+ interactive quizzes covering nutrition, fitness, mental health, and more. Three difficulty levels, instant scoring, personalised feedback.',
+  '/quizzes/',
+  '<script type="application/ld+json">' + quizIndexSchema + '</script>'
+) + `<body>
+${NAV}
+${breadcrumb([{name:'Home',url:'/'},{name:'Quizzes',url:'/quizzes/'}]).html}
+${breadcrumb([{name:'Home',url:'/'},{name:'Quizzes',url:'/quizzes/'}]).schema}
+
+<section class="quiz-index-hero">
+<div class="container">
+<h1>&#x1F9E0; Free Health &amp; Wellness Quizzes</h1>
+<p>Test your knowledge across nutrition, fitness, mental health, women's health, and more. Instant scoring, personalised feedback, and three difficulty levels.</p>
+<div class="quiz-index-stats">
+<div class="quiz-index-stat"><strong>${quizzesData.length}+</strong><span>Quizzes</span></div>
+<div class="quiz-index-stat"><strong>3</strong><span>Difficulty Levels</span></div>
+<div class="quiz-index-stat"><strong>${quizzesData.reduce((t,q)=>t+q.questions.length,0)}+</strong><span>Questions</span></div>
+<div class="quiz-index-stat"><strong>Free</strong><span>Always</span></div>
+</div>
+</div>
+</section>
+
+<div class="quiz-category-bar">
+<div class="quiz-category-bar-inner">${quizCatPills}</div>
+</div>
+
+<section class="quiz-grid-section">
+<div class="container">
+<div class="quiz-grid" id="quiz-grid">${quizCards}</div>
+</div>
+</section>
+
+<section style="background:#fff;padding:60px 20px;">
+<div class="container" style="max-width:800px;margin:0 auto;text-align:center;">
+<h2 style="color:#1b4332;font-size:1.8rem;margin-bottom:16px;">Why Take Our Health Quizzes?</h2>
+<p style="color:#6c757d;line-height:1.8;font-size:1.05rem;">Health literacy is one of the strongest predictors of better health decisions and outcomes. Our quizzes are built from peer-reviewed research to help you understand the science behind your body — from how sleep affects your brain to how macronutrients fuel your performance. Each quiz includes detailed explanations for every answer, so you leave knowing more than when you started.</p>
+</div>
+</section>
+
+<script>
+function quizFilter(cat, btn) {
+  document.querySelectorAll('.quiz-cat-pill').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('.quiz-card').forEach(function(c){
+    c.classList.toggle('hidden', cat !== 'All' && c.dataset.category !== cat);
+  });
+}
+</script>
+${FOOTER}
+${CHATBOT}
+</body></html>`);
+
+console.log('Generated quiz index page');
+
 // SITEMAP.XML
 let sitemapXml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-['/','/about.html','/contact.html','/faq.html','/blog.html','/privacy.html','/disclaimer.html','/terms.html','/sitemap.html'].forEach(u => {
+['/','/about.html','/contact.html','/faq.html','/blog.html','/privacy.html','/disclaimer.html','/terms.html','/sitemap.html','/quizzes/'].forEach(u => {
   sitemapXml += `<url><loc>${SITE}${u}</loc><changefreq>weekly</changefreq><priority>${u==='/'?'1.0':'0.8'}</priority></url>\n`;
 });
 calculators.forEach(c => {
@@ -2587,11 +2868,15 @@ calculators.forEach(c => {
 blogPosts.forEach(p => {
   sitemapXml += `<url><loc>${SITE}/blog/${p.slug}.html</loc><lastmod>${p.date}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
 });
+quizzesData.forEach(q => {
+  sitemapXml += `<url><loc>${SITE}/quizzes/${q.slug}.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
+});
 sitemapXml += '</urlset>';
 fs.writeFileSync('sitemap.xml', sitemapXml);
 
 // ROBOTS.TXT
 fs.writeFileSync('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 
+const totalPages = 9 + calculators.length + blogPosts.length + quizzesData.length + 1;
 console.log('All files generated successfully!');
-console.log('Total pages: ' + (8 + calculators.length + blogPosts.length));
+console.log('Total pages: ' + totalPages + ' (' + calculators.length + ' calculators, ' + blogPosts.length + ' blogs, ' + quizzesData.length + ' quizzes, 9 static)');
