@@ -12,11 +12,12 @@ app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
   res.setHeader('Content-Security-Policy',
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com; " +
+    "script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
     "font-src 'self' https://fonts.gstatic.com; " +
-    "img-src 'self' data: https://images.unsplash.com https://pagead2.googlesyndication.com; " +
+    "img-src 'self' data: blob: https://images.unsplash.com https://pagead2.googlesyndication.com; " +
     "connect-src 'self'; " +
+    "worker-src blob:; " +
     "frame-ancestors 'self'; " +
     "base-uri 'self';"
   );

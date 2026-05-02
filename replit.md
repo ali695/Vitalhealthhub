@@ -14,9 +14,10 @@ A complete health and wellness website built with pure HTML, CSS, and vanilla Ja
 - **Server**: Express.js static file server (`server.js`) on port 5000
 - **CSS**: Single shared stylesheet (`css/style.css`)
 - **JS**: Single shared script (`js/main.js`) for navbar, animations, FAQ toggles, scroll effects + AI health chatbot (`vhChat` object)
-- **Generator**: `generate.js` — Node.js script that generates all 290 HTML pages programmatically
+- **Generator**: `generate.js` — Node.js script that generates all 315 HTML pages programmatically
 - **Extra Calculators**: `calculators-extra.js` — Module exporting 65 additional calculators
 - **Quiz Data**: `quizzes-data.js` — Module exporting 22 quiz objects with full questions, scoring, and metadata
+- **Tools Data**: `tools-data.js` — Module exporting 24 tool objects with SEO content, FAQs, and related tools
 
 ## File Structure
 ```
@@ -31,29 +32,33 @@ A complete health and wellness website built with pure HTML, CSS, and vanilla Ja
 /sitemap.html            - HTML Sitemap
 /sitemap.xml             - XML Sitemap
 /robots.txt              - Robots file
-/css/style.css           - Shared styles (includes chatbot CSS + quiz CSS)
+/css/style.css           - Shared styles (chatbot + quiz + tools CSS)
 /js/main.js              - Shared JavaScript (includes vhChat AI chatbot)
 /calculators/            - 103 calculator HTML pages + index.html
 /blog/                   - 155 blog post HTML pages
 /quizzes/                - 22 quiz HTML pages + index.html
+/tools/                  - 24 tool HTML pages + index.html
 /server.js               - Express static server (with all security headers)
-/generate.js             - Page generator script (generates all 290 pages)
+/generate.js             - Page generator script (generates all 315 pages)
 /calculators-extra.js    - 65 additional calculator definitions
 /quizzes-data.js         - 22 quiz definitions with questions, scoring, metadata
+/tools-data.js           - 24 tool definitions with SEO content, FAQs, related tools
 /calculator-svgs.js      - Combines all SVG batch files for calculator illustrations
 /svgs/batch1-5.js        - 51 unique SVG illustrations (10-11 per batch)
 ```
 
-## Total Pages: 290
+## Total Pages: 315
 - **103** calculator pages + index
 - **155** blog post pages
 - **22** quiz pages + index
+- **24** tool pages + index
 - **9** static pages (home, about, contact, faq, blog, privacy, disclaimer, terms, sitemap)
 
 ## Key Features
 - **103 fully functional health calculators** with real JS logic across 10+ categories
 - **155 SEO blog posts** covering 8 categories with full content, FAQs, author boxes, related articles
 - **22 interactive quizzes** with 3 difficulty levels (Easy 5Q / Medium 8Q / Hard 10Q), instant scoring, localStorage history
+- **24 real working tools** across 4 categories (Image, PDF, Text, Utility) — all browser-side, no upload, no API
 - **AI Health Chatbot** — pure vanilla JS, no external APIs, 20+ topic knowledge base, floating on all pages
 - **Full security headers** on every response (CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-XSS-Protection)
 - **Mega dropdown navigation** for Calculators (6-column categorized layout)

@@ -1,0 +1,183 @@
+--------------------------------------------------
+TASK: BUILD PROFESSIONAL TOOLS HUB (REAL WORKING TOOLS)
+--------------------------------------------------
+
+I want you to create a new section on my website called:
+
+"Tools Hub" (or "Free Online Tools")
+
+This must be a professional, high-quality tools platform similar to real SaaS tools websites.
+
+--------------------------------------------------
+SECTION 1: TOOLS HUB PAGE DESIGN
+--------------------------------------------------
+
+Create a landing page:
+
+- Hero section:
+   "Free Online Tools – Fast, Secure & Easy to Use"
+
+- Subtext:
+   "Convert, compress, edit, and manage files instantly"
+
+- Search bar:
+   "Search tools..."
+
+- Categories grid:
+   → Image Tools
+   → PDF Tools
+   → Text Tools
+   → Utility Tools
+
+--------------------------------------------------
+SECTION 2: IMAGE TOOLS (VERY HIGH TRAFFIC)
+--------------------------------------------------
+
+Build REAL WORKING tools:
+
+- Image to JPG
+- Image to PNG
+- JPG to WebP
+- WebP to JPG
+- Image Compressor (client-side)
+- Image Resizer
+- Image Crop Tool
+- Image Converter (multiple formats)
+- Background Remover (basic AI or simulated)
+- Image Quality Reducer
+- Image Metadata Remover
+
+Requirements:
+- Use client-side processing (Canvas API)
+- Drag & drop upload
+- Instant preview
+- Download button
+
+--------------------------------------------------
+SECTION 3: PDF TOOLS (IMPORTANT)
+--------------------------------------------------
+
+Build working tools:
+
+- PDF Merge
+- PDF Split
+- PDF Compressor (basic)
+- PDF to JPG
+- JPG to PDF
+- PDF Page Extractor
+- Rotate PDF pages
+
+Requirements:
+- Use lightweight libraries
+- Handle small-medium files
+- Clean UI
+
+--------------------------------------------------
+SECTION 4: TEXT TOOLS
+--------------------------------------------------
+
+- Word Counter
+- Character Counter
+- Case Converter
+- Text Cleaner (remove spaces, symbols)
+- Readability Analyzer
+- Keyword Density Checker
+
+--------------------------------------------------
+SECTION 5: GENERAL UTILITY TOOLS
+--------------------------------------------------
+
+- QR Code Generator
+- Password Generator
+- UUID Generator
+- Base64 Encoder/Decoder
+- JSON Formatter
+- URL Encoder/Decoder
+
+--------------------------------------------------
+SECTION 6: TOOL PAGE STRUCTURE
+--------------------------------------------------
+
+Each tool page must include:
+
+1. Tool UI
+- Upload or input area
+- Action button
+- Result preview
+- Download option
+
+2. SEO CONTENT
+- 300–500 words explanation
+- How it works
+- Use cases
+
+3. FAQ SECTION
+
+4. INTERNAL LINKS
+- Related tools
+- Related blogs
+
+--------------------------------------------------
+SECTION 7: UI DESIGN (VERY IMPORTANT)
+--------------------------------------------------
+
+- SaaS-style cards
+- Rounded corners
+- Soft shadows
+- Clean spacing
+
+TOOL UI:
+- Drag & drop area
+- Progress feedback
+- Success message
+- Download button (highlighted)
+
+--------------------------------------------------
+SECTION 8: PERFORMANCE (CRITICAL)
+--------------------------------------------------
+
+- Use client-side processing where possible
+- Avoid uploading files to server
+- Optimize for speed
+- Support mobile
+
+--------------------------------------------------
+SECTION 9: SECURITY
+--------------------------------------------------
+
+- No file storage on server
+- Process files locally
+- Limit file size
+- Sanitize inputs
+
+--------------------------------------------------
+SECTION 10: SEO STRUCTURE
+--------------------------------------------------
+
+Each tool must have:
+
+- Meta title
+- Meta description
+- Clean URL:
+   /tools/image-to-jpg
+   /tools/pdf-merge
+
+--------------------------------------------------
+SECTION 11: INTEGRATION WITH SITE
+--------------------------------------------------
+
+- Link tools from:
+   → homepage
+   → blog pages
+   → quiz results
+
+--------------------------------------------------
+FINAL GOAL
+--------------------------------------------------
+
+Create a powerful tools hub that:
+
+- Attracts high Google traffic
+- Provides real functionality
+- Keeps users engaged
+- Supports AdSense monetization
