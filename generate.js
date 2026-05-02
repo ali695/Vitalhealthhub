@@ -2343,7 +2343,16 @@ const sidebarPosts = [
   blogPosts.find(p => p.slug === 'how-to-manage-stress')
 ].filter(Boolean);
 
-const trendingTopics = ['Intermittent Fasting Guide', 'BMI vs Body Fat', 'Best Foods for Sleep', 'Diabetes Risk Factors', 'Heart Rate Zones Explained'];
+const trendingItems = [
+  {text:'Intermittent Fasting Guide', slug:(blogPosts.find(p=>p.slug.includes('intermittent-fasting'))||blogPosts[0]).slug},
+  {text:'BMI vs Body Fat',            slug:(blogPosts.find(p=>p.slug.includes('bmi-vs-body-fat'))||blogPosts[0]).slug},
+  {text:'Best Foods for Sleep',       slug:(blogPosts.find(p=>p.slug.includes('sleep')&&p.category==='Sleep')||blogPosts.find(p=>p.slug.includes('sleep'))||blogPosts[0]).slug},
+  {text:'Diabetes Risk Factors',      slug:(blogPosts.find(p=>p.slug.includes('diabetes')&&p.slug.includes('risk'))||blogPosts.find(p=>p.slug.includes('diabetes'))||blogPosts[0]).slug},
+  {text:'Heart Rate Zones',           slug:(blogPosts.find(p=>p.slug.includes('heart-rate-zone'))||blogPosts.find(p=>p.slug.includes('heart-rate'))||blogPosts[0]).slug},
+  {text:'Protein Intake Guide',       slug:(blogPosts.find(p=>p.slug.includes('protein')&&p.slug.includes('how-much'))||blogPosts.find(p=>p.slug.includes('protein'))||blogPosts[0]).slug},
+  {text:'Calorie Deficit Guide',      slug:(blogPosts.find(p=>p.slug.includes('calorie-deficit'))||blogPosts[0]).slug},
+  {text:'Manage Stress Naturally',    slug:(blogPosts.find(p=>p.slug.includes('stress'))||blogPosts[0]).slug},
+];
 
 const popularTags = [
   {name:'Weight Loss',size:'lg'},{name:'BMI',size:'lg'},{name:'Calories',size:'lg'},{name:'Protein',size:'md'},{name:'Sleep',size:'lg'},
@@ -2357,17 +2366,36 @@ const popularTags = [
 
 const ITEMS_PER_PAGE = 24;
 
-const blogCardHtml = blogPosts.map((p, i) => {
+const popularSlugs = ['how-many-calories-should-i-eat','bmi-vs-body-fat-percentage','intermittent-fasting-guide','how-to-manage-stress','calorie-deficit-for-weight-loss','how-much-protein-should-you-eat'];
+const popularPosts = [];
+popularSlugs.forEach(s => { const p = blogPosts.find(x=>x.slug===s); if(p) popularPosts.push(p); });
+blogPosts.forEach(p => { if(popularPosts.length < 6 && !popularPosts.find(x=>x.slug===p.slug)) popularPosts.push(p); });
+
+const popularHtml = popularPosts.slice(0,6).map(p => {
   const img = blogCardImage(p.slug);
-  return `<a href="/blog/${p.slug}.html" class="blog-card fade-in" data-category="${p.category}" data-title="${p.title.toLowerCase()}" data-index="${i}" style="${i >= ITEMS_PER_PAGE ? 'display:none;' : ''}">
+  return `<a href="/blog/${p.slug}.html" class="blog-card">
 <div class="blog-card-image"><img src="${img.url}" alt="${img.alt}" title="${p.title}" width="600" height="340" loading="lazy"></div>
 <div class="blog-card-body">
 <div class="blog-card-meta"><span class="blog-card-category">${p.category}</span><span>${p.readTime}</span></div>
 <h3>${p.title}</h3>
 <p>Evidence-based health insights and practical tips for better wellness.</p>
 <hr class="blog-card-divider">
-<div class="blog-card-footer"><span class="blog-card-author">\u{1F464} Dr. Sarah Mitchell</span><span class="blog-card-date">${p.date}</span></div>
-<span class="read-more">Read More \u2192</span>
+<div class="blog-card-footer"><span class="blog-card-author">&#128100; Ali Haider</span><span class="blog-card-date">${p.date}</span></div>
+<span class="read-more">Read More &rarr;</span>
+</div></a>`;
+}).join('\n');
+
+const blogCardHtml = blogPosts.map((p, i) => {
+  const img = blogCardImage(p.slug);
+  return `<a href="/blog/${p.slug}.html" class="blog-card fade-in" data-category="${p.category}" data-title="${p.title.toLowerCase()}" data-index="${i}" data-date="${p.date}" style="${i >= ITEMS_PER_PAGE ? 'display:none;' : ''}">
+<div class="blog-card-image"><img src="${img.url}" alt="${img.alt}" title="${p.title}" width="600" height="340" loading="lazy"></div>
+<div class="blog-card-body">
+<div class="blog-card-meta"><span class="blog-card-category">${p.category}</span><span>${p.readTime}</span></div>
+<h3>${p.title}</h3>
+<p>Evidence-based health insights and practical tips for better wellness.</p>
+<hr class="blog-card-divider">
+<div class="blog-card-footer"><span class="blog-card-author">&#128100; Ali Haider</span><span class="blog-card-date">${p.date}</span></div>
+<span class="read-more">Read More &rarr;</span>
 </div></a>`;
 }).join('\n');
 
@@ -2385,7 +2413,7 @@ ${NAV}
 <span class="badge-editors-pick">EDITOR'S PICK</span>
 <h1>The Complete Guide to Understanding Your Body's Daily Calorie Needs</h1>
 <p>Discover the science behind calorie counting and learn how to fuel your body for optimal health and performance.</p>
-<span class="featured-meta">Dr. Sarah Mitchell \u2022 ${featuredPost.date} \u2022 ${featuredPost.readTime} read</span>
+<span class="featured-meta">Ali Haider \u2022 ${featuredPost.date} \u2022 ${featuredPost.readTime} read</span>
 <span class="btn-outline-white">Read Article \u2192</span>
 </div>
 </a>
@@ -2408,8 +2436,8 @@ ${sidebarPosts.map(sp => {
 <div class="blog-trending-ticker">
 <span class="blog-trending-ticker-label">\u{1F525} TRENDING THIS WEEK:</span>
 <div class="blog-trending-ticker-scroll">
-${trendingTopics.map(t => `<span>${t}</span>`).join('')}
-${trendingTopics.map(t => `<span>${t}</span>`).join('')}
+${trendingItems.map(t => `<a href="/blog/${t.slug}.html">${t.text}</a>`).join('')}
+${trendingItems.map(t => `<a href="/blog/${t.slug}.html">${t.text}</a>`).join('')}
 </div>
 </div>
 
@@ -2422,7 +2450,9 @@ ${blogCategories.map(c => `<button class="blog-category-pill" onclick="blogFilte
 <div class="blog-category-bar-actions">
 <select class="blog-sort-select" id="blogSortSelect" onchange="blogSort(this.value)">
 <option value="latest">Latest</option>
+<option value="oldest">Oldest First</option>
 <option value="az">A\u2013Z</option>
+<option value="zt">Z\u2013A</option>
 </select>
 <button class="blog-search-btn" onclick="openBlogSearch()" aria-label="Search articles">
 <svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -2437,15 +2467,38 @@ ${blogCategories.map(c => `<button class="blog-category-pill" onclick="blogFilte
 <div class="blog-search-overlay-results" id="blogSearchResults"></div>
 </div>
 
+<section class="blog-popular-section">
+<div class="blog-popular-header">
+<h2>&#128293; Popular Articles</h2>
+<p>Most-read guides by our community</p>
+</div>
+<div class="blog-articles-grid blog-popular-grid">
+${popularHtml}
+</div>
+</section>
+
 <section class="blog-articles-section">
 <div class="blog-articles-header">
+<div class="blog-articles-header-left">
 <h2>All Health Articles</h2>
-<p>100+ evidence-based guides written by health experts</p>
+<p>${blogPosts.length}+ evidence-based guides written by health experts</p>
+</div>
+<div class="blog-articles-header-right">
+<div class="blog-progress-bar-wrap">
+<div class="blog-progress-fill" id="blogProgressFill" style="width:${Math.round(ITEMS_PER_PAGE/blogPosts.length*100)}%"></div>
+</div>
+<span class="blog-articles-counter" id="blogCounter">Showing ${ITEMS_PER_PAGE} of ${blogPosts.length}</span>
+<button class="blog-view-all-btn" onclick="blogViewAll()">View All ${blogPosts.length} Articles</button>
+</div>
 </div>
 <div class="blog-articles-grid" id="blogGrid">
 ${blogCardHtml}
 </div>
 </section>
+
+<div class="blog-load-more" id="blogLoadMore">
+<button class="blog-load-more-btn" id="blogLoadMoreBtn" onclick="loadMoreBlog()">Load 24 More Articles &#8595;</button>
+</div>
 
 <div class="blog-newsletter">
 <div class="blog-newsletter-inner">
@@ -2466,11 +2519,6 @@ ${blogCardHtml}
 </div>
 </div>
 
-<div class="blog-load-more" id="blogLoadMore">
-<button class="blog-load-more-btn" onclick="loadMoreBlog()">Load More Articles</button>
-<div class="blog-load-more-counter" id="blogCounter">Showing ${ITEMS_PER_PAGE} of ${blogPosts.length} articles</div>
-</div>
-
 <section class="blog-tag-cloud">
 <h2>Browse by Health Topic</h2>
 <div class="blog-tag-cloud-inner">
@@ -2486,28 +2534,41 @@ var blogCurrentCat='all';
 var blogCurrentPage=1;
 var blogItemsPerPage=${ITEMS_PER_PAGE};
 var blogTotal=${blogPosts.length};
-var allBlogData=${JSON.stringify(blogPosts.map(p => ({slug:p.slug,title:p.title,category:p.category})))};
+var blogViewAllMode=false;
+var allBlogData=${JSON.stringify(blogPosts.map(p => ({slug:p.slug,title:p.title,category:p.category,date:p.date})))};
 
 function blogFilterCat(cat,btn){
   blogCurrentCat=cat;
+  blogViewAllMode=false;
   document.querySelectorAll('.blog-category-pill').forEach(function(b){b.classList.remove('active');});
   if(btn)btn.classList.add('active');
   blogCurrentPage=1;
+  var vab=document.querySelector('.blog-view-all-btn');
+  if(vab)vab.textContent='View All Articles';
   applyBlogFilters();
+  window.scrollTo({top:document.querySelector('.blog-articles-section').offsetTop-140,behavior:'smooth'});
 }
 
 function applyBlogFilters(){
   var cards=document.querySelectorAll('#blogGrid .blog-card');
   var shown=0;
   var total=0;
+  var newlyShown=[];
   cards.forEach(function(card){
     var cat=card.getAttribute('data-category');
     var matchC=blogCurrentCat==='all'||cat===blogCurrentCat;
     if(matchC){
       total++;
-      if(total<=blogCurrentPage*blogItemsPerPage){
-        card.style.display='';
-        shown++;
+      if(blogViewAllMode||total<=blogCurrentPage*blogItemsPerPage){
+        if(card.style.display==='none'||card.style.display===''){
+          var wasHidden=card.style.display==='none';
+          card.style.display='';
+          if(wasHidden)newlyShown.push(card);
+          shown++;
+        } else {
+          card.style.display='';
+          shown++;
+        }
       } else {
         card.style.display='none';
       }
@@ -2515,15 +2576,26 @@ function applyBlogFilters(){
       card.style.display='none';
     }
   });
+  newlyShown.forEach(function(c){c.classList.add('blog-card-reveal');setTimeout(function(){c.classList.remove('blog-card-reveal');},600);});
   var counter=document.getElementById('blogCounter');
-  counter.textContent='Showing '+shown+' of '+total+' articles';
+  if(counter)counter.textContent='Showing '+shown+' of '+total;
+  var pf=document.getElementById('blogProgressFill');
+  if(pf)pf.style.width=(total>0?Math.round(shown/total*100):0)+'%';
   var loadBtn=document.getElementById('blogLoadMore');
-  loadBtn.style.display=shown<total?'':'none';
+  if(loadBtn)loadBtn.style.display=(shown<total&&!blogViewAllMode)?'flex':'none';
 }
 
 function loadMoreBlog(){
   blogCurrentPage++;
   applyBlogFilters();
+  window.scrollTo({top:document.getElementById('blogGrid').scrollHeight+document.getElementById('blogGrid').offsetTop-300,behavior:'smooth'});
+}
+
+function blogViewAll(){
+  blogViewAllMode=true;
+  applyBlogFilters();
+  var btn=document.querySelector('.blog-view-all-btn');
+  if(btn)btn.textContent='\u2713 Showing All Articles';
 }
 
 function blogSort(val){
@@ -2531,7 +2603,9 @@ function blogSort(val){
   var cards=Array.from(grid.querySelectorAll('.blog-card'));
   cards.sort(function(a,b){
     if(val==='az') return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
-    return parseInt(a.getAttribute('data-index'))-parseInt(b.getAttribute('data-index'));
+    if(val==='zt') return b.getAttribute('data-title').localeCompare(a.getAttribute('data-title'));
+    if(val==='oldest') return (a.getAttribute('data-date')||'').localeCompare(b.getAttribute('data-date')||'');
+    return (b.getAttribute('data-date')||'').localeCompare(a.getAttribute('data-date')||'');
   });
   cards.forEach(function(c){grid.appendChild(c);});
   blogCurrentPage=1;
@@ -2555,8 +2629,10 @@ function liveSearchBlog(){
   var q=document.getElementById('blogSearchInput').value.toLowerCase().trim();
   var results=document.getElementById('blogSearchResults');
   if(!q){results.innerHTML='';return;}
-  var matches=allBlogData.filter(function(p){return p.title.toLowerCase().indexOf(q)!==-1;}).slice(0,10);
-  if(matches.length===0){results.innerHTML='<a style="pointer-events:none;color:var(--gray-500);">No articles found</a>';return;}
+  var matches=allBlogData.filter(function(p){
+    return p.title.toLowerCase().indexOf(q)!==-1||p.category.toLowerCase().indexOf(q)!==-1;
+  }).slice(0,12);
+  if(matches.length===0){results.innerHTML='<a style="pointer-events:none;color:var(--gray-500);">No articles found for "'+q+'"</a>';return;}
   results.innerHTML=matches.map(function(p){return '<a href="/blog/'+p.slug+'.html"><span class="search-result-category">'+p.category+'</span> '+p.title+'</a>';}).join('');
 }
 
@@ -2566,13 +2642,11 @@ document.addEventListener('keydown',function(e){
 
 function blogTagClick(tag){
   closeBlogSearch();
-  var matchedCat=null;
   var catMap={'Weight Loss':'Body Metrics','BMI':'Body Metrics','Calories':'Nutrition','Protein':'Nutrition','Sleep':'Sleep','Hydration':'Nutrition','Heart Health':'Heart Health','Diabetes':'Disease Prevention','Keto':'Nutrition','Intermittent Fasting':'Nutrition','Mental Health':'Mental Health','Anxiety':'Mental Health','Depression':'Mental Health','Meditation':'Mental Health','Yoga':'Fitness','Running':'Fitness','HIIT':'Fitness','Cholesterol':'Heart Health','Blood Pressure':'Heart Health','Pregnancy':"Women's Health","Women's Health":"Women's Health","Men's Health":'Wellness','Aging':'Wellness','Vitamins':'Nutrition','Gut Health':'Wellness','Immunity':'Nutrition','Stress':'Mental Health','Inflammation':'Nutrition','Hormones':'Wellness','Cancer Prevention':'Disease Prevention'};
-  matchedCat=catMap[tag]||'all';
+  var matchedCat=catMap[tag]||'all';
   var pill=null;
   document.querySelectorAll('.blog-category-pill').forEach(function(b){if(b.textContent===matchedCat)pill=b;});
   blogFilterCat(matchedCat,pill||document.querySelector('.blog-category-pill'));
-  window.scrollTo({top:document.querySelector('.blog-category-bar').offsetTop-120,behavior:'smooth'});
 }
 </script>
 ${CHATBOT}
