@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= pageTitle || 'Admin' %> — VitalHealth Hub CMS</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;color:#1b1f1e;display:flex;min-height:100vh;font-size:14px}
+a{color:inherit;text-decoration:none}
+
+/* ── Sidebar ── */
+.sidebar{width:240px;flex-shrink:0;background:#1b2e22;min-height:100vh;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto}
+.sidebar-brand{padding:24px 20px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sidebar-brand img{height:36px;width:auto;filter:brightness(2.5) saturate(0.7)}
+.sidebar-brand span{display:block;color:#52b788;font-size:11px;margin-top:4px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.sidebar-nav{flex:1;padding:16px 0}
+.nav-section{padding:8px 20px 4px;color:rgba(255,255,255,.35);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.nav-link{display:flex;align-items:center;gap:10px;padding:10px 20px;color:rgba(255,255,255,.7);transition:all .2s;border-left:3px solid transparent;font-size:13.5px}
+.nav-link:hover,.nav-link.active{background:rgba(82,183,136,.12);color:#52b788;border-left-color:#52b788}
+.nav-link svg{flex-shrink:0;opacity:.7}
+.nav-link:hover svg,.nav-link.active svg{opacity:1}
+.sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);font-size:11px}
+.sidebar-footer a{color:#52b788;display:block;margin-top:4px;font-size:12px}
+
+/* ── Main ── */
+.main{margin-left:240px;flex:1;min-height:100vh;display:flex;flex-direction:column}
+.topbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.topbar h1{font-size:17px;font-weight:700;color:#1b1f1e}
+.topbar-actions{display:flex;align-items:center;gap:12px}
+.content{padding:28px;flex:1}
+
+/* ── Cards ── */
+.card{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.07);overflow:hidden}
+.card-header{padding:18px 22px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between}
+.card-header h2{font-size:15px;font-weight:700}
+.card-body{padding:22px}
+
+/* ── Stats ── */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 6px rgba(0,0,0,.07);text-align:center}
+.stat-number{font-size:2rem;font-weight:800;color:#2d6a4f;line-height:1}
+.stat-label{color:#6b7280;font-size:12px;margin-top:6px}
+.stat-card.warn .stat-number{color:#f4a261}
+.stat-card.danger .stat-number{color:#ef4444}
+
+/* ── Table ── */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{background:#f9fafb}
+th{padding:11px 14px;text-align:left;color:#6b7280;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #e5e7eb;white-space:nowrap}
+td{padding:12px 14px;border-bottom:1px solid #f3f4f6;vertical-align:middle;max-width:320px}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafafa}
+.td-truncate{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}
+
+/* ── Badges ── */
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-green{background:#d1fae5;color:#065f46}
+.badge-yellow{background:#fef3c7;color:#92400e}
+.badge-red{background:#fee2e2;color:#991b1b}
+.badge-blue{background:#dbeafe;color:#1e40af}
+.badge-gray{background:#f3f4f6;color:#4b5563}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-primary{background:#2d6a4f;color:#fff}
+.btn-primary:hover{background:#1e5037}
+.btn-secondary{background:#f3f4f6;color:#374151}
+.btn-secondary:hover{background:#e5e7eb}
+.btn-danger{background:#fee2e2;color:#991b1b}
+.btn-danger:hover{background:#fecaca}
+.btn-warning{background:#fef3c7;color:#92400e}
+.btn-warning:hover{background:#fde68a}
+.btn-sm{padding:5px 12px;font-size:12px}
+.btn-icon{padding:6px;width:32px;height:32px;justify-content:center}
+
+/* ── Forms ── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+label{font-size:12px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:.5px}
+input[type=text],input[type=url],textarea,select{width:100%;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:13.5px;font-family:inherit;outline:none;transition:border-color .2s;background:#fafafa;color:#1b1f1e}
+input[type=text]:focus,input[type=url]:focus,textarea:focus,select:focus{border-color:#2d6a4f;background:#fff}
+textarea{resize:vertical;min-height:120px;line-height:1.6}
+textarea.content-editor{min-height:360px;font-family:'Courier New',monospace;font-size:13px}
+.form-hint{font-size:11px;color:#9ca3af}
+.char-count{font-size:11px;color:#6b7280;text-align:right;margin-top:2px}
+.char-good{color:#059669}
+.char-warn{color:#d97706}
+.char-over{color:#dc2626}
+
+/* ── Flash ── */
+.flash{padding:12px 16px;border-radius:8px;margin-bottom:20px;font-size:13px;display:flex;align-items:center;gap:10px;border-left:4px solid}
+.flash-success{background:#d1fae5;color:#065f46;border-color:#059669}
+.flash-info{background:#dbeafe;color:#1e40af;border-color:#3b82f6}
+.flash-error{background:#fee2e2;color:#991b1b;border-color:#ef4444}
+
+/* ── Action row ── */
+.action-row{display:flex;align-items:center;gap:8px}
+.confirm-delete{display:inline}
+
+/* ── SEO audit ── */
+.seo-row.ok{display:none}
+.seo-issue{color:#9ca3af;font-size:12px}
+.seo-url{font-weight:600;color:#1b1f1e;font-size:12.5px}
+
+/* ── Media grid ── */
+.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
+.media-item{background:#f9fafb;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb;transition:box-shadow .2s}
+.media-item:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.media-thumb{width:100%;height:120px;object-fit:cover;background:#e5e7eb;display:block}
+.media-info{padding:10px 12px}
+.media-info p{font-size:11px;color:#6b7280;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.media-info strong{font-size:12px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:4px}
+.media-url{font-size:10.5px;color:#2d6a4f;word-break:break-all;margin-top:4px}
+.upload-zone{border:2px dashed #d1d5db;border-radius:12px;padding:32px;text-align:center;background:#fafafa;cursor:pointer;transition:border-color .2s}
+.upload-zone:hover{border-color:#2d6a4f}
+.upload-zone p{color:#6b7280;font-size:13px;margin-top:8px}
+
+/* ── Misc ── */
+.empty-state{text-align:center;padding:60px 20px;color:#9ca3af}
+.empty-state svg{opacity:.3;margin-bottom:16px}
+.empty-state p{font-size:14px}
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.page-header h2{font-size:20px;font-weight:800}
+.search-bar{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.search-bar input,.search-bar select{padding:8px 12px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:13px;outline:none;background:#fff}
+.search-bar input:focus,.search-bar select:focus{border-color:#2d6a4f}
+.tag-list{display:flex;flex-wrap:wrap;gap:4px}
+.tag{background:#f0faf2;color:#2d6a4f;padding:2px 8px;border-radius:12px;font-size:11px;border:1px solid #d1fae5}
+
+@media(max-width:900px){
+.stats-row{grid-template-columns:repeat(2,1fr)}
+.form-grid{grid-template-columns:1fr}
+.form-group.full{grid-column:1}
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <img src="/images/logo.png" alt="VitalHealth Hub">
+    <span>CMS Dashboard</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Content</div>
+    <a href="/admin" class="nav-link <%= currentPage==='overview'?'active':'' %>">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Overview
+    </a>
+    <a href="/admin/blogs" class="nav-link <%= currentPage==='blogs'||currentPage==='blog-form'?'active':'' %>">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Blog Manager
+    </a>
+    <a href="/admin/calculators" class="nav-link <%= currentPage==='calculators'||currentPage==='calculator-form'?'active':'' %>">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+      Calculators
+    </a>
+    <div class="nav-section" style="margin-top:8px">Tools</div>
+    <a href="/admin/seo-audit" class="nav-link <%= currentPage==='seo-audit'?'active':'' %>">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+      SEO Audit
+    </a>
+    <a href="/admin/media" class="nav-link <%= currentPage==='media'?'active':'' %>">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Media Library
+    </a>
+    <div class="nav-section" style="margin-top:8px">Site</div>
+    <a href="/" target="_blank" class="nav-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      View Site
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    VitalHealth Hub CMS<br>
+    <a href="mailto:ma7122671@gmail.com">ma7122671@gmail.com</a>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <h1><%- pageTitle || 'Dashboard' %></h1>
+    <div class="topbar-actions"><%- topbarActions || '' %></div>
+  </div>
+  <div class="content">
+    <%- body %>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.confirm-delete form').forEach(form => {
+  form.addEventListener('submit', e => {
+    if (!confirm('Are you sure you want to delete this? This cannot be undone.')) e.preventDefault();
+  });
+});
+document.querySelectorAll('[data-char-target]').forEach(el => {
+  const target = document.getElementById(el.dataset.charTarget);
+  const max    = parseInt(el.dataset.max || '160');
+  function update() {
+    const len = target.value.length;
+    el.textContent = len + '/' + max + ' chars';
+    el.className = 'char-count ' + (len > max ? 'char-over' : len > max * .85 ? 'char-warn' : 'char-good');
+  }
+  target.addEventListener('input', update);
+  update();
+});
+</script>
+</body>
+</html>

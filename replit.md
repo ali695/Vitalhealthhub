@@ -85,5 +85,38 @@ A complete health and wellness website built with pure HTML, CSS, and vanilla Ja
 - Headings: Playfair Display (Google Fonts)
 - Body: DM Sans (Google Fonts)
 
+## CMS Admin Dashboard
+Accessible at `/admin` — a full CMS built on Node.js/Express, SQLite, EJS, and Multer.
+
+### Architecture
+- **server/admin.js** — Express router with all CRUD routes; two-pass EJS rendering (content view → body string → layout injection)
+- **database/db.js** — SQLite (better-sqlite3) with `blogs`, `calculators`, `media` tables
+- **shared/site-parts.js** — Exports NAV, FOOTER, CHATBOT, BTT HTML strings for template generation
+- **admin/views/layout.ejs** — Dark-green sidebar layout shell; receives `body`, `pageTitle`, `topbarActions`, `currentPage`
+- **admin/views/*.ejs** — Pure EJS partials (no `require` calls): overview, blogs, blog-form, calculators, calculator-form, seo-audit, media
+- **templates/blog.ejs** — EJS template for generating static `/blog/<slug>.html` files
+- **templates/calculator.ejs** — EJS template for generating static `/calculators/<slug>.html` files
+- **uploads/** — multer upload directory for media library images
+
+### Admin Routes
+| Route | Description |
+|---|---|
+| GET /admin | Overview dashboard with stats |
+| GET/POST /admin/blogs | Blog list + create |
+| GET/POST /admin/blogs/:id/edit | Edit + regenerate blog HTML |
+| POST /admin/blogs/:id/delete | Delete blog + HTML file |
+| GET/POST /admin/calculators | Calculator list + create |
+| GET/POST /admin/calculators/:id/edit | Edit + regenerate calculator HTML |
+| POST /admin/calculators/:id/delete | Delete calculator + HTML file |
+| GET /admin/seo-audit | Scans all HTML files for missing title/desc/H1/alt |
+| GET /admin/media | Media library grid |
+| POST /admin/upload | Multer image upload (10MB limit, images only) |
+| POST /admin/media/:id/delete | Delete media file + DB record |
+| POST /admin/regenerate-blogs | Regenerate all blog HTML files |
+
 ## Dependencies
-- express (Node.js package)
+- express
+- express-session
+- better-sqlite3
+- ejs
+- multer

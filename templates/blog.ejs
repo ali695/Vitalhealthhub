@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= metaTitle || title %></title>
+<meta name="description" content="<%= metaDesc %>">
+<link rel="canonical" href="https://vitalhealthhub.com/blog/<%= slug %>.html">
+<meta property="og:title" content="<%= metaTitle || title %>">
+<meta property="og:description" content="<%= metaDesc %>">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://vitalhealthhub.com/blog/<%= slug %>.html">
+<% if (image) { %><meta property="og:image" content="<%= image %>"><% } %>
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "<%= title %>",
+  "description": "<%= metaDesc %>",
+  "author": {"@type": "Person", "name": "Ali Haider"},
+  "publisher": {"@type": "Organization", "name": "VitalHealth Hub"},
+  "datePublished": "<%= createdAt %>",
+  "dateModified": "<%= updatedAt %>"<% if (image) { %>,
+  "image": "<%= image %>"<% } %>
+}
+</script>
+</head>
+<body>
+<%- nav %>
+<div class="breadcrumbs"><div class="breadcrumbs-inner">
+<a href="/">Home</a><span>/</span><a href="/blog.html">Blog</a><span>/</span><span><%= title %></span>
+</div></div>
+<article class="blog-post-page">
+<div class="blog-post-header container">
+<div class="blog-card-meta" style="margin-bottom:12px;">
+<span class="blog-card-category"><%= category %></span>
+<span style="color:var(--gray-500);font-size:0.9rem;"><%= createdAt.split('T')[0] || createdAt %></span>
+</div>
+<h1><%= title %></h1>
+<div class="blog-tags" style="margin-top:16px;"></div>
+</div>
+<% if (image) { %>
+<div class="blog-hero-image container" style="margin-top:32px;">
+<img src="<%= image %>" alt="<%= altText || title %>" title="<%= title %>" style="width:100%;max-height:480px;object-fit:cover;border-radius:12px;" loading="eager">
+</div>
+<% } %>
+<div class="container" style="padding-top:40px;padding-bottom:60px;">
+<div class="blog-post" style="max-width:860px;margin:0 auto;">
+<div class="blog-post-content">
+<%- content %>
+<div class="blog-author-box fade-in" style="margin-top:48px;">
+<div class="author-avatar">A</div>
+<div class="author-info">
+<h4>Ali Haider</h4>
+<p>Ali Haider is an SEO Consultant and Health Content Creator with a passion for making evidence-based health information accessible to everyone. He builds free health tools and writes comprehensive guides used by over 100,000 monthly readers worldwide.</p>
+<p style="margin-top:8px;"><a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" style="color:#52b788;font-size:0.85rem;">LinkedIn Profile →</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<%- footer %>
+<%- btt %>
+<script src="/js/main.js"></script>
+<%- chatbot %>
+</body>
+</html>

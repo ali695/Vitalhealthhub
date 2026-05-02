@@ -1,0 +1,112 @@
+<% var isEdit = !!calc; %>
+<% if (flash) { %>
+<div class="flash flash-<%= flash.type %>"><%= flash.msg %></div>
+<% } %>
+
+<form method="POST" action="/admin/calculators/<%= isEdit ? calc.id + '/edit' : 'new' %>">
+  <div style="display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start">
+
+    <div style="display:flex;flex-direction:column;gap:20px">
+
+      <div class="card">
+        <div class="card-header"><h2>Calculator Info</h2></div>
+        <div class="card-body">
+          <div class="form-grid">
+            <div class="form-group full">
+              <label>Calculator Title *</label>
+              <input type="text" name="title" value="<%= isEdit ? calc.title : '' %>" placeholder="e.g. BMI Calculator" required id="titleInput">
+            </div>
+            <div class="form-group full">
+              <label>URL Slug</label>
+              <input type="text" name="slug" value="<%= isEdit ? calc.slug : '' %>" placeholder="auto-generated" id="slugInput">
+              <div class="form-hint">URL: /calculators/<strong id="slugPreview"><%= isEdit ? calc.slug : 'slug' %></strong>.html</div>
+            </div>
+            <div class="form-group full">
+              <label>Description</label>
+              <textarea name="description" rows="4" placeholder="Describe what this calculator does and who it's for..."><%= isEdit ? calc.description : '' %></textarea>
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <input type="text" name="category" value="<%= isEdit ? calc.category : 'General' %>" placeholder="e.g. Weight & Body, Nutrition...">
+            </div>
+            <div class="form-group">
+              <label>Custom Canonical URL</label>
+              <input type="text" name="canonical" value="<%= isEdit ? calc.canonical : '' %>" placeholder="/calculators/slug.html">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>SEO Settings</h2></div>
+        <div class="card-body">
+          <div class="form-grid">
+            <div class="form-group full">
+              <label>Meta Title <span style="font-weight:400;text-transform:none;color:#9ca3af">(50–60 chars ideal)</span></label>
+              <input type="text" name="meta_title" id="metaTitle" value="<%= isEdit ? calc.meta_title : '' %>" placeholder="Calculator title for search engines...">
+              <div data-char-target="metaTitle" data-max="60" class="char-count"></div>
+            </div>
+            <div class="form-group full">
+              <label>Meta Description <span style="font-weight:400;text-transform:none;color:#9ca3af">(140–160 chars)</span></label>
+              <textarea name="meta_desc" id="metaDesc" rows="3" placeholder="Compelling description for search results..."><%= isEdit ? calc.meta_desc : '' %></textarea>
+              <div data-char-target="metaDesc" data-max="160" class="char-count"></div>
+            </div>
+            <div class="form-group full">
+              <label>Schema JSON (optional)</label>
+              <textarea name="schema_json" rows="5" placeholder='{"@context":"https://schema.org","@type":"WebApplication",...}'><%= isEdit ? calc.schema_json : '' %></textarea>
+              <div class="form-hint">Paste valid JSON-LD schema markup. Leave empty to skip.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="card">
+        <div class="card-header"><h2>Publish</h2></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:12px">
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <%= isEdit ? 'Save & Regenerate' : 'Create & Generate HTML' %>
+          </button>
+          <a href="/admin/calculators" class="btn btn-secondary" style="width:100%;justify-content:center">Cancel</a>
+          <% if (isEdit) { %>
+          <div style="padding-top:12px;border-top:1px solid #f3f4f6">
+            <p style="font-size:11px;color:#9ca3af;margin-bottom:8px">Generates file:</p>
+            <code style="font-size:11px;background:#f3f4f6;padding:4px 8px;border-radius:6px;display:block;word-break:break-all">/calculators/<%= calc.slug %>.html</code>
+          </div>
+          <div class="confirm-delete" style="margin-top:8px">
+            <form method="POST" action="/admin/calculators/<%= calc.id %>/delete">
+              <button type="submit" class="btn btn-danger" style="width:100%;justify-content:center">Delete Calculator</button>
+            </form>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>Note</h2></div>
+        <div class="card-body">
+          <p style="font-size:12.5px;color:#6b7280;line-height:1.7">The calculator manager handles metadata and generates an HTML wrapper page. Existing calculator JS logic is untouched.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+<script>
+const titleInput  = document.getElementById('titleInput');
+const slugInput   = document.getElementById('slugInput');
+const slugPreview = document.getElementById('slugPreview');
+function makeSlug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+<% if (!isEdit) { %>
+titleInput.addEventListener('input', function() {
+  const s = makeSlug(this.value);
+  slugInput.value = s;
+  slugPreview.textContent = s || 'slug';
+});
+<% } %>
+slugInput.addEventListener('input', function() { slugPreview.textContent = makeSlug(this.value) || 'slug'; });
+</script>

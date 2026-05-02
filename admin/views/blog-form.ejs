@@ -1,0 +1,143 @@
+<% var isEdit = !!blog; %>
+<% if (flash) { %>
+<div class="flash flash-<%= flash.type %>"><%= flash.msg %></div>
+<% } %>
+
+<form method="POST" action="/admin/blogs/<%= isEdit ? blog.id + '/edit' : 'new' %>" id="blog-form">
+  <div style="display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start">
+
+    <div style="display:flex;flex-direction:column;gap:20px">
+
+      <div class="card">
+        <div class="card-header"><h2>Post Content</h2></div>
+        <div class="card-body">
+          <div class="form-group" style="margin-bottom:16px">
+            <label>Post Title *</label>
+            <input type="text" name="title" value="<%= isEdit ? blog.title : '' %>" placeholder="Enter the post title..." required id="titleInput">
+          </div>
+          <div class="form-group" style="margin-bottom:16px">
+            <label>URL Slug</label>
+            <input type="text" name="slug" value="<%= isEdit ? blog.slug : '' %>" placeholder="auto-generated-from-title" id="slugInput">
+            <div class="form-hint">URL: /blog/<strong id="slugPreview"><%= isEdit ? blog.slug : 'slug' %></strong>.html</div>
+          </div>
+          <div class="form-group">
+            <label>Content (HTML)</label>
+            <textarea name="content" class="content-editor" placeholder="Write your blog post content here. Supports full HTML: &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;strong&gt;, etc."><%= isEdit ? blog.content : '' %></textarea>
+            <div class="form-hint">Use &lt;h2&gt; for sections, &lt;p&gt; for paragraphs, &lt;ul&gt;&lt;li&gt; for lists, &lt;strong&gt; for bold.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>SEO Settings</h2></div>
+        <div class="card-body">
+          <div class="form-grid">
+            <div class="form-group full">
+              <label>Meta Title <span style="font-weight:400;text-transform:none;color:#9ca3af">(50–60 chars ideal)</span></label>
+              <input type="text" name="meta_title" id="metaTitle" value="<%= isEdit ? blog.meta_title : '' %>" placeholder="SEO title for search engines...">
+              <div data-char-target="metaTitle" data-max="60" class="char-count"></div>
+            </div>
+            <div class="form-group full">
+              <label>Meta Description <span style="font-weight:400;text-transform:none;color:#9ca3af">(140–160 chars ideal)</span></label>
+              <textarea name="meta_desc" id="metaDesc" rows="3" placeholder="Compelling description for search results..."><%= isEdit ? blog.meta_desc : '' %></textarea>
+              <div data-char-target="metaDesc" data-max="160" class="char-count"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px">
+
+      <div class="card">
+        <div class="card-header"><h2>Publish</h2></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:12px">
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <%= isEdit ? 'Save & Regenerate HTML' : 'Publish & Generate HTML' %>
+          </button>
+          <a href="/admin/blogs" class="btn btn-secondary" style="width:100%;justify-content:center">Cancel</a>
+          <% if (isEdit) { %>
+          <div style="padding-top:12px;border-top:1px solid #f3f4f6">
+            <p style="font-size:11px;color:#9ca3af;margin-bottom:8px">Publishes to:</p>
+            <code style="font-size:11px;background:#f3f4f6;padding:4px 8px;border-radius:6px;display:block;word-break:break-all">/blog/<%= blog.slug %>.html</code>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>Post Details</h2></div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" name="category" value="<%= isEdit ? blog.category : 'General' %>" placeholder="e.g. Nutrition, Fitness, BMI...">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>Featured Image</h2></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:14px">
+          <div class="form-group">
+            <label>Image URL</label>
+            <input type="text" name="image" id="imageUrl" value="<%= isEdit ? blog.image : '' %>" placeholder="/uploads/filename.jpg or full URL">
+          </div>
+          <div class="form-group">
+            <label>Alt Text</label>
+            <input type="text" name="alt_text" value="<%= isEdit ? blog.alt_text : '' %>" placeholder="Describe the image...">
+          </div>
+          <% if (isEdit && blog.image) { %>
+          <img src="<%= blog.image %>" alt="<%= blog.alt_text %>" style="width:100%;border-radius:8px;max-height:140px;object-fit:cover" onerror="this.style.display='none'">
+          <% } %>
+          <% if (mediaFiles && mediaFiles.length > 0) { %>
+          <div>
+            <p style="font-size:11px;color:#6b7280;margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">From Media Library</p>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-height:200px;overflow-y:auto">
+              <% mediaFiles.slice(0,12).forEach(function(f) { %>
+              <img src="/uploads/<%= f.filename %>" alt="<%= f.alt_text||f.original_name %>"
+                title="Click to use"
+                style="width:100%;height:52px;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:border-color .2s"
+                onmouseover="this.style.borderColor='#2d6a4f'"
+                onmouseout="this.style.borderColor='transparent'"
+                onclick="document.getElementById('imageUrl').value='/uploads/<%= f.filename %>'">
+              <% }) %>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <% if (isEdit) { %>
+      <div class="card">
+        <div class="card-body">
+          <span class="confirm-delete">
+            <form method="POST" action="/admin/blogs/<%= blog.id %>/delete">
+              <button type="submit" class="btn btn-danger" style="width:100%;justify-content:center">Delete This Post</button>
+            </form>
+          </span>
+        </div>
+      </div>
+      <% } %>
+
+    </div>
+  </div>
+</form>
+
+<script>
+const titleInput  = document.getElementById('titleInput');
+const slugInput   = document.getElementById('slugInput');
+const slugPreview = document.getElementById('slugPreview');
+function makeSlug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+<% if (!isEdit) { %>
+titleInput.addEventListener('input', function() {
+  const s = makeSlug(this.value);
+  slugInput.value = s;
+  slugPreview.textContent = s || 'slug';
+});
+<% } %>
+slugInput.addEventListener('input', function() {
+  slugPreview.textContent = makeSlug(this.value) || 'slug';
+});
+</script>
