@@ -12,3 +12,9 @@ id = "2l-w64q6oOMBjDGl6WA8d"
 uri = "file://vitalhealth-tools-fixed.zip"
 type = "unspecified"
 title = "vitalhealth-tools-fixed.zip — Fixed WordPress Plugin"
+
+[[outputs]]
+id = "1T66DsgDMrVEgvlPb1Pn7"
+uri = "file://vitalhealth-hub-theme.zip"
+type = "unspecified"
+title = "vitalhealth-hub-theme.zip — WordPress Theme"
