@@ -1,0 +1,271 @@
+--------------------------------------------------
+TASK: CLEAN, FIX, AND POLISH CALCULATOR PAGE INTO PERFECT SAAS DESIGN
+--------------------------------------------------
+
+The current calculator page has issues:
+
+- duplicated sections
+- inconsistent colors
+- weak visual hierarchy
+- looks messy instead of premium
+
+Fix ALL of this and create a clean, structured, high-end calculator page.
+
+--------------------------------------------------
+SECTION 1: REMOVE DUPLICATE / REDUNDANT CONTENT (CRITICAL)
+--------------------------------------------------
+
+REMOVE:
+
+- duplicate headings (e.g. repeated titles like TDEE explanation)
+- repeated sections (tips / explanations showing twice)
+- unnecessary spacing blocks
+
+Ensure:
+
+- each section appears ONLY once
+- no repeated content anywhere
+
+--------------------------------------------------
+SECTION 2: PROPER PAGE STRUCTURE (CLEAN ORDER)
+--------------------------------------------------
+
+Use this EXACT order:
+
+1. Hero Section
+2. Calculator App (input + results)
+3. Insights / Results Explanation
+4. How To Use
+5. Educational Content (TDEE explanation)
+6. Tips Section
+7. FAQ
+8. Related Calculators
+9. More Calculators
+
+--------------------------------------------------
+SECTION 3: COLOR SYSTEM FIX (VERY IMPORTANT)
+--------------------------------------------------
+
+Current colors feel random → fix with strict system:
+
+--------------------------------------------------
+BACKGROUND:
+--------------------------------------------------
+
+- main: #f7f9f8 (light)
+- sections: white cards
+
+--------------------------------------------------
+HEADINGS:
+--------------------------------------------------
+
+- primary: #1f3d2b (dark green)
+- strong contrast
+
+--------------------------------------------------
+BODY TEXT:
+--------------------------------------------------
+
+- #4a4a4a (soft dark gray)
+
+--------------------------------------------------
+HIGHLIGHTS:
+--------------------------------------------------
+
+- accent green: #2e7d32
+- use only for:
+   buttons
+   important labels
+   active elements
+
+--------------------------------------------------
+CARDS:
+--------------------------------------------------
+
+- white background
+- soft shadow
+- border radius 16–20px
+
+--------------------------------------------------
+SECTION 4: TYPOGRAPHY FIX
+--------------------------------------------------
+
+Fix text readability:
+
+h1:
+- large
+- bold
+- strong spacing
+
+h2:
+- clear hierarchy
+
+p:
+- line-height: 1.6–1.8
+- readable width
+
+Remove:
+- overly bold blocks
+- dark heavy text blocks
+
+--------------------------------------------------
+SECTION 5: HERO CLEANUP
+--------------------------------------------------
+
+Make hero:
+
+- clean spacing
+- consistent with other pages
+- no overflow
+
+Ensure:
+
+- heading centered or aligned properly
+- right visual balanced
+
+--------------------------------------------------
+SECTION 6: CALCULATOR CARD IMPROVEMENT
+--------------------------------------------------
+
+Input panel:
+
+- clean spacing
+- consistent fields
+- better labels
+
+Result panel:
+
+- no placeholder duplication
+- clean empty state:
+
+"Enter your details to see results"
+
+--------------------------------------------------
+SECTION 7: RESULTS SECTION CLEANUP
+--------------------------------------------------
+
+Remove messy formatting.
+
+Use:
+
+- clean card
+- clear metrics
+- spacing between values
+
+Example:
+
+Calories: 2,300 kcal  
+Maintenance Level: Moderate  
+Activity Factor: 1.55  
+
+--------------------------------------------------
+SECTION 8: HOW TO USE SECTION (REDESIGN)
+--------------------------------------------------
+
+Current is heavy dark blocks → fix:
+
+- lighter background
+- cards instead of full-width dark bars
+- add icons
+
+--------------------------------------------------
+SECTION 9: EDUCATIONAL CONTENT (IMPORTANT)
+--------------------------------------------------
+
+Fix TDEE explanation section:
+
+- proper spacing
+- readable paragraphs
+- clear headings
+
+Add:
+
+- max-width (700–800px)
+- center content
+
+--------------------------------------------------
+SECTION 10: FAQ SECTION CLEANUP
+--------------------------------------------------
+
+Fix:
+
+- spacing
+- remove clutter
+
+Use:
+
+- accordion cards
+- white background
+- subtle border
+
+--------------------------------------------------
+SECTION 11: TIPS SECTION FIX
+--------------------------------------------------
+
+Current dark bars are too heavy.
+
+Convert into:
+
+- light cards
+- green check icons
+- clean spacing
+
+--------------------------------------------------
+SECTION 12: RELATED CALCULATORS (KEEP CLEAN)
+--------------------------------------------------
+
+- keep dark cards OR
+- convert to lighter consistent style
+
+Ensure:
+
+- consistent with rest of page
+
+--------------------------------------------------
+SECTION 13: REMOVE VISUAL NOISE
+--------------------------------------------------
+
+Remove:
+
+- unnecessary borders
+- heavy dark sections
+- random spacing
+
+--------------------------------------------------
+SECTION 14: CONSISTENCY (VERY IMPORTANT)
+--------------------------------------------------
+
+Ensure:
+
+- same spacing between sections
+- same card style
+- same typography
+- same colors
+
+--------------------------------------------------
+SECTION 15: FINAL LOOK
+--------------------------------------------------
+
+Page must feel:
+
+- clean
+- structured
+- readable
+- premium
+- product-level
+
+NOT:
+
+- cluttered
+- duplicated
+- inconsistent
+
+--------------------------------------------------
+FINAL GOAL
+--------------------------------------------------
+
+Turn calculator page into:
+
+- visually clean experience
+- consistent SaaS design
+- high-quality product page

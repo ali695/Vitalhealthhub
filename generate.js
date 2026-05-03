@@ -1099,14 +1099,40 @@ ${formFields}
 </div>
 </section>
 
-<section class="section section-alt">
+<section class="ccs-section ccs-white">
 <div class="container">
 ${calcHowToSection(calc)}
-<div class="fade-in" style="margin-top:40px;">${calc.article}</div>
-<section class="section fade-in"><div class="section-title"><h2>Frequently Asked Questions About ${n}</h2></div>${faq.html}</section>
+</div>
+</section>
+
+<section class="ccs-section ccs-gray">
+<div class="container">
+<div class="ccs-article fade-in">${calc.article}</div>
+</div>
+</section>
+
+<section class="ccs-section ccs-white">
+<div class="container">
 ${calcTipsSection(calc)}
+</div>
+</section>
+
+<section class="ccs-section ccs-gray">
+<div class="container">
+<div class="ccs-faq-wrap fade-in">
+<div class="ccs-section-heading"><h2>Frequently Asked Questions About ${n}</h2></div>
+${faq.html}
+</div>
+</div>
+</section>
+
+<section class="ccs-section ccs-white">
+<div class="container">
 ${calcRelatedCards(calc)}
-<section class="related-section fade-in"><div class="section-title"><h2>More Calculators</h2></div><div class="grid-4">${relatedHtml}</div></section>
+<div class="ccs-more-calcs fade-in">
+<div class="ccs-section-heading"><h2>More Calculators</h2></div>
+<div class="grid-4">${relatedHtml}</div>
+</div>
 </div>
 </section>
 ${FOOTER}

@@ -5728,3 +5728,185 @@ img, svg { max-width: 100%; height: auto; }
   .calc-app-grid { grid-template-columns: 1fr; }
   #result.result-box { box-shadow: none; border: 2px solid #333; }
 }
+
+/* =============================================
+   CALCULATOR CONTENT SECTIONS (CCS) — CLEAN LIGHT THEME
+   Overrides old dark seo-section/how-to/tips CSS
+   ============================================= */
+
+/* Section wrappers */
+.ccs-section { padding: 64px 0; }
+.ccs-white { background: #ffffff; }
+.ccs-gray  { background: #f7f9f8; }
+
+/* Section heading */
+.ccs-section-heading {
+  margin-bottom: 28px;
+}
+.ccs-section-heading h2,
+.ccs-section .seo-section h2,
+.ccs-section .section-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #1f3d2b;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border: none;
+}
+
+/* Override dark seo-section inside ccs-section */
+.ccs-section .seo-section {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.ccs-section .seo-section h2 {
+  color: #1f3d2b;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.65rem;
+  margin-bottom: 24px;
+}
+
+/* How-To steps — clean white step cards */
+.ccs-section .how-to-steps {
+  gap: 14px;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: step-counter;
+  display: flex;
+  flex-direction: column;
+}
+.ccs-section .how-to-steps li {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #2e7d32;
+  border-radius: 14px;
+  padding: 18px 22px;
+  color: #4a4a4a;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.ccs-section .how-to-steps li strong {
+  color: #1f3d2b;
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+/* Tips list — clean light green cards */
+.ccs-section .tips-list {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ccs-section .tips-list li {
+  background: #f0faf5;
+  border: 1px solid #c3e6cb;
+  border-left: 4px solid #2e7d32;
+  border-radius: 12px;
+  padding: 14px 18px 14px 46px;
+  color: #374151;
+  font-size: 0.93rem;
+  line-height: 1.7;
+  position: relative;
+}
+.ccs-section .tips-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2e7d32;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Article content — readable prose */
+.ccs-article {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.ccs-article h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #1f3d2b;
+  margin: 36px 0 12px;
+  font-weight: 700;
+}
+.ccs-article h3 {
+  font-size: 1.15rem;
+  color: #1f3d2b;
+  margin: 28px 0 8px;
+  font-weight: 600;
+}
+.ccs-article p {
+  color: #4a4a4a;
+  line-height: 1.85;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+.ccs-article ul, .ccs-article ol {
+  color: #4a4a4a;
+  line-height: 1.8;
+  margin: 8px 0 16px;
+  padding-left: 24px;
+}
+.ccs-article li { margin-bottom: 8px; }
+.ccs-article strong { color: #1f3d2b; }
+.ccs-article a { color: #2e7d32; }
+.ccs-article a:hover { color: #1f3d2b; }
+
+/* FAQ in ccs */
+.ccs-faq-wrap { max-width: 860px; margin: 0 auto; }
+.ccs-faq-wrap .faq-list { max-width: 100%; }
+.ccs-faq-wrap .faq-item {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: none;
+}
+.ccs-faq-wrap .faq-question { color: #1f3d2b; }
+.ccs-faq-wrap .faq-question:hover { color: #2e7d32; }
+.ccs-faq-wrap .faq-answer-inner { color: #4a4a4a; }
+
+/* Related calculators — clean white cards */
+.ccs-section .related-calc-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+}
+.ccs-section .related-calc-card:hover {
+  border-color: #2e7d32;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+  transform: translateY(-3px);
+}
+.ccs-section .related-calc-card h4 { color: #1f3d2b; font-size: 1rem; margin: 0 0 6px; }
+.ccs-section .related-calc-card p  { color: #6b7280; font-size: 0.875rem; margin: 0 0 10px; }
+.ccs-section .related-calc-card .read-more { color: #2e7d32; font-weight: 600; font-size: 0.85rem; }
+.ccs-section .related-calcs-grid { grid-template-columns: repeat(3,1fr); }
+
+/* More calculators */
+.ccs-more-calcs { margin-top: 52px; }
+.ccs-more-calcs .ccs-section-heading { margin-bottom: 24px; }
+.ccs-more-calcs .grid-4 .card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.ccs-more-calcs .grid-4 .card:hover {
+  border-color: #2e7d32;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+}
+.ccs-more-calcs .grid-4 .card h3 { color: #1f3d2b; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ccs-section { padding: 44px 0; }
+  .ccs-section .related-calcs-grid { grid-template-columns: 1fr; }
+}
