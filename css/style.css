@@ -165,6 +165,12 @@ img, svg { max-width: 100%; height: auto; }
 }
 .nav-logo {
   display: flex; align-items: center; text-decoration: none; flex-shrink: 0;
+  outline: none;
+}
+.nav-logo:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 .nav-logo-img {
   height: 44px;
@@ -7830,3 +7836,338 @@ p { color: var(--vh-text-secondary); line-height: 1.7; }
   h2 { font-size: 1.6rem !important; }
   .section { padding: 60px 0; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SECTION 12 — FULL RESPONSIVE SYSTEM (ALL DEVICES)
+   Breakpoints: Mobile ≤767px | Tablet 768–1023px | Desktop 1024px+ | Large 1440px+
+══════════════════════════════════════════════════════════════════════════ */
+
+/* ── No body offset needed — each section handles fixed header spacing internally ── */
+
+/* ── Global image responsiveness ──────────────────────────────────────── */
+img { max-width: 100%; height: auto; display: block; }
+
+/* ── Table scrollability ──────────────────────────────────────────────── */
+table { width: 100%; }
+.table-wrapper,
+.calc-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* ── Container padding ────────────────────────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* ═══════════════════════════════════════════════════
+   LARGE SCREENS (1440px+)
+═══════════════════════════════════════════════════ */
+@media (min-width: 1440px) {
+  .container { max-width: 1320px; padding: 0 40px; }
+  .nav-container { max-width: 1320px; padding: 0 40px; }
+  body { font-size: 17px; }
+  h1 { font-size: 3.5rem; }
+  h2 { font-size: 2.6rem; }
+  .section { padding: 80px 0; }
+}
+
+/* ═══════════════════════════════════════════════════
+   TABLET (768px – 1023px)
+═══════════════════════════════════════════════════ */
+@media (max-width: 1023px) and (min-width: 768px) {
+  body { font-size: 15px; }
+
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.35rem; }
+
+  .container { padding: 0 24px; }
+  .nav-container { padding: 0 24px; }
+
+  .section { padding: 60px 0; }
+
+  /* 2-col grids on tablet */
+  .home-calc-grid,
+  .home-tool-grid,
+  .home-quiz-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  .home-blog-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  .home-hw-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+  /* Calculator app 2-col → single on tablet */
+  .calc-app-grid { grid-template-columns: 1fr !important; }
+  .calc-result-panel { position: static !important; }
+
+  /* Blog hub grid */
+  .blog-hub-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  .blog-articles-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Quiz grid */
+  .quiz-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Tool grid */
+  .tool-premium-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* About */
+  .about-offer-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Hero hero padding */
+  .calc-index-hero { padding: 80px 24px 60px !important; }
+  .blog-hero { padding: 80px 24px 60px !important; }
+  .tools-saas-hero { padding: 80px 24px 60px !important; }
+  .quiz-hero { padding: 70px 24px 50px !important; }
+}
+
+/* ═══════════════════════════════════════════════════
+   MOBILE (≤767px) — Primary mobile fixes
+═══════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  /* ── Typography ────────────────────────────────── */
+  body { font-size: 14px; }
+
+  h1 { font-size: 1.9rem !important; }
+  h2 { font-size: 1.55rem !important; }
+  h3 { font-size: 1.2rem !important; }
+  h4 { font-size: 1.05rem !important; }
+
+  /* ── Container ─────────────────────────────────── */
+  .container { padding: 0 16px; }
+  .nav-container { padding: 0 16px; }
+
+  /* ── Sections ──────────────────────────────────── */
+  .section { padding: 48px 0 !important; }
+  .section-title { margin-bottom: 32px; }
+  .section-title h2 { font-size: 1.55rem; }
+  .section-title p  { font-size: 0.9rem; }
+
+  /* ── Grids → 1 column ─────────────────────────── */
+  .home-calc-grid,
+  .home-tool-grid,
+  .home-quiz-grid,
+  .home-blog-grid,
+  .home-hw-grid,
+  .home-value-grid,
+  .about-offer-grid,
+  .blog-hub-grid,
+  .blog-articles-grid,
+  .blog-popular-grid,
+  .quiz-grid,
+  .tool-premium-grid,
+  .grid-2,
+  .grid-3,
+  .grid-4 { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+  /* ── Buttons → full-width ──────────────────────── */
+  .btn,
+  .calc-index-btn-primary,
+  .calc-index-btn-outline,
+  .blog-hero-btn-primary,
+  .blog-hero-btn-outline {
+    width: 100% !important;
+    max-width: 340px;
+    justify-content: center;
+  }
+
+  /* ── Hero sections ─────────────────────────────── */
+  .calc-index-hero        { padding: 64px 16px 48px !important; text-align: center; }
+  .calc-index-hero-title  { font-size: 1.9rem !important; }
+  .calc-index-hero-sub    { font-size: 0.95rem !important; }
+  .calc-index-hero-btns   { flex-direction: column; align-items: center; gap: 12px !important; }
+  .calc-index-hero-stats  { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; margin-top: 28px; }
+
+  .blog-hero              { padding: 64px 16px 48px !important; text-align: center; }
+  .blog-hero-title        { font-size: 1.9rem !important; }
+  .blog-hero-subtitle     { font-size: 0.95rem !important; }
+  .blog-hero-btns         { flex-direction: column; align-items: center; gap: 12px !important; }
+  .blog-hero-stats        { gap: 20px; }
+
+  .tools-saas-hero        { padding: 64px 16px 48px !important; text-align: center; }
+  .tools-saas-stats       { gap: 0; }
+
+  .quiz-hero              { padding: 56px 16px 40px !important; text-align: center; }
+  .quiz-hero h1           { font-size: 1.9rem !important; }
+
+  /* ── Home hero (background image hero) ─────────── */
+  .hero { padding: 130px 0 60px !important; }
+  .hero h1 { font-size: 2rem !important; }
+  .hero p  { font-size: 0.95rem !important; }
+  .hero-cta { flex-direction: column; align-items: center; gap: 12px; }
+  .hero-cta a { width: 100%; max-width: 280px; text-align: center; }
+
+  /* ── Calculator pages ──────────────────────────── */
+  .calc-page-hero { padding: 60px 16px 36px !important; }
+  .calc-page-hero-inner { grid-template-columns: 1fr !important; }
+  .calc-page-hero-right { display: none !important; }
+  .calc-app-grid { grid-template-columns: 1fr !important; }
+  .calc-result-panel { position: static !important; top: auto; }
+  .calc-trust-pills { flex-wrap: wrap; gap: 8px; }
+
+  /* ── Blog post pages ───────────────────────────── */
+  .bp-layout { grid-template-columns: 1fr !important; }
+  .bp-sidebar { display: none; }
+  .bp-hero { min-height: 320px !important; }
+  .bp-hero-overlay h1 { font-size: 1.7rem !important; }
+
+  /* ── Cards ─────────────────────────────────────── */
+  .home-calc-card,
+  .tool-premium-card,
+  .home-quiz-card { padding: 18px 16px !important; }
+
+  .home-value-card { padding: 24px 20px !important; }
+
+  /* ── Stats strips ──────────────────────────────── */
+  .home-stats-strip-inner { grid-template-columns: repeat(2, 1fr) !important; gap: 0; }
+  .home-stat { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 16px !important; }
+
+  /* ── Blog hub ───────────────────────────────────── */
+  .blog-hub-card-img { aspect-ratio: 16/9; }
+  .blog-search-bar { flex-direction: column; gap: 8px; }
+  .blog-search-bar input { width: 100%; }
+
+  /* ── FAQ ────────────────────────────────────────── */
+  .faq-q { padding: 16px 18px !important; font-size: 0.9rem; }
+  .faq-answer-inner { padding: 0 18px 16px !important; }
+  .faq-pills { flex-wrap: wrap; gap: 8px; }
+
+  /* ── Footer ─────────────────────────────────────── */
+  .footer-grid { grid-template-columns: 1fr !important; gap: 32px; }
+  .footer-top { padding: 48px 16px 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+  /* ── Chatbot ────────────────────────────────────── */
+  #vh-chat-window {
+    width: calc(100vw - 24px) !important;
+    max-width: 360px;
+    right: 12px !important;
+    bottom: 76px !important;
+  }
+  #vh-chat-toggle { width: 52px !important; height: 52px !important; right: 16px !important; bottom: 16px !important; }
+
+  /* ── Tables ─────────────────────────────────────── */
+  table { font-size: 0.85rem; }
+  thead { display: none; }
+  tbody tr { display: block; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; padding: 12px; }
+  tbody td { display: flex; justify-content: space-between; padding: 6px 0; border: none !important; }
+  tbody td::before { content: attr(data-label); font-weight: 600; color: var(--vh-text-primary); }
+
+  /* ── Breadcrumbs ────────────────────────────────── */
+  .breadcrumbs-inner { font-size: 0.78rem; padding: 8px 16px; }
+
+  /* ── Back-to-top ────────────────────────────────── */
+  .back-to-top { right: 16px !important; bottom: 80px !important; width: 42px !important; height: 42px !important; }
+
+  /* ── About page ─────────────────────────────────── */
+  .about-hero-inner { text-align: center; }
+  .about-hero-stats { justify-content: center; flex-wrap: wrap; gap: 16px; }
+  .about-creator-inner { grid-template-columns: 1fr !important; text-align: center; }
+  .creator-avatar { margin: 0 auto; }
+
+  /* ── Contact page ───────────────────────────────── */
+  .contact-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Quizzes ────────────────────────────────────── */
+  .quiz-diff-grid { grid-template-columns: 1fr !important; gap: 12px; }
+  .quiz-options-grid { grid-template-columns: 1fr !important; }
+
+  /* ── No horizontal scroll ───────────────────────── */
+  * { max-width: 100%; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+}
+
+/* ═══════════════════════════════════════════════════
+   SMALL MOBILE (≤480px)
+═══════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  h1 { font-size: 1.7rem !important; }
+  h2 { font-size: 1.4rem !important; }
+
+  .calc-index-hero-title { font-size: 1.7rem !important; }
+  .blog-hero-title       { font-size: 1.7rem !important; }
+
+  .calc-index-hero-stats { grid-template-columns: repeat(2, 1fr) !important; }
+
+  .home-stats-strip-inner { grid-template-columns: 1fr 1fr !important; }
+
+  /* Search bars */
+  .calc-index-search-bar,
+  .blog-hero-search { padding: 10px 14px !important; }
+  .calc-index-search-bar input,
+  .blog-hero-search input { font-size: 0.85rem !important; }
+
+  /* Section padding tighter */
+  .section { padding: 40px 0 !important; }
+  .container { padding: 0 12px; }
+
+  /* Navbar logo smaller */
+  .nav-logo-img { height: 30px !important; max-width: 150px !important; }
+
+  /* Quiz result  */
+  .quiz-result-score { font-size: 3rem !important; }
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR — Mobile drawer fix
+═══════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .hamburger { display: flex !important; }
+  .nav-links {
+    position: fixed !important;
+    top: 107px !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #fff !important;
+    flex-direction: column !important;
+    padding: 20px 16px !important;
+    gap: 4px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    transition: transform 0.3s ease, opacity 0.3s ease !important;
+    pointer-events: none !important;
+    max-height: calc(100vh - 107px) !important;
+    overflow-y: auto !important;
+    z-index: 999 !important;
+  }
+  .nav-links.active {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+  }
+  .nav-links > li > a {
+    display: block !important;
+    padding: 12px 16px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    color: var(--dark) !important;
+    min-height: 44px !important;
+  }
+  .nav-links > li > a:hover {
+    background: #f0fdf4 !important;
+    color: var(--primary) !important;
+  }
+  .mega-dropdown {
+    position: static !important;
+    box-shadow: none !important;
+    border-top: none !important;
+    border-left: 3px solid #e8f5ee !important;
+    margin: 4px 0 4px 16px !important;
+    padding: 8px 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    background: transparent !important;
+    overflow: hidden !important;
+    max-height: 0 !important;
+    transition: max-height 0.3s ease !important;
+  }
+  .nav-dropdown-wrap.open .mega-dropdown {
+    max-height: 2000px !important;
+    pointer-events: all !important;
+  }
+  .mega-dropdown-inner {
+    grid-template-columns: 1fr !important;
+    padding: 8px !important;
+  }
+  .mega-col { margin-bottom: 16px; }
+  .mega-col-title { font-size: 0.82rem !important; padding: 8px 12px !important; }
+  .mega-col ul li a { padding: 7px 12px !important; font-size: 0.85rem !important; }
+}
+
