@@ -138,9 +138,21 @@
 </div></nav>
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/calculators/">Calculators</a><span>/</span><span>Keto Macro Calculator</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://vitalhealthhub.com/calculators/"},{"@type":"ListItem","position":3,"name":"Keto Macro Calculator","item":"https://vitalhealthhub.com/calculators/keto-calculator.html"}]}</script>
-<section class="section" style="padding-top:40px;">
+
+<section class="calc-page-hero">
 <div class="container">
-<div class="calc-container">
+<div class="calc-page-hero-inner">
+<div class="calc-page-hero-left">
+<span class="calc-page-hero-badge">&#9889; Instant Health Calculator</span>
+<h1 class="calc-page-hero-title">Keto Macro Calculator</h1>
+<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your ideal macros for a ketogenic diet.</p>
+<div class="calc-page-hero-pills">
+<span class="calc-pill">&#10003; Free Forever</span>
+<span class="calc-pill">&#10003; Science-Based</span>
+<span class="calc-pill">&#10003; Instant Results</span>
+</div>
+</div>
+<div class="calc-page-hero-right">
 <svg class="calc-hero-svg" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="keto-title">
     <title id="keto-title">Keto Diet Calculator</title>
     <defs>
@@ -196,24 +208,63 @@
     <path d="M480 300 L485 290 L490 300" fill="#f4a261" opacity="0.4"/>
     <path d="M510 300 L515 290 L520 300" fill="#e76f51" opacity="0.3"/>
   </svg>
-<h1 class="fade-in">Keto Macro Calculator</h1>
-<p class="fade-in" style="margin-bottom:30px;color:var(--gray-500);">Use our free keto macro calculator online to get accurate, personalized results. Calculate your ideal macros for a ketogenic diet.</p>
-<div class="calc-form fade-in">
+</div>
+</div>
+</div>
+</section>
+
+<section class="calc-app-section">
+<div class="container">
+<div class="calc-app-grid">
+
+<div class="calc-input-panel">
+<div class="calc-input-card fade-in">
+<div class="calc-input-header">
+<span class="calc-input-icon">&#128203;</span>
+<div>
+<h3 class="calc-input-title">Enter Your Details</h3>
+<p class="calc-input-sub">Fill in the fields below for instant results</p>
+</div>
+</div>
 <div class="form-group"><label for="calories">Daily Calories</label><input type="number" id="calories" placeholder="2000"></div><div class="form-group"><label for="protein">Protein per kg body weight</label><select id="protein"><option value="1.2g (Sedentary)">1.2g (Sedentary)</option><option value="1.6g (Active)">1.6g (Active)</option><option value="2.0g (Athletic)">2.0g (Athletic)</option></select></div><div class="form-group"><label for="weight">Weight (kg)</label><input type="number" id="weight" placeholder="70"></div>
-<button class="btn btn-primary" onclick="var cal=parseFloat(document.getElementById('calories').value);var w=parseFloat(document.getElementById('weight').value);var pp=document.getElementById('protein').value;if(!cal||!w){alert('Fill fields');return;}var pmult=parseFloat(pp);var protein=Math.round(w*pmult);var netCarbs=25;var carbCal=netCarbs*4;var protCal=protein*4;var fatCal=cal-carbCal-protCal;var fat=Math.round(fatCal/9);showResult('result','F:'+fat+'g P:'+protein+'g C:'+netCarbs+'g','Keto Macros','Fat: '+fat+'g ('+Math.round(fatCal/cal*100)+'%) | Protein: '+protein+'g ('+Math.round(protCal/cal*100)+'%) | Net Carbs: '+netCarbs+'g ('+Math.round(carbCal/cal*100)+'%). Keep net carbs under 25-50g to maintain ketosis.','green');" style="width:100%;justify-content:center;">Calculate Now &rarr;</button>
+<div class="calc-btn-row">
+<button class="btn btn-primary calc-submit-btn" onclick="var cal=parseFloat(document.getElementById('calories').value);var w=parseFloat(document.getElementById('weight').value);var pp=document.getElementById('protein').value;if(!cal||!w){alert('Fill fields');return;}var pmult=parseFloat(pp);var protein=Math.round(w*pmult);var netCarbs=25;var carbCal=netCarbs*4;var protCal=protein*4;var fatCal=cal-carbCal-protCal;var fat=Math.round(fatCal/9);showResult('result','F:'+fat+'g P:'+protein+'g C:'+netCarbs+'g','Keto Macros','Fat: '+fat+'g ('+Math.round(fatCal/cal*100)+'%) | Protein: '+protein+'g ('+Math.round(protCal/cal*100)+'%) | Net Carbs: '+netCarbs+'g ('+Math.round(carbCal/cal*100)+'%). Keep net carbs under 25-50g to maintain ketosis.','green');">&#9889; Calculate Results</button>
+<button class="calc-reset-btn" id="vhResetBtn" onclick="vhReset()">&#8635; Reset</button>
+</div>
+</div>
+<div class="calc-disclaimer-card fade-in">
+<span class="calc-disclaimer-icon">&#9877;&#65039;</span>
+<div>
+<strong>Medical Disclaimer</strong>
+<p>This tool is for informational purposes only. Always consult a qualified healthcare professional before making any health decisions.</p>
+</div>
+</div>
+</div>
+
+<div class="calc-result-panel">
+<div class="calc-result-placeholder" id="calcPlaceholder">
+<div class="calc-placeholder-icon">&#128200;</div>
+<h3>Your Results Appear Here</h3>
+<p>Enter your details and click <strong>Calculate Results</strong> to see your personalized health analysis.</p>
+<div class="calc-placeholder-steps">
+<div class="calc-ph-step"><span>1</span>Enter your details</div>
+<div class="calc-ph-step"><span>2</span>Click Calculate</div>
+<div class="calc-ph-step"><span>3</span>Get instant results</div>
+</div>
 </div>
 <div id="result" class="result-box">
 <div class="result-value"></div>
 <div class="result-label"></div>
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
 <div class="result-suggestion"></div>
+<div class="calc-result-actions">
+<button class="calc-action-btn" id="vhCopyBtn" onclick="vhCopyResult()"><span class="calc-action-icon">&#128203;</span> Copy</button>
+<button class="calc-action-btn" onclick="window.print()"><span class="calc-action-icon">&#128424;</span> Print</button>
+<button class="calc-action-btn" onclick="vhShareResult()"><span class="calc-action-icon">&#128279;</span> Share</button>
 </div>
-<div class="disclaimer-box fade-in">⚕️ This tool is for informational purposes only. Always consult a qualified healthcare professional for medical advice.</div>
-<div class="share-buttons">
-<a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fvitalhealthhub.com%2Fcalculators%2Fketo-calculator.html&text=Keto%20Macro%20Calculator%20-%20VitalHealth%20Hub" target="_blank" rel="noopener" class="share-btn twitter">Twitter</a>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvitalhealthhub.com%2Fcalculators%2Fketo-calculator.html" target="_blank" rel="noopener" class="share-btn facebook">Facebook</a>
-<a href="https://wa.me/?text=Keto%20Macro%20Calculator%20-%20VitalHealth%20Hub%20https%3A%2F%2Fvitalhealthhub.com%2Fcalculators%2Fketo-calculator.html" target="_blank" rel="noopener" class="share-btn whatsapp">WhatsApp</a>
 </div>
+</div>
+
 </div>
 </div>
 </section>
@@ -340,6 +391,41 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js"></script>
+<script>
+(function(){
+  function vhAutoCalc(){ var cal=parseFloat(document.getElementById('calories').value);var w=parseFloat(document.getElementById('weight').value);var pp=document.getElementById('protein').value;if(!cal||!w){alert('Fill fields');return;}var pmult=parseFloat(pp);var protein=Math.round(w*pmult);var netCarbs=25;var carbCal=netCarbs*4;var protCal=protein*4;var fatCal=cal-carbCal-protCal;var fat=Math.round(fatCal/9);showResult('result','F:'+fat+'g P:'+protein+'g C:'+netCarbs+'g','Keto Macros','Fat: '+fat+'g ('+Math.round(fatCal/cal*100)+'%) | Protein: '+protein+'g ('+Math.round(protCal/cal*100)+'%) | Net Carbs: '+netCarbs+'g ('+Math.round(carbCal/cal*100)+'%). Keep net carbs under 25-50g to maintain ketosis.','green'); }
+  window.vhReset=function(){
+    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
+    var r=document.getElementById('result');
+    if(r){r.className='result-box';}
+    var ph=document.getElementById('calcPlaceholder');
+    if(ph){ph.style.display='flex';}
+  };
+  window.vhCopyResult=function(){
+    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
+    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
+    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
+    var text=v+(l?' – '+l:'')+(s?'
+'+s:'');
+    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.innerHTML='<span class="calc-action-icon">✓</span> Copied!';setTimeout(function(){b.innerHTML='<span class="calc-action-icon">\u{1F4CB}</span> Copy';},2000);}});}
+  };
+  window.vhShareResult=function(){
+    if(navigator.share){navigator.share({title:'Keto Macro Calculator Result',url:window.location.href});}
+    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
+  };
+  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
+    el.addEventListener('change',vhAutoCalc);
+  });
+  var origShowResult=window.showResult;
+  if(origShowResult){
+    window.showResult=function(id,val,label,sugg,color){
+      origShowResult(id,val,label,sugg,color);
+      var ph=document.getElementById('calcPlaceholder');
+      if(ph){ph.style.display='none';}
+    };
+  }
+})();
+</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open Health Assistant">
 <svg id="vh-chat-icon" width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

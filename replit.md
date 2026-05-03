@@ -47,6 +47,21 @@ A complete health and wellness website built with pure HTML, CSS, and vanilla Ja
 /svgs/batch1-5.js        - 51 unique SVG illustrations (10-11 per batch)
 ```
 
+## Calculator Page Design (All 103 pages)
+Premium SaaS-style two-section layout applied to all calculator pages via `generateCalculatorPage()`:
+
+**Section 1 — Hero** (`.calc-page-hero`): dark green gradient, two-column grid
+- Left: "⚡ Instant Health Calculator" badge + calculator name (Playfair serif h1) + description + 3 trust pills (Free Forever / Science-Based / Instant Results)
+- Right: unique SVG illustration per calculator (rounded card with shadow, hidden on mobile)
+
+**Section 2 — Calculator App** (`.calc-app-section`): light background, two-column grid
+- Left column (`.calc-input-panel`): white input card with clipboard icon header, all form fields, "⚡ Calculate Results" primary button + "↺ Reset" secondary button; green-bordered medical disclaimer card below
+- Right column (`.calc-result-panel`): sticky; shows dashed-border placeholder (step indicators 1→2→3) before calculation; on calculate → placeholder hides (CSS `:has()`) and result-box slides in with color-coded result + Copy / Print / Share action buttons
+
+**JS enhancements**: inline script per page — `vhAutoCalc()` wired to every field's change event (live results); `vhReset()` clears fields + restores placeholder; `vhCopyResult()` copies result text to clipboard with "✓ Copied!" feedback; `vhShareResult()` uses Web Share API with clipboard fallback; `showResult()` intercepted to auto-hide placeholder.
+
+**Responsive**: hero right column hidden at ≤900px, stacks to single column; full print stylesheet hides non-essential elements.
+
 ## Homepage Design (index.html)
 Premium SaaS-level homepage generated via `generate.js`. Sections below hero:
 1. **Stats Strip** — dark bar: live counts of calculators, tools, articles, quizzes

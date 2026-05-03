@@ -1,0 +1,154 @@
+--------------------------------------------------
+TASK: MAKE BLOG HERO MATCH GLOBAL SAAS HERO SYSTEM
+--------------------------------------------------
+
+The blog hero section does NOT match other pages (calculators/tools).
+
+Fix it by making blog hero EXACTLY follow the same hero design system.
+
+--------------------------------------------------
+SECTION 1: USE SAME HERO STRUCTURE
+--------------------------------------------------
+
+Apply SAME structure as calculator/tools pages:
+
+- centered layout
+- same max-width container
+- same vertical spacing
+- same alignment
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+--------------------------------------------------
+SECTION 2: HERO CONTENT (UPDATED)
+--------------------------------------------------
+
+Badge:
+"📚 155+ Expert Health Articles"
+
+Heading:
+"Health & Wellness Blog"
+
+Subtext:
+"Evidence-based guides on nutrition, fitness, mental health, and more."
+
+--------------------------------------------------
+SECTION 3: SEARCH BAR (MATCH STYLE)
+--------------------------------------------------
+
+Fix search bar:
+
+.search-bar {
+  max-width: 600px;
+  margin: 20px auto;
+  display: flex;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 14px 20px;
+  border: none;
+  outline: none;
+}
+
+.search-bar button {
+  padding: 12px 24px;
+  border-radius: 40px;
+}
+
+--------------------------------------------------
+SECTION 4: ADD CTA BUTTONS (MISSING)
+--------------------------------------------------
+
+Add SAME buttons as other pages:
+
+- Browse All Articles
+- Explore Calculators
+- Take a Quiz
+
+Place below search bar.
+
+--------------------------------------------------
+SECTION 5: FIX SPACING (IMPORTANT)
+--------------------------------------------------
+
+.blog-hero {
+  padding: 100px 0 80px;
+}
+
+.blog-hero h1 {
+  margin-bottom: 20px;
+}
+
+.blog-hero p {
+  margin-bottom: 25px;
+}
+
+--------------------------------------------------
+SECTION 6: BACKGROUND CONSISTENCY
+--------------------------------------------------
+
+Use SAME gradient as other pages:
+
+background: linear-gradient(135deg, #1f5f3a, #2f7a4d);
+
+--------------------------------------------------
+SECTION 7: TYPOGRAPHY MATCH
+--------------------------------------------------
+
+Ensure:
+
+- same font family
+- same heading size
+- same weight
+
+h1:
+font-size: 48px;
+font-weight: 700;
+
+--------------------------------------------------
+SECTION 8: REMOVE LEFT OFFSET ISSUE
+--------------------------------------------------
+
+Ensure hero is centered:
+
+.blog-hero {
+  width: 100%;
+}
+
+No left margin or offset.
+
+--------------------------------------------------
+SECTION 9: FINAL CONSISTENCY CHECK
+--------------------------------------------------
+
+Ensure blog hero matches:
+
+- calculator hero
+- tools hero
+- homepage hero
+
+in:
+
+- layout
+- spacing
+- typography
+- buttons
+- colors
+
+--------------------------------------------------
+FINAL GOAL
+--------------------------------------------------
+
+Make blog hero feel like part of the SAME product system.
+
+NOT a separate page.
+
+Everything must look unified.

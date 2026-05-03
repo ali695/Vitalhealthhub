@@ -1,0 +1,295 @@
+--------------------------------------------------
+TASK: TRANSFORM ALL CALCULATOR PAGES INTO FULL SAAS APPS
+--------------------------------------------------
+
+I want you to upgrade ALL calculator pages into high-quality SaaS-style calculator applications.
+
+This must apply to ALL calculators across the site.
+
+--------------------------------------------------
+GLOBAL GOAL
+--------------------------------------------------
+
+Convert calculators into:
+
+- interactive apps
+- premium UI experiences
+- real product-level tools
+
+--------------------------------------------------
+SECTION 1: UNIFIED HERO SYSTEM (TOP SECTION)
+--------------------------------------------------
+
+Replace current calculator header with a PREMIUM HERO SECTION.
+
+--------------------------------------------------
+STRUCTURE:
+--------------------------------------------------
+
+LEFT:
+
+Badge:
+"⚡ Instant Health Calculator"
+
+Heading:
+"[Calculator Name]"
+
+Subtext:
+"Get accurate, science-based results instantly based on your inputs."
+
+--------------------------------------------------
+RIGHT (IMPORTANT):
+--------------------------------------------------
+
+Add LIVE VISUAL:
+
+- chart / graph / preview
+- example output (before calculation)
+
+--------------------------------------------------
+BACKGROUND:
+--------------------------------------------------
+
+- soft gradient (green theme)
+- subtle blur
+- consistent with homepage
+
+--------------------------------------------------
+SECTION 2: CALCULATOR APP LAYOUT (NEW STRUCTURE)
+--------------------------------------------------
+
+Create a TWO-COLUMN layout:
+
+LEFT:
+- input form
+
+RIGHT:
+- real-time results
+
+--------------------------------------------------
+SECTION 3: INPUT PANEL (UPGRADE)
+--------------------------------------------------
+
+Wrap inputs in premium card:
+
+- rounded corners (20px)
+- soft shadow
+- padding
+
+INPUT FEATURES:
+
+- icons inside fields
+- floating labels
+- validation
+- sliders (for calories, weight, etc.)
+
+--------------------------------------------------
+BUTTON SYSTEM:
+--------------------------------------------------
+
+Primary:
+"Calculate Results"
+
+Secondary:
+"Reset"
+
+Add loading animation
+
+--------------------------------------------------
+SECTION 4: REAL-TIME RESULTS PANEL (MAJOR UPGRADE)
+--------------------------------------------------
+
+Convert results into APP EXPERIENCE:
+
+--------------------------------------------------
+RESULT CARD:
+--------------------------------------------------
+
+- large headline result
+- color-coded metrics
+- progress bars / charts
+
+Example:
+
+Protein: 150g
+Carbs: 200g
+Fat: 70g
+
+--------------------------------------------------
+INTERACTIONS:
+--------------------------------------------------
+
+Add:
+
+1. COPY BUTTON
+→ copy full result text
+
+2. PRINT BUTTON
+→ clean print layout
+
+3. DOWNLOAD BUTTON (optional)
+→ PDF export
+
+4. SAVE RESULT
+→ localStorage
+
+--------------------------------------------------
+SECTION 5: LIVE UPDATE MODE (IMPORTANT)
+--------------------------------------------------
+
+Add:
+
+- results update instantly when inputs change
+- no reload needed
+
+--------------------------------------------------
+SECTION 6: VISUAL ELEMENTS (PREMIUM)
+--------------------------------------------------
+
+Add:
+
+- animated charts
+- progress bars
+- smooth transitions
+
+--------------------------------------------------
+SECTION 7: RESULT INSIGHTS (NEW)
+--------------------------------------------------
+
+Below results add:
+
+"Insights"
+
+Example:
+
+- "Your protein intake supports muscle maintenance"
+- "Your carb intake is balanced for energy"
+
+--------------------------------------------------
+SECTION 8: DISCLAIMER (UPGRADE)
+--------------------------------------------------
+
+Replace basic disclaimer with:
+
+- soft warning card
+- icon
+- better spacing
+
+--------------------------------------------------
+SECTION 9: SHARE + ACTIONS (UPGRADE)
+--------------------------------------------------
+
+Replace basic buttons with:
+
+- icon buttons
+- modern spacing
+
+Add:
+
+- Share result
+- Copy result
+- Print result
+
+--------------------------------------------------
+SECTION 10: CONTENT SECTIONS (UPGRADE)
+--------------------------------------------------
+
+--------------------------------------------------
+HOW TO USE
+--------------------------------------------------
+
+Convert into:
+
+- step cards
+- icons
+- horizontal layout
+
+--------------------------------------------------
+EDUCATIONAL CONTENT
+--------------------------------------------------
+
+Improve:
+
+- typography
+- spacing
+- headings
+
+--------------------------------------------------
+FAQ
+--------------------------------------------------
+
+- accordion style
+- smooth animation
+
+--------------------------------------------------
+TIPS
+--------------------------------------------------
+
+- checklist cards
+- icons
+
+--------------------------------------------------
+SECTION 11: RELATED CALCULATORS (UPGRADE)
+--------------------------------------------------
+
+- horizontal scroll
+- premium cards
+- hover effects
+
+--------------------------------------------------
+SECTION 12: MORE CALCULATORS GRID
+--------------------------------------------------
+
+- consistent card layout
+- icons
+- spacing
+
+--------------------------------------------------
+SECTION 13: DESIGN SYSTEM (STRICT)
+--------------------------------------------------
+
+Apply SAME design to ALL calculators:
+
+- same hero
+- same layout
+- same colors
+- same buttons
+- same spacing
+
+--------------------------------------------------
+SECTION 14: COLOR SYSTEM (IMPORTANT)
+--------------------------------------------------
+
+- headings: dark green
+- text: soft dark gray
+- highlights: green accent
+- results: color-coded
+
+--------------------------------------------------
+SECTION 15: UX IMPROVEMENTS
+--------------------------------------------------
+
+- instant feedback
+- input validation
+- error handling
+- reset button
+- focus states
+
+--------------------------------------------------
+SECTION 16: PERFORMANCE
+--------------------------------------------------
+
+- lightweight JS
+- optimized charts
+- fast loading
+
+--------------------------------------------------
+FINAL GOAL
+--------------------------------------------------
+
+Transform calculators into:
+
+- real SaaS applications
+- interactive tools
+- high-quality user experience
+- consistent product system across site

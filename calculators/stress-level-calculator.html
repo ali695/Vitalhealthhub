@@ -138,9 +138,21 @@
 </div></nav>
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/calculators/">Calculators</a><span>/</span><span>Stress Level Calculator</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://vitalhealthhub.com/calculators/"},{"@type":"ListItem","position":3,"name":"Stress Level Calculator","item":"https://vitalhealthhub.com/calculators/stress-level-calculator.html"}]}</script>
-<section class="section" style="padding-top:40px;">
+
+<section class="calc-page-hero">
 <div class="container">
-<div class="calc-container">
+<div class="calc-page-hero-inner">
+<div class="calc-page-hero-left">
+<span class="calc-page-hero-badge">&#9889; Instant Health Calculator</span>
+<h1 class="calc-page-hero-title">Stress Level Calculator</h1>
+<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Assess your current stress level with this quick quiz.</p>
+<div class="calc-page-hero-pills">
+<span class="calc-pill">&#10003; Free Forever</span>
+<span class="calc-pill">&#10003; Science-Based</span>
+<span class="calc-pill">&#10003; Instant Results</span>
+</div>
+</div>
+<div class="calc-page-hero-right">
 <svg class="calc-hero-svg" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="stress-title">
     <title id="stress-title">Stress Level Calculator</title>
     <defs>
@@ -193,24 +205,63 @@
     <circle cx="550" cy="300" r="5" fill="#52b788" opacity="0.3"/>
     <path d="M400 290 Q420 280, 440 290 Q460 300, 480 290" fill="none" stroke="#90e0ef" stroke-width="1.5" opacity="0.4"/>
   </svg>
-<h1 class="fade-in">Stress Level Calculator</h1>
-<p class="fade-in" style="margin-bottom:30px;color:var(--gray-500);">Use our free stress level calculator online to get accurate, personalized results. Assess your current stress level with this quick quiz.</p>
-<div class="calc-form fade-in">
+</div>
+</div>
+</div>
+</section>
+
+<section class="calc-app-section">
+<div class="container">
+<div class="calc-app-grid">
+
+<div class="calc-input-panel">
+<div class="calc-input-card fade-in">
+<div class="calc-input-header">
+<span class="calc-input-icon">&#128203;</span>
+<div>
+<h3 class="calc-input-title">Enter Your Details</h3>
+<p class="calc-input-sub">Fill in the fields below for instant results</p>
+</div>
+</div>
 <div class="form-group"><label for="sleep">Sleep quality (1-5, 5=great)</label><input type="number" id="sleep" placeholder="3"></div><div class="form-group"><label for="work">Work stress (1-5, 5=high)</label><input type="number" id="work" placeholder="3"></div><div class="form-group"><label for="exercise">Exercise frequency (1-5, 5=daily)</label><input type="number" id="exercise" placeholder="3"></div><div class="form-group"><label for="social">Social support (1-5, 5=strong)</label><input type="number" id="social" placeholder="3"></div><div class="form-group"><label for="worry">Worry/anxiety level (1-5, 5=high)</label><input type="number" id="worry" placeholder="3"></div>
-<button class="btn btn-primary" onclick="var sl=parseFloat(document.getElementById('sleep').value)||3;var wk=parseFloat(document.getElementById('work').value)||3;var ex=parseFloat(document.getElementById('exercise').value)||3;var so=parseFloat(document.getElementById('social').value)||3;var wo=parseFloat(document.getElementById('worry').value)||3;var score=Math.round((6-sl+wk+(6-ex)+(6-so)+wo)/5*20);var c='green',l='Low Stress',s='Your stress levels appear manageable. Continue your healthy coping strategies.';if(score>70){c='red';l='High Stress';s='Your stress score is high. Consider seeking professional support, practicing relaxation techniques, and prioritizing self-care.';}else if(score>40){c='yellow';l='Moderate Stress';s='You are experiencing moderate stress. Try incorporating mindfulness, exercise, and better sleep habits.';}showResult('result',score+'%',l,s,c);" style="width:100%;justify-content:center;">Calculate Now &rarr;</button>
+<div class="calc-btn-row">
+<button class="btn btn-primary calc-submit-btn" onclick="var sl=parseFloat(document.getElementById('sleep').value)||3;var wk=parseFloat(document.getElementById('work').value)||3;var ex=parseFloat(document.getElementById('exercise').value)||3;var so=parseFloat(document.getElementById('social').value)||3;var wo=parseFloat(document.getElementById('worry').value)||3;var score=Math.round((6-sl+wk+(6-ex)+(6-so)+wo)/5*20);var c='green',l='Low Stress',s='Your stress levels appear manageable. Continue your healthy coping strategies.';if(score>70){c='red';l='High Stress';s='Your stress score is high. Consider seeking professional support, practicing relaxation techniques, and prioritizing self-care.';}else if(score>40){c='yellow';l='Moderate Stress';s='You are experiencing moderate stress. Try incorporating mindfulness, exercise, and better sleep habits.';}showResult('result',score+'%',l,s,c);">&#9889; Calculate Results</button>
+<button class="calc-reset-btn" id="vhResetBtn" onclick="vhReset()">&#8635; Reset</button>
+</div>
+</div>
+<div class="calc-disclaimer-card fade-in">
+<span class="calc-disclaimer-icon">&#9877;&#65039;</span>
+<div>
+<strong>Medical Disclaimer</strong>
+<p>This tool is for informational purposes only. Always consult a qualified healthcare professional before making any health decisions.</p>
+</div>
+</div>
+</div>
+
+<div class="calc-result-panel">
+<div class="calc-result-placeholder" id="calcPlaceholder">
+<div class="calc-placeholder-icon">&#128200;</div>
+<h3>Your Results Appear Here</h3>
+<p>Enter your details and click <strong>Calculate Results</strong> to see your personalized health analysis.</p>
+<div class="calc-placeholder-steps">
+<div class="calc-ph-step"><span>1</span>Enter your details</div>
+<div class="calc-ph-step"><span>2</span>Click Calculate</div>
+<div class="calc-ph-step"><span>3</span>Get instant results</div>
+</div>
 </div>
 <div id="result" class="result-box">
 <div class="result-value"></div>
 <div class="result-label"></div>
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
 <div class="result-suggestion"></div>
+<div class="calc-result-actions">
+<button class="calc-action-btn" id="vhCopyBtn" onclick="vhCopyResult()"><span class="calc-action-icon">&#128203;</span> Copy</button>
+<button class="calc-action-btn" onclick="window.print()"><span class="calc-action-icon">&#128424;</span> Print</button>
+<button class="calc-action-btn" onclick="vhShareResult()"><span class="calc-action-icon">&#128279;</span> Share</button>
 </div>
-<div class="disclaimer-box fade-in">⚕️ This tool is for informational purposes only. Always consult a qualified healthcare professional for medical advice.</div>
-<div class="share-buttons">
-<a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fvitalhealthhub.com%2Fcalculators%2Fstress-level-calculator.html&text=Stress%20Level%20Calculator%20-%20VitalHealth%20Hub" target="_blank" rel="noopener" class="share-btn twitter">Twitter</a>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvitalhealthhub.com%2Fcalculators%2Fstress-level-calculator.html" target="_blank" rel="noopener" class="share-btn facebook">Facebook</a>
-<a href="https://wa.me/?text=Stress%20Level%20Calculator%20-%20VitalHealth%20Hub%20https%3A%2F%2Fvitalhealthhub.com%2Fcalculators%2Fstress-level-calculator.html" target="_blank" rel="noopener" class="share-btn whatsapp">WhatsApp</a>
 </div>
+</div>
+
 </div>
 </div>
 </section>
@@ -337,6 +388,41 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js"></script>
+<script>
+(function(){
+  function vhAutoCalc(){ var sl=parseFloat(document.getElementById('sleep').value)||3;var wk=parseFloat(document.getElementById('work').value)||3;var ex=parseFloat(document.getElementById('exercise').value)||3;var so=parseFloat(document.getElementById('social').value)||3;var wo=parseFloat(document.getElementById('worry').value)||3;var score=Math.round((6-sl+wk+(6-ex)+(6-so)+wo)/5*20);var c='green',l='Low Stress',s='Your stress levels appear manageable. Continue your healthy coping strategies.';if(score>70){c='red';l='High Stress';s='Your stress score is high. Consider seeking professional support, practicing relaxation techniques, and prioritizing self-care.';}else if(score>40){c='yellow';l='Moderate Stress';s='You are experiencing moderate stress. Try incorporating mindfulness, exercise, and better sleep habits.';}showResult('result',score+'%',l,s,c); }
+  window.vhReset=function(){
+    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
+    var r=document.getElementById('result');
+    if(r){r.className='result-box';}
+    var ph=document.getElementById('calcPlaceholder');
+    if(ph){ph.style.display='flex';}
+  };
+  window.vhCopyResult=function(){
+    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
+    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
+    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
+    var text=v+(l?' – '+l:'')+(s?'
+'+s:'');
+    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.innerHTML='<span class="calc-action-icon">✓</span> Copied!';setTimeout(function(){b.innerHTML='<span class="calc-action-icon">\u{1F4CB}</span> Copy';},2000);}});}
+  };
+  window.vhShareResult=function(){
+    if(navigator.share){navigator.share({title:'Stress Level Calculator Result',url:window.location.href});}
+    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
+  };
+  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
+    el.addEventListener('change',vhAutoCalc);
+  });
+  var origShowResult=window.showResult;
+  if(origShowResult){
+    window.showResult=function(id,val,label,sugg,color){
+      origShowResult(id,val,label,sugg,color);
+      var ph=document.getElementById('calcPlaceholder');
+      if(ph){ph.style.display='none';}
+    };
+  }
+})();
+</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open Health Assistant">
 <svg id="vh-chat-icon" width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
