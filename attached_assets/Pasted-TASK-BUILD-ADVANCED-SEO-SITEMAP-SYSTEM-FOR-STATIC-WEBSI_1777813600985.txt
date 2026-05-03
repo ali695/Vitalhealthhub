@@ -1,0 +1,157 @@
+TASK: BUILD ADVANCED SEO SITEMAP SYSTEM FOR STATIC WEBSITE (VitalHealthHub)
+
+GOAL:
+Create a professional, scalable sitemap system like RankMath/Yoast for a static site hosted on Cloudflare Pages.
+
+REQUIREMENTS:
+
+1. STRUCTURE
+Create a sitemap index file:
+
+/sitemap.xml
+
+Which references:
+
+/sitemaps/pages.xml
+/sitemaps/calculators.xml
+/sitemaps/blog.xml
+/sitemaps/tools.xml
+/sitemaps/quizzes.xml
+
+Use proper <sitemapindex> format.
+
+---
+
+2. CATEGORY DETECTION LOGIC
+
+Automatically scan project files and categorize URLs based on path:
+
+- Pages:
+  /about.html
+  /contact.html
+  /faq.html
+  /privacy.html
+  /terms.html
+
+- Calculators:
+  /calculators/*.html
+
+- Blog:
+  /blog/*.html
+
+- Tools:
+  /tools/*.html
+
+- Quizzes:
+  /quizzes/*.html
+
+---
+
+3. AUTO GENERATION SCRIPT
+
+Create a Node.js script:
+
+/scripts/generate-sitemap.js
+
+Features:
+- Scan all .html files recursively
+- Convert file paths to full URLs:
+  https://vitalhealthhub.org/...
+
+- Assign:
+  <lastmod> = current date (YYYY-MM-DD)
+  <changefreq>:
+    pages → weekly
+    calculators → monthly
+    blog → monthly
+    tools → monthly
+    quizzes → monthly
+
+- Assign:
+  <priority>:
+    homepage → 1.0
+    main sections → 0.8–0.9
+    inner pages → 0.7–0.9
+
+---
+
+4. OUTPUT FILES
+
+Generate:
+
+/public/sitemap.xml
+/public/sitemaps/pages.xml
+/public/sitemaps/calculators.xml
+/public/sitemaps/blog.xml
+/public/sitemaps/tools.xml
+/public/sitemaps/quizzes.xml
+
+---
+
+5. DOMAIN FIX
+
+Ensure ALL URLs use ONLY:
+
+https://vitalhealthhub.org/
+
+(NO .com or mixed domains)
+
+---
+
+6. ROBOTS.TXT
+
+Create:
+
+/public/robots.txt
+
+Content:
+
+User-agent: *
+Allow: /
+
+Sitemap: https://vitalhealthhub.org/sitemap.xml
+
+---
+
+7. BUILD INTEGRATION
+
+Update package.json:
+
+"scripts": {
+  "build": "node scripts/generate-sitemap.js"
+}
+
+So sitemap regenerates automatically on every deploy.
+
+---
+
+8. CLEAN OUTPUT
+
+- Remove duplicates
+- Remove invalid URLs
+- Ensure valid XML structure
+- No inline scripts inside sitemap
+
+---
+
+9. BONUS (IMPORTANT)
+
+- Exclude:
+  node_modules
+  .git
+  assets/images (non-pages)
+  js/css files
+
+- Only include real HTML pages
+
+---
+
+FINAL RESULT:
+
+A fully automated, SEO-optimized sitemap system that:
+✔ auto updates on deploy
+✔ supports 1000+ pages
+✔ improves Google indexing
+✔ matches RankMath/Yoast structure
+
+Make sure code is clean, modular, and production-ready.
