@@ -574,56 +574,149 @@
 
 <script src="/js/main.js" defer></script>
 <script>
-// ── Voice Data ──
+// ── Voice Data (expanded: 10+ per category) ──
 var VOICE_CATEGORIES = [
   { name:'Narration', icon:'🎙', voices:[
-    { name:'Deep Narrator', api:'Brian', desc:'Rich, authoritative tone for documentaries and audiobooks.' },
-    { name:'Classic Narrator', api:'Matthew', desc:'Warm, measured narration ideal for professional content.' }
+    { name:'Deep Documentary', api:'Brian', desc:'Rich, authoritative voice for documentaries and audiobooks.' },
+    { name:'Warm Female Narrator', api:'Amy', desc:'Warm British female — ideal for documentaries and guides.' },
+    { name:'News Anchor', api:'Matthew', desc:'Clear, confident broadcast tone for news and reports.' },
+    { name:'Educational Explainer', api:'Joanna', desc:'Clear and articulate — perfect for tutorials and courses.' },
+    { name:'Podcast Voice', api:'Emma', desc:'Conversational and engaging — built for podcast narration.' },
+    { name:'Clear Instructor', api:'Salli', desc:'Friendly, structured voice for online lessons.' },
+    { name:'Story Narrator Male', api:'Russell', desc:'Warm and expressive male narrator for stories.' },
+    { name:'Story Narrator Female', api:'Kimberly', desc:'Soft and engaging female narrator for storytelling.' },
+    { name:'Professional Voice', api:'Joey', desc:'Confident, neutral voice for corporate content.' },
+    { name:'Neutral Explainer', api:'Justin', desc:'Young, clear voice ideal for explainer videos.' }
   ]},
   { name:'Storytelling', icon:'📖', voices:[
-    { name:'Storyteller', api:'Russell', desc:'Expressive and engaging, perfect for fictional tales.' },
-    { name:'Adventure Voice', api:'Joey', desc:'Dynamic and energetic for action and adventure stories.' }
+    { name:'Fantasy Story Voice', api:'Russell', desc:'Dramatic and immersive — perfect for fantasy worlds.' },
+    { name:'Adventure Narrator', api:'Brian', desc:'Bold and energetic for action-packed adventures.' },
+    { name:'Emotional Story Voice', api:'Amy', desc:'Warm and emotive — great for heartfelt narratives.' },
+    { name:'Kids Story Voice', api:'Ivy', desc:'Bright and cheerful voice for children\'s bedtime stories.' },
+    { name:'Dramatic Voice', api:'Matthew', desc:'Deep and theatrical for dramatic monologues.' },
+    { name:'Calm Storytelling', api:'Joanna', desc:'Smooth, relaxed pacing for gentle stories.' },
+    { name:'Bedtime Story Voice', api:'Kendra', desc:'Soft and soothing — designed to lull listeners to sleep.' },
+    { name:'Female Story Narrator', api:'Emma', desc:'Clear, warm British female for engaging narratives.' },
+    { name:'Male Deep Story', api:'Joey', desc:'Gravelly, commanding tone for gripping tales.' },
+    { name:'Creative Narration', api:'Kimberly', desc:'Versatile female voice for creative storytelling.' }
+  ]},
+  { name:'Female Voices', icon:'🎀', voices:[
+    { name:'Warm Female Voice', api:'Amy', desc:'Warm, refined British female — universally versatile.' },
+    { name:'Soft Calm Female', api:'Joanna', desc:'Gentle and serene American female voice.' },
+    { name:'Professional Female', api:'Emma', desc:'Clear, polished British female for professional use.' },
+    { name:'Emotional Female', api:'Salli', desc:'Expressive and warm — great for emotive content.' },
+    { name:'Storytelling Female', api:'Kimberly', desc:'Engaging and vivid female for story narration.' },
+    { name:'Relaxation Female', api:'Kendra', desc:'Slow, soothing female voice for relaxation.' },
+    { name:'Confident Female', api:'Nicole', desc:'Confident Australian female with natural tone.' },
+    { name:'Friendly Female', api:'Ivy', desc:'Light and approachable for casual content.' },
+    { name:'Meditation Female', api:'Raveena', desc:'Soft Indian English accent — serene and calming.' },
+    { name:'Educational Female', api:'Salli', desc:'Clear and structured female voice for learning.' }
   ]},
   { name:'Social Media', icon:'📱', voices:[
-    { name:'Upbeat Creator', api:'Justin', desc:'Young, energetic voice ideal for YouTube and TikTok.' },
-    { name:'Friendly Host', api:'Emma', desc:'Approachable and conversational, great for podcasts.' }
-  ]},
-  { name:'Relaxation & Wellness', icon:'🧘', voices:[
-    { name:'Calm Therapist', api:'Amy', desc:'Gentle, soothing British accent for wellness content.' },
-    { name:'Wellness Guide', api:'Salli', desc:'Warm, nurturing voice perfect for health guidance.' }
+    { name:'Fast TikTok Voice', api:'Justin', desc:'Quick, punchy voice that works great for short clips.' },
+    { name:'YouTube Narrator', api:'Matthew', desc:'Warm and measured — ideal for YouTube videos.' },
+    { name:'Energetic Promo', api:'Joey', desc:'Upbeat and persuasive for product promos.' },
+    { name:'Reels Voice', api:'Ivy', desc:'Light and engaging for Instagram Reels content.' },
+    { name:'Influencer Voice', api:'Emma', desc:'Conversational British female for influencer content.' },
+    { name:'Casual Friendly', api:'Salli', desc:'Warm and relatable for everyday social content.' },
+    { name:'Modern AI Voice', api:'Brian', desc:'Deep, polished voice for tech and AI content.' },
+    { name:'Short Form Voice', api:'Justin', desc:'Sharp and direct — optimised for under 60 seconds.' },
+    { name:'Trendy Voice', api:'Kimberly', desc:'Fresh and modern female for trending topics.' },
+    { name:'Marketing Voice', api:'Russell', desc:'Confident and compelling for ads and promotions.' }
   ]},
   { name:'ASMR & Soft Voice', icon:'🌊', voices:[
-    { name:'Soft Voice', api:'Ivy', desc:'Light, breathy tone ideal for calming and ASMR content.' },
-    { name:'Gentle Whisper', api:'Kendra', desc:'Softly spoken, very calm and easy to listen to.' }
+    { name:'Soft Whisper Female', api:'Ivy', desc:'Light, breathy female voice — ideal for ASMR.' },
+    { name:'Calm ASMR Male', api:'Brian', desc:'Deep, soft male voice with relaxing delivery.' },
+    { name:'Close Mic Soft', api:'Kendra', desc:'Intimate, close-sounding soft female voice.' },
+    { name:'Slow Relaxing Voice', api:'Joanna', desc:'Unhurried and gentle — perfect for relaxation audio.' },
+    { name:'Sleep Whisper', api:'Amy', desc:'Soft British female — soothing for sleep content.' },
+    { name:'Soft Guided Relax', api:'Kimberly', desc:'Warm and gentle for guided relaxation sessions.' },
+    { name:'Light Ambient Voice', api:'Salli', desc:'Airy and calm — works well over ambient music.' },
+    { name:'Calm Narration Soft', api:'Emma', desc:'Soft British narration for mindful listening.' },
+    { name:'Deep Relax Voice', api:'Russell', desc:'Low, steady male voice for deep relaxation.' },
+    { name:'Gentle Breathing', api:'Nicole', desc:'Very soft Australian female for breathing exercises.' }
   ]},
   { name:'Sleep & Meditation', icon:'🌙', voices:[
-    { name:'Sleep Narrator', api:'Joanna', desc:'Deep, serene voice designed to guide listeners to sleep.' },
-    { name:'Meditation Guide', api:'Kimberly', desc:'Tranquil and slow-paced, perfect for guided meditation.' }
+    { name:'Sleep Narrator', api:'Joanna', desc:'Serene, slow female voice designed for sleep stories.' },
+    { name:'Meditation Guide', api:'Kimberly', desc:'Tranquil and measured — perfect for guided meditation.' },
+    { name:'Body Scan Guide', api:'Amy', desc:'Gentle British female for body scan meditations.' },
+    { name:'Mindfulness Voice', api:'Salli', desc:'Clear and calm for mindfulness and breathing sessions.' },
+    { name:'Night Calm Voice', api:'Ivy', desc:'Soft and hushed — ideal for late-night listening.' },
+    { name:'Deep Sleep Male', api:'Brian', desc:'Low, steady voice to ease listeners toward sleep.' },
+    { name:'Yoga Guide Female', api:'Raveena', desc:'Gentle Indian English female for yoga classes.' },
+    { name:'Breathing Coach', api:'Emma', desc:'Steady and calm British female for breath work.' },
+    { name:'Relaxation Script', api:'Kendra', desc:'Slow, deliberate voice for relaxation scripts.' },
+    { name:'Dream Guide', api:'Russell', desc:'Warm male voice for creative visualisation.' }
+  ]},
+  { name:'Quranic & Recitation', icon:'☪️', voices:[
+    { name:'Slow Tajweed Style', api:'Brian', desc:'Deep, measured tone suited for slow, clear recitation practice.' },
+    { name:'Deep Recitation', api:'Matthew', desc:'Rich and resonant — respectful tone for Arabic text.' },
+    { name:'Soft Recitation', api:'Joey', desc:'Gentle and clear for verse memorisation practice.' },
+    { name:'Memorisation Mode', api:'Russell', desc:'Structured, repetitive pace for learning verses.' },
+    { name:'Clear Learning Voice', api:'Justin', desc:'Neutral and articulate for educational recitation.' },
+    { name:'Calm Recitation', api:'Joanna', desc:'Calm, measured pace — soft and easy to follow along.' },
+    { name:'Structured Recitation', api:'Matthew', desc:'Steady rhythm ideal for structured recitation lessons.' },
+    { name:'Deep Echo Voice', api:'Brian', desc:'Full-bodied, deep voice for impactful delivery.' },
+    { name:'Soft Male Qari', api:'Joey', desc:'Soft male voice for quiet, contemplative recitation.' },
+    { name:'Neutral Practice', api:'Russell', desc:'Clear and even-paced for Arabic pronunciation practice.' }
   ]},
   { name:'News & Professional', icon:'📰', voices:[
-    { name:'News Anchor', api:'Matthew', desc:'Clear, confident broadcast tone for news and reports.' },
-    { name:'Corporate Voice', api:'Brian', desc:'Professional and polished for business presentations.' }
-  ]},
-  { name:'Cinematic & Trailer', icon:'🎬', voices:[
-    { name:'Epic Trailer', api:'Brian', desc:'Dramatic and powerful, built for cinematic intros.' },
-    { name:'Movie Narrator', api:'Russell', desc:'Gravelly, commanding tone for trailers and promos.' }
+    { name:'Breaking News Male', api:'Matthew', desc:'Authoritative and urgent for breaking news delivery.' },
+    { name:'Anchor Female', api:'Joanna', desc:'Polished and confident American female anchor.' },
+    { name:'Corporate Presenter', api:'Brian', desc:'Professional and measured for boardroom presentations.' },
+    { name:'Legal Narrator', api:'Russell', desc:'Serious and precise tone for legal or formal content.' },
+    { name:'Finance Explainer', api:'Joey', desc:'Clear and trustworthy for financial reports.' },
+    { name:'Tech Narrator', api:'Matthew', desc:'Crisp and modern for technology product videos.' },
+    { name:'Report Voice', api:'Emma', desc:'Neutral British female for formal reports.' },
+    { name:'Training Voice', api:'Salli', desc:'Clear instructor voice for workplace training.' },
+    { name:'Executive Voice', api:'Brian', desc:'Deep and confident for C-suite communications.' },
+    { name:'Documentary Pro', api:'Russell', desc:'Rich, seasoned voice for long-form documentary.' }
   ]},
   { name:'Characters & Fun', icon:'🎭', voices:[
-    { name:'Friendly Character', api:'Justin', desc:'Playful and expressive for animated characters.' },
-    { name:'Kids Narrator', api:'Ivy', desc:'Bright, cheerful voice for children\'s content.' }
+    { name:'AI Robot Voice', api:'Matthew', desc:'Clipped and mechanical — great for sci-fi robot characters.' },
+    { name:'Friendly Assistant', api:'Salli', desc:'Warm and helpful — perfect for AI assistant personas.' },
+    { name:'Cartoon Voice', api:'Justin', desc:'Bright and playful for animated cartoon characters.' },
+    { name:'Young Female', api:'Ivy', desc:'Light, youthful female voice for young characters.' },
+    { name:'Mature Male Voice', api:'Brian', desc:'Deep and wise — ideal for elder or mentor characters.' },
+    { name:'Sci-Fi Voice', api:'Matthew', desc:'Futuristic and measured for science fiction content.' },
+    { name:'Fantasy Character', api:'Russell', desc:'Dramatic and rich for fantasy game characters.' },
+    { name:'Villain Voice', api:'Joey', desc:'Dark and commanding for antagonist characters.' },
+    { name:'Hero Voice', api:'Brian', desc:'Confident and strong for heroic protagonists.' },
+    { name:'Soft Companion', api:'Amy', desc:'Warm and reassuring for companion character roles.' }
   ]},
-  { name:'Languages & Accents', icon:'🌍', voices:[
-    { name:'British English', api:'Amy', desc:'Refined British accent, clear and distinguished.' },
-    { name:'Australian', api:'Nicole', desc:'Warm Australian accent with natural, relaxed tone.' }
+  { name:'Cinematic & Trailer', icon:'🎬', voices:[
+    { name:'Epic Trailer Voice', api:'Brian', desc:'Massive and dramatic — built for movie trailers.' },
+    { name:'Intense Promo', api:'Joey', desc:'High-energy and punchy for short promos.' },
+    { name:'Cinematic Female', api:'Amy', desc:'Powerful British female for cinematic intros.' },
+    { name:'Action Trailer', api:'Matthew', desc:'Fast-paced and intense for action movie trailers.' },
+    { name:'Sci-Fi Trailer', api:'Russell', desc:'Deep and otherworldly for science fiction trailers.' },
+    { name:'Horror Narrator', api:'Brian', desc:'Slow and ominous — spine-chilling narration.' },
+    { name:'Drama Narrator', api:'Joanna', desc:'Emotional and measured for drama series intros.' },
+    { name:'Game Trailer Voice', api:'Joey', desc:'Bold and commanding for video game announcements.' },
+    { name:'Documentary Opener', api:'Matthew', desc:'Resonant and calm for documentary openings.' },
+    { name:'Cinematic Closer', api:'Russell', desc:'Warm and conclusive for cinematic endings.' }
   ]}
 ];
+
+// ── Voice-to-API master map ──
+var VOICE_MAP = {
+  'Brian':['Brian'],'Amy':['Amy'],'Emma':['Emma'],'Joanna':['Joanna'],
+  'Salli':['Salli'],'Kimberly':['Kimberly'],'Kendra':['Kendra'],
+  'Matthew':['Matthew'],'Justin':['Justin'],'Ivy':['Ivy'],
+  'Joey':['Joey'],'Russell':['Russell'],'Nicole':['Nicole'],
+  'Raveena':['Raveena']
+};
+
+// Fallback chain — if a voice fails, try the next
+var FALLBACK_CHAIN = ['Brian','Matthew','Amy','Joanna','Russell','Joey','Salli','Emma'];
 
 var selectedVoice = VOICE_CATEGORIES[0].voices[0];
 var isGenerating = false;
 var isHighPitch = false;
+var currentTimeout = null;
 var audioEl = document.getElementById('audioEl');
 
-// Build visualizer bars
+// ── Build Visualizer ──
 (function(){
   var viz = document.getElementById('visualizer');
   for(var i=0;i<18;i++){
@@ -635,7 +728,7 @@ var audioEl = document.getElementById('audioEl');
   }
 })();
 
-// Build sidebar
+// ── Build Sidebar ──
 (function(){
   var list=document.getElementById('catList');
   VOICE_CATEGORIES.forEach(function(cat,ci){
@@ -659,7 +752,7 @@ var audioEl = document.getElementById('audioEl');
       btn.dataset.name=v.name;
       btn.dataset.desc=v.desc;
       btn.dataset.cat=cat.name;
-      btn.innerHTML='<span class="vs-voice-name">'+v.name+'</span><span class="vs-voice-sub">'+v.api+' voice</span>';
+      btn.innerHTML='<span class="vs-voice-name">'+v.name+'</span><span class="vs-voice-sub">'+v.api+' · '+cat.name+'</span>';
       btn.addEventListener('click',function(){ selectVoice(this); });
       voices.appendChild(btn);
     });
@@ -668,50 +761,61 @@ var audioEl = document.getElementById('audioEl');
       var isOpen=voices.classList.contains('open');
       voices.classList.toggle('open',!isOpen);
       hdr.classList.toggle('open',!isOpen);
+      hdr.classList.toggle('active',!isOpen);
     });
 
     catDiv.appendChild(hdr);
     catDiv.appendChild(voices);
     list.appendChild(catDiv);
   });
+
+  // Update total voice count in header
+  var total=0;
+  VOICE_CATEGORIES.forEach(function(c){ total+=c.voices.length; });
+  var countEl=document.querySelector('.vs-sidebar-head span');
+  if(countEl) countEl.textContent=total+' voices';
+  var statEl=document.querySelector('.vs-stat strong');
+  if(statEl) statEl.textContent=total+'+';
 })();
 
 function selectVoice(btn){
   document.querySelectorAll('.vs-voice-btn').forEach(function(b){ b.classList.remove('selected'); });
   btn.classList.add('selected');
-  selectedVoice = { name: btn.dataset.name, api: btn.dataset.api, desc: btn.dataset.desc, cat: btn.dataset.cat };
-  document.getElementById('selectedBadge').textContent = selectedVoice.name;
-  document.getElementById('voiceDescTitle').textContent = selectedVoice.name;
-  document.getElementById('voiceDescText').textContent = selectedVoice.desc;
+  selectedVoice={ name:btn.dataset.name, api:btn.dataset.api, desc:btn.dataset.desc, cat:btn.dataset.cat };
+  document.getElementById('selectedBadge').textContent=selectedVoice.name;
+  document.getElementById('voiceDescTitle').textContent=selectedVoice.name;
+  document.getElementById('voiceDescText').textContent=selectedVoice.desc;
 }
 
 function useQuickPrompt(text){
-  var ta = document.getElementById('scriptInput');
-  ta.value = text;
-  document.getElementById('charCount').textContent = text.length;
+  var ta=document.getElementById('scriptInput');
+  ta.value=text;
+  updateCharCount(text.length);
   ta.focus();
 }
 
-document.getElementById('scriptInput').addEventListener('input', function(){
-  document.getElementById('charCount').textContent = this.value.length;
-});
+function updateCharCount(n){
+  var el=document.getElementById('charCount');
+  el.textContent=n;
+  el.style.color=n>450?'#f4a261':n>350?'#fbbf24':'rgba(255,255,255,.3)';
+}
 
-// Slider gradient update
-document.querySelectorAll('.vs-slider').forEach(function(s){
-  s.addEventListener('input',function(){
-    var pct=(this.value/this.max)*100;
-    this.style.background='linear-gradient(to right,#52b788 '+pct+'%,rgba(255,255,255,.15) '+pct+'%)';
-    var valEl=this.parentElement.querySelector('.vs-slider-val');
-    if(valEl) valEl.textContent=parseFloat(this.value).toFixed(1);
-  });
+document.getElementById('scriptInput').addEventListener('input',function(){
+  updateCharCount(this.value.length);
 });
 
 function showError(msg){
   var el=document.getElementById('vsError');
-  el.textContent=msg;
+  el.textContent='⚠ '+msg;
   el.style.display='block';
-  setTimeout(function(){ el.style.display='none'; },5000);
+  clearTimeout(el._t);
+  el._t=setTimeout(function(){ el.style.display='none'; },6000);
 }
+
+function hideError(){ document.getElementById('vsError').style.display='none'; }
+
+function stopBars(){ document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.remove('playing'); }); }
+function startBars(){ document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.add('playing'); }); }
 
 function setGenerating(state){
   isGenerating=state;
@@ -721,91 +825,144 @@ function setGenerating(state){
   btn.disabled=state;
   sp.style.display=state?'block':'none';
   txt.textContent=state?'Generating...':'Generate Audio';
-  document.getElementById('statusDot').className='vs-status-dot'+(state?' loading':' ready');
-  // Animate bars while loading
-  document.querySelectorAll('.vs-bar').forEach(function(b){
-    b.classList.toggle('playing',state);
-  });
+  document.getElementById('statusDot').className='vs-status-dot'+(state?' loading':selectedVoice?' ready':'');
+  if(state) startBars(); else stopBars();
+}
+
+function showPlayer(text, speed){
+  setGenerating(false);
+  stopBars();
+  document.getElementById('audioPlaceholder').style.display='none';
+  document.getElementById('audioPlayer').style.display='block';
+  document.getElementById('infoCard').style.display='block';
+  document.getElementById('outControls').style.display='grid';
+  document.getElementById('infoVoice').textContent=selectedVoice.name;
+  document.getElementById('infoCat').textContent=selectedVoice.cat||'—';
+  document.getElementById('infoLen').textContent=text.length+' chars';
+  document.getElementById('infoSpeed').textContent=parseFloat(speed).toFixed(1)+'x'+(isHighPitch?' · High Pitch':'');
+  audioEl.onplay=startBars;
+  audioEl.onpause=stopBars;
+  audioEl.onended=stopBars;
+  audioEl.play().catch(function(){});
+}
+
+function loadAudioWithFallback(text, voices, speed, attempt){
+  if(attempt>=voices.length){
+    setGenerating(false);
+    showError('Audio couldn\'t be generated. Try shorter text or a different voice.');
+    return;
+  }
+
+  var voice=voices[attempt];
+  var url='https://api.streamelements.com/kappa/v2/speech?voice='+encodeURIComponent(voice)+'&text='+encodeURIComponent(text);
+
+  // Clear previous listeners
+  audioEl.oncanplay=null;
+  audioEl.oncanplaythrough=null;
+  audioEl.onerror=null;
+  audioEl.src='';
+
+  clearTimeout(currentTimeout);
+  currentTimeout=setTimeout(function(){
+    if(isGenerating){
+      audioEl.oncanplay=null;
+      audioEl.onerror=null;
+      // Try next fallback voice
+      loadAudioWithFallback(text,voices,speed,attempt+1);
+    }
+  },10000);
+
+  audioEl.onerror=function(){
+    clearTimeout(currentTimeout);
+    loadAudioWithFallback(text,voices,speed,attempt+1);
+  };
+
+  // Use oncanplay (fires earlier than oncanplaythrough)
+  audioEl.oncanplay=function(){
+    clearTimeout(currentTimeout);
+    audioEl.oncanplay=null;
+    audioEl.playbackRate=isHighPitch?Math.min(speed*1.3,2.0):speed;
+    showPlayer(text,speed);
+  };
+
+  audioEl.src=url;
+  audioEl.load();
 }
 
 function generateAudio(){
   if(isGenerating) return;
-  var text = document.getElementById('scriptInput').value.trim();
-  if(!text){ showError('Please enter some text to convert to speech.'); return; }
-  if(text.length<2){ showError('Please enter at least a few words.'); return; }
 
-  document.getElementById('vsError').style.display='none';
+  var text=document.getElementById('scriptInput').value.trim();
+  if(!text){ showError('Please enter some text to convert to speech.'); return; }
+  if(text.length<3){ showError('Please enter at least a few words.'); return; }
+  if(text.length>500){
+    showError('Text too long — please keep it under 500 characters for best results.');
+    return;
+  }
+
+  hideError();
+
+  // Stop any playing audio
+  try{ audioEl.pause(); audioEl.currentTime=0; }catch(e){}
+
   setGenerating(true);
 
-  var apiVoice = selectedVoice.api || 'Brian';
-  var url = 'https://api.streamelements.com/kappa/v2/speech?voice='+encodeURIComponent(apiVoice)+'&text='+encodeURIComponent(text);
-  var speed = parseFloat(document.getElementById('speedSelect').value) || 1.0;
+  var speed=parseFloat(document.getElementById('speedSelect').value)||1.0;
+  var apiVoice=selectedVoice.api||'Brian';
 
-  audioEl.src = url;
-  audioEl.playbackRate = isHighPitch ? Math.min(speed*1.4, 2.0) : speed;
+  // Build fallback chain starting from selected voice
+  var voiceChain=[apiVoice];
+  FALLBACK_CHAIN.forEach(function(v){ if(v!==apiVoice) voiceChain.push(v); });
 
-  audioEl.oncanplaythrough = function(){
-    setGenerating(false);
-    document.getElementById('audioPlaceholder').style.display='none';
-    document.getElementById('audioPlayer').style.display='block';
-    document.getElementById('infoCard').style.display='block';
-    document.getElementById('outControls').style.display='grid';
-    document.getElementById('infoVoice').textContent=selectedVoice.name;
-    document.getElementById('infoCat').textContent=selectedVoice.cat||'—';
-    document.getElementById('infoLen').textContent=text.length+' chars';
-    document.getElementById('infoSpeed').textContent=speed+'x'+(isHighPitch?' (High Pitch)':'');
-    document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.remove('playing'); });
-    audioEl.play();
-    // Animate bars while playing
-    audioEl.onplay=function(){ document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.add('playing'); }); };
-    audioEl.onpause=function(){ document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.remove('playing'); }); };
-    audioEl.onended=function(){ document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.remove('playing'); }); };
-  };
-
-  audioEl.onerror = function(){
-    setGenerating(false);
-    showError('Audio generation failed. Please try again or shorten your text.');
-    document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.remove('playing'); });
-  };
-
-  // Timeout fallback
-  setTimeout(function(){
-    if(isGenerating){
-      setGenerating(false);
-      showError('Request timed out. Please try with shorter text.');
-    }
-  }, 15000);
+  loadAudioWithFallback(text,voiceChain,speed,0);
 }
 
 function generateVariation(){
-  var speed = parseFloat(document.getElementById('speedSelect').value) || 1.0;
-  audioEl.playbackRate = speed + (Math.random()*0.2 - 0.1);
-  if(audioEl.src) audioEl.play();
-  else generateAudio();
+  if(isGenerating) return;
+  var text=document.getElementById('scriptInput').value.trim();
+  if(!text){ showError('Enter some text first.'); return; }
+
+  // Pick a random voice from same category or nearby
+  var catVoices=VOICE_CATEGORIES.filter(function(c){ return c.name===selectedVoice.cat; });
+  var voice=selectedVoice;
+  if(catVoices.length&&catVoices[0].voices.length>1){
+    var others=catVoices[0].voices.filter(function(v){ return v.name!==selectedVoice.name; });
+    if(others.length) voice=others[Math.floor(Math.random()*others.length)];
+  }
+
+  hideError();
+  try{ audioEl.pause(); audioEl.currentTime=0; }catch(e){}
+  setGenerating(true);
+
+  var speed=(parseFloat(document.getElementById('speedSelect').value)||1.0)+(Math.random()*0.2-0.1);
+  speed=Math.max(0.8,Math.min(1.5,speed));
+  var voiceChain=[voice.api||'Brian'];
+  FALLBACK_CHAIN.forEach(function(v){ if(v!==voiceChain[0]) voiceChain.push(v); });
+  loadAudioWithFallback(text,voiceChain,speed,0);
 }
 
 function toggleHighPitch(){
-  isHighPitch = !isHighPitch;
-  var btn = document.getElementById('pitchBtn');
-  btn.style.background = isHighPitch ? 'rgba(82,183,136,.15)' : '';
-  btn.style.borderColor = isHighPitch ? '#52b788' : '';
-  btn.style.color = isHighPitch ? '#52b788' : '';
-  if(audioEl.src){
-    var speed = parseFloat(document.getElementById('speedSelect').value)||1.0;
-    audioEl.playbackRate = isHighPitch ? Math.min(speed*1.4,2.0) : speed;
+  isHighPitch=!isHighPitch;
+  var btn=document.getElementById('pitchBtn');
+  btn.style.background=isHighPitch?'rgba(82,183,136,.15)':'';
+  btn.style.borderColor=isHighPitch?'#52b788':'';
+  btn.style.color=isHighPitch?'#52b788':'';
+  if(audioEl.src&&!audioEl.paused){
+    var speed=parseFloat(document.getElementById('speedSelect').value)||1.0;
+    audioEl.playbackRate=isHighPitch?Math.min(speed*1.3,2.0):speed;
   }
 }
 
-function playAudio(){ if(audioEl.src) audioEl.play(); }
+function playAudio(){ if(audioEl.src) audioEl.play().catch(function(){}); }
 function pauseAudio(){ audioEl.pause(); }
-function stopAudio(){ audioEl.pause(); audioEl.currentTime=0; }
+function stopAudio(){ audioEl.pause(); try{ audioEl.currentTime=0; }catch(e){} stopBars(); }
 
 function downloadAudio(){
-  var src = audioEl.src;
-  if(!src){ showError('Generate audio first.'); return; }
+  var src=audioEl.src;
+  if(!src||src===window.location.href){ showError('Generate audio first before downloading.'); return; }
   var a=document.createElement('a');
   a.href=src;
-  a.download='vitalhealth-voice-'+Date.now()+'.mp3';
+  a.download='vitalhealth-voice-'+selectedVoice.api+'-'+Date.now()+'.mp3';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

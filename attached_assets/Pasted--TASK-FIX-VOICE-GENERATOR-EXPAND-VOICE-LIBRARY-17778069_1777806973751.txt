@@ -1,0 +1,266 @@
+--------------------------------------------------
+TASK: FIX VOICE GENERATOR + EXPAND VOICE LIBRARY
+--------------------------------------------------
+
+GOAL:
+✔ Fix audio generation errors
+✔ Improve reliability of API calls
+✔ Add 10+ presets per category
+✔ Add Qari (recitation-style) voices
+✔ Add female, ASMR, narration, storytelling voices
+✔ Improve UX and fallback system
+
+--------------------------------------------------
+SECTION 1: FIX AUDIO GENERATION ERROR (CRITICAL)
+--------------------------------------------------
+
+PROBLEM:
+"Audio generation failed"
+
+CAUSES:
+✔ text too long
+✔ API overload
+✔ no fallback handling
+
+--------------------------------------------------
+
+SOLUTION:
+
+1. LIMIT TEXT LENGTH:
+
+if (text.length > 500) {
+  alert("Please keep text under 500 characters for best performance");
+  return;
+}
+
+--------------------------------------------------
+
+2. ADD TRY / CATCH:
+
+function generateAudio() {
+
+  const text = document.getElementById("script").value;
+
+  if (!text) {
+    alert("Please enter text");
+    return;
+  }
+
+  if (text.length > 500) {
+    alert("Text too long. Keep under 500 characters.");
+    return;
+  }
+
+  const voice = getSelectedVoice();
+
+  const url = `https://api.streamelements.com/kappa/v2/speech?voice=${voice}&text=${encodeURIComponent(text)}`;
+
+  const audio = document.getElementById("audioPlayer");
+
+  audio.onerror = () => {
+    showError("Audio generation failed. Try shorter text.");
+  };
+
+  audio.src = url;
+  audio.play();
+}
+
+--------------------------------------------------
+
+3. ADD LOADING STATE:
+
+✔ disable button
+✔ show "Generating..."
+
+--------------------------------------------------
+SECTION 2: ADD VOICE LIBRARY (10+ EACH CATEGORY)
+--------------------------------------------------
+
+Create FULL preset system:
+
+--------------------------------------------------
+QURANIC RECITATION (IMPORTANT)
+--------------------------------------------------
+
+✔ Slow Tajweed Style
+✔ Deep Qari Tone
+✔ Soft Recitation
+✔ Memorization Mode
+✔ Clear Learning Voice
+✔ Calm Recitation
+✔ Structured Recitation
+✔ Deep Echo Voice
+✔ Soft Male Qari
+✔ Neutral Practice Voice
+
+NOTE:
+✔ respectful tone
+✔ no imitation of real reciters
+
+--------------------------------------------------
+ASMR & SOFT VOICE
+--------------------------------------------------
+
+✔ Soft Whisper Female
+✔ Calm ASMR Male
+✔ Gentle Breathing Voice
+✔ Close Mic Soft Voice
+✔ Slow Relaxing Speaker
+✔ Sleep Whisper Voice
+✔ Soft Guided Relaxation
+✔ Light Ambient Voice
+✔ Calm Narration Soft
+✔ Deep Relax Voice
+
+--------------------------------------------------
+NARRATION
+--------------------------------------------------
+
+✔ Deep Documentary Male
+✔ Warm Female Narrator
+✔ News Anchor Voice
+✔ Educational Explainer
+✔ Podcast Voice
+✔ Clear Instructor Voice
+✔ Story Narrator Male
+✔ Story Narrator Female
+✔ Professional Voice
+✔ Neutral Explainer
+
+--------------------------------------------------
+STORYTELLING
+--------------------------------------------------
+
+✔ Fantasy Story Voice
+✔ Adventure Narrator
+✔ Emotional Story Voice
+✔ Kids Story Voice
+✔ Dramatic Voice
+✔ Calm Storytelling
+✔ Bedtime Story Voice
+✔ Female Story Narrator
+✔ Male Deep Story Voice
+✔ Creative Narration
+
+--------------------------------------------------
+FEMALE VOICES (IMPORTANT)
+--------------------------------------------------
+
+✔ Warm Female Voice
+✔ Soft Calm Female
+✔ Professional Female
+✔ Emotional Female Voice
+✔ Storytelling Female
+✔ Relaxation Female
+✔ Confident Female Speaker
+✔ Friendly Female Voice
+✔ Guided Meditation Female
+✔ Educational Female Voice
+
+--------------------------------------------------
+SOCIAL MEDIA
+--------------------------------------------------
+
+✔ Fast TikTok Voice
+✔ YouTube Narrator
+✔ Energetic Promo Voice
+✔ Reels Voice
+✔ Influencer Voice
+✔ Casual Friendly Voice
+✔ Modern AI Voice
+✔ Short Form Voice
+✔ Trendy Voice
+✔ Marketing Voice
+
+--------------------------------------------------
+CHARACTERS
+--------------------------------------------------
+
+✔ AI Robot Voice
+✔ Friendly Assistant
+✔ Cartoon Voice
+✔ Young Female Voice
+✔ Mature Male Voice
+✔ Sci-Fi Voice
+✔ Fantasy Character Voice
+✔ Villain Voice
+✔ Hero Voice
+✔ Soft Companion Voice
+
+--------------------------------------------------
+SECTION 3: VOICE MAPPING (IMPORTANT)
+--------------------------------------------------
+
+Map ALL voices to available API voices:
+
+const voiceMap = {
+  "Deep Documentary Male": "Brian",
+  "Warm Female Voice": "Amy",
+  "News Anchor": "Matthew",
+  "Soft Female": "Joanna"
+};
+
+--------------------------------------------------
+
+Fallback:
+
+const apiVoice = voiceMap[selected] || "Brian";
+
+--------------------------------------------------
+SECTION 4: VARIATION SYSTEM (IMPORTANT)
+--------------------------------------------------
+
+Variation button:
+
+✔ slightly change speed
+✔ slightly change pitch
+
+Example:
+
+audio.playbackRate = 1.1;
+
+--------------------------------------------------
+SECTION 5: HIGH PITCH MODE
+--------------------------------------------------
+
+audio.playbackRate = 1.3;
+
+--------------------------------------------------
+SECTION 6: UX IMPROVEMENT
+--------------------------------------------------
+
+✔ error message cleaner
+✔ remove red harsh error block
+✔ show soft alert message
+
+--------------------------------------------------
+
+Example:
+
+"Audio couldn't be generated. Try shorter text."
+
+--------------------------------------------------
+SECTION 7: PERFORMANCE FIX
+--------------------------------------------------
+
+✔ prevent multiple clicks
+✔ cancel previous audio before new
+
+speechSynthesis.cancel();
+
+--------------------------------------------------
+SECTION 8: FINAL RESULT
+--------------------------------------------------
+
+✔ working audio generator
+✔ no crash errors
+✔ structured voice system
+✔ 100+ voice presets feel
+✔ clean UI + UX
+✔ scalable system
+
+--------------------------------------------------
+CONFIRMATION
+--------------------------------------------------
+
+"Voice generator fixed and advanced voice library successfully implemented"
