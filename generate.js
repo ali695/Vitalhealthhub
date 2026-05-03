@@ -245,7 +245,9 @@ const CHATBOT = `<div id="vh-chatbot">
 
 const BTT = `<button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
 
-function head(title, desc, canonical, extra = '') {
+function head(title, desc, canonical, extra = '', ogType = 'website', ogImage = null, twitterImage = null) {
+  const resolvedOgImage = ogImage || `${SITE}/images/og-default.jpg`;
+  const resolvedTwitterImage = twitterImage || resolvedOgImage;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -257,13 +259,14 @@ function head(title, desc, canonical, extra = '') {
 <link rel="canonical" href="${SITE}${canonical}">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="${ogType}">
 <meta property="og:url" content="${SITE}${canonical}">
 <meta property="og:site_name" content="${SITE_NAME}">
-<meta property="og:image" content="${SITE}/images/og-default.jpg">
+<meta property="og:image" content="${resolvedOgImage}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${desc}">
+<meta name="twitter:image" content="${resolvedTwitterImage}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://www.googletagmanager.com">
@@ -2255,14 +2258,6 @@ Table of Contents
   const relatedQuizzes = qSlugs.map(s => quizzesData.find(q => q.slug === s)).filter(Boolean).slice(0,2);
 
   const extraHead = `<meta name="keywords" content="${post.title.toLowerCase()}, ${post.category.toLowerCase()}, health guide, wellness tips, ${SITE_NAME.toLowerCase()}">
-<meta property="og:title" content="${blogTitle}">
-<meta property="og:description" content="${blogMetaDesc}">
-<meta property="og:image" content="${featImgUrl}">
-<meta property="og:type" content="article">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${blogTitle}">
-<meta name="twitter:description" content="${blogMetaDesc}">
-<meta name="twitter:image" content="${featImgUrl}">
 <script type="application/ld+json">${JSON.stringify(schema)}</script>
 ${faq.schema}`;
 
@@ -2275,7 +2270,7 @@ ${faq.schema}`;
   // Bottom related calculators (up to 3 from calcs list)
   const bottomCalcs = calcs.slice(0,3).map(s => calculators.find(c => c.slug === s)).filter(Boolean);
 
-  return `${head(blogTitle, blogMetaDesc, '/blog/'+post.slug+'.html', extraHead)}
+  return `${head(blogTitle, blogMetaDesc, '/blog/'+post.slug+'.html', extraHead, 'article', featImgUrl, featImgUrl)}
 <body>
 ${NAV}
 <div class="reading-progress"><div class="reading-progress-fill"></div></div>
@@ -2529,20 +2524,10 @@ const homeOrgSchema = {"@context":"https://schema.org","@type":"Organization","n
 const homeWebSiteSchema = {"@context":"https://schema.org","@type":"WebSite","name":SITE_NAME,"url":SITE,"description":"Free health calculators and expert wellness articles.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":SITE+"/blog.html?q={search_term_string}"},"query-input":"required name=search_term_string"}};
 const homeOgImage = "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=85";
 const homeExtraHead = `<meta name="keywords" content="health calculators, free health tools, bmi calculator, calorie calculator, wellness tools, health articles">
-<meta property="og:title" content="${SITE_NAME} - Your Guide to a Healthier Life">
-<meta property="og:description" content="Free health calculators, evidence-based articles, and wellness tools. BMI calculator, calorie counter, and 50+ tools to help you live healthier.">
-<meta property="og:image" content="${homeOgImage}">
-<meta property="og:url" content="${SITE}/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="${SITE_NAME}">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${SITE_NAME} - Your Guide to a Healthier Life">
-<meta name="twitter:description" content="Free health calculators, evidence-based articles, and wellness tools trusted by millions.">
-<meta name="twitter:image" content="${homeOgImage}">
 <script type="application/ld+json">${JSON.stringify(homeOrgSchema)}</script>
 <script type="application/ld+json">${JSON.stringify(homeWebSiteSchema)}</script>`;
 
-const indexHtml = `${head(SITE_NAME+' - Your Guide to a Healthier Life', 'Free health calculators, wellness tools, and expert health articles. BMI calculator, calorie counter, and 50+ tools to help you live healthier.', '/', homeExtraHead)}
+const indexHtml = `${head(SITE_NAME+' - Your Guide to a Healthier Life', 'Free health calculators, evidence-based articles, and wellness tools. BMI calculator, calorie counter, and 50+ tools to help you live healthier.', '/', homeExtraHead, 'website', homeOgImage, homeOgImage)}
 <body>
 ${NAV}
 
