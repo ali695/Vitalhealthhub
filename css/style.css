@@ -7291,14 +7291,16 @@ table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   border-radius: 16px;
   -webkit-overflow-scrolling: touch;
 }
+/* Override the display:block table rule — use display:table so rows fill full width */
 table {
+  display: table !important;
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
+  min-width: 0;
 }
 table thead th {
-  background: #064e3b;
-  color: #ECFDF5;
+  background: #064e3b !important;
+  color: #ECFDF5 !important;
   padding: 14px 20px;
   text-align: left;
   font-weight: 700;
@@ -7306,17 +7308,18 @@ table thead th {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-table thead th:first-child { border-radius: 16px 0 0 0; }
-table thead th:last-child  { border-radius: 0 16px 0 0; padding-right: 20px; }
-table tbody tr:nth-child(odd)  td { background: #052e1f; color: #ECFDF5; }
-table tbody tr:nth-child(even) td { background: #064e3b; color: #A7F3D0; }
+table thead th:first-child { border-radius: 8px 0 0 0; }
+table thead th:last-child  { border-radius: 0 8px 0 0; }
+table tbody tr:nth-child(odd)  { background: #052e1f; }
+table tbody tr:nth-child(odd)  td { background: #052e1f !important; color: #ECFDF5 !important; }
+table tbody tr:nth-child(even) { background: #064e3b; }
+table tbody tr:nth-child(even) td { background: #064e3b !important; color: #A7F3D0 !important; }
 table tbody td {
   padding: 12px 20px;
   font-size: 0.9rem;
-  border: none;
+  border: none !important;
   transition: background 0.15s;
 }
-table tbody td:last-child, table thead th:last-child { padding-right: 20px; }
 table tbody tr:hover td { background: #065f46 !important; color: #ECFDF5 !important; }
 
 /* ── Article/blog content tables (light override) ─────────────── */
@@ -7423,7 +7426,7 @@ p { color: #374151; line-height: 1.6; }
 }
 
 /* ── Calc embed widget ────────────────────────────────────────── */
-.calc-embed-heading { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 8px; }
+.calc-embed-heading { font-size: 1.1rem; font-weight: 700; color: #D1FAE5; margin-bottom: 8px; }
 
 /* ── Filter buttons ───────────────────────────────────────────── */
 .filter-btn:hover, .filter-btn.active {
