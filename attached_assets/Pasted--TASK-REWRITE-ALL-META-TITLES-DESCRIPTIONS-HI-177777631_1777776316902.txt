@@ -1,0 +1,121 @@
+--------------------------------------------------
+TASK: REWRITE ALL META TITLES & DESCRIPTIONS (HIGH-CTR COPYWRITING)
+--------------------------------------------------
+
+Rewrite ALL meta titles and meta descriptions across the website (calculators, tools, blogs, quizzes).
+
+GOAL:
+
+- Compete with top brands
+- Increase click-through rate (CTR)
+- Sound premium and trustworthy
+- Avoid generic AI-style text
+
+--------------------------------------------------
+RULES FOR META TITLES
+--------------------------------------------------
+
+Each title must:
+
+- be under 60 characters
+- include main keyword at the beginning
+- include a strong hook
+- include brand name: VitalHealth Hub
+
+FORMAT:
+
+[Primary Keyword] + [Power Hook] | VitalHealth Hub
+
+Examples:
+
+BMI Calculator – Get Your Accurate Result Today | VitalHealth Hub  
+TDEE Calculator – Know Your Daily Calories Instantly | VitalHealth Hub  
+Macro Calculator – Perfect Your Nutrition Plan | VitalHealth Hub  
+
+--------------------------------------------------
+TITLE COPYWRITING TECHNIQUES
+--------------------------------------------------
+
+Use:
+
+- curiosity
+- speed (instant, quick, fast)
+- accuracy (science-based, precise)
+- benefit (lose weight, improve health)
+
+Avoid:
+
+- boring phrases like "free and accurate"
+- repetition across pages
+
+--------------------------------------------------
+RULES FOR META DESCRIPTIONS
+--------------------------------------------------
+
+Each description must:
+
+- be 140–155 characters
+- include primary keyword naturally
+- include benefit-driven copy
+- include a subtle call-to-action
+
+FORMAT:
+
+- Problem → Solution → Benefit → CTA
+
+--------------------------------------------------
+DESCRIPTION COPYWRITING TECHNIQUES
+--------------------------------------------------
+
+Use:
+
+- emotional triggers (control, confidence, improvement)
+- action words (discover, calculate, optimize)
+- clarity (no fluff)
+
+Examples:
+
+Discover your exact daily calorie needs with our TDEE calculator. Make smarter nutrition decisions and optimize your results instantly.
+
+Check your BMI instantly and understand your health status. Get personalized insights to take control of your fitness journey today.
+
+--------------------------------------------------
+IMPORTANT RULES
+--------------------------------------------------
+
+- NO keyword stuffing
+- NO repetitive phrases like "100% free"
+- NO robotic sentences
+- Each meta must feel unique and human-written
+
+--------------------------------------------------
+ADVANCED OPTIMIZATION
+--------------------------------------------------
+
+For calculators:
+
+- emphasize accuracy + instant results
+
+For tools:
+
+- emphasize usefulness + productivity
+
+For blogs:
+
+- emphasize knowledge + value
+
+For quizzes:
+
+- emphasize engagement + self-discovery
+
+--------------------------------------------------
+FINAL OUTPUT
+--------------------------------------------------
+
+Rewrite ALL meta titles and descriptions across the site using these rules.
+
+Ensure:
+
+- every page has a unique meta title
+- every page has a unique description
+- all copy feels premium and competitive
