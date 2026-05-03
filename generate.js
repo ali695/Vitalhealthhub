@@ -1861,10 +1861,14 @@ console.log(`Generated ${blogPosts.length} blog posts`);
 // ========================
 const featuredCalcs = calculators.slice(0, 8);
 const featuredPosts = blogPosts.slice(0, 6);
+const popularCalcSlugs = ['bmi-calculator','calorie-calculator','macro-calculator','body-fat-calculator','tdee-calculator','water-intake-calculator','sleep-calculator','heart-rate-calculator'];
+const popularCalcs = popularCalcSlugs.map(s => calculators.find(c => c.slug === s)).filter(Boolean);
+const homeToolsDisplay = ['habit-tracker','sleep-tracker','mood-tracker','daily-planner','focus-timer','advanced-text-analyzer'].map(s => toolsData.find(t => t.slug === s)).filter(Boolean);
+const homeQuizzesDisplay = quizzesData.slice(0, 6);
 
 const homeOrgSchema = {"@context":"https://schema.org","@type":"Organization","name":SITE_NAME,"url":SITE,"email":"ma7122671@gmail.com","sameAs":["https://www.linkedin.com/in/ali-haider-seo-consultant/","https://www.facebook.com/AliHadi768","https://www.instagram.com/ali_haiderseo/"]};
 const homeWebSiteSchema = {"@context":"https://schema.org","@type":"WebSite","name":SITE_NAME,"url":SITE,"description":"Free health calculators and expert wellness articles.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":SITE+"/blog.html?q={search_term_string}"},"query-input":"required name=search_term_string"}};
-const homeOgImage = "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&q=80";
+const homeOgImage = "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=85";
 const homeExtraHead = `<meta name="keywords" content="health calculators, free health tools, bmi calculator, calorie calculator, wellness tools, health articles">
 <meta property="og:title" content="${SITE_NAME} - Your Guide to a Healthier Life">
 <meta property="og:description" content="Free health calculators, evidence-based articles, and wellness tools. BMI calculator, calorie counter, and 50+ tools to help you live healthier.">
@@ -1895,182 +1899,276 @@ ${NAV}
 </div>
 </section>
 
-<div class="home-trust-bar">
-<div class="home-trust-bar-inner">
-<span>🧮 115+ Free Tools</span>
-<span class="trust-divider">|</span>
-<span>👥 100K+ Monthly Users</span>
-<span class="trust-divider">|</span>
-<span>✅ Evidence-Based</span>
-<span class="trust-divider">|</span>
-<span>🔒 Always Free</span>
+<!-- Stats Strip -->
+<div class="home-stats-strip">
+<div class="home-stats-strip-inner">
+<div class="home-stat-item"><span class="home-stat-num">${calculators.length}+</span><span class="home-stat-lbl">Free Calculators</span></div>
+<div class="home-stat-div"></div>
+<div class="home-stat-item"><span class="home-stat-num">${toolsData.length}</span><span class="home-stat-lbl">Premium Tools</span></div>
+<div class="home-stat-div"></div>
+<div class="home-stat-item"><span class="home-stat-num">${blogPosts.length}+</span><span class="home-stat-lbl">Expert Articles</span></div>
+<div class="home-stat-div"></div>
+<div class="home-stat-item"><span class="home-stat-num">${quizzesData.length}+</span><span class="home-stat-lbl">Health Quizzes</span></div>
 </div>
 </div>
 
-<section class="stats-bar">
+<!-- Section 2: Popular Health Calculators -->
+<section class="home-pop-calcs">
 <div class="container">
-<div class="stats-grid">
-<div class="stat-item"><div class="stat-number" data-target="115" data-suffix="+">0</div><div class="stat-label">Free Tools</div></div>
-<div class="stat-item"><div class="stat-number" data-target="150" data-suffix="+">0</div><div class="stat-label">Expert Articles</div></div>
-<div class="stat-item"><div class="stat-number" data-target="1" data-suffix="M+">0</div><div class="stat-label">Trusted Users</div></div>
+<div class="home-section-head fade-in">
+<span class="home-section-badge">🧮 Top Calculators</span>
+<h2>Popular Health Calculators</h2>
+<p>Science-backed tools to understand your body and guide your wellness journey.</p>
+</div>
+<div class="home-calcs-grid">
+${popularCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="home-calc-card fade-in">
+<div class="home-calc-card-icon">${calcSvg(c.icon)}</div>
+<div class="home-calc-card-name">${c.name}</div>
+<div class="home-calc-card-desc">${c.desc}</div>
+<div class="home-calc-card-cta">Calculate <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</a>`).join('')}
+</div>
+<div class="home-section-cta"><a href="/calculators/" class="btn btn-primary">View All ${calculators.length}+ Calculators &rarr;</a></div>
+</div>
+</section>
+
+<!-- Section 3: Quick Action -->
+<section class="home-quick-action">
+<div class="container">
+<div class="home-section-head fade-in">
+<span class="home-section-badge">⚡ Get Started</span>
+<h2>What do you want to do today?</h2>
+<p>Pick a path and we'll guide you to the right tools and content.</p>
+</div>
+<div class="home-qa-grid">
+<a href="/calculators/" class="home-qa-card fade-in">
+<span class="home-qa-icon">🧮</span>
+<div class="home-qa-label">Calculate Health Metrics</div>
+<div class="home-qa-sub">BMI, calories, macros, heart rate and 100+ more free calculators</div>
+</a>
+<a href="/tools/" class="home-qa-card fade-in">
+<span class="home-qa-icon">📊</span>
+<div class="home-qa-label">Track Habits &amp; Health</div>
+<div class="home-qa-sub">Daily trackers, planners, mood logs and sleep monitoring</div>
+</a>
+<a href="/quizzes/" class="home-qa-card fade-in">
+<span class="home-qa-icon">🧠</span>
+<div class="home-qa-label">Take a Health Quiz</div>
+<div class="home-qa-sub">Test your nutrition, fitness and wellness knowledge</div>
+</a>
+<a href="/blog.html" class="home-qa-card fade-in">
+<span class="home-qa-icon">📚</span>
+<div class="home-qa-label">Read Expert Articles</div>
+<div class="home-qa-sub">Evidence-based guides on health, fitness and longevity</div>
+</a>
 </div>
 </div>
 </section>
 
-<section class="section">
+<!-- Section 4: Premium Tools -->
+<section class="home-tools-section">
 <div class="container">
-<div class="section-title fade-in"><h2>Featured Calculators</h2><p>Powerful, free health tools to help you understand your body better.</p></div>
-<div class="grid-4">
-${featuredCalcs.map(c => {
-  let badge = '';
-  if (c.slug === 'bmi-calculator') badge = '<span class="calc-badge badge-popular">⭐ Most Popular</span>';
-  else if (c.slug === 'sleep-calculator') badge = '<span class="calc-badge badge-new">🆕 New</span>';
-  return `<a href="/calculators/${c.slug}.html" class="card card-lift fade-in">${badge}<div class="card-icon">${calcSvg(c.icon)}</div><h3>${c.name}</h3><p>${c.desc}</p></a>`;
+<div class="home-section-head fade-in">
+<span class="home-section-badge">⚡ Premium Tools</span>
+<h2>Track Your Health Daily</h2>
+<p>Free tools to build lasting habits, monitor your wellness, and stay productive.</p>
+</div>
+<div class="home-tools-grid">
+${homeToolsDisplay.map(t => `<a href="/tools/${t.slug}.html" class="home-tool-card fade-in">
+<span class="home-tool-icon">${t.icon}</span>
+<div class="home-tool-name">${t.name}</div>
+<div class="home-tool-desc">${t.desc}</div>
+<div class="home-tool-cta">Use Tool &rarr;</div>
+</a>`).join('')}
+</div>
+<div class="home-section-cta"><a href="/tools/" class="btn btn-primary">Browse All ${toolsData.length} Tools &rarr;</a></div>
+</div>
+</section>
+
+<!-- Section 5: Quizzes -->
+<section class="home-quiz-section">
+<div class="container">
+<div class="home-section-head fade-in">
+<span class="home-section-badge">🧠 Test Yourself</span>
+<h2>Interactive Health Quizzes</h2>
+<p>Challenge yourself and discover what you know about your health and wellness.</p>
+</div>
+<div class="home-quiz-grid">
+${homeQuizzesDisplay.map(q => {
+  const qLen = q.questions ? q.questions.length : 8;
+  const diff = qLen <= 5 ? 'easy' : qLen <= 8 ? 'medium' : 'hard';
+  const diffLabel = diff === 'easy' ? 'Easy' : diff === 'medium' ? 'Medium' : 'Hard';
+  return `<a href="/quizzes/${q.slug}.html" class="home-quiz-card fade-in">
+<div class="home-quiz-card-top">
+<span class="home-quiz-card-icon">${q.icon}</span>
+<span class="home-quiz-card-cat">${q.category}</span>
+<span class="home-quiz-card-diff ${diff}">${diffLabel}</span>
+</div>
+<h3>${q.name}</h3>
+<p>${q.desc}</p>
+<div class="home-quiz-card-cta">Take Quiz &rarr;</div>
+</a>`;
 }).join('')}
 </div>
+<div class="home-section-cta"><a href="/quizzes/" class="btn btn-primary">View All ${quizzesData.length}+ Quizzes &rarr;</a></div>
 </div>
 </section>
 
-<section class="section section-alt">
+<!-- Section 6: Blog -->
+<section class="home-blog-v2">
 <div class="container">
-<div class="section-title fade-in"><h2>How It Works</h2><p>Three simple steps to better health insights.</p></div>
-<div class="steps-grid">
-<div class="step-item fade-in"><div class="step-number">1</div><h3>Choose a Tool</h3><p>Browse our collection of 115+ free health calculators covering nutrition, fitness, body metrics, and more.</p></div>
-<div class="step-item fade-in"><div class="step-number">2</div><h3>Enter Your Data</h3><p>Input your personal measurements and health information into our easy-to-use calculator forms.</p></div>
-<div class="step-item fade-in"><div class="step-number">3</div><h3>Get Results</h3><p>Receive instant, color-coded results with personalized suggestions and actionable health tips.</p></div>
+<div class="home-section-head fade-in">
+<span class="home-section-badge">📚 Latest Articles</span>
+<h2>Health &amp; Wellness Blog</h2>
+<p>Evidence-based guides written by experts to help you live better every day.</p>
 </div>
-</div>
-</section>
-
-<section class="section">
-<div class="container">
-<div class="section-title fade-in"><h2>Latest Articles</h2><p>Expert-written health and wellness content to guide your journey.</p></div>
-<div class="home-blog-filter fade-in">
-<button class="home-cat-btn active" onclick="homeFilterCat('all',this)">All</button>
-<button class="home-cat-btn" onclick="homeFilterCat('Body Metrics',this)">Body Metrics</button>
-<button class="home-cat-btn" onclick="homeFilterCat('Nutrition',this)">Nutrition</button>
-<button class="home-cat-btn" onclick="homeFilterCat('Fitness',this)">Fitness</button>
-<button class="home-cat-btn" onclick="homeFilterCat('Sleep',this)">Sleep</button>
-<button class="home-cat-btn" onclick="homeFilterCat('Heart Health',this)">Heart Health</button>
-</div>
-<div class="grid-3" id="homeBlogGrid">
+<div class="home-blog-v2-grid">
 ${featuredPosts.map(p => {
   const img = blogCardImage(p.slug);
-  return `<a href="/blog/${p.slug}.html" class="blog-card fade-in" data-hcat="${p.category}"><div class="blog-card-image blog-img-hover"><img src="${img.url}" alt="${p.title}" title="${p.title}" width="600" height="210" loading="lazy"></div><div class="blog-card-body"><div class="blog-card-meta"><span class="blog-card-category">${p.category}</span><span>${p.date}</span><span>${p.readTime}</span></div><h3>${p.title}</h3><p>Evidence-based insights and practical tips to guide your health journey.</p><span class="read-more">Read More &rarr;</span></div></a>`;
+  return `<a href="/blog/${p.slug}.html" class="blog-card fade-in"><div class="blog-card-image blog-img-hover"><img src="${img.url}" alt="${p.title}" title="${p.title}" width="600" height="210" loading="lazy"></div><div class="blog-card-body"><div class="blog-card-meta"><span class="blog-card-category">${p.category}</span><span>${p.readTime}</span></div><h3>${p.title}</h3><p>Evidence-based insights and practical tips to guide your health journey.</p><span class="read-more">Read More &rarr;</span></div></a>`;
 }).join('')}
 </div>
-<div style="text-align:center;margin-top:32px;">
-<a href="/blog.html" class="btn btn-highlight fade-in">View All Articles &rarr;</a>
+<div class="home-section-cta"><a href="/blog.html" class="btn btn-primary">View All ${blogPosts.length}+ Articles &rarr;</a></div>
+</div>
+</section>
+
+<!-- Section 7: How It Works -->
+<section class="home-how-works">
+<div class="container">
+<div class="home-section-head fade-in">
+<span class="home-section-badge">💡 Simple Process</span>
+<h2>Get Results in 3 Simple Steps</h2>
+<p>From choosing a tool to getting personalised insights — it takes under a minute.</p>
+</div>
+<div class="home-hw-grid">
+<div class="home-hw-step fade-in">
+<span class="home-hw-num">Step 01</span>
+<div class="home-hw-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="8" width="36" height="32" rx="4" stroke="white" stroke-width="2.5"/><path d="M14 18h20M14 24h20M14 30h12" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+<h3>Choose a Tool or Calculator</h3>
+<p>Browse ${calculators.length}+ free health calculators, ${toolsData.length} tracking tools, and ${quizzesData.length} quizzes across every health category.</p>
+</div>
+<div class="home-hw-step fade-in">
+<span class="home-hw-num">Step 02</span>
+<div class="home-hw-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><path d="M16 8h16v8H16zM12 16h24v24H12z" stroke="white" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 26h8M20 31h5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+<h3>Enter Your Data</h3>
+<p>Input your personal measurements or health information into our simple, intuitive forms — no account needed.</p>
+</div>
+<div class="home-hw-step fade-in">
+<span class="home-hw-num">Step 03</span>
+<div class="home-hw-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><path d="M8 36l10-12 8 8 12-16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="38" cy="12" r="4" stroke="white" stroke-width="2.5"/></svg></div>
+<h3>Get Instant Results</h3>
+<p>Receive colour-coded results, personalised recommendations, and actionable health insights right away.</p>
+</div>
 </div>
 </div>
 </section>
 
-<section class="trust-section">
+<!-- Section 8: Why VitalHealth Hub -->
+<section class="home-value-section">
 <div class="container">
-<div class="section-title fade-in"><h2>Why Millions Trust VitalHealth Hub</h2></div>
-<div class="trust-grid">
-<div class="trust-item fade-in">
-<span class="trust-icon">🔬</span>
-<h3>Evidence-Based Content</h3>
-<p>All tools and articles are grounded in peer-reviewed medical research and validated formulas from leading health organizations.</p>
+<div class="home-section-head fade-in">
+<span class="home-section-badge" style="background:rgba(255,255,255,0.1);color:#c8e6d4;">⭐ Why Choose Us</span>
+<h2>Why VitalHealth Hub?</h2>
+<p>We built this so you get the tools you need — without the paywalls, sign-ups, or noise.</p>
 </div>
-<div class="trust-item fade-in">
-<span class="trust-icon">👨‍⚕️</span>
-<h3>Professionally Reviewed</h3>
-<p>Content reviewed by certified health and wellness professionals to ensure accuracy, safety, and practical value for our users.</p>
+<div class="home-value-grid">
+<div class="home-value-card fade-in">
+<span class="home-value-icon">⚡</span>
+<h3>Instant Results</h3>
+<p>All calculations happen in your browser. No loading, no servers — results in milliseconds.</p>
 </div>
-<div class="trust-item fade-in">
-<span class="trust-icon">🆓</span>
+<div class="home-value-card fade-in">
+<span class="home-value-icon">🔬</span>
+<h3>Science-Based</h3>
+<p>Every tool uses validated medical formulas from WHO, NIH, and peer-reviewed research.</p>
+</div>
+<div class="home-value-card fade-in">
+<span class="home-value-icon">🆓</span>
 <h3>Free Forever</h3>
-<p>No paywalls, no subscriptions, no hidden fees — all 115+ health calculators and 100+ articles are always 100% free to use.</p>
+<p>No paywalls, no subscriptions, no hidden fees. All ${calculators.length}+ tools and articles, always free.</p>
+</div>
+<div class="home-value-card fade-in">
+<span class="home-value-icon">🔒</span>
+<h3>No Signup Needed</h3>
+<p>Your health data stays on your device. We never collect, store, or share any personal information.</p>
 </div>
 </div>
 </div>
 </section>
 
-<section class="reviews-section">
+<!-- Section 9: Testimonials -->
+<section class="home-reviews-v2">
 <div class="container">
-<div class="reviews-header fade-in">
+<div class="home-reviews-header fade-in">
 <h2>What Our Users Say</h2>
-<div class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-<p class="rating-text">Rated 4.9/5 based on 2,400+ reviews</p>
+<div class="home-reviews-rating">
+<span class="home-reviews-stars">★★★★★</span>
+<span class="home-reviews-score">4.9</span>
+<span class="home-reviews-count">based on 2,400+ reviews</span>
 </div>
-<div class="reviews-scroll">
-<div class="review-card fade-in">
-<span class="quote-mark">&ldquo;</span>
-<div class="review-card-header">
-<div class="review-avatar" style="background:#d8f3dc;"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
-<div><div class="review-name">Jessica M.</div><div class="review-location">New York, USA</div></div>
 </div>
-<div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-<p class="review-text">${SITE_NAME} completely changed how I approach my health. The BMI and calorie calculators are incredibly intuitive. I lost 15 pounds in 3 months just by tracking my TDEE and following the nutrition articles. The results are color-coded and come with personalized suggestions that actually make sense. I recommend it to everyone at my school!</p>
-<div class="review-date">Reviewed on January 12, 2024</div>
-<div class="review-verified"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="8" r="7" fill="#52b788"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified User</div>
+<div class="home-reviews-grid">
+<div class="home-review-card fade-in">
+<div class="home-review-stars">★★★★★</div>
+<p class="home-review-text">"${SITE_NAME} completely changed how I approach my health. The BMI and calorie calculators are incredibly intuitive. I lost 15 pounds in 3 months just by tracking my TDEE and following the nutrition articles. The results come with personalised suggestions that actually make sense."</p>
+<div class="home-review-author">
+<div class="home-review-avatar"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
+<div>
+<div class="home-review-name">Jessica M.</div>
+<div class="home-review-loc">New York, USA</div>
+<div class="home-review-verified"><svg viewBox="0 0 16 16" width="12" height="12" fill="none"><circle cx="8" cy="8" r="7" fill="#52b788"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified User</div>
 </div>
-<div class="review-card fade-in">
-<span class="quote-mark">&ldquo;</span>
-<div class="review-card-header">
-<div class="review-avatar" style="background:#b7e4c7;"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
-<div><div class="review-name">Michael R.</div><div class="review-location">London, UK</div></div>
 </div>
-<div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-<p class="review-text">As a personal trainer, I use the TDEE and macro calculators with all my clients. The accuracy is impressive compared to other free tools. The blog articles on strength training and protein intake are backed by real research, not bro-science. I have bookmarked at least 20 articles. The one-rep-max calculator is spot-on with my actual gym numbers.</p>
-<div class="review-date">Reviewed on February 3, 2024</div>
-<div class="review-verified"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="8" r="7" fill="#52b788"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified User</div>
 </div>
-<div class="review-card fade-in">
-<span class="quote-mark">&ldquo;</span>
-<div class="review-card-header">
-<div class="review-avatar" style="background:#f0faf2;"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
-<div><div class="review-name">Dr. Emily K.</div><div class="review-location">Toronto, Canada</div></div>
+<div class="home-review-card fade-in">
+<div class="home-review-stars">★★★★★</div>
+<p class="home-review-text">"As a personal trainer, I use the TDEE and macro calculators with all my clients. The accuracy is impressive compared to other free tools. The blog articles on strength training are backed by real research — not bro-science. An essential resource."</p>
+<div class="home-review-author">
+<div class="home-review-avatar"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
+<div>
+<div class="home-review-name">Michael R.</div>
+<div class="home-review-loc">London, UK</div>
+<div class="home-review-verified"><svg viewBox="0 0 16 16" width="12" height="12" fill="none"><circle cx="8" cy="8" r="7" fill="#52b788"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified User</div>
 </div>
-<div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-<p class="review-text">I am a family medicine physician and I routinely recommend ${SITE_NAME} to my patients. The calculators use medically validated formulas (Mifflin-St Jeor for BMR, standard BMI equations) and clearly state they are not a substitute for medical advice. The sleep calculator helped several of my patients with insomnia understand their sleep cycles better. Excellent free resource.</p>
-<div class="review-date">Reviewed on March 18, 2024</div>
-<div class="review-verified"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="8" r="7" fill="#52b788"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified User</div>
 </div>
-<div class="review-card fade-in">
-<span class="quote-mark">&ldquo;</span>
-<div class="review-card-header">
-<div class="review-avatar" style="background:#d8f3dc;"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
-<div><div class="review-name">Sarah L.</div><div class="review-location">Sydney, Australia</div></div>
 </div>
-<div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-<p class="review-text">I have been using ${SITE_NAME} for six months during my pregnancy. The pregnancy due date calculator was accurate to within 2 days of my ultrasound date. The pregnancy nutrition guide helped me plan balanced meals during each trimester. I also love the water intake calculator — it adjusted recommendations for pregnancy. My only wish is a mobile app for offline use!</p>
-<div class="review-date">Reviewed on April 5, 2024</div>
-<div class="review-verified"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="8" r="7" fill="#52b788"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified User</div>
+<div class="home-review-card fade-in">
+<div class="home-review-stars">★★★★★</div>
+<p class="home-review-text">"I'm a family medicine physician and I routinely recommend ${SITE_NAME} to my patients. The calculators use medically validated formulas and clearly state they are not a substitute for medical advice. The sleep calculator helped several patients understand their sleep cycles. Excellent free resource."</p>
+<div class="home-review-author">
+<div class="home-review-avatar"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
+<div>
+<div class="home-review-name">Dr. Emily K.</div>
+<div class="home-review-loc">Toronto, Canada</div>
+<div class="home-review-verified"><svg viewBox="0 0 16 16" width="12" height="12" fill="none"><circle cx="8" cy="8" r="7" fill="#52b788"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified User</div>
 </div>
-<div class="review-card fade-in">
-<span class="quote-mark">&ldquo;</span>
-<div class="review-card-header">
-<div class="review-avatar" style="background:#b7e4c7;"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
-<div><div class="review-name">David T.</div><div class="review-location">Chicago, USA</div></div>
 </div>
-<div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-<p class="review-text">After my doctor flagged my cholesterol levels, I found the cholesterol risk calculator and heart health articles on ${SITE_NAME}. They helped me understand what my numbers meant and motivated me to change my diet. Six months later, my LDL dropped by 30 points. The blood pressure checker and diabetes risk tools also gave me peace of mind. Truly a life-changing resource.</p>
-<div class="review-date">Reviewed on May 22, 2024</div>
-<div class="review-verified"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="8" r="7" fill="#52b788"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified User</div>
 </div>
 </div>
 </div>
 </section>
 
-<section class="newsletter">
-<div class="container">
-<h2 class="fade-in">Stay Updated with Health Tips</h2>
-<p class="fade-in">Join our newsletter for weekly health insights, new calculator launches, and expert wellness advice.</p>
-<form class="newsletter-form fade-in" onsubmit="event.preventDefault();alert('Thank you for subscribing!');">
+<!-- Section 10: Newsletter -->
+<section class="home-newsletter-v2">
+<div class="home-newsletter-v2-inner">
+<h2>Stay Updated with Health Tips</h2>
+<p>Weekly health insights, new calculator launches, and expert wellness advice — delivered to your inbox.</p>
+<form class="home-newsletter-form-v2" onsubmit="event.preventDefault();alert('Thank you for subscribing!');">
 <input type="email" placeholder="Enter your email address" required>
-<button type="submit" class="btn btn-highlight">Subscribe</button>
+<button type="submit">Subscribe</button>
 </form>
+<small>No spam, ever. Unsubscribe at any time.</small>
 </div>
 </section>
 
-<section class="section">
-<div class="container">
-<div class="health-tip fade-in">
-<h3>Health Tip of the Day</h3>
-<p>Walking just 30 minutes a day can reduce your risk of heart disease by up to 35%, improve your mood, strengthen your bones, and boost your immune system. Start with a 10-minute walk and gradually increase your duration.</p>
+<!-- Section 11: Final CTA -->
+<section class="home-final-cta">
+<div class="fade-in">
+<h2>Start improving your health today</h2>
+<p>Free tools, science-backed insights — no account, no cost, no limits.</p>
+<div class="home-final-cta-btns">
+<a href="/calculators/" class="btn btn-primary btn-pulse">Explore Calculators</a>
+<a href="/quizzes/" class="btn btn-highlight">Take a Quiz</a>
 </div>
 </div>
 </section>

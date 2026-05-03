@@ -47,7 +47,23 @@ A complete health and wellness website built with pure HTML, CSS, and vanilla Ja
 /svgs/batch1-5.js        - 51 unique SVG illustrations (10-11 per batch)
 ```
 
-## Total Pages: 315
+## Homepage Design (index.html)
+Premium SaaS-level homepage generated via `generate.js`. Sections below hero:
+1. **Stats Strip** — dark bar: live counts of calculators, tools, articles, quizzes
+2. **Popular Health Calculators** — 8 specific cards (BMI, Calorie, Macro, Body Fat, TDEE, Water, Sleep, Heart Rate) with SVG icon, name, desc, "Calculate →" CTA; 4-col grid
+3. **Quick Action** — 4 SaaS cards: Calculate / Track / Quiz / Read; links to main sections
+4. **Premium Tools** — 6 tool cards (Habit Tracker, Sleep Tracker, Mood Tracker, Daily Planner, Focus Timer, Text Analyzer); 3-col grid
+5. **Interactive Quizzes** — first 6 quizzes; larger cards with category badge + difficulty tag (easy/medium/hard)
+6. **Blog** — first 6 posts; 3-col grid with category, read time, image
+7. **How It Works** — 3 steps with gradient circle icons + connecting line; Step 01/02/03
+8. **Why VitalHealth Hub?** — dark green section; 4 value cards (Instant Results, Science-Based, Free Forever, No Signup)
+9. **Testimonials** — 3 review cards; cleaner design with stars, italic quote, author info, verified badge
+10. **Newsletter** — gradient green section; pill-style input+button form
+11. **Final CTA** — "Start improving your health today"; two CTA buttons
+
+Hero background: `photo-1571019614242-c5c5dee9f50b` (premium fitness lifestyle, Unsplash)
+
+## Total Pages: 306
 - **103** calculator pages + index
 - **155** blog post pages
 - **22** quiz pages + index
