@@ -307,4 +307,11 @@
 <url><loc>https://vitalhealthhub.org/tools/image-converter.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://vitalhealthhub.org/tools/pdf-merge.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://vitalhealthhub.org/tools/pdf-split.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url>
+    <loc>https://vitalhealthhub.com/tools/image-generator.html</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

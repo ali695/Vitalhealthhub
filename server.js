@@ -45,9 +45,10 @@ app.use((req, res, next) => {
     // Fonts: self + Google Fonts CDN
     "font-src 'self' data: https://fonts.gstatic.com",
 
-    // Images: self + data URIs + blobs + Unsplash + Google pixels
+    // Images: self + data URIs + blobs + Unsplash + Pollinations AI + Google pixels
     "img-src 'self' data: blob: " +
       "https://images.unsplash.com " +
+      "https://image.pollinations.ai " +
       "https://www.google-analytics.com " +
       "https://www.googletagmanager.com " +
       "https://pagead2.googlesyndication.com " +

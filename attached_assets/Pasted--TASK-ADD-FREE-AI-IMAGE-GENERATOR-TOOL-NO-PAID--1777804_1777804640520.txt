@@ -1,0 +1,231 @@
+--------------------------------------------------
+TASK: ADD FREE AI IMAGE GENERATOR TOOL (NO PAID API)
+--------------------------------------------------
+
+GOAL:
+Add a fully functional AI Image Generator tool to the Tools section using a FREE API (no API key, no backend required).
+
+The tool must feel like a real SaaS product and integrate into the CMS system.
+
+--------------------------------------------------
+SECTION 1: TOOL CREATION
+--------------------------------------------------
+
+Create new tool:
+
+Title: AI Image Generator  
+Slug: image-generator  
+Path: /tools/image-generator.html  
+
+Add to tools.json:
+
+{
+  "title": "AI Image Generator",
+  "slug": "image-generator",
+  "category": "AI Tools",
+  "description": "Generate images from text prompts using AI"
+}
+
+--------------------------------------------------
+SECTION 2: UI STRUCTURE (SAAS LEVEL)
+--------------------------------------------------
+
+Build clean layout:
+
+[ Prompt Input ]
+[ Style Selector ]
+[ Size Selector ]
+[ Upload Image ]
+[ Generate Button ]
+
+↓
+
+[ Image Preview ]
+[ Download Button ]
+
+--------------------------------------------------
+SECTION 3: INPUT COMPONENTS
+--------------------------------------------------
+
+Prompt:
+
+<textarea id="prompt" placeholder="Describe your image..."></textarea>
+
+--------------------------------------------------
+
+Style Selector:
+
+<select id="style">
+  <option value="realistic">Realistic</option>
+  <option value="cinematic">Cinematic</option>
+  <option value="anime">Anime</option>
+  <option value="3d render">3D Render</option>
+  <option value="illustration">Illustration</option>
+</select>
+
+--------------------------------------------------
+
+Size Selector:
+
+<select id="size">
+  <option value="square">Square</option>
+  <option value="portrait">Portrait</option>
+  <option value="landscape">Landscape</option>
+</select>
+
+--------------------------------------------------
+
+Upload (optional):
+
+<input type="file" id="upload" accept="image/*">
+
+--------------------------------------------------
+SECTION 4: FREE IMAGE GENERATION ENGINE
+--------------------------------------------------
+
+Use Pollinations API:
+
+https://image.pollinations.ai/prompt/{PROMPT}?width=1024&height=1024
+
+--------------------------------------------------
+
+JS LOGIC:
+
+function generateImage() {
+
+  const prompt = document.getElementById("prompt").value;
+  const style = document.getElementById("style").value;
+  const size = document.getElementById("size").value;
+
+  let width = 1024;
+  let height = 1024;
+
+  if (size === "portrait") {
+    width = 1024;
+    height = 1792;
+  }
+
+  if (size === "landscape") {
+    width = 1792;
+    height = 1024;
+  }
+
+  const finalPrompt = `${prompt}, ${style}, high quality`;
+
+  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?width=${width}&height=${height}`;
+
+  document.getElementById("output").src = url;
+}
+
+--------------------------------------------------
+SECTION 5: IMAGE OUTPUT
+--------------------------------------------------
+
+<img id="output" />
+
+--------------------------------------------------
+SECTION 6: DOWNLOAD FUNCTION
+--------------------------------------------------
+
+function downloadImage() {
+  const img = document.getElementById("output").src;
+  const a = document.createElement("a");
+  a.href = img;
+  a.download = "generated-image.png";
+  a.click();
+}
+
+--------------------------------------------------
+SECTION 7: IMAGE UPLOAD PREVIEW
+--------------------------------------------------
+
+document.getElementById("upload").addEventListener("change", function(e) {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+    document.getElementById("output").src = event.target.result;
+  };
+
+  reader.readAsDataURL(file);
+});
+
+NOTE:
+Upload is preview only (no real AI editing without paid API).
+
+--------------------------------------------------
+SECTION 8: DESIGN SYSTEM (IMPORTANT)
+--------------------------------------------------
+
+Follow global styles:
+
+✔ card layout  
+✔ consistent spacing  
+✔ soft shadow  
+✔ green gradient button  
+
+--------------------------------------------------
+
+Example:
+
+.button-primary {
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+  color: white;
+  border-radius: 10px;
+}
+
+--------------------------------------------------
+SECTION 9: CMS INTEGRATION (IMPORTANT)
+--------------------------------------------------
+
+Add support in dashboard:
+
+✔ Add/Edit tool  
+✔ Store prompt logic  
+✔ Manage metadata  
+
+--------------------------------------------------
+
+Optional:
+
+Store template in:
+
+/templates/tools/image-generator.html
+
+--------------------------------------------------
+SECTION 10: SEO SETUP
+--------------------------------------------------
+
+Meta Title:
+Free AI Image Generator Tool | VitalHealth Hub  
+
+Meta Description:
+Generate images instantly from text prompts. Create realistic, anime, and artistic visuals for free.
+
+--------------------------------------------------
+SECTION 11: UX IMPROVEMENTS
+--------------------------------------------------
+
+Add:
+
+✔ loading state (spinner)  
+✔ disable button while generating  
+✔ error handling  
+
+--------------------------------------------------
+SECTION 12: FINAL RESULT
+--------------------------------------------------
+
+✔ Real working AI tool  
+✔ No API key required  
+✔ Prompt-based generation  
+✔ Style + size control  
+✔ Upload preview  
+✔ Download feature  
+✔ Fully integrated into CMS  
+
+--------------------------------------------------
+CONFIRMATION
+--------------------------------------------------
+
+"AI Image Generator successfully implemented using free API with full UI and CMS integration"

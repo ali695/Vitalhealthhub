@@ -97,7 +97,9 @@ db.exec(`
 
 const migrations = [
   "ALTER TABLE blogs ADD COLUMN tags TEXT DEFAULT ''",
-  "ALTER TABLE blogs ADD COLUMN date TEXT DEFAULT ''"
+  "ALTER TABLE blogs ADD COLUMN date TEXT DEFAULT ''",
+  `INSERT OR IGNORE INTO tools (title,slug,description,category,tool_type,link,meta_title,meta_desc)
+   VALUES ('AI Image Generator','image-generator','Generate stunning images from text prompts instantly using AI. No API key required — 100% free.','AI Tools','web','/tools/image-generator.html','Free AI Image Generator Tool | VitalHealth Hub','Generate images instantly from text prompts. Create realistic, anime, cinematic, and artistic visuals for free using AI.')`
 ];
 for (const m of migrations) {
   try { db.exec(m); } catch(e) { /* column already exists */ }
