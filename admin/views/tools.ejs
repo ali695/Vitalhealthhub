@@ -1,0 +1,68 @@
+<% if (flash) { %>
+<div class="flash flash-<%= flash.type %>">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  <%= flash.msg %>
+</div>
+<% } %>
+
+<form method="GET" action="/admin/tools" class="search-bar">
+  <input type="text" name="q" value="<%= q %>" placeholder="Search tools..." style="flex:1;min-width:200px">
+  <select name="cat">
+    <option value="">All Categories</option>
+    <% categories.forEach(function(c) { %><option value="<%= c %>" <%= c === cat ? 'selected' : '' %>><%= c %></option><% }) %>
+  </select>
+  <button type="submit" class="btn btn-secondary">Search</button>
+  <% if (q || cat) { %><a href="/admin/tools" class="btn btn-secondary">Clear</a><% } %>
+</form>
+
+<div class="card">
+  <div class="card-header">
+    <h2>Tools <span class="badge badge-gray" style="margin-left:8px"><%= tools.length %></span></h2>
+  </div>
+  <div class="card-body" style="padding:0">
+    <% if (tools.length === 0) { %>
+    <div class="empty-state">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      <p>No tools yet. <a href="/admin/tools/new" style="color:#2d6a4f;font-weight:600">Add your first tool →</a></p>
+    </div>
+    <% } else { %>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Title</th><th>Slug</th><th>Category</th><th>Type</th><th>SEO</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <% tools.forEach(function(t) { %>
+        <tr>
+          <td>
+            <div class="td-truncate" style="max-width:200px;font-weight:600"><%= t.title %></div>
+            <% if (t.description) { %><div style="color:#9ca3af;font-size:11px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:200px"><%= t.description.substring(0,60) %><%= t.description.length>60?'...':'' %></div><% } %>
+          </td>
+          <td><code style="font-size:11px;background:#f3f4f6;padding:2px 6px;border-radius:4px"><%= t.slug %></code></td>
+          <td><span class="badge badge-blue"><%= t.category %></span></td>
+          <td><span class="badge badge-gray"><%= t.tool_type %></span></td>
+          <td>
+            <% if (t.meta_title) { %><span class="badge badge-green" style="margin-right:3px">Title ✓</span><% } else { %><span class="badge badge-red">No title</span><% } %>
+            <% if (t.meta_desc)  { %><span class="badge badge-green">Desc ✓</span><% } else { %><span class="badge badge-red">No desc</span><% } %>
+          </td>
+          <td>
+            <div class="action-row">
+              <a href="/admin/tools/<%= t.id %>/edit" class="btn btn-secondary btn-sm">Edit</a>
+              <a href="/tools/<%= t.slug %>.html" target="_blank" class="btn btn-secondary btn-sm btn-icon" title="View">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+              <span class="confirm-delete">
+                <form method="POST" action="/admin/tools/<%= t.id %>/delete" style="display:inline">
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+              </span>
+            </div>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    </div>
+    <% } %>
+  </div>
+</div>

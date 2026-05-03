@@ -1,0 +1,68 @@
+<% if (flash) { %>
+<div class="flash flash-<%= flash.type %>">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  <%= flash.msg %>
+</div>
+<% } %>
+
+<div class="card">
+  <div class="card-header">
+    <h2>Quizzes <span class="badge badge-gray" style="margin-left:8px"><%= quizzes.length %></span></h2>
+  </div>
+  <div class="card-body" style="padding:0">
+    <% if (quizzes.length === 0) { %>
+    <div class="empty-state">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <p>No quizzes yet. <a href="/admin/quizzes/new" style="color:#2d6a4f;font-weight:600">Create your first quiz →</a></p>
+    </div>
+    <% } else { %>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Title</th><th>Slug</th><th>Category</th><th>Questions</th><th>SEO</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <% quizzes.forEach(function(q) { %>
+        <%
+          var qCount = 0;
+          try { qCount = JSON.parse(q.questions||'[]').length; } catch(e) {}
+        %>
+        <tr>
+          <td>
+            <div class="td-truncate" style="max-width:200px;font-weight:600"><%= q.title %></div>
+            <% if (q.description) { %><div style="color:#9ca3af;font-size:11px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:200px"><%= q.description.substring(0,60) %><%= q.description.length>60?'...':'' %></div><% } %>
+          </td>
+          <td><code style="font-size:11px;background:#f3f4f6;padding:2px 6px;border-radius:4px"><%= q.slug %></code></td>
+          <td><span class="badge badge-blue"><%= q.category %></span></td>
+          <td>
+            <% if (qCount > 0) { %>
+            <span class="badge badge-green"><%= qCount %> Q's</span>
+            <% } else { %>
+            <span class="badge badge-yellow">No questions</span>
+            <% } %>
+          </td>
+          <td>
+            <% if (q.meta_title) { %><span class="badge badge-green" style="margin-right:3px">Title ✓</span><% } else { %><span class="badge badge-red">No title</span><% } %>
+            <% if (q.meta_desc)  { %><span class="badge badge-green">Desc ✓</span><% } else { %><span class="badge badge-red">No desc</span><% } %>
+          </td>
+          <td>
+            <div class="action-row">
+              <a href="/admin/quizzes/<%= q.id %>/edit" class="btn btn-secondary btn-sm">Edit</a>
+              <a href="/quizzes/<%= q.slug %>.html" target="_blank" class="btn btn-secondary btn-sm btn-icon" title="View">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+              <span class="confirm-delete">
+                <form method="POST" action="/admin/quizzes/<%= q.id %>/delete" style="display:inline">
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+              </span>
+            </div>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    </div>
+    <% } %>
+  </div>
+</div>

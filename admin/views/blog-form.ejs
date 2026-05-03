@@ -69,10 +69,20 @@
 
       <div class="card">
         <div class="card-header"><h2>Post Details</h2></div>
-        <div class="card-body">
+        <div class="card-body" style="display:flex;flex-direction:column;gap:14px">
           <div class="form-group">
             <label>Category</label>
             <input type="text" name="category" value="<%= isEdit ? blog.category : 'General' %>" placeholder="e.g. Nutrition, Fitness, BMI...">
+          </div>
+          <div class="form-group">
+            <label>Tags <span style="font-weight:400;text-transform:none;color:#9ca3af">(comma-separated)</span></label>
+            <input type="text" name="tags" value="<%= isEdit ? (blog.tags||'') : '' %>" placeholder="bmi, weight loss, nutrition...">
+            <div class="form-hint">Used for SEO keywords and related content.</div>
+          </div>
+          <div class="form-group">
+            <label>Publish Date</label>
+            <input type="text" name="date" value="<%= isEdit ? (blog.date||'') : '' %>" placeholder="<%= new Date().toISOString().split('T')[0] %>">
+            <div class="form-hint">Format: YYYY-MM-DD. Defaults to today.</div>
           </div>
         </div>
       </div>

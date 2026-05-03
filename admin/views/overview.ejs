@@ -8,15 +8,19 @@
 <div class="stats-row">
   <div class="stat-card">
     <div class="stat-number"><%= totalBlogs %></div>
-    <div class="stat-label">Total Blog Posts</div>
+    <div class="stat-label">Blog Posts</div>
   </div>
   <div class="stat-card">
     <div class="stat-number"><%= totalCalcs %></div>
     <div class="stat-label">Calculators</div>
   </div>
   <div class="stat-card">
-    <div class="stat-number"><%= totalMedia %></div>
-    <div class="stat-label">Media Files</div>
+    <div class="stat-number"><%= totalTools %></div>
+    <div class="stat-label">Tools</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number"><%= totalQuizzes %></div>
+    <div class="stat-label">Quizzes</div>
   </div>
   <div class="stat-card <%= missingMeta > 0 ? 'warn' : '' %>">
     <div class="stat-number"><%= missingMeta %></div>
@@ -24,7 +28,7 @@
   </div>
   <div class="stat-card <%= missingAlt > 0 ? 'warn' : '' %>">
     <div class="stat-number"><%= missingAlt %></div>
-    <div class="stat-label">Missing Alt Text</div>
+    <div class="stat-label">Missing Alt</div>
   </div>
 </div>
 
@@ -81,6 +85,60 @@
     </div>
   </div>
 
+  <div class="card">
+    <div class="card-header">
+      <h2>Recent Tools</h2>
+      <a href="/admin/tools/new" class="btn btn-primary btn-sm">+ New</a>
+    </div>
+    <div class="card-body" style="padding:0">
+      <% if (recentTools.length === 0) { %>
+      <div class="empty-state"><p>No tools yet. <a href="/admin/tools/new" style="color:#2d6a4f;font-weight:600">Add one →</a></p></div>
+      <% } else { %>
+      <table>
+        <thead><tr><th>Title</th><th>Category</th><th></th></tr></thead>
+        <tbody>
+          <% recentTools.forEach(function(t) { %>
+          <tr>
+            <td class="td-truncate" style="max-width:200px"><%= t.title %></td>
+            <td><span class="badge badge-blue"><%= t.category %></span></td>
+            <td><a href="/admin/tools/<%= t.id %>/edit" class="btn btn-secondary btn-sm">Edit</a></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Recent Quizzes</h2>
+      <a href="/admin/quizzes/new" class="btn btn-primary btn-sm">+ New</a>
+    </div>
+    <div class="card-body" style="padding:0">
+      <% if (recentQuizzes.length === 0) { %>
+      <div class="empty-state"><p>No quizzes yet. <a href="/admin/quizzes/new" style="color:#2d6a4f;font-weight:600">Create one →</a></p></div>
+      <% } else { %>
+      <table>
+        <thead><tr><th>Title</th><th>Questions</th><th></th></tr></thead>
+        <tbody>
+          <% recentQuizzes.forEach(function(q) { %>
+          <%
+            var qCount = 0;
+            try { qCount = JSON.parse(q.questions||'[]').length; } catch(e) {}
+          %>
+          <tr>
+            <td class="td-truncate" style="max-width:200px"><%= q.title %></td>
+            <td><span class="badge badge-<%= qCount>0?'green':'yellow' %>"><%= qCount %> Q's</span></td>
+            <td><a href="/admin/quizzes/<%= q.id %>/edit" class="btn btn-secondary btn-sm">Edit</a></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } %>
+    </div>
+  </div>
+
 </div>
 
 <div class="card" style="margin-top:20px">
@@ -93,6 +151,14 @@
     <a href="/admin/calculators/new" class="btn btn-primary">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       New Calculator
+    </a>
+    <a href="/admin/tools/new" class="btn btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      New Tool
+    </a>
+    <a href="/admin/quizzes/new" class="btn btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      New Quiz
     </a>
     <a href="/admin/seo-audit" class="btn btn-secondary">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>

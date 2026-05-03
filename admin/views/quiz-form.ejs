@@ -1,0 +1,288 @@
+<% var isEdit = !!quiz; %>
+<% if (flash) { %>
+<div class="flash flash-<%= flash.type %>"><%= flash.msg %></div>
+<% } %>
+
+<style>
+.q-builder-card{background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:12px;padding:20px;margin-bottom:16px;position:relative}
+.q-builder-card:hover{border-color:#2d6a4f}
+.q-number{font-size:11px;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.q-option-row{display:grid;grid-template-columns:32px 1fr 80px;gap:8px;align-items:center;margin-bottom:8px}
+.q-option-row input[type=text]{margin-bottom:0}
+.q-option-row label{font-size:12px;font-weight:600;cursor:pointer;text-align:center;padding:6px 8px;border-radius:6px;border:1.5px solid #e5e7eb;transition:all .2s;text-transform:none;letter-spacing:0}
+.q-option-row input[type=radio]{display:none}
+.q-option-row input[type=radio]:checked + label{background:#d1fae5;border-color:#059669;color:#065f46}
+.correct-hint{font-size:10px;color:#9ca3af;text-align:center;margin-top:2px}
+</style>
+
+<form method="POST" action="/admin/quizzes/<%= isEdit ? quiz.id + '/edit' : 'new' %>" id="quiz-form">
+  <input type="hidden" name="questions_json" id="questions_json" value="">
+  <input type="hidden" name="results_json"   id="results_json_field" value="">
+
+  <div style="display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start">
+
+    <div style="display:flex;flex-direction:column;gap:20px">
+
+      <div class="card">
+        <div class="card-header"><h2>Quiz Details</h2></div>
+        <div class="card-body">
+          <div class="form-group" style="margin-bottom:16px">
+            <label>Quiz Title *</label>
+            <input type="text" name="title" value="<%= isEdit ? quiz.title : '' %>" placeholder="e.g. How Healthy Is Your Diet?" required id="titleInput">
+          </div>
+          <div class="form-group" style="margin-bottom:16px">
+            <label>URL Slug</label>
+            <input type="text" name="slug" value="<%= isEdit ? quiz.slug : '' %>" placeholder="auto-generated" id="slugInput">
+            <div class="form-hint">URL: /quizzes/<strong id="slugPreview"><%= isEdit ? quiz.slug : 'slug' %></strong>.html</div>
+          </div>
+          <div class="form-group" style="margin-bottom:16px">
+            <label>Description</label>
+            <textarea name="description" rows="3" placeholder="Brief intro shown before the quiz starts..."><%= isEdit ? quiz.description : '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" name="category" value="<%= isEdit ? quiz.category : 'General' %>" placeholder="e.g. Nutrition, Fitness, Mental Health...">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Questions</h2>
+          <button type="button" class="btn btn-primary btn-sm" onclick="addQuestion()">+ Add Question</button>
+        </div>
+        <div class="card-body">
+          <div id="questions-builder"></div>
+          <div id="no-q-hint" style="text-align:center;padding:32px;color:#9ca3af;font-size:13px">
+            Click "Add Question" to build your quiz. Each question can have 2–6 options.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>Result Tiers</h2></div>
+        <div class="card-body">
+          <p style="font-size:12px;color:#9ca3af;margin-bottom:16px">Define what users see based on their score percentage.</p>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <% [['low','Low (0–40%)', 'Beginner','Keep learning — you\'re just getting started on your health journey!'],
+                ['mid','Medium (41–70%)', 'Intermediate','Good knowledge! A few more steps and you\'ll be an expert.'],
+                ['high','High (71–100%)', 'Expert','Outstanding! You have excellent health knowledge.']]
+               .forEach(function(tier) { %>
+            <div style="background:#f9fafb;border-radius:10px;padding:16px;border:1.5px solid #e5e7eb">
+              <div style="font-size:11px;font-weight:700;color:#2d6a4f;text-transform:uppercase;margin-bottom:10px"><%= tier[1] %></div>
+              <div class="form-group" style="margin-bottom:10px">
+                <label>Result Title</label>
+                <input type="text" name="result_<%= tier[0] %>_title" value="<%= isEdit && quiz['r_'+tier[0]+'_title'] ? quiz['r_'+tier[0]+'_title'] : tier[2] %>" data-tier="<%= tier[0] %>" data-field="title" class="tier-input">
+              </div>
+              <div class="form-group">
+                <label>Result Description</label>
+                <textarea name="result_<%= tier[0] %>_desc" rows="2" data-tier="<%= tier[0] %>" data-field="desc" class="tier-input"><%= isEdit && quiz['r_'+tier[0]+'_desc'] ? quiz['r_'+tier[0]+'_desc'] : tier[3] %></textarea>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>SEO Settings</h2></div>
+        <div class="card-body">
+          <div class="form-group" style="margin-bottom:16px">
+            <label>Meta Title</label>
+            <input type="text" name="meta_title" id="metaTitle" value="<%= isEdit ? quiz.meta_title : '' %>" placeholder="Quiz title for search engines...">
+            <div data-char-target="metaTitle" data-max="60" class="char-count"></div>
+          </div>
+          <div class="form-group">
+            <label>Meta Description</label>
+            <textarea name="meta_desc" id="metaDesc" rows="3" placeholder="Compelling description..."><%= isEdit ? quiz.meta_desc : '' %></textarea>
+            <div data-char-target="metaDesc" data-max="160" class="char-count"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="card">
+        <div class="card-header"><h2>Publish</h2></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:12px">
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <%= isEdit ? 'Save & Regenerate' : 'Create & Generate HTML' %>
+          </button>
+          <a href="/admin/quizzes" class="btn btn-secondary" style="width:100%;justify-content:center">Cancel</a>
+          <% if (isEdit) { %>
+          <div style="padding-top:12px;border-top:1px solid #f3f4f6">
+            <p style="font-size:11px;color:#9ca3af;margin-bottom:8px">Published at:</p>
+            <code style="font-size:11px;background:#f3f4f6;padding:4px 8px;border-radius:6px;display:block;word-break:break-all">/quizzes/<%= quiz.slug %>.html</code>
+          </div>
+          <div class="confirm-delete" style="margin-top:8px">
+            <form method="POST" action="/admin/quizzes/<%= quiz.id %>/delete">
+              <button type="submit" class="btn btn-danger" style="width:100%;justify-content:center">Delete Quiz</button>
+            </form>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>Tips</h2></div>
+        <div class="card-body">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+            <li style="display:flex;gap:8px;font-size:12px;color:#6b7280"><span style="color:#2d6a4f;font-weight:700">→</span> Each question needs 2–6 answer options</li>
+            <li style="display:flex;gap:8px;font-size:12px;color:#6b7280"><span style="color:#2d6a4f;font-weight:700">→</span> Mark one option as "Correct" using the radio button</li>
+            <li style="display:flex;gap:8px;font-size:12px;color:#6b7280"><span style="color:#2d6a4f;font-weight:700">→</span> Explanation is shown after each answer</li>
+            <li style="display:flex;gap:8px;font-size:12px;color:#6b7280"><span style="color:#2d6a4f;font-weight:700">→</span> Results are based on % score</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+<script>
+const titleInput  = document.getElementById('titleInput');
+const slugInput   = document.getElementById('slugInput');
+const slugPreview = document.getElementById('slugPreview');
+function makeSlug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+<% if (!isEdit) { %>
+titleInput.addEventListener('input', function() {
+  const s = makeSlug(this.value);
+  slugInput.value = s; slugPreview.textContent = s || 'slug';
+});
+<% } %>
+slugInput.addEventListener('input', function() { slugPreview.textContent = makeSlug(this.value) || 'slug'; });
+
+let qCount = 0;
+const letters = ['A','B','C','D','E','F'];
+
+function addQuestion(data) {
+  data = data || {};
+  const qi = qCount++;
+  const opts = data.options || ['',''];
+  const correctIdx = data.correct !== undefined ? parseInt(data.correct) : 0;
+  document.getElementById('no-q-hint').style.display = 'none';
+
+  const div = document.createElement('div');
+  div.className = 'q-builder-card';
+  div.id = 'q-' + qi;
+
+  let optsHtml = opts.map(function(o, oi) {
+    return `<div class="q-option-row" id="opt-row-${qi}-${oi}">
+      <div>
+        <input type="radio" name="correct-${qi}" id="c-${qi}-${oi}" value="${oi}" ${oi===correctIdx?'checked':''}>
+        <label for="c-${qi}-${oi}" title="Mark as correct">${letters[oi]}</label>
+        <div class="correct-hint">✓</div>
+      </div>
+      <input type="text" placeholder="Option ${letters[oi]}..." value="${(o||'').replace(/"/g,'&quot;')}">
+      <button type="button" class="btn btn-danger btn-sm" onclick="removeOption(${qi},${oi})" style="padding:6px 8px;font-size:11px">Remove</button>
+    </div>`;
+  }).join('');
+
+  div.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div class="q-number">Question ${qi+1}</div>
+      <button type="button" class="btn btn-danger btn-sm" onclick="removeQuestion(${qi})">Remove</button>
+    </div>
+    <div class="form-group" style="margin-bottom:14px">
+      <label>Question Text</label>
+      <input type="text" id="q-text-${qi}" placeholder="Type your question here..." value="${(data.q||'').replace(/"/g,'&quot;')}">
+    </div>
+    <div class="form-group" style="margin-bottom:10px">
+      <label>Answer Options <span style="font-weight:400;text-transform:none;color:#9ca3af">(select correct with radio)</span></label>
+      <div id="opts-${qi}">${optsHtml}</div>
+      <button type="button" class="btn btn-secondary btn-sm" style="margin-top:8px" onclick="addOption(${qi})">+ Add Option</button>
+    </div>
+    <div class="form-group">
+      <label>Explanation <span style="font-weight:400;text-transform:none;color:#9ca3af">(optional)</span></label>
+      <textarea id="q-expl-${qi}" rows="2" placeholder="Why is the correct answer correct?">${data.explanation||''}</textarea>
+    </div>`;
+  document.getElementById('questions-builder').appendChild(div);
+}
+
+function addOption(qi) {
+  const container = document.getElementById('opts-' + qi);
+  const rows = container.querySelectorAll('.q-option-row');
+  if (rows.length >= 6) return alert('Maximum 6 options per question.');
+  const oi = rows.length;
+  const div = document.createElement('div');
+  div.className = 'q-option-row';
+  div.id = 'opt-row-' + qi + '-' + oi;
+  div.innerHTML = `
+    <div>
+      <input type="radio" name="correct-${qi}" id="c-${qi}-${oi}" value="${oi}">
+      <label for="c-${qi}-${oi}" title="Mark as correct">${letters[oi]||oi+1}</label>
+      <div class="correct-hint">✓</div>
+    </div>
+    <input type="text" placeholder="Option ${letters[oi]||oi+1}...">
+    <button type="button" class="btn btn-danger btn-sm" onclick="removeOption(${qi},${oi})" style="padding:6px 8px;font-size:11px">Remove</button>`;
+  container.appendChild(div);
+}
+
+function removeOption(qi, oi) {
+  const el = document.getElementById('opt-row-' + qi + '-' + oi);
+  if (el) el.remove();
+}
+
+function removeQuestion(qi) {
+  const el = document.getElementById('q-' + qi);
+  if (el) el.remove();
+  if (!document.getElementById('questions-builder').children.length) {
+    document.getElementById('no-q-hint').style.display = 'block';
+  }
+}
+
+function collectQuestions() {
+  const cards = document.querySelectorAll('.q-builder-card');
+  const arr = [];
+  cards.forEach(function(card) {
+    const qi = card.id.replace('q-','');
+    const q    = (document.getElementById('q-text-' + qi) || {}).value || '';
+    const expl = (document.getElementById('q-expl-' + qi) || {}).value || '';
+    const optEls = card.querySelectorAll('.q-option-row input[type=text]');
+    const radios  = card.querySelectorAll('input[type=radio]');
+    const options = [];
+    optEls.forEach(function(el) { options.push(el.value); });
+    let correct = 0;
+    radios.forEach(function(r) { if (r.checked) correct = parseInt(r.value); });
+    arr.push({ q, options, correct, explanation: expl });
+  });
+  return arr;
+}
+
+function collectResults() {
+  const tiers = ['low','mid','high'];
+  const out = {};
+  tiers.forEach(function(t) {
+    const titleEl = document.querySelector('[name=result_'+t+'_title]');
+    const descEl  = document.querySelector('[name=result_'+t+'_desc]');
+    out[t] = { title: titleEl ? titleEl.value : '', desc: descEl ? descEl.value : '' };
+  });
+  return out;
+}
+
+document.getElementById('quiz-form').addEventListener('submit', function() {
+  document.getElementById('questions_json').value = JSON.stringify(collectQuestions());
+  document.getElementById('results_json_field').value = JSON.stringify(collectResults());
+});
+
+// Load existing questions if editing
+<% if (isEdit) { %>
+(function() {
+  var existing = [];
+  try { existing = JSON.parse(<%- JSON.stringify(quiz.questions || '[]') %>); } catch(e) {}
+  existing.forEach(function(q) { addQuestion(q); });
+
+  var existingResults = {};
+  try { existingResults = JSON.parse(<%- JSON.stringify(quiz.results_json || '{}') %>); } catch(e) {}
+  ['low','mid','high'].forEach(function(t) {
+    if (!existingResults[t]) return;
+    var el = document.querySelector('[name=result_'+t+'_title]');
+    var el2 = document.querySelector('[name=result_'+t+'_desc]');
+    if (el && existingResults[t].title) el.value = existingResults[t].title;
+    if (el2 && existingResults[t].desc)  el2.value = existingResults[t].desc;
+  });
+})();
+<% } %>
+</script>
