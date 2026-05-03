@@ -1,0 +1,189 @@
+--------------------------------------------------
+TASK: COMPLETE INLINE JAVASCRIPT CLEANUP + OPTIMIZATION
+--------------------------------------------------
+
+I want you to scan the ENTIRE website and remove ALL inline JavaScript, then refactor everything into clean, modular, external JS files.
+
+This is a critical performance + SEO + security improvement.
+
+--------------------------------------------------
+SECTION 1: IDENTIFY INLINE JS
+--------------------------------------------------
+
+Scan all pages and detect:
+
+1. <script> blocks inside HTML
+2. Inline event handlers:
+   - onclick=""
+   - onsubmit=""
+   - onload=""
+   - oninput=""
+   - onchange=""
+   - onmouseover=""
+3. JS written directly inside HTML attributes
+
+List all occurrences and their locations.
+
+--------------------------------------------------
+SECTION 2: REMOVE INLINE SCRIPT BLOCKS
+--------------------------------------------------
+
+For every inline script:
+
+❌ REMOVE from HTML:
+<script>
+   any JS code
+</script>
+
+✅ MOVE to external file:
+/js/main.js
+
+OR split into:
+- main.js (global logic)
+- calculators.js (calculator logic)
+- ui.js (UI interactions)
+- chatbot.js (chatbot logic)
+
+--------------------------------------------------
+SECTION 3: REPLACE INLINE EVENT HANDLERS
+--------------------------------------------------
+
+Example:
+
+❌ BAD:
+<button onclick="calculateBMI()">
+
+✅ GOOD:
+<button id="bmiBtn">
+
+Then in JS:
+
+document.getElementById('bmiBtn').addEventListener('click', calculateBMI);
+
+--------------------------------------------------
+SECTION 4: FORM HANDLING FIX
+--------------------------------------------------
+
+Replace:
+
+❌
+<form onsubmit="event.preventDefault(); doSomething()">
+
+✅
+<form id="form-id">
+
+JS:
+document.getElementById('form-id').addEventListener('submit', function(e){
+  e.preventDefault();
+  doSomething();
+});
+
+--------------------------------------------------
+SECTION 5: CHATBOT JS CLEANUP
+--------------------------------------------------
+
+Move ALL chatbot logic to:
+
+/js/chatbot.js
+
+Ensure:
+- no inline script
+- loaded using:
+<script src="/js/chatbot.js" defer></script>
+
+Add lazy load:
+
+document.addEventListener("DOMContentLoaded", () => {
+  const chat = document.getElementById("vh-chatbot");
+  if(chat){
+    import('/js/chatbot.js');
+  }
+});
+
+--------------------------------------------------
+SECTION 6: SCRIPT LOADING OPTIMIZATION
+--------------------------------------------------
+
+Ensure ALL scripts use:
+
+<script src="/js/main.js" defer></script>
+
+Rules:
+- NO blocking scripts
+- NO scripts in <head> without defer
+- NO duplicate JS files
+
+--------------------------------------------------
+SECTION 7: CODE STRUCTURE (IMPORTANT)
+--------------------------------------------------
+
+Refactor JS into modular structure:
+
+/js/
+  main.js
+  ui.js
+  calculators.js
+  chatbot.js
+
+Each file should:
+- contain only relevant logic
+- be reusable
+- avoid duplication
+
+--------------------------------------------------
+SECTION 8: REMOVE UNUSED JS
+--------------------------------------------------
+
+Scan and REMOVE:
+
+- unused functions
+- duplicate functions
+- dead code
+
+--------------------------------------------------
+SECTION 9: PERFORMANCE OPTIMIZATION
+--------------------------------------------------
+
+Apply:
+
+- event delegation where possible
+- debounce input events
+- avoid repeated DOM queries
+- cache selectors
+
+Example:
+
+const buttons = document.querySelectorAll('.btn');
+
+--------------------------------------------------
+SECTION 10: SECURITY IMPROVEMENT
+--------------------------------------------------
+
+Ensure:
+
+- no inline JS (reduces XSS risk)
+- sanitize inputs
+- avoid eval()
+
+--------------------------------------------------
+SECTION 11: FINAL VALIDATION
+--------------------------------------------------
+
+After cleanup:
+
+✔ No inline <script> remains  
+✔ No inline onclick/onchange/onsubmit  
+✔ All JS is external  
+✔ All scripts use defer  
+✔ No console errors  
+✔ All features still working  
+
+--------------------------------------------------
+FINAL OUTPUT REQUIRED
+--------------------------------------------------
+
+1. List of all inline JS removed
+2. List of files created (/js structure)
+3. Confirm:
+
+"All inline JavaScript has been removed and optimized successfully"

@@ -597,22 +597,18 @@ const vhChat = (function() {
 
 }());
 
-// ─── Chatbot: Lazy Init on First Click ───────────────────────────────────────
+// ─── Chatbot: Lazy Init + Persistent Toggle ──────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
-  var chatEl = document.getElementById('vh-chatbot');
-  if (!chatEl) return;
-  var chatInitialized = false;
   var chatToggle = document.getElementById('vh-chat-toggle');
-  if (chatToggle) {
-    chatToggle.addEventListener('click', function onFirstChatClick() {
-      if (!chatInitialized) {
-        chatInitialized = true;
-        chatToggle.removeEventListener('click', onFirstChatClick);
-        vhChat.init();
-        vhChat.toggle();
-      }
-    });
-  }
+  if (!chatToggle) return;
+  var chatInitialized = false;
+  chatToggle.addEventListener('click', function() {
+    if (!chatInitialized) {
+      chatInitialized = true;
+      vhChat.init();
+    }
+    vhChat.toggle();
+  });
 });
 
 // ─── NAV: Mega Menu Functions ─────────────────────────────────────────────────
