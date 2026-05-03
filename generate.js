@@ -3471,6 +3471,45 @@ ${sidebarPosts.map(sp => {
 </div>
 </section>
 
+${(() => {
+  const blogHubDefs = [
+    { cat:'Fitness & Exercise', icon:'💪', desc:'Workouts, strength training, cardio, VO2 max and physical performance guides' },
+    { cat:'Sleep & Recovery',   icon:'😴', desc:'Sleep science, circadian rhythms, sleep quality and overnight recovery' },
+    { cat:'Macronutrients',     icon:'🥗', desc:'Protein, carbohydrates, fats — understanding macros for optimal health' },
+    { cat:'Calories & Weight',  icon:'⚖️', desc:'Calorie tracking, weight management, TDEE and body composition science' },
+    { cat:'Mental Health',      icon:'🧠', desc:'Stress reduction, anxiety, mindfulness and emotional wellbeing strategies' },
+    { cat:'Nutrition',          icon:'🌿', desc:'Evidence-based eating, food quality, micronutrients and nutritional science' },
+  ];
+  const sections = blogHubDefs.map(def => {
+    const posts = blogPosts.filter(p => p.category === def.cat).slice(0, 4);
+    if (!posts.length) return '';
+    const cards = posts.map(p => `<a href="/blog/${p.slug}.html" class="tool-premium-card blog-hub-card">
+<div class="tool-premium-icon">${def.icon}</div>
+<div class="tool-premium-name">${p.title}</div>
+<div class="tool-premium-desc">${p.readTime} read &bull; ${p.date}</div>
+<div class="tool-premium-cta">Read Article <span class="tool-premium-cta-arrow">&rarr;</span></div>
+</a>`).join('');
+    const catSlug = def.cat.toLowerCase().replace(/\s+/g,'-');
+    return `<div class="tools-hub-section">
+<div class="tools-hub-section-header">
+<div class="tools-hub-section-icon">${def.icon}</div>
+<div><div class="tools-hub-section-title">${def.cat}</div><div class="tools-hub-section-desc">${def.desc}</div></div>
+<a href="/blog.html?cat=${encodeURIComponent(def.cat)}" class="blog-hub-see-all">See all &rarr;</a>
+</div>
+<div class="tools-premium-grid blog-hub-grid">${cards}</div>
+</div>`;
+  }).filter(Boolean).join('\n');
+  return `<section class="blog-hub-featured">
+<div class="container">
+<div class="blog-hub-featured-head">
+<h2>Browse by Category</h2>
+<p>Explore expert guides across every area of health and wellness</p>
+</div>
+${sections}
+</div>
+</section>`;
+})()}
+
 <section class="blog-trow-section">
 <div class="blog-trow-header">
 <h2>&#128293; Trending This Week</h2>
