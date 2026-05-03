@@ -4,7 +4,7 @@ const { getCalcHeroSvg } = require('./calculator-svgs.js');
 const quizzesData = require('./quizzes-data.js');
 const toolsData = require('./tools-data.js');
 
-const SITE = 'https://vitalhealthhub.com';
+const SITE = 'https://vitalhealthhub.org';
 const SITE_NAME = 'VitalHealth Hub';
 
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
@@ -265,11 +265,17 @@ function head(title, desc, canonical, extra = '') {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
 <meta name="description" content="${desc}">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="${SITE}${canonical}">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="${SITE}${canonical}">
+<meta property="og:site_name" content="${SITE_NAME}">
+<meta property="og:image" content="${SITE}/images/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${title}">
+<meta name="twitter:description" content="${desc}">
 <link rel="stylesheet" href="/css/style.css">
 ${extra}
 </head>`;
@@ -2363,7 +2369,7 @@ ${homeQuizzesDisplay.map(q => {
 <div class="container">
 <div class="home-section-head fade-in">
 <span class="home-section-badge">📚 Latest Articles</span>
-<h2>Health &amp; Wellness Blog</h2>
+<h2>VitalHealth Hub Blog</h2>
 <p>Evidence-based guides written by experts to help you live better every day.</p>
 </div>
 <div class="home-blog-v2-grid">
@@ -3352,7 +3358,7 @@ const blogCardHtml = blogPosts.map((p, i) => {
 
 const blogSchemaItems = blogPosts.map((p, i) => `{"@type":"ListItem","position":${i+1},"url":"${SITE}/blog/${p.slug}.html","name":"${p.title.replace(/"/g,'\\"')}"}`).join(',');
 
-fs.writeFileSync('blog.html', `${head('Health & Wellness Blog \u2014 150+ Expert Articles | '+SITE_NAME, 'Browse 150+ evidence-based health articles covering weight loss, nutrition, fitness, mental health, heart health and more. Free expert wellness guides.', '/blog.html', '<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Health & Wellness Blog","description":"100+ evidence-based health articles","url":"'+SITE+'/blog.html","mainEntity":{"@type":"ItemList","numberOfItems":'+blogPosts.length+',"itemListElement":['+blogSchemaItems+']}}</script>')}
+fs.writeFileSync('blog.html', `${head('VitalHealth Hub Blog \u2014 150+ Expert Articles | '+SITE_NAME, 'Browse 150+ evidence-based health articles covering weight loss, nutrition, fitness, mental health, heart health and more. Free expert wellness guides at VitalHealth Hub.', '/blog.html', '<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"VitalHealth Hub Blog","description":"150+ evidence-based health articles from VitalHealth Hub","url":"'+SITE+'/blog.html","mainEntity":{"@type":"ItemList","numberOfItems":'+blogPosts.length+',"itemListElement":['+blogSchemaItems+']}}</script>')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Blog',url:'/blog.html'}]).html}
@@ -3360,7 +3366,7 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'Blog',url:'/blog.html'}]).schema}
 
 ${globalHero({
   badge: '&#128218; ' + blogPosts.length + '+ Expert Health Articles',
-  title: 'Health &amp; Wellness Blog',
+  title: 'VitalHealth Hub Blog',
   subtitle: 'Evidence-based guides on nutrition, fitness, mental health, and more &mdash; written by experts, free for everyone.',
   customSearch: '<div class="blog-hero-search-wrap"><div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="blogHeroInput" placeholder="Search ' + blogPosts.length + '+ articles..." oninput="blogHeroSearch(this.value)" onkeydown="if(event.key===\'Enter\'){openBlogSearch(this.value)}" autocomplete="off"><button class="calc-index-btn-primary" style="padding:8px 18px;font-size:0.875rem;white-space:nowrap;" onclick="openBlogSearch(document.getElementById(\'blogHeroInput\').value)">Search</button></div><div class="blog-hero-suggestions" id="blogHeroSugg"></div></div>',
   buttons: [
@@ -4008,7 +4014,7 @@ const quizCards = quizzesData.map(quiz =>
 const quizIndexSchema = '{"@context":"https://schema.org","@type":"CollectionPage","name":"Free Health Quizzes","description":"Test your health, fitness, nutrition, and mental wellness knowledge with ' + quizzesData.length + '+ interactive quizzes at VitalHealth Hub.","url":"' + SITE + '/quizzes/"}';
 
 fs.writeFileSync('quizzes/index.html', head(
-  'Free Health & Wellness Quizzes — VitalHealth Hub',
+  'Free Health &amp; Wellness Quizzes — VitalHealth Hub',
   'Test your health knowledge with ' + quizzesData.length + '+ interactive quizzes covering nutrition, fitness, mental health, and more. Three difficulty levels, instant scoring, personalised feedback.',
   '/quizzes/',
   '<script type="application/ld+json">' + quizIndexSchema + '</script>'
@@ -5142,7 +5148,7 @@ const utilityCards = utilityTools.map(tool => `
 <span class="utility-minimal-icon">${tool.icon}</span>${tool.name}
 </a>`).join('');
 
-fs.writeFileSync('tools/index.html', `${head('Free Premium Health & Productivity Tools — VitalHealth Hub Tools Platform | ' + SITE_NAME, 'Premium free online tools: habit tracker, sleep tracker, mood tracker, focus timer, daily planner, text analyzer, headline analyzer and more. No sign-up, all data stays private.', '/tools/')}
+fs.writeFileSync('tools/index.html', `${head('Free Health &amp; Productivity Tools | VitalHealth Hub', 'Premium free online tools: habit tracker, sleep tracker, mood tracker, focus timer, daily planner, text analyzer, headline analyzer and more. No sign-up, all data stays private.', '/tools/')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Tools Hub',url:'/tools/'}]).html}
@@ -5237,14 +5243,14 @@ console.log('Generated tools/index.html');
 
 // SITEMAP.XML
 let sitemapXml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-['/','/about.html','/contact.html','/faq.html','/blog.html','/privacy.html','/disclaimer.html','/terms.html','/sitemap.html','/quizzes/'].forEach(u => {
+['/','/about.html','/contact.html','/faq.html','/blog.html','/privacy.html','/disclaimer.html','/terms.html','/sitemap.html','/calculators/','/quizzes/'].forEach(u => {
   sitemapXml += `<url><loc>${SITE}${u}</loc><changefreq>weekly</changefreq><priority>${u==='/'?'1.0':'0.8'}</priority></url>\n`;
 });
 calculators.forEach(c => {
   sitemapXml += `<url><loc>${SITE}/calculators/${c.slug}.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
 });
 blogPosts.forEach(p => {
-  sitemapXml += `<url><loc>${SITE}/blog/${p.slug}.html</loc><lastmod>${p.date}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
+  sitemapXml += `<url><loc>${SITE}/blog/${p.slug}.html</loc><lastmod>${p.date}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
 });
 quizzesData.forEach(q => {
   sitemapXml += `<url><loc>${SITE}/quizzes/${q.slug}.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;

@@ -1,0 +1,238 @@
+--------------------------------------------------
+TASK: COMPLETE INDEXABILITY + SEO TECHNICAL AUDIT (VITALHEALTH HUB)
+--------------------------------------------------
+
+Audit the entire website and ensure ALL pages are fully indexable, crawlable, and optimized for fast Google indexing.
+
+IMPORTANT GLOBAL RULES:
+
+- Replace ALL mentions of "Health & Wellness" with "VitalHealth Hub"
+- Use this domain everywhere:
+  https://vitalhealthhub.org
+
+- ALL internal links, canonicals, sitemap URLs MUST use this domain
+- No placeholder domains allowed
+
+Check EVERYTHING step-by-step and FIX issues.
+
+--------------------------------------------------
+SECTION 1: PAGE TYPE CHECK (CRITICAL)
+--------------------------------------------------
+
+Check all pages:
+
+- Are they pure HTML pages?
+- OR rendered via JavaScript only?
+
+IMPORTANT:
+
+- All main pages MUST be static or server-rendered HTML
+- Google must see full content in page source
+
+If content loads via JS only → FIX it
+
+--------------------------------------------------
+SECTION 2: META ROBOTS TAGS
+--------------------------------------------------
+
+Check every page:
+
+- Ensure NO "noindex"
+- Ensure NO "nofollow"
+
+Correct format:
+
+<meta name="robots" content="index, follow">
+
+--------------------------------------------------
+SECTION 3: ROBOTS.TXT
+--------------------------------------------------
+
+Check robots.txt:
+
+- No important pages blocked
+- Allow full crawl access
+
+Correct version:
+
+User-agent: *
+Allow: /
+
+Sitemap: https://vitalhealthhub.org/sitemap.xml
+
+--------------------------------------------------
+SECTION 4: SITEMAP.XML
+--------------------------------------------------
+
+Check sitemap:
+
+Include ALL pages:
+
+- homepage
+- calculators
+- tools
+- blog posts
+- FAQ
+- quizzes
+
+Ensure:
+
+- URLs use https://vitalhealthhub.org
+- No broken links
+- Proper structure
+
+--------------------------------------------------
+SECTION 5: CANONICAL TAGS
+--------------------------------------------------
+
+Each page MUST have:
+
+<link rel="canonical" href="https://vitalhealthhub.org/page-url">
+
+RULES:
+
+- No duplicates
+- No relative URLs
+- Always absolute canonical
+
+--------------------------------------------------
+SECTION 6: URL STRUCTURE
+--------------------------------------------------
+
+Ensure:
+
+- clean URLs
+- no parameters
+- no query strings
+
+Examples:
+
+https://vitalhealthhub.org/calculators/bmi-calculator  
+https://vitalhealthhub.org/blog/tdee-guide  
+
+--------------------------------------------------
+SECTION 7: INTERNAL LINKING (VERY IMPORTANT)
+--------------------------------------------------
+
+Ensure:
+
+- all links use https://vitalhealthhub.org
+- no relative broken links
+- no orphan pages
+
+Structure:
+
+- homepage → calculators/tools/blog
+- calculators → related calculators/tools/blogs
+- blogs → calculators/tools/quizzes
+- quizzes → tools/calculators
+
+--------------------------------------------------
+SECTION 8: PAGE SPEED
+--------------------------------------------------
+
+Check:
+
+- images optimized
+- lazy loading enabled
+- remove unused JS/CSS
+
+Target:
+
+- load time under 2 seconds
+
+--------------------------------------------------
+SECTION 9: MOBILE FRIENDLINESS
+--------------------------------------------------
+
+Check:
+
+- responsive design
+- no horizontal overflow
+- readable fonts
+
+--------------------------------------------------
+SECTION 10: HEADINGS STRUCTURE
+--------------------------------------------------
+
+Ensure:
+
+- only ONE H1 per page
+- proper H2 / H3 hierarchy
+
+--------------------------------------------------
+SECTION 11: META TITLE + DESCRIPTION
+--------------------------------------------------
+
+Each page must have:
+
+- unique title (under 60 characters)
+- unique meta description (under 155 characters)
+
+Branding:
+
+Include "VitalHealth Hub" where appropriate
+
+--------------------------------------------------
+SECTION 12: IMAGE SEO
+--------------------------------------------------
+
+Check:
+
+- all images have alt text
+- alt text includes keywords naturally
+- images optimized
+
+--------------------------------------------------
+SECTION 13: STRUCTURED DATA (IMPORTANT)
+--------------------------------------------------
+
+Add structured data:
+
+- FAQ schema (FAQ page)
+- Article schema (blog)
+- Breadcrumb schema (all pages)
+
+--------------------------------------------------
+SECTION 14: GOOGLE INDEXING CHECK
+--------------------------------------------------
+
+Ensure:
+
+- pages return 200 status
+- no 404 pages
+- no redirect loops
+
+--------------------------------------------------
+SECTION 15: CORE WEB VITALS
+--------------------------------------------------
+
+Check:
+
+- CLS (layout shift)
+- LCP (load speed)
+- FID (interaction)
+
+Optimize all
+
+--------------------------------------------------
+SECTION 16: DOMAIN CONSISTENCY (CRITICAL)
+--------------------------------------------------
+
+Ensure:
+
+- ALL links use https://vitalhealthhub.org
+- No mixed domains
+- No localhost or preview URLs
+
+--------------------------------------------------
+SECTION 17: FINAL REPORT
+--------------------------------------------------
+
+After audit:
+
+- list ALL issues found
+- fix them automatically
+- confirm:
+
+"All pages are fully indexable, optimized, and correctly configured for VitalHealth Hub (https://vitalhealthhub.org)"
