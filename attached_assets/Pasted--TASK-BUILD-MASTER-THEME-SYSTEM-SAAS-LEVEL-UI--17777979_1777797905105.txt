@@ -1,0 +1,341 @@
+--------------------------------------------------
+TASK: BUILD MASTER THEME SYSTEM (SAAS LEVEL UI)
+--------------------------------------------------
+
+GOAL:
+Convert the entire website into a PROFESSIONAL SaaS-grade design system with:
+
+✔ high readability  
+✔ strong contrast  
+✔ consistent branding  
+✔ reusable components  
+✔ NO inline styles  
+✔ global header + footer  
+✔ scalable UI for 100+ pages  
+
+This must NOT look like a template.
+This must look like a PRODUCT.
+
+--------------------------------------------------
+GLOBAL RULE (VERY IMPORTANT)
+--------------------------------------------------
+
+❌ NO inline styles anywhere  
+❌ NO random colors  
+❌ NO per-page design differences  
+
+✔ ALL styles must come from global CSS system  
+✔ ALL components must be reusable  
+
+--------------------------------------------------
+SECTION 1: COLOR SYSTEM (HIGH CONTRAST)
+--------------------------------------------------
+
+Primary:
+--vh-green: #22C55E
+
+Hover:
+--vh-green-dark: #16A34A
+
+Dark Background:
+--vh-dark: #052e1f
+--vh-dark-2: #064e3b
+
+Light Background:
+--vh-bg-light: #F9FAFB
+
+White:
+--vh-white: #FFFFFF
+
+--------------------------------------------------
+
+TEXT COLORS (CRITICAL FIX)
+
+Primary Text:
+--vh-text-primary: #111827
+
+Secondary Text:
+--vh-text-secondary: #374151
+
+Muted:
+--vh-text-muted: #6B7280
+
+--------------------------------------------------
+
+FOR DARK BACKGROUNDS (VERY IMPORTANT):
+
+Heading:
+color: #ECFDF5
+
+Paragraph:
+color: #D1FAE5
+
+Subtext:
+color: #A7F3D0
+
+--------------------------------------------------
+
+RULE:
+
+❌ NEVER use green text on green background  
+❌ NEVER use low contrast text  
+✔ Always ensure readability FIRST  
+
+--------------------------------------------------
+SECTION 2: TYPOGRAPHY SYSTEM
+--------------------------------------------------
+
+Font:
+Use ONE modern font (Inter / system UI)
+
+--------------------------------------------------
+
+Heading (H1/H2):
+
+font-weight: 700  
+letter-spacing: -0.02em  
+line-height: 1.2  
+
+--------------------------------------------------
+
+Body Text:
+
+font-size: 16px  
+line-height: 1.7  
+color: var(--vh-text-secondary)
+
+--------------------------------------------------
+
+RULE:
+
+✔ clear hierarchy  
+✔ no faded unreadable text  
+
+--------------------------------------------------
+SECTION 3: BUTTON SYSTEM (PREMIUM)
+--------------------------------------------------
+
+.btn {
+  border-radius: 999px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+--------------------------------------------------
+
+PRIMARY BUTTON:
+
+.btn-primary {
+  background: var(--vh-green);
+  color: white;
+
+  box-shadow:
+    0 6px 18px rgba(34,197,94,0.35);
+}
+
+--------------------------------------------------
+
+HOVER:
+
+.btn-primary:hover {
+  background: var(--vh-green-dark);
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(34,197,94,0.45);
+}
+
+--------------------------------------------------
+
+RULE:
+
+✔ same buttons everywhere  
+✔ no variations  
+
+--------------------------------------------------
+SECTION 4: CARD SYSTEM (SAAS DEPTH)
+--------------------------------------------------
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.04),
+    0 1px 3px rgba(0,0,0,0.06);
+
+  transition: all 0.3s ease;
+}
+
+--------------------------------------------------
+
+HOVER:
+
+.card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.08),
+    0 4px 10px rgba(0,0,0,0.06);
+}
+
+--------------------------------------------------
+
+RULE:
+
+✔ subtle depth  
+❌ no heavy shadows  
+
+--------------------------------------------------
+SECTION 5: BLOG CTA (FIX YOUR CURRENT ISSUE)
+--------------------------------------------------
+
+.blog-cta {
+  background: linear-gradient(
+    135deg,
+    #052e1f,
+    #064e3b
+  );
+
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+}
+
+--------------------------------------------------
+
+FIX TEXT (IMPORTANT):
+
+.blog-cta h3 {
+  color: #ECFDF5;
+}
+
+.blog-cta p {
+  color: #D1FAE5;
+}
+
+.blog-cta .subtext {
+  color: #A7F3D0;
+}
+
+--------------------------------------------------
+
+RULE:
+
+❌ No low contrast text (your current issue)
+✔ Always readable  
+
+--------------------------------------------------
+SECTION 6: HEADER SYSTEM (GLOBAL)
+--------------------------------------------------
+
+Create ONE global header:
+
+✔ logo left  
+✔ nav center/right  
+✔ no dropdown overload  
+✔ clean spacing  
+
+--------------------------------------------------
+
+RULE:
+
+✔ same header across all pages  
+✔ sticky header  
+
+--------------------------------------------------
+SECTION 7: FOOTER SYSTEM (GLOBAL)
+--------------------------------------------------
+
+Create ONE SaaS footer:
+
+✔ brand section  
+✔ tools links  
+✔ legal links  
+✔ sitemap  
+
+--------------------------------------------------
+
+RULE:
+
+✔ same footer everywhere  
+✔ responsive  
+
+--------------------------------------------------
+SECTION 8: ICON SYSTEM
+--------------------------------------------------
+
+✔ Use SVG icons only  
+✔ consistent stroke  
+✔ minimal style  
+
+--------------------------------------------------
+
+RULE:
+
+❌ remove ALL emojis  
+
+--------------------------------------------------
+SECTION 9: GRADIENT USAGE
+--------------------------------------------------
+
+Use gradients ONLY for:
+
+✔ hero sections  
+✔ CTA sections  
+
+--------------------------------------------------
+
+RULE:
+
+❌ no random gradients  
+✔ keep brand consistency  
+
+--------------------------------------------------
+SECTION 10: GLOBAL LAYOUT SYSTEM
+--------------------------------------------------
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 60px 0;
+}
+
+--------------------------------------------------
+
+RULE:
+
+✔ consistent spacing  
+✔ no random layout  
+
+--------------------------------------------------
+SECTION 11: FINAL CLEANUP
+--------------------------------------------------
+
+Fix across entire site:
+
+✔ remove inline styles  
+✔ fix contrast everywhere  
+✔ unify all components  
+✔ ensure readability  
+
+--------------------------------------------------
+FINAL RESULT
+--------------------------------------------------
+
+✔ premium SaaS-level UI  
+✔ strong brand consistency  
+✔ high readability  
+✔ scalable design system  
+✔ professional product feel  
+
+--------------------------------------------------
+CONFIRMATION
+--------------------------------------------------
+
+"Master theme system applied with full brand consistency and high readability across VitalHealth Hub"

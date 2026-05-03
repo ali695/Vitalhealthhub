@@ -85,18 +85,63 @@ Hero background: `photo-1571019614242-c5c5dee9f50b` (premium fitness lifestyle, 
 - **24** tool pages + index
 - **9** static pages (home, about, contact, faq, blog, privacy, disclaimer, terms, sitemap)
 
-## UI/UX Design System (Completed)
-Applied across all 306 pages via css/style.css:
-- **Colors**: Updated `:root` variables — new primary #22C55E, bg #ECFDF5, dark #111827, body text #374151
-- **Hero overlay**: Reduced from 0.78 → gradient 0.52-0.58 opacity for lighter, more readable hero sections
+## Master Theme System v2 (Completed)
+Applied globally across all 306 pages via css/style.css:
+
+### Design Tokens (`:root`)
+- `--vh-green: #22C55E` / `--vh-green-dark: #16A34A` — primary brand
+- `--vh-dark: #052e1f` / `--vh-dark-2: #064e3b` — dark backgrounds
+- `--vh-text-primary: #111827` / `--vh-text-secondary: #374151` / `--vh-text-muted: #6B7280`
+- `--vh-on-dark-heading: #ECFDF5` / `--vh-on-dark-body: #D1FAE5` / `--vh-on-dark-sub: #A7F3D0` — dark bg text
+- `--shadow` / `--shadow-hover` / `--shadow-green` / `--shadow-green-lg` — unified shadows
+- `--radius-pill: 999px` / `--radius-sm: 10px` / `--transition: 0.25s ease`
+
+### Typography
+- Body font: Inter → DM Sans → system-ui (modern stack, smooth rendering)
+- Body: 16px / line-height 1.7 / color `--vh-text-secondary`
+- Headings: Playfair Display, weight 700, letter-spacing -0.02em, line-height 1.2
+
+### Button System
+- `.btn-primary`: `--vh-green` bg, white text, `--shadow-green` box-shadow, pill border-radius
+- Hover: `--vh-green-dark`, translateY(-2px), `--shadow-green-lg`
+- `.btn-outline`: transparent bg, green border, fills on hover
+
+### Card System
+- White bg, 16px border-radius, `--shadow` (4px/12px subtle depth), 1px rgba border
+- Hover: translateY(-4px), `--shadow-hover`
+
+### Dark Section Text (contrast fixed globally)
+- `.home-value-section` (bg #0d1f17): headings → #ECFDF5, body → #D1FAE5
+- `.home-stats-strip` (bg #0a160f): stat labels → rgba(255,255,255,0.75)
+- All hero sections (`calc-index-hero`, `tools-hero`, `quiz-hero`): heading/body text uses on-dark tokens
+- Blog hero, About hero: heading/body text uses on-dark tokens
+
+### Icon System (all 306 pages)
+- All 72 HTML entity emojis replaced with inline SVGs (`class="icon-svg"`)
+- Each icon unique per context (fire, brain, book, chart, lightning, globe, target, etc.)
+- `funnelToolIcons` object replaced: 12 quiz tool icons now use SVG strings
+- CSS: `.icon-svg { width:1.15em; height:1.15em; vertical-align:-0.2em }` for inline text
+- Icon container spans (`.about-offer-icon`, `.home-value-icon`, etc.) sized via CSS child rules
+
+### Blog Hub Cards
+- Category hub cards replaced: SVG icon divs → actual post `<img>` tags (16:9, `w=480&h=270`)
+- `.blog-hub-card-img` with `aspect-ratio:16/9`, `object-fit:cover`, zoom-on-hover
+
+### Blog Section Heading (Dynamic)
+- `<h2 id="blogSectionTitle">All Health Articles</h2>` — id added
+- `window.blogFilterCat()` in main.js updates heading: "Calories & Weight Articles" etc.
+
+### Blog CTA Widget (High Contrast)
+- Badge: white text/border on rgba(255,255,255,0.1) background
+- Description: rgba(255,255,255,0.88)
+- Trust line: rgba(255,255,255,0.72), opacity:1
+- Button: `--vh-green`, white text, `--shadow-green`
+
+### Previous Design System
 - **Buttons**: Pill border-radius (50px), primary button has green box-shadow + translateY(-3px) hover lift
 - **Cards**: border-radius 16px, box-shadow 0 10px 25px rgba(0,0,0,0.05), translateY(-4px) hover
 - **Tables**: Dark row system — odd rows #052e1f, even rows #064e3b, full-width with overflow scroll
 - **Inputs**: Focus ring via box-shadow 0 0 0 3px rgba(34,197,94,0.2), green border on focus
-- **Checkboxes**: 18px, green accent-color #22C55E
-- **Typography**: Headings letter-spacing -0.02em, body line-height 1.6, body color #374151
-- **Emoji removal**: All decorative emojis removed from headings, section badges, CTAs, card titles, tool card headers; replaced with inline SVG icons for home QA section, value section, and blog category icons
-- **Section badges**: Removed all emoji prefixes; pure text badges with green pill style
 
 ## Key Features
 - **103 fully functional health calculators** with real JS logic across 10+ categories
