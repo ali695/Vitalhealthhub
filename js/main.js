@@ -589,11 +589,9 @@ const vhChat = (function() {
   function toggle() {
     isOpen = !isOpen;
     var win       = document.getElementById('vh-chat-window');
-    var badge     = document.getElementById('vh-chat-badge');
     var toggleBtn = document.getElementById('vh-chat-toggle');
     if (isOpen) {
       if (win) win.classList.add('vh-open');
-      if (badge) badge.style.display = 'none';
       if (toggleBtn) toggleBtn.classList.add('vh-active');
       setTimeout(function(){ var inp=document.getElementById('vh-chat-input'); if(inp) inp.focus(); }, 320);
     } else {
