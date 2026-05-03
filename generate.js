@@ -984,6 +984,112 @@ function calcRelatedCards(calc) {
 </section>`;
 }
 
+function calcCrossContentSection(calc) {
+  const blogCatMap = {
+    'Body Metrics':       ['BMI & Body Weight','Weight Management','General Health'],
+    'Nutrition':          ['Nutrition & Diet','Calorie & Weight','General Health'],
+    'Fitness':            ['Fitness & Exercise','General Health'],
+    'Fitness & Exercise': ['Fitness & Exercise','General Health'],
+    'Heart Health':       ['Heart Health','Chronic Disease','General Health'],
+    'Sleep':              ['Sleep & Recovery','Mental Health & Wellness'],
+    'Wellness':           ['Mental Health & Wellness','General Health'],
+    "Women's Health":     ["Women's Health",'General Health'],
+    'Disease Prevention': ['Chronic Disease','General Health'],
+    'Health Risk':        ['Chronic Disease','General Health'],
+  };
+  const bCats = blogCatMap[calc.category] || ['General Health'];
+  const relatedBlogs = blogPosts.filter(p => bCats.some(c => p.category && p.category.includes(c.split(' ')[0]))).slice(0, 3);
+
+  const quizMap = {
+    'Body Metrics':       ['body-fat-and-composition-quiz','biological-age-quiz','health-trivia-quiz'],
+    'Nutrition':          ['nutrition-knowledge-quiz','calorie-and-metabolism-quiz','diet-type-quiz'],
+    'Fitness':            ['fitness-level-quiz','workout-type-quiz','calorie-and-metabolism-quiz'],
+    'Fitness & Exercise': ['fitness-level-quiz','workout-type-quiz','calorie-and-metabolism-quiz'],
+    'Heart Health':       ['heart-health-quiz','lifestyle-health-score-quiz','stress-awareness-quiz'],
+    'Sleep':              ['sleep-quality-quiz','lifestyle-health-score-quiz','burnout-risk-quiz'],
+    'Wellness':           ['lifestyle-health-score-quiz','stress-awareness-quiz','burnout-risk-quiz'],
+    "Women's Health":     ['hormone-balance-quiz','menstrual-health-quiz','lifestyle-health-score-quiz'],
+    'Disease Prevention': ['lifestyle-health-score-quiz','biological-age-quiz','stress-awareness-quiz'],
+    'Health Risk':        ['lifestyle-health-score-quiz','biological-age-quiz','heart-health-quiz'],
+  };
+  const qSlugs = quizMap[calc.category] || ['nutrition-knowledge-quiz','lifestyle-health-score-quiz','fitness-level-quiz'];
+  const relatedQuizzes = qSlugs.map(s => quizzesData.find(q => q.slug === s)).filter(Boolean).slice(0, 2);
+
+  const toolMap = {
+    'Body Metrics':       ['health-dashboard','habit-tracker','step-tracker'],
+    'Nutrition':          ['habit-tracker','daily-planner','health-dashboard'],
+    'Fitness':            ['step-tracker','habit-tracker','health-dashboard'],
+    'Fitness & Exercise': ['step-tracker','habit-tracker','health-dashboard'],
+    'Heart Health':       ['health-dashboard','step-tracker','mood-tracker'],
+    'Sleep':              ['sleep-tracker','habit-tracker','mood-tracker'],
+    'Wellness':           ['mood-tracker','habit-tracker','daily-planner'],
+    "Women's Health":     ['health-dashboard','mood-tracker','sleep-tracker'],
+    'Disease Prevention': ['health-dashboard','habit-tracker','step-tracker'],
+    'Health Risk':        ['health-dashboard','habit-tracker','sleep-tracker'],
+  };
+  const tSlugs = toolMap[calc.category] || ['habit-tracker','health-dashboard','sleep-tracker'];
+  const relatedTools = tSlugs.map(s => toolsData.find(t => t.slug === s)).filter(Boolean).slice(0, 3);
+
+  const blogCardsHtml = relatedBlogs.map(post => {
+    const img = blogCardImage(post.slug);
+    const imgUrl = (img.url.includes('?') ? img.url.split('?')[0] : img.url) + '?w=440&h=220&fit=crop&auto=format&q=80';
+    return `<a href="/blog/${post.slug}.html" class="ccs-xlink-card">
+<div class="ccs-xlink-img"><img src="${imgUrl}" alt="${img.alt}" width="440" height="220" loading="lazy"></div>
+<div class="ccs-xlink-body">
+<span class="ccs-xlink-badge">${post.category}</span>
+<h4>${post.title}</h4>
+<div class="ccs-xlink-meta">${post.readTime} read &bull; Expert reviewed</div>
+<span class="ccs-xlink-cta">Read Article &rarr;</span>
+</div></a>`;
+  }).join('');
+
+  const quizCardsHtml = relatedQuizzes.map(quiz => `<a href="/quizzes/${quiz.slug}.html" class="ccs-xlink-card ccs-xlink-flat">
+<div class="ccs-xlink-flat-icon">${quiz.icon}</div>
+<div class="ccs-xlink-body">
+<span class="ccs-xlink-badge ccs-badge-quiz">${quiz.category}</span>
+<h4>${quiz.name}</h4>
+<p class="ccs-xlink-desc">${quiz.desc.length > 90 ? quiz.desc.slice(0,90)+'...' : quiz.desc}</p>
+<span class="ccs-xlink-cta">Take Quiz &rarr;</span>
+</div></a>`).join('');
+
+  const toolCardsHtml = relatedTools.map(tool => `<a href="/tools/${tool.slug}.html" class="ccs-xlink-card ccs-xlink-flat">
+<div class="ccs-xlink-flat-icon">${tool.icon}</div>
+<div class="ccs-xlink-body">
+<span class="ccs-xlink-badge ccs-badge-tool">Free Tool</span>
+<h4>${tool.name}</h4>
+<p class="ccs-xlink-desc">${tool.desc.length > 85 ? tool.desc.slice(0,85)+'...' : tool.desc}</p>
+<span class="ccs-xlink-cta">Use Tool &rarr;</span>
+</div></a>`).join('');
+
+  if (!blogCardsHtml && !quizCardsHtml && !toolCardsHtml) return '';
+
+  return `<section class="ccs-section ccs-gray">
+<div class="container">
+<div class="ccs-explore-header fade-in">
+<h2>Explore More Health Tools &amp; Insights</h2>
+<p>Deepen your knowledge with related articles, quizzes, and free tracking tools.</p>
+</div>
+<div class="ccs-explore-grid fade-in">
+${blogCardsHtml ? `<div class="ccs-explore-block">
+<div class="ccs-explore-block-title">&#128218; Related Articles</div>
+<div class="ccs-xlink-stack">${blogCardsHtml}</div>
+<a href="/blog.html" class="ccs-explore-view-all">View All Articles &rarr;</a>
+</div>` : ''}
+${quizCardsHtml ? `<div class="ccs-explore-block">
+<div class="ccs-explore-block-title">&#129504; Test Your Knowledge</div>
+<div class="ccs-xlink-stack">${quizCardsHtml}</div>
+<a href="/quizzes/" class="ccs-explore-view-all">View All Quizzes &rarr;</a>
+</div>` : ''}
+${toolCardsHtml ? `<div class="ccs-explore-block">
+<div class="ccs-explore-block-title">&#9889; Quick Tools</div>
+<div class="ccs-xlink-stack">${toolCardsHtml}</div>
+<a href="/tools/" class="ccs-explore-view-all">View All Tools &rarr;</a>
+</div>` : ''}
+</div>
+</div>
+</section>`;
+}
+
 function generateCalculatorPage(calc) {
   const bc = breadcrumb([{name:'Home',url:'/'},{name:'Calculators',url:'/calculators/'},{name:calc.name,url:'/calculators/'+calc.slug+'.html'}]);
   const faq = faqSection(calc.faqs);
@@ -1000,11 +1106,6 @@ function generateCalculatorPage(calc) {
       formFields += `<div class="form-group"><label for="${f.id}">${f.label}</label><input type="${f.type}" id="${f.id}" placeholder="${f.ph||''}"></div>`;
     }
   });
-
-  const relatedHtml = (calc.related||[]).slice(0,4).map(r => {
-    const rc = calculators.find(c => c.slug === r);
-    return rc ? `<a href="/calculators/${r}.html" class="card"><div class="card-icon">${calcSvg(rc.icon)}</div><h3>${rc.name}</h3><p>${rc.desc}</p></a>` : '';
-  }).join('');
 
   const pageTitle = calc.name.endsWith('Calculator') || calc.name.endsWith('Checker') ? `${calc.name} – Free & Accurate | ${SITE_NAME}` : `${calc.name} Calculator – Free & Accurate | ${SITE_NAME}`;
 
@@ -1129,12 +1230,9 @@ ${faq.html}
 <section class="ccs-section ccs-white">
 <div class="container">
 ${calcRelatedCards(calc)}
-<div class="ccs-more-calcs fade-in">
-<div class="ccs-section-heading"><h2>More Calculators</h2></div>
-<div class="grid-4">${relatedHtml}</div>
-</div>
 </div>
 </section>
+${calcCrossContentSection(calc)}
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js"></script>

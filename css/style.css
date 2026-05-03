@@ -5910,3 +5910,191 @@ img, svg { max-width: 100%; height: auto; }
   .ccs-section { padding: 44px 0; }
   .ccs-section .related-calcs-grid { grid-template-columns: 1fr; }
 }
+
+/* =============================================
+   EXPLORE MORE CROSS-CONTENT SECTION (ccs-explore)
+   ============================================= */
+
+.ccs-explore-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.ccs-explore-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f3d2b;
+  margin-bottom: 8px;
+}
+.ccs-explore-header p {
+  color: #6b7280;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* 3-column grid */
+.ccs-explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+/* Block column */
+.ccs-explore-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.ccs-explore-block-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1f3d2b;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #d1fae5;
+}
+
+/* Stack of cards inside each block */
+.ccs-xlink-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+/* Generic cross-link card */
+.ccs-xlink-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.ccs-xlink-card:hover {
+  border-color: #2e7d32;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  transform: translateY(-3px);
+}
+
+/* Blog card: image on top */
+.ccs-xlink-img {
+  width: 100%;
+  height: 130px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.ccs-xlink-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.ccs-xlink-card:hover .ccs-xlink-img img { transform: scale(1.05); }
+
+/* Flat card (quiz/tool): icon left, text right */
+.ccs-xlink-flat {
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 14px;
+}
+.ccs-xlink-flat-icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Card body */
+.ccs-xlink-body {
+  padding: 14px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+.ccs-xlink-flat .ccs-xlink-body {
+  padding: 0;
+}
+
+/* Category badge */
+.ccs-xlink-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #d1fae5;
+  color: #1b4332;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.02em;
+  width: fit-content;
+}
+.ccs-badge-quiz {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+.ccs-badge-tool {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Card heading */
+.ccs-xlink-body h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1f3d2b;
+  line-height: 1.4;
+  margin: 0;
+}
+.ccs-xlink-meta {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+.ccs-xlink-desc {
+  font-size: 0.8rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+.ccs-xlink-cta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-top: 2px;
+}
+.ccs-xlink-card:hover .ccs-xlink-cta { color: #1f3d2b; }
+
+/* View all link */
+.ccs-explore-view-all {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #2e7d32;
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 0.2s;
+  width: fit-content;
+}
+.ccs-explore-view-all:hover {
+  border-bottom-color: #2e7d32;
+  color: #1f3d2b;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ccs-explore-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .ccs-explore-grid { grid-template-columns: 1fr; gap: 24px; }
+  .ccs-explore-header h2 { font-size: 1.4rem; }
+}
