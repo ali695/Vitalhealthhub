@@ -396,6 +396,23 @@ function calcSvg(type, slug) {
   return icons[type] || icons.weight;
 }
 
+function quizSvg(slug) {
+  const svgs = {
+    'nutrition-knowledge-quiz':     `<svg viewBox="0 0 48 48" fill="none"><path d="M16 10c0 0-4 6-4 12a12 12 0 0 0 24 0c0-6-4-12-4-12" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M24 10v12" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M14 36h20" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/><path d="M12 40h24" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'hydration-health-quiz':        `<svg viewBox="0 0 48 48" fill="none"><path d="M24 8c0 0-13 15-13 23a13 13 0 0 0 26 0c0-8-13-23-13-23z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 32c0-3.3 2.7-6 6-6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'fitness-level-quiz':           `<svg viewBox="0 0 48 48" fill="none"><rect x="4" y="21" width="8" height="6" rx="2" stroke="#2d6a4f" stroke-width="2.5"/><rect x="36" y="21" width="8" height="6" rx="2" stroke="#2d6a4f" stroke-width="2.5"/><path d="M12 24h6v-8h12v8h6" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    'lifestyle-health-score-quiz':  `<svg viewBox="0 0 48 48" fill="none"><path d="M24 10c-2-4-8-5-11-1s-2 9 2 12l9 9 9-9c4-3 5-8 2-12s-9-3-11 1z" stroke="#2d6a4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 36v5" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M18 44h12" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'stress-awareness-quiz':        `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="22" r="13" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 18c0-2.2 1.8-4 4-4s4 1.8 4 4c0 2-1.5 3-3 4v2" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="30" r="1.5" fill="#2d6a4f"/><path d="M24 36v6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M18 42h12" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'burnout-risk-quiz':            `<svg viewBox="0 0 48 48" fill="none"><path d="M24 8c0 0-9 11-9 19a9 9 0 0 0 18 0c0-8-9-19-9-19z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 30c0-2.2 1.8-4 4-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M24 38v4M20 42h8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'sleep-science-quiz':           `<svg viewBox="0 0 48 48" fill="none"><path d="M34 26c0 8-5 14-13 14S8 34 8 26s5-14 13-14c-3 2-5 5-5 9s3 9 9 9c3 0 6-2 9-5z" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="36" cy="12" r="2.5" fill="#f4a261"/><circle cx="41" cy="20" r="1.5" fill="#f4a261"/><circle cx="30" cy="8" r="1.5" fill="#f4a261"/></svg>`,
+    'anxiety-mental-health-quiz':   `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="20" r="13" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 16c1-3 7-3 7 1s-4 4-4 8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><circle cx="23" cy="27" r="1.5" fill="#2d6a4f"/></svg>`,
+    'hormonal-health-quiz':         `<svg viewBox="0 0 48 48" fill="none"><path d="M24 8v32M14 16l20 16M34 16L14 32" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="24" r="5" stroke="#52b788" stroke-width="2"/></svg>`,
+    'menstrual-cycle-quiz':         `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#2d6a4f" stroke-width="2.5"/><path d="M24 14v10l6 4" stroke="#52b788" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  };
+  const defaultSvg = `<svg viewBox="0 0 48 48" fill="none"><rect x="10" y="6" width="28" height="36" rx="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 18h16M16 24h16M16 30h10" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><circle cx="35" cy="35" r="7" fill="#f0faf4" stroke="#2d6a4f" stroke-width="2"/><path d="M32 35l2 2 4-4" stroke="#2d6a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  return svgs[slug] || defaultSvg;
+}
+
 const BLOG_IMAGES = {
   'how-to-calculate-bmi':               {url:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80',alt:'Doctor measuring patient BMI body weight'},
   'what-is-a-healthy-bmi':              {url:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80',alt:'Healthy person checking BMI ranges'},
@@ -2742,7 +2759,7 @@ ${homeQuizzesDisplay.map(q => {
   const diffLabel = diff === 'easy' ? 'Easy' : diff === 'medium' ? 'Medium' : 'Hard';
   return `<a href="/quizzes/${q.slug}.html" class="home-quiz-card fade-in">
 <div class="home-quiz-card-top">
-<span class="home-quiz-card-icon">${q.icon}</span>
+<span class="home-quiz-card-icon">${quizSvg(q.slug)}</span>
 <span class="home-quiz-card-cat">${q.category}</span>
 <span class="home-quiz-card-diff ${diff}">${diffLabel}</span>
 </div>

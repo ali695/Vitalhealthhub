@@ -5713,7 +5713,8 @@ img, svg { max-width: 100%; height: auto; }
 .home-quiz-card { background:var(--white); border-radius:16px; padding:28px 24px; text-decoration:none; transition:all 0.25s ease; border:1px solid rgba(0,0,0,0.05); box-shadow:0 2px 12px rgba(0,0,0,0.05); display:flex; flex-direction:column; }
 .home-quiz-card:hover { transform:translateY(-4px); box-shadow:0 10px 30px rgba(45,106,79,0.14); }
 .home-quiz-card-top { display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
-.home-quiz-card-icon { font-size:1.8rem; line-height:1; }
+.home-quiz-card-icon { width:40px; height:40px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--green-light); border-radius:10px; }
+.home-quiz-card-icon svg { width:22px; height:22px; }
 .home-quiz-card-cat { font-size:0.7rem; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; background:var(--green-light); color:var(--primary); padding:3px 10px; border-radius:20px; }
 .home-quiz-card-diff { font-size:0.7rem; padding:3px 9px; border-radius:10px; font-weight:600; }
 .home-quiz-card-diff.easy { background:#d8f3dc; color:#2d6a4f; }
