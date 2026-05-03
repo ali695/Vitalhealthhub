@@ -527,41 +527,51 @@ ma7122671@gmail.com
 })();
 </script>
 <div id="vh-chatbot">
-<button id="vh-chat-toggle" aria-label="Open Health Assistant">
-<svg id="vh-chat-icon" width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-<svg id="vh-close-icon" width="22" height="22" viewBox="0 0 24 24" fill="white" style="display:none;"><line x1="18" y1="6" x2="6" y2="18" stroke="white" stroke-width="2.5"/><line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="2.5"/></svg>
-<span id="vh-chat-badge">1</span>
+<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
+<span class="vh-toggle-inner">
+<svg id="vh-chat-icon" width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+<svg id="vh-close-icon" width="18" height="18" viewBox="0 0 24 24" stroke="white" stroke-width="2.5" fill="none" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</span>
+<span id="vh-chat-badge" aria-hidden="true">1</span>
 </button>
-<div id="vh-chat-window" style="display:none;">
+<div id="vh-chat-window">
 <div id="vh-chat-header">
-<div style="display:flex;align-items:center;gap:10px;">
-<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="38" height="38" loading="lazy"></div>
-<div>
-<p style="color:#fff;font-weight:600;font-size:14px;margin:0;">VitalHealth Assistant</p>
-<p style="color:#a7f3d0;font-size:11px;margin:0;">🟢 Online — Health Q&A Bot</p>
+<div class="vh-header-left">
+<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="36" height="36" loading="lazy"></div>
+<div class="vh-header-info">
+<span class="vh-header-name">VitalHealth Assistant</span>
+<span class="vh-header-sub"><span class="vh-online-dot"></span>AI-powered health tools &amp; insights</span>
 </div>
 </div>
-<button id="vh-chat-minimize">—</button>
+<button id="vh-chat-minimize" aria-label="Close chat">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
 </div>
-<div id="vh-chat-messages"></div>
+<div id="vh-chat-messages" role="log" aria-live="polite"></div>
 <div id="vh-quick-topics">
-<p style="font-size:11px;color:#6b7280;margin:0 0 8px;font-weight:500;">Quick Topics:</p>
-<div id="vh-topics-grid">
-<button class="vh-topic-btn" data-vh-ask="BMI">⚖️ BMI</button>
-<button class="vh-topic-btn" data-vh-ask="Calories">🔥 Calories</button>
-<button class="vh-topic-btn" data-vh-ask="Sleep">😴 Sleep</button>
-<button class="vh-topic-btn" data-vh-ask="Water">💧 Water</button>
-<button class="vh-topic-btn" data-vh-ask="Weight Loss">📉 Weight Loss</button>
-<button class="vh-topic-btn" data-vh-ask="Protein">💪 Protein</button>
-<button class="vh-topic-btn" data-vh-ask="Heart Health">❤️ Heart</button>
-<button class="vh-topic-btn" data-vh-ask="Stress">🧠 Stress</button>
+<p class="vh-topics-label">Quick actions</p>
+<div class="vh-actions-primary">
+<button class="vh-action-btn" data-vh-ask="BMI">Calculate BMI</button>
+<button class="vh-action-btn" data-vh-ask="Calories">Check Calories</button>
+<button class="vh-action-btn" data-vh-ask="health quiz">Health Quiz</button>
+<button class="vh-action-btn" data-vh-ask="tools">Explore Tools</button>
+</div>
+<div class="vh-actions-secondary">
+<button class="vh-topic-pill" data-vh-ask="Sleep">Sleep</button>
+<button class="vh-topic-pill" data-vh-ask="Water">Hydration</button>
+<button class="vh-topic-pill" data-vh-ask="Stress">Stress</button>
+<button class="vh-topic-pill" data-vh-ask="Heart Health">Heart Health</button>
+<button class="vh-topic-pill" data-vh-ask="Weight Loss">Weight Loss</button>
+<button class="vh-topic-pill" data-vh-ask="Protein">Protein</button>
 </div>
 </div>
 <div id="vh-chat-input-area">
-<input type="text" id="vh-chat-input" placeholder="Ask a health question..." autocomplete="off" maxlength="200">
-<button id="vh-chat-send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+<input type="text" id="vh-chat-input" placeholder="Ask about health, tools, or results..." autocomplete="off" maxlength="300" aria-label="Chat message">
+<button id="vh-chat-send" aria-label="Send message">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="white" stroke="none"/></svg>
+</button>
 </div>
-<p id="vh-chat-disclaimer">⚕️ For informational purposes only. Not medical advice. Consult your doctor.</p>
+<p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
 </body></html>

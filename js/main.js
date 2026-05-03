@@ -109,476 +109,493 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-const vhChat = {
+// ─── VitalHealth Premium Chatbot ──────────────────────────────────────────────
+const vhChat = (function() {
 
-  isOpen: false,
+  // ── Resource card builders ────────────────────────────────────────────────
+  function rc(type, name, slug, note) {
+    var base = type === 'calc' ? '/calculators/' : type === 'tool' ? '/tools/' : '/quizzes/';
+    var label = type === 'calc' ? 'Calculator' : type === 'tool' ? 'Free Tool' : 'Health Quiz';
+    var cls   = 'vh-rc vh-rc-' + type;
+    return '<a href="' + base + slug + '.html" class="' + cls + '">' +
+      '<span class="vh-rc-label">' + label + '</span>' +
+      '<span class="vh-rc-name">' + name + '</span>' +
+      (note ? '<span class="vh-rc-note">' + note + '</span>' : '') +
+      '<svg class="vh-rc-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+      '</a>';
+  }
 
-  knowledge: {
+  function cards(html, items) {
+    return '<p class="vh-r-intro">' + html + '</p><div class="vh-rc-list">' + items.join('') + '</div>';
+  }
 
-    greetings: {
-      triggers: ['hello','hi','hey','good morning',
-                 'good evening','howdy','sup','greetings'],
-      response: `👋 Hello! I'm the <strong>VitalHealth Assistant</strong> — your free health Q&A bot.<br><br>
-      I can answer questions about:<br>
-      • BMI & body weight<br>
-      • Calories & nutrition<br>
-      • Sleep & recovery<br>
-      • Heart health & vitals<br>
-      • Exercise & fitness<br>
-      • Mental health & stress<br><br>
-      What health topic can I help you with today?`
+  // ── Knowledge base ────────────────────────────────────────────────────────
+  var kb = [
+    {
+      id: 'greet',
+      triggers: ['hello','hi','hey','good morning','good evening','howdy','sup','greetings','start'],
+      response: '<p class="vh-r-intro">Hi there! I\'m your <strong>VitalHealth Assistant</strong> — ask me about any health topic or use the quick actions below to get started.</p>' +
+        '<div class="vh-rc-list">' +
+        rc('calc','BMI Calculator','bmi-calculator','Weight vs height') +
+        rc('calc','Calorie Calculator','calorie-calculator','Daily energy needs') +
+        rc('quiz','Lifestyle Health Quiz','lifestyle-health-score-quiz','How healthy are you?') +
+        rc('tool','Habit Tracker','habit-tracker','Build better habits') +
+        '</div>'
     },
-
-    bmi: {
-      triggers: ['bmi','body mass index','am i overweight',
-                 'am i obese','healthy weight','weight category'],
-      response: `⚖️ <strong>BMI (Body Mass Index)</strong> measures body weight relative to height.<br><br>
-      <strong>BMI Ranges:</strong><br>
-      • Under 18.5 — Underweight<br>
-      • 18.5–24.9 — ✅ Normal/Healthy<br>
-      • 25.0–29.9 — Overweight<br>
-      • 30.0+ — Obese<br><br>
-      <strong>Formula:</strong> Weight(kg) ÷ Height(m)²<br><br>
-      💡 Note: BMI doesn't account for muscle mass. Athletes may have high BMI but low body fat.<br><br>
-      👉 Use our <a href="/calculators/bmi-calculator.html" style="color:#2d6a4f;font-weight:600;">BMI Calculator</a> for your exact score!`
+    {
+      id: 'bmi',
+      triggers: ['bmi','body mass index','am i overweight','am i obese','healthy weight','weight category','underweight'],
+      response: cards(
+        'BMI measures weight relative to height. The healthy range is <strong>18.5–24.9</strong>. Note: BMI doesn\'t account for muscle mass or body composition.',
+        [
+          rc('calc','BMI Calculator','bmi-calculator','Get your exact BMI score'),
+          rc('calc','Body Fat Calculator','body-fat-calculator','More accurate than BMI'),
+          rc('calc','Ideal Weight Calculator','ideal-weight-calculator','Your target weight range'),
+          rc('quiz','Body Fat & Composition Quiz','body-fat-and-composition-quiz','Assess your body type')
+        ]
+      )
     },
-
-    calories: {
-      triggers: ['calories','calorie','how many calories',
-                 'caloric intake','energy intake',
-                 'daily calories','kcal'],
-      response: `🔥 <strong>Daily Calorie Needs</strong> depend on your age, gender, weight, height and activity level.<br><br>
-      <strong>General Guidelines:</strong><br>
-      • Women: 1,600–2,400 cal/day<br>
-      • Men: 2,000–3,000 cal/day<br><br>
-      <strong>Goals:</strong><br>
-      • Lose weight: eat 300–500 less than TDEE<br>
-      • Maintain: eat at your TDEE<br>
-      • Gain muscle: eat 200–300 more than TDEE<br><br>
-      👉 Get your exact number with our <a href="/calculators/calorie-calculator.html" style="color:#2d6a4f;font-weight:600;">Calorie Calculator</a>!`
+    {
+      id: 'calories',
+      triggers: ['calories','calorie','how many calories','caloric intake','daily calories','kcal','energy needs','how much should i eat'],
+      response: cards(
+        'Your daily calorie needs depend on age, sex, height, weight, and activity level. A deficit of 300–500 kcal/day produces safe, sustainable weight loss.',
+        [
+          rc('calc','Calorie Calculator','calorie-calculator','Personalised daily intake'),
+          rc('calc','TDEE Calculator','tdee-calculator','Total daily energy expenditure'),
+          rc('calc','BMR Calculator','bmr-calculator','Basal metabolic rate'),
+          rc('quiz','Calorie & Metabolism Quiz','calorie-and-metabolism-quiz','Test your knowledge')
+        ]
+      )
     },
-
-    protein: {
-      triggers: ['protein','how much protein','protein intake',
-                 'protein per day','daily protein',
-                 'protein for muscle'],
-      response: `💪 <strong>Daily Protein Intake</strong> recommendations:<br><br>
-      • Sedentary adults: 0.8g per kg bodyweight<br>
-      • Active people: 1.2–1.6g per kg<br>
-      • Athletes/muscle building: 1.6–2.2g per kg<br><br>
-      <strong>Best protein sources:</strong><br>
-      🥚 Eggs • 🍗 Chicken • 🐟 Fish • 🫘 Legumes • 🥛 Greek yogurt • 🌰 Nuts<br><br>
-      👉 Try our <a href="/calculators/protein-intake-calculator.html" style="color:#2d6a4f;font-weight:600;">Protein Calculator</a> for your exact needs!`
+    {
+      id: 'protein',
+      triggers: ['protein','how much protein','protein intake','protein per day','daily protein','protein for muscle','amino acids'],
+      response: cards(
+        'Protein needs: <strong>0.8g/kg</strong> for sedentary adults, <strong>1.2–1.6g/kg</strong> for active people, <strong>1.6–2.2g/kg</strong> for athletes building muscle.',
+        [
+          rc('calc','Protein Calculator','protein-intake-calculator','Your exact daily target'),
+          rc('calc','Macro Calculator','macro-calculator','Full macro breakdown'),
+          rc('quiz','Nutrition Knowledge Quiz','nutrition-knowledge-quiz','How much do you know?'),
+          rc('tool','Habit Tracker','habit-tracker','Track your protein goals')
+        ]
+      )
     },
-
-    water: {
-      triggers: ['water','hydration','drink water',
-                 'how much water','daily water',
-                 'water intake','dehydrated'],
-      response: `💧 <strong>Daily Water Intake</strong>:<br><br>
-      • General rule: 8 glasses (2 litres) per day<br>
-      • Better rule: 35ml per kg of bodyweight<br>
-      • Hot weather: add 500ml–1L extra<br>
-      • Exercise: add 500ml per hour of activity<br><br>
-      <strong>Signs of dehydration:</strong><br>
-      😵 Dark urine • Headache • Fatigue • Dry mouth • Dizziness<br><br>
-      💡 Tip: Check your urine — pale yellow means well hydrated!<br><br>
-      👉 <a href="/calculators/water-intake-calculator.html" style="color:#2d6a4f;font-weight:600;">Calculate your exact water needs →</a>`
+    {
+      id: 'water',
+      triggers: ['water','hydration','drink water','how much water','daily water','water intake','dehydrated','thirsty'],
+      response: cards(
+        'A reliable guideline: <strong>35ml per kg</strong> of bodyweight daily — more in heat or during exercise. Pale yellow urine indicates good hydration.',
+        [
+          rc('calc','Water Intake Calculator','water-intake-calculator','Personalised daily target'),
+          rc('calc','Electrolyte Calculator','electrolyte-calculator','Replace what you lose'),
+          rc('tool','Health Dashboard','health-dashboard','Track hydration daily')
+        ]
+      )
     },
-
-    sleep: {
-      triggers: ['sleep','how much sleep','sleep hours',
-                 'sleep deprivation','insomnia',
-                 'can\'t sleep','tired','fatigue'],
-      response: `😴 <strong>Recommended Sleep Duration</strong> by age:<br><br>
-      • Babies (0–1yr): 14–17 hours<br>
-      • Children (6–12): 9–12 hours<br>
-      • Teenagers (13–18): 8–10 hours<br>
-      • Adults (18–64): <strong>7–9 hours</strong><br>
-      • Seniors (65+): 7–8 hours<br><br>
-      <strong>Better sleep tips:</strong><br>
-      🌙 Same bedtime daily • 📱 No screens 1hr before bed • ❄️ Cool room (18°C) • ☕ No caffeine after 2pm • 🧘 Relaxation routine<br><br>
-      👉 <a href="/calculators/sleep-calculator.html" style="color:#2d6a4f;font-weight:600;">Calculate your ideal sleep schedule →</a>`
+    {
+      id: 'sleep',
+      triggers: ['sleep','how much sleep','sleep hours','insomnia','cant sleep','tired','fatigue','sleep deprivation','bedtime'],
+      response: cards(
+        'Adults need <strong>7–9 hours</strong> of sleep per night. Consistent sleep timing matters as much as duration — irregular schedules disrupt your circadian rhythm.',
+        [
+          rc('calc','Sleep Calculator','sleep-calculator','Ideal wake-up times'),
+          rc('calc','Sleep Debt Calculator','sleep-debt-calculator','How much have you lost?'),
+          rc('quiz','Sleep Quality Quiz','sleep-quality-quiz','Rate your sleep health'),
+          rc('tool','Sleep Tracker','sleep-tracker','Log and track your sleep')
+        ]
+      )
     },
-
-    heartrate: {
-      triggers: ['heart rate','pulse','bpm','resting heart',
-                 'heart beat','normal heart rate',
-                 'target heart rate'],
-      response: `❤️ <strong>Heart Rate Guide:</strong><br><br>
-      <strong>Resting Heart Rate (adults):</strong><br>
-      • Athletes: 40–60 BPM<br>
-      • Normal: 60–100 BPM<br>
-      • High (concerning): 100+ BPM<br><br>
-      <strong>Target Heart Rate during exercise:</strong><br>
-      • Moderate intensity: 50–70% of max HR<br>
-      • Vigorous intensity: 70–85% of max HR<br>
-      • Max HR = 220 minus your age<br><br>
-      💡 Measure your pulse at your wrist or neck for 15 seconds, multiply by 4.<br><br>
-      👉 <a href="/calculators/heart-rate-calculator.html" style="color:#2d6a4f;font-weight:600;">Heart Rate Calculator →</a>`
+    {
+      id: 'weightloss',
+      triggers: ['lose weight','weight loss','fat loss','how to lose','losing weight','reduce weight','slim down','burn fat','diet'],
+      response: cards(
+        'Sustainable weight loss requires a <strong>calorie deficit</strong>, adequate protein to preserve muscle, and regular exercise. Aim for 0.5–1kg per week — faster loss typically means muscle loss.',
+        [
+          rc('calc','Calorie Calculator','calorie-calculator','Find your deficit target'),
+          rc('calc','TDEE Calculator','tdee-calculator','Calories you burn daily'),
+          rc('calc','BMI Calculator','bmi-calculator','Track your progress'),
+          rc('quiz','Diet Type Quiz','diet-type-quiz','Find the right diet for you')
+        ]
+      )
     },
-
-    weightloss: {
-      triggers: ['lose weight','weight loss','fat loss',
-                 'how to lose','losing weight',
-                 'reduce weight','slim down','burn fat'],
-      response: `📉 <strong>Evidence-Based Weight Loss:</strong><br><br>
-      <strong>The fundamentals:</strong><br>
-      1. Calorie deficit (eat less than you burn)<br>
-      2. High protein diet (keeps you full)<br>
-      3. Strength training (preserve muscle)<br>
-      4. Cardio exercise (burn extra calories)<br>
-      5. Quality sleep (controls hunger hormones)<br>
-      6. Manage stress (reduces cortisol/fat storage)<br><br>
-      <strong>Safe rate of loss:</strong><br>
-      • 0.5–1kg per week is sustainable<br>
-      • Crash diets cause muscle loss — avoid!<br><br>
-      👉 Start with our <a href="/calculators/calorie-calculator.html" style="color:#2d6a4f;font-weight:600;">Calorie Calculator</a> to find your deficit!`
+    {
+      id: 'heartrate',
+      triggers: ['heart rate','pulse','bpm','resting heart','heartbeat','normal heart rate','target heart rate','max heart rate'],
+      response: cards(
+        'A healthy resting heart rate is <strong>60–100 BPM</strong> for adults. During exercise, target <strong>50–85% of your maximum</strong> (220 minus your age) depending on intensity.',
+        [
+          rc('calc','Heart Rate Calculator','heart-rate-calculator','Training zones & targets'),
+          rc('calc','Blood Pressure Checker','blood-pressure-checker','Full cardiovascular check'),
+          rc('quiz','Heart Health Quiz','heart-health-quiz','Assess your heart risk'),
+          rc('tool','Health Dashboard','health-dashboard','Monitor your vitals')
+        ]
+      )
     },
-
-    bloodpressure: {
-      triggers: ['blood pressure','bp','hypertension',
-                 'high blood pressure','systolic',
-                 'diastolic','normal bp'],
-      response: `🩺 <strong>Blood Pressure Ranges:</strong><br><br>
-      • Normal: below 120/80 mmHg ✅<br>
-      • Elevated: 120–129 / below 80<br>
-      • High Stage 1: 130–139 / 80–89<br>
-      • High Stage 2: 140+ / 90+<br>
-      • Crisis: 180+ / 120+ 🚨<br><br>
-      <strong>Ways to lower blood pressure naturally:</strong><br>
-      🥗 DASH diet • 🚶 Regular exercise • 🧂 Reduce sodium • 🚭 Quit smoking • 🍷 Limit alcohol • 😌 Reduce stress<br><br>
-      👉 <a href="/calculators/blood-pressure-checker.html" style="color:#2d6a4f;font-weight:600;">Check your BP risk →</a>`
+    {
+      id: 'heartHealth',
+      triggers: ['heart health','cardiovascular','cardio health','heart disease','heart attack','cardiac'],
+      response: cards(
+        'Cardiovascular health depends on blood pressure, cholesterol, blood sugar, weight, activity, smoking, and stress — all modifiable factors.',
+        [
+          rc('calc','Blood Pressure Checker','blood-pressure-checker','Check your BP risk'),
+          rc('calc','Cholesterol Risk Calculator','cholesterol-risk-calculator','Lipid health score'),
+          rc('calc','Heart Age Calculator','heart-age-calculator','Is your heart older than you?'),
+          rc('quiz','Heart Health Quiz','heart-health-quiz','Full cardiac risk quiz')
+        ]
+      )
     },
-
-    diabetes: {
-      triggers: ['diabetes','blood sugar','glucose',
-                 'diabetic','prediabetes','insulin',
-                 'type 2 diabetes'],
-      response: `🩸 <strong>Blood Sugar Levels:</strong><br><br>
-      <strong>Fasting glucose:</strong><br>
-      • Normal: 70–99 mg/dL ✅<br>
-      • Prediabetes: 100–125 mg/dL ⚠️<br>
-      • Diabetes: 126+ mg/dL 🚨<br><br>
-      <strong>Prevention tips:</strong><br>
-      • Maintain healthy weight<br>
-      • Exercise 150 min/week minimum<br>
-      • Eat whole foods, limit sugar<br>
-      • Avoid processed carbs<br>
-      • Get regular blood tests<br><br>
-      👉 <a href="/calculators/diabetes-risk-calculator.html" style="color:#2d6a4f;font-weight:600;">Check your diabetes risk →</a>`
+    {
+      id: 'stress',
+      triggers: ['stress','stressed','anxiety','anxious','worry','overwhelmed','mental health','burnout','panic'],
+      response: cards(
+        'Chronic stress raises cortisol, disrupts sleep, and increases heart disease risk. Box breathing (4s in / 4s hold / 4s out / 4s hold) provides immediate relief.',
+        [
+          rc('calc','Stress Level Calculator','stress-level-calculator','Measure your stress score'),
+          rc('calc','Anxiety Score Calculator','anxiety-score-calculator','GAD-based assessment'),
+          rc('quiz','Burnout Risk Quiz','burnout-risk-quiz','Are you heading for burnout?'),
+          rc('quiz','Stress Awareness Quiz','stress-awareness-quiz','Know your stress triggers')
+        ]
+      )
     },
-
-    stress: {
-      triggers: ['stress','stressed','anxiety','anxious',
-                 'worry','overwhelmed','mental health',
-                 'depression','burnout'],
-      response: `🧠 <strong>Managing Stress & Anxiety:</strong><br><br>
-      <strong>Immediate relief techniques:</strong><br>
-      • Box breathing: 4s in, 4s hold, 4s out, 4s hold<br>
-      • 5-4-3-2-1 grounding technique<br>
-      • Cold water on face/wrists<br>
-      • 10 min walk outdoors<br><br>
-      <strong>Long-term strategies:</strong><br>
-      🧘 Daily meditation (even 10 mins) • 🏃 Regular exercise • 😴 Prioritise sleep • 👥 Social connections • 📵 Limit news/social media<br><br>
-      ⚠️ If stress is severe or persistent, please consult a mental health professional.<br><br>
-      👉 <a href="/calculators/stress-level-calculator.html" style="color:#2d6a4f;font-weight:600;">Check your stress level →</a>`
+    {
+      id: 'bloodpressure',
+      triggers: ['blood pressure','bp','hypertension','high blood pressure','systolic','diastolic','normal bp','low blood pressure'],
+      response: cards(
+        'Ideal blood pressure is <strong>below 120/80 mmHg</strong>. Readings above 130/80 are considered high. A single reading is rarely definitive — track trends over time.',
+        [
+          rc('calc','Blood Pressure Checker','blood-pressure-checker','Risk assessment tool'),
+          rc('calc','Stroke Risk Calculator','stroke-risk-calculator','Long-term risk score'),
+          rc('calc','Cholesterol Risk Calculator','cholesterol-risk-calculator','Combined heart risk'),
+          rc('quiz','Heart Health Quiz','heart-health-quiz','Full cardiovascular quiz')
+        ]
+      )
     },
-
-    cholesterol: {
-      triggers: ['cholesterol','ldl','hdl',
-                 'high cholesterol','triglycerides',
-                 'cholesterol levels'],
-      response: `💊 <strong>Cholesterol Levels Guide:</strong><br><br>
-      <strong>Total Cholesterol:</strong><br>
-      • Desirable: below 200 mg/dL ✅<br>
-      • Borderline: 200–239 mg/dL<br>
-      • High: 240+ mg/dL 🚨<br><br>
-      <strong>LDL (bad) Cholesterol:</strong><br>
-      • Optimal: below 100 mg/dL<br>
-      • Near optimal: 100–129<br><br>
-      <strong>HDL (good) Cholesterol:</strong><br>
-      • Good: 60+ mg/dL (protective)<br>
-      • Low risk: 40–59 mg/dL<br><br>
-      <strong>Lower cholesterol naturally:</strong><br>
-      🐟 Omega-3s • 🌾 Oats & fiber • 🫒 Olive oil • 🚭 Quit smoking • 🏃 Exercise regularly<br><br>
-      👉 <a href="/calculators/cholesterol-risk-calculator.html" style="color:#2d6a4f;font-weight:600;">Check cholesterol risk →</a>`
+    {
+      id: 'diabetes',
+      triggers: ['diabetes','blood sugar','glucose','diabetic','prediabetes','insulin','type 2','sugar levels'],
+      response: cards(
+        'Normal fasting blood glucose is <strong>70–99 mg/dL</strong>. Between 100–125 indicates prediabetes. Lifestyle changes — diet, exercise, weight loss — can prevent or delay Type 2 diabetes.',
+        [
+          rc('calc','Diabetes Risk Calculator','diabetes-risk-calculator','Your 10-year risk score'),
+          rc('calc','BMI Calculator','bmi-calculator','Weight is a key risk factor'),
+          rc('calc','HOMA-IR Calculator','homa-ir-calculator','Insulin resistance score'),
+          rc('quiz','Lifestyle Health Score Quiz','lifestyle-health-score-quiz','Overall health check')
+        ]
+      )
     },
-
-    macros: {
-      triggers: ['macros','macronutrients','protein carbs fat',
-                 'macro split','macro ratio',
-                 'carbs fat protein'],
-      response: `🥗 <strong>Macronutrient Guide:</strong><br><br>
-      <strong>Standard balanced split:</strong><br>
-      • Protein: 25–30% of calories<br>
-      • Carbohydrates: 45–55%<br>
-      • Fats: 20–30%<br><br>
-      <strong>For weight loss:</strong><br>
-      Protein: 35% • Carbs: 35% • Fat: 30%<br><br>
-      <strong>For muscle gain:</strong><br>
-      Protein: 30% • Carbs: 50% • Fat: 20%<br><br>
-      <strong>Keto diet split:</strong><br>
-      Fat: 70% • Protein: 25% • Carbs: 5%<br><br>
-      👉 <a href="/calculators/macro-calculator.html" style="color:#2d6a4f;font-weight:600;">Calculate your exact macros →</a>`
+    {
+      id: 'cholesterol',
+      triggers: ['cholesterol','ldl','hdl','high cholesterol','triglycerides','lipids','cholesterol levels'],
+      response: cards(
+        'Total cholesterol should be <strong>below 200 mg/dL</strong>. LDL ("bad") below 100 is optimal. HDL ("good") above 60 is protective. Omega-3s, fiber, and exercise all improve your profile.',
+        [
+          rc('calc','Cholesterol Risk Calculator','cholesterol-risk-calculator','Full lipid risk score'),
+          rc('calc','Blood Pressure Checker','blood-pressure-checker','Combined heart risk'),
+          rc('calc','Omega-3 Calculator','omega-3-calculator','Anti-inflammatory fats'),
+          rc('quiz','Heart Health Quiz','heart-health-quiz','Cardiovascular risk quiz')
+        ]
+      )
     },
-
-    keto: {
-      triggers: ['keto','ketosis','ketogenic',
-                 'low carb diet','keto diet'],
-      response: `🥑 <strong>Ketogenic Diet Guide:</strong><br><br>
-      <strong>Keto macro split:</strong><br>
-      • Fat: 70–75% of calories<br>
-      • Protein: 20–25%<br>
-      • Carbs: 5% (20–50g net carbs/day)<br><br>
-      <strong>Best keto foods:</strong><br>
-      🥑 Avocado • 🥚 Eggs • 🥩 Meat & fish • 🧀 Cheese • 🥦 Non-starchy vegetables • 🫒 Olive oil • 🌰 Nuts & seeds<br><br>
-      <strong>Foods to avoid:</strong><br>
-      ❌ Bread, rice, pasta, sugar, fruit juice, starchy vegetables, most fruit<br><br>
-      ⚠️ Consult a doctor before starting keto if you have any medical conditions.<br><br>
-      👉 <a href="/calculators/keto-calculator.html" style="color:#2d6a4f;font-weight:600;">Keto Calculator →</a>`
+    {
+      id: 'macros',
+      triggers: ['macros','macronutrients','macro split','macro ratio','carbs fat protein','macronutrient'],
+      response: cards(
+        'A balanced macro split is roughly <strong>30% protein / 40% carbs / 30% fat</strong>. Adjust based on your goal: higher protein and lower carbs for fat loss, more carbs for performance.',
+        [
+          rc('calc','Macro Calculator','macro-calculator','Exact gram targets for you'),
+          rc('calc','Calorie Calculator','calorie-calculator','Total calories first'),
+          rc('calc','Protein Calculator','protein-intake-calculator','Protein needs'),
+          rc('quiz','Nutrition Knowledge Quiz','nutrition-knowledge-quiz','Test your nutrition IQ')
+        ]
+      )
     },
-
-    intermittentfasting: {
-      triggers: ['intermittent fasting','if','16 8',
-                 'fasting','16:8','18:6','omad',
-                 'fasting window','eating window'],
-      response: `⏰ <strong>Intermittent Fasting Guide:</strong><br><br>
-      <strong>Popular IF methods:</strong><br>
-      • 16:8 — Fast 16hrs, eat in 8hr window<br>
-      • 18:6 — Fast 18hrs, eat in 6hr window<br>
-      • 5:2 — Normal 5 days, 500 cal x 2 days<br>
-      • OMAD — One Meal A Day<br><br>
-      <strong>Benefits of IF:</strong><br>
-      ✅ Fat burning • Insulin sensitivity • Mental clarity • Cellular autophagy • Simplified meal planning<br><br>
-      <strong>Who should avoid IF:</strong><br>
-      ❌ Pregnant women • People with eating disorders • Type 1 diabetics • Those on certain medications<br><br>
-      👉 <a href="/calculators/intermittent-fasting-calculator.html" style="color:#2d6a4f;font-weight:600;">IF Schedule Calculator →</a>`
+    {
+      id: 'fitness',
+      triggers: ['exercise','workout','gym','training','fitness','hiit','cardio','strength training','running','vo2','one rep','lift'],
+      response: cards(
+        'WHO guidelines: <strong>150–300 min</strong> of moderate cardio plus <strong>2+ strength sessions</strong> per week. Beginners: start with 3×30 min sessions — consistency beats intensity.',
+        [
+          rc('calc','TDEE Calculator','tdee-calculator','Calories burned daily'),
+          rc('calc','VO2 Max Calculator','vo2-max-calculator','Cardio fitness score'),
+          rc('calc','One Rep Max Calculator','one-rep-max-calculator','Strength benchmarks'),
+          rc('quiz','Fitness Level Quiz','fitness-level-quiz','Where do you stand?')
+        ]
+      )
     },
-
-    exercise: {
-      triggers: ['exercise','workout','gym','training',
-                 'fitness','how to exercise','hiit',
-                 'cardio','strength training'],
-      response: `🏋️ <strong>Exercise Recommendations:</strong><br><br>
-      <strong>WHO Guidelines (adults):</strong><br>
-      • 150–300 min moderate cardio/week, OR<br>
-      • 75–150 min vigorous cardio/week<br>
-      • Plus: 2+ strength sessions per week<br><br>
-      <strong>Best exercises for weight loss:</strong><br>
-      🏃 Running • 🚴 Cycling • 🏊 Swimming • 💪 HIIT • 🏋️ Weight training<br><br>
-      <strong>Beginner tip:</strong><br>
-      Start with 3 x 30 min sessions per week. Consistency beats intensity — show up first!<br><br>
-      👉 <a href="/calculators/tdee-calculator.html" style="color:#2d6a4f;font-weight:600;">Calculate your calorie burn →</a>`
+    {
+      id: 'bodyfat',
+      triggers: ['body fat','body fat percentage','fat percentage','lean mass','fat vs muscle','body composition'],
+      response: cards(
+        'Healthy body fat ranges: women <strong>20–32%</strong>, men <strong>8–24%</strong>. Athletic ranges are lower. Measuring body fat alongside BMI gives a much more complete health picture.',
+        [
+          rc('calc','Body Fat Calculator','body-fat-calculator','Estimate your body fat %'),
+          rc('calc','Lean Body Mass Calculator','lean-body-mass-calculator','Muscle mass estimate'),
+          rc('calc','BMI Calculator','bmi-calculator','Weight-based screening'),
+          rc('quiz','Body Fat & Composition Quiz','body-fat-and-composition-quiz','Know your body type')
+        ]
+      )
     },
-
-    vitamin_d: {
-      triggers: ['vitamin d','vitamin d3','vit d',
-                 'sunshine vitamin','vitamin d deficiency'],
-      response: `☀️ <strong>Vitamin D Guide:</strong><br><br>
-      <strong>Optimal blood levels:</strong><br>
-      • Deficient: below 20 ng/mL<br>
-      • Insufficient: 20–29 ng/mL<br>
-      • Sufficient: 30–60 ng/mL ✅<br>
-      • Optimal: 40–60 ng/mL<br><br>
-      <strong>Deficiency symptoms:</strong><br>
-      😔 Fatigue • Bone pain • Muscle weakness • Depression • Frequent illness<br><br>
-      <strong>Sources of Vitamin D:</strong><br>
-      ☀️ Sunlight (15–30 min/day) • 🐟 Fatty fish • 🥚 Egg yolks • 🥛 Fortified milk • 💊 Supplements<br><br>
-      👉 <a href="/calculators/vitamin-d-calculator.html" style="color:#2d6a4f;font-weight:600;">Vitamin D Calculator →</a>`
+    {
+      id: 'pregnancy',
+      triggers: ['pregnancy','pregnant','due date','baby','trimester','conception','prenatal','ovulation','fertility'],
+      response: cards(
+        'Key prenatal nutrients: folic acid, iron, calcium, omega-3, and vitamin D. Always consult your healthcare provider for personalised guidance during pregnancy.',
+        [
+          rc('calc','Pregnancy Due Date Calculator','pregnancy-due-date-calculator','When is your due date?'),
+          rc('calc','Pregnancy Weight Gain Calculator','pregnancy-weight-gain-calculator','Safe gain targets'),
+          rc('calc','Ovulation Calculator','ovulation-calculator','Track fertile window'),
+          rc('calc','Breastfeeding Calorie Calculator','breastfeeding-calorie-calculator','Nutrition needs')
+        ]
+      )
     },
-
-    bodyfat: {
-      triggers: ['body fat','body fat percentage',
-                 'fat percentage','lean mass',
-                 'fat vs muscle'],
-      response: `📊 <strong>Body Fat % Reference Ranges:</strong><br><br>
-      <strong>Women:</strong><br>
-      • Essential fat: 10–13%<br>
-      • Athletic: 14–20% ✅<br>
-      • Fitness: 21–24%<br>
-      • Average: 25–31%<br>
-      • Obese: 32%+<br><br>
-      <strong>Men:</strong><br>
-      • Essential fat: 2–5%<br>
-      • Athletic: 6–13% ✅<br>
-      • Fitness: 14–17%<br>
-      • Average: 18–24%<br>
-      • Obese: 25%+<br><br>
-      👉 <a href="/calculators/body-fat-calculator.html" style="color:#2d6a4f;font-weight:600;">Calculate your body fat % →</a>`
+    {
+      id: 'keto',
+      triggers: ['keto','ketosis','ketogenic','low carb','keto diet'],
+      response: cards(
+        'Keto macros: <strong>70% fat / 25% protein / 5% carbs</strong> (20–50g net carbs/day). Benefits include fat loss and improved insulin sensitivity. Consult a doctor if you have a medical condition.',
+        [
+          rc('calc','Keto Calculator','keto-calculator','Your keto macro targets'),
+          rc('calc','Macro Calculator','macro-calculator','Alternative diet splits'),
+          rc('calc','Calorie Calculator','calorie-calculator','Calorie baseline'),
+          rc('quiz','Diet Type Quiz','diet-type-quiz','Find the right diet')
+        ]
+      )
     },
-
-    pregnancy: {
-      triggers: ['pregnancy','pregnant','due date',
-                 'baby','trimester','conception',
-                 'prenatal'],
-      response: `🤰 <strong>Pregnancy Health Guide:</strong><br><br>
-      <strong>Trimesters:</strong><br>
-      • 1st: Weeks 1–13 (organ development)<br>
-      • 2nd: Weeks 14–26 (growth, movement)<br>
-      • 3rd: Weeks 27–40 (final development)<br><br>
-      <strong>Key prenatal nutrients:</strong><br>
-      💊 Folic acid (neural tube) • Iron (blood) • Calcium (bones) • Omega-3 (brain) • Vitamin D (immunity)<br><br>
-      <strong>Foods to avoid:</strong><br>
-      ❌ Raw fish/meat • Unpasteurised dairy • Alcohol • High-mercury fish • Excess caffeine (200mg max/day)<br><br>
-      👉 <a href="/calculators/pregnancy-due-date-calculator.html" style="color:#2d6a4f;font-weight:600;">Due Date Calculator →</a>`
+    {
+      id: 'intermittentfasting',
+      triggers: ['intermittent fasting','fasting','16:8','18:6','omad','eating window','fasting window','if diet'],
+      response: cards(
+        'Popular IF schedules: <strong>16:8</strong> (fast 16 hrs, eat in 8), <strong>18:6</strong>, and <strong>5:2</strong>. Benefits include improved insulin sensitivity, fat loss, and cellular repair (autophagy).',
+        [
+          rc('calc','Intermittent Fasting Calculator','intermittent-fasting-calculator','Plan your schedule'),
+          rc('calc','Calorie Calculator','calorie-calculator','Eating-window nutrition'),
+          rc('quiz','Diet Type Quiz','diet-type-quiz','Is IF right for you?')
+        ]
+      )
     },
-
-    gut: {
-      triggers: ['gut health','gut','microbiome',
-                 'digestion','bloating','probiotics',
-                 'digestive'],
-      response: `🦠 <strong>Gut Health Guide:</strong><br><br>
-      <strong>Signs of poor gut health:</strong><br>
-      😣 Bloating • Constipation • Diarrhoea • Food intolerances • Fatigue • Skin issues<br><br>
-      <strong>Best foods for gut health:</strong><br>
-      🫙 Yogurt & kefir (probiotics) • 🧅 Garlic & onions (prebiotics) • 🌾 Whole grains (fiber) • 🥦 Broccoli & leafy greens • 🫐 Berries (antioxidants) • 🍵 Green tea<br><br>
-      <strong>Gut health habits:</strong><br>
-      ✅ Eat diverse foods • Stay hydrated • Exercise regularly • Manage stress • Limit processed foods & alcohol`
+    {
+      id: 'tools',
+      triggers: ['tools','tracker','habit','mood','planner','dashboard','productivity','health tools','free tools'],
+      response: cards(
+        'Our free health tools help you track, plan, and optimize daily — no sign-up needed, all data stays on your device.',
+        [
+          rc('tool','Health Dashboard','health-dashboard','All metrics in one place'),
+          rc('tool','Habit Tracker','habit-tracker','Build lasting habits'),
+          rc('tool','Sleep Tracker','sleep-tracker','Log & improve sleep'),
+          rc('tool','Mood Tracker','mood-tracker','Monitor emotional health')
+        ]
+      )
     },
-
-    aging: {
-      triggers: ['aging','ageing','anti aging',
-                 'longevity','life expectancy',
-                 'live longer','healthy aging'],
-      response: `🌿 <strong>Healthy Aging & Longevity:</strong><br><br>
-      <strong>Evidence-based longevity habits:</strong><br>
-      1. 🏃 Stay physically active daily<br>
-      2. 🥗 Eat predominantly plants<br>
-      3. 😴 Prioritise 7–9 hours sleep<br>
-      4. 👥 Maintain strong social connections<br>
-      5. 🧘 Manage stress effectively<br>
-      6. 🚭 Never smoke<br>
-      7. 🍷 Limit or avoid alcohol<br>
-      8. 🧠 Keep your mind active (learn, read)<br>
-      9. 🩺 Regular health check-ups<br>
-      10. 😊 Maintain sense of purpose<br><br>
-      👉 <a href="/calculators/life-expectancy-calculator.html" style="color:#2d6a4f;font-weight:600;">Life Expectancy Calculator →</a>`
+    {
+      id: 'quiz',
+      triggers: ['quiz','test','health quiz','take a quiz','health test','knowledge test','score','assessment'],
+      response: cards(
+        'Our interactive quizzes use science-based questions to assess your health risks and knowledge. Results are instant and personalised.',
+        [
+          rc('quiz','Lifestyle Health Score Quiz','lifestyle-health-score-quiz','Overall health check'),
+          rc('quiz','Nutrition Knowledge Quiz','nutrition-knowledge-quiz','Test your diet IQ'),
+          rc('quiz','Fitness Level Quiz','fitness-level-quiz','Where do you stand?'),
+          rc('quiz','Burnout Risk Quiz','burnout-risk-quiz','Spot early warning signs')
+        ]
+      )
     },
-
-    calculator: {
-      triggers: ['calculator','calculate','tool',
-                 'which calculator','what calculator'],
-      response: `🛠️ <strong>Our Free Health Calculators:</strong><br><br>
-      <strong>⚖️ Weight & Body:</strong><br>
-      BMI • Body Fat • Ideal Weight • Lean Mass<br><br>
-      <strong>🍎 Nutrition:</strong><br>
-      Calories • Macros • TDEE • BMR • Protein<br><br>
-      <strong>❤️ Heart & Vitals:</strong><br>
-      Heart Rate • Blood Pressure • Cholesterol<br><br>
-      <strong>👩 Women's Health:</strong><br>
-      Pregnancy • Ovulation • Menstrual Cycle<br><br>
-      <strong>🏋️ Fitness:</strong><br>
-      VO2 Max • 1 Rep Max • Steps to Calories<br><br>
-      👉 <a href="/calculators/index.html" style="color:#2d6a4f;font-weight:600;">Browse all 50+ free calculators →</a>`
+    {
+      id: 'calculator',
+      triggers: ['calculator','calculate','which calculator','what calculator','all calculators','browse calculators'],
+      response: cards(
+        'We have <strong>103 free health calculators</strong> across 10 categories — body metrics, nutrition, heart health, fitness, women\'s health, mental wellness, and more.',
+        [
+          rc('calc','BMI Calculator','bmi-calculator','Most popular'),
+          rc('calc','Calorie Calculator','calorie-calculator','Daily intake target'),
+          rc('calc','TDEE Calculator','tdee-calculator','Calories you burn'),
+          rc('calc','Macro Calculator','macro-calculator','Protein/carbs/fat split')
+        ]
+      )
     },
-
-    fallback: [
-      `I don't have specific information about that, but I can help with topics like BMI, calories, sleep, heart health, nutrition, and exercise. What would you like to know? 💚`,
-      `That's a great question! For detailed medical advice on that topic, I'd recommend consulting a healthcare professional. Meanwhile, I can help with general health topics — try asking about <strong>BMI, calories, sleep, or water intake</strong>! 🌿`,
-      `I'm best at answering general health and wellness questions. Try asking me about weight loss, nutrition, heart health, or sleep! Or browse our <a href="/calculators/index.html" style="color:#2d6a4f;font-weight:600;">free calculators →</a> 💪`
-    ]
-  },
-
-  init() {
-    this.bindEvents();
-    setTimeout(() => this.addMessage('bot',
-      `👋 Hi! I'm your <strong>VitalHealth Assistant</strong>. Ask me anything about health, nutrition, or wellness — or click a topic below to get started! 💚`
-    ), 500);
-  },
-
-  bindEvents() {
-    document.getElementById('vh-chat-toggle')
-      .addEventListener('click', () => this.toggle());
-    document.getElementById('vh-chat-minimize')
-      .addEventListener('click', () => this.toggle());
-    document.getElementById('vh-chat-send')
-      .addEventListener('click', () => this.send());
-    document.getElementById('vh-chat-input')
-      .addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') this.send();
-      });
-  },
-
-  toggle() {
-    this.isOpen = !this.isOpen;
-    const win = document.getElementById('vh-chat-window');
-    const chatIcon = document.getElementById('vh-chat-icon');
-    const closeIcon = document.getElementById('vh-close-icon');
-    const badge = document.getElementById('vh-chat-badge');
-
-    if (this.isOpen) {
-      win.style.display = 'flex';
-      win.style.flexDirection = 'column';
-      chatIcon.style.display = 'none';
-      closeIcon.style.display = 'block';
-      badge.style.display = 'none';
-      document.getElementById('vh-chat-input').focus();
-    } else {
-      win.style.display = 'none';
-      chatIcon.style.display = 'block';
-      closeIcon.style.display = 'none';
+    {
+      id: 'aging',
+      triggers: ['aging','ageing','anti aging','longevity','life expectancy','live longer','healthy aging','biological age'],
+      response: cards(
+        'The strongest evidence-based longevity factors: regular exercise, plant-rich diet, quality sleep, strong social connections, and never smoking.',
+        [
+          rc('calc','Life Expectancy Calculator','life-expectancy-calculator','Estimated lifespan'),
+          rc('calc','Biological Age Calculator','biological-age-calculator','Your functional age'),
+          rc('quiz','Biological Age Quiz','biological-age-quiz','How old are you really?'),
+          rc('tool','Health Dashboard','health-dashboard','Track longevity metrics')
+        ]
+      )
+    },
+    {
+      id: 'vitamin',
+      triggers: ['vitamin','vitamin d','vitamin c','supplements','deficiency','minerals','micronutrients'],
+      response: cards(
+        'Vitamin D deficiency affects over 1 billion people globally. Adequate levels (30–60 ng/mL) support immunity, bone health, mood, and muscle function.',
+        [
+          rc('calc','Vitamin D Calculator','vitamin-d-calculator','Optimal supplementation'),
+          rc('calc','Omega-3 Calculator','omega-3-calculator','Anti-inflammatory support'),
+          rc('quiz','Nutrition Knowledge Quiz','nutrition-knowledge-quiz','Micronutrient quiz')
+        ]
+      )
     }
-  },
+  ];
 
-  send() {
-    const input = document.getElementById('vh-chat-input');
-    const text = input.value.trim();
-    if (!text) return;
+  var fallbackResponses = [
+    cards(
+      'I don\'t have specific information on that, but here are our most popular health tools to explore:',
+      [
+        rc('calc','BMI Calculator','bmi-calculator','Body weight assessment'),
+        rc('calc','Calorie Calculator','calorie-calculator','Daily intake target'),
+        rc('quiz','Lifestyle Health Score Quiz','lifestyle-health-score-quiz','Overall health check')
+      ]
+    ),
+    cards(
+      'For detailed medical advice, please consult a healthcare professional. In the meantime, explore our evidence-based tools:',
+      [
+        rc('calc','TDEE Calculator','tdee-calculator','Calories you burn daily'),
+        rc('quiz','Fitness Level Quiz','fitness-level-quiz','Where do you stand?'),
+        rc('tool','Health Dashboard','health-dashboard','Track your health metrics')
+      ]
+    )
+  ];
 
-    this.addMessage('user', text);
-    input.value = '';
-    this.showTyping();
+  // ── State ─────────────────────────────────────────────────────────────────
+  var isOpen = false;
 
-    setTimeout(() => {
-      this.removeTyping();
-      const response = this.getResponse(text.toLowerCase());
-      this.addMessage('bot', response);
-    }, 900 + Math.random() * 600);
-  },
-
-  quickAsk(topic) {
-    document.getElementById('vh-chat-input').value = topic;
-    this.send();
-  },
-
-  getResponse(input) {
-    for (const key in this.knowledge) {
-      if (key === 'fallback') continue;
-      const item = this.knowledge[key];
-      if (item.triggers &&
-          item.triggers.some(t => input.includes(t))) {
-        return item.response;
+  // ── Response engine ────────────────────────────────────────────────────────
+  function getResponse(input) {
+    var q = input.toLowerCase();
+    for (var i = 0; i < kb.length; i++) {
+      if (kb[i].triggers.some(function(t) { return q.indexOf(t) !== -1; })) {
+        return kb[i].response;
       }
     }
-    const fb = this.knowledge.fallback;
-    return fb[Math.floor(Math.random() * fb.length)];
-  },
+    return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+  }
 
-  addMessage(type, text) {
-    const msgs = document.getElementById('vh-chat-messages');
-    const div = document.createElement('div');
-    div.className = `vh-msg vh-msg-${type}`;
-    div.innerHTML = text;
-    msgs.appendChild(div);
-    msgs.scrollTop = msgs.scrollHeight;
-  },
+  // ── DOM helpers ────────────────────────────────────────────────────────────
+  function addMessage(type, html) {
+    var msgs = document.getElementById('vh-chat-messages');
+    var wrap = document.createElement('div');
+    wrap.className = 'vh-msg-wrap vh-msg-wrap-' + type;
+    var bubble = document.createElement('div');
+    bubble.className = 'vh-msg vh-msg-' + type;
+    bubble.innerHTML = html;
+    wrap.appendChild(bubble);
+    msgs.appendChild(wrap);
+    requestAnimationFrame(function() { msgs.scrollTop = msgs.scrollHeight; });
+  }
 
-  showTyping() {
-    const msgs = document.getElementById('vh-chat-messages');
-    const div = document.createElement('div');
-    div.className = 'vh-typing';
-    div.id = 'vh-typing-indicator';
-    div.innerHTML = '<span></span><span></span><span></span>';
-    msgs.appendChild(div);
-    msgs.scrollTop = msgs.scrollHeight;
-  },
+  function showTyping() {
+    var msgs = document.getElementById('vh-chat-messages');
+    var wrap = document.createElement('div');
+    wrap.className = 'vh-msg-wrap vh-msg-wrap-bot';
+    wrap.id = 'vh-typing-wrap';
+    var dot = document.createElement('div');
+    dot.className = 'vh-typing';
+    dot.innerHTML = '<span></span><span></span><span></span>';
+    wrap.appendChild(dot);
+    msgs.appendChild(wrap);
+    requestAnimationFrame(function() { msgs.scrollTop = msgs.scrollHeight; });
+  }
 
-  removeTyping() {
-    const t = document.getElementById('vh-typing-indicator');
+  function removeTyping() {
+    var t = document.getElementById('vh-typing-wrap');
     if (t) t.remove();
   }
-};
+
+  // ── Core actions ───────────────────────────────────────────────────────────
+  function send() {
+    var input = document.getElementById('vh-chat-input');
+    var text = input.value.trim();
+    if (!text) return;
+    addMessage('user', text);
+    input.value = '';
+    hideActions();
+    showTyping();
+    setTimeout(function() {
+      removeTyping();
+      addMessage('bot', getResponse(text));
+    }, 700 + Math.random() * 500);
+  }
+
+  function quickAsk(topic) {
+    var input = document.getElementById('vh-chat-input');
+    input.value = topic;
+    send();
+  }
+
+  function hideActions() {
+    var qt = document.getElementById('vh-quick-topics');
+    if (qt) qt.style.display = 'none';
+  }
+
+  function toggle() {
+    isOpen = !isOpen;
+    var win    = document.getElementById('vh-chat-window');
+    var ci     = document.getElementById('vh-chat-icon');
+    var xi     = document.getElementById('vh-close-icon');
+    var badge  = document.getElementById('vh-chat-badge');
+    var toggle = document.getElementById('vh-chat-toggle');
+    if (isOpen) {
+      win.classList.add('vh-open');
+      ci.style.display = 'none';
+      xi.style.display = 'block';
+      if (badge) badge.style.display = 'none';
+      toggle.classList.add('vh-active');
+      setTimeout(function() {
+        var inp = document.getElementById('vh-chat-input');
+        if (inp) inp.focus();
+      }, 320);
+    } else {
+      win.classList.remove('vh-open');
+      ci.style.display = 'block';
+      xi.style.display = 'none';
+      toggle.classList.remove('vh-active');
+    }
+  }
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  function init() {
+    // Bind minimize/close button
+    var min = document.getElementById('vh-chat-minimize');
+    if (min) min.addEventListener('click', toggle);
+
+    // Bind send button
+    var sendBtn = document.getElementById('vh-chat-send');
+    if (sendBtn) sendBtn.addEventListener('click', send);
+
+    // Bind Enter key on input
+    var inp = document.getElementById('vh-chat-input');
+    if (inp) {
+      inp.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { e.preventDefault(); send(); }
+      });
+    }
+
+    // Mobile keyboard: keep input visible
+    if (inp && 'visualViewport' in window) {
+      window.visualViewport.addEventListener('resize', function() {
+        var win = document.getElementById('vh-chat-window');
+        if (win && isOpen) {
+          var vh = window.visualViewport.height;
+          win.style.maxHeight = vh + 'px';
+        }
+      });
+    }
+
+    // Welcome message
+    setTimeout(function() {
+      addMessage('bot',
+        '<p class="vh-r-intro">Hi! I\'m your <strong>VitalHealth Assistant</strong>. Ask me about any health topic, or use the quick actions below to get started.</p>'
+      );
+    }, 400);
+  }
+
+  // ── Public API ─────────────────────────────────────────────────────────────
+  return { init: init, toggle: toggle, quickAsk: quickAsk };
+
+}());
 
 // ─── Chatbot: Lazy Init on First Click ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
