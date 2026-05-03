@@ -3257,7 +3257,9 @@ img, svg { max-width: 100%; height: auto; }
 }
 .card-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.08),
+    0 4px 10px rgba(0,0,0,0.06);
 }
 
 /* Home blog category filter */
@@ -7348,16 +7350,20 @@ input[type="checkbox"] {
 }
 input[type="checkbox"]:checked { background: #22C55E; }
 
-/* ── Card design system ───────────────────────────────────────── */
+/* ── Card design system — premium two-layer shadow ────────────── */
 .card {
   border-radius: 16px !important;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.04),
+    0 1px 3px rgba(0,0,0,0.06) !important;
   background: #ffffff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
 }
 .card:hover {
   transform: translateY(-4px) !important;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.1) !important;
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.08),
+    0 4px 10px rgba(0,0,0,0.06) !important;
 }
 
 /* ── Section body text ────────────────────────────────────────── */
