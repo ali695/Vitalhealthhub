@@ -5,6 +5,9 @@ const rateLimit  = require('express-rate-limit');
 
 const app = express();
 
+// Trust the first proxy (Replit's reverse proxy) so rate-limiting reads the correct client IP
+app.set('trust proxy', 1);
+
 // ─── SECURITY HEADERS ────────────────────────────────────────────────────────
 app.use((req, res, next) => {
   // Prevent MIME-type sniffing

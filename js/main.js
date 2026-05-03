@@ -7,16 +7,41 @@ document.addEventListener('DOMContentLoaded', function() {
   const faqItems = document.querySelectorAll('.faq-item');
   const readingProgress = document.querySelector('.reading-progress-fill');
 
+  function closeNav() {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('active');
+    document.body.classList.remove('nav-open');
+  }
+
   if (hamburger && navLinks) {
-    hamburger.addEventListener('click', function() {
-      hamburger.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
-    document.addEventListener('click', function(e) {
-      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
+    hamburger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = navLinks.classList.contains('active');
+      if (isOpen) {
+        closeNav();
+      } else {
+        hamburger.classList.add('active');
+        navLinks.classList.add('active');
+        document.body.classList.add('nav-open');
       }
+    });
+
+    navLinks.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(function(link) {
+      link.addEventListener('click', function() {
+        closeNav();
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (navLinks.classList.contains('active') &&
+          !hamburger.contains(e.target) &&
+          !navLinks.contains(e.target)) {
+        closeNav();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeNav();
     });
   }
 

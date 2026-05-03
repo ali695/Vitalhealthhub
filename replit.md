@@ -279,6 +279,22 @@ Accessible at `/admin` — full CMS on Node.js/Express + SQLite + EJS + Multer.
 Each calculator needs: `slug`, `name`, `desc`, `icon`, `category`, `fields` (array), `logic` (JS string, single-line, no backticks inside).
 Optional: `article` (HTML), `faqs` (array of {q,a}), `related` (array of slugs).
 
+## Mobile Responsiveness Fixes (May 2026)
+The following mobile issues were identified and fixed:
+
+1. **Hero background image broken** — malformed URL (two URLs concatenated) in `.hero-bg` caused the hero to render as a pure dark box on all devices. Fixed to a single valid Unsplash URL.
+2. **`* { max-width: 100% }` removed** — replaced with targeted `img, video, svg, table { max-width: 100% }` to avoid breaking inputs, buttons, and fixed-width elements.
+3. **Body scroll lock** — `body.nav-open { overflow: hidden }` added so page doesn't scroll behind the open mobile nav drawer.
+4. **Nav closes on link click** — mobile nav links now trigger `closeNav()` on tap, preventing stuck-open drawer.
+5. **Keyboard escape closes nav** — added `keydown` escape listener in JS.
+6. **Chatbot + back-to-top overlap** — back-to-top bumped to `bottom: 90px` on mobile so it sits above the chatbot button.
+7. **Chatbot full-screen safe mode** — on ≤480px, chat window uses `position: fixed; inset: 0` with `z-index: 100000` for safe full-viewport display.
+8. **Touch targets** — all buttons, links, and inputs set to `min-height: 44px` on mobile (WCAG AA).
+9. **iOS input zoom prevention** — all form inputs forced to `font-size: 16px` on mobile so iOS doesn't auto-zoom.
+10. **Mobile hero overlay** — slightly darker overlay + `background-attachment: scroll` (prevents iOS parallax bug); text forced white with subtle shadow.
+11. **Grid overflow guards** — all major home section grids get `width: 100%; min-width: 0` on mobile to prevent horizontal scroll.
+12. **Express trust proxy** — added `app.set('trust proxy', 1)` to fix rate-limiter `ERR_ERL_UNEXPECTED_X_FORWARDED_FOR` warning.
+
 ## Dependencies
 - express
 - express-session
