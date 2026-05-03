@@ -1054,6 +1054,10 @@ window.blogFilterCat = function(cat, btn) {
   _blogCurrentPage = 1;
   var vab = document.querySelector('.blog-view-all-btn');
   if (vab) vab.textContent = 'View All Articles';
+  var titleEl = document.getElementById('blogSectionTitle');
+  if (titleEl) {
+    titleEl.textContent = cat === 'all' ? 'All Health Articles' : cat + ' Articles';
+  }
   window.applyBlogFilters();
   var arts = document.querySelector('.blog-articles-section');
   if (arts) window.scrollTo({ top: arts.offsetTop - 140, behavior: 'smooth' });

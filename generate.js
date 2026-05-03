@@ -89,7 +89,7 @@ const NAV = `${TOPBAR}<nav class="navbar">
 <div class="mega-search-results" id="ddResults"></div>
 <div class="mega-dropdown-bottom">
 <span>Science-backed tools, free forever</span>
-<a href="/calculators/" class="mega-cta-btn">&#128270; View All 115+ Calculators &rarr;</a>
+<a href="/calculators/" class="mega-cta-btn"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> View All 115+ Calculators &rarr;</a>
 </div>
 </div>
 </li>
@@ -1398,17 +1398,17 @@ function calcCrossContentSection(calc) {
 </div>
 <div class="ccs-explore-grid fade-in">
 ${blogCardsHtml ? `<div class="ccs-explore-block">
-<div class="ccs-explore-block-title">&#128218; Related Articles</div>
+<div class="ccs-explore-block-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Related Articles</div>
 <div class="ccs-xlink-stack">${blogCardsHtml}</div>
 <a href="/blog.html" class="ccs-explore-view-all">View All Articles &rarr;</a>
 </div>` : ''}
 ${quizCardsHtml ? `<div class="ccs-explore-block">
-<div class="ccs-explore-block-title">&#129504; Test Your Knowledge</div>
+<div class="ccs-explore-block-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.07-4.76A3 3 0 1 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.07-4.76A3 3 0 1 0 14.5 2"/></svg> Test Your Knowledge</div>
 <div class="ccs-xlink-stack">${quizCardsHtml}</div>
 <a href="/quizzes/" class="ccs-explore-view-all">View All Quizzes &rarr;</a>
 </div>` : ''}
 ${toolCardsHtml ? `<div class="ccs-explore-block">
-<div class="ccs-explore-block-title">&#9889; Quick Tools</div>
+<div class="ccs-explore-block-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Quick Tools</div>
 <div class="ccs-xlink-stack">${toolCardsHtml}</div>
 <a href="/tools/" class="ccs-explore-view-all">View All Tools &rarr;</a>
 </div>` : ''}
@@ -1556,7 +1556,7 @@ ${bc.schema}
 <div class="container">
 <div class="calc-page-hero-inner">
 <div class="calc-page-hero-left">
-<span class="calc-page-hero-badge">&#9889; Instant Health Calculator</span>
+<span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">${calc.name}</h1>
 <p class="calc-page-hero-sub">Get accurate, science-based results instantly. ${calc.desc}</p>
 <div class="calc-page-hero-pills">
@@ -1579,7 +1579,7 @@ ${getCalcHeroSvg(calc.slug)}
 <div class="calc-input-panel">
 <div class="calc-input-card fade-in">
 <div class="calc-input-header">
-<span class="calc-input-icon">&#128203;</span>
+<span class="calc-input-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span>
 <div>
 <h3 class="calc-input-title">Enter Your Details</h3>
 <p class="calc-input-sub">Fill in the fields below for instant results</p>
@@ -1587,7 +1587,7 @@ ${getCalcHeroSvg(calc.slug)}
 </div>
 ${formFields}
 <div class="calc-btn-row">
-<button class="btn btn-primary calc-submit-btn">&#9889; Calculate Results</button>
+<button class="btn btn-primary calc-submit-btn"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Calculate Results</button>
 <button class="calc-reset-btn" id="vhResetBtn">&#8635; Reset</button>
 </div>
 </div>
@@ -1602,7 +1602,7 @@ ${formFields}
 
 <div class="calc-result-panel">
 <div class="calc-result-placeholder" id="calcPlaceholder">
-<div class="calc-placeholder-icon">&#128200;</div>
+<div class="calc-placeholder-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
 <h3>Your Results Appear Here</h3>
 <p>Enter your details and click <strong>Calculate Results</strong> to see your personalized health analysis.</p>
 <div class="calc-placeholder-steps">
@@ -1617,9 +1617,9 @@ ${formFields}
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
 <div class="result-suggestion"></div>
 <div class="calc-result-actions">
-<button class="calc-action-btn" id="vhCopyBtn"><span class="calc-action-icon">&#128203;</span> Copy</button>
-<button class="calc-action-btn" data-print="1"><span class="calc-action-icon">&#128424;</span> Print</button>
-<button class="calc-action-btn" data-share="1"><span class="calc-action-icon">&#128279;</span> Share</button>
+<button class="calc-action-btn" id="vhCopyBtn"><span class="calc-action-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span> Copy</button>
+<button class="calc-action-btn" data-print="1"><span class="calc-action-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span> Print</button>
+<button class="calc-action-btn" data-share="1"><span class="calc-action-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span> Share</button>
 </div>
 </div>
 </div>
@@ -2341,7 +2341,7 @@ ${bc.schema}
 <h1>${post.title}</h1>
 <div class="bp-hero-meta">
 <span>&#9998;&nbsp;Ali Haider</span>
-<span>&#128197;&nbsp;${post.date}</span>
+<span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>&nbsp;${post.date}</span>
 <span>&#9201;&nbsp;${post.readTime} read</span>
 <span>Updated 2026</span>
 </div>
@@ -2378,7 +2378,7 @@ ${contentWithIds}
 
 <!-- CTA Callout box -->
 <div class="bp-callout-box fade-in">
-<div class="bp-callout-icon">&#9889;</div>
+<div class="bp-callout-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
 <div>
 <p>Ready to get your personalized result? Try our free <a href="/calculators/${calcs[0]}.html">${(calculators.find(c=>c.slug===calcs[0])||{name:'health calculator'}).name}</a> — instant, science-based, no sign-up needed.</p>
 <a href="/calculators/${calcs[0]}.html" class="btn btn-primary">Try Free Calculator &rarr;</a>
@@ -2413,13 +2413,13 @@ ${tocHtml}
 
 <!-- Related calculators widget -->
 ${sidebarCalcs ? `<div class="bp-sidebar-widget fade-in">
-<div class="bp-sidebar-widget-title">&#128200; Try These Calculators</div>
+<div class="bp-sidebar-widget-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> Try These Calculators</div>
 ${sidebarCalcs}
 </div>` : ''}
 
 <!-- Newsletter / tip widget -->
 <div class="bp-sidebar-tip fade-in">
-<div class="bp-sidebar-tip-icon">&#128161;</div>
+<div class="bp-sidebar-tip-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div>
 <p>Bookmark this article for quick reference and share it with someone who might benefit.</p>
 </div>
 
@@ -2434,7 +2434,7 @@ ${sidebarCalcs}
 
 <!-- Related Articles -->
 <div class="bp-bottom-block">
-<div class="bp-bottom-block-title">&#128218; Related Articles</div>
+<div class="bp-bottom-block-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Related Articles</div>
 <div class="bp-bottom-grid">
 ${relatedArticles.map(r => {
   const img = blogCardImage(r.slug);
@@ -2451,7 +2451,7 @@ ${relatedArticles.map(r => {
 
 <!-- Related Calculators -->
 ${bottomCalcs.length ? `<div class="bp-bottom-block">
-<div class="bp-bottom-block-title">&#128200; Related Calculators</div>
+<div class="bp-bottom-block-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> Related Calculators</div>
 <div class="bp-bottom-calcs-grid">
 ${bottomCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="bp-bottom-calc-card">
 <div class="bp-bottom-calc-icon">${calcSvg(c.icon)}</div>
@@ -2462,7 +2462,7 @@ ${bottomCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="bp-bottom-c
 
 <!-- Related Quizzes -->
 ${relatedQuizzes.length ? `<div class="bp-bottom-block">
-<div class="bp-bottom-block-title">&#129504; Test Your Knowledge</div>
+<div class="bp-bottom-block-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.07-4.76A3 3 0 1 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.07-4.76A3 3 0 1 0 14.5 2"/></svg> Test Your Knowledge</div>
 <div class="bp-bottom-quiz-grid">
 ${relatedQuizzes.map(q => `<a href="/quizzes/${q.slug}.html" class="bp-bottom-quiz-card">
 <div class="bp-bottom-quiz-icon">${q.icon}</div>
@@ -2515,7 +2515,7 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'All Calculators',url:'/calculators/'}
 ${breadcrumb([{name:'Home',url:'/'},{name:'All Calculators',url:'/calculators/'}]).schema}
 <section class="calc-index-hero">
 <div class="calc-index-hero-inner">
-<div class="calc-index-hero-badge">&#9889; ${calculators.length}+ Free Health Calculators</div>
+<div class="calc-index-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> ${calculators.length}+ Free Health Calculators</div>
 <h1 class="calc-index-hero-title">Powerful Health Tools<br>for Better Decisions</h1>
 <p class="calc-index-hero-sub">Science-backed calculators for BMI, calories, macros, heart rate, pregnancy, and more &mdash; free, instant, no sign-up needed.</p>
 <div class="calc-index-search-bar">
@@ -2523,9 +2523,9 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'All Calculators',url:'/calculators/'}
 <input type="text" id="calcSearch" placeholder="Search ${calculators.length}+ calculators...">
 </div>
 <div class="calc-index-hero-btns">
-<a href="#calcGrid" class="calc-index-btn-primary">&#128270; Browse All Tools</a>
-<a href="/quizzes/" class="calc-index-btn-outline">&#129504; Take a Health Quiz</a>
-<a href="/blog.html" class="calc-index-btn-outline">&#128214; Read Articles</a>
+<a href="#calcGrid" class="calc-index-btn-primary"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> Browse All Tools</a>
+<a href="/quizzes/" class="calc-index-btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.07-4.76A3 3 0 1 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.07-4.76A3 3 0 1 0 14.5 2"/></svg> Take a Health Quiz</a>
+<a href="/blog.html" class="calc-index-btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Read Articles</a>
 </div>
 <div class="calc-index-hero-stats">
 <div class="calc-index-stat"><strong>${calculators.length}+</strong><span>Calculators</span></div>
@@ -2893,13 +2893,13 @@ ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'About Us',url:'/about.html'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'About Us',url:'/about.html'}]).schema}
 ${globalHero({
-  badge: '&#127758; About VitalHealth Hub',
+  badge: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> About VitalHealth Hub',
   title: 'Building Smarter<br>Health Experiences',
   subtitle: 'We create powerful health calculators, tools, quizzes, and insights to help people understand and improve their daily lives.',
   buttons: [
-    { label: '&#9881; Explore Calculators', href: '/calculators/' },
-    { label: '&#128218; Read Articles', href: '/blog.html' },
-    { label: '&#129504; Take a Quiz', href: '/quizzes/' }
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 0 1 21 12a10 10 0 0 1-2.93 7.07M4.93 4.93A10 10 0 0 0 3 12a10 10 0 0 0 1.93 7.07M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> Explore Calculators', href: '/calculators/' },
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Read Articles', href: '/blog.html' },
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.07-4.76A3 3 0 1 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.07-4.76A3 3 0 1 0 14.5 2"/></svg> Take a Quiz', href: '/quizzes/' }
   ],
   stats: [
     { value: calculators.length + '+', label: 'Calculators' },
@@ -2914,7 +2914,7 @@ ${globalHero({
 <div class="container">
 <div class="about-mission-inner">
 <div class="home-section-head fade-in" style="text-align:left;margin-bottom:28px;">
-<span class="home-section-badge">&#127919; Our Purpose</span>
+<span class="home-section-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Our Purpose</span>
 <h2>Our Mission</h2>
 </div>
 <div class="about-mission-body fade-in">
@@ -2929,31 +2929,31 @@ ${globalHero({
 <section class="about-offer-section">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge">&#128161; Platform Overview</span>
+<span class="home-section-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> Platform Overview</span>
 <h2>What We Offer</h2>
 <p>Everything you need to understand and improve your health — in one place, always free.</p>
 </div>
 <div class="about-offer-grid">
 <div class="about-offer-card fade-in">
-<span class="about-offer-icon">&#129518;</span>
+<span class="about-offer-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h2M8 18h2M14 14h2M14 18h2"/></svg></span>
 <h3>Health Calculators</h3>
 <p>Instant, science-based calculations for BMI, calories, macros, and more.</p>
 <a href="/calculators/" class="about-offer-link">Browse Calculators &#8594;</a>
 </div>
 <div class="about-offer-card fade-in">
-<span class="about-offer-icon">&#128202;</span>
+<span class="about-offer-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></span>
 <h3>Smart Tools</h3>
 <p>Track habits, sleep, mood, and productivity with interactive daily tools.</p>
 <a href="/tools/" class="about-offer-link">Explore Tools &#8594;</a>
 </div>
 <div class="about-offer-card fade-in">
-<span class="about-offer-icon">&#129504;</span>
+<span class="about-offer-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.07-4.76A3 3 0 1 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.07-4.76A3 3 0 1 0 14.5 2"/></svg></span>
 <h3>Interactive Quizzes</h3>
 <p>Test your knowledge and gain personalised insights into your health.</p>
 <a href="/quizzes/" class="about-offer-link">Take a Quiz &#8594;</a>
 </div>
 <div class="about-offer-card fade-in">
-<span class="about-offer-icon">&#128218;</span>
+<span class="about-offer-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></span>
 <h3>Expert Content</h3>
 <p>Evidence-based articles designed to guide your health journey every day.</p>
 <a href="/blog.html" class="about-offer-link">Read Articles &#8594;</a>
@@ -2966,7 +2966,7 @@ ${globalHero({
 <section class="about-why-section">
 <div class="container">
 <div class="about-why-inner fade-in">
-<span class="home-section-badge">&#128172; Our Story</span>
+<span class="home-section-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Our Story</span>
 <h2>Why VitalHealth Hub Exists</h2>
 <p class="about-why-lead">Most health platforms are either too complex, locked behind subscriptions, or difficult to use. We wanted to create something different — a simple, fast, and accessible platform where anyone can get value instantly.</p>
 <p>VitalHealth Hub focuses on clarity, usability, and meaningful insights that make a real difference in people's daily lives.</p>
@@ -2984,7 +2984,7 @@ ${globalHero({
 </div>
 <div class="about-values-grid">
 <div class="about-value-card fade-in">
-<span class="about-value-icon">&#127758;</span>
+<span class="about-value-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
 <h3>Accessibility</h3>
 <p>Free tools for everyone, regardless of background, location, or income.</p>
 </div>
@@ -2994,12 +2994,12 @@ ${globalHero({
 <p>No complicated systems. Clean interfaces that anyone can use in seconds.</p>
 </div>
 <div class="about-value-card fade-in">
-<span class="about-value-icon">&#128300;</span>
+<span class="about-value-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 2-3.5 3.5M11.5 5.5 8 9M9.5 3.5 6 7M6 7l-3 3 4 4 3-3M13 12l-4-4-4 4 4 4zM17 22H7M12 17v5"/></svg></span>
 <h3>Reliability</h3>
 <p>Built with structured, evidence-based logic validated against medical guidelines.</p>
 </div>
 <div class="about-value-card fade-in">
-<span class="about-value-icon">&#127919;</span>
+<span class="about-value-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
 <h3>Usability</h3>
 <p>Designed for real people, not experts only. Instant results, clear explanations.</p>
 </div>
@@ -3011,7 +3011,7 @@ ${globalHero({
 <section class="home-how-works">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge">&#128161; Simple Process</span>
+<span class="home-section-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> Simple Process</span>
 <h2>How It Works</h2>
 <p>Getting health insights has never been simpler — three steps, under a minute.</p>
 </div>
@@ -3042,7 +3042,7 @@ ${globalHero({
 <section class="about-stats-section">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge">&#128202; Platform Numbers</span>
+<span class="home-section-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg> Platform Numbers</span>
 <h2>Built for Scale</h2>
 <p>A growing platform trusted by health-conscious users around the world.</p>
 </div>
@@ -3071,28 +3071,28 @@ ${globalHero({
 <section class="home-value-section">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge" style="background:rgba(255,255,255,0.1);color:#c8e6d4;">&#129309; Why Users Trust Us</span>
+<span class="home-section-badge" style="background:rgba(255,255,255,0.1);color:#c8e6d4;"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Why Users Trust Us</span>
 <h2>Why Users Trust VitalHealth Hub</h2>
 <p>We built every feature with one goal: to earn your trust.</p>
 </div>
 <div class="home-value-grid">
 <div class="home-value-card fade-in">
-<span class="home-value-icon">&#9889;</span>
+<span class="home-value-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
 <h3>Instant Results</h3>
 <p>All calculations happen in your browser. No waiting, no servers — results in milliseconds.</p>
 </div>
 <div class="home-value-card fade-in">
-<span class="home-value-icon">&#128300;</span>
+<span class="home-value-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 2-3.5 3.5M11.5 5.5 8 9M9.5 3.5 6 7M6 7l-3 3 4 4 3-3M13 12l-4-4-4 4 4 4zM17 22H7M12 17v5"/></svg></span>
 <h3>Science-Based Approach</h3>
 <p>Every tool uses validated medical formulas from WHO, NIH, and peer-reviewed research.</p>
 </div>
 <div class="home-value-card fade-in">
-<span class="home-value-icon">&#128274;</span>
+<span class="home-value-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
 <h3>No Signup Required</h3>
 <p>Your health data stays on your device. We never collect, store, or share personal information.</p>
 </div>
 <div class="home-value-card fade-in">
-<span class="home-value-icon">&#128994;</span>
+<span class="home-value-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="5"/></svg></span>
 <h3>Always Free</h3>
 <p>No paywalls, no subscriptions, no hidden fees. Everything is and will always be 100% free.</p>
 </div>
@@ -3116,7 +3116,7 @@ ${globalHero({
 <section class="about-creator-section">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge">&#128100; Meet the Creator</span>
+<span class="home-section-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Meet the Creator</span>
 <h2>Created By</h2>
 </div>
 <div class="creator-card fade-in">
@@ -3148,12 +3148,12 @@ ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Contact',url:'/contact.html'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Contact',url:'/contact.html'}]).schema}
 ${globalHero({
-  badge: '&#128233; Get in Touch',
+  badge: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Get in Touch',
   title: "We'd Love to<br>Hear From You",
   subtitle: 'Reach out for support, feedback, or collaboration.',
   buttons: [
-    { label: '&#128231; Send Message', href: '#contact-form' },
-    { label: '&#9889; Explore Tools', href: '/tools/' },
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Send Message', href: '#contact-form' },
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Explore Tools', href: '/tools/' },
     { label: '&#10067; Visit FAQ', href: '/faq.html' }
   ],
   stats: [
@@ -3199,7 +3199,7 @@ ${CHATBOT}
 // FAQ — PREMIUM BRAND PAGE
 const faqCategories = [
   {
-    id: 'calculators', icon: '&#129518;', label: 'Calculators', alt: false,
+    id: 'calculators', icon: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h2M8 18h2M14 14h2M14 18h2"/></svg>', label: 'Calculators', alt: false,
     title: 'Health Calculators',
     intro: 'Everything you need to know about how our free health calculators work, how accurate they are, and how to use them to reach your health goals.',
     faqs: [
@@ -3231,7 +3231,7 @@ const faqCategories = [
     ]
   },
   {
-    id: 'nutrition', icon: '&#129367;', label: 'Health & Nutrition', alt: true,
+    id: 'nutrition', icon: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>', label: 'Health & Nutrition', alt: true,
     title: 'Health & Nutrition',
     intro: 'Answers to the most common nutrition and diet questions, from macronutrients and calorie needs to metabolism, hydration, and healthy eating habits.',
     faqs: [
@@ -3263,7 +3263,7 @@ const faqCategories = [
     ]
   },
   {
-    id: 'fitness', icon: '&#128170;', label: 'Fitness & Lifestyle', alt: false,
+    id: 'fitness', icon: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h2M20 12h2"/><rect x="4" y="9" width="3" height="6" rx="1"/><rect x="17" y="9" width="3" height="6" rx="1"/><path d="M7 12h10"/></svg>', label: 'Fitness & Lifestyle', alt: false,
     title: 'Fitness & Lifestyle',
     intro: 'Answers to common questions about exercise frequency, recovery, sleep, and building a sustainable, healthy lifestyle.',
     faqs: [
@@ -3285,7 +3285,7 @@ const faqCategories = [
     ]
   },
   {
-    id: 'tools', icon: '&#128202;', label: 'Tools & Trackers', alt: true,
+    id: 'tools', icon: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>', label: 'Tools & Trackers', alt: true,
     title: 'Tools & Trackers',
     intro: 'Learn how our free interactive health tracking tools work and how to get the most out of habit trackers, sleep tools, mood trackers, and more.',
     faqs: [
@@ -3307,7 +3307,7 @@ const faqCategories = [
     ]
   },
   {
-    id: 'quizzes', icon: '&#129504;', label: 'Quizzes', alt: false,
+    id: 'quizzes', icon: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.07-4.76A3 3 0 1 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.07-4.76A3 3 0 1 0 14.5 2"/></svg>', label: 'Quizzes', alt: false,
     title: 'Health Quizzes',
     intro: 'Answers to questions about our interactive health quizzes — how they are scored, what they test, and how to interpret your results.',
     faqs: [
@@ -3324,7 +3324,7 @@ const faqCategories = [
     ]
   },
   {
-    id: 'general', icon: '&#128172;', label: 'General', alt: true,
+    id: 'general', icon: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>', label: 'General', alt: true,
     title: 'General Questions',
     intro: 'Common questions about the VitalHealth Hub platform — including privacy, access, how it was built, and how to get support.',
     faqs: [
@@ -3391,9 +3391,9 @@ ${globalHero({
   searchPlaceholder: 'Search questions, topics...',
   searchOnInput: 'faqHeroSearch(this.value)',
   buttons: [
-    { label: '&#9881; Explore Calculators', href: '/calculators/' },
-    { label: '&#128202; Use Tools', href: '/tools/' },
-    { label: '&#128218; Read Articles', href: '/blog.html' }
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 0 1 21 12a10 10 0 0 1-2.93 7.07M4.93 4.93A10 10 0 0 0 3 12a10 10 0 0 0 1.93 7.07M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> Explore Calculators', href: '/calculators/' },
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg> Use Tools', href: '/tools/' },
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Read Articles', href: '/blog.html' }
   ],
   stats: [
     { value: allFaqItems.length + '+', label: 'Questions Answered' },
@@ -3406,7 +3406,7 @@ ${globalHero({
 <!-- Category Navigation Pills -->
 <div class="faq-pills-nav" id="faq-nav">
 <div class="faq-pills-inner">
-<button class="faq-pill faq-pill-active" data-filter="all" data-faq-cat="all">&#127758; All Topics</button>
+<button class="faq-pill faq-pill-active" data-filter="all" data-faq-cat="all"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> All Topics</button>
 ${catPillsHTML}
 </div>
 </div>
@@ -3425,12 +3425,12 @@ ${faqSectionsHTML}
 <section class="faq-final-cta">
 <div class="container">
 <div class="faq-cta-inner fade-in">
-<span class="faq-cta-icon">&#128172;</span>
+<span class="faq-cta-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
 <h2>Still Have Questions?</h2>
 <p>Can't find what you're looking for? Get in touch — we're happy to help with any questions about the platform, our tools, or health topics.</p>
 <div class="faq-cta-btns">
-<a href="/contact.html" class="btn btn-primary btn-pulse">&#128231; Contact Us</a>
-<a href="/tools/" class="btn btn-outline">&#128202; Explore Tools</a>
+<a href="/contact.html" class="btn btn-primary btn-pulse"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Contact Us</a>
+<a href="/tools/" class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg> Explore Tools</a>
 </div>
 </div>
 </div>
@@ -3633,7 +3633,7 @@ const popularHtml = popularPosts.slice(0,6).map(p => {
 <h3>${p.title}</h3>
 <p>Evidence-based health insights and practical tips for better wellness.</p>
 <hr class="blog-card-divider">
-<div class="blog-card-footer"><span class="blog-card-author">&#128100; Ali Haider</span><span class="blog-card-date">${p.date}</span></div>
+<div class="blog-card-footer"><span class="blog-card-author"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Ali Haider</span><span class="blog-card-date">${p.date}</span></div>
 <span class="read-more">Read More &rarr;</span>
 </div></a>`;
 }).join('\n');
@@ -3647,7 +3647,7 @@ const blogCardHtml = blogPosts.map((p, i) => {
 <h3>${p.title}</h3>
 <p>Evidence-based health insights and practical tips for better wellness.</p>
 <hr class="blog-card-divider">
-<div class="blog-card-footer"><span class="blog-card-author">&#128100; Ali Haider</span><span class="blog-card-date">${p.date}</span></div>
+<div class="blog-card-footer"><span class="blog-card-author"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Ali Haider</span><span class="blog-card-date">${p.date}</span></div>
 <span class="read-more">Read More &rarr;</span>
 </div></a>`;
 }).join('\n');
@@ -3661,14 +3661,14 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'Blog',url:'/blog.html'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Blog',url:'/blog.html'}]).schema}
 
 ${globalHero({
-  badge: '&#128218; ' + blogPosts.length + '+ Expert Health Articles',
+  badge: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> ' + blogPosts.length + '+ Expert Health Articles',
   title: 'VitalHealth Hub Blog',
   subtitle: 'Evidence-based guides on nutrition, fitness, mental health, and more &mdash; written by experts, free for everyone.',
   customSearch: '<div class="blog-hero-search-wrap"><div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="blogHeroInput" placeholder="Search ' + blogPosts.length + '+ articles..." autocomplete="off"><button class="calc-index-btn-primary" style="padding:8px 18px;font-size:0.875rem;white-space:nowrap;">Search</button></div><div class="blog-hero-suggestions" id="blogHeroSugg"></div></div>',
   buttons: [
-    { label: '&#128214; Browse Articles', href: '#all-articles' },
-    { label: '&#128202; Explore Topics', href: '#all-articles' },
-    { label: '&#9889; Try Tools', href: '/tools/' }
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Browse Articles', href: '#all-articles' },
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg> Explore Topics', href: '#all-articles' },
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Try Tools', href: '/tools/' }
   ],
   stats: [
     { value: blogPosts.length + '+', label: 'Articles' },
@@ -3721,12 +3721,15 @@ ${(() => {
   const sections = blogHubDefs.map(def => {
     const posts = blogPosts.filter(p => p.category === def.cat).slice(0, 4);
     if (!posts.length) return '';
-    const cards = posts.map(p => `<a href="/blog/${p.slug}.html" class="tool-premium-card blog-hub-card">
-<div class="tool-premium-icon">${def.icon}</div>
+    const cards = posts.map(p => {
+      const hubImg = blogCardImage(p.slug);
+      return `<a href="/blog/${p.slug}.html" class="tool-premium-card blog-hub-card">
+<div class="blog-hub-card-img"><img src="${hubImg.url.split('?')[0]}?w=480&h=270&fit=crop&q=80&auto=format" alt="${p.title}" width="480" height="270" loading="lazy"></div>
 <div class="tool-premium-name">${p.title}</div>
 <div class="tool-premium-desc">${p.readTime} read &bull; ${p.date}</div>
 <div class="tool-premium-cta">Read Article <span class="tool-premium-cta-arrow">&rarr;</span></div>
-</a>`).join('');
+</a>`;
+    }).join('');
     const catSlug = def.cat.toLowerCase().replace(/\s+/g,'-');
     return `<div class="tools-hub-section">
 <div class="tools-hub-section-header">
@@ -3750,7 +3753,7 @@ ${sections}
 
 <section class="blog-trow-section">
 <div class="blog-trow-header">
-<h2>&#128293; Trending This Week</h2>
+<h2><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> Trending This Week</h2>
 <a href="#all-articles">See all articles &rarr;</a>
 </div>
 <div class="blog-trow" id="blogTrendingRow">
@@ -3799,7 +3802,7 @@ ${blogCategories.map(c => `<button class="blog-category-pill" data-blog-cat="${c
 
 <section class="blog-popular-section">
 <div class="blog-popular-header">
-<h2>&#128293; Popular Articles</h2>
+<h2><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> Popular Articles</h2>
 <p>Most-read guides by our community</p>
 </div>
 <div class="blog-articles-grid blog-popular-grid">
@@ -3810,7 +3813,7 @@ ${popularHtml}
 <section class="blog-articles-section">
 <div class="blog-articles-header">
 <div class="blog-articles-header-left">
-<h2>All Health Articles</h2>
+<h2 id="blogSectionTitle">All Health Articles</h2>
 <p>${blogPosts.length}+ evidence-based guides written by health experts</p>
 </div>
 <div class="blog-articles-header-right">
@@ -3883,7 +3886,20 @@ function genQuizPage(quiz) {
     return b ? b.title : slug.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
   }
 
-  const funnelToolIcons = {'bmi-calculator':'⚖️','calorie-calculator':'🔥','macro-calculator':'🥗','tdee-calculator':'📊','body-fat-calculator':'📏','water-intake-calculator':'💧','sleep-calculator':'😴','heart-rate-calculator':'❤️','protein-calculator':'💪','step-counter':'👟','ideal-weight-calculator':'🎯','blood-pressure-calculator':'🩺'};
+  const funnelToolIcons = {
+    'bmi-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M5 6h14l-1 14H6L5 6z"/><path d="M10 11v4M14 11v4"/></svg>',
+    'calorie-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>',
+    'macro-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>',
+    'tdee-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>',
+    'body-fat-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+    'water-intake-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>',
+    'sleep-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+    'heart-rate-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+    'protein-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d="M2 12h2M20 12h2"/><rect x="4" y="9" width="3" height="6" rx="1"/><rect x="17" y="9" width="3" height="6" rx="1"/><path d="M7 12h10"/></svg>',
+    'step-counter':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path d="M9.09 4.24A9 9 0 0 1 21 12a9 9 0 0 1-18 0A9 9 0 0 1 9.09 4.24"/></svg>',
+    'ideal-weight-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+    'blood-pressure-calculator':'<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>'
+  };
 
   const funnelTools = (quiz.relatedTools || []).map(s =>
     '<a href="/calculators/' + s + '.html" class="quiz-funnel-tool"><span class="quiz-funnel-tool-icon">' + (funnelToolIcons[s]||'🔧') + '</span>' + calcName(s) + '</a>'
@@ -4077,7 +4093,7 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'Quizzes',url:'/quizzes/'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Quizzes',url:'/quizzes/'}]).schema}
 
 ${globalHero({
-  badge: '&#129504; ' + quizzesData.length + '+ Interactive Health Quizzes',
+  badge: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.07-4.76A3 3 0 1 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.07-4.76A3 3 0 1 0 14.5 2"/></svg> ' + quizzesData.length + '+ Interactive Health Quizzes',
   title: 'Test Your Health<br>Knowledge Instantly',
   subtitle: 'Challenge yourself with science-based quizzes and track your progress.',
   searchId: 'quizHeroInput',
@@ -4086,7 +4102,7 @@ ${globalHero({
   buttons: [
     { label: '&#9654; Start Quiz', href: '#quiz-grid' },
     { label: '&#127937; Browse Categories', href: '#quiz-grid' },
-    { label: '&#128202; View Results', href: '#quiz-grid' }
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg> View Results', href: '#quiz-grid' }
   ],
   stats: [
     { value: quizzesData.length + '+', label: 'Quizzes' },
@@ -4585,7 +4601,7 @@ function toolUIByType(tool) {
 </div>`;
   }
 
-  return `<div class="saas-empty-state"><div class="saas-empty-icon">&#9881;</div><p class="saas-empty-text">Tool UI coming soon.</p></div>`;
+  return `<div class="saas-empty-state"><div class="saas-empty-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 0 1 21 12a10 10 0 0 1-2.93 7.07M4.93 4.93A10 10 0 0 0 3 12a10 10 0 0 0 1.93 7.07M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><p class="saas-empty-text">Tool UI coming soon.</p></div>`;
 }
 
 // ── PREMIUM SAAS TOOL PAGE TEMPLATE ─────────────────────────────────────────
@@ -4695,16 +4711,16 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'Tools Hub',url:'/tools/'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Tools Hub',url:'/tools/'}]).schema}
 
 ${globalHero({
-  badge: '&#9889; Smart Tools for Daily Optimization',
+  badge: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Smart Tools for Daily Optimization',
   title: 'All-in-One Health &amp;<br>Productivity Tools',
   subtitle: 'Track habits, analyze health, and improve performance with powerful tools.',
   searchId: 'toolsSearch',
   searchPlaceholder: 'Search tools...',
   searchOnInput: 'filterHub(this.value)',
   buttons: [
-    { label: '&#128270; Browse Tools', href: '#tools-content' },
-    { label: '&#129504; Take a Quiz', href: '/quizzes/' },
-    { label: '&#128218; Read Articles', href: '/blog.html' }
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> Browse Tools', href: '#tools-content' },
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.07-4.76A3 3 0 1 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.07-4.76A3 3 0 1 0 14.5 2"/></svg> Take a Quiz', href: '/quizzes/' },
+    { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Read Articles', href: '/blog.html' }
   ],
   stats: [
     { value: toolsData.length + '', label: 'Tools' },
