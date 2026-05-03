@@ -374,9 +374,17 @@
           <p>Your generated audio will appear here.<br>Select a voice and click <strong>Generate Audio</strong>.</p>
         </div>
 
-        <!-- Audio player -->
+        <!-- Speaking state card -->
         <div class="vs-audio-player" id="audioPlayer">
-          <audio id="audioEl" controls preload="none"></audio>
+          <div id="speakingCard" style="background:rgba(82,183,136,.08);border:1px solid rgba(82,183,136,.2);border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:14px">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(34,197,94,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+            </div>
+            <div style="flex:1;min-width:0">
+              <p style="font-size:13px;font-weight:700;color:#22c55e;margin:0 0 2px" id="speakingLabel">Speaking…</p>
+              <p style="font-size:11px;color:rgba(255,255,255,.45);margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="speakingText"></p>
+            </div>
+          </div>
         </div>
 
         <!-- Info card -->
@@ -698,23 +706,42 @@ var VOICE_CATEGORIES = [
   ]}
 ];
 
-// ── Voice-to-API master map ──
-var VOICE_MAP = {
-  'Brian':['Brian'],'Amy':['Amy'],'Emma':['Emma'],'Joanna':['Joanna'],
-  'Salli':['Salli'],'Kimberly':['Kimberly'],'Kendra':['Kendra'],
-  'Matthew':['Matthew'],'Justin':['Justin'],'Ivy':['Ivy'],
-  'Joey':['Joey'],'Russell':['Russell'],'Nicole':['Nicole'],
-  'Raveena':['Raveena']
+// ── Voice speech params: rate & pitch per category ──
+var CAT_PARAMS = {
+  'Narration':            { rate:0.95, pitch:0.85 },
+  'Storytelling':         { rate:1.0,  pitch:1.0  },
+  'Female Voices':        { rate:1.0,  pitch:1.35, female:true },
+  'Social Media':         { rate:1.2,  pitch:1.1  },
+  'ASMR & Soft Voice':    { rate:0.75, pitch:1.05, female:true },
+  'Sleep & Meditation':   { rate:0.7,  pitch:0.9  },
+  'Quranic & Recitation': { rate:0.65, pitch:0.85 },
+  'News & Professional':  { rate:1.0,  pitch:0.9  },
+  'Characters & Fun':     { rate:1.1,  pitch:1.2  },
+  'Cinematic & Trailer':  { rate:0.85, pitch:0.7  }
 };
 
-// Fallback chain — if a voice fails, try the next
-var FALLBACK_CHAIN = ['Brian','Matthew','Amy','Joanna','Russell','Joey','Salli','Emma'];
+// Per-voice pitch overrides (relative to category)
+var VOICE_PITCH_OVERRIDE = {
+  'Deep Documentary':0.7,'Epic Trailer Voice':0.65,'Horror Narrator':0.65,
+  'Hero Voice':0.75,'Villain Voice':0.6,'Mature Male Voice':0.7,
+  'Warm Female Voice':1.4,'Emotional Female':1.45,'Soft Calm Female':1.3,
+  'Soft Whisper Female':1.1,'Kids Story Voice':1.5,'Young Female':1.5,
+  'Cartoon Voice':1.4,'AI Robot Voice':0.6,'Sci-Fi Voice':0.65,
+  'Fast TikTok Voice':1.2,'Upbeat Promo':1.2
+};
 
 var selectedVoice = VOICE_CATEGORIES[0].voices[0];
 var isGenerating = false;
 var isHighPitch = false;
-var currentTimeout = null;
-var audioEl = document.getElementById('audioEl');
+var currentUtterance = null;
+var synth = window.speechSynthesis;
+var allVoices = [];
+
+function loadVoices(){
+  allVoices = synth.getVoices();
+}
+loadVoices();
+if(synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = loadVoices; }
 
 // ── Build Visualizer ──
 (function(){
@@ -824,69 +851,77 @@ function setGenerating(state){
   var txt=document.getElementById('btnText');
   btn.disabled=state;
   sp.style.display=state?'block':'none';
-  txt.textContent=state?'Generating...':'Generate Audio';
-  document.getElementById('statusDot').className='vs-status-dot'+(state?' loading':selectedVoice?' ready':'');
+  txt.textContent=state?'Speaking...':'Generate Audio';
+  document.getElementById('statusDot').className='vs-status-dot'+(state?' loading':' ready');
   if(state) startBars(); else stopBars();
 }
 
-function showPlayer(text, speed){
-  setGenerating(false);
-  stopBars();
-  document.getElementById('audioPlaceholder').style.display='none';
-  document.getElementById('audioPlayer').style.display='block';
-  document.getElementById('infoCard').style.display='block';
-  document.getElementById('outControls').style.display='grid';
-  document.getElementById('infoVoice').textContent=selectedVoice.name;
-  document.getElementById('infoCat').textContent=selectedVoice.cat||'—';
-  document.getElementById('infoLen').textContent=text.length+' chars';
-  document.getElementById('infoSpeed').textContent=parseFloat(speed).toFixed(1)+'x'+(isHighPitch?' · High Pitch':'');
-  audioEl.onplay=startBars;
-  audioEl.onpause=stopBars;
-  audioEl.onended=stopBars;
-  audioEl.play().catch(function(){});
+// ── Pick best browser voice ──
+function getBrowserVoice(catName, voiceName){
+  if(!allVoices.length) allVoices=synth.getVoices();
+  var params=CAT_PARAMS[catName]||{ rate:1.0,pitch:1.0 };
+  var wantFemale=!!params.female;
+
+  // Known female name patterns
+  var femaleNames=['female','woman','girl','zira','hazel','susan','kate','karen',
+    'samantha','victoria','alice','nicky','fiona','moira','veena','raveena',
+    'joanna','salli','kimberly','kendra','ivy','amy','emma','nicole'];
+
+  var enVoices=allVoices.filter(function(v){ return v.lang.startsWith('en'); });
+  if(!enVoices.length) enVoices=allVoices;
+
+  var gendered=enVoices.filter(function(v){
+    var n=v.name.toLowerCase();
+    var isFem=femaleNames.some(function(f){ return n.indexOf(f)!==-1; });
+    return wantFemale?isFem:!isFem;
+  });
+
+  return gendered[0]||enVoices[0]||allVoices[0]||null;
 }
 
-function loadAudioWithFallback(text, voices, speed, attempt){
-  if(attempt>=voices.length){
+function speak(text, catName, voiceName, speedMultiplier){
+  synth.cancel();
+
+  var params=CAT_PARAMS[catName]||{ rate:1.0,pitch:1.0 };
+  var basePitch=VOICE_PITCH_OVERRIDE[voiceName]||params.pitch;
+  var rate=params.rate*(speedMultiplier||1.0);
+  var pitch=isHighPitch?Math.min(basePitch+0.4,2.0):basePitch;
+
+  var utt=new SpeechSynthesisUtterance(text);
+  utt.rate=Math.max(0.1,Math.min(rate,10));
+  utt.pitch=Math.max(0,Math.min(pitch,2));
+  utt.volume=1;
+
+  var bv=getBrowserVoice(catName,voiceName);
+  if(bv) utt.voice=bv;
+
+  utt.onstart=function(){
     setGenerating(false);
-    showError('Audio couldn\'t be generated. Try shorter text or a different voice.');
-    return;
-  }
-
-  var voice=voices[attempt];
-  var url='https://api.streamelements.com/kappa/v2/speech?voice='+encodeURIComponent(voice)+'&text='+encodeURIComponent(text);
-
-  // Clear previous listeners
-  audioEl.oncanplay=null;
-  audioEl.oncanplaythrough=null;
-  audioEl.onerror=null;
-  audioEl.src='';
-
-  clearTimeout(currentTimeout);
-  currentTimeout=setTimeout(function(){
-    if(isGenerating){
-      audioEl.oncanplay=null;
-      audioEl.onerror=null;
-      // Try next fallback voice
-      loadAudioWithFallback(text,voices,speed,attempt+1);
-    }
-  },10000);
-
-  audioEl.onerror=function(){
-    clearTimeout(currentTimeout);
-    loadAudioWithFallback(text,voices,speed,attempt+1);
+    document.getElementById('audioPlaceholder').style.display='none';
+    document.getElementById('audioPlayer').style.display='block';
+    document.getElementById('infoCard').style.display='block';
+    document.getElementById('outControls').style.display='grid';
+    document.getElementById('speakingLabel').textContent='Speaking…';
+    document.getElementById('speakingText').textContent=text.substring(0,60)+(text.length>60?'…':'');
+    document.getElementById('infoVoice').textContent=selectedVoice.name;
+    document.getElementById('infoCat').textContent=catName;
+    document.getElementById('infoLen').textContent=text.length+' chars';
+    document.getElementById('infoSpeed').textContent=rate.toFixed(1)+'x'+(isHighPitch?' · High':'');
+    startBars();
+  };
+  utt.onend=function(){
+    stopBars();
+    document.getElementById('speakingLabel').textContent='Done ✓';
+    document.getElementById('statusDot').className='vs-status-dot ready';
+  };
+  utt.onerror=function(e){
+    stopBars();
+    setGenerating(false);
+    if(e.error!=='interrupted') showError('Speech failed. Try shorter text or a different browser.');
   };
 
-  // Use oncanplay (fires earlier than oncanplaythrough)
-  audioEl.oncanplay=function(){
-    clearTimeout(currentTimeout);
-    audioEl.oncanplay=null;
-    audioEl.playbackRate=isHighPitch?Math.min(speed*1.3,2.0):speed;
-    showPlayer(text,speed);
-  };
-
-  audioEl.src=url;
-  audioEl.load();
+  currentUtterance=utt;
+  synth.speak(utt);
 }
 
 function generateAudio(){
@@ -895,26 +930,18 @@ function generateAudio(){
   var text=document.getElementById('scriptInput').value.trim();
   if(!text){ showError('Please enter some text to convert to speech.'); return; }
   if(text.length<3){ showError('Please enter at least a few words.'); return; }
-  if(text.length>500){
-    showError('Text too long — please keep it under 500 characters for best results.');
+  if(text.length>1000){ showError('Please keep text under 1000 characters for best results.'); return; }
+
+  if(!window.speechSynthesis){
+    showError('Your browser does not support speech synthesis. Please try Chrome or Edge.');
     return;
   }
 
   hideError();
-
-  // Stop any playing audio
-  try{ audioEl.pause(); audioEl.currentTime=0; }catch(e){}
-
   setGenerating(true);
 
   var speed=parseFloat(document.getElementById('speedSelect').value)||1.0;
-  var apiVoice=selectedVoice.api||'Brian';
-
-  // Build fallback chain starting from selected voice
-  var voiceChain=[apiVoice];
-  FALLBACK_CHAIN.forEach(function(v){ if(v!==apiVoice) voiceChain.push(v); });
-
-  loadAudioWithFallback(text,voiceChain,speed,0);
+  speak(text, selectedVoice.cat||'Narration', selectedVoice.name, speed);
 }
 
 function generateVariation(){
@@ -922,51 +949,34 @@ function generateVariation(){
   var text=document.getElementById('scriptInput').value.trim();
   if(!text){ showError('Enter some text first.'); return; }
 
-  // Pick a random voice from same category or nearby
-  var catVoices=VOICE_CATEGORIES.filter(function(c){ return c.name===selectedVoice.cat; });
-  var voice=selectedVoice;
-  if(catVoices.length&&catVoices[0].voices.length>1){
-    var others=catVoices[0].voices.filter(function(v){ return v.name!==selectedVoice.name; });
-    if(others.length) voice=others[Math.floor(Math.random()*others.length)];
-  }
-
   hideError();
-  try{ audioEl.pause(); audioEl.currentTime=0; }catch(e){}
   setGenerating(true);
 
-  var speed=(parseFloat(document.getElementById('speedSelect').value)||1.0)+(Math.random()*0.2-0.1);
-  speed=Math.max(0.8,Math.min(1.5,speed));
-  var voiceChain=[voice.api||'Brian'];
-  FALLBACK_CHAIN.forEach(function(v){ if(v!==voiceChain[0]) voiceChain.push(v); });
-  loadAudioWithFallback(text,voiceChain,speed,0);
+  var speed=(parseFloat(document.getElementById('speedSelect').value)||1.0)+(Math.random()*0.3-0.15);
+  speed=Math.max(0.6,Math.min(1.8,speed));
+  speak(text, selectedVoice.cat||'Narration', selectedVoice.name, speed);
 }
 
 function toggleHighPitch(){
   isHighPitch=!isHighPitch;
   var btn=document.getElementById('pitchBtn');
   btn.style.background=isHighPitch?'rgba(82,183,136,.15)':'';
-  btn.style.borderColor=isHighPitch?'#52b788':'';
+  btn.style.borderColor=isHighPitch?'rgba(82,183,136,.4)':'';
   btn.style.color=isHighPitch?'#52b788':'';
-  if(audioEl.src&&!audioEl.paused){
+}
+
+function playAudio(){
+  if(synth.paused) synth.resume();
+  else if(currentUtterance){
+    synth.cancel();
+    var text=document.getElementById('scriptInput').value.trim();
     var speed=parseFloat(document.getElementById('speedSelect').value)||1.0;
-    audioEl.playbackRate=isHighPitch?Math.min(speed*1.3,2.0):speed;
+    if(text) speak(text,selectedVoice.cat||'Narration',selectedVoice.name,speed);
   }
 }
-
-function playAudio(){ if(audioEl.src) audioEl.play().catch(function(){}); }
-function pauseAudio(){ audioEl.pause(); }
-function stopAudio(){ audioEl.pause(); try{ audioEl.currentTime=0; }catch(e){} stopBars(); }
-
-function downloadAudio(){
-  var src=audioEl.src;
-  if(!src||src===window.location.href){ showError('Generate audio first before downloading.'); return; }
-  var a=document.createElement('a');
-  a.href=src;
-  a.download='vitalhealth-voice-'+selectedVoice.api+'-'+Date.now()+'.mp3';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
+function pauseAudio(){ synth.pause(); stopBars(); }
+function stopAudio(){ synth.cancel(); stopBars(); document.getElementById('speakingLabel').textContent='Stopped'; }
+function downloadAudio(){ showError('Download is not available with the browser speech engine. Use Play/Pause controls to listen.'); }
 </script>
 </body>
 </html>
