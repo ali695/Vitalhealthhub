@@ -330,7 +330,57 @@ function globalHero(opts) {
   return '<section class="calc-index-hero">\n<div class="calc-index-hero-inner">\n<div class="calc-index-hero-badge">' + badge + '</div><h1 class="calc-index-hero-title">' + title + '</h1><p class="calc-index-hero-sub">' + subtitle + '</p>\n' + searchHtml + '<div class="calc-index-hero-btns">' + btnsHtml + '</div>' + statsHtml + '</div>\n</section>';
 }
 
-function calcSvg(type) {
+function calcSvg(type, slug) {
+  const slugSvgs = {
+    'bmi-calculator':              `<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="28" width="36" height="14" rx="3" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 28v-8a8 8 0 0 1 16 0v8" stroke="#52b788" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="35" r="2" fill="#2d6a4f"/></svg>`,
+    'calorie-calculator':          `<svg viewBox="0 0 48 48" fill="none"><path d="M24 7c0 0-8 10-8 18a8 8 0 0 0 16 0c0-8-8-18-8-18z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 29c0-2.2 1.8-4 4-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'macro-calculator':            `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="15" stroke="#2d6a4f" stroke-width="2.5"/><path d="M24 24L24 9" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M24 24L37 31" stroke="#52b788" stroke-width="2.5" stroke-linecap="round"/><path d="M24 24L13 34" stroke="#f4a261" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'tdee-calculator':             `<svg viewBox="0 0 48 48" fill="none"><polyline points="8,36 17,22 25,28 33,16 42,8" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><polygon points="38,6 44,6 44,12" fill="#52b788"/></svg>`,
+    'body-fat-calculator':         `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="11" r="5" stroke="#2d6a4f" stroke-width="2.5"/><path d="M15 20h18l-2 20H17L15 20z" stroke="#2d6a4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M19 26h10M20 32h8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'ideal-weight-calculator':     `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="24" cy="24" r="8" stroke="#52b788" stroke-width="2"/><circle cx="24" cy="24" r="3" fill="#2d6a4f"/></svg>`,
+    'bmr-calculator':              `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="12" r="5" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 20h12v6l4 16H14L18 26v-6z" stroke="#2d6a4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 26v10" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'water-intake-calculator':     `<svg viewBox="0 0 48 48" fill="none"><path d="M24 6c0 0-12 14-12 22a12 12 0 0 0 24 0c0-8-12-22-12-22z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 30c0-3.3 2.7-6 6-6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M30 36l4-4" stroke="#52b788" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    'sleep-calculator':            `<svg viewBox="0 0 48 48" fill="none"><path d="M36 28c0 8-6 14-14 14S8 36 8 28s6-14 14-14c-4 2-6 6-6 10s4 10 10 10c4 0 7-2 10-6z" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="37" cy="11" r="2.5" fill="#f4a261"/><circle cx="42" cy="19" r="1.5" fill="#f4a261"/><circle cx="32" cy="7" r="1.5" fill="#f4a261"/></svg>`,
+    'heart-rate-calculator':       `<svg viewBox="0 0 48 48" fill="none"><polyline points="4,24 10,24 14,14 18,34 22,20 26,28 30,24 44,24" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    'protein-calculator':          `<svg viewBox="0 0 48 48" fill="none"><path d="M8 24h32" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><rect x="12" y="18" width="5" height="12" rx="2" stroke="#2d6a4f" stroke-width="2"/><rect x="31" y="18" width="5" height="12" rx="2" stroke="#2d6a4f" stroke-width="2"/><rect x="5" y="20" width="5" height="8" rx="2" stroke="#52b788" stroke-width="2"/><rect x="38" y="20" width="5" height="8" rx="2" stroke="#52b788" stroke-width="2"/></svg>`,
+    'step-counter':                `<svg viewBox="0 0 48 48" fill="none"><path d="M16 12c0-2.2 1.8-4 4-4h4a4 4 0 0 1 0 8h-2a4 4 0 0 0 0 8h4a4 4 0 0 1 0 8h-4a4 4 0 0 1-4-4" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M14 36h20" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'pregnancy-due-date-calculator':`<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="32" rx="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M6 20h36" stroke="#2d6a4f" stroke-width="2"/><path d="M16 6v8M32 6v8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M24 30a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#2d6a4f" stroke-width="2"/><path d="M21 28l2-2 4 2" stroke="#52b788" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    'ovulation-calculator':        `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="22" r="10" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="24" cy="22" r="4" fill="#52b788" opacity="0.6"/><path d="M24 10V6M24 38v4M10 22H6M38 22h4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'baby-weight-calculator':      `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="10" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="20" cy="16" r="1.5" fill="#2d6a4f"/><circle cx="28" cy="16" r="1.5" fill="#2d6a4f"/><path d="M20 22c2 2 6 2 8 0" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/><rect x="8" y="32" width="32" height="10" rx="3" stroke="#52b788" stroke-width="2"/><path d="M24 32v-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'child-bmi-calculator':        `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="5" stroke="#2d6a4f" stroke-width="2.5"/><path d="M17 18h14l-2 14h-2l-2-8-2 8h-2l-2-14z" stroke="#2d6a4f" stroke-width="2" stroke-linejoin="round"/><path d="M19 32l-4 10M29 32l4 10" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'menstrual-cycle-calculator':  `<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="32" rx="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M6 20h36" stroke="#2d6a4f" stroke-width="2"/><circle cx="16" cy="30" r="2.5" fill="#52b788"/><circle cx="24" cy="30" r="2.5" fill="#2d6a4f"/><circle cx="32" cy="30" r="2.5" fill="#52b788" opacity="0.5"/></svg>`,
+    'fertility-calculator':        `<svg viewBox="0 0 48 48" fill="none"><path d="M24 8c-8 0-14 6-14 14s14 20 14 20 14-12 14-20S32 8 24 8z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M24 14v6M21 17h6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'protein-intake-calculator':   `<svg viewBox="0 0 48 48" fill="none"><path d="M12 16c0-6.6 5.4-12 12-12s12 5.4 12 12-5.4 12-12 12-12-5.4-12-12z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M14 28h20l-2 14H16L14 28z" stroke="#52b788" stroke-width="2" stroke-linejoin="round"/></svg>`,
+    'carb-calculator':             `<svg viewBox="0 0 48 48" fill="none"><path d="M10 36c0-12 14-28 14-28s14 16 14 28a14 14 0 0 1-28 0z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M17 32c0-4.4 3.1-8 7-8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'fat-intake-calculator':       `<svg viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="26" rx="16" ry="14" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 26c0-4.4 3.6-8 8-8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M28 14l-4-8" stroke="#f4a261" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'fiber-intake-calculator':     `<svg viewBox="0 0 48 48" fill="none"><path d="M24 8v32" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M16 14l8 6 8-6M16 22l8 6 8-6M16 30l8 6 8-6" stroke="#52b788" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    'vitamin-d-calculator':        `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="10" stroke="#f4a261" stroke-width="2.5"/><path d="M24 6v4M24 38v4M6 24h4M38 24h4M11 11l3 3M34 34l3 3M11 37l3-3M34 14l3-3" stroke="#f4a261" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'iron-intake-calculator':      `<svg viewBox="0 0 48 48" fill="none"><rect x="14" y="8" width="20" height="32" rx="10" stroke="#2d6a4f" stroke-width="2.5" transform="rotate(45 24 24)"/><path d="M17 17l14 14" stroke="#52b788" stroke-width="2"/><circle cx="24" cy="24" r="3" fill="#2d6a4f"/></svg>`,
+    'calcium-calculator':          `<svg viewBox="0 0 48 48" fill="none"><path d="M14 6h6l2 8h-4l1 4h10l1-4h-4l2-8h6" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 22h28" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M12 30c0 6 3 12 12 12s12-6 12-12H12z" stroke="#2d6a4f" stroke-width="2.5"/></svg>`,
+    'cholesterol-risk-calculator': `<svg viewBox="0 0 48 48" fill="none"><path d="M24 38s-14-8-14-18c0-5.5 4.5-10 10-10 2.5 0 4.7 1 6.5 2.6" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M30 10l-2 8h5l-7 12" stroke="#f4a261" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    'diabetes-risk-calculator':    `<svg viewBox="0 0 48 48" fill="none"><circle cx="30" cy="18" r="10" stroke="#2d6a4f" stroke-width="2.5"/><path d="M24 18h12M30 12v12" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M10 34l8-8" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><circle cx="10" cy="36" r="3" fill="#f4a261"/></svg>`,
+    'stroke-risk-calculator':      `<svg viewBox="0 0 48 48" fill="none"><path d="M16 14c0-4.4 3.6-8 8-8s8 3.6 8 8c2.2 0 4 2.7 4 6s-1.8 6-4 6H16c-2.2 0-4-2.7-4-6s1.8-6 4-6z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 28l2 8M28 28l-2 8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M22 36h4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'lean-body-mass-calculator':   `<svg viewBox="0 0 48 48" fill="none"><path d="M24 10l4 6-4 4-4-4 4-6z" stroke="#2d6a4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22l2-4h16l2 4" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M10 22h6l4 16h8l4-16h6" stroke="#52b788" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    'body-surface-area-calculator':`<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="4" stroke="#2d6a4f" stroke-width="2"/><path d="M16 18h16v6l-4 14h-2l-2-8-2 8h-2l-4-14v-6z" stroke="#2d6a4f" stroke-width="2"/><rect x="8" y="8" width="32" height="32" rx="4" stroke="#52b788" stroke-width="1.5" stroke-dasharray="3 2"/></svg>`,
+    'one-rep-max-calculator':      `<svg viewBox="0 0 48 48" fill="none"><path d="M8 24h32" stroke="#2d6a4f" stroke-width="3" stroke-linecap="round"/><rect x="4" y="18" width="6" height="12" rx="2" stroke="#2d6a4f" stroke-width="2"/><rect x="38" y="18" width="6" height="12" rx="2" stroke="#2d6a4f" stroke-width="2"/><rect x="10" y="14" width="6" height="20" rx="2" stroke="#52b788" stroke-width="2"/><rect x="32" y="14" width="6" height="20" rx="2" stroke="#52b788" stroke-width="2"/></svg>`,
+    'running-pace-calculator':     `<svg viewBox="0 0 48 48" fill="none"><circle cx="30" cy="8" r="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M26 16l-6 10 6 4-4 12" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 26l-8 6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="32" r="4" stroke="#52b788" stroke-width="2"/><path d="M8 30l4 4" stroke="#52b788" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    'waist-to-hip-ratio':          `<svg viewBox="0 0 48 48" fill="none"><path d="M16 8h16" stroke="#52b788" stroke-width="2.5" stroke-linecap="round"/><path d="M12 20h24" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M14 32h20" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M16 8c-4 4-4 8-4 12s4 10 6 12M32 8c4 4 4 8 4 12s-4 10-6 12" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'blood-pressure-calculator':   `<svg viewBox="0 0 48 48" fill="none"><polyline points="4,24 10,24 14,10 18,38 22,18 26,30 30,24 44,24" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    'alcohol-units-calculator':    `<svg viewBox="0 0 48 48" fill="none"><path d="M16 8h16l-4 14H20L16 8z" stroke="#2d6a4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 22v16h8V22" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M16 38h16" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'sugar-intake-calculator':     `<svg viewBox="0 0 48 48" fill="none"><rect x="12" y="12" width="24" height="24" rx="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 22h12M18 28h8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M28 8v4M20 8v4M28 36v4M20 36v4" stroke="#f4a261" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'keto-calculator':             `<svg viewBox="0 0 48 48" fill="none"><path d="M24 8l4 12h12l-10 8 4 12-10-8-10 8 4-12-10-8h12z" stroke="#2d6a4f" stroke-width="2.5" stroke-linejoin="round"/></svg>`,
+    'intermittent-fasting-calculator':`<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#2d6a4f" stroke-width="2.5"/><path d="M24 10v14l8 6" stroke="#52b788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    'vo2-max-calculator':          `<svg viewBox="0 0 48 48" fill="none"><path d="M14 36c0-8 3-14 6-18s4-8 4-10c0 2 1 6 4 10s6 10 6 18" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M12 36h24" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M20 28h8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'push-up-test-calculator':     `<svg viewBox="0 0 48 48" fill="none"><circle cx="34" cy="8" r="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M10 34h8l6-12 6 4h8" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 34l4-8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'plank-test-calculator':       `<svg viewBox="0 0 48 48" fill="none"><circle cx="38" cy="10" r="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M6 32l36-16" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M6 32l4-10" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'calories-burned-calculator':  `<svg viewBox="0 0 48 48" fill="none"><path d="M24 6c0 0-6 7-6 14 0 3.3 2.7 6 6 6s6-2.7 6-6c0-2-1-4-2-5 0 2-1 4-3 4s-3-2-3-4c0-4 2-9 2-9z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 34h12M12 40h24" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'swimming-calories-calculator':`<svg viewBox="0 0 48 48" fill="none"><circle cx="34" cy="10" r="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M8 24l8-6 8 4 8-6 8 2" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 32c4 4 8 0 12 0s8 4 12 0 8 0 8 0" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg>`,
+    'cycling-calories-calculator': `<svg viewBox="0 0 48 48" fill="none"><circle cx="12" cy="32" r="8" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="36" cy="32" r="8" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="36" cy="14" r="4" stroke="#2d6a4f" stroke-width="2"/><path d="M12 32l12-14h8" stroke="#52b788" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18l-2 8 12 6" stroke="#52b788" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    'target-heart-rate-calculator':`<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#2d6a4f" stroke-width="2"/><circle cx="24" cy="24" r="8" stroke="#52b788" stroke-width="2"/><path d="M24 18s-6 4-6 9 6 9 6 9 6-4 6-9-6-9-6-9z" fill="#52b788" opacity="0.3"/><polyline points="12,24 16,24 18,18 20,30 22,22 24,26 26,24 36,24" stroke="#2d6a4f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    'pregnancy-weight-gain-calculator':`<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="14" r="6" stroke="#2d6a4f" stroke-width="2.5"/><path d="M14 24c0-4 4.5-8 10-8s10 4 10 8c0 6-2 12-10 14-8-2-10-8-10-14z" stroke="#52b788" stroke-width="2.5"/></svg>`,
+    'anorexia-calculator':         `<svg viewBox="0 0 48 48" fill="none"><rect x="8" y="28" width="32" height="14" rx="3" stroke="#2d6a4f" stroke-width="2.5"/><path d="M14 28v-8a10 10 0 0 1 20 0v8" stroke="#52b788" stroke-width="2.5" stroke-linecap="round"/><path d="M20 34h8" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/></svg>`,
+  };
+  if (slug && slugSvgs[slug]) return slugSvgs[slug];
   const icons = {
     weight: `<svg viewBox="0 0 48 48" fill="none"><rect x="8" y="16" width="32" height="24" rx="4" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="24" cy="28" r="6" stroke="#52b788" stroke-width="2"/><path d="M24 22v6l4 2" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/></svg>`,
     heart: `<svg viewBox="0 0 48 48" fill="none"><path d="M24 40s-14-8.4-14-18c0-5.5 4.5-10 10-10 3.5 0 6.5 2 8 4a10 10 0 0 1 8-4c5.5 0 10 4.5 10 10 0 9.6-14 18-14 18z" stroke="#2d6a4f" stroke-width="2.5" fill="none"/></svg>`,
@@ -1303,7 +1353,7 @@ function calcRelatedCards(calc) {
   if (!related.length) return '';
   const cards = related.map(r => {
     const rc = calculators.find(c => c.slug === r);
-    return rc ? `<a href="/calculators/${r}.html" class="related-calc-card"><div class="related-calc-icon">${calcSvg(rc.icon)}</div><div><h4>${rc.name}</h4><p>${rc.desc}</p><span class="read-more">Use Calculator &rarr;</span></div></a>` : '';
+    return rc ? `<a href="/calculators/${r}.html" class="related-calc-card"><div class="related-calc-icon">${calcSvg(rc.icon, rc.slug)}</div><div><h4>${rc.name}</h4><p>${rc.desc}</p><span class="read-more">Use Calculator &rarr;</span></div></a>` : '';
   }).filter(Boolean).join('');
   return `<section class="seo-section fade-in">
 <h2>Related Calculators You Might Find Useful</h2>
@@ -2393,15 +2443,7 @@ ${share}
 ${faq.html}
 </section>
 
-<!-- Author box -->
-<div class="blog-author-box fade-in">
-<div class="author-avatar">A</div>
-<div class="author-info">
-<h4>Ali Haider</h4>
-<p>Ali Haider is an SEO Consultant and Health Content Creator with a passion for making evidence-based health information accessible to everyone. He builds free health tools and writes comprehensive guides used by over 100,000 monthly readers worldwide.</p>
-<p style="margin-top:8px;"><a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" style="color:#52b788;font-size:0.85rem;">LinkedIn Profile &rarr;</a></p>
-</div>
-</div>
+
 
 </div><!-- /bp-content -->
 
@@ -2548,7 +2590,7 @@ ${catNames.map(c=>`<button class="filter-btn" data-filter-cat="${c.replace(/"/g,
 ${calculators.map(c => {
   let cat = 'Other';
   for (const [k,v] of Object.entries(calcCategories)) { if (v.find(x=>x.slug===c.slug)) { cat = k; break; } }
-  return `<a href="/calculators/${c.slug}.html" class="card fade-in" data-category="${cat}" data-title="${c.name.toLowerCase()}"><div class="card-icon">${calcSvg(c.icon)}</div><h3>${c.name}</h3><p>${c.desc}</p><span class="read-more">Calculate Now &rarr;</span></a>`;
+  return `<a href="/calculators/${c.slug}.html" class="card fade-in" data-category="${cat}" data-title="${c.name.toLowerCase()}"><div class="card-icon">${calcSvg(c.icon, c.slug)}</div><h3>${c.name}</h3><p>${c.desc}</p><span class="read-more">Calculate Now &rarr;</span></a>`;
 }).join('')}
 </div>
 </div>
@@ -2622,7 +2664,7 @@ ${NAV}
 </div>
 <div class="home-calcs-grid">
 ${popularCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="home-calc-card fade-in">
-<div class="home-calc-card-icon">${calcSvg(c.icon)}</div>
+<div class="home-calc-card-icon">${calcSvg(c.icon, c.slug)}</div>
 <div class="home-calc-card-name">${c.name}</div>
 <div class="home-calc-card-desc">${c.desc}</div>
 <div class="home-calc-card-cta">Calculate <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -3852,12 +3894,7 @@ ${blogCardHtml}
 </div>
 </div>
 
-<section class="blog-tag-cloud">
-<h2>Browse by Health Topic</h2>
-<div class="blog-tag-cloud-inner">
-${popularTags.map(t => `<span class="blog-tag${t.size === 'lg' ? ' tag-lg' : t.size === 'sm' ? ' tag-sm' : ''}" data-blog-tag="${t.name.replace(/"/g,'&quot;')}">${t.name}</span>`).join('\n')}
-</div>
-</section>
+
 
 ${FOOTER}
 ${BTT}

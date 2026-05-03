@@ -145,7 +145,7 @@ Applied globally across all 306 pages via css/style.css:
 
 ## Key Features
 - **103 fully functional health calculators** with real JS logic across 10+ categories
-- **155 SEO blog posts** covering 8 categories with full content, FAQs, author boxes, related articles
+- **155 SEO blog posts** covering 8 categories with full content, FAQs, related articles (author box removed)
 - **22 interactive quizzes** with 3 difficulty levels (Easy 5Q / Medium 8Q / Hard 10Q), instant scoring, localStorage history
 - **24 real working tools** across 4 categories (Image, PDF, Text, Utility) — all browser-side, no upload, no API
 - **AI Health Chatbot** — pure vanilla JS, no external APIs, 20+ topic knowledge base, floating on all pages; **lazy-loads on first user click** (not DOMContentLoaded) for page performance
