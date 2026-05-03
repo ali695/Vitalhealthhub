@@ -1,0 +1,162 @@
+--------------------------------------------------
+TASK: FIX IMAGE GENERATION QUALITY & ACCURACY
+--------------------------------------------------
+
+GOAL:
+Improve AI image results by:
+
+✔ correcting user input
+✔ structuring prompts
+✔ adding context
+✔ controlling style
+✔ adding negative prompts
+✔ forcing clarity
+
+--------------------------------------------------
+SECTION 1: AUTO PROMPT ENHANCEMENT (CRITICAL)
+--------------------------------------------------
+
+Before sending prompt to API:
+
+Transform user input into:
+
+FINAL PROMPT STRUCTURE:
+
+"[MAIN SUBJECT], [DETAILS], [STYLE], high quality, ultra detailed, sharp focus, realistic lighting"
+
+--------------------------------------------------
+
+EXAMPLE:
+
+User input:
+"khana kabba"
+
+System converts to:
+
+"Kaaba in Mecca, Masjid al-Haram, Islamic holy site, detailed architecture, realistic style, high quality, sharp focus, natural lighting"
+
+--------------------------------------------------
+SECTION 2: SPELLING & INTENT CORRECTION
+--------------------------------------------------
+
+Add keyword correction layer:
+
+IF input contains:
+
+"khana kabba" → convert to → "Kaaba Mecca"
+
+--------------------------------------------------
+
+Common fixes:
+
+- kabba → Kaaba
+- makka → Mecca
+- madina → Medina
+
+--------------------------------------------------
+SECTION 3: STYLE INJECTION
+--------------------------------------------------
+
+Based on selected style:
+
+Realistic:
+"photorealistic, ultra realistic, natural lighting"
+
+Cinematic:
+"cinematic lighting, dramatic shadows, film look"
+
+Anime:
+"anime style, cel shading, vibrant colors"
+
+3D:
+"3D render, octane render, highly detailed"
+
+--------------------------------------------------
+SECTION 4: NEGATIVE PROMPT (IMPORTANT)
+--------------------------------------------------
+
+Always append:
+
+"blurry, distorted, low quality, watermark, text, deformed, bad proportions"
+
+--------------------------------------------------
+SECTION 5: FINAL PROMPT GENERATION
+--------------------------------------------------
+
+JS IMPLEMENTATION:
+
+function buildPrompt(userPrompt, style) {
+
+  let corrected = userPrompt;
+
+  if (userPrompt.includes("kabba") || userPrompt.includes("khana kabba")) {
+    corrected = "Kaaba in Mecca, Masjid al-Haram";
+  }
+
+  const styleMap = {
+    realistic: "photorealistic, natural lighting",
+    cinematic: "cinematic lighting, dramatic shadows",
+    anime: "anime style, vibrant colors",
+    "3d": "3D render, octane render"
+  };
+
+  const negative = "blurry, low quality, watermark, distorted, bad anatomy";
+
+  return `${corrected}, ${styleMap[style]}, ultra detailed, sharp focus, ${negative}`;
+}
+
+--------------------------------------------------
+SECTION 6: FORCE SUBJECT CLARITY
+--------------------------------------------------
+
+If prompt length < 3 words:
+
+ADD:
+
+"detailed view, centered composition"
+
+--------------------------------------------------
+SECTION 7: PRESET SUGGESTIONS (IMPORTANT UX)
+--------------------------------------------------
+
+Below input add:
+
+Suggested prompts:
+
+✔ "Kaaba in Mecca during sunset"
+✔ "Modern hospital interior"
+✔ "Healthy food plate"
+✔ "Fitness gym scene"
+
+--------------------------------------------------
+SECTION 8: ERROR PREVENTION
+--------------------------------------------------
+
+If prompt is too vague:
+
+Show message:
+
+"Please describe your image in more detail"
+
+--------------------------------------------------
+SECTION 9: UI IMPROVEMENT
+--------------------------------------------------
+
+Add helper text:
+
+"Tip: Be specific — include subject, place, style, and mood"
+
+--------------------------------------------------
+SECTION 10: FINAL RESULT
+--------------------------------------------------
+
+✔ accurate outputs
+✔ less random images
+✔ better control
+✔ professional results
+
+--------------------------------------------------
+CONFIRMATION
+--------------------------------------------------
+
+"Image generation improved with structured prompts and accuracy control"

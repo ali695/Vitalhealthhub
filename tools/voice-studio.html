@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Voice Generator – Free Tool | VitalHealth Hub</title>
+<meta name="description" content="Convert text into natural speech using free AI voices. Create narration, storytelling, and wellness audio instantly. No API key, no sign-up required.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://vitalhealthhub.org/tools/voice-studio.html">
+<meta property="og:title" content="AI Voice Generator Studio | VitalHealth Hub">
+<meta property="og:description" content="Convert text into natural speech using free AI voices. Create narration, storytelling, and wellness audio instantly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vitalhealthhub.org/tools/voice-studio.html">
+<meta property="og:site_name" content="VitalHealth Hub">
+<meta property="og:image" content="https://vitalhealthhub.org/images/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Voice Generator Studio | VitalHealth Hub">
+<meta name="twitter:description" content="Convert text into natural AI speech. Create narration, wellness audio and storytelling — free, no sign-up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+/* ── Voice Studio Dark Theme ── */
+.vs-page{background:linear-gradient(135deg,#0a0f1a 0%,#0d1a2e 50%,#0a1520 100%);min-height:100vh;padding:40px 0 80px}
+.vs-hero{text-align:center;padding:60px 20px 48px;max-width:700px;margin:0 auto}
+.vs-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(82,183,136,.15);border:1px solid rgba(82,183,136,.3);color:#52b788;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:18px;text-transform:uppercase;letter-spacing:.7px}
+.vs-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:14px;letter-spacing:-.5px}
+.vs-hero h1 span{background:linear-gradient(135deg,#52b788,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.vs-hero p{font-size:1.05rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:28px}
+.vs-hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.vs-btn-primary{padding:13px 28px;background:linear-gradient(135deg,#22c55e,#2d6a4f);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 4px 20px rgba(34,197,94,.25)}
+.vs-btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(34,197,94,.35);color:#fff}
+.vs-btn-outline{padding:13px 28px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.15);border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.vs-btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:#fff}
+
+/* ── Stats row ── */
+.vs-stats{display:flex;gap:0;justify-content:center;margin-bottom:40px}
+.vs-stat{padding:10px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
+.vs-stat:last-child{border-right:none}
+.vs-stat strong{display:block;font-size:1.2rem;font-weight:800;color:#52b788}
+.vs-stat span{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.5px}
+
+/* ── Studio Layout ── */
+.vs-container{max-width:1340px;margin:0 auto;padding:0 20px}
+.vs-studio{display:grid;grid-template-columns:280px 1fr 340px;gap:20px;align-items:start}
+
+/* ── Sidebar ── */
+.vs-sidebar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden}
+.vs-sidebar-head{padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:10px}
+.vs-sidebar-head h2{font-size:13px;font-weight:700;color:#fff;margin:0}
+.vs-sidebar-head span{font-size:11px;color:rgba(255,255,255,.4);margin-left:auto;background:rgba(82,183,136,.15);color:#52b788;padding:2px 8px;border-radius:8px;font-weight:600}
+.vs-cat-list{max-height:580px;overflow-y:auto;padding:10px 0}
+.vs-cat-list::-webkit-scrollbar{width:4px}
+.vs-cat-list::-webkit-scrollbar-track{background:transparent}
+.vs-cat-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}
+.vs-cat{border-bottom:1px solid rgba(255,255,255,.04)}
+.vs-cat-header{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:pointer;transition:background .15s;user-select:none}
+.vs-cat-header:hover{background:rgba(255,255,255,.05)}
+.vs-cat-header.active{background:rgba(82,183,136,.08)}
+.vs-cat-icon{font-size:15px;width:24px;text-align:center}
+.vs-cat-name{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.75);flex:1}
+.vs-cat-count{font-size:10px;color:rgba(255,255,255,.35);background:rgba(255,255,255,.06);padding:2px 7px;border-radius:6px;font-weight:600}
+.vs-cat-arrow{font-size:10px;color:rgba(255,255,255,.3);transition:transform .2s}
+.vs-cat-header.open .vs-cat-arrow{transform:rotate(90deg)}
+.vs-cat-voices{display:none;padding:4px 0 8px}
+.vs-cat-voices.open{display:block}
+.vs-voice-btn{width:100%;padding:8px 16px 8px 50px;text-align:left;background:none;border:none;cursor:pointer;transition:background .15s}
+.vs-voice-btn:hover{background:rgba(255,255,255,.05)}
+.vs-voice-btn.selected{background:rgba(82,183,136,.12)}
+.vs-voice-name{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);display:block}
+.vs-voice-btn.selected .vs-voice-name{color:#52b788}
+.vs-voice-sub{font-size:10.5px;color:rgba(255,255,255,.35);display:block;margin-top:1px}
+
+/* ── Center Editor ── */
+.vs-editor{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden}
+.vs-editor-head{padding:18px 24px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.vs-editor-head h2{font-size:14px;font-weight:700;color:#fff;margin:0;display:flex;align-items:center;gap:8px}
+.vs-selected-badge{font-size:11px;background:rgba(82,183,136,.15);color:#52b788;padding:4px 10px;border-radius:8px;font-weight:600;border:1px solid rgba(82,183,136,.25)}
+.vs-editor-body{padding:24px}
+.vs-field{margin-bottom:20px}
+.vs-label{display:block;font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.vs-textarea{width:100%;padding:16px;background:rgba(0,0,0,.3);border:1.5px solid rgba(255,255,255,.1);border-radius:14px;color:#fff;font-size:14px;font-family:inherit;resize:vertical;min-height:200px;outline:none;line-height:1.7;transition:border-color .2s}
+.vs-textarea:focus{border-color:#52b788;background:rgba(0,0,0,.4)}
+.vs-textarea::placeholder{color:rgba(255,255,255,.25)}
+.vs-char-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.vs-char-count{font-size:11px;color:rgba(255,255,255,.3)}
+.vs-tip{font-size:11px;color:#f4a261;font-weight:600}
+
+/* Builder controls */
+.vs-builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.vs-select{width:100%;padding:10px 14px;background:rgba(0,0,0,.3);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;color:rgba(255,255,255,.8);font-size:13px;font-family:inherit;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5l3 3 3-3' stroke='rgba(255,255,255,.4)' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;transition:border-color .2s}
+.vs-select:focus{border-color:#52b788}
+.vs-slider-wrap{padding:0 2px}
+.vs-slider{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:3px;background:linear-gradient(to right,#52b788 50%,rgba(255,255,255,.15) 50%);outline:none;cursor:pointer}
+.vs-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:#52b788;cursor:pointer;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.vs-slider-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.vs-slider-val{font-size:12px;color:#52b788;font-weight:700}
+.vs-slider-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.3)}
+
+/* Quick prompts */
+.vs-prompts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.vs-prompt-chip{padding:6px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;font-size:11.5px;color:rgba(255,255,255,.6);cursor:pointer;transition:all .15s;white-space:nowrap}
+.vs-prompt-chip:hover{background:rgba(82,183,136,.15);border-color:#52b788;color:#52b788}
+
+/* Action buttons */
+.vs-actions{display:flex;gap:10px;flex-wrap:wrap}
+.vs-btn-gen{flex:1;min-width:160px;padding:14px 20px;background:linear-gradient(135deg,#22c55e,#2d6a4f);color:#fff;border:none;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:all .2s;box-shadow:0 4px 16px rgba(34,197,94,.2)}
+.vs-btn-gen:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 24px rgba(34,197,94,.3)}
+.vs-btn-gen:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.vs-btn-sec{padding:14px 16px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.12);border-radius:13px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px}
+.vs-btn-sec:hover:not(:disabled){background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.25)}
+.vs-btn-sec:disabled{opacity:.4;cursor:not-allowed}
+.vs-spinner{width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── Right Panel ── */
+.vs-output{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;position:sticky;top:90px}
+.vs-output-head{padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px}
+.vs-output-head h2{font-size:13px;font-weight:700;color:#fff;margin:0;flex:1}
+.vs-status-dot{width:8px;height:8px;border-radius:50%;background:#3d3d3d}
+.vs-status-dot.ready{background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,.5)}
+.vs-status-dot.loading{background:#f59e0b;animation:pulse-dot 1s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.vs-output-body{padding:24px}
+
+/* Visualizer */
+.vs-visualizer{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:60px;margin-bottom:20px;background:rgba(0,0,0,.2);border-radius:12px;padding:10px 16px}
+.vs-bar{width:4px;border-radius:3px;background:rgba(82,183,136,.3);transition:height .1s ease}
+.vs-bar.playing{animation:vs-bounce var(--d,.6s) ease-in-out infinite alternate}
+@keyframes vs-bounce{from{height:6px;background:rgba(82,183,136,.4)}to{height:var(--h,30px);background:#52b788}}
+
+/* Audio player */
+.vs-audio-wrap{margin-bottom:20px}
+.vs-audio-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;background:rgba(0,0,0,.2);border-radius:14px;border:1.5px dashed rgba(255,255,255,.08)}
+.vs-audio-placeholder svg{opacity:.3;margin-bottom:10px}
+.vs-audio-placeholder p{font-size:12px;color:rgba(255,255,255,.35);line-height:1.6}
+.vs-audio-player{display:none}
+.vs-audio-player audio{width:100%;border-radius:10px;margin-bottom:12px}
+.vs-audio-player audio::-webkit-media-controls-panel{background:#1a2a1a}
+.vs-info-card{background:rgba(0,0,0,.2);border-radius:10px;padding:12px 14px;margin-bottom:16px;display:none}
+.vs-info-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.vs-info-row:last-child{margin-bottom:0}
+.vs-info-label{font-size:10.5px;color:rgba(255,255,255,.35);width:56px;flex-shrink:0}
+.vs-info-val{font-size:11.5px;color:rgba(255,255,255,.7);font-weight:600}
+
+/* Output controls */
+.vs-out-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;display:none}
+.vs-ctrl-btn{padding:10px;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;border:1px solid transparent}
+.vs-ctrl-play{background:rgba(34,197,94,.15);color:#22c55e;border-color:rgba(34,197,94,.2)}
+.vs-ctrl-play:hover{background:rgba(34,197,94,.25)}
+.vs-ctrl-pause{background:rgba(251,191,36,.1);color:#fbbf24;border-color:rgba(251,191,36,.2)}
+.vs-ctrl-pause:hover{background:rgba(251,191,36,.2)}
+.vs-ctrl-stop{background:rgba(239,68,68,.1);color:#ef4444;border-color:rgba(239,68,68,.2)}
+.vs-ctrl-stop:hover{background:rgba(239,68,68,.2)}
+.vs-ctrl-dl{background:rgba(82,183,136,.15);color:#52b788;border-color:rgba(82,183,136,.25)}
+.vs-ctrl-dl:hover{background:rgba(82,183,136,.25)}
+
+/* Voice description */
+.vs-voice-desc{background:rgba(82,183,136,.06);border:1px solid rgba(82,183,136,.15);border-radius:12px;padding:14px;margin-bottom:16px}
+.vs-voice-desc h4{font-size:12px;font-weight:700;color:#52b788;margin-bottom:6px}
+.vs-voice-desc p{font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.6;margin:0}
+
+/* Error toast */
+.vs-error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#fca5a5;border-radius:10px;padding:10px 14px;font-size:12.5px;margin-top:12px;display:none}
+
+/* ── Responsive ── */
+@media(max-width:1100px){
+  .vs-studio{grid-template-columns:240px 1fr;grid-template-rows:auto auto}
+  .vs-output{grid-column:1/-1;position:static}
+}
+@media(max-width:700px){
+  .vs-studio{grid-template-columns:1fr}
+  .vs-sidebar{max-height:280px}
+  .vs-cat-list{max-height:200px}
+  .vs-builder-grid{grid-template-columns:1fr}
+  .vs-stats{flex-wrap:wrap}
+  .vs-stat{border:none;padding:6px 12px}
+}
+
+/* ── Related Tools ── */
+.vs-related{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.06);padding:60px 0}
+.vs-related-inner{max-width:1100px;margin:0 auto;padding:0 20px}
+.vs-related h2{font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:8px}
+.vs-related p{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:32px}
+.vs-related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.vs-related-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px;text-decoration:none;transition:all .2s;display:flex;flex-direction:column;gap:10px}
+.vs-related-card:hover{background:rgba(82,183,136,.08);border-color:rgba(82,183,136,.25);transform:translateY(-2px)}
+.vs-related-icon{width:42px;height:42px;background:rgba(82,183,136,.12);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.vs-related-name{font-size:14px;font-weight:700;color:#fff}
+.vs-related-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.5}
+</style>
+</head>
+<body>
+<div class="ann-bar" role="marquee" aria-label="Site announcements">
+<div class="ann-ticker-wrap">
+<div class="ann-ticker">115+ Free Health Calculators<span class="ann-sep">&bull;</span>Evidence-Based Tools and Insights<span class="ann-sep">&bull;</span>50+ Interactive Quizzes<span class="ann-sep">&bull;</span>155+ Expert Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Accuracy and Simplicity<span class="ann-sep">&bull;</span>115+ Free Health Calculators<span class="ann-sep">&bull;</span>Evidence-Based Tools and Insights<span class="ann-sep">&bull;</span>50+ Interactive Quizzes<span class="ann-sep">&bull;</span>155+ Expert Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Accuracy and Simplicity<span class="ann-sep">&bull;</span></div>
+</div>
+<div class="ann-right">
+<a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ann-social-link"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+<a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ann-social-link"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+<a href="https://www.instagram.com/ali_haiderseo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ann-social-link"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 100-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 11-2.882 0 1.441 1.441 0 012.882 0z"/></svg></a>
+</div>
+</div>
+<nav class="navbar">
+<div class="nav-container">
+<a href="/" class="nav-logo" aria-label="VitalHealth Hub — Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="nav-logo-img"></a>
+<ul class="nav-links">
+<li><a href="/">Home</a></li>
+<li class="nav-dropdown-wrap">
+<a href="/calculators/" class="nav-dropdown-trigger">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<div class="mega-dropdown"><div class="mega-search-wrap"><div class="mega-search"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg><input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false"></div></div><div class="mega-dropdown-inner" id="ddGrid"></div></div>
+</li>
+<li><a href="/tools/">Tools</a></li>
+<li><a href="/blog.html">Blog</a></li>
+<li><a href="/quizzes/">Quizzes</a></li>
+<li><a href="/about.html">About</a></li>
+<li><a href="/contact.html">Contact</a></li>
+</ul>
+<button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+</nav>
+
+<div class="breadcrumbs"><div class="breadcrumbs-inner">
+<a href="/">Home</a><span>/</span><a href="/tools/">Tools</a><span>/</span><span>AI Voice Studio</span>
+</div></div>
+
+<div class="vs-page">
+<div class="vs-container">
+
+  <!-- Hero -->
+  <div class="vs-hero">
+    <div class="vs-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      Free AI Voice Studio
+    </div>
+    <h1>AI Voice Generator <span>Studio</span></h1>
+    <p>Convert any text into natural, human-like speech. Choose from 20+ voice styles for narration, wellness, storytelling, and more — no API key, no account required.</p>
+    <div class="vs-hero-btns">
+      <a href="#vs-studio" class="vs-btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        Open Studio
+      </a>
+      <a href="/tools/" class="vs-btn-outline">Browse All Tools</a>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="vs-stats">
+    <div class="vs-stat"><strong>20+</strong><span>Voices</span></div>
+    <div class="vs-stat"><strong>16</strong><span>Categories</span></div>
+    <div class="vs-stat"><strong>100%</strong><span>Free</span></div>
+    <div class="vs-stat"><strong>0</strong><span>Sign-ups</span></div>
+  </div>
+
+  <!-- Studio -->
+  <div class="vs-studio" id="vs-studio">
+
+    <!-- LEFT: Voice Sidebar -->
+    <div class="vs-sidebar">
+      <div class="vs-sidebar-head">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#52b788" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+        <h2>Voice Library</h2>
+        <span>20 voices</span>
+      </div>
+      <div class="vs-cat-list" id="catList"></div>
+    </div>
+
+    <!-- CENTER: Script Editor -->
+    <div class="vs-editor">
+      <div class="vs-editor-head">
+        <h2>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#52b788" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Script Editor
+        </h2>
+        <span class="vs-selected-badge" id="selectedBadge">Deep Narrator</span>
+      </div>
+      <div class="vs-editor-body">
+
+        <!-- Quick prompts -->
+        <div class="vs-field">
+          <label class="vs-label">Quick Script Starters</label>
+          <div class="vs-prompts" id="quickPrompts">
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('Welcome to today\'s mindfulness session. Take a deep breath and let go of any tension you\'ve been holding.')">🧘 Mindfulness Intro</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('In a land far beyond the mountains, where the rivers sang ancient songs, there lived a wise old healer who knew the secrets of nature.')">📖 Storytelling</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('Today\'s health tip: Drinking enough water throughout the day improves focus, skin health, and energy levels. Aim for 8 glasses daily.')">💊 Health Tip</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('Hey everyone! Welcome back to the channel. Today we\'re going to talk about something that changed my life — daily journaling.')">📱 Social Media</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('As the night settles in, let your body relax completely. Starting from your toes, feel each muscle gently releasing all tension.')">🌙 Sleep Story</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('Breaking news: Scientists have discovered a new compound in green tea that shows promising results in supporting cardiovascular health.')">📰 News Style</button>
+          </div>
+        </div>
+
+        <!-- Script textarea -->
+        <div class="vs-field">
+          <label class="vs-label">Your Script <span style="text-transform:none;letter-spacing:0;color:rgba(255,255,255,.3);font-weight:400">(paste or type your text)</span></label>
+          <textarea class="vs-textarea" id="scriptInput" placeholder="Type or paste your script here...&#10;&#10;e.g. Welcome to today's mindfulness session. Take a deep breath..." maxlength="3000" rows="8"></textarea>
+          <div class="vs-char-row">
+            <span class="vs-tip">💡 Keep under 500 chars for fastest generation</span>
+            <span class="vs-char-count"><span id="charCount">0</span> / 3000</span>
+          </div>
+        </div>
+
+        <!-- Voice Builder -->
+        <div class="vs-field">
+          <label class="vs-label">Voice Builder</label>
+          <div class="vs-builder-grid">
+            <div>
+              <label class="vs-label" style="margin-bottom:6px">Personality / Vibe</label>
+              <select class="vs-select" id="vibeSelect">
+                <option value="neutral">Neutral &amp; Clear</option>
+                <option value="warm">Warm &amp; Friendly</option>
+                <option value="authoritative">Authoritative</option>
+                <option value="soothing">Soothing &amp; Calm</option>
+                <option value="energetic">Energetic &amp; Upbeat</option>
+                <option value="dramatic">Dramatic &amp; Cinematic</option>
+                <option value="whisper">Soft &amp; Hushed</option>
+              </select>
+            </div>
+            <div>
+              <label class="vs-label" style="margin-bottom:6px">Playback Speed</label>
+              <select class="vs-select" id="speedSelect">
+                <option value="0.8">Slow (0.8x)</option>
+                <option value="1.0" selected>Normal (1.0x)</option>
+                <option value="1.2">Fast (1.2x)</option>
+                <option value="1.5">Very Fast (1.5x)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-error" id="vsError"></div>
+
+        <!-- Action buttons -->
+        <div class="vs-actions">
+          <button class="vs-btn-gen" id="generateBtn" onclick="generateAudio()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span id="btnText">Generate Audio</span>
+            <div class="vs-spinner" id="spinner"></div>
+          </button>
+          <button class="vs-btn-sec" id="variationBtn" onclick="generateVariation()" title="Generate with slight variation">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+            Variation
+          </button>
+          <button class="vs-btn-sec" id="pitchBtn" onclick="toggleHighPitch()" title="High pitch mode">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            High Pitch
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: Audio Output -->
+    <div class="vs-output">
+      <div class="vs-output-head">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#52b788" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <h2>Audio Output</h2>
+        <div class="vs-status-dot" id="statusDot"></div>
+      </div>
+      <div class="vs-output-body">
+
+        <!-- Visualizer -->
+        <div class="vs-visualizer" id="visualizer"></div>
+
+        <!-- Voice description -->
+        <div class="vs-voice-desc" id="voiceDesc">
+          <h4 id="voiceDescTitle">Deep Narrator</h4>
+          <p id="voiceDescText">A deep, authoritative voice ideal for documentary narration, audiobooks, and professional content. Rich tone with natural pacing.</p>
+        </div>
+
+        <!-- Audio placeholder -->
+        <div class="vs-audio-placeholder" id="audioPlaceholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          <p>Your generated audio will appear here.<br>Select a voice and click <strong>Generate Audio</strong>.</p>
+        </div>
+
+        <!-- Audio player -->
+        <div class="vs-audio-player" id="audioPlayer">
+          <audio id="audioEl" controls preload="none"></audio>
+        </div>
+
+        <!-- Info card -->
+        <div class="vs-info-card" id="infoCard">
+          <div class="vs-info-row">
+            <span class="vs-info-label">Voice</span>
+            <span class="vs-info-val" id="infoVoice">—</span>
+          </div>
+          <div class="vs-info-row">
+            <span class="vs-info-label">Category</span>
+            <span class="vs-info-val" id="infoCat">—</span>
+          </div>
+          <div class="vs-info-row">
+            <span class="vs-info-label">Length</span>
+            <span class="vs-info-val" id="infoLen">—</span>
+          </div>
+          <div class="vs-info-row">
+            <span class="vs-info-label">Speed</span>
+            <span class="vs-info-val" id="infoSpeed">1.0x</span>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="vs-out-controls" id="outControls">
+          <button class="vs-ctrl-btn vs-ctrl-play" onclick="playAudio()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Play
+          </button>
+          <button class="vs-ctrl-btn vs-ctrl-pause" onclick="pauseAudio()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pause
+          </button>
+          <button class="vs-ctrl-btn vs-ctrl-stop" onclick="stopAudio()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16"/></svg> Stop
+          </button>
+          <button class="vs-ctrl-btn vs-ctrl-dl" onclick="downloadAudio()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Export
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Related Tools -->
+<div class="vs-related">
+  <div class="vs-related-inner">
+    <h2>Related Tools</h2>
+    <p>More free AI and wellness tools to explore</p>
+    <div class="vs-related-grid">
+      <a href="/tools/image-generator.html" class="vs-related-card">
+        <div class="vs-related-icon"><svg viewBox="0 0 48 48" fill="none" width="22" height="22"><rect x="6" y="10" width="36" height="28" rx="4" stroke="#52b788" stroke-width="2.5"/><circle cx="17" cy="20" r="3" stroke="#52b788" stroke-width="2"/><path d="M6 34l10-10 8 8 6-6 12 8" stroke="#52b788" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        <div class="vs-related-name">AI Image Generator</div>
+        <div class="vs-related-desc">Create stunning images from text prompts — free, no API key.</div>
+      </a>
+      <a href="/calculators/bmi-calculator.html" class="vs-related-card">
+        <div class="vs-related-icon"><svg viewBox="0 0 48 48" fill="none" width="22" height="22"><circle cx="24" cy="24" r="16" stroke="#52b788" stroke-width="2.5"/><path d="M24 16v8l5 5" stroke="#52b788" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        <div class="vs-related-name">BMI Calculator</div>
+        <div class="vs-related-desc">Calculate your Body Mass Index and understand your health range.</div>
+      </a>
+      <a href="/calculators/calorie-calculator.html" class="vs-related-card">
+        <div class="vs-related-icon"><svg viewBox="0 0 48 48" fill="none" width="22" height="22"><path d="M24 8c0 0-10 8-10 18a10 10 0 0 0 20 0C34 16 24 8 24 8z" stroke="#52b788" stroke-width="2.5"/></svg></div>
+        <div class="vs-related-name">Calorie Calculator</div>
+        <div class="vs-related-desc">Find your daily calorie needs based on your goals and activity.</div>
+      </a>
+      <a href="/tools/habit-tracker.html" class="vs-related-card">
+        <div class="vs-related-icon"><svg viewBox="0 0 48 48" fill="none" width="22" height="22"><circle cx="24" cy="24" r="16" stroke="#52b788" stroke-width="2.5"/><path d="M16 24l6 6 10-12" stroke="#52b788" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="vs-related-name">Habit Tracker</div>
+        <div class="vs-related-desc">Build lasting habits with streak tracking and progress analytics.</div>
+      </a>
+      <a href="/tools/sleep-tracker.html" class="vs-related-card">
+        <div class="vs-related-icon"><svg viewBox="0 0 48 48" fill="none" width="22" height="22"><path d="M36 26c0 8-6 14-14 14S8 34 8 26s6-14 14-14c-4 2-6 6-6 10s4 10 10 10c4 0 7-2 10-6z" stroke="#52b788" stroke-width="2.5"/></svg></div>
+        <div class="vs-related-name">Sleep Tracker</div>
+        <div class="vs-related-desc">Log sleep, get a quality score, and discover your sleep patterns.</div>
+      </a>
+      <a href="/blog.html" class="vs-related-card">
+        <div class="vs-related-icon"><svg viewBox="0 0 48 48" fill="none" width="22" height="22"><path d="M10 8h28a2 2 0 0 1 2 2v28a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z" stroke="#52b788" stroke-width="2.5"/><path d="M16 18h16M16 24h16M16 30h10" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="vs-related-name">Health Blog</div>
+        <div class="vs-related-desc">155+ expert health articles covering wellness, nutrition, and fitness.</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-grid">
+<div class="footer-brand">
+<a href="/" class="footer-logo-link" aria-label="VitalHealth Hub Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="footer-logo-img2"></a>
+<p class="footer-brand-desc">Powerful health calculators, smart tools, and expert insights to help you make better decisions every day.</p>
+<a href="mailto:ma7122671@gmail.com" class="footer-email-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>ma7122671@gmail.com</a>
+<div class="footer-socials2">
+<a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" class="fsoc fsoc-li" title="LinkedIn" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+<a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer" class="fsoc fsoc-fb" title="Facebook" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+<a href="https://www.instagram.com/ali_haiderseo/" target="_blank" rel="noopener noreferrer" class="fsoc fsoc-ig" title="Instagram" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+</div>
+</div>
+<div class="footer-col2">
+<h4 class="footer-col-title">Calculators</h4>
+<ul class="footer-links">
+<li><a href="/calculators/bmi-calculator.html">BMI Calculator</a></li>
+<li><a href="/calculators/calorie-calculator.html">Calorie Calculator</a></li>
+<li><a href="/calculators/macro-calculator.html">Macro Calculator</a></li>
+<li><a href="/calculators/tdee-calculator.html">TDEE Calculator</a></li>
+<li><a href="/calculators/body-fat-calculator.html">Body Fat Calculator</a></li>
+<li><a href="/calculators/water-intake-calculator.html">Water Intake</a></li>
+<li><a href="/calculators/" class="footer-link-more">View All 103+ &#8594;</a></li>
+</ul>
+</div>
+<div class="footer-col2">
+<h4 class="footer-col-title">Tools</h4>
+<ul class="footer-links">
+<li><a href="/tools/image-generator.html">AI Image Generator</a></li>
+<li><a href="/tools/voice-studio.html">AI Voice Studio</a></li>
+<li><a href="/tools/habit-tracker.html">Habit Tracker</a></li>
+<li><a href="/tools/sleep-tracker.html">Sleep Tracker</a></li>
+<li><a href="/tools/mood-tracker.html">Mood Tracker</a></li>
+<li><a href="/tools/" class="footer-link-more">All Tools &#8594;</a></li>
+</ul>
+</div>
+<div class="footer-col2">
+<h4 class="footer-col-title">Explore</h4>
+<ul class="footer-links">
+<li><a href="/">Home</a></li>
+<li><a href="/blog.html">Blog</a></li>
+<li><a href="/quizzes/">Quizzes</a></li>
+<li><a href="/faq.html">FAQ</a></li>
+<li><a href="/about.html">About</a></li>
+<li><a href="/contact.html">Contact</a></li>
+</ul>
+</div>
+<div class="footer-col2">
+<h4 class="footer-col-title">Legal</h4>
+<ul class="footer-links">
+<li><a href="/privacy.html">Privacy Policy</a></li>
+<li><a href="/terms.html">Terms of Use</a></li>
+<li><a href="/disclaimer.html">Medical Disclaimer</a></li>
+<li><a href="/sitemap.html">Sitemap</a></li>
+</ul>
+<div class="footer-notice">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#52b788" stroke-width="2" stroke-linecap="round" flex-shrink="0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+<p>For informational use only. Always consult a qualified healthcare professional.</p>
+</div>
+</div>
+</div>
+<div class="footer-divider"></div>
+<div class="footer-bottom2">
+<p class="footer-copy">&copy; 2026 VitalHealth Hub. All rights reserved.</p>
+<div class="footer-bottom-links2">
+<a href="/privacy.html">Privacy</a>
+<a href="/terms.html">Terms</a>
+<a href="/sitemap.html">Sitemap</a>
+</div>
+</div>
+</div>
+</footer>
+
+<div id="vh-chatbot">
+<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+</button>
+<div id="vh-chat-window">
+<div id="vh-chat-header">
+<div class="vh-header-left">
+<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="36" height="36" loading="lazy"></div>
+<div class="vh-header-info">
+<span class="vh-header-name">VitalHealth Assistant</span>
+<span class="vh-header-sub"><span class="vh-online-dot"></span>AI-powered health tools &amp; insights</span>
+</div>
+</div>
+<button id="vh-chat-minimize" aria-label="Close chat">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+</div>
+<div id="vh-chat-messages" role="log" aria-live="polite"></div>
+<div id="vh-quick-topics">
+<p class="vh-topics-label">Quick actions</p>
+<div class="vh-actions-primary">
+<button class="vh-action-btn" data-vh-ask="BMI">Calculate BMI</button>
+<button class="vh-action-btn" data-vh-ask="Calories">Check Calories</button>
+<button class="vh-action-btn" data-vh-ask="health quiz">Health Quiz</button>
+<button class="vh-action-btn" data-vh-ask="tools">Explore Tools</button>
+</div>
+</div>
+<div id="vh-chat-input-area">
+<input type="text" id="vh-chat-input" placeholder="Ask about health, tools, or results..." autocomplete="off" maxlength="300" aria-label="Chat message">
+<button id="vh-chat-send" aria-label="Send message">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="white" stroke="none"/></svg>
+</button>
+</div>
+</div>
+</div>
+
+<script src="/js/main.js" defer></script>
+<script>
+// ── Voice Data ──
+var VOICE_CATEGORIES = [
+  { name:'Narration', icon:'🎙', voices:[
+    { name:'Deep Narrator', api:'Brian', desc:'Rich, authoritative tone for documentaries and audiobooks.' },
+    { name:'Classic Narrator', api:'Matthew', desc:'Warm, measured narration ideal for professional content.' }
+  ]},
+  { name:'Storytelling', icon:'📖', voices:[
+    { name:'Storyteller', api:'Russell', desc:'Expressive and engaging, perfect for fictional tales.' },
+    { name:'Adventure Voice', api:'Joey', desc:'Dynamic and energetic for action and adventure stories.' }
+  ]},
+  { name:'Social Media', icon:'📱', voices:[
+    { name:'Upbeat Creator', api:'Justin', desc:'Young, energetic voice ideal for YouTube and TikTok.' },
+    { name:'Friendly Host', api:'Emma', desc:'Approachable and conversational, great for podcasts.' }
+  ]},
+  { name:'Relaxation & Wellness', icon:'🧘', voices:[
+    { name:'Calm Therapist', api:'Amy', desc:'Gentle, soothing British accent for wellness content.' },
+    { name:'Wellness Guide', api:'Salli', desc:'Warm, nurturing voice perfect for health guidance.' }
+  ]},
+  { name:'ASMR & Soft Voice', icon:'🌊', voices:[
+    { name:'Soft Voice', api:'Ivy', desc:'Light, breathy tone ideal for calming and ASMR content.' },
+    { name:'Gentle Whisper', api:'Kendra', desc:'Softly spoken, very calm and easy to listen to.' }
+  ]},
+  { name:'Sleep & Meditation', icon:'🌙', voices:[
+    { name:'Sleep Narrator', api:'Joanna', desc:'Deep, serene voice designed to guide listeners to sleep.' },
+    { name:'Meditation Guide', api:'Kimberly', desc:'Tranquil and slow-paced, perfect for guided meditation.' }
+  ]},
+  { name:'News & Professional', icon:'📰', voices:[
+    { name:'News Anchor', api:'Matthew', desc:'Clear, confident broadcast tone for news and reports.' },
+    { name:'Corporate Voice', api:'Brian', desc:'Professional and polished for business presentations.' }
+  ]},
+  { name:'Cinematic & Trailer', icon:'🎬', voices:[
+    { name:'Epic Trailer', api:'Brian', desc:'Dramatic and powerful, built for cinematic intros.' },
+    { name:'Movie Narrator', api:'Russell', desc:'Gravelly, commanding tone for trailers and promos.' }
+  ]},
+  { name:'Characters & Fun', icon:'🎭', voices:[
+    { name:'Friendly Character', api:'Justin', desc:'Playful and expressive for animated characters.' },
+    { name:'Kids Narrator', api:'Ivy', desc:'Bright, cheerful voice for children\'s content.' }
+  ]},
+  { name:'Languages & Accents', icon:'🌍', voices:[
+    { name:'British English', api:'Amy', desc:'Refined British accent, clear and distinguished.' },
+    { name:'Australian', api:'Nicole', desc:'Warm Australian accent with natural, relaxed tone.' }
+  ]}
+];
+
+var selectedVoice = VOICE_CATEGORIES[0].voices[0];
+var isGenerating = false;
+var isHighPitch = false;
+var audioEl = document.getElementById('audioEl');
+
+// Build visualizer bars
+(function(){
+  var viz = document.getElementById('visualizer');
+  for(var i=0;i<18;i++){
+    var b=document.createElement('div');
+    b.className='vs-bar';
+    var h=Math.floor(Math.random()*20)+8;
+    b.style.cssText='height:'+h+'px;--h:'+Math.floor(Math.random()*40+15)+'px;--d:'+(Math.random()*0.4+0.3)+'s';
+    viz.appendChild(b);
+  }
+})();
+
+// Build sidebar
+(function(){
+  var list=document.getElementById('catList');
+  VOICE_CATEGORIES.forEach(function(cat,ci){
+    var catDiv=document.createElement('div');
+    catDiv.className='vs-cat';
+
+    var hdr=document.createElement('div');
+    hdr.className='vs-cat-header'+(ci===0?' open active':'');
+    hdr.innerHTML='<span class="vs-cat-icon">'+cat.icon+'</span>'
+      +'<span class="vs-cat-name">'+cat.name+'</span>'
+      +'<span class="vs-cat-count">'+cat.voices.length+'</span>'
+      +'<span class="vs-cat-arrow">›</span>';
+
+    var voices=document.createElement('div');
+    voices.className='vs-cat-voices'+(ci===0?' open':'');
+
+    cat.voices.forEach(function(v,vi){
+      var btn=document.createElement('button');
+      btn.className='vs-voice-btn'+(ci===0&&vi===0?' selected':'');
+      btn.dataset.api=v.api;
+      btn.dataset.name=v.name;
+      btn.dataset.desc=v.desc;
+      btn.dataset.cat=cat.name;
+      btn.innerHTML='<span class="vs-voice-name">'+v.name+'</span><span class="vs-voice-sub">'+v.api+' voice</span>';
+      btn.addEventListener('click',function(){ selectVoice(this); });
+      voices.appendChild(btn);
+    });
+
+    hdr.addEventListener('click',function(){
+      var isOpen=voices.classList.contains('open');
+      voices.classList.toggle('open',!isOpen);
+      hdr.classList.toggle('open',!isOpen);
+    });
+
+    catDiv.appendChild(hdr);
+    catDiv.appendChild(voices);
+    list.appendChild(catDiv);
+  });
+})();
+
+function selectVoice(btn){
+  document.querySelectorAll('.vs-voice-btn').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  selectedVoice = { name: btn.dataset.name, api: btn.dataset.api, desc: btn.dataset.desc, cat: btn.dataset.cat };
+  document.getElementById('selectedBadge').textContent = selectedVoice.name;
+  document.getElementById('voiceDescTitle').textContent = selectedVoice.name;
+  document.getElementById('voiceDescText').textContent = selectedVoice.desc;
+}
+
+function useQuickPrompt(text){
+  var ta = document.getElementById('scriptInput');
+  ta.value = text;
+  document.getElementById('charCount').textContent = text.length;
+  ta.focus();
+}
+
+document.getElementById('scriptInput').addEventListener('input', function(){
+  document.getElementById('charCount').textContent = this.value.length;
+});
+
+// Slider gradient update
+document.querySelectorAll('.vs-slider').forEach(function(s){
+  s.addEventListener('input',function(){
+    var pct=(this.value/this.max)*100;
+    this.style.background='linear-gradient(to right,#52b788 '+pct+'%,rgba(255,255,255,.15) '+pct+'%)';
+    var valEl=this.parentElement.querySelector('.vs-slider-val');
+    if(valEl) valEl.textContent=parseFloat(this.value).toFixed(1);
+  });
+});
+
+function showError(msg){
+  var el=document.getElementById('vsError');
+  el.textContent=msg;
+  el.style.display='block';
+  setTimeout(function(){ el.style.display='none'; },5000);
+}
+
+function setGenerating(state){
+  isGenerating=state;
+  var btn=document.getElementById('generateBtn');
+  var sp=document.getElementById('spinner');
+  var txt=document.getElementById('btnText');
+  btn.disabled=state;
+  sp.style.display=state?'block':'none';
+  txt.textContent=state?'Generating...':'Generate Audio';
+  document.getElementById('statusDot').className='vs-status-dot'+(state?' loading':' ready');
+  // Animate bars while loading
+  document.querySelectorAll('.vs-bar').forEach(function(b){
+    b.classList.toggle('playing',state);
+  });
+}
+
+function generateAudio(){
+  if(isGenerating) return;
+  var text = document.getElementById('scriptInput').value.trim();
+  if(!text){ showError('Please enter some text to convert to speech.'); return; }
+  if(text.length<2){ showError('Please enter at least a few words.'); return; }
+
+  document.getElementById('vsError').style.display='none';
+  setGenerating(true);
+
+  var apiVoice = selectedVoice.api || 'Brian';
+  var url = 'https://api.streamelements.com/kappa/v2/speech?voice='+encodeURIComponent(apiVoice)+'&text='+encodeURIComponent(text);
+  var speed = parseFloat(document.getElementById('speedSelect').value) || 1.0;
+
+  audioEl.src = url;
+  audioEl.playbackRate = isHighPitch ? Math.min(speed*1.4, 2.0) : speed;
+
+  audioEl.oncanplaythrough = function(){
+    setGenerating(false);
+    document.getElementById('audioPlaceholder').style.display='none';
+    document.getElementById('audioPlayer').style.display='block';
+    document.getElementById('infoCard').style.display='block';
+    document.getElementById('outControls').style.display='grid';
+    document.getElementById('infoVoice').textContent=selectedVoice.name;
+    document.getElementById('infoCat').textContent=selectedVoice.cat||'—';
+    document.getElementById('infoLen').textContent=text.length+' chars';
+    document.getElementById('infoSpeed').textContent=speed+'x'+(isHighPitch?' (High Pitch)':'');
+    document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.remove('playing'); });
+    audioEl.play();
+    // Animate bars while playing
+    audioEl.onplay=function(){ document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.add('playing'); }); };
+    audioEl.onpause=function(){ document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.remove('playing'); }); };
+    audioEl.onended=function(){ document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.remove('playing'); }); };
+  };
+
+  audioEl.onerror = function(){
+    setGenerating(false);
+    showError('Audio generation failed. Please try again or shorten your text.');
+    document.querySelectorAll('.vs-bar').forEach(function(b){ b.classList.remove('playing'); });
+  };
+
+  // Timeout fallback
+  setTimeout(function(){
+    if(isGenerating){
+      setGenerating(false);
+      showError('Request timed out. Please try with shorter text.');
+    }
+  }, 15000);
+}
+
+function generateVariation(){
+  var speed = parseFloat(document.getElementById('speedSelect').value) || 1.0;
+  audioEl.playbackRate = speed + (Math.random()*0.2 - 0.1);
+  if(audioEl.src) audioEl.play();
+  else generateAudio();
+}
+
+function toggleHighPitch(){
+  isHighPitch = !isHighPitch;
+  var btn = document.getElementById('pitchBtn');
+  btn.style.background = isHighPitch ? 'rgba(82,183,136,.15)' : '';
+  btn.style.borderColor = isHighPitch ? '#52b788' : '';
+  btn.style.color = isHighPitch ? '#52b788' : '';
+  if(audioEl.src){
+    var speed = parseFloat(document.getElementById('speedSelect').value)||1.0;
+    audioEl.playbackRate = isHighPitch ? Math.min(speed*1.4,2.0) : speed;
+  }
+}
+
+function playAudio(){ if(audioEl.src) audioEl.play(); }
+function pauseAudio(){ audioEl.pause(); }
+function stopAudio(){ audioEl.pause(); audioEl.currentTime=0; }
+
+function downloadAudio(){
+  var src = audioEl.src;
+  if(!src){ showError('Generate audio first.'); return; }
+  var a=document.createElement('a');
+  a.href=src;
+  a.download='vitalhealth-voice-'+Date.now()+'.mp3';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+</script>
+</body>
+</html>
