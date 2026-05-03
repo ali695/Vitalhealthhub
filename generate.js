@@ -1869,27 +1869,49 @@ function generateBlogPost(post) {
     "mainEntityOfPage":{"@type":"WebPage","@id":SITE+'/blog/'+post.slug+'.html'}
   };
 
-  // Build TOC from H2s, then add IDs in content
+  // Build TOC + inject IDs into H2s
   let tocIdx = 0;
   const tocItems = [];
   const contentWithIds = content.replace(/<h2>([^<]+)<\/h2>/g, (match, txt) => {
-    const id = 'section-' + tocIdx++;
+    const id = 'bp-sec-' + tocIdx++;
     tocItems.push({id, text: txt});
     return `<h2 id="${id}">${txt}</h2>`;
   });
 
-  const tocHtml = tocItems.length ? `
-<div class="toc-widget fade-in">
-  <div class="toc-header">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-    Table of Contents
-  </div>
-  <ol class="toc-list">
-    ${tocItems.map((t,i)=>`<li><a href="#${t.id}">${i+1}. ${t.text}</a></li>`).join('\n    ')}
-  </ol>
+  const tocHtml = tocItems.length ? `<div class="bp-toc" id="bpToc">
+<div class="bp-toc-header">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+Table of Contents
+</div>
+<ol class="bp-toc-list">${tocItems.map((t,i)=>`<li><a href="#${t.id}" class="bp-toc-link" data-target="${t.id}">${i+1}. ${t.text}</a></li>`).join('')}</ol>
 </div>` : '';
 
-  const tagPillsHtml = post.tags && post.tags.length ? `<div class="blog-tags">${post.tags.map(t=>`<span class="blog-tag">${t}</span>`).join('')}</div>` : '';
+  const tagPillsHtml = post.tags && post.tags.length ? `<div class="bp-hero-tags">${post.tags.slice(0,5).map(t=>`<span class="bp-hero-tag">${t}</span>`).join('')}</div>` : '';
+
+  // Sidebar related calcs widget
+  const sidebarCalcs = calcs.slice(0,4).map(s => {
+    const c = calculators.find(x => x.slug === s);
+    return c ? `<a href="/calculators/${s}.html" class="bp-sidebar-calc-link">${calcSvg(c.icon)}<span>${c.name}</span></a>` : '';
+  }).filter(Boolean).join('');
+
+  // Blog-category → quiz mapping for bottom section
+  const blogQuizMap = {
+    'BMI & Body Weight':    ['body-fat-and-composition-quiz','biological-age-quiz'],
+    'Calories & Weight':    ['calorie-and-metabolism-quiz','nutrition-knowledge-quiz'],
+    'Macronutrients':       ['nutrition-knowledge-quiz','nutrient-deficiency-quiz'],
+    'TDEE & Metabolism':    ['calorie-and-metabolism-quiz','nutrition-knowledge-quiz'],
+    'Body Fat':             ['body-fat-and-composition-quiz','biological-age-quiz'],
+    'Fitness & Exercise':   ['fitness-level-quiz','workout-type-quiz'],
+    'Heart Health':         ['heart-health-quiz','lifestyle-health-score-quiz'],
+    "Women's Health":       ['hormone-balance-quiz','menstrual-health-quiz'],
+    'Sleep & Recovery':     ['sleep-quality-quiz','burnout-risk-quiz'],
+    'Mental Health':        ['stress-awareness-quiz','burnout-risk-quiz'],
+    'Diabetes & Metabolic Health': ['lifestyle-health-score-quiz','calorie-and-metabolism-quiz'],
+    'Hydration':            ['hydration-health-quiz','nutrition-knowledge-quiz'],
+    'Intermittent Fasting': ['calorie-and-metabolism-quiz','diet-type-quiz'],
+  };
+  const qSlugs = blogQuizMap[post.category] || ['nutrition-knowledge-quiz','lifestyle-health-score-quiz'];
+  const relatedQuizzes = qSlugs.map(s => quizzesData.find(q => q.slug === s)).filter(Boolean).slice(0,2);
 
   const extraHead = `<meta name="keywords" content="${post.title.toLowerCase()}, ${post.category.toLowerCase()}, health guide, wellness tips, ${SITE_NAME.toLowerCase()}">
 <meta property="og:title" content="${blogTitle}">
@@ -1903,6 +1925,15 @@ function generateBlogPost(post) {
 <script type="application/ld+json">${JSON.stringify(schema)}</script>
 ${faq.schema}`;
 
+  // Related articles (same category first, fill from others)
+  const relatedArticles = (() => {
+    const same = blogPosts.filter(p => p.category === post.category && p.slug !== post.slug);
+    return (same.length >= 3 ? same : same.concat(blogPosts.filter(p => p.slug !== post.slug && p.category !== post.category))).slice(0,3);
+  })();
+
+  // Bottom related calculators (up to 3 from calcs list)
+  const bottomCalcs = calcs.slice(0,3).map(s => calculators.find(c => c.slug === s)).filter(Boolean);
+
   return `${head(blogTitle, blogMetaDesc, '/blog/'+post.slug+'.html', extraHead)}
 <body>
 ${NAV}
@@ -1910,68 +1941,173 @@ ${NAV}
 ${bc.html}
 ${bc.schema}
 <article>
-<header class="blog-post-header">
-<div class="container">
-<span class="blog-card-category">${post.category}</span>
+
+<!-- ═══ HERO: blurred background + dark overlay ═══ -->
+<section class="bp-hero" style="--bp-bg:url('${featImgUrl}')">
+<div class="bp-hero-content">
+<span class="bp-hero-badge">${post.category}</span>
 <h1>${post.title}</h1>
-<div class="blog-post-meta">
-<span>By Ali Haider</span>
-<span>${post.date}</span>
-<span>${post.readTime} read</span>
+<div class="bp-hero-meta">
+<span>&#9998;&nbsp;Ali Haider</span>
+<span>&#128197;&nbsp;${post.date}</span>
+<span>&#9201;&nbsp;${post.readTime} read</span>
 <span>Updated 2026</span>
 </div>
 ${tagPillsHtml}
 </div>
-</header>
+</section>
+
+<!-- ═══ 2-COLUMN LAYOUT ═══ -->
 <div class="container">
-<div class="blog-post">
-<div class="blog-post-content">
-<figure class="blog-hero-image"><img src="${featImgUrl}" alt="${blogCardImage(post.slug).alt}" title="${post.title}" width="1200" height="500" loading="eager"><figcaption>${post.title} — Expert guide from VitalHealth Hub</figcaption></figure>
-${tocHtml}
+<div class="bp-layout">
+
+<!-- LEFT: Article Content -->
+<div class="bp-content">
+
+<!-- Clean featured image -->
+<figure class="bp-feat-img fade-in">
+<img src="${featImgUrl}" alt="${blogCardImage(post.slug).alt}" title="${post.title}" width="800" height="420" loading="eager">
+</figure>
+
+<!-- Mobile TOC (collapsible) -->
+<details class="bp-toc-mobile fade-in">
+<summary>&#9776;&nbsp; Table of Contents</summary>
+<ol class="bp-toc-list">${tocItems.map((t,i)=>`<li><a href="#${t.id}">${i+1}. ${t.text}</a></li>`).join('')}</ol>
+</details>
+
+<!-- Key Takeaways info box -->
+<div class="bp-info-box fade-in">
+<div class="bp-info-box-title">&#9989; Key Takeaways</div>
+<ul>${takeaways.map(t=>`<li>${t}</li>`).join('')}</ul>
+</div>
+
+<!-- Article body -->
 ${contentWithIds}
-<div class="blog-cta-box fade-in">
-<p>Ready to track your progress? Try our free <a href="/calculators/${calcs[0]}.html">${(calculators.find(c=>c.slug===calcs[0])||{name:'health calculator'}).name}</a> for instant, personalized results.</p>
+
+<!-- CTA Callout box -->
+<div class="bp-callout-box fade-in">
+<div class="bp-callout-icon">&#9889;</div>
+<div>
+<p>Ready to get your personalized result? Try our free <a href="/calculators/${calcs[0]}.html">${(calculators.find(c=>c.slug===calcs[0])||{name:'health calculator'}).name}</a> — instant, science-based, no sign-up needed.</p>
 <a href="/calculators/${calcs[0]}.html" class="btn btn-primary">Try Free Calculator &rarr;</a>
 </div>
+</div>
+
 ${share}
-<section class="section fade-in"><div class="section-title"><h2>Frequently Asked Questions</h2></div>${faq.html}</section>
+
+<!-- FAQ -->
+<section class="bp-faq-section fade-in">
+<h2>Frequently Asked Questions</h2>
+${faq.html}
+</section>
+
+<!-- Author box -->
 <div class="blog-author-box fade-in">
 <div class="author-avatar">A</div>
 <div class="author-info">
 <h4>Ali Haider</h4>
 <p>Ali Haider is an SEO Consultant and Health Content Creator with a passion for making evidence-based health information accessible to everyone. He builds free health tools and writes comprehensive guides used by over 100,000 monthly readers worldwide.</p>
-<p style="margin-top:8px;"><a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" style="color:#52b788;font-size:0.85rem;">LinkedIn Profile →</a></p>
+<p style="margin-top:8px;"><a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" style="color:#52b788;font-size:0.85rem;">LinkedIn Profile &rarr;</a></p>
 </div>
 </div>
+
+</div><!-- /bp-content -->
+
+<!-- RIGHT: Sticky Sidebar -->
+<aside class="bp-sidebar">
+
+<!-- Sticky TOC -->
+${tocHtml}
+
+<!-- Related calculators widget -->
+${sidebarCalcs ? `<div class="bp-sidebar-widget fade-in">
+<div class="bp-sidebar-widget-title">&#128200; Try These Calculators</div>
+${sidebarCalcs}
+</div>` : ''}
+
+<!-- Newsletter / tip widget -->
+<div class="bp-sidebar-tip fade-in">
+<div class="bp-sidebar-tip-icon">&#128161;</div>
+<p>Bookmark this article for quick reference and share it with someone who might benefit.</p>
 </div>
-</div>
-</div>
-<section class="blog-related-section">
+
+</aside>
+
+</div><!-- /bp-layout -->
+</div><!-- /container -->
+
+<!-- ═══ BOTTOM: Related Content ═══ -->
+<section class="bp-bottom-section">
 <div class="container">
-<h2>Related Articles</h2>
-<div class="blog-related-grid">
-${(() => {
-  const related = blogPosts.filter(p => p.category === post.category && p.slug !== post.slug);
-  const selected = related.length >= 3 ? related.slice(0, 3) : related.concat(blogPosts.filter(p => p.slug !== post.slug && p.category !== post.category)).slice(0, 3);
-  return selected.map(r => {
-    const img = blogCardImage(r.slug);
-    return `<a href="/blog/${r.slug}.html" class="blog-card">
+
+<!-- Related Articles -->
+<div class="bp-bottom-block">
+<div class="bp-bottom-block-title">&#128218; Related Articles</div>
+<div class="bp-bottom-grid">
+${relatedArticles.map(r => {
+  const img = blogCardImage(r.slug);
+  return `<a href="/blog/${r.slug}.html" class="blog-card">
 <div class="blog-card-image"><img src="${img.url}" alt="${img.alt}" title="${r.title}" width="600" height="340" loading="lazy"></div>
 <div class="blog-card-body">
 <div class="blog-card-meta"><span class="blog-card-category">${r.category}</span><span>${r.readTime} read</span></div>
 <h3>${r.title}</h3>
 <span class="read-more">Read Article &rarr;</span>
+</div></a>`;
+}).join('')}
 </div>
-</a>`;
-  }).join('');
-})()}
 </div>
+
+<!-- Related Calculators -->
+${bottomCalcs.length ? `<div class="bp-bottom-block">
+<div class="bp-bottom-block-title">&#128200; Related Calculators</div>
+<div class="bp-bottom-calcs-grid">
+${bottomCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="bp-bottom-calc-card">
+<div class="bp-bottom-calc-icon">${calcSvg(c.icon)}</div>
+<div><h4>${c.name}</h4><p>${c.desc}</p><span class="read-more">Use Calculator &rarr;</span></div>
+</a>`).join('')}
+</div>
+</div>` : ''}
+
+<!-- Related Quizzes -->
+${relatedQuizzes.length ? `<div class="bp-bottom-block">
+<div class="bp-bottom-block-title">&#129504; Test Your Knowledge</div>
+<div class="bp-bottom-quiz-grid">
+${relatedQuizzes.map(q => `<a href="/quizzes/${q.slug}.html" class="bp-bottom-quiz-card">
+<div class="bp-bottom-quiz-icon">${q.icon}</div>
+<div>
+<span class="ccs-xlink-badge ccs-badge-quiz">${q.category}</span>
+<h4>${q.name}</h4>
+<p>${q.desc.length > 100 ? q.desc.slice(0,100)+'...' : q.desc}</p>
+<span class="read-more">Take Quiz &rarr;</span>
+</div></a>`).join('')}
+</div>
+</div>` : ''}
+
 </div>
 </section>
+
 </article>
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js"></script>
+<script>
+(function(){
+  var links=document.querySelectorAll('.bp-toc-link');
+  if(!links.length)return;
+  var ids=Array.from(links).map(function(l){return l.dataset.target;});
+  var sections=ids.map(function(id){return document.getElementById(id);}).filter(Boolean);
+  function onScroll(){
+    var scrollY=window.scrollY+120;
+    var current=sections[0]&&sections[0].id;
+    sections.forEach(function(s){if(s.offsetTop<=scrollY)current=s.id;});
+    links.forEach(function(l){
+      l.classList.toggle('active',l.dataset.target===current);
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 ${CHATBOT}
 </body></html>`;
 }
