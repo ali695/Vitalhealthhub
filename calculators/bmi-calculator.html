@@ -400,9 +400,8 @@ ma7122671@gmail.com
     var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
     var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
     var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' – '+l:'')+(s?'
-'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.innerHTML='<span class="calc-action-icon">✓</span> Copied!';setTimeout(function(){b.innerHTML='<span class="calc-action-icon">\u{1F4CB}</span> Copy';},2000);}});}
+    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
+    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
   };
   window.vhShareResult=function(){
     if(navigator.share){navigator.share({title:'BMI Calculator Result',url:window.location.href});}
