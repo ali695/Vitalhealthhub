@@ -6671,3 +6671,231 @@ img, svg { max-width: 100%; height: auto; }
 @media (max-width: 480px) {
   .blog-hub-grid { grid-template-columns: 1fr; }
 }
+
+
+/* ══════════════════════════════════════════════════════════
+   GLOBAL RESPONSIVE SYSTEM — FULL DEVICE COVERAGE
+   VitalHealth Hub — All Breakpoints (320px → 2560px+)
+══════════════════════════════════════════════════════════ */
+
+/* ── Fluid Typography via clamp() ──────────────────────── */
+h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); }
+h2 { font-size: clamp(1.4rem, 3vw, 2rem); }
+h3 { font-size: clamp(1.15rem, 2.2vw, 1.5rem); }
+
+.calc-index-hero-title   { font-size: clamp(1.75rem, 4.5vw, 3rem); }
+.calc-page-hero-title    { font-size: clamp(1.6rem, 4vw, 2.8rem); }
+.tools-saas-title        { font-size: clamp(1.75rem, 4vw, 3rem); }
+.bp-hero-content h1      { font-size: clamp(1.45rem, 3.5vw, 2.5rem); }
+.home-section-head h2    { font-size: clamp(1.45rem, 3vw, 2.2rem); }
+.home-final-cta h2       { font-size: clamp(1.45rem, 3vw, 2.4rem); }
+.blog-hub-featured-head h2 { font-size: clamp(1.45rem, 3vw, 2rem); }
+
+/* ── Large Screens: 1440px ─────────────────────────────── */
+@media (min-width: 1440px) {
+  .container { max-width: 1320px; }
+  .home-calcs-grid,
+  .home-tools-grid,
+  .home-quiz-grid,
+  .home-blog-v2-grid,
+  .home-hw-grid,
+  .home-reviews-grid,
+  .home-value-grid,
+  .home-qa-grid { max-width: 1320px; }
+  .calc-index-filter-section,
+  .calc-index-grid-section { max-width: 1320px; }
+}
+
+/* ── Large Screens: 1920px ─────────────────────────────── */
+@media (min-width: 1920px) {
+  .container { max-width: 1500px; }
+  .home-calcs-grid,
+  .home-tools-grid,
+  .home-quiz-grid,
+  .home-blog-v2-grid,
+  .home-hw-grid,
+  .home-reviews-grid,
+  .home-value-grid,
+  .home-qa-grid { max-width: 1500px; }
+  .calc-index-filter-section,
+  .calc-index-grid-section { max-width: 1500px; }
+  .home-calcs-grid { grid-template-columns: repeat(5, 1fr); }
+  .home-value-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+/* ── Ultra-wide: 2560px+ ───────────────────────────────── */
+@media (min-width: 2560px) {
+  body { font-size: 18px; }
+  .container { max-width: 1800px; }
+  .home-calcs-grid,
+  .home-tools-grid,
+  .home-quiz-grid { max-width: 1800px; }
+}
+
+/* ── Tablet intermediate: 900px ────────────────────────── */
+@media (max-width: 900px) {
+  .home-tools-grid     { grid-template-columns: repeat(2, 1fr); }
+  .home-quiz-grid      { grid-template-columns: repeat(2, 1fr); }
+  .home-blog-v2-grid   { grid-template-columns: repeat(2, 1fr); }
+  .home-reviews-grid   { grid-template-columns: repeat(2, 1fr); }
+  .home-hw-grid        { grid-template-columns: repeat(2, 1fr); }
+  .home-hw-grid::before { display: none; }
+  .home-value-grid     { grid-template-columns: repeat(2, 1fr); }
+  .home-pop-calcs      { padding: 64px 20px; }
+  .home-quick-action   { padding: 64px 20px; }
+  .home-tools-section  { padding: 64px 20px; }
+  .home-quiz-section   { padding: 64px 20px; }
+  .home-blog-v2        { padding: 64px 20px; }
+  .home-how-works      { padding: 64px 20px; }
+  .home-reviews-v2     { padding: 64px 20px; }
+  .home-newsletter-v2  { padding: 64px 20px; }
+  .home-final-cta      { padding: 72px 20px; }
+}
+
+/* ── 768px — tablet/large mobile ───────────────────────── */
+@media (max-width: 768px) {
+  /* Keep 2-col for tool/quiz/blog on tablet — override the jump-to-1 */
+  .home-tools-grid   { grid-template-columns: repeat(2, 1fr); }
+  .home-quiz-grid    { grid-template-columns: repeat(2, 1fr); }
+  .home-blog-v2-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Stats strip */
+  .home-stat-item { padding: 14px 18px; }
+  .home-stats-strip-inner { justify-content: flex-start; }
+
+  /* Section padding */
+  .home-pop-calcs,
+  .home-quick-action,
+  .home-tools-section,
+  .home-quiz-section,
+  .home-blog-v2,
+  .home-how-works,
+  .home-reviews-v2,
+  .home-newsletter-v2,
+  .home-final-cta { padding: 56px 16px; }
+
+  /* Breadcrumb */
+  .breadcrumbs-inner { font-size: 0.82rem; padding: 10px 16px; }
+
+  /* Chatbot safe positioning */
+  #vh-chatbot { bottom: 20px; right: 16px; }
+  .back-to-top { bottom: 20px; right: 20px; }
+}
+
+/* ── 600px — large mobile ───────────────────────────────── */
+@media (max-width: 600px) {
+  .home-tools-grid   { grid-template-columns: 1fr; }
+  .home-quiz-grid    { grid-template-columns: 1fr; }
+  .home-blog-v2-grid { grid-template-columns: 1fr; }
+  .home-reviews-grid { grid-template-columns: 1fr; }
+  .home-hw-grid      { grid-template-columns: 1fr; }
+
+  .home-section-head { margin-bottom: 32px; }
+
+  /* Final CTA buttons */
+  .home-final-cta-btns { flex-direction: column; align-items: center; }
+  .home-final-cta-btns .btn { width: 100%; max-width: 300px; text-align: center; justify-content: center; }
+
+  /* Newsletter form */
+  .home-newsletter-v2-form { flex-direction: column; gap: 10px; }
+  .home-newsletter-v2-form input,
+  .home-newsletter-v2-form button { width: 100%; }
+}
+
+/* ── 480px — standard mobile ────────────────────────────── */
+@media (max-width: 480px) {
+  /* Section padding tighter */
+  .home-pop-calcs,
+  .home-quick-action,
+  .home-tools-section,
+  .home-quiz-section,
+  .home-blog-v2,
+  .home-how-works,
+  .home-reviews-v2,
+  .home-final-cta { padding: 48px 14px; }
+  .home-newsletter-v2 { padding: 52px 14px; }
+
+  /* Cards tighter */
+  .home-calc-card  { padding: 20px 14px 16px; }
+  .home-qa-card    { padding: 24px 16px; }
+  .home-quiz-card  { padding: 22px 16px; }
+
+  /* Stats strip single row */
+  .home-stat-item { padding: 12px 14px; }
+
+  /* Search bar */
+  .calc-index-search-bar { padding: 6px 6px 6px 12px; gap: 6px; }
+  .calc-index-search-bar input { font-size: 0.92rem; }
+
+  /* Ann bar — hide excess text on smallest phones */
+  .ann-bar { font-size: 0.78rem; }
+  .ann-social-link { width: 26px; height: 26px; }
+
+  /* Blog hub */
+  .blog-hub-featured { padding: 40px 14px 28px; }
+}
+
+/* ── 380px — small mobile ───────────────────────────────── */
+@media (max-width: 380px) {
+  /* Typography floor */
+  h1 { font-size: 1.55rem; }
+  h2 { font-size: 1.3rem; }
+  h3 { font-size: 1.1rem; }
+  .calc-index-hero-title { font-size: 1.55rem; }
+  .calc-page-hero-title  { font-size: 1.45rem; }
+
+  /* Nav */
+  .navbar-inner { padding: 10px 12px; }
+  .nav-logo-img { height: 26px; }
+
+  /* Padding */
+  .container { padding: 0 12px; }
+  .calc-index-hero { padding: 68px 12px 48px; }
+  .calc-page-hero  { padding: 58px 12px 36px; }
+  .breadcrumbs-inner { padding: 8px 12px; font-size: 0.78rem; }
+
+  /* Buttons */
+  .btn { padding: 10px 18px; font-size: 0.85rem; }
+  .calc-index-btn-primary,
+  .calc-index-btn-outline { padding: 10px 16px; font-size: 0.85rem; }
+
+  /* Form */
+  .calc-input-card { padding: 20px 14px; }
+
+  /* Chatbot */
+  #vh-chatbot { right: 10px; bottom: 16px; }
+  #vh-chat-window { width: calc(100vw - 20px); right: 0; }
+
+  /* Cards */
+  .home-calc-card { padding: 16px 12px 14px; }
+  .tool-premium-card { padding: 18px 14px; }
+}
+
+/* ── Touch targets (pointer: coarse = touchscreen) ─────── */
+@media (pointer: coarse) {
+  .btn,
+  .calc-index-btn-primary,
+  .calc-index-btn-outline,
+  .blog-hero-btn-primary,
+  .blog-hero-btn-outline,
+  .faq-pill { min-height: 44px; }
+
+  .nav-links a { min-height: 44px; display: flex; align-items: center; }
+  .hamburger { padding: 10px; }
+  .faq-q { min-height: 52px; }
+  .mega-col-title { min-height: 44px; }
+  .back-to-top { width: 52px; height: 52px; }
+
+  /* Prevent accidental tap highlights */
+  a, button { -webkit-tap-highlight-color: rgba(45,106,79,0.12); }
+  * { touch-action: manipulation; }
+}
+
+/* ── Prevent horizontal overflow globally ───────────────── */
+main, section, article, aside, header, footer { max-width: 100%; overflow-x: hidden; }
+
+/* ── Responsive images — ensure no overflow ─────────────── */
+img { max-width: 100%; height: auto; display: block; }
+figure { max-width: 100%; }
+table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
