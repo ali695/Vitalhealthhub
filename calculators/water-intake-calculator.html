@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Water Intake Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Water Intake Calculator online to get accurate results instantly. Get personalized water intake results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="water intake calculator, free water intake calculator, water intake calculator online, calculate water intake online, accurate water intake calculator, water intake for men, water intake for women, how to calculate water intake, what is a healthy water intake, water intake explained, water intake ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Water Intake Calculator","url":"https://vitalhealthhub.org/calculators/water-intake-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Water Intake Calculator online to get accurate results instantly. Get personalized water intake results with healthy range guidance for men and women. 100% free."}</script>
@@ -487,7 +490,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var act=document.getElementById('activity').value;var cl=document.getElementById('climate').value;if(!w){alert('Enter weight');return;}var base=w*0.033;var am={'Sedentary':0,'Moderate':0.35,'Active':0.7,'Very Active':1.0};var cm={'Temperate':0,'Hot':0.5,'Cold':0};base+=am[act]||0;base+=cm[cl]||0;var liters=base.toFixed(1);var glasses=Math.round(base/0.25);showResult('result',liters+' L','Daily Water Intake','You should drink approximately '+liters+' liters ('+glasses+' glasses) of water per day. Adjust based on thirst, urine color, and individual needs.','green'); }

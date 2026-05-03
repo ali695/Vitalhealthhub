@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Diabetes Risk Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Diabetes Risk Calculator online to get accurate results instantly. Get personalized diabetes risk results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="diabetes risk calculator, free diabetes risk calculator, diabetes risk calculator online, calculate diabetes risk online, accurate diabetes risk calculator, diabetes risk for men, diabetes risk for women, how to calculate diabetes risk, what is a healthy diabetes risk, diabetes risk explained, diabetes risk ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Diabetes Risk Calculator","url":"https://vitalhealthhub.org/calculators/diabetes-risk-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Diabetes Risk Calculator online to get accurate results instantly. Get personalized diabetes risk results with healthy range guidance for men and women. 100% free."}</script>
@@ -476,7 +479,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value);var bmi=parseFloat(document.getElementById('bmi').value);var fam=document.getElementById('family').value;var act=document.getElementById('activity').value;var waist=parseFloat(document.getElementById('waist').value);if(!age||!bmi||!waist){alert('Fill fields');return;}var score=0;if(age>45)score+=2;if(age>55)score+=1;if(bmi>25)score+=2;if(bmi>30)score+=2;if(fam==='Yes')score+=3;if(act==='Sedentary')score+=2;if(act==='Moderate')score+=1;if(waist>102)score+=2;else if(waist>88)score+=1;var c='green',l='Low Risk',s='Your diabetes risk appears low. Maintain healthy habits.';if(score>=8){c='red';l='High Risk';s='You have several risk factors for type 2 diabetes. Please consult your healthcare provider for screening.';}else if(score>=5){c='yellow';l='Moderate Risk';s='You have some diabetes risk factors. Focus on weight management, exercise, and healthy eating.';}showResult('result',score+'/15',l,s,c); }

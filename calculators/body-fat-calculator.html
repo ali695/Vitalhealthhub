@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Body Fat Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Body Fat Calculator online to get accurate results instantly. Get personalized body fat results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="body fat calculator, free body fat calculator, body fat calculator online, calculate body fat online, accurate body fat calculator, body fat for men, body fat for women, how to calculate body fat, what is a healthy body fat, body fat explained, body fat ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Body Fat Calculator","url":"https://vitalhealthhub.org/calculators/body-fat-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Body Fat Calculator online to get accurate results instantly. Get personalized body fat results with healthy range guidance for men and women. 100% free."}</script>
@@ -471,7 +474,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var g=document.getElementById('gender').value;var w=parseFloat(document.getElementById('waist').value);var n=parseFloat(document.getElementById('neck').value);var h=parseFloat(document.getElementById('height').value);if(!w||!n||!h){alert('Please fill in all fields');return;}var bf;if(g==='Male'){bf=495/(1.0324-0.19077*Math.log10(w-n)+0.15456*Math.log10(h))-450;}else{var hip=w*1.1;bf=495/(1.29579-0.35004*Math.log10(w+hip-n)+0.22100*Math.log10(h))-450;}bf=Math.max(2,Math.min(bf,60)).toFixed(1);var c='green',l='Healthy',s='Your body fat percentage is within a healthy range. Continue with balanced nutrition and regular exercise.';if(g==='Male'){if(bf<6){c='yellow';l='Essential Fat';s='Very low body fat. This level is typically only seen in competitive athletes.';}else if(bf>25){c='yellow';l='Above Average';s='Consider increasing physical activity and reviewing your diet.';}if(bf>32){c='red';l='High';s='Elevated body fat. Consult a healthcare provider for personalized guidance.';}}else{if(bf<14){c='yellow';l='Essential Fat';s='Very low body fat for women. Ensure adequate nutrition.';}else if(bf>32){c='yellow';l='Above Average';s='Consider lifestyle modifications for better health.';}if(bf>40){c='red';l='High';s='Elevated body fat. Please consult a healthcare professional.';}}showResult('result',bf+'%',l,s,c); }

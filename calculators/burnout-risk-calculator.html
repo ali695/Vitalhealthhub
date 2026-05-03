@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Burnout Risk Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Burnout Risk Calculator online to get accurate results instantly. Get personalized burnout risk results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="burnout risk calculator, free burnout risk calculator, burnout risk calculator online, calculate burnout risk online, accurate burnout risk calculator, burnout risk for men, burnout risk for women, how to calculate burnout risk, what is a healthy burnout risk, burnout risk explained, burnout risk ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Burnout Risk Calculator","url":"https://vitalhealthhub.org/calculators/burnout-risk-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Burnout Risk Calculator online to get accurate results instantly. Get personalized burnout risk results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var e=parseFloat(document.getElementById('exhaust').value)||0;var d=parseFloat(document.getElementById('detach').value)||0;var i=parseFloat(document.getElementById('ineffect').value)||0;var w=parseFloat(document.getElementById('workload').value)||0;var c=parseFloat(document.getElementById('control').value)||0;var s=parseFloat(document.getElementById('sleep').value)||0;var r=parseFloat(document.getElementById('recovery').value)||0;var total=e+d+i+w+c+s+r;var max=28;var pct=Math.round(total/max*100);var col=pct<=30?'green':pct<=60?'yellow':'red';var l=pct<=30?'Low Burnout Risk':pct<=60?'Moderate Burnout Risk':'High Burnout Risk';var s2=pct<=30?'Your burnout indicators are low. Continue prioritizing work-life balance and recovery practices.':pct<=60?'You show moderate burnout warning signs. Prioritize recovery time, set boundaries, and speak with your manager or a counselor if needed.':'You show significant burnout symptoms. Please reach out to a mental health professional, consider speaking to HR, and prioritize urgent self-care and recovery.';showResult('result',pct+'%',l,s2,col); }

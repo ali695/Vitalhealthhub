@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Caffeine Intake Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Caffeine Intake Calculator online to get accurate results instantly. Get personalized caffeine intake results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="caffeine intake calculator, free caffeine intake calculator, caffeine intake calculator online, calculate caffeine intake online, accurate caffeine intake calculator, caffeine intake for men, caffeine intake for women, how to calculate caffeine intake, what is a healthy caffeine intake, caffeine intake explained, caffeine intake ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Caffeine Intake Calculator","url":"https://vitalhealthhub.org/calculators/caffeine-intake-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Caffeine Intake Calculator online to get accurate results instantly. Get personalized caffeine intake results with healthy range guidance for men and women. 100% free."}</script>
@@ -474,7 +477,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var co=parseFloat(document.getElementById('coffee').value)||0;var te=parseFloat(document.getElementById('tea').value)||0;var so=parseFloat(document.getElementById('soda').value)||0;var total=co*95+te*47+so*80;var c='green',l='Safe Range',s='Your caffeine intake is within safe limits (under 400mg). Avoid caffeine 6+ hours before bedtime.';if(total>600){c='red';l='Excessive';s='Your caffeine intake exceeds recommended limits. Consider reducing gradually to avoid withdrawal symptoms.';}else if(total>400){c='yellow';l='Above Recommended';s='You are above the recommended 400mg daily limit. Consider cutting back, especially if experiencing anxiety or sleep issues.';}showResult('result',total+' mg',l,s,c); }

@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Random Number Generator Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Random Number Generator online to get accurate results instantly. Get personalized random number generator results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="random number generator calculator, free random number generator calculator, random number generator calculator online, calculate random number generator online, accurate random number generator calculator, random number generator for men, random number generator for women, how to calculate random number generator, what is a healthy random number generator, random number generator explained, random number generator ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Random Number Generator","url":"https://vitalhealthhub.org/calculators/random-number-generator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Random Number Generator online to get accurate results instantly. Get personalized random number generator results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var mn=parseInt(document.getElementById('min').value)||1;var mx=parseInt(document.getElementById('max').value)||100;var cnt=Math.max(1,Math.min(20,parseInt(document.getElementById('count').value)||1));if(mn>mx){alert('Minimum must be less than maximum');return;}var nums=[];for(var i=0;i<cnt;i++)nums.push(Math.floor(Math.random()*(mx-mn+1))+mn);showResult('result',nums.join(', '),'Random Numbers Generated','Generated '+cnt+' random number'+(cnt>1?'s':'')+' between '+mn+' and '+mx+'. Range size: '+(mx-mn+1)+' possible values. Click Generate again for new numbers.','green'); }

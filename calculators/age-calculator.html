@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Age Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Age Calculator online to get accurate results instantly. Get personalized age results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="age calculator, free age calculator, age calculator online, calculate age online, accurate age calculator, age for men, age for women, how to calculate age, what is a healthy age, age explained, age ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Age Calculator","url":"https://vitalhealthhub.org/calculators/age-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Age Calculator online to get accurate results instantly. Get personalized age results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var dob=new Date(document.getElementById('dob').value);if(!document.getElementById('dob').value){alert('Enter your date of birth');return;}var now=new Date();var y=now.getFullYear()-dob.getFullYear();var mo=now.getMonth()-dob.getMonth();var d=now.getDate()-dob.getDate();if(d<0){mo--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}if(mo<0){y--;mo+=12;}var td=Math.floor((now-dob)/86400000);var nextBd=new Date(now.getFullYear(),dob.getMonth(),dob.getDate());if(nextBd<=now)nextBd.setFullYear(now.getFullYear()+1);var daysLeft=Math.ceil((nextBd-now)/86400000);showResult('result',y+' years '+mo+'mo '+d+'d','Your Exact Age','You are '+y+' years, '+mo+' months, and '+d+' days old — about '+td.toLocaleString()+' total days ('+Math.round(td/7).toLocaleString()+' weeks). Next birthday in '+daysLeft+' days.','green'); }

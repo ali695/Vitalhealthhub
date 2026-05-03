@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="HIIT Calorie Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free HIIT Calorie Calculator online to get accurate results instantly. Get personalized hiit calorie results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="hiit calorie calculator, free hiit calorie calculator, hiit calorie calculator online, calculate hiit calorie online, accurate hiit calorie calculator, hiit calorie for men, hiit calorie for women, how to calculate hiit calorie, what is a healthy hiit calorie, hiit calorie explained, hiit calorie ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"HIIT Calorie Calculator","url":"https://vitalhealthhub.org/calculators/hiit-calories-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free HIIT Calorie Calculator online to get accurate results instantly. Get personalized hiit calorie results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var d=parseFloat(document.getElementById('duration').value);var intens=document.getElementById('intensity').value;var fit=document.getElementById('fitness').value;if(!w||!d){alert('Fill all fields');return;}var met={'Moderate (e.g., basic circuits)':8,'High (e.g., sprint intervals)':12,'Very High (e.g., Tabata, CrossFit)':15}[intens]||10;var fitMult={'Beginner':0.85,'Intermediate':1.0,'Advanced':1.1}[fit]||1;var cal=Math.round(met*w*d/60*fitMult);var epoc=Math.round(cal*0.15);var total=cal+epoc;showResult('result',total+' kcal','HIIT + EPOC Calories Burned','During workout: ~'+cal+' kcal | EPOC (afterburn effect): +'+epoc+' kcal | Total estimated burn: ~'+total+' kcal. HIIT burns '+Math.round(cal/d)+' kcal/minute vs ~'+Math.round(met*0.6*w/60)+' for steady-state cardio.','green'); }

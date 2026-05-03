@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Water Reminder Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Water Reminder Calculator online to get accurate results instantly. Get personalized water reminder results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="water reminder calculator, free water reminder calculator, water reminder calculator online, calculate water reminder online, accurate water reminder calculator, water reminder for men, water reminder for women, how to calculate water reminder, what is a healthy water reminder, water reminder explained, water reminder ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Water Reminder Calculator","url":"https://vitalhealthhub.org/calculators/hydration-reminder-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Water Reminder Calculator online to get accurate results instantly. Get personalized water reminder results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var wu=document.getElementById('wakeup').value||'07:00';var bed=document.getElementById('bedtime').value||'23:00';var cont=parseFloat(document.getElementById('container').value)||500;if(!w){alert('Enter weight');return;}var target=Math.round(w*35);var wuh=parseInt(wu.split(':')[0]);var wum=parseInt(wu.split(':')[1])||0;var bedh=parseInt(bed.split(':')[0]);var awakeHours=(bedh-wuh+24)%24;if(awakeHours<8)awakeHours=16;var sips=Math.ceil(target/cont);var intervalMin=Math.round(awakeHours*60/sips);var fmt=function(m){return m>=60?Math.floor(m/60)+'h '+(m%60?m%60+'min':''):m+' min';};showResult('result',target+' mL/day','Hydration Schedule','Daily target: '+target+' mL | Container: '+cont+' mL | Number of refills: '+sips+' | Interval: every '+fmt(intervalMin)+' during '+awakeHours+' awake hours. Tip: drink one glass upon waking, one with each meal, and one before bed — this gets you halfway there!','green'); }

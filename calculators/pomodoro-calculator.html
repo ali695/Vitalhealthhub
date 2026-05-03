@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pomodoro Productivity Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Pomodoro Productivity Calculator online to get accurate results instantly. Get personalized pomodoro productivity results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="pomodoro productivity calculator, free pomodoro productivity calculator, pomodoro productivity calculator online, calculate pomodoro productivity online, accurate pomodoro productivity calculator, pomodoro productivity for men, pomodoro productivity for women, how to calculate pomodoro productivity, what is a healthy pomodoro productivity, pomodoro productivity explained, pomodoro productivity ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Pomodoro Productivity Calculator","url":"https://vitalhealthhub.org/calculators/pomodoro-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Pomodoro Productivity Calculator online to get accurate results instantly. Get personalized pomodoro productivity results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var tasks=parseFloat(document.getElementById('tasks').value)||5;var poms=parseFloat(document.getElementById('pomodoros').value)||2;var start=document.getElementById('workstart').value||'09:00';var btype=document.getElementById('breaktype').value;var work=btype==='Classic (25/5/15)'?25:btype==='Extended (50/10/30)'?50:15;var shortBk=btype==='Classic (25/5/15)'?5:btype==='Extended (50/10/30)'?10:3;var longBk=btype==='Classic (25/5/15)'?15:btype==='Extended (50/10/30)'?30:10;var total=tasks*poms;var cycles=Math.floor(total/4);var rem=total%4;var totalMin=total*work+cycles*longBk+rem*shortBk;var sh=parseInt(start.split(':')[0]);var sm=parseInt(start.split(':')[1]);var endH=Math.floor((sh*60+sm+totalMin)/60)%24;var endM=(sm+totalMin)%60;showResult('result',total+' pomodoros','Work Session Plan','Tasks: '+tasks+' | Total pomodoros: '+total+' | Estimated finish: '+((endH%12)||12)+':'+(endM<10?'0':'')+endM+' '+(endH<12?'AM':'PM')+'. Long breaks: '+cycles+'. Remember: during each pomodoro, work on ONLY that task with zero interruptions.','green'); }

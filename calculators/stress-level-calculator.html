@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Stress Level Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Stress Level Calculator online to get accurate results instantly. Get personalized stress level results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="stress level calculator, free stress level calculator, stress level calculator online, calculate stress level online, accurate stress level calculator, stress level for men, stress level for women, how to calculate stress level, what is a healthy stress level, stress level explained, stress level ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Stress Level Calculator","url":"https://vitalhealthhub.org/calculators/stress-level-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Stress Level Calculator online to get accurate results instantly. Get personalized stress level results with healthy range guidance for men and women. 100% free."}</script>
@@ -475,7 +478,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var sl=parseFloat(document.getElementById('sleep').value)||3;var wk=parseFloat(document.getElementById('work').value)||3;var ex=parseFloat(document.getElementById('exercise').value)||3;var so=parseFloat(document.getElementById('social').value)||3;var wo=parseFloat(document.getElementById('worry').value)||3;var score=Math.round((6-sl+wk+(6-ex)+(6-so)+wo)/5*20);var c='green',l='Low Stress',s='Your stress levels appear manageable. Continue your healthy coping strategies.';if(score>70){c='red';l='High Stress';s='Your stress score is high. Consider seeking professional support, practicing relaxation techniques, and prioritizing self-care.';}else if(score>40){c='yellow';l='Moderate Stress';s='You are experiencing moderate stress. Try incorporating mindfulness, exercise, and better sleep habits.';}showResult('result',score+'%',l,s,c); }

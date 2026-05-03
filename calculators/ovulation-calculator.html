@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ovulation Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Ovulation Calculator online to get accurate results instantly. Get personalized ovulation results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="ovulation calculator, free ovulation calculator, ovulation calculator online, calculate ovulation online, accurate ovulation calculator, ovulation for men, ovulation for women, how to calculate ovulation, what is a healthy ovulation, ovulation explained, ovulation ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ovulation Calculator","url":"https://vitalhealthhub.org/calculators/ovulation-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Ovulation Calculator online to get accurate results instantly. Get personalized ovulation results with healthy range guidance for men and women. 100% free."}</script>
@@ -459,7 +462,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var lmp=document.getElementById('lmp').value;var cl=parseFloat(document.getElementById('cycle').value)||28;if(!lmp){alert('Enter date');return;}var d=new Date(lmp);var ov=new Date(d);ov.setDate(ov.getDate()+cl-14);var fs=new Date(ov);fs.setDate(fs.getDate()-2);var fe=new Date(ov);fe.setDate(fe.getDate()+1);var fmt=function(dt){return(dt.getMonth()+1)+'/'+dt.getDate();};showResult('result',fmt(ov),'Estimated Ovulation Date','Your fertile window is approximately '+fmt(fs)+' to '+fmt(fe)+'. Ovulation likely occurs around '+fmt(ov)+'. Track symptoms like cervical mucus changes and basal body temperature for better accuracy.','green'); }

@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BMR Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free BMR Calculator online to get accurate results instantly. Get personalized bmr results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="bmr calculator, free bmr calculator, bmr calculator online, calculate bmr online, accurate bmr calculator, bmr for men, bmr for women, how to calculate bmr, what is a healthy bmr, bmr explained, bmr ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"BMR Calculator","url":"https://vitalhealthhub.org/calculators/bmr-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free BMR Calculator online to get accurate results instantly. Get personalized bmr results with healthy range guidance for men and women. 100% free."}</script>
@@ -474,7 +477,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var a=parseFloat(document.getElementById('age').value);var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var g=document.getElementById('gender').value;if(!a||!w||!h){alert('Fill all fields');return;}var bmr=g==='Male'?10*w+6.25*h-5*a+5:10*w+6.25*h-5*a-161;bmr=Math.round(bmr);showResult('result',bmr+' kcal','Basal Metabolic Rate','Your body burns approximately '+bmr+' calories per day at complete rest. Your total daily needs are higher depending on your activity level.','green'); }

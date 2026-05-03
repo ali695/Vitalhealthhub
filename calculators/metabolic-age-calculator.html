@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Metabolic Age Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Metabolic Age Calculator online to get accurate results instantly. Get personalized metabolic age results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="metabolic age calculator, free metabolic age calculator, metabolic age calculator online, calculate metabolic age online, accurate metabolic age calculator, metabolic age for men, metabolic age for women, how to calculate metabolic age, what is a healthy metabolic age, metabolic age explained, metabolic age ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Metabolic Age Calculator","url":"https://vitalhealthhub.org/calculators/metabolic-age-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Metabolic Age Calculator online to get accurate results instantly. Get personalized metabolic age results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value);var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var g=document.getElementById('gender').value;var muscle=document.getElementById('muscle').value;if(!age||!w||!h){alert('Fill all fields');return;}var bmr=g==='Male'?10*w+6.25*h-5*age+5:10*w+6.25*h-5*age-161;if(muscle==='Lean/Athletic')bmr+=150;if(muscle==='Bulky/Heavy')bmr-=80;var avgBmr;if(g==='Male'){avgBmr=age<30?1950:age<40?1870:age<50?1800:age<60?1720:1640;}else{avgBmr=age<30?1550:age<40?1490:age<50?1440:age<60?1370:1310;}var metAge=Math.round(age*(avgBmr/bmr));var diff=metAge-age;var c=diff>8?'red':diff>3?'yellow':'green';showResult('result',metAge+' years','Estimated Metabolic Age',diff>0?'Your metabolic age is '+diff+' years older than actual. Increase muscle mass through strength training and optimize your diet to boost your BMR.':diff<0?'Excellent! Your metabolism runs '+(Math.abs(diff))+' years younger than average. Your fitness and muscle mass are working in your favor.':'Your metabolic age closely matches your actual age.',c); }

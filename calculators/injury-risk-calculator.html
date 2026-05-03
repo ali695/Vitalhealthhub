@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Injury Risk Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Injury Risk Calculator online to get accurate results instantly. Get personalized injury risk results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="injury risk calculator, free injury risk calculator, injury risk calculator online, calculate injury risk online, accurate injury risk calculator, injury risk for men, injury risk for women, how to calculate injury risk, what is a healthy injury risk, injury risk explained, injury risk ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Injury Risk Calculator","url":"https://vitalhealthhub.org/calculators/injury-risk-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Injury Risk Calculator online to get accurate results instantly. Get personalized injury risk results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var inc=parseFloat(document.getElementById('increase').value)||10;var wu=parseFloat(document.getElementById('warmup').value)||3;var sl=parseFloat(document.getElementById('sleep').value)||3;var hist={'None':0,'Minor (>6 months ago)':2,'Recent (<6 months)':5}[document.getElementById('history').value]||0;var pain={'Never':0,'Occasionally':2,'Often':4}[document.getElementById('pain').value]||0;var rest=parseFloat(document.getElementById('rest').value)||2;var score=0;if(inc>20)score+=3;else if(inc>10)score+=1;score+=(4-wu)+(4-sl)+hist+pain;if(rest<1)score+=3;else if(rest<2)score+=1;var max=20;var pct=Math.round(score/max*100);var c=pct<=30?'green':pct<=60?'yellow':'red';var l=pct<=30?'Low Injury Risk':pct<=60?'Moderate Risk':'High Injury Risk';var s=pct<=30?'Your training practices are safe. Maintain the 10% rule for volume increases and consistent recovery.':pct<=60?'Several injury risk factors present. Review your training load progression, ensure adequate warm-ups, and prioritize sleep.':'High injury risk detected. Please reduce training volume, address any current pain with a physiotherapist, and ensure 2+ rest days weekly.';showResult('result',pct+'%',l,s,c); }

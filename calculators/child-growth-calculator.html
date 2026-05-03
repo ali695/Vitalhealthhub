@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Child Growth Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Child Growth Calculator online to get accurate results instantly. Get personalized child growth results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="child growth calculator, free child growth calculator, child growth calculator online, calculate child growth online, accurate child growth calculator, child growth for men, child growth for women, how to calculate child growth, what is a healthy child growth, child growth explained, child growth ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Child Growth Calculator","url":"https://vitalhealthhub.org/calculators/child-growth-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Child Growth Calculator online to get accurate results instantly. Get personalized child growth results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;var h=parseFloat(document.getElementById('height').value);var w=parseFloat(document.getElementById('weight').value);if(!age||!h||!w||age<2||age>18){alert('Enter valid values (age 2-18)');return;}var bmi=w/Math.pow(h/100,2);var avgh=g==='Boy'?100+age*6.5:100+age*6.2;var avgw=g==='Boy'?Math.pow(age,1.6)*2:Math.pow(age,1.55)*2;var hpct=Math.min(99,Math.max(1,Math.round(50+(h-avgh)/3)));var wpct=Math.min(99,Math.max(1,Math.round(50+(w-avgw)/2)));var c=bmi<14||bmi>28?'yellow':'green';showResult('result','BMI: '+bmi.toFixed(1),'Estimated Growth Percentiles','Height: ~'+hpct+'th percentile | Weight: ~'+wpct+'th percentile | BMI: '+bmi.toFixed(1)+'. Note: These are rough estimates. For accurate percentile assessment, use official CDC charts or consult your pediatrician. BMI interpretation for children uses age-specific percentiles, not adult ranges.','green'); }

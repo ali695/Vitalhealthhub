@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Heart Age Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Heart Age Calculator online to get accurate results instantly. Get personalized heart age results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="heart age calculator, free heart age calculator, heart age calculator online, calculate heart age online, accurate heart age calculator, heart age for men, heart age for women, how to calculate heart age, what is a healthy heart age, heart age explained, heart age ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Heart Age Calculator","url":"https://vitalhealthhub.org/calculators/heart-age-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Heart Age Calculator online to get accurate results instantly. Get personalized heart age results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;var smoker=document.getElementById('smoker').value==='Yes';var bp=parseFloat(document.getElementById('bp').value)||120;var chol=parseFloat(document.getElementById('chol').value)||190;var diab=document.getElementById('diabetic').value==='Yes';var ex=parseFloat(document.getElementById('exercise').value)||0;if(!age){alert('Enter your age');return;}var heartAge=age;if(smoker)heartAge+=8;if(bp>140)heartAge+=6;else if(bp>130)heartAge+=3;if(chol>240)heartAge+=5;else if(chol>200)heartAge+=2;if(diab)heartAge+=4;if(g==='Male')heartAge+=2;if(ex>=4)heartAge-=4;else if(ex>=2)heartAge-=2;heartAge=Math.round(heartAge);var diff=heartAge-age;var c=diff>5?'red':diff>0?'yellow':'green';showResult('result',heartAge+' years','Estimated Heart Age',diff>0?'Your heart is functioning like someone '+diff+' years older. Focus on blood pressure control, quitting smoking, and regular exercise to reduce cardiovascular risk.':diff<0?'Your heart is in great shape — performing like someone '+(Math.abs(diff))+' years younger! Keep up your healthy lifestyle.':'Your heart age matches your actual age. Maintain your current healthy habits.','green'); }

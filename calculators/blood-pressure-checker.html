@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Blood Pressure Checker – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Blood Pressure Checker online to get accurate results instantly. Get personalized blood pressure results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="blood pressure calculator, free blood pressure calculator, blood pressure calculator online, calculate blood pressure online, accurate blood pressure calculator, blood pressure for men, blood pressure for women, how to calculate blood pressure, what is a healthy blood pressure, blood pressure explained, blood pressure ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Blood Pressure Checker","url":"https://vitalhealthhub.org/calculators/blood-pressure-checker.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Blood Pressure Checker online to get accurate results instantly. Get personalized blood pressure results with healthy range guidance for men and women. 100% free."}</script>
@@ -474,7 +477,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var s=parseFloat(document.getElementById('systolic').value);var d=parseFloat(document.getElementById('diastolic').value);if(!s||!d){alert('Enter both values');return;}var c='green',l='Normal',sg='Your blood pressure is within the normal range. Continue with healthy lifestyle habits.';if(s>=180||d>=120){c='red';l='Hypertensive Crisis';sg='Seek immediate medical attention. This reading requires emergency care.';}else if(s>=140||d>=90){c='red';l='Stage 2 Hypertension';sg='Consult your doctor promptly. Medication and lifestyle changes may be needed.';}else if(s>=130||d>=80){c='yellow';l='Stage 1 Hypertension';sg='Lifestyle modifications recommended. Monitor regularly and consult your healthcare provider.';}else if(s>=120){c='yellow';l='Elevated';sg='Your blood pressure is elevated. Focus on exercise, diet, and stress management.';}showResult('result',s+'/'+d,l,sg,c); }

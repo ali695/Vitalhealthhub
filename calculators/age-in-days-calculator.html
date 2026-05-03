@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Age in Days Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Age in Days Calculator online to get accurate results instantly. Get personalized age in days results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="age in days calculator, free age in days calculator, age in days calculator online, calculate age in days online, accurate age in days calculator, age in days for men, age in days for women, how to calculate age in days, what is a healthy age in days, age in days explained, age in days ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Age in Days Calculator","url":"https://vitalhealthhub.org/calculators/age-in-days-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Age in Days Calculator online to get accurate results instantly. Get personalized age in days results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var dob=new Date(document.getElementById('dob').value);if(!document.getElementById('dob').value){alert('Enter date of birth');return;}var now=new Date();var ms=now-dob;var days=Math.floor(ms/86400000);var hours=Math.floor(ms/3600000);var minutes=Math.floor(ms/60000);var weeks=Math.floor(days/7);var remDays=days%7;var unit=document.getElementById('unit').value;var val,label;if(unit==='Days'){val=days.toLocaleString();label='Days Old';}else if(unit==='Hours'){val=hours.toLocaleString();label='Hours Old';}else if(unit==='Minutes'){val=minutes.toLocaleString();label='Minutes Old';}else{val=weeks.toLocaleString()+' wk '+remDays+'d';label='Weeks + Days Old';}showResult('result',val,label,'You have lived approximately '+days.toLocaleString()+' days ('+hours.toLocaleString()+' hours | '+minutes.toLocaleString()+' minutes). Heart beats so far: ~'+Math.round(days*100000).toLocaleString()+'. Breaths taken: ~'+Math.round(days*23040).toLocaleString()+'.','green'); }

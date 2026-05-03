@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Birthday Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Birthday Calculator online to get accurate results instantly. Get personalized birthday results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="birthday calculator, free birthday calculator, birthday calculator online, calculate birthday online, accurate birthday calculator, birthday for men, birthday for women, how to calculate birthday, what is a healthy birthday, birthday explained, birthday ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Birthday Calculator","url":"https://vitalhealthhub.org/calculators/birthday-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Birthday Calculator online to get accurate results instantly. Get personalized birthday results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var dob=new Date(document.getElementById('dob').value);if(!document.getElementById('dob').value){alert('Enter date of birth');return;}var now=new Date();var name=document.getElementById('name').value||'You';var nextBd=new Date(now.getFullYear(),dob.getMonth(),dob.getDate());if(nextBd<=now)nextBd.setFullYear(now.getFullYear()+1);var days=Math.ceil((nextBd-now)/86400000);var age=nextBd.getFullYear()-dob.getFullYear();var day=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][nextBd.getDay()];var months=['January','February','March','April','May','June','July','August','September','October','November','December'];showResult('result',days+' days','Next Birthday',name+''s next birthday is in '+days+' days — on '+day+', '+months[nextBd.getMonth()]+' '+nextBd.getDate()+', '+nextBd.getFullYear()+'. Turning '+age+'! This birthday falls on a '+day+'.','green'); }

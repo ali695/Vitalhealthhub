@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Menstrual Cycle Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Menstrual Cycle Calculator online to get accurate results instantly. Get personalized menstrual cycle results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="menstrual cycle calculator, free menstrual cycle calculator, menstrual cycle calculator online, calculate menstrual cycle online, accurate menstrual cycle calculator, menstrual cycle for men, menstrual cycle for women, how to calculate menstrual cycle, what is a healthy menstrual cycle, menstrual cycle explained, menstrual cycle ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Menstrual Cycle Calculator","url":"https://vitalhealthhub.org/calculators/menstrual-cycle-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Menstrual Cycle Calculator online to get accurate results instantly. Get personalized menstrual cycle results with healthy range guidance for men and women. 100% free."}</script>
@@ -464,7 +467,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var lmp=document.getElementById('lmp').value;var cl=parseFloat(document.getElementById('cycle').value)||28;var pl=parseFloat(document.getElementById('period').value)||5;if(!lmp){alert('Enter date');return;}var d=new Date(lmp);var next=new Date(d);next.setDate(next.getDate()+cl);var ov=new Date(d);ov.setDate(ov.getDate()+cl-14);var fmt=function(dt){return(dt.getMonth()+1)+'/'+dt.getDate()+'/'+dt.getFullYear();};showResult('result',fmt(next),'Next Period Date','Your next period is expected around '+fmt(next)+'. Ovulation is estimated around '+fmt(ov)+'. Track your cycles regularly for better predictions.','green'); }

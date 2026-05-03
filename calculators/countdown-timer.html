@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Countdown Timer Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Countdown Timer online to get accurate results instantly. Get personalized countdown timer results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="countdown timer calculator, free countdown timer calculator, countdown timer calculator online, calculate countdown timer online, accurate countdown timer calculator, countdown timer for men, countdown timer for women, how to calculate countdown timer, what is a healthy countdown timer, countdown timer explained, countdown timer ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Countdown Timer","url":"https://vitalhealthhub.org/calculators/countdown-timer.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Countdown Timer online to get accurate results instantly. Get personalized countdown timer results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ (function(){var h=parseInt(document.getElementById('hours').value)||0;var m=parseInt(document.getElementById('minutes').value)||0;var s=parseInt(document.getElementById('seconds').value)||0;var total=h*3600+m*60+s;if(!total){alert('Enter a time duration');return;}var end=Date.now()+total*1000;var rb=document.getElementById('result');rb.style.display='block';rb.querySelector('.result-label').textContent='Countdown Running';clearInterval(window._cdTimer);window._cdTimer=setInterval(function(){var rem=Math.max(0,Math.floor((end-Date.now())/1000));var rh=Math.floor(rem/3600);var rm=Math.floor((rem%3600)/60);var rs=rem%60;rb.querySelector('.result-value').textContent=(rh?rh+'h ':'')+rm+'m '+rs+'s';rb.querySelector('.result-suggestion').textContent='Timer running — stay focused and make the most of your time!';if(rem<=0){clearInterval(window._cdTimer);rb.querySelector('.result-label').textContent='Time Is Up!';rb.querySelector('.result-value').textContent='DONE';rb.querySelector('.result-suggestion').textContent='Your countdown has finished! Great work.';}},1000);})() }

@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Child BMI Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Child BMI Calculator online to get accurate results instantly. Get personalized child bmi results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="child bmi calculator, free child bmi calculator, child bmi calculator online, calculate child bmi online, accurate child bmi calculator, child bmi for men, child bmi for women, how to calculate child bmi, what is a healthy child bmi, child bmi explained, child bmi ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Child BMI Calculator","url":"https://vitalhealthhub.org/calculators/child-bmi-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Child BMI Calculator online to get accurate results instantly. Get personalized child bmi results with healthy range guidance for men and women. 100% free."}</script>
@@ -467,7 +470,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var a=parseFloat(document.getElementById('age').value);var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value)/100;if(!a||!w||!h){alert('Fill fields');return;}var bmi=(w/(h*h)).toFixed(1);var c='green',l='Healthy Weight',s='Your child's BMI is in the healthy range.';if(bmi<14){c='yellow';l='Underweight';s='Your child may be underweight. Consult their pediatrician.';}else if(bmi>22&&a<12||bmi>25&&a>=12){c='yellow';l='Overweight';s='Consider discussing healthy eating and activity habits with your child's doctor.';}else if(bmi>27){c='red';l='Obese';s='Please consult a pediatric healthcare provider for guidance.';}showResult('result',bmi,'Child BMI: '+l,s,c); }

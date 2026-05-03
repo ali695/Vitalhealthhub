@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sugar Intake Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Sugar Intake Calculator online to get accurate results instantly. Get personalized sugar intake results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="sugar intake calculator, free sugar intake calculator, sugar intake calculator online, calculate sugar intake online, accurate sugar intake calculator, sugar intake for men, sugar intake for women, how to calculate sugar intake, what is a healthy sugar intake, sugar intake explained, sugar intake ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Sugar Intake Calculator","url":"https://vitalhealthhub.org/calculators/sugar-intake-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Sugar Intake Calculator online to get accurate results instantly. Get personalized sugar intake results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var dr=parseFloat(document.getElementById('drinks').value)||0;var sw=parseFloat(document.getElementById('sweet').value)||0;var pr=parseFloat(document.getElementById('processed').value)||0;var fr=parseFloat(document.getElementById('fruit').value)||0;var ad=parseFloat(document.getElementById('added').value)||0;var addedSugar=dr*39+sw*20+pr*8+ad*4;var totalSugar=addedSugar+fr*12;var c=addedSugar<=25?'green':addedSugar<=50?'yellow':'red';var l=addedSugar<=25?'Within Guidelines':addedSugar<=50?'Moderately High':'Excessive';var who=25;showResult('result',addedSugar+'g added sugar','Daily Sugar Assessment','Added sugar: '+addedSugar+'g (WHO limit: '+who+'g/day for women, 36g for men). Total sugar (incl. fruit): '+totalSugar+'g. '+(addedSugar>who?'Reduce sugary drinks (biggest culprit), swap sweets for fruit, and read labels for hidden sugar (look for -ose suffixes).':'Great job keeping added sugar in check! Fruit sugar comes with fiber and nutrients — not a concern.'),c); }

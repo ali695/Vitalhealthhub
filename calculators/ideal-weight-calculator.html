@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ideal Weight Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Ideal Weight Calculator online to get accurate results instantly. Get personalized ideal weight results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="ideal weight calculator, free ideal weight calculator, ideal weight calculator online, calculate ideal weight online, accurate ideal weight calculator, ideal weight for men, ideal weight for women, how to calculate ideal weight, what is a healthy ideal weight, ideal weight explained, ideal weight ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ideal Weight Calculator","url":"https://vitalhealthhub.org/calculators/ideal-weight-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Ideal Weight Calculator online to get accurate results instantly. Get personalized ideal weight results with healthy range guidance for men and women. 100% free."}</script>
@@ -482,7 +485,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var h=parseFloat(document.getElementById('height').value);var g=document.getElementById('gender').value;if(!h){alert('Enter height');return;}var hi=h/2.54;var iw;if(g==='Male'){iw=50+2.3*(hi-60);}else{iw=45.5+2.3*(hi-60);}var lo=Math.round(iw*0.9);var up=Math.round(iw*1.1);iw=Math.round(iw);showResult('result',lo+'-'+up+' kg','Ideal Weight Range','Your ideal weight range is '+lo+'-'+up+' kg based on the Devine formula. Individual factors like muscle mass and frame size also matter.','green'); }

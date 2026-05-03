@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Calorie Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Calorie Calculator online to get accurate results instantly. Get personalized calorie results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="calorie calculator, free calorie calculator, calorie calculator online, calculate calorie online, accurate calorie calculator, calorie for men, calorie for women, how to calculate calorie, what is a healthy calorie, calorie explained, calorie ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calorie Calculator","url":"https://vitalhealthhub.org/calculators/calorie-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Calorie Calculator online to get accurate results instantly. Get personalized calorie results with healthy range guidance for men and women. 100% free."}</script>
@@ -471,7 +474,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var a=parseFloat(document.getElementById('age').value);var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var g=document.getElementById('gender').value;var act=document.getElementById('activity').value;if(!a||!w||!h){alert('Please fill in all fields');return;}var bmr=g==='Male'?10*w+6.25*h-5*a+5:10*w+6.25*h-5*a-161;var mult={Sedentary:1.2,'Lightly Active':1.375,'Moderately Active':1.55,'Very Active':1.725,'Extra Active':1.9};var cal=Math.round(bmr*(mult[act]||1.2));var c='green',l='Daily Calories',s='This is your estimated daily calorie need to maintain your current weight. Subtract 500 for weight loss or add 500 for weight gain.';showResult('result',cal+' kcal',l,s,c); }

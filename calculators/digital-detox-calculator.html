@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Digital Detox Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Digital Detox Calculator online to get accurate results instantly. Get personalized digital detox results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="digital detox calculator, free digital detox calculator, digital detox calculator online, calculate digital detox online, accurate digital detox calculator, digital detox for men, digital detox for women, how to calculate digital detox, what is a healthy digital detox, digital detox explained, digital detox ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Digital Detox Calculator","url":"https://vitalhealthhub.org/calculators/digital-detox-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Digital Detox Calculator online to get accurate results instantly. Get personalized digital detox results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var ph=parseFloat(document.getElementById('phone').value)||0;var pc=parseFloat(document.getElementById('computer').value)||0;var tv=parseFloat(document.getElementById('tv').value)||0;var sm=parseFloat(document.getElementById('social').value)||0;var total=ph+pc+tv;var weekly=Math.round(total*7);var yearly=Math.round(total*365);var c=total<=4?'green':total<=8?'yellow':'red';var l=total<=4?'Healthy Screen Time':total<=8?'High Screen Time':'Excessive Screen Time';var recs='';if(sm>2)recs+='Set app time limits for social media (max 30 min/day). ';if(ph>3)recs+='Use phone grayscale mode and bedroom-free zones. ';if(tv>2)recs+='Replace one hour of TV with a walk, reading, or social activity. ';showResult('result',total+'h/day',l,'Total: '+total+' hrs/day | '+weekly+' hrs/week | '+yearly+' hrs/year ('+Math.round(yearly/8760*100)+'% of waking hours). '+recs,'green'); }

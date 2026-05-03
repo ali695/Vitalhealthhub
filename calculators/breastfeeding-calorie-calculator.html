@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Breastfeeding Calorie Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Breastfeeding Calorie Calculator online to get accurate results instantly. Get personalized breastfeeding calorie results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="breastfeeding calorie calculator, free breastfeeding calorie calculator, breastfeeding calorie calculator online, calculate breastfeeding calorie online, accurate breastfeeding calorie calculator, breastfeeding calorie for men, breastfeeding calorie for women, how to calculate breastfeeding calorie, what is a healthy breastfeeding calorie, breastfeeding calorie explained, breastfeeding calorie ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Breastfeeding Calorie Calculator","url":"https://vitalhealthhub.org/calculators/breastfeeding-calorie-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Breastfeeding Calorie Calculator online to get accurate results instantly. Get personalized breastfeeding calorie results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var a=parseFloat(document.getElementById('age').value);var act=document.getElementById('activity').value;var stage=document.getElementById('stage').value;if(!w||!h||!a){alert('Fill all fields');return;}var bmr=10*w+6.25*h-5*a-161;var mult={'Sedentary':1.2,'Lightly Active':1.375,'Moderately Active':1.55,'Very Active':1.725};var base=Math.round(bmr*(mult[act]||1.2));var extra=stage==='0-6 months (exclusive)'?500:stage==='6-12 months (partial)'?400:300;var total=base+extra;showResult('result',total+' kcal/day','Daily Calorie Need (Breastfeeding)','Base calories: '+base+' kcal | Breastfeeding extra: +'+extra+' kcal | Total: '+total+' kcal. Focus on nutrient-dense foods, stay hydrated (drink to thirst), and avoid strict dieting during this stage.','green'); }

@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Testosterone Level Estimator Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Testosterone Level Estimator online to get accurate results instantly. Get personalized testosterone level estimator results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="testosterone level estimator calculator, free testosterone level estimator calculator, testosterone level estimator calculator online, calculate testosterone level estimator online, accurate testosterone level estimator calculator, testosterone level estimator for men, testosterone level estimator for women, how to calculate testosterone level estimator, what is a healthy testosterone level estimator, testosterone level estimator explained, testosterone level estimator ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Testosterone Level Estimator","url":"https://vitalhealthhub.org/calculators/testosterone-estimator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Testosterone Level Estimator online to get accurate results instantly. Get personalized testosterone level estimator results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value)||35;var ex=parseFloat(document.getElementById('exercise').value)||0;var sl=parseFloat(document.getElementById('sleep').value)||7;var st=parseFloat(document.getElementById('stress').value)||3;var bmi=document.getElementById('bmi').value;var alc=document.getElementById('alcohol').value;var base=age<30?650:age<40?550:age<50?480:age<60?420:360;if(ex>=4)base+=80;else if(ex>=2)base+=40;if(sl>=7&&sl<=9)base+=50;else if(sl<6)base-=80;if(st<=2)base+=30;else if(st>=4)base-=60;if(bmi==='Overweight')base-=50;if(bmi==='Obese')base-=120;if(alc==='Heavy (8+ drinks/week)')base-=100;base=Math.max(150,Math.min(900,Math.round(base)));var c=base>=400?'green':base>=300?'yellow':'red';var l=base>=400?'Normal Range':base>=300?'Low-Normal':'Potentially Low';showResult('result','~'+base+' ng/dL',l,'Estimated range for age '+age+'. Normal adult male range: 300-1000 ng/dL. '+l+' based on your inputs. Lifestyle factors (exercise, sleep, stress, weight, alcohol) significantly impact testosterone. For accurate measurement, get a morning blood test. This is NOT a medical diagnosis.',c); }

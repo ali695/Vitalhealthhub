@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BAC Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free BAC Calculator online to get accurate results instantly. Get personalized bac results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="bac calculator, free bac calculator, bac calculator online, calculate bac online, accurate bac calculator, bac for men, bac for women, how to calculate bac, what is a healthy bac, bac explained, bac ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"BAC Calculator","url":"https://vitalhealthhub.org/calculators/bac-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free BAC Calculator online to get accurate results instantly. Get personalized bac results with healthy range guidance for men and women. 100% free."}</script>
@@ -452,7 +455,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var dr=parseFloat(document.getElementById('drinks').value);var w=parseFloat(document.getElementById('weight').value);var g=document.getElementById('gender').value;var h=parseFloat(document.getElementById('hours').value);if(!dr||!w){alert('Fill fields');return;}var r=g==='Male'?0.68:0.55;var bac=((dr*14)/(w*1000*r)*100-0.015*h);bac=Math.max(0,bac).toFixed(3);var c='green',l='Sober/Minimal',s='Your estimated BAC is very low.';if(bac>=0.08){c='red';l='Above Legal Limit';s='Your BAC is above the legal driving limit in most jurisdictions. Do NOT drive. Arrange alternative transportation.';}else if(bac>=0.04){c='yellow';l='Impaired';s='You may be impaired. Avoid driving and making important decisions.';}else if(bac>0.01){c='yellow';l='Minimal Effect';s='Slight effects possible. Be cautious about driving.';}showResult('result',bac+'%',l,s,c); }

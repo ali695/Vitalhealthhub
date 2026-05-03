@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Fiber Intake Score Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Fiber Intake Score online to get accurate results instantly. Get personalized fiber intake score results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="fiber intake score calculator, free fiber intake score calculator, fiber intake score calculator online, calculate fiber intake score online, accurate fiber intake score calculator, fiber intake score for men, fiber intake score for women, how to calculate fiber intake score, what is a healthy fiber intake score, fiber intake score explained, fiber intake score ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Fiber Intake Score","url":"https://vitalhealthhub.org/calculators/fiber-score-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Fiber Intake Score online to get accurate results instantly. Get personalized fiber intake score results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var fr=parseFloat(document.getElementById('fruits').value)||0;var vg=parseFloat(document.getElementById('veggies').value)||0;var gr=parseFloat(document.getElementById('grains').value)||0;var lg=parseFloat(document.getElementById('legumes').value)||0;var nt=parseFloat(document.getElementById('nuts').value)||0;var total=Math.round(fr*2.5+vg*2.5+gr*3+lg*2+nt*2);var rec=30;var pct=Math.min(100,Math.round(total/rec*100));var c=total>=rec?'green':total>=rec*0.7?'yellow':'red';var l=total>=rec?'Meeting Goals':total>=rec*0.7?'Almost There':'Below Target';showResult('result',total+'g/day',l+'  ('+pct+'% of '+rec+'g target)','Most adults get only 15g/day vs the recommended 25-38g. '+(total<rec?'Increase legumes (highest fiber), add a handful of nuts, swap refined grains for whole grains, and load up on vegetables.':'Excellent! Your fiber intake supports digestive health, blood sugar control, and cardiovascular health.'),'green'); }

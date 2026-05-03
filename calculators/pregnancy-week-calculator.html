@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pregnancy Week Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Pregnancy Week Calculator online to get accurate results instantly. Get personalized pregnancy week results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="pregnancy week calculator, free pregnancy week calculator, pregnancy week calculator online, calculate pregnancy week online, accurate pregnancy week calculator, pregnancy week for men, pregnancy week for women, how to calculate pregnancy week, what is a healthy pregnancy week, pregnancy week explained, pregnancy week ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Pregnancy Week Calculator","url":"https://vitalhealthhub.org/calculators/pregnancy-week-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Pregnancy Week Calculator online to get accurate results instantly. Get personalized pregnancy week results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var lmp=new Date(document.getElementById('lmp').value);var cyc=parseFloat(document.getElementById('cycle').value)||28;if(!document.getElementById('lmp').value){alert('Enter your LMP date');return;}var adj=cyc-28;var conception=new Date(lmp.getTime()+((14+adj)*86400000));var dueDate=new Date(lmp.getTime()+((280+adj)*86400000));var now=new Date();var diffDays=Math.floor((now-lmp)/86400000);var weeks=Math.floor(diffDays/7);var days=diffDays%7;var tri=weeks<13?'1st':weeks<27?'2nd':'3rd';var daysLeft=Math.max(0,Math.floor((dueDate-now)/86400000));var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var dueFmt=months[dueDate.getMonth()]+' '+dueDate.getDate()+', '+dueDate.getFullYear();showResult('result',weeks+' weeks '+days+' days',tri+' Trimester','Estimated due date: '+dueFmt+' | Days remaining: '+daysLeft+' | Trimester: '+tri+'. At week '+weeks+': baby is about '+Math.round(weeks*2.5)+'mm long. Always confirm with your healthcare provider via ultrasound.','green'); }

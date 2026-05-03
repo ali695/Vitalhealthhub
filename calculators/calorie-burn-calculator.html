@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Activity Calorie Burn Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Activity Calorie Burn Calculator online to get accurate results instantly. Get personalized activity calorie burn results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="activity calorie burn calculator, free activity calorie burn calculator, activity calorie burn calculator online, calculate activity calorie burn online, accurate activity calorie burn calculator, activity calorie burn for men, activity calorie burn for women, how to calculate activity calorie burn, what is a healthy activity calorie burn, activity calorie burn explained, activity calorie burn ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Activity Calorie Burn Calculator","url":"https://vitalhealthhub.org/calculators/calorie-burn-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Activity Calorie Burn Calculator online to get accurate results instantly. Get personalized activity calorie burn results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var act=document.getElementById('activity').value;var dur=parseFloat(document.getElementById('duration').value);if(!w||!dur){alert('Fill all fields');return;}var mets={'Walking (moderate)':3.5,'Running (8 km/h)':8.3,'Running (12 km/h)':11.8,'Cycling (moderate)':6.8,'Swimming':7,'HIIT Training':12,'Weight Training':4,'Yoga':2.5,'Pilates':3,'Dancing':5,'Hiking':6,'Rowing':7,'Jump Rope':11,'Basketball':8,'Tennis':7.3,'Golf':4,'Gardening':4,'Cleaning House':3.5,'Cooking':2.5,'Office Work':1.5};var met=mets[act]||4;var cal=Math.round(met*w*dur/60);showResult('result',cal+' kcal','Calories Burned: '+act,'You burned approximately '+cal+' calories during '+dur+' minutes of '+act+'. Rate: '+Math.round(cal/(dur/60))+' kcal/hour. For weight loss, combine activity with a moderate calorie deficit.','green'); }

@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cholesterol Risk Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Cholesterol Risk Calculator online to get accurate results instantly. Get personalized cholesterol risk results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="cholesterol risk calculator, free cholesterol risk calculator, cholesterol risk calculator online, calculate cholesterol risk online, accurate cholesterol risk calculator, cholesterol risk for men, cholesterol risk for women, how to calculate cholesterol risk, what is a healthy cholesterol risk, cholesterol risk explained, cholesterol risk ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Cholesterol Risk Calculator","url":"https://vitalhealthhub.org/calculators/cholesterol-risk-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Cholesterol Risk Calculator online to get accurate results instantly. Get personalized cholesterol risk results with healthy range guidance for men and women. 100% free."}</script>
@@ -478,7 +481,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var t=parseFloat(document.getElementById('total').value);var hdl=parseFloat(document.getElementById('hdl').value);var ldl=parseFloat(document.getElementById('ldl').value);if(!t||!hdl||!ldl){alert('Fill all fields');return;}var ratio=(t/hdl).toFixed(1);var c='green',l='Optimal',s='Your cholesterol levels appear healthy. Continue with heart-healthy habits.';if(ratio>5||ldl>160){c='red';l='High Risk';s='Your cholesterol levels suggest elevated cardiovascular risk. Consult your doctor about lifestyle changes and possible treatment.';}else if(ratio>4||ldl>130){c='yellow';l='Borderline',s='Your cholesterol is borderline high. Focus on diet, exercise, and regular monitoring.';}showResult('result','Ratio: '+ratio,l,s,c); }

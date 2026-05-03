@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tip Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Tip Calculator online to get accurate results instantly. Get personalized tip results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="tip calculator, free tip calculator, tip calculator online, calculate tip online, accurate tip calculator, tip for men, tip for women, how to calculate tip, what is a healthy tip, tip explained, tip ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Tip Calculator","url":"https://vitalhealthhub.org/calculators/tip-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Tip Calculator online to get accurate results instantly. Get personalized tip results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var bill=parseFloat(document.getElementById('bill').value);var tipPct=parseFloat(document.getElementById('tip').value);var people=parseFloat(document.getElementById('people').value)||1;if(!bill||isNaN(tipPct)){alert('Enter bill and tip %');return;}var tipAmt=bill*tipPct/100;var total=bill+tipAmt;var perPerson=total/people;showResult('result','$'+tipAmt.toFixed(2)+' tip','Bill Split','Total with '+tipPct+'% tip: $'+total.toFixed(2)+' | Per person ('+people+'): $'+perPerson.toFixed(2)+' | Tip per person: $'+(tipAmt/people).toFixed(2)+' | Just bill per person: $'+(bill/people).toFixed(2)+'','green'); }

@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Carb Intake Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Carb Intake Calculator online to get accurate results instantly. Get personalized carb intake results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="carb intake calculator, free carb intake calculator, carb intake calculator online, calculate carb intake online, accurate carb intake calculator, carb intake for men, carb intake for women, how to calculate carb intake, what is a healthy carb intake, carb intake explained, carb intake ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Carb Intake Calculator","url":"https://vitalhealthhub.org/calculators/carb-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Carb Intake Calculator online to get accurate results instantly. Get personalized carb intake results with healthy range guidance for men and women. 100% free."}</script>
@@ -472,7 +475,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var cal=parseFloat(document.getElementById('calories').value);var goal=document.getElementById('goal').value;if(!cal){alert('Enter calories');return;}var pct={'Balanced':0.45,'Low Carb':0.25,'Keto':0.05,'High Performance':0.55};var carbs=Math.round(cal*(pct[goal]||0.45)/4);showResult('result',carbs+'g','Daily Carbs','You need approximately '+carbs+' grams of carbohydrates per day ('+Math.round((pct[goal]||0.45)*100)+'% of calories). Focus on complex carbs from whole grains, fruits, and vegetables.','green'); }

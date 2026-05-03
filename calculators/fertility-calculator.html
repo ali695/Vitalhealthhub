@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Fertility Window Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Fertility Window Calculator online to get accurate results instantly. Get personalized fertility window results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="fertility window calculator, free fertility window calculator, fertility window calculator online, calculate fertility window online, accurate fertility window calculator, fertility window for men, fertility window for women, how to calculate fertility window, what is a healthy fertility window, fertility window explained, fertility window ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Fertility Window Calculator","url":"https://vitalhealthhub.org/calculators/fertility-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Fertility Window Calculator online to get accurate results instantly. Get personalized fertility window results with healthy range guidance for men and women. 100% free."}</script>
@@ -458,7 +461,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var lmp=document.getElementById('lmp').value;var cl=parseFloat(document.getElementById('cycle').value)||28;if(!lmp){alert('Enter date');return;}var d=new Date(lmp);var ov=new Date(d);ov.setDate(ov.getDate()+cl-14);var fs=new Date(ov);fs.setDate(fs.getDate()-5);var fe=new Date(ov);fe.setDate(fe.getDate()+1);var fmt=function(dt){return(dt.getMonth()+1)+'/'+dt.getDate();};showResult('result',fmt(fs)+' - '+fmt(fe),'Fertile Window','Your fertile window spans from '+fmt(fs)+' to '+fmt(fe)+'. The highest chance of conception is 1-2 days before ovulation ('+fmt(ov)+').','green'); }

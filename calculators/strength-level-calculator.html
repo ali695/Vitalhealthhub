@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Strength Level Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Strength Level Calculator online to get accurate results instantly. Get personalized strength level results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="strength level calculator, free strength level calculator, strength level calculator online, calculate strength level online, accurate strength level calculator, strength level for men, strength level for women, how to calculate strength level, what is a healthy strength level, strength level explained, strength level ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Strength Level Calculator","url":"https://vitalhealthhub.org/calculators/strength-level-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Strength Level Calculator online to get accurate results instantly. Get personalized strength level results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var bw=parseFloat(document.getElementById('weight').value);var bp=parseFloat(document.getElementById('bench').value);var sq=parseFloat(document.getElementById('squat').value);var dl=parseFloat(document.getElementById('deadlift').value);var g=document.getElementById('gender').value;if(!bw){alert('Enter body weight');return;}var benchRatio=bp?bp/bw:0;var squatRatio=sq?sq/bw:0;var deadRatio=dl?dl/bw:0;var levels=g==='Male'?{novice:[0.5,0.75,1],intermediate:[1,1.25,1.5],advanced:[1.5,1.75,2],elite:[2,2.25,2.5]}:{novice:[0.35,0.5,0.65],intermediate:[0.75,1,1.15],advanced:[1.1,1.4,1.6],elite:[1.5,1.8,2]};function getLevel(r,lev){return r>=lev.elite[0]?'Elite':r>=lev.advanced[0]?'Advanced':r>=lev.intermediate[0]?'Intermediate':r>=lev.novice[0]?'Novice':'Beginner';}var bl=getLevel(benchRatio,levels);var sl=getLevel(squatRatio,levels);var dl2=getLevel(deadRatio,levels);var parts=[];if(bp)parts.push('Bench: '+bp+'kg ('+benchRatio.toFixed(2)+'x BW) = '+bl);if(sq)parts.push('Squat: '+sq+'kg ('+squatRatio.toFixed(2)+'x BW) = '+sl);if(dl)parts.push('Deadlift: '+dl+'kg ('+deadRatio.toFixed(2)+'x BW) = '+dl2);showResult('result',bl,'Overall Strength Level',parts.join(' | ')+'. Use progressive overload to advance to the next level — add 2.5-5kg per session for compound lifts.','green'); }

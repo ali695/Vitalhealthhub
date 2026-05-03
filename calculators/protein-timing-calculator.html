@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Protein Timing Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Protein Timing Calculator online to get accurate results instantly. Get personalized protein timing results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="protein timing calculator, free protein timing calculator, protein timing calculator online, calculate protein timing online, accurate protein timing calculator, protein timing for men, protein timing for women, how to calculate protein timing, what is a healthy protein timing, protein timing explained, protein timing ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Protein Timing Calculator","url":"https://vitalhealthhub.org/calculators/protein-timing-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Protein Timing Calculator online to get accurate results instantly. Get personalized protein timing results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var goal=document.getElementById('goal').value;var meals=Math.max(2,Math.min(6,parseFloat(document.getElementById('meals').value)||4));var train=document.getElementById('training').value;if(!w){alert('Enter weight');return;}var mult={'Muscle Building':2.0,'Weight Loss (muscle preservation)':2.2,'Athletic Performance':1.8,'General Health':1.4}[goal]||1.6;var total=Math.round(w*mult);var perMeal=Math.round(total/meals);var prePost=Math.round(total*0.25);showResult('result',total+'g/day','Daily Protein Target','Total: '+total+'g/day ('+mult+'g/kg) distributed over '+meals+' meals = ~'+perMeal+'g each. Around '+train+' training: aim for '+prePost+'g within 2 hours of your workout. Leucine threshold (~2.5-3g per meal) is key for muscle protein synthesis — achieved with ~20-40g protein per meal.',total>0?'green':'yellow'); }

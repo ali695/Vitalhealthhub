@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Menopause Symptom Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Menopause Symptom Calculator online to get accurate results instantly. Get personalized menopause symptom results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="menopause symptom calculator, free menopause symptom calculator, menopause symptom calculator online, calculate menopause symptom online, accurate menopause symptom calculator, menopause symptom for men, menopause symptom for women, how to calculate menopause symptom, what is a healthy menopause symptom, menopause symptom explained, menopause symptom ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Menopause Symptom Calculator","url":"https://vitalhealthhub.org/calculators/menopause-symptom-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Menopause Symptom Calculator online to get accurate results instantly. Get personalized menopause symptom results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value)||50;var hf=parseFloat(document.getElementById('hotflash').value)||0;var sl=parseFloat(document.getElementById('sleep').value)||0;var mo=parseFloat(document.getElementById('mood').value)||0;var vg=parseFloat(document.getElementById('vaginal').value)||0;var cg=parseFloat(document.getElementById('cognitive').value)||0;var period=document.getElementById('period').value;var stage=period==='Regular periods'?'Premenopause':period==='Irregular periods'?'Perimenopause':period==='No period 3-11 months'?'Late Perimenopause':'Postmenopause';var score=hf+sl+mo+vg+cg;var c=score<=4?'green':score<=9?'yellow':'red';var l=score<=4?'Mild Symptoms':score<=9?'Moderate Symptoms':'Significant Symptoms';var s='Stage: '+stage+'. Symptom score: '+score+'/15. '+(score<=4?'Your symptoms are mild and manageable. Lifestyle adjustments like regular exercise, cooling clothing, and good sleep hygiene often suffice.':score<=9?'Your symptoms are moderate. Consider speaking with your doctor about options including lifestyle changes, hormone therapy (HRT), or non-hormonal medications.':'Your symptoms are significantly impacting quality of life. Please consult a menopause specialist to discuss evidence-based treatments including HRT and non-hormonal options.');showResult('result',score+'/15',l,s,c); }

@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Omega-3 Intake Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Omega-3 Intake Calculator online to get accurate results instantly. Get personalized omega-3 intake results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="omega-3 intake calculator, free omega-3 intake calculator, omega-3 intake calculator online, calculate omega-3 intake online, accurate omega-3 intake calculator, omega-3 intake for men, omega-3 intake for women, how to calculate omega-3 intake, what is a healthy omega-3 intake, omega-3 intake explained, omega-3 intake ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Omega-3 Intake Calculator","url":"https://vitalhealthhub.org/calculators/omega3-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Omega-3 Intake Calculator online to get accurate results instantly. Get personalized omega-3 intake results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var cond=document.getElementById('condition').value;var fish=parseFloat(document.getElementById('fish').value)||0;var flax=parseFloat(document.getElementById('flax').value)||0;var nuts=parseFloat(document.getElementById('nuts').value)||0;var targets={'General Health':500,'Heart Health':1000,'Anti-Inflammatory':2000,'Brain Health':1000,'Pregnancy/Breastfeeding':1400}[cond]||500;var current=Math.round(fish*7*1500/7+flax*2300+nuts*0.7*2300);var gap=Math.max(0,targets-current);var c=current>=targets?'green':current>=targets*0.7?'yellow':'red';var l=current>=targets?'Target Met':'Additional Needed';showResult('result',current+' mg/day','Omega-3 Intake','Daily intake: ~'+current+' mg EPA+DHA | Target for '+cond+': '+targets+' mg | Gap: '+(gap>0?gap+' mg — consider fish oil supplements.':'none — your intake is sufficient!')+'  Sources: salmon (2000mg/serving), sardines (1500mg), mackerel (2500mg). Plant omega-3 (ALA) from flax/chia converts at only 5-10% efficiency.',c); }

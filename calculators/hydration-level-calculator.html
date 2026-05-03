@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hydration Level Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Hydration Level Calculator online to get accurate results instantly. Get personalized hydration level results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="hydration level calculator, free hydration level calculator, hydration level calculator online, calculate hydration level online, accurate hydration level calculator, hydration level for men, hydration level for women, how to calculate hydration level, what is a healthy hydration level, hydration level explained, hydration level ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Hydration Level Calculator","url":"https://vitalhealthhub.org/calculators/hydration-level-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Hydration Level Calculator online to get accurate results instantly. Get personalized hydration level results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var act=document.getElementById('activity').value;var clim=document.getElementById('climate').value;var sym=document.getElementById('symptoms').value;if(!w){alert('Enter weight');return;}var base=w*35/1000;var actAdd={'Sedentary':0,'Lightly Active':0.3,'Moderately Active':0.5,'Very Active':0.8}[act]||0;var climAdd={'Cool/Temperate':0,'Warm':0.3,'Hot/Humid':0.5}[clim]||0;var total=(base+actAdd+climAdd).toFixed(1);var status={'None':'Well Hydrated','Mild thirst':'Slightly Low','Noticeable thirst + yellow urine':'Dehydrated','Headache + concentrated urine':'Significantly Dehydrated','Very dark urine + dizziness':'Severely Dehydrated'}[sym]||'Unknown';var c={'None':'green','Mild thirst':'yellow','Noticeable thirst + yellow urine':'yellow','Headache + concentrated urine':'red','Very dark urine + dizziness':'red'}[sym]||'green';showResult('result',total+' L/day','Daily Water Target | Status: '+status,'Recommendation: drink '+total+' liters throughout the day. Dehydration status: '+status+'. Best hydration check: urine should be pale yellow, not dark. Divide intake across 6-8 sessions throughout the day.',c); }

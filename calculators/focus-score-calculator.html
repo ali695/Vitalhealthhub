@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Focus & Concentration Score Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Focus & Concentration Score online to get accurate results instantly. Get personalized focus & concentration score results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="focus & concentration score calculator, free focus & concentration score calculator, focus & concentration score calculator online, calculate focus & concentration score online, accurate focus & concentration score calculator, focus & concentration score for men, focus & concentration score for women, how to calculate focus & concentration score, what is a healthy focus & concentration score, focus & concentration score explained, focus & concentration score ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Focus & Concentration Score","url":"https://vitalhealthhub.org/calculators/focus-score-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Focus & Concentration Score online to get accurate results instantly. Get personalized focus & concentration score results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var d=parseFloat(document.getElementById('distract').value)||0;var c=parseFloat(document.getElementById('complete').value)||0;var f=parseFloat(document.getElementById('forget').value)||0;var w=parseFloat(document.getElementById('wander').value)||0;var sl=parseFloat(document.getElementById('sleep').value)||3;var ex=parseFloat(document.getElementById('exercise').value)||2;var negScore=d+c+f+w;var posScore=sl+ex;var score=Math.max(0,Math.min(100,Math.round((1-negScore/16)*50+(posScore/8)*50)));var col=score>=70?'green':score>=45?'yellow':'red';var l=score>=70?'Good Focus':score>=45?'Moderate Focus':'Poor Focus';var s=score>=70?'Your focus score is strong. Maintain good sleep, exercise, and minimize digital distractions to stay sharp.':score>=45?'Your focus is moderate. Try techniques like Pomodoro (25-min blocks), morning exercise, and limiting social media to improve concentration.':'Your focus score is low. Prioritize sleep quality, add daily physical activity, practice mindfulness meditation, and consider speaking with a doctor to rule out ADHD or other conditions.';showResult('result',score+'/100',l,s,col); }

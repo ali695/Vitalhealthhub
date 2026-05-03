@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sleep Debt Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Sleep Debt Calculator online to get accurate results instantly. Get personalized sleep debt results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="sleep debt calculator, free sleep debt calculator, sleep debt calculator online, calculate sleep debt online, accurate sleep debt calculator, sleep debt for men, sleep debt for women, how to calculate sleep debt, what is a healthy sleep debt, sleep debt explained, sleep debt ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Sleep Debt Calculator","url":"https://vitalhealthhub.org/calculators/sleep-debt-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Sleep Debt Calculator online to get accurate results instantly. Get personalized sleep debt results with healthy range guidance for men and women. 100% free."}</script>
@@ -477,7 +480,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var need=parseFloat(document.getElementById('needed').value);var act=parseFloat(document.getElementById('actual').value);var days=parseFloat(document.getElementById('days').value);if(!need||!act||!days){alert('Fill fields');return;}var daily=need-act;var total=(daily*days).toFixed(1);var c='green',l='Well Rested',s='You are getting adequate sleep. Keep up the good habits!';if(total>14){c='red';l='Severe Sleep Debt';s='You have significant sleep debt. Prioritize sleep and consider consulting a sleep specialist.';}else if(total>7){c='yellow';l='Moderate Sleep Debt';s='Your sleep debt is building up. Try adding 30-60 minutes of extra sleep each night.';}else if(total>0){c='yellow';l='Mild Sleep Debt';s='You have a mild sleep deficit. Try to get an extra 15-30 minutes of sleep each night.';}if(total<=0){total='0';l='No Debt';s='Great! You are meeting or exceeding your sleep needs.';}showResult('result',total+' hours',l,s,c); }

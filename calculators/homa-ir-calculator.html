@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="HOMA-IR Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free HOMA-IR Calculator online to get accurate results instantly. Get personalized homa-ir results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="homa-ir calculator, free homa-ir calculator, homa-ir calculator online, calculate homa-ir online, accurate homa-ir calculator, homa-ir for men, homa-ir for women, how to calculate homa-ir, what is a healthy homa-ir, homa-ir explained, homa-ir ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"HOMA-IR Calculator","url":"https://vitalhealthhub.org/calculators/homa-ir-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free HOMA-IR Calculator online to get accurate results instantly. Get personalized homa-ir results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var glu=parseFloat(document.getElementById('glucose').value);var ins=parseFloat(document.getElementById('insulin').value);if(!glu||!ins){alert('Enter both values');return;}var gluMmol=glu/18;var homa=(gluMmol*ins)/22.5;homa=homa.toFixed(2);var c='green',l='Insulin Sensitive',s='Your HOMA-IR score suggests good insulin sensitivity. Maintain a healthy diet and regular exercise to preserve this.';if(homa>2.9){c='red';l='Insulin Resistant';s='Your HOMA-IR is elevated, suggesting significant insulin resistance. Consult your doctor to discuss lifestyle changes and possible testing for prediabetes or type 2 diabetes.';}else if(homa>1.9){c='yellow';l='Borderline Resistance';s='Your HOMA-IR suggests early insulin resistance. A low-glycemic diet, regular exercise, and weight management can help improve insulin sensitivity.';}showResult('result',homa,'HOMA-IR Score',s,c); }

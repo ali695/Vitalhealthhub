@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Loan EMI Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Loan EMI Calculator online to get accurate results instantly. Get personalized loan emi results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="loan emi calculator, free loan emi calculator, loan emi calculator online, calculate loan emi online, accurate loan emi calculator, loan emi for men, loan emi for women, how to calculate loan emi, what is a healthy loan emi, loan emi explained, loan emi ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Loan EMI Calculator","url":"https://vitalhealthhub.org/calculators/loan-emi-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Loan EMI Calculator online to get accurate results instantly. Get personalized loan emi results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var P=parseFloat(document.getElementById('principal').value);var r=parseFloat(document.getElementById('rate').value)/100/12;var n=parseFloat(document.getElementById('tenure').value);if(!P||!r||!n){alert('Fill all fields');return;}var emi=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);var total=emi*n;var interest=total-P;showResult('result','$'+Math.round(emi).toLocaleString()+'/mo','Monthly EMI Payment','Total repayment: $'+Math.round(total).toLocaleString()+' | Principal: $'+Math.round(P).toLocaleString()+' | Total interest: $'+Math.round(interest).toLocaleString()+' | Interest-to-principal ratio: '+Math.round(interest/P*100)+'%','green'); }

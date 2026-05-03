@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Electrolyte Needs Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Electrolyte Needs Calculator online to get accurate results instantly. Get personalized electrolyte needs results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="electrolyte needs calculator, free electrolyte needs calculator, electrolyte needs calculator online, calculate electrolyte needs online, accurate electrolyte needs calculator, electrolyte needs for men, electrolyte needs for women, how to calculate electrolyte needs, what is a healthy electrolyte needs, electrolyte needs explained, electrolyte needs ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Electrolyte Needs Calculator","url":"https://vitalhealthhub.org/calculators/electrolyte-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Electrolyte Needs Calculator online to get accurate results instantly. Get personalized electrolyte needs results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var act=document.getElementById('activity').value;var clim=document.getElementById('climate').value;var swt=document.getElementById('sweat').value;if(!w){alert('Enter weight');return;}var na={'Sedentary':1500,'Moderately Active':2000,'Very Active (1hr+/day)':2500,'Elite Athlete':3000}[act]||2000;var k=Math.round(w*50);var mg=Math.round(w*6);if(clim==='Hot/Humid'){na+=500;k+=300;}if(swt==='Heavy Sweater')na+=600;if(swt==='Moderate Sweater')na+=300;showResult('result',na+'mg Na+','Daily Electrolyte Targets','Sodium (Na+): '+na+' mg/day | Potassium (K+): '+Math.min(k,4700)+' mg/day | Magnesium (Mg): '+Math.min(mg,420)+' mg/day. Sources: Na+ (salt, broth), K+ (bananas, potatoes, avocado), Mg (nuts, leafy greens, dark chocolate).','green'); }

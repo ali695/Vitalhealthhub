@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Body Recomposition Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Body Recomposition Calculator online to get accurate results instantly. Get personalized body recomposition results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="body recomposition calculator, free body recomposition calculator, body recomposition calculator online, calculate body recomposition online, accurate body recomposition calculator, body recomposition for men, body recomposition for women, how to calculate body recomposition, what is a healthy body recomposition, body recomposition explained, body recomposition ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Body Recomposition Calculator","url":"https://vitalhealthhub.org/calculators/body-recomposition-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Body Recomposition Calculator online to get accurate results instantly. Get personalized body recomposition results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var a=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;var act=document.getElementById('activity').value;var bf=parseFloat(document.getElementById('bodyfat').value)||20;if(!w||!h||!a){alert('Fill all fields');return;}var bmr=g==='Male'?10*w+6.25*h-5*a+5:10*w+6.25*h-5*a-161;var m={'Sedentary':1.2,'Lightly Active':1.375,'Moderately Active':1.55,'Very Active':1.725};var tdee=Math.round(bmr*(m[act]||1.375));var recompCal=Math.round(tdee*0.95);var protein=Math.round(w*2.2);var fat=Math.round(w*0.8);var carbCal=recompCal-protein*4-fat*9;var carbs=Math.max(50,Math.round(carbCal/4));showResult('result',recompCal+' kcal','Body Recomposition Targets','TDEE: '+tdee+' kcal → Recomp: '+recompCal+' kcal (5% deficit) | Protein: '+protein+'g | Fat: '+fat+'g | Carbs: '+carbs+'g. Training: 3-4x strength + 2-3x cardio/week. Expect slow progress (1-2 lbs fat loss/month) but simultaneous muscle gain. Best for beginners and those returning to training.','green'); }

@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Percentage Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Percentage Calculator online to get accurate results instantly. Get personalized percentage results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="percentage calculator, free percentage calculator, percentage calculator online, calculate percentage online, accurate percentage calculator, percentage for men, percentage for women, how to calculate percentage, what is a healthy percentage, percentage explained, percentage ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Percentage Calculator","url":"https://vitalhealthhub.org/calculators/percentage-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Percentage Calculator online to get accurate results instantly. Get personalized percentage results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var mode=document.getElementById('mode').value;var x=parseFloat(document.getElementById('val1').value);var y=parseFloat(document.getElementById('val2').value);if(isNaN(x)||isNaN(y)){alert('Enter both values');return;}var res,label,info;if(mode==='What is X% of Y?'){res=(x/100*y).toFixed(2);label=x+'% of '+y;info=x+'% of '+y+' equals '+res+'. Example: a '+x+'% discount on $'+y+' saves you $'+res+'.';}else if(mode==='X is what % of Y?'){res=(x/y*100).toFixed(2);label='Percentage Result';info=x+' is '+res+'% of '+y+'. To verify: '+y+' x '+res+'% = '+x+'.';}else if(mode==='% Change from X to Y'){var ch=((y-x)/Math.abs(x)*100).toFixed(2);res=ch+'%';label=ch>0?'Increase':'Decrease';info='From '+x+' to '+y+' is a '+(ch>0?'+'+ ch:''+ch)+'% change. Difference: '+(y-x).toFixed(2)+'.';}else if(mode==='Add X% to Y'){res=(y*(1+x/100)).toFixed(2);label='Result After Adding '+x+'%';info=y+' + '+x+'% = '+res+'. Added amount: '+(y*x/100).toFixed(2)+'.';}else{res=(y*(1-x/100)).toFixed(2);label='Result After Subtracting '+x+'%';info=y+' - '+x+'% = '+res+'. Subtracted amount: '+(y*x/100).toFixed(2)+'.';}showResult('result',res,label,info,'green'); }

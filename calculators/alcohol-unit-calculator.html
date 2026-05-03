@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Alcohol Unit Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Alcohol Unit Calculator online to get accurate results instantly. Get personalized alcohol unit results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="alcohol unit calculator, free alcohol unit calculator, alcohol unit calculator online, calculate alcohol unit online, accurate alcohol unit calculator, alcohol unit for men, alcohol unit for women, how to calculate alcohol unit, what is a healthy alcohol unit, alcohol unit explained, alcohol unit ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Alcohol Unit Calculator","url":"https://vitalhealthhub.org/calculators/alcohol-unit-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Alcohol Unit Calculator online to get accurate results instantly. Get personalized alcohol unit results with healthy range guidance for men and women. 100% free."}</script>
@@ -475,7 +478,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var v=parseFloat(document.getElementById('volume').value);var abv=parseFloat(document.getElementById('abv').value);var n=parseFloat(document.getElementById('drinks').value)||1;if(!v||!abv){alert('Fill fields');return;}var units=((v*abv/1000)*n).toFixed(1);var cal=Math.round(units*80);var c='green',l='Moderate',s='Stay within recommended limits of 14 units per week.';if(units>6){c='red';l='Excessive';s='This amount significantly exceeds single-session guidelines. Consider reducing intake.';}else if(units>3){c='yellow';l='Above Moderate';s='This is above moderate levels. Consider pacing yourself and drinking water between drinks.';}showResult('result',units+' units','Alcohol Intake: '+l,s+' Estimated calories: '+cal+' kcal.',c); }

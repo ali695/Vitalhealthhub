@@ -276,6 +276,9 @@ function head(title, desc, canonical, extra = '') {
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${desc}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 ${extra}
 </head>`;
@@ -1230,7 +1233,7 @@ ${calcRelatedCards(calc)}
 ${calcCrossContentSection(calc)}
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ ${calc.logic} }
@@ -2084,7 +2087,7 @@ ${relatedQuizzes.map(q => `<a href="/quizzes/${q.slug}.html" class="bp-bottom-qu
 </article>
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   var links=document.querySelectorAll('.bp-toc-link');
@@ -2175,7 +2178,7 @@ ${calculators.map(c => {
 </div>
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 var currentCalcCat='all';
 function filterCalcs(){
@@ -2525,7 +2528,7 @@ ${featuredPosts.map(p => {
 
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 function homeFilterCat(cat,btn){
   document.querySelectorAll('.home-cat-btn').forEach(function(b){b.classList.remove('active');});
@@ -2550,7 +2553,7 @@ console.log('Generated index.html');
 // ========================
 
 // ABOUT
-fs.writeFileSync('about.html', `${head('About Us | '+SITE_NAME, 'Learn about '+SITE_NAME+' — our mission to make health tools and knowledge freely accessible to everyone through science-based calculators, interactive quizzes, and expert articles.', '/about.html')}
+fs.writeFileSync('about.html', `${head('About Us | '+SITE_NAME, 'Learn about VitalHealth Hub — free science-based health calculators, expert wellness articles, interactive quizzes, and tools trusted by millions worldwide.', '/about.html')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'About Us',url:'/about.html'}]).html}
@@ -2800,12 +2803,12 @@ ${globalHero({
 
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 ${CHATBOT}
 </body></html>`);
 
 // CONTACT
-fs.writeFileSync('contact.html', `${head('Contact Us | '+SITE_NAME, 'Get in touch with '+SITE_NAME+'. Questions, feedback, or partnership inquiries — we would love to hear from you.', '/contact.html')}
+fs.writeFileSync('contact.html', `${head('Contact Us | '+SITE_NAME, 'Contact VitalHealth Hub for questions, feedback, or partnership inquiries. Our team is ready to help with calculators, tools, and wellness content.', '/contact.html')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Contact',url:'/contact.html'}]).html}
@@ -2855,7 +2858,7 @@ ${globalHero({
 </section>
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 ${CHATBOT}
 </body></html>`);
 
@@ -3101,7 +3104,7 @@ ${faqSectionsHTML}
 
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 ${CHATBOT}
 <script>
 // FAQ Category Filter
@@ -3147,7 +3150,7 @@ function faqHeroSearch(q) {
 </body></html>`);
 
 // PRIVACY
-fs.writeFileSync('privacy.html', `${head('Privacy Policy | '+SITE_NAME, 'Read the '+SITE_NAME+' privacy policy. Learn how we protect your data and respect your privacy.', '/privacy.html')}
+fs.writeFileSync('privacy.html', `${head('Privacy Policy | '+SITE_NAME, 'Read the VitalHealth Hub privacy policy. Learn how we collect, use, and protect your personal data when using our free health tools and calculators.', '/privacy.html')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Privacy Policy',url:'/privacy.html'}]).html}
@@ -3178,12 +3181,12 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'Privacy Policy',url:'/privacy.html'}]
 </section>
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 ${CHATBOT}
 </body></html>`);
 
 // DISCLAIMER
-fs.writeFileSync('disclaimer.html', `${head('Medical Disclaimer | '+SITE_NAME, 'Read the '+SITE_NAME+' medical disclaimer. Our tools are for informational purposes only and not medical advice.', '/disclaimer.html')}
+fs.writeFileSync('disclaimer.html', `${head('Medical Disclaimer | '+SITE_NAME, 'Read the VitalHealth Hub medical disclaimer. All health calculators and content are for informational purposes only and do not constitute medical advice.', '/disclaimer.html')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Medical Disclaimer',url:'/disclaimer.html'}]).html}
@@ -3209,12 +3212,12 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'Medical Disclaimer',url:'/disclaimer.
 </section>
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 ${CHATBOT}
 </body></html>`);
 
 // TERMS
-fs.writeFileSync('terms.html', `${head('Terms of Service | '+SITE_NAME, 'Read the '+SITE_NAME+' terms of service. Understand the conditions for using our free health calculators and wellness tools.', '/terms.html')}
+fs.writeFileSync('terms.html', `${head('Terms of Service | '+SITE_NAME, 'Read the VitalHealth Hub terms of service. Understand your rights and conditions for using our free health calculators, tools, and wellness content.', '/terms.html')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Terms of Service',url:'/terms.html'}]).html}
@@ -3256,7 +3259,7 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'Terms of Service',url:'/terms.html'}]
 </section>
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 ${CHATBOT}
 </body></html>`);
 
@@ -3286,7 +3289,7 @@ ${sitemapLinks}
 </section>
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 ${CHATBOT}
 </body></html>`);
 
@@ -3562,7 +3565,7 @@ ${popularTags.map(t => `<span class="blog-tag${t.size === 'lg' ? ' tag-lg' : t.s
 
 ${FOOTER}
 ${BTT}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 var blogCurrentCat='all';
 var blogCurrentPage=1;
@@ -4978,7 +4981,7 @@ function doConvert(){if(!convFile)return;var btn=document.getElementById('convBt
   // ── PDF MERGE (Utility/Minimal) ───────────────────────────────────────────
   if (t === 'pdf-merge') {
     return `
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
 <div class="saas-card-title">📄 PDF Merge Tool</div>
 <div class="util-dropzone" id="mergeDrop">
   <div class="util-dropzone-icon">📄</div>
@@ -5013,7 +5016,7 @@ async function doMerge(){if(mFiles.length<2)return;var btn=document.getElementBy
   // ── PDF SPLIT (Utility/Minimal) ───────────────────────────────────────────
   if (t === 'pdf-split') {
     return `
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
 <div class="saas-card-title">✂️ PDF Splitter</div>
 <div class="util-dropzone" id="splitDrop" onclick="document.getElementById('splitFile').click()">
   <div class="util-dropzone-icon">✂️</div>

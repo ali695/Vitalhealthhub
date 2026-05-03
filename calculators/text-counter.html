@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Text Counter & Word Count Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Text Counter & Word Count online to get accurate results instantly. Get personalized text counter & word count results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="text counter & word count calculator, free text counter & word count calculator, text counter & word count calculator online, calculate text counter & word count online, accurate text counter & word count calculator, text counter & word count for men, text counter & word count for women, how to calculate text counter & word count, what is a healthy text counter & word count, text counter & word count explained, text counter & word count ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Text Counter & Word Count","url":"https://vitalhealthhub.org/calculators/text-counter.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Text Counter & Word Count online to get accurate results instantly. Get personalized text counter & word count results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var t=document.getElementById('text').value;if(!t.trim()){alert('Enter some text');return;}var words=t.trim()?t.trim().split(/\s+/).length:0;var chars=t.length;var charsNS=t.replace(/\s/g,'').length;var sentences=t.split(/[.!?]+/).filter(function(s){return s.trim().length>0;}).length;var paras=t.split(/\n+/).filter(function(p){return p.trim().length>0;}).length;var readMin=Math.ceil(words/200);showResult('result',words+' words','Text Statistics','Characters: '+chars+' (without spaces: '+charsNS+') | Sentences: '+sentences+' | Paragraphs: '+paras+' | Reading time: ~'+readMin+' min (at 200 wpm)','green'); }

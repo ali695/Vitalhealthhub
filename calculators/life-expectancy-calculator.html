@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Life Expectancy Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Life Expectancy Calculator online to get accurate results instantly. Get personalized life expectancy results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="life expectancy calculator, free life expectancy calculator, life expectancy calculator online, calculate life expectancy online, accurate life expectancy calculator, life expectancy for men, life expectancy for women, how to calculate life expectancy, what is a healthy life expectancy, life expectancy explained, life expectancy ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Life Expectancy Calculator","url":"https://vitalhealthhub.org/calculators/life-expectancy-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Life Expectancy Calculator online to get accurate results instantly. Get personalized life expectancy results with healthy range guidance for men and women. 100% free."}</script>
@@ -474,7 +477,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;if(!age){alert('Enter age');return;}var base=g==='Male'?76:81;var sm=document.getElementById('smoking').value;if(sm==='Current')base-=10;if(sm==='Former')base-=3;var ex=document.getElementById('exercise').value;if(ex==='Daily')base+=4;if(ex==='3-5 times/week')base+=3;if(ex==='1-2 times/week')base+=1;var di=document.getElementById('diet').value;if(di==='Excellent')base+=3;if(di==='Good')base+=1;if(di==='Poor')base-=3;var bmi=document.getElementById('bmi').value;if(bmi==='Obese')base-=5;if(bmi==='Overweight')base-=2;var remaining=Math.max(0,base-age);showResult('result','~'+base+' years','Estimated Life Expectancy','Based on your inputs, your estimated life expectancy is approximately '+base+' years ('+remaining+' years remaining). Remember, lifestyle changes at any age can improve this estimate.','green'); }

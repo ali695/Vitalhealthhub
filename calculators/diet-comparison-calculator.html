@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Diet Comparison Tool Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Diet Comparison Tool online to get accurate results instantly. Get personalized diet comparison tool results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="diet comparison tool calculator, free diet comparison tool calculator, diet comparison tool calculator online, calculate diet comparison tool online, accurate diet comparison tool calculator, diet comparison tool for men, diet comparison tool for women, how to calculate diet comparison tool, what is a healthy diet comparison tool, diet comparison tool explained, diet comparison tool ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Diet Comparison Tool","url":"https://vitalhealthhub.org/calculators/diet-comparison-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Diet Comparison Tool online to get accurate results instantly. Get personalized diet comparison tool results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var cal=parseFloat(document.getElementById('calories').value)||2000;var w=parseFloat(document.getElementById('weight').value)||75;var diet=document.getElementById('diet').value;var profiles={'Standard Western':{p:0.15,c:0.55,f:0.30,score:4},'Mediterranean':{p:0.20,c:0.50,f:0.30,score:9},'Ketogenic':{p:0.20,c:0.05,f:0.75,score:7},'High Protein':{p:0.35,c:0.40,f:0.25,score:8},'Plant-Based':{p:0.15,c:0.60,f:0.25,score:9},'Paleo':{p:0.30,c:0.35,f:0.35,score:7},'Low Carb':{p:0.30,c:0.20,f:0.50,score:7},'Intermittent Fasting (16:8)':{p:0.25,c:0.45,f:0.30,score:8}};var d=profiles[diet];var pg=Math.round(cal*d.p/4);var cg=Math.round(cal*d.c/4);var fg=Math.round(cal*d.f/9);showResult('result',diet,'Diet Profile',diet+' macros at '+cal+' kcal: Protein '+pg+'g ('+Math.round(d.p*100)+'%) | Carbs '+cg+'g ('+Math.round(d.c*100)+'%) | Fat '+fg+'g ('+Math.round(d.f*100)+'%). Evidence score: '+d.score+'/10. Best for: '+({'Standard Western':'convenience (not health-optimized)','Mediterranean':'heart health, longevity, sustainability','Ketogenic':'rapid fat loss, epilepsy, insulin resistance','High Protein':'muscle building, satiety, weight loss','Plant-Based':'environmental impact, cardiovascular health','Paleo':'whole food approach, reducing processed foods','Low Carb':'blood sugar control, weight loss','Intermittent Fasting (16:8)':'metabolic flexibility, simplicity'}[diet]||'general health'),'green'); }

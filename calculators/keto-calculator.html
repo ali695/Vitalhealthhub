@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Keto Macro Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Keto Macro Calculator online to get accurate results instantly. Get personalized keto macro results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="keto macro calculator, free keto macro calculator, keto macro calculator online, calculate keto macro online, accurate keto macro calculator, keto macro for men, keto macro for women, how to calculate keto macro, what is a healthy keto macro, keto macro explained, keto macro ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Keto Macro Calculator","url":"https://vitalhealthhub.org/calculators/keto-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Keto Macro Calculator online to get accurate results instantly. Get personalized keto macro results with healthy range guidance for men and women. 100% free."}</script>
@@ -478,7 +481,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var cal=parseFloat(document.getElementById('calories').value);var w=parseFloat(document.getElementById('weight').value);var pp=document.getElementById('protein').value;if(!cal||!w){alert('Fill fields');return;}var pmult=parseFloat(pp);var protein=Math.round(w*pmult);var netCarbs=25;var carbCal=netCarbs*4;var protCal=protein*4;var fatCal=cal-carbCal-protCal;var fat=Math.round(fatCal/9);showResult('result','F:'+fat+'g P:'+protein+'g C:'+netCarbs+'g','Keto Macros','Fat: '+fat+'g ('+Math.round(fatCal/cal*100)+'%) | Protein: '+protein+'g ('+Math.round(protCal/cal*100)+'%) | Net Carbs: '+netCarbs+'g ('+Math.round(carbCal/cal*100)+'%). Keep net carbs under 25-50g to maintain ketosis.','green'); }

@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BMI Prime Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free BMI Prime Calculator online to get accurate results instantly. Get personalized bmi prime results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="bmi prime calculator, free bmi prime calculator, bmi prime calculator online, calculate bmi prime online, accurate bmi prime calculator, bmi prime for men, bmi prime for women, how to calculate bmi prime, what is a healthy bmi prime, bmi prime explained, bmi prime ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"BMI Prime Calculator","url":"https://vitalhealthhub.org/calculators/bmi-prime-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free BMI Prime Calculator online to get accurate results instantly. Get personalized bmi prime results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value)/100;if(!w||!h){alert('Fill all fields');return;}var bmi=w/(h*h);var bmiPrime=(bmi/25).toFixed(2);var c=bmiPrime<=1.0?'green':bmiPrime<=1.2?'yellow':'red';var l=bmiPrime<0.74?'Underweight':bmiPrime<=1.0?'Optimal':bmiPrime<=1.2?'Overweight':'Obese';showResult('result',bmiPrime,'BMI Prime','BMI: '+bmi.toFixed(1)+' | BMI Prime: '+bmiPrime+'. A BMI Prime of 1.0 means your BMI exactly equals the upper healthy limit (25). Values below 1.0 are healthy; above 1.0 indicates excess weight. This measure makes it easy to see how far from optimal your weight is.','green'); }

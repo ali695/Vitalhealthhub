@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Biological Age Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Biological Age Calculator online to get accurate results instantly. Get personalized biological age results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="biological age calculator, free biological age calculator, biological age calculator online, calculate biological age online, accurate biological age calculator, biological age for men, biological age for women, how to calculate biological age, what is a healthy biological age, biological age explained, biological age ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Biological Age Calculator","url":"https://vitalhealthhub.org/calculators/biological-age-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Biological Age Calculator online to get accurate results instantly. Get personalized biological age results with healthy range guidance for men and women. 100% free."}</script>
@@ -472,7 +475,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value);var ex=parseFloat(document.getElementById('exercise').value);var sl=parseFloat(document.getElementById('sleep').value);var sm=document.getElementById('smoking').value;var st=parseFloat(document.getElementById('stress').value);var di=parseFloat(document.getElementById('diet').value);if(!age){alert('Enter age');return;}var bio=age;if(ex>=5)bio-=3;else if(ex>=3)bio-=1;else if(ex<1)bio+=2;if(sl>=7&&sl<=9)bio-=1;else if(sl<6)bio+=3;if(sm==='Yes')bio+=8;if(st>=4)bio+=2;else if(st<=2)bio-=1;if(di>=5)bio-=2;else if(di<2)bio+=2;bio=Math.round(bio);var diff=bio-age;var c='green',l='Younger',s='Great news! Your biological age is younger than your chronological age. Your lifestyle habits are serving you well.';if(diff>5){c='red';l='Significantly Older';s='Your biological age is significantly higher than your chronological age. Consider improving exercise, diet, sleep, and stress management.';}else if(diff>0){c='yellow';l='Slightly Older';s='Your biological age is slightly above your chronological age. Small lifestyle improvements can make a big difference.';}showResult('result',bio+' years',l+' ('+((diff>0)?'+':'')+diff+' years)',s,c); }

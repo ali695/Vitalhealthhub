@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cycling Calories Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Cycling Calories Calculator online to get accurate results instantly. Get personalized cycling calories results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="cycling calories calculator, free cycling calories calculator, cycling calories calculator online, calculate cycling calories online, accurate cycling calories calculator, cycling calories for men, cycling calories for women, how to calculate cycling calories, what is a healthy cycling calories, cycling calories explained, cycling calories ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Cycling Calories Calculator","url":"https://vitalhealthhub.org/calculators/cycling-calories-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Cycling Calories Calculator online to get accurate results instantly. Get personalized cycling calories results with healthy range guidance for men and women. 100% free."}</script>
@@ -475,7 +478,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var d=parseFloat(document.getElementById('duration').value);var i=document.getElementById('intensity').value;if(!w||!d){alert('Fill fields');return;}var met={'Light (< 16 km/h)':4,'Moderate (16-19 km/h)':6.8,'Vigorous (19-22 km/h)':8,'Racing (> 22 km/h)':10};var cal=Math.round((met[i]||6)*w*d/60);showResult('result',cal+' kcal','Calories Burned Cycling','You burned approximately '+cal+' calories during '+d+' minutes of cycling. Regular cycling improves cardiovascular health and builds lower body strength.','green'); }

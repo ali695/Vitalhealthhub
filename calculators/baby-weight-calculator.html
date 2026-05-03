@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Baby Weight Percentile Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Baby Weight Percentile Calculator online to get accurate results instantly. Get personalized baby weight percentile results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="baby weight percentile calculator, free baby weight percentile calculator, baby weight percentile calculator online, calculate baby weight percentile online, accurate baby weight percentile calculator, baby weight percentile for men, baby weight percentile for women, how to calculate baby weight percentile, what is a healthy baby weight percentile, baby weight percentile explained, baby weight percentile ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Baby Weight Percentile Calculator","url":"https://vitalhealthhub.org/calculators/baby-weight-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Baby Weight Percentile Calculator online to get accurate results instantly. Get personalized baby weight percentile results with healthy range guidance for men and women. 100% free."}</script>
@@ -461,7 +464,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value);var w=parseFloat(document.getElementById('weight').value);var g=document.getElementById('gender').value;if(!age||!w){alert('Fill fields');return;}var avg=g==='Male'?3.3+0.7*age:3.2+0.65*age;var pct=Math.min(99,Math.max(1,Math.round(50+((w-avg)/avg)*100)));var c='green',l='Normal Range',s='Your baby appears to be growing well within normal parameters.';if(pct<5){c='yellow';l='Below Average';s='Your baby's weight is below average. Discuss with your pediatrician about nutrition.';}else if(pct>95){c='yellow';l='Above Average';s='Your baby's weight is above average. This may be perfectly normal but discuss with your pediatrician.';}showResult('result',pct+'th percentile',l,s,c); }

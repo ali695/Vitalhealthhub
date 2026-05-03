@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Macro Timing Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Macro Timing Calculator online to get accurate results instantly. Get personalized macro timing results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="macro timing calculator, free macro timing calculator, macro timing calculator online, calculate macro timing online, accurate macro timing calculator, macro timing for men, macro timing for women, how to calculate macro timing, what is a healthy macro timing, macro timing explained, macro timing ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Macro Timing Calculator","url":"https://vitalhealthhub.org/calculators/macro-timing-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Macro Timing Calculator online to get accurate results instantly. Get personalized macro timing results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var cal=parseFloat(document.getElementById('calories').value);var prot=parseFloat(document.getElementById('protein').value);var meals=Math.max(2,Math.min(6,parseFloat(document.getElementById('meals').value)||4));var wt=document.getElementById('workouttime').value;if(!cal||!prot){alert('Fill all fields');return;}var preCal=Math.round(cal*0.25);var postCal=Math.round(cal*0.30);var restCal=cal-preCal-postCal;var preCarbs=Math.round(preCal*0.5/4);var postCarbs=Math.round(postCal*0.4/4);var preP=Math.round(prot*0.2);var postP=Math.round(prot*0.35);var restP=prot-preP-postP;showResult('result',wt+' Workout','Meal Timing Guide','PRE-workout (1-2hr before): ~'+preCal+' kcal | '+preP+'g protein | '+preCarbs+'g carbs. POST-workout (within 1hr): ~'+postCal+' kcal | '+postP+'g protein | '+postCarbs+'g carbs. Remaining '+Math.round(restCal)+' kcal & '+restP+'g protein spread over other '+Math.max(1,meals-2)+' meal(s).','green'); }

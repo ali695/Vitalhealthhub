@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PCOS Risk Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free PCOS Risk Calculator online to get accurate results instantly. Get personalized pcos risk results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="pcos risk calculator, free pcos risk calculator, pcos risk calculator online, calculate pcos risk online, accurate pcos risk calculator, pcos risk for men, pcos risk for women, how to calculate pcos risk, what is a healthy pcos risk, pcos risk explained, pcos risk ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PCOS Risk Calculator","url":"https://vitalhealthhub.org/calculators/pcos-risk-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free PCOS Risk Calculator online to get accurate results instantly. Get personalized pcos risk results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var cyc={'No':0,'Yes - slightly irregular':2,'Yes - very irregular or absent':4}[document.getElementById('cycle').value]||0;var acne={'None':0,'Mild':1,'Severe':2}[document.getElementById('acne').value]||0;var hair={'No':0,'Mild':1,'Significant':3}[document.getElementById('hair').value]||0;var wt={'No':0,'Mild':1,'Significant':2}[document.getElementById('weight').value]||0;var hl={'No':0,'Mild':1,'Significant':2}[document.getElementById('hairloss').value]||0;var fam=document.getElementById('family').value==='Yes'?2:0;var score=cyc+acne+hair+wt+hl+fam;var c='green',l='Low Likelihood',s='Your symptom score is low. PCOS is unlikely based on your responses, but if you have concerns about your menstrual cycle or hormones, speak with your gynecologist.';if(score>=10){c='red';l='High Likelihood';s='Your symptoms strongly suggest possible PCOS. Please consult a gynecologist or endocrinologist. Diagnosis requires a physical exam, blood tests (testosterone, LH/FSH), and pelvic ultrasound.';}else if(score>=6){c='yellow';l='Moderate Likelihood';s='You have several PCOS-associated symptoms. Consider speaking with your doctor about hormonal evaluation. PCOS is treatable with lifestyle changes and, if needed, medication.';}showResult('result',score+'/15','PCOS Risk Score',s,c); }

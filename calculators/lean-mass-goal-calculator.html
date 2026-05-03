@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lean Mass Goal Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Lean Mass Goal Calculator online to get accurate results instantly. Get personalized lean mass goal results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="lean mass goal calculator, free lean mass goal calculator, lean mass goal calculator online, calculate lean mass goal online, accurate lean mass goal calculator, lean mass goal for men, lean mass goal for women, how to calculate lean mass goal, what is a healthy lean mass goal, lean mass goal explained, lean mass goal ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Lean Mass Goal Calculator","url":"https://vitalhealthhub.org/calculators/lean-mass-goal-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Lean Mass Goal Calculator online to get accurate results instantly. Get personalized lean mass goal results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var bf=parseFloat(document.getElementById('bodyfat').value);var tbf=parseFloat(document.getElementById('targetbf').value);var goal=document.getElementById('goal').value;if(!w||!bf||!tbf){alert('Fill all fields');return;}var lm=w*(1-bf/100);var fatMass=w-lm;var c=bf>tbf?'green':'yellow';if(goal==='Lose Fat (maintain muscle)'){var targetW=lm/(1-tbf/100);var fatLoss=w-targetW;showResult('result',fatLoss.toFixed(1)+' kg fat loss','Fat Loss Required to Hit '+tbf+'% BF','Current lean mass: '+lm.toFixed(1)+'kg | Target weight: '+targetW.toFixed(1)+'kg | Fat to lose: '+fatLoss.toFixed(1)+'kg. At safe rate of 0.5kg/week, this takes '+Math.round(fatLoss/0.5)+' weeks.',c);}else if(goal==='Build Muscle (slight fat gain OK)'){var muscleNeeded=w*tbf/100-fatMass+lm-lm;var newLM=lm+(fatMass*(tbf/100));showResult('result',lm.toFixed(1)+' kg current lean mass','Muscle Building Target','Current lean mass: '+lm.toFixed(1)+'kg | Fat mass: '+fatMass.toFixed(1)+'kg. At 0.5-1kg muscle/month for naturals, reaching significant composition change takes 6-18 months of consistent training and adequate protein (1.6-2.2g/kg).','green');}else{showResult('result',lm.toFixed(1)+' kg lean mass','Body Recomposition Plan','Recomp works best for beginners and those returning to training. Aim for: 1g+ protein per lb bodyweight, slight calorie deficit (200-300 kcal), progressive resistance training 3-4x/week. Expect slow but simultaneous fat loss and muscle gain.','green');} }

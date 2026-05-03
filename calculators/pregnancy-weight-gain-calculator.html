@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pregnancy Weight Gain Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Pregnancy Weight Gain Calculator online to get accurate results instantly. Get personalized pregnancy weight gain results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="pregnancy weight gain calculator, free pregnancy weight gain calculator, pregnancy weight gain calculator online, calculate pregnancy weight gain online, accurate pregnancy weight gain calculator, pregnancy weight gain for men, pregnancy weight gain for women, how to calculate pregnancy weight gain, what is a healthy pregnancy weight gain, pregnancy weight gain explained, pregnancy weight gain ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Pregnancy Weight Gain Calculator","url":"https://vitalhealthhub.org/calculators/pregnancy-weight-gain-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Pregnancy Weight Gain Calculator online to get accurate results instantly. Get personalized pregnancy weight gain results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value)/100;var twins=document.getElementById('twins').value;var week=parseFloat(document.getElementById('week').value)||20;if(!w||!h){alert('Fill all fields');return;}var bmi=w/(h*h);var lo,hi,label;if(twins==='Single Baby'){if(bmi<18.5){lo=12.5;hi=18;label='Underweight';}else if(bmi<25){lo=11.5;hi=16;label='Normal Weight';}else if(bmi<30){lo=7;hi=11.5;label='Overweight';}else{lo=5;hi=9;label='Obese';}}else if(twins==='Twins'){lo=17;hi=25;label='Twin Pregnancy';}else{lo=20;hi=30;label='Triplets+';}var trimGain=(lo+hi)/2/40*week;showResult('result',lo+'-'+hi+' kg total','Recommended Weight Gain','Pre-pregnancy BMI: '+bmi.toFixed(1)+' ('+label+'). Total recommended gain: '+lo+'-'+hi+' kg over 40 weeks. By week '+week+', an expected gain of ~'+trimGain.toFixed(1)+' kg is typical. Always follow your OB-GYN guidance.','green'); }

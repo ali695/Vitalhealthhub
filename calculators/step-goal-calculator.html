@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Step Goal Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Step Goal Calculator online to get accurate results instantly. Get personalized step goal results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="step goal calculator, free step goal calculator, step goal calculator online, calculate step goal online, accurate step goal calculator, step goal for men, step goal for women, how to calculate step goal, what is a healthy step goal, step goal explained, step goal ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Step Goal Calculator","url":"https://vitalhealthhub.org/calculators/step-goal-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Step Goal Calculator online to get accurate results instantly. Get personalized step goal results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var goal=document.getElementById('goal').value;var curr=parseFloat(document.getElementById('current').value)||5000;var base={'General Health':8000,'Weight Loss':12000,'Heart Health':10000,'Active Lifestyle':10000,'Athletic Performance':15000}[goal]||10000;var strideM=(h*0.413)/100;var target=base;var calories=Math.round(target*0.04*w/70);var km=(target*strideM/1000).toFixed(1);var increase=Math.max(0,target-curr);showResult('result',target.toLocaleString()+' steps/day','Your Daily Step Goal','Goal: '+goal+' | Distance: ~'+km+' km | Calories: ~'+calories+' kcal | Increase from current: +'+increase.toLocaleString()+' steps. Tip: Increase by no more than 10% per week to avoid injury.','green'); }

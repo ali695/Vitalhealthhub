@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Stroke Risk Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Stroke Risk Calculator online to get accurate results instantly. Get personalized stroke risk results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="stroke risk calculator, free stroke risk calculator, stroke risk calculator online, calculate stroke risk online, accurate stroke risk calculator, stroke risk for men, stroke risk for women, how to calculate stroke risk, what is a healthy stroke risk, stroke risk explained, stroke risk ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Stroke Risk Calculator","url":"https://vitalhealthhub.org/calculators/stroke-risk-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Stroke Risk Calculator online to get accurate results instantly. Get personalized stroke risk results with healthy range guidance for men and women. 100% free."}</script>
@@ -458,7 +461,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value);if(!age){alert('Enter age');return;}var score=0;if(age>65)score+=2;else if(age>55)score+=1;if(document.getElementById('bp').value==='Yes')score+=2;if(document.getElementById('smoking').value==='Yes')score+=2;if(document.getElementById('diabetes').value==='Yes')score+=1;if(document.getElementById('afib').value==='Yes')score+=2;var c='green',l='Low Risk',s='Your estimated stroke risk is low. Continue with healthy lifestyle habits.';if(score>=5){c='red';l='High Risk';s='Multiple risk factors identified. Please consult your healthcare provider for comprehensive evaluation and prevention strategies.';}else if(score>=3){c='yellow';l='Moderate Risk';s='Some risk factors present. Focus on managing blood pressure, quitting smoking, and regular check-ups.';}showResult('result',score+'/9',l,s,c); }

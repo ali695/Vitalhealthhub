@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Running Pace Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Running Pace Calculator online to get accurate results instantly. Get personalized running pace results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="running pace calculator, free running pace calculator, running pace calculator online, calculate running pace online, accurate running pace calculator, running pace for men, running pace for women, how to calculate running pace, what is a healthy running pace, running pace explained, running pace ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Running Pace Calculator","url":"https://vitalhealthhub.org/calculators/running-pace-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Running Pace Calculator online to get accurate results instantly. Get personalized running pace results with healthy range guidance for men and women. 100% free."}</script>
@@ -471,7 +474,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var d=parseFloat(document.getElementById('distance').value);var t=parseFloat(document.getElementById('time').value);if(!d||!t){alert('Fill fields');return;}var pace=(t/d).toFixed(2);var speed=(d/(t/60)).toFixed(1);var min=Math.floor(pace);var sec=Math.round((pace-min)*60);showResult('result',min+':'+((sec<10)?'0':'')+sec+'/km','Running Pace','Your pace is '+min+':'+((sec<10)?'0':'')+sec+' per km ('+speed+' km/h). 5K estimate: '+Math.round(pace*5)+' min | 10K: '+Math.round(pace*10)+' min | Half Marathon: '+Math.round(pace*21.1)+' min.','green'); }

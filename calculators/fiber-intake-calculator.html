@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Fiber Intake Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Fiber Intake Calculator online to get accurate results instantly. Get personalized fiber intake results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="fiber intake calculator, free fiber intake calculator, fiber intake calculator online, calculate fiber intake online, accurate fiber intake calculator, fiber intake for men, fiber intake for women, how to calculate fiber intake, what is a healthy fiber intake, fiber intake explained, fiber intake ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Fiber Intake Calculator","url":"https://vitalhealthhub.org/calculators/fiber-intake-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Fiber Intake Calculator online to get accurate results instantly. Get personalized fiber intake results with healthy range guidance for men and women. 100% free."}</script>
@@ -471,7 +474,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var a=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;var cal=parseFloat(document.getElementById('calories').value);if(!a||!cal){alert('Fill fields');return;}var fiber=g==='Male'?38:25;if(a>50)fiber=g==='Male'?30:21;var altFiber=Math.round(cal/1000*14);fiber=Math.max(fiber,altFiber);showResult('result',fiber+'g','Daily Fiber','Aim for '+fiber+' grams of fiber per day. Good sources include whole grains, beans, lentils, fruits, and vegetables. Increase gradually to avoid digestive discomfort.','green'); }

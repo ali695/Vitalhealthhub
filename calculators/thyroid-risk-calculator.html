@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Thyroid Risk Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free Thyroid Risk Calculator online to get accurate results instantly. Get personalized thyroid risk results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="thyroid risk calculator, free thyroid risk calculator, thyroid risk calculator online, calculate thyroid risk online, accurate thyroid risk calculator, thyroid risk for men, thyroid risk for women, how to calculate thyroid risk, what is a healthy thyroid risk, thyroid risk explained, thyroid risk ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Thyroid Risk Calculator","url":"https://vitalhealthhub.org/calculators/thyroid-risk-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free Thyroid Risk Calculator online to get accurate results instantly. Get personalized thyroid risk results with healthy range guidance for men and women. 100% free."}</script>
@@ -444,7 +447,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var g=document.getElementById('gender').value;var age=parseFloat(document.getElementById('age').value)||30;var s1=parseFloat(document.getElementById('fatigue').value)||0;var s2=parseFloat(document.getElementById('weight').value)||0;var s3=parseFloat(document.getElementById('cold').value)||0;var s4=parseFloat(document.getElementById('hair').value)||0;var s5=parseFloat(document.getElementById('mood').value)||0;var fam=document.getElementById('family').value==='Yes';var score=s1+s2+s3+s4+s5;if(g==='Female')score+=2;if(age>50)score+=1;if(age>65)score+=1;if(fam)score+=3;var c='green',l='Low Risk',s='Your thyroid risk score is low. If you develop new symptoms, consult your doctor and ask for a TSH test.';if(score>=12){c='red';l='High Risk';s='Your score suggests significant thyroid symptom burden. Please consult your doctor and request a TSH (thyroid-stimulating hormone) blood test to rule out hypothyroidism or hyperthyroidism.';}else if(score>=7){c='yellow';l='Moderate Risk';s='Several thyroid-related symptoms and risk factors are present. Consider discussing thyroid function testing with your healthcare provider.';}showResult('result',score+'/20','Thyroid Risk Score',s,c); }

@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="VO2 Max Calculator – Free & Accurate | VitalHealth Hub">
 <meta name="twitter:description" content="Use our free VO2 Max Calculator online to get accurate results instantly. Get personalized vo2 max results with healthy range guidance for men and women. 100% free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/css/style.css">
 <meta name="keywords" content="vo2 max calculator, free vo2 max calculator, vo2 max calculator online, calculate vo2 max online, accurate vo2 max calculator, vo2 max for men, vo2 max for women, how to calculate vo2 max, what is a healthy vo2 max, vo2 max explained, vo2 max ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"VO2 Max Calculator","url":"https://vitalhealthhub.org/calculators/vo2-max-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Use our free VO2 Max Calculator online to get accurate results instantly. Get personalized vo2 max results with healthy range guidance for men and women. 100% free."}</script>
@@ -467,7 +470,7 @@ ma7122671@gmail.com
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 <script>
 (function(){
   function vhAutoCalc(){ var a=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;var rhr=parseFloat(document.getElementById('rhr').value);if(!a||!rhr){alert('Fill fields');return;}var vo2=15.3*(220-a)/rhr;vo2=vo2.toFixed(1);var c='green',l='Good Fitness',s='Your VO2 max suggests good cardiovascular fitness.';if(vo2<30){c='red';l='Below Average';s='Your VO2 max is below average. Regular cardio exercise can significantly improve this.';}else if(vo2<40){c='yellow';l='Average';s='Your VO2 max is average. Incorporate more aerobic training to improve.';}else if(vo2>50){l='Excellent';s='Excellent cardiovascular fitness! Keep up your training routine.';}showResult('result',vo2+' ml/kg/min',l,s,c); }
