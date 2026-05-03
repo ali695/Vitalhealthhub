@@ -36,114 +36,91 @@
 <a href="/" class="nav-logo" aria-label="VitalHealth Hub — Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="nav-logo-img"></a>
 <ul class="nav-links">
 <li><a href="/">Home</a></li>
-<li class="nav-dropdown-wrap"><a href="/calculators/" class="nav-dropdown-trigger">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<li class="nav-dropdown-wrap">
+<a href="/calculators/" class="nav-dropdown-trigger">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 <div class="mega-dropdown">
-<div class="mega-dropdown-inner">
+<div class="mega-search-wrap">
+<div class="mega-search">
+<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." oninput="vhhDdSearch(this.value)" autocomplete="off" spellcheck="false">
+</div>
+</div>
+<div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4>Weight &amp; Body</h4>
+<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator.html">BMI Calculator</a></li>
-<li><a href="/calculators/ideal-weight-calculator.html">Ideal Weight</a></li>
 <li><a href="/calculators/body-fat-calculator.html">Body Fat Calculator</a></li>
+<li><a href="/calculators/ideal-weight-calculator.html">Ideal Weight</a></li>
 <li><a href="/calculators/lean-body-mass-calculator.html">Lean Body Mass</a></li>
 <li><a href="/calculators/waist-to-hip-ratio.html">Waist-to-Hip Ratio</a></li>
-<li><a href="/calculators/visceral-fat-calculator.html">Visceral Fat</a></li>
-<li><a href="/calculators/bmi-prime-calculator.html">BMI Prime</a></li>
-<li><a href="/calculators/body-recomposition-calculator.html">Body Recomposition</a></li>
-<li><a href="/calculators/lean-mass-goal-calculator.html">Lean Mass Goal</a></li>
-<li><a href="/calculators/waist-reduction-calculator.html">Waist Reduction</a></li>
 </ul>
 </div>
 <div class="mega-col">
-<h4>Nutrition &amp; Diet</h4>
+<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator.html">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator.html">Macro Calculator</a></li>
 <li><a href="/calculators/tdee-calculator.html">TDEE Calculator</a></li>
-<li><a href="/calculators/protein-timing-calculator.html">Protein Timing</a></li>
-<li><a href="/calculators/sugar-intake-calculator.html">Sugar Intake</a></li>
-<li><a href="/calculators/electrolyte-calculator.html">Electrolyte Needs</a></li>
-<li><a href="/calculators/omega3-calculator.html">Omega-3 Intake</a></li>
-<li><a href="/calculators/fiber-score-calculator.html">Fiber Score</a></li>
-<li><a href="/calculators/anti-inflammatory-score.html">Anti-Inflammatory Score</a></li>
-<li><a href="/calculators/diet-comparison-calculator.html">Diet Comparison</a></li>
+<li><a href="/calculators/water-intake-calculator.html">Water Intake</a></li>
+<li><a href="/calculators/protein-intake-calculator.html">Protein Intake</a></li>
 </ul>
 </div>
 <div class="mega-col">
-<h4>Heart &amp; Vitals</h4>
+<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
-<li><a href="/calculators/heart-age-calculator.html">Heart Age Calculator</a></li>
-<li><a href="/calculators/heart-rate-calculator.html">Heart Rate Calculator</a></li>
+<li><a href="/calculators/heart-rate-calculator.html">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker.html">Blood Pressure</a></li>
 <li><a href="/calculators/cholesterol-risk-calculator.html">Cholesterol Risk</a></li>
-<li><a href="/calculators/homa-ir-calculator.html">HOMA-IR (Insulin)</a></li>
-<li><a href="/calculators/sodium-intake-calculator.html">Sodium Intake</a></li>
-<li><a href="/calculators/testosterone-estimator.html">Testosterone Estimator</a></li>
-<li><a href="/calculators/metabolic-age-calculator.html">Metabolic Age</a></li>
-<li><a href="/calculators/thyroid-risk-calculator.html">Thyroid Risk</a></li>
 <li><a href="/calculators/biological-age-calculator.html">Biological Age</a></li>
+<li><a href="/calculators/diabetes-risk-calculator.html">Diabetes Risk</a></li>
 </ul>
 </div>
 <div class="mega-col">
-<h4>Women&#39;s Health</h4>
+<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
-<li><a href="/calculators/pregnancy-week-calculator.html">Pregnancy Week</a></li>
-<li><a href="/calculators/pregnancy-due-date-calculator.html">Pregnancy Due Date</a></li>
-<li><a href="/calculators/pregnancy-weight-gain-calculator.html">Pregnancy Weight Gain</a></li>
-<li><a href="/calculators/breastfeeding-calorie-calculator.html">Breastfeeding Calories</a></li>
-<li><a href="/calculators/pcos-risk-calculator.html">PCOS Risk</a></li>
-<li><a href="/calculators/menopause-symptom-calculator.html">Menopause Symptoms</a></li>
-<li><a href="/calculators/ovulation-calculator.html">Ovulation Calculator</a></li>
-<li><a href="/calculators/fertility-calculator.html">Fertility Calculator</a></li>
-<li><a href="/calculators/child-growth-calculator.html">Child Growth</a></li>
-</ul>
-</div>
-<div class="mega-col">
-<h4>Fitness &amp; Performance</h4>
-<ul>
-<li><a href="/calculators/strength-level-calculator.html">Strength Level</a></li>
-<li><a href="/calculators/marathon-time-predictor.html">Marathon Predictor</a></li>
-<li><a href="/calculators/hiit-calories-calculator.html">HIIT Calories</a></li>
-<li><a href="/calculators/calorie-burn-calculator.html">Activity Calorie Burn</a></li>
-<li><a href="/calculators/step-goal-calculator.html">Step Goal</a></li>
-<li><a href="/calculators/one-rep-max-calculator.html">One Rep Max</a></li>
 <li><a href="/calculators/vo2-max-calculator.html">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator.html">Running Pace</a></li>
-<li><a href="/calculators/injury-risk-calculator.html">Injury Risk</a></li>
+<li><a href="/calculators/strength-level-calculator.html">Strength Level</a></li>
+<li><a href="/calculators/one-rep-max-calculator.html">One Rep Max</a></li>
 <li><a href="/calculators/steps-to-calories-calculator.html">Steps to Calories</a></li>
 </ul>
 </div>
-<div class="mega-col">
-<h4>Mind &amp; General Tools</h4>
-<ul>
-<li><a href="/calculators/age-calculator.html">Age Calculator</a></li>
-<li><a href="/calculators/birthday-calculator.html">Birthday Calculator</a></li>
-<li><a href="/calculators/percentage-calculator.html">Percentage Calculator</a></li>
-<li><a href="/calculators/loan-emi-calculator.html">Loan EMI Calculator</a></li>
-<li><a href="/calculators/countdown-timer.html">Countdown Timer</a></li>
-<li><a href="/calculators/burnout-risk-calculator.html">Burnout Risk</a></li>
-<li><a href="/calculators/focus-score-calculator.html">Focus Score</a></li>
-<li><a href="/calculators/sleep-hygiene-calculator.html">Sleep Hygiene</a></li>
-<li><a href="/calculators/productivity-score-calculator.html">Productivity Score</a></li>
-<li><a href="/calculators/digital-detox-calculator.html">Digital Detox</a></li>
-</ul>
 </div>
-</div>
+<div class="mega-search-results" id="ddResults"></div>
 <div class="mega-dropdown-bottom">
-<span>Can&#39;t find what you need?</span>
-<a href="/calculators/" class="btn btn-primary btn-sm">View All 115+ Calculators &rarr;</a>
+<span>Science-backed tools, free forever</span>
+<a href="/calculators/" class="mega-cta-btn">&#128270; View All 115+ Calculators &rarr;</a>
 </div>
 </div>
 </li>
+<li><a href="/tools/">Tools</a></li>
 <li><a href="/blog.html">Blog</a></li>
 <li><a href="/quizzes/">Quizzes</a></li>
-<li><a href="/tools/">Tools</a></li>
 <li><a href="/about.html">About</a></li>
 <li><a href="/contact.html">Contact</a></li>
-<li><a href="/faq.html">FAQ</a></li>
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
+<script>
+window.vhhDdSearch=function(q){
+  var grid=document.getElementById('ddGrid');
+  var res=document.getElementById('ddResults');
+  if(!q||!q.trim()){grid.style.display='';res.innerHTML='';res.style.display='none';return;}
+  var links=document.querySelectorAll('#ddGrid .mega-col a');
+  var matches=Array.from(links).filter(function(a){return a.textContent.toLowerCase().includes(q.toLowerCase());});
+  grid.style.display='none';
+  res.style.display='';
+  res.innerHTML=matches.length
+    ? matches.map(function(a){return '<a href="'+a.getAttribute('href')+'" class="dd-result-item">'+a.textContent+'</a>';}).join('')
+    : '<p class="dd-no-result">No results found — <a href="/calculators/">browse all calculators</a></p>';
+};
+window.vhhToggleCol=function(h4){
+  if(window.innerWidth>768)return;
+  var col=h4.closest('.mega-col');
+  col.classList.toggle('open');
+};
+</script>
 <div class="reading-progress"><div class="reading-progress-fill"></div></div>
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/blog.html">Blog</a><span>/</span><span>Slow Metabolism: Is It Real or Just an Excuse?</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://vitalhealthhub.com/blog.html"},{"@type":"ListItem","position":3,"name":"Slow Metabolism: Is It Real or Just an Excuse?","item":"https://vitalhealthhub.com/blog/slow-metabolism-is-it-real.html"}]}</script>
