@@ -2327,13 +2327,22 @@ function generateBlogPost(post) {
   const blogTitle = _bm ? _bm.title : `${post.title} | ${SITE_NAME}`;
 
   const schema = {
-    "@context":"https://schema.org","@type":"Article",
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
     "headline":post.title,
-    "author":{"@type":"Person","name":"Ali Haider","url":"https://www.linkedin.com/in/ali-haider-seo-consultant/"},
-    "datePublished":post.date,"dateModified":"2026-01-01",
-    "publisher":{"@type":"Organization","name":SITE_NAME,"logo":{"@type":"ImageObject","url":SITE+"/favicon.ico"}},
-    "image":featImgUrl,"description":blogMetaDesc,"url":SITE+'/blog/'+post.slug+'.html',
-    "mainEntityOfPage":{"@type":"WebPage","@id":SITE+'/blog/'+post.slug+'.html'}
+    "name":post.title,
+    "description":blogMetaDesc,
+    "url":SITE+'/blog/'+post.slug+'.html',
+    "datePublished":post.date,
+    "dateModified":"2026-01-01",
+    "author":{"@type":"Person","name":"Ali Haider","url":"https://www.linkedin.com/in/ali-haider-seo-consultant/","sameAs":["https://www.linkedin.com/in/ali-haider-seo-consultant/"]},
+    "publisher":{"@type":"Organization","name":SITE_NAME,"url":SITE,"logo":{"@type":"ImageObject","url":SITE+"/favicon.ico","width":32,"height":32}},
+    "image":{"@type":"ImageObject","url":featImgUrl,"width":1200,"height":630},
+    "mainEntityOfPage":{"@type":"WebPage","@id":SITE+'/blog/'+post.slug+'.html'},
+    "articleSection":post.category,
+    "keywords":(post.tags||[]).join(', '),
+    "inLanguage":"en-US",
+    "isPartOf":{"@type":"Blog","name":SITE_NAME+" Blog","url":SITE+'/blog.html'}
   };
 
   // Build TOC + inject IDs into H2s
