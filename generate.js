@@ -448,13 +448,13 @@ const BLOG_IMAGES = {
   'understanding-lab-results':          {url:'https://images.unsplash.com/photo-1506126279646-a697353d3166?w=800&q=80',alt:'Understanding lab results health numbers'},
   'healthy-lifestyle-checklist':        {url:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',alt:'Healthy lifestyle checklist evidence based habits'},
   'how-many-steps-to-lose-weight':              {url:'https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?w=800&q=80',alt:'Person counting steps daily walking for weight loss'},
-  'intermittent-fasting-for-weight-loss':       {url:'https://images.unsplash.com/photo-1590779033100-9f60a05a4234?w=800&q=80',alt:'Intermittent fasting meal timing plate clock weight loss'},
-  'keto-diet-beginners-guide':                  {url:'https://images.unsplash.com/photo-1540420828642-4e06a8e06c4d?w=800&q=80',alt:'Ketogenic diet foods avocado eggs cheese beginners guide'},
+  'intermittent-fasting-for-weight-loss':       {url:'https://images.unsplash.com/photo-1611516491426-03025e6043c8?w=800&q=80',alt:'Intermittent fasting meal timing plate clock weight loss'},
+  'keto-diet-beginners-guide':                  {url:'https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?w=800&q=80',alt:'Ketogenic diet foods avocado eggs cheese beginners guide'},
   'best-time-to-walk-for-fat-loss':             {url:'https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?w=800&q=80',alt:'Best time to walk morning exercise for fat loss'},
   'walking-vs-running-for-weight-loss':         {url:'https://images.unsplash.com/photo-1434682772747-f16d3ea162c3?w=800&q=80',alt:'Walking vs running comparison weight loss effectiveness'},
   'protein-for-fat-loss':                       {url:'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?w=800&q=80',alt:'High protein foods for fat loss muscle preservation diet'},
   'why-you-are-not-losing-weight':              {url:'https://images.unsplash.com/photo-1511174511562-5f7f18b874f8?w=800&q=80',alt:'Weight scale reasons why not losing weight plateau'},
-  'fat-loss-vs-weight-loss-difference':         {url:'https://images.unsplash.com/photo-1518611507503-a539331a5b61?w=800&q=80',alt:'Fat loss versus weight loss body composition difference'},
+  'fat-loss-vs-weight-loss-difference':         {url:'https://images.unsplash.com/photo-1536364127590-1594e3161294?w=800&q=80',alt:'Fat loss versus weight loss body composition difference'},
   'mediterranean-diet-complete-guide':          {url:'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80',alt:'Mediterranean diet complete guide olive oil fish vegetables'},
   'plant-based-diet-for-beginners':             {url:'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&q=80',alt:'Plant based diet for beginners colorful vegetables fruit'},
   'omega-3-fatty-acids-complete-guide':         {url:'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80',alt:'Omega 3 fatty acids salmon fish walnuts complete guide'},
@@ -462,21 +462,21 @@ const BLOG_IMAGES = {
   'gut-health-and-weight-loss':                 {url:'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',alt:'Gut health microbiome probiotic foods weight loss'},
   'daily-sodium-intake-guide':                  {url:'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&q=80',alt:'Daily sodium intake guide salt reduction health tips'},
   'best-vitamins-for-energy-and-health':        {url:'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80',alt:'Best vitamins for energy and overall health supplements'},
-  'how-to-track-macros-guide':                  {url:'https://images.unsplash.com/photo-1504596168-9764a23bfb88?w=800&q=80',alt:'How to track macros food logging nutrition app guide'},
-  'beginner-workout-plan-30-days':              {url:'https://images.unsplash.com/photo-1517344884509-a0c97ec11bde?w=800&q=80',alt:'Beginner workout plan 30 days fitness challenge routine'},
+  'how-to-track-macros-guide':                  {url:'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80',alt:'How to track macros food logging nutrition app guide'},
+  'beginner-workout-plan-30-days':              {url:'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800&q=80',alt:'Beginner workout plan 30 days fitness challenge routine'},
   'how-to-run-5k-training-plan':                {url:'https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=800&q=80',alt:'How to run a 5K training plan beginner runner guide'},
   'strength-training-for-women-guide':          {url:'https://images.unsplash.com/photo-1570691079236-4bca6c45d440?w=800&q=80',alt:'Strength training for women guide dumbbells gym fitness'},
-  'cycling-calories-and-benefits':              {url:'https://images.unsplash.com/photo-1558735836-e2b1b4e02823?w=800&q=80',alt:'Cycling calories burned cardiovascular health benefits'},
+  'cycling-calories-and-benefits':              {url:'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80',alt:'Cycling calories burned cardiovascular health benefits'},
   'yoga-for-weight-loss':                       {url:'https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80',alt:'Yoga poses for weight loss flexibility mindfulness practice'},
   'swimming-calories-and-fitness':              {url:'https://images.unsplash.com/photo-1520095972714-909e91b038e5?w=800&q=80',alt:'Swimming calories burned full body fitness cardio workout'},
-  'jump-rope-workout-benefits':                 {url:'https://images.unsplash.com/photo-1540206195-bdca4cce1097?w=800&q=80',alt:'Jump rope workout calorie burn cardiovascular fitness benefits'},
-  'ovulation-calculator-complete-guide':        {url:'https://images.unsplash.com/photo-1584996160742-58c5e0e43e52?w=800&q=80',alt:'Ovulation calculator complete guide fertility tracking women'},
+  'jump-rope-workout-benefits':                 {url:'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=800&q=80',alt:'Jump rope workout calorie burn cardiovascular fitness benefits'},
+  'ovulation-calculator-complete-guide':        {url:'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80',alt:'Ovulation calculator complete guide fertility tracking women'},
   'pregnancy-week-by-week-guide':               {url:'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&q=80',alt:'Pregnancy week by week development fetal growth guide'},
   'pcos-symptoms-and-management':               {url:'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&q=80',alt:'PCOS symptoms management hormonal health women wellness'},
   'breastfeeding-calorie-and-nutrition-guide':  {url:'https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=800&q=80',alt:'Breastfeeding nutrition calorie needs new mother guide'},
   'menopause-weight-gain-tips':                 {url:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80',alt:'Menopause weight gain management tips hormonal health women'},
-  'menstrual-cycle-and-fitness':                {url:'https://images.unsplash.com/photo-1571888282459-4dd7b234f0c6?w=800&q=80',alt:'Menstrual cycle and fitness training sync exercise guide'},
-  'fertility-boosting-nutrition':               {url:'https://images.unsplash.com/photo-1598300056393-4afd3e4d8ca8?w=800&q=80',alt:'Fertility boosting nutrition foods lifestyle guide women'},
+  'menstrual-cycle-and-fitness':                {url:'https://images.unsplash.com/photo-1579126038374-6064e9370f0f?w=800&q=80',alt:'Menstrual cycle and fitness training sync exercise guide'},
+  'fertility-boosting-nutrition':               {url:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',alt:'Fertility boosting nutrition foods lifestyle guide women'},
   'hormone-balance-for-women':                  {url:'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',alt:'Hormone balance for women natural wellness lifestyle tips'},
   'burnout-symptoms-and-recovery':              {url:'https://images.unsplash.com/photo-1520975916090-3105956dac38?w=800&q=80',alt:'Burnout symptoms signs and recovery strategies self care'},
   'dopamine-detox-complete-guide':              {url:'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80',alt:'Dopamine detox digital break mental reset complete guide'},
@@ -484,18 +484,18 @@ const BLOG_IMAGES = {
   'productivity-score-and-improvement':         {url:'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80',alt:'Productivity score improvement strategies work efficiency'},
   'work-life-balance-practical-guide':          {url:'https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=800&q=80',alt:'Work life balance practical guide reduce stress wellness'},
   'digital-detox-how-to-guide':                 {url:'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&q=80',alt:'Digital detox how to guide screen free wellness benefits'},
-  'how-to-improve-focus-and-concentration':     {url:'https://images.unsplash.com/photo-1504892069666-9f35f9dab8f8?w=800&q=80',alt:'How to improve focus and concentration study tips brain'},
+  'how-to-improve-focus-and-concentration':     {url:'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80',alt:'How to improve focus and concentration study tips brain'},
   'sleep-debt-how-to-recover':                  {url:'https://images.unsplash.com/photo-1493612276216-ee3925520721?w=800&q=80',alt:'Sleep debt how to recover and restore energy rest'},
   'best-sleep-position-for-health':             {url:'https://images.unsplash.com/photo-1584697964358-3e14ca57658b?w=800&q=80',alt:'Best sleep position for back neck spine health'},
   'insomnia-natural-remedies':                  {url:'https://images.unsplash.com/photo-1560813962-ff3d8fcf59ba?w=800&q=80',alt:'Insomnia natural remedies sleep aid without medication herbs'},
-  'magnesium-for-better-sleep':                 {url:'https://images.unsplash.com/photo-1576673441524-0e90a21fc09d?w=800&q=80',alt:'Magnesium rich foods for better sleep and relaxation'},
+  'magnesium-for-better-sleep':                 {url:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',alt:'Magnesium rich foods for better sleep and relaxation'},
   'sleep-hygiene-complete-checklist':           {url:'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=800&q=80',alt:'Sleep hygiene complete checklist bedtime routine tips'},
-  'how-age-calculator-works':                   {url:'https://images.unsplash.com/photo-1484791984053-c60d7a7bfb63?w=800&q=80',alt:'How age calculator works years months days health tracking'},
-  'how-birthday-calculator-works':              {url:'https://images.unsplash.com/photo-1513362573275-c33ec3ac8003?w=800&q=80',alt:'Birthday calculator how it works date health aging guide'},
+  'how-age-calculator-works':                   {url:'https://images.unsplash.com/photo-1563237023-b1e970526dcb?w=800&q=80',alt:'How age calculator works years months days health tracking'},
+  'how-birthday-calculator-works':              {url:'https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800&q=80',alt:'Birthday calculator how it works date health aging guide'},
   'date-difference-calculator-guide':           {url:'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=800&q=80',alt:'Date difference calculator guide days weeks months between'},
   'healthy-morning-routine-guide':              {url:'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=800&q=80',alt:'Healthy morning routine guide sunlight exercise habits'},
-  'how-to-quit-sugar-21-days':                  {url:'https://images.unsplash.com/photo-1607615405181-21c4b5c6aee4?w=800&q=80',alt:'How to quit sugar 21 day challenge reset cravings health'},
-  'alcohol-effects-on-health-and-weight':       {url:'https://images.unsplash.com/photo-1530035415861-8c14ef3a4041?w=800&q=80',alt:'Alcohol effects on health and weight gain research guide'},
+  'how-to-quit-sugar-21-days':                  {url:'https://images.unsplash.com/photo-1557844352-761f2565b576?w=800&q=80',alt:'How to quit sugar 21 day challenge reset cravings health'},
+  'alcohol-effects-on-health-and-weight':       {url:'https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800&q=80',alt:'Alcohol effects on health and weight gain research guide'},
   'how-to-use-bmi-calculator-correctly':        {url:'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80',alt:'How to use BMI calculator correctly measurement guide'},
   'calorie-calculator-complete-guide':          {url:'https://images.unsplash.com/photo-1495462911434-be47104d70fa?w=800&q=80',alt:'Calorie calculator complete guide daily intake nutrition'},
   'protein-calculator-how-to-use':              {url:'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=800&q=80',alt:'Protein calculator how to use daily intake fitness guide'},
@@ -2122,10 +2122,11 @@ function getCalcEmbedWidget(calcSlug, calcName) {
   const name = calcName || (calculators.find(c=>c.slug===calcSlug)||{name:'Health Calculator'}).name;
   return `
 <div class="calc-embed-widget fade-in">
-  <p class="calc-embed-heading">Try It Yourself: ${name}</p>
-  <p style="color:#a7f3d0;font-size:0.9rem;margin:0 0 16px;">Get your personalized results in under 30 seconds — 100% free, no sign-up needed.</p>
-  <a href="/calculators/${calcSlug}.html" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:8px;">Calculate Now &rarr;</a>
-  <p class="calc-embed-caption">Used by 100,000+ people monthly. Evidence-based results, instantly.</p>
+  <span class="calc-embed-badge">Free Calculator</span>
+  <h3 class="calc-embed-heading">Try It Yourself: ${name}</h3>
+  <p class="calc-embed-desc">Get precise results tailored to your body and goals. Understand key health metrics, track performance, and make smarter decisions — instantly and for free.</p>
+  <a href="/calculators/${calcSlug}.html" class="calc-embed-btn">Calculate Now &rarr;</a>
+  <p class="calc-embed-trust">Trusted by thousands of users for smarter health decisions.</p>
 </div>`;
 }
 
@@ -3710,12 +3711,12 @@ ${sidebarPosts.map(sp => {
 
 ${(() => {
   const blogHubDefs = [
-    { cat:'Fitness & Exercise', icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h2m8 0h2M7 5v4a5 5 0 0 0 10 0V5"/><path d="M9 21H7a2 2 0 0 1-2-2v-1h14v1a2 2 0 0 1-2 2h-2"/></svg>', desc:'Workouts, strength training, cardio, VO2 max and physical performance guides' },
-    { cat:'Sleep & Recovery',   icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>', desc:'Sleep science, circadian rhythms, sleep quality and overnight recovery' },
-    { cat:'Macronutrients',     icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l4-4 4 4 4-4 4 4"/><path d="M3 18h18"/><circle cx="12" cy="6" r="2"/></svg>', desc:'Protein, carbohydrates, fats — understanding macros for optimal health' },
-    { cat:'Calories & Weight',  icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l3.5 7H8.5L12 3z"/><path d="M3 14l4.5-4h9l4.5 4"/><line x1="12" y1="10" x2="12" y2="21"/><line x1="5" y1="21" x2="19" y2="21"/></svg>', desc:'Calorie tracking, weight management, TDEE and body composition science' },
-    { cat:'Mental Health',      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9h.01M15 9h.01M9 15s1 2 3 2 3-2 3-2"/></svg>', desc:'Stress reduction, anxiety, mindfulness and emotional wellbeing strategies' },
-    { cat:'Nutrition',          icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12M12 12C12 12 7 7 2 7c0 5 5 5 5 5s5-5 10-5c0 5-5 5-5 5z"/></svg>', desc:'Evidence-based eating, food quality, micronutrients and nutritional science' },
+    { cat:'Fitness & Exercise', icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h2M20 12h2"/><rect x="4" y="9" width="3" height="6" rx="1"/><rect x="17" y="9" width="3" height="6" rx="1"/><path d="M7 12h10"/></svg>', desc:'Workouts, strength training, cardio, VO2 max and physical performance guides' },
+    { cat:'Sleep & Recovery',   icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/><path d="M12 7v5l3 3" stroke-width="1.5"/></svg>', desc:'Sleep science, circadian rhythms, sleep quality and overnight recovery' },
+    { cat:'Macronutrients',     icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>', desc:'Protein, carbohydrates, fats — understanding macros for optimal health' },
+    { cat:'Calories & Weight',  icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>', desc:'Calorie tracking, weight management, TDEE and body composition science' },
+    { cat:'Mental Health',      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.07-4.76A3 3 0 1 1 9.5 2"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.07-4.76A3 3 0 1 0 14.5 2"/></svg>', desc:'Stress reduction, anxiety, mindfulness and emotional wellbeing strategies' },
+    { cat:'Nutrition',          icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 4-1.5 4-7.5 0-4.5-2.5-6.5-4-6.5s-4 2-4 6.5c0 6 2.5 7.5 4 7.5z"/><path d="M12 7V4"/><path d="M10 4h4"/></svg>', desc:'Evidence-based eating, food quality, micronutrients and nutritional science' },
   ];
   const sections = blogHubDefs.map(def => {
     const posts = blogPosts.filter(p => p.category === def.cat).slice(0, 4);
