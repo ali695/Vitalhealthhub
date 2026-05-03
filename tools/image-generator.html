@@ -188,12 +188,12 @@
             <button class="style-btn active" data-style="realistic">🌄 Realistic</button>
             <button class="style-btn" data-style="cinematic">🎬 Cinematic</button>
             <button class="style-btn" data-style="anime">⛩ Anime</button>
-            <button class="style-btn" data-style="3d render">🧊 3D Render</button>
+            <button class="style-btn" data-style="3d-render">🧊 3D Render</button>
             <button class="style-btn" data-style="illustration">🎨 Illustration</button>
-            <button class="style-btn" data-style="watercolor painting">🖌 Watercolor</button>
-            <button class="style-btn" data-style="digital art">💻 Digital Art</button>
-            <button class="style-btn" data-style="oil painting">🎭 Oil Paint</button>
-            <button class="style-btn" data-style="neon cyberpunk">🌆 Cyberpunk</button>
+            <button class="style-btn" data-style="watercolor">🖌 Watercolor</button>
+            <button class="style-btn" data-style="digital-art">💻 Digital Art</button>
+            <button class="style-btn" data-style="oil-paint">🎭 Oil Paint</button>
+            <button class="style-btn" data-style="cyberpunk">🌆 Cyberpunk</button>
           </div>
         </div>
 
@@ -292,11 +292,11 @@
   <div class="examples-section">
     <h2>Example Prompts to Try</h2>
     <div class="example-grid">
-      <div class="example-card" onclick="useExample('A futuristic cityscape at night with neon lights reflecting on wet streets','neon cyberpunk')">
+      <div class="example-card" onclick="useExample('A futuristic cityscape at night with neon lights reflecting on wet streets','cyberpunk')">
         <div class="ex-style">Cyberpunk</div>
         <div class="ex-prompt">A futuristic cityscape at night with neon lights reflecting on wet streets</div>
       </div>
-      <div class="example-card" onclick="useExample('A peaceful Japanese zen garden with cherry blossoms and koi pond at dawn','watercolor painting')">
+      <div class="example-card" onclick="useExample('A peaceful Japanese zen garden with cherry blossoms and koi pond at dawn','watercolor')">
         <div class="ex-style">Watercolor</div>
         <div class="ex-prompt">A peaceful Japanese zen garden with cherry blossoms and koi pond at dawn</div>
       </div>
@@ -304,7 +304,7 @@
         <div class="ex-style">Realistic</div>
         <div class="ex-prompt">A majestic lion wearing a golden crown in a misty forest at sunrise</div>
       </div>
-      <div class="example-card" onclick="useExample('A healthy meal bowl with colorful vegetables, grains and herbs from above','illustration')">
+      <div class="example-card" onclick="useExample('A healthy meal bowl with colorful vegetables, grains and herbs from above, food photography','illustration')">
         <div class="ex-style">Illustration</div>
         <div class="ex-prompt">A healthy meal bowl with colorful vegetables, grains and herbs, viewed from above</div>
       </div>
@@ -312,7 +312,7 @@
         <div class="ex-style">Cinematic</div>
         <div class="ex-prompt">An astronaut floating in space surrounded by colorful nebulae and stars</div>
       </div>
-      <div class="example-card" onclick="useExample('A cozy reading nook with bookshelves, warm lighting and a cup of tea','3d render')">
+      <div class="example-card" onclick="useExample('A cozy reading nook with bookshelves, warm lighting and a cup of tea','3d-render')">
         <div class="ex-style">3D Render</div>
         <div class="ex-prompt">A cozy reading nook with bookshelves, warm lighting and a cup of tea</div>
       </div>
@@ -543,6 +543,20 @@ function setGenerating(state) {
   btnText.textContent = state ? 'Generating...' : 'Generate Image';
 }
 
+var STYLE_CONFIG = {
+  'realistic':    { model: 'flux-realism',  enhance: 'RAW photo, photorealistic, 8K UHD, DSLR camera, professional photography, natural lighting, ultra detailed, sharp focus, high resolution' },
+  'cinematic':    { model: 'flux',          enhance: 'cinematic movie still, dramatic lighting, film grain, anamorphic lens, Hollywood production, color graded, ultra detailed, 8K' },
+  'anime':        { model: 'flux-anime',    enhance: 'anime style, vibrant colors, detailed linework, high quality anime art, manga illustration' },
+  '3d-render':    { model: 'flux-3d',       enhance: '3D render, octane render, blender, photorealistic 3D, studio lighting, high poly, ray tracing, 8K render' },
+  'illustration': { model: 'flux',          enhance: 'digital illustration, concept art, artstation trending, highly detailed, vibrant colors, professional artwork' },
+  'watercolor':   { model: 'flux',          enhance: 'watercolor painting, soft edges, watercolor texture, beautiful brushwork, artistic watercolor, transparent washes' },
+  'digital-art':  { model: 'flux',          enhance: 'digital art, concept art, artstation, highly detailed, professional digital painting, vibrant colors' },
+  'oil-paint':    { model: 'flux',          enhance: 'oil painting, impasto technique, canvas texture, classical fine art, museum quality, rich colors, brushstrokes' },
+  'cyberpunk':    { model: 'any-dark',      enhance: 'cyberpunk, neon lights, futuristic city, blade runner aesthetic, high tech low life, rain reflections, dark atmosphere' }
+};
+
+var DEFAULT_NEGATIVE = 'blurry, low quality, distorted, deformed, ugly, watermark, text, bad anatomy, worst quality, low resolution, duplicate, morbid, mutilated, extra limbs, poorly drawn face, mutation, disfigured';
+
 function generateImage() {
   if (isGenerating) return;
   var prompt = document.getElementById('promptInput').value.trim();
@@ -552,10 +566,18 @@ function generateImage() {
   document.getElementById('errorToast').style.display = 'none';
   setGenerating(true);
 
-  var finalPrompt = prompt + ', ' + selectedStyle + ', high quality, detailed, sharp focus';
-  if (negative) finalPrompt += ', avoid: ' + negative;
+  var config = STYLE_CONFIG[selectedStyle] || STYLE_CONFIG['realistic'];
+  var finalPrompt = prompt + ', ' + config.enhance;
+  var finalNegative = DEFAULT_NEGATIVE + (negative ? ', ' + negative : '');
 
-  var url = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(finalPrompt) + '?width=' + selectedW + '&height=' + selectedH + '&nologo=true&seed=' + Math.floor(Math.random()*99999);
+  var url = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(finalPrompt)
+    + '?width=' + selectedW
+    + '&height=' + selectedH
+    + '&model=' + config.model
+    + '&negative_prompt=' + encodeURIComponent(finalNegative)
+    + '&nologo=true'
+    + '&enhance=true'
+    + '&seed=' + Math.floor(Math.random() * 999999);
   currentImageUrl = url;
 
   document.getElementById('outputPlaceholder').style.display = 'none';
