@@ -2843,8 +2843,8 @@ img, svg { max-width: 100%; height: auto; }
 /* Mobile — full-screen slide-up */
 @media (max-width: 480px) {
   #vh-chatbot {
-    right: 18px;
-    bottom: 20px;
+    right: 16px;
+    bottom: 16px;
     left: auto;
     top: auto;
     width: auto;
@@ -2852,9 +2852,13 @@ img, svg { max-width: 100%; height: auto; }
     align-items: flex-end;
   }
   #vh-chat-toggle {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
     box-shadow: 0 6px 24px rgba(45,106,79,0.5), 0 2px 8px rgba(0,0,0,0.2);
+  }
+  #vh-chat-toggle .vh-toggle-inner svg {
+    width: 20px;
+    height: 20px;
   }
   #vh-chat-window {
     position: fixed;
@@ -2868,16 +2872,33 @@ img, svg { max-width: 100%; height: auto; }
     z-index: 99998;
   }
   #vh-chat-window.vh-open {
-    animation: vhChatOpenMobile 0.38s cubic-bezier(0.32,0.72,0,1) forwards;
+    animation: vhChatOpenMobile 0.35s cubic-bezier(0.32,0.72,0,1) forwards;
   }
   @keyframes vhChatOpenMobile {
     from { opacity: 0; transform: translateY(100%); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  #vh-chat-header { padding: 16px 16px; padding-top: max(16px, env(safe-area-inset-top)); }
-  #vh-chat-disclaimer { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
-  #vh-chat-input-area { padding-bottom: max(10px, env(safe-area-inset-bottom)); }
+  #vh-chat-header {
+    padding: 14px 16px;
+    padding-top: max(14px, env(safe-area-inset-top));
+  }
+  #vh-chat-messages {
+    padding: 14px 14px;
+  }
+  #vh-chat-disclaimer {
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+    font-size: 10px;
+  }
+  #vh-chat-input-area {
+    padding: 8px 12px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+  #vh-chat-input {
+    font-size: 16px; /* prevents iOS zoom on focus */
+  }
   .vh-actions-primary { grid-template-columns: repeat(2, 1fr); }
+  .vh-rc { padding: 10px 12px; }
+  .vh-live-row { padding: 8px 12px; font-size: 12px; }
 }
 
 /* PRINT STYLES */

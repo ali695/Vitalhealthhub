@@ -588,22 +588,16 @@ const vhChat = (function() {
   // ── Toggle ────────────────────────────────────────────────────────────────
   function toggle() {
     isOpen = !isOpen;
-    var win    = document.getElementById('vh-chat-window');
-    var ci     = document.getElementById('vh-chat-icon');
-    var xi     = document.getElementById('vh-close-icon');
-    var badge  = document.getElementById('vh-chat-badge');
+    var win       = document.getElementById('vh-chat-window');
+    var badge     = document.getElementById('vh-chat-badge');
     var toggleBtn = document.getElementById('vh-chat-toggle');
     if (isOpen) {
       if (win) win.classList.add('vh-open');
-      if (ci) ci.style.display = 'none';
-      if (xi) xi.style.display = 'block';
       if (badge) badge.style.display = 'none';
       if (toggleBtn) toggleBtn.classList.add('vh-active');
       setTimeout(function(){ var inp=document.getElementById('vh-chat-input'); if(inp) inp.focus(); }, 320);
     } else {
       if (win) win.classList.remove('vh-open');
-      if (ci) ci.style.display = 'block';
-      if (xi) xi.style.display = 'none';
       if (toggleBtn) toggleBtn.classList.remove('vh-active');
     }
   }
