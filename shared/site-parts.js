@@ -26,11 +26,11 @@ const NAV = `${TOPBAR}<nav class="navbar">
 const FOOTER = `<footer>
 <div class="footer-top">
 <div class="footer-col">
-<div class="footer-logo"><svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#2d6a4f"/><path d="M16 6 C16 6 8 12 8 20 C8 26 12 28 16 28 C20 28 24 26 24 20 C24 12 16 6 16 6Z" fill="#52b788"/><path d="M16 10 C16 10 11 15 11 20 C11 24 13 26 16 26" fill="#d8f3dc" opacity="0.6"/></svg><span style="color:#fff;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-left:10px;">VitalHealth Hub</span></div>
-<p style="font-size:14px;line-height:1.7;margin:16px 0;color:#9ca3af;max-width:260px;">Your trusted source for free health calculators, evidence-based wellness tools, and expert health guidance — accessible to everyone, always free.</p>
-<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+<div class="footer-logo"><svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#2d6a4f"/><path d="M16 6 C16 6 8 12 8 20 C8 26 12 28 16 28 C20 28 24 26 24 20 C24 12 16 6 16 6Z" fill="#52b788"/><path d="M16 10 C16 10 11 15 11 20 C11 24 13 26 16 26" fill="#d8f3dc" opacity="0.6"/></svg><span class="footer-logo-text">VitalHealth Hub</span></div>
+<p class="footer-brand-text">Your trusted source for free health calculators, evidence-based wellness tools, and expert health guidance — accessible to everyone, always free.</p>
+<div class="footer-email-row">
 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#52b788" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-<a href="mailto:ma7122671@gmail.com" style="color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#52b788'" onmouseout="this.style.color='#9ca3af'">ma7122671@gmail.com</a>
+<a href="mailto:ma7122671@gmail.com" class="footer-email-link">ma7122671@gmail.com</a>
 </div>
 <div class="footer-socials">
 <a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" class="footer-social-btn linkedin" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="#9ca3af"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
@@ -71,23 +71,23 @@ const FOOTER = `<footer>
 <li><a href="/disclaimer.html">→ Medical Disclaimer</a></li>
 <li><a href="/terms.html">→ Terms of Use</a></li>
 </ul>
-<div style="margin-top:24px;padding:16px;background:#111413;border-radius:10px;border-left:3px solid #2d6a4f;">
-<p style="font-size:12px;color:#6b7280;line-height:1.6;"><strong style="color:#9ca3af;">⚕️ Medical Notice:</strong><br>All content is for informational purposes only. Always consult a qualified healthcare professional.</p>
+<div class="footer-medical-notice">
+<p><strong>⚕️ Medical Notice:</strong><br>All content is for informational purposes only. Always consult a qualified healthcare professional.</p>
 </div>
 </div>
 <div class="footer-col">
 <h4>Created By</h4>
-<div style="background:#111413;border-radius:12px;padding:20px;border:1px solid #2d2d2d;">
-<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-<div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#2d6a4f,#52b788);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:#fff;font-weight:700;font-size:18px;">A</span></div>
-<div><p style="color:#fff;font-weight:600;font-size:15px;margin:0;">Ali Haider</p><p style="color:#52b788;font-size:12px;margin:2px 0 0;">SEO Consultant</p></div>
+<div class="footer-creator-card">
+<div class="footer-creator-header">
+<div class="footer-creator-avatar"><span class="footer-creator-initial">A</span></div>
+<div><p class="footer-creator-name">Ali Haider</p><p class="footer-creator-role">SEO Consultant</p></div>
 </div>
-<p style="font-size:13px;color:#9ca3af;line-height:1.6;margin-bottom:16px;">Building accessible health tools and evidence-based content for millions of users worldwide.</p>
-<div style="display:flex;flex-direction:column;gap:8px;">
-<a href="mailto:ma7122671@gmail.com" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#52b788'" onmouseout="this.style.color='#9ca3af'">✉ ma7122671@gmail.com</a>
-<a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#0077b5'" onmouseout="this.style.color='#9ca3af'">🔗 LinkedIn Profile</a>
-<a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#1877f2'" onmouseout="this.style.color='#9ca3af'">📘 Facebook Page</a>
-<a href="https://www.instagram.com/ali_haiderseo/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;color:#9ca3af;font-size:13px;transition:color 0.2s;" onmouseover="this.style.color='#e1306c'" onmouseout="this.style.color='#9ca3af'">📸 @ali_haiderseo</a>
+<p class="footer-creator-bio">Building accessible health tools and evidence-based content for millions of users worldwide.</p>
+<div class="footer-creator-links">
+<a href="mailto:ma7122671@gmail.com" class="footer-creator-link">✉ ma7122671@gmail.com</a>
+<a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" class="footer-creator-link">🔗 LinkedIn Profile</a>
+<a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer" class="footer-creator-link">📘 Facebook Page</a>
+<a href="https://www.instagram.com/ali_haiderseo/" target="_blank" rel="noopener noreferrer" class="footer-creator-link">📸 @ali_haiderseo</a>
 </div>
 </div>
 </div>

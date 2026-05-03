@@ -2642,13 +2642,48 @@ const homeExtraHead = `<meta name="keywords" content="health calculators, free h
 <script type="application/ld+json">${JSON.stringify(homeOrgSchema)}</script>
 <script type="application/ld+json">${JSON.stringify(homeWebSiteSchema)}</script>`;
 
+const homeCalcDesc = {
+  'bmi-calculator': 'Are you in a healthy weight range? Get your BMI score instantly — takes just 30 seconds.',
+  'calorie-calculator': 'Stop guessing how much to eat. Get your exact daily calorie target based on your goal.',
+  'macro-calculator': 'Confused about protein, carbs and fat ratios? Get your personalised macro split in 60 seconds.',
+  'body-fat-calculator': "BMI doesn't reveal the full picture. Measure your actual body fat percentage today.",
+  'tdee-calculator': "Not losing weight despite dieting? Find out exactly how many calories your body really burns.",
+  'water-intake-calculator': 'Fatigue, headaches, brain fog? You may be dehydrated. Find your exact daily water target.',
+  'sleep-calculator': 'Waking up exhausted even after 8 hours? Hit the right sleep cycle and wake up refreshed.',
+  'heart-rate-calculator': 'Working out without a target zone? Calculate your ideal heart rate zone and train smarter.',
+};
+const homeToolDesc = {
+  'habit-tracker': 'Most new habits die within 10 days. Track your streaks daily and finally make them stick.',
+  'sleep-tracker': "Bad sleep costs you energy, focus and mood. Log it and find out what's sabotaging you.",
+  'mood-tracker': "Can't explain why some days feel off? Track your mood daily and uncover the real patterns.",
+  'daily-planner': 'Stop feeling overwhelmed by your to-do list. Block your time and focus on what actually matters.',
+  'focus-timer': 'Constant interruptions are killing your output. Use timed work blocks to reclaim deep focus.',
+  'advanced-text-analyzer': 'Know your readability score, keyword density and reading time — live as you type.',
+};
+const homeQuizDesc = {
+  'nutrition-knowledge-quiz': "You eat every single day — but how much do you really know about what's in your food?",
+  'hydration-health-quiz': "Most people are chronically dehydrated and don't realise it. Do you know the warning signs?",
+  'fitness-level-quiz': 'You work out — but do you understand the science behind it? Test your fitness knowledge.',
+  'lifestyle-health-score-quiz': 'How healthy are your daily habits really? Take this quiz for an honest reality check.',
+  'stress-awareness-quiz': 'Chronic stress is silently damaging your body. How much do you truly understand about it?',
+  'burnout-risk-quiz': "Are you one bad month away from full burnout? Know the warning signs before it's too late.",
+};
+const homeBlogExcerpt = {
+  'how-to-calculate-bmi': "Most people don't know their BMI — or what it means for their health. Here's how to calculate it step by step and what to do with the result.",
+  'what-is-a-healthy-bmi': 'The "healthy" BMI range is more nuanced than most people realise. Learn what the numbers mean for men, women and different body types.',
+  'bmi-vs-body-fat-percentage': 'BMI is widely used but has serious flaws. Find out why body fat percentage often tells a far more accurate story about your real health.',
+  'bmi-for-children-and-teenagers': "Calculating BMI for kids isn't the same as for adults. Learn how to assess it correctly and what the ranges mean for growing bodies.",
+  'bmi-chart-by-age': 'Your ideal weight changes as you age. See where you fall on the BMI chart for your age group and what it means for your long-term health.',
+  'is-bmi-accurate': 'Millions of healthy people are labelled "overweight" by BMI alone. Here\'s what the research says about its accuracy and real-world limits.',
+};
+
 const indexHtml = `${head(SITE_NAME+' - Your Guide to a Healthier Life', 'Free health calculators, evidence-based articles, and wellness tools. BMI calculator, calorie counter, and 50+ tools to help you live healthier.', '/', homeExtraHead, 'website', homeOgImage, homeOgImage)}
 <body>
 ${NAV}
 
 <section class="hero hero-bg">
 <div class="hero-overlay"></div>
-<div class="container" style="position:relative;z-index:2;">
+<div class="container hero-inner">
 <h1 class="fade-in">Your Guide to a Healthier Life</h1>
 <p class="fade-in">Free health calculators, evidence-based articles, and wellness tools trusted by millions. Take control of your health journey today.</p>
 <div class="hero-buttons fade-in">
@@ -2683,7 +2718,7 @@ ${NAV}
 ${popularCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="home-calc-card fade-in">
 <div class="home-calc-card-icon">${calcSvg(c.icon, c.slug)}</div>
 <div class="home-calc-card-name">${c.name}</div>
-<div class="home-calc-card-desc">${c.desc}</div>
+<div class="home-calc-card-desc">${homeCalcDesc[c.slug] || c.desc}</div>
 <div class="home-calc-card-cta">Calculate <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 </a>`).join('')}
 </div>
@@ -2736,7 +2771,7 @@ ${popularCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="home-calc-
 ${homeToolsDisplay.map(t => `<a href="/tools/${t.slug}.html" class="home-tool-card fade-in">
 <span class="home-tool-icon">${t.icon}</span>
 <div class="home-tool-name">${t.name}</div>
-<div class="home-tool-desc">${t.desc}</div>
+<div class="home-tool-desc">${homeToolDesc[t.slug] || t.desc}</div>
 <div class="home-tool-cta">Use Tool &rarr;</div>
 </a>`).join('')}
 </div>
@@ -2764,7 +2799,7 @@ ${homeQuizzesDisplay.map(q => {
 <span class="home-quiz-card-diff ${diff}">${diffLabel}</span>
 </div>
 <h3>${q.name}</h3>
-<p>${q.desc}</p>
+<p>${homeQuizDesc[q.slug] || q.desc}</p>
 <div class="home-quiz-card-cta">Take Quiz &rarr;</div>
 </a>`;
 }).join('')}
@@ -2784,7 +2819,7 @@ ${homeQuizzesDisplay.map(q => {
 <div class="home-blog-v2-grid">
 ${featuredPosts.map(p => {
   const img = blogCardImage(p.slug);
-  return `<a href="/blog/${p.slug}.html" class="blog-card fade-in"><div class="blog-card-image blog-img-hover"><img src="${img.url}" alt="${p.title}" title="${p.title}" width="600" height="210" loading="lazy"></div><div class="blog-card-body"><div class="blog-card-meta"><span class="blog-card-category">${p.category}</span><span>${p.readTime}</span></div><h3>${p.title}</h3><p>Evidence-based insights and practical tips to guide your health journey.</p><span class="read-more">Read More &rarr;</span></div></a>`;
+  return `<a href="/blog/${p.slug}.html" class="blog-card fade-in"><div class="blog-card-image blog-img-hover"><img src="${img.url}" alt="${p.title}" title="${p.title}" width="600" height="210" loading="lazy"></div><div class="blog-card-body"><div class="blog-card-meta"><span class="blog-card-category">${p.category}</span><span>${p.readTime}</span></div><h3>${p.title}</h3><p>${homeBlogExcerpt[p.slug] || 'Evidence-based insights and practical tips to guide your health journey.'}</p><span class="read-more">Read More &rarr;</span></div></a>`;
 }).join('')}
 </div>
 <div class="home-section-cta"><a href="/blog.html" class="btn btn-primary">View All ${blogPosts.length}+ Articles &rarr;</a></div>
@@ -2826,7 +2861,7 @@ ${featuredPosts.map(p => {
 <section class="home-value-section">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge" style="background:rgba(255,255,255,0.1);color:#c8e6d4;">Why Choose Us</span>
+<span class="home-section-badge home-section-badge--dark">Why Choose Us</span>
 <h2>Why VitalHealth Hub?</h2>
 <p>We built this so you get the tools you need — without the paywalls, sign-ups, or noise.</p>
 </div>
@@ -2972,7 +3007,7 @@ ${globalHero({
 <section class="about-mission-section">
 <div class="container">
 <div class="about-mission-inner">
-<div class="home-section-head fade-in" style="text-align:left;margin-bottom:28px;">
+<div class="home-section-head home-section-head--left fade-in">
 <span class="home-section-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Our Purpose</span>
 <h2>Our Mission</h2>
 </div>
@@ -3130,7 +3165,7 @@ ${globalHero({
 <section class="home-value-section">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge" style="background:rgba(255,255,255,0.1);color:#c8e6d4;"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Why Users Trust Us</span>
+<span class="home-section-badge home-section-badge--dark"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Why Users Trust Us</span>
 <h2>Why Users Trust VitalHealth Hub</h2>
 <p>We built every feature with one goal: to earn your trust.</p>
 </div>
@@ -3182,7 +3217,7 @@ ${globalHero({
 <div class="creator-avatar"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
 <div>
 <h3>Ali Haider</h3>
-<p style="color:var(--gray-500);margin-bottom:8px;">SEO Consultant &amp; Web Developer</p>
+<p class="creator-role-sub">SEO Consultant &amp; Web Developer</p>
 <p>A passionate SEO consultant and developer who built VitalHealth Hub to make health tools and knowledge accessible worldwide. With expertise in search engine optimisation and a deep interest in health and wellness, Ali built this platform to combine technical excellence with medically accurate information, ensuring the tools reach the people who need them most.</p>
 <div class="creator-social">
 <a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
@@ -3230,8 +3265,8 @@ ${globalHero({
 <div class="form-row"><div class="form-group"><label for="name">Full Name</label><input type="text" id="name" placeholder="Your name" required></div><div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="your@email.com" required></div></div>
 <div class="form-group"><label for="subject">Subject</label><select id="subject"><option>General Inquiry</option><option>Calculator Feedback</option><option>Content Suggestion</option><option>Bug Report</option><option>Partnership</option><option>SEO Consultation</option></select></div>
 <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="Your message..." required></textarea></div>
-<div class="checkbox-group"><input type="checkbox" id="agree" required><label for="agree" style="font-size:0.85rem;">I agree that the information submitted is accurate and I consent to being contacted.</label></div>
-<button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
+<div class="checkbox-group"><input type="checkbox" id="agree" required><label for="agree" class="label-small">I agree that the information submitted is accurate and I consent to being contacted.</label></div>
+<button type="submit" class="btn btn-primary btn-full">Send Message</button>
 </form>
 </div>
 <div class="contact-detail-card">
@@ -3239,8 +3274,8 @@ ${globalHero({
 <div class="contact-detail-item"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M2 7l10 6 10-6" stroke="currentColor" stroke-width="2"/></svg><div><a href="mailto:ma7122671@gmail.com">ma7122671@gmail.com</a><small>We respond within 24-48 hours</small></div></div>
 <div class="contact-detail-item"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><div><strong>Business Hours</strong><small>Monday - Friday, 9AM - 6PM (PKT)</small></div></div>
 <div class="contact-detail-item"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/></svg><div><strong>Location</strong><small>Available globally, based in Pakistan</small></div></div>
-<h3 style="margin-top:24px;">Follow Us</h3>
-<div class="creator-social" style="margin-top:12px;">
+<h3 class="contact-follow-heading">Follow Us</h3>
+<div class="creator-social contact-social-links">
 <a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
 <a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</a>
 <a href="https://www.instagram.com/ali_haiderseo/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 100-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 11-2.882 0 1.441 1.441 0 012.882 0z"/></svg> Instagram</a>
@@ -3723,7 +3758,7 @@ ${globalHero({
   badge: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> ' + blogPosts.length + '+ Expert Health Articles',
   title: 'VitalHealth Hub Blog',
   subtitle: 'Evidence-based guides on nutrition, fitness, mental health, and more &mdash; written by experts, free for everyone.',
-  customSearch: '<div class="blog-hero-search-wrap"><div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="blogHeroInput" placeholder="Search ' + blogPosts.length + '+ articles..." autocomplete="off"><button class="calc-index-btn-primary" style="padding:8px 18px;font-size:0.875rem;white-space:nowrap;">Search</button></div><div class="blog-hero-suggestions" id="blogHeroSugg"></div></div>',
+  customSearch: '<div class="blog-hero-search-wrap"><div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="blogHeroInput" placeholder="Search ' + blogPosts.length + '+ articles..." autocomplete="off"><button class="calc-index-btn-primary blog-search-btn">Search</button></div><div class="blog-hero-suggestions" id="blogHeroSugg"></div></div>',
   buttons: [
     { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Browse Articles', href: '#all-articles' },
     { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg> Explore Topics', href: '#all-articles' },
@@ -4180,10 +4215,10 @@ ${globalHero({
 </div>
 </section>
 
-<section style="background:#fff;padding:60px 20px;">
-<div class="container" style="max-width:800px;margin:0 auto;text-align:center;">
-<h2 style="color:#1b4332;font-size:1.8rem;margin-bottom:16px;">Why Take Our Health Quizzes?</h2>
-<p style="color:#6c757d;line-height:1.8;font-size:1.05rem;">Health literacy is one of the strongest predictors of better health decisions and outcomes. Our quizzes are built from peer-reviewed research to help you understand the science behind your body — from how sleep affects your brain to how macronutrients fuel your performance. Each quiz includes detailed explanations for every answer, so you leave knowing more than when you started.</p>
+<section class="quiz-why-section">
+<div class="container quiz-why-inner">
+<h2>Why Take Our Health Quizzes?</h2>
+<p>Health literacy is one of the strongest predictors of better health decisions and outcomes. Our quizzes are built from peer-reviewed research to help you understand the science behind your body — from how sleep affects your brain to how macronutrients fuel your performance. Each quiz includes detailed explanations for every answer, so you leave knowing more than when you started.</p>
 </div>
 </section>
 
@@ -4825,13 +4860,13 @@ let sitemapXml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://
   sitemapXml += `<url><loc>${SITE}${u}</loc><changefreq>weekly</changefreq><priority>${u==='/'?'1.0':'0.8'}</priority></url>\n`;
 });
 calculators.forEach(c => {
-  sitemapXml += `<url><loc>${SITE}/calculators/${c.slug}.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
+  sitemapXml += `<url><loc>${SITE}/calculators/${c.slug}.html</loc><lastmod>2025-05-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
 });
 blogPosts.forEach(p => {
   sitemapXml += `<url><loc>${SITE}/blog/${p.slug}.html</loc><lastmod>${p.date}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
 });
 quizzesData.forEach(q => {
-  sitemapXml += `<url><loc>${SITE}/quizzes/${q.slug}.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
+  sitemapXml += `<url><loc>${SITE}/quizzes/${q.slug}.html</loc><lastmod>2025-05-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
 });
 sitemapXml += `<url><loc>${SITE}/tools/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>\n`;
 toolsData.forEach(t => {
