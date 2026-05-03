@@ -1,0 +1,149 @@
+--------------------------------------------------
+TASK: IMPLEMENT BALANCED SECURITY (SEO + AI FRIENDLY)
+--------------------------------------------------
+
+Upgrade security for VitalHealth Hub WITHOUT blocking SEO tools, AI bots, or analytics systems.
+
+DOMAIN:
+https://vitalhealthhub.org
+
+--------------------------------------------------
+SECTION 1: SECURITY STRATEGY (IMPORTANT)
+--------------------------------------------------
+
+Use a BALANCED approach:
+
+- protect against real threats (XSS, injection, spam)
+- allow SEO tools (SEMrush, Ahrefs, Screaming Frog)
+- allow AI crawlers and indexing bots
+- allow analytics and ads scripts
+
+DO NOT over-restrict.
+
+--------------------------------------------------
+SECTION 2: CONTENT SECURITY POLICY (CSP)
+--------------------------------------------------
+
+Do NOT use overly strict CSP.
+
+Use flexible CSP like:
+
+- allow self
+- allow Google domains (analytics, adsense, fonts)
+- allow Cloudflare
+- allow common CDN sources
+
+IMPORTANT:
+
+- DO NOT block inline scripts aggressively
+- DO NOT block third-party SEO tools
+
+--------------------------------------------------
+SECTION 3: ALLOW TRUSTED EXTERNAL SERVICES
+--------------------------------------------------
+
+Explicitly allow:
+
+- Google Analytics
+- Google Tag Manager
+- Google AdSense
+- Cloudflare
+- SEMrush bot
+- Ahrefs bot
+- OpenAI / AI crawlers (if needed)
+
+--------------------------------------------------
+SECTION 4: XSS / INPUT SECURITY (KEEP STRONG)
+--------------------------------------------------
+
+Apply strong protection here:
+
+- sanitize all user inputs
+- escape HTML properly
+- prevent script injection
+- validate form fields
+
+This is where security should be strict.
+
+--------------------------------------------------
+SECTION 5: FORM PROTECTION (SMART)
+--------------------------------------------------
+
+Instead of blocking everything:
+
+- use honeypot fields
+- optional CAPTCHA only on abuse
+- rate limit spam submissions
+
+--------------------------------------------------
+SECTION 6: HEADERS (SAFE BUT NOT BREAKING)
+--------------------------------------------------
+
+Add:
+
+- X-Frame-Options: SAMEORIGIN
+- X-Content-Type-Options: nosniff
+- Referrer-Policy: strict-origin-when-cross-origin
+
+BUT:
+
+- keep CSP flexible
+- do NOT break external scripts
+
+--------------------------------------------------
+SECTION 7: ROBOTS & BOT ACCESS
+--------------------------------------------------
+
+Allow:
+
+User-agent: *
+Allow: /
+
+DO NOT block:
+
+- SEO crawlers
+- AI bots
+- audit tools
+
+--------------------------------------------------
+SECTION 8: AVOID OVER-RESTRICTIONS
+--------------------------------------------------
+
+DO NOT:
+
+- block unknown domains aggressively
+- disable inline scripts completely
+- restrict script-src too tightly
+- block third-party tools blindly
+
+--------------------------------------------------
+SECTION 9: MONITOR INSTEAD OF BLOCK
+--------------------------------------------------
+
+Instead of blocking everything:
+
+- monitor unusual traffic
+- log suspicious activity
+- optimize based on real threats
+
+--------------------------------------------------
+SECTION 10: FINAL BALANCE
+--------------------------------------------------
+
+Security should:
+
+- protect from real attacks
+- NOT block growth tools
+- NOT harm SEO
+- NOT break analytics
+
+--------------------------------------------------
+FINAL GOAL
+--------------------------------------------------
+
+Create a balanced system that is:
+
+- secure enough
+- SEO-friendly
+- AI-friendly
+- analytics-compatible
