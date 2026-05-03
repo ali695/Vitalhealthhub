@@ -315,6 +315,28 @@ function faqSection(faqs) {
   return { html, schema: `<script type="application/ld+json">${JSON.stringify(schema)}</script>` };
 }
 
+function globalHero(opts) {
+  var badge = opts.badge || '';
+  var title = opts.title || '';
+  var subtitle = opts.subtitle || '';
+  var customSearch = opts.customSearch || '';
+  var buttons = opts.buttons || [];
+  var stats = opts.stats || [];
+  var searchHtml = '';
+  if (customSearch) {
+    searchHtml = customSearch;
+  } else if (opts.searchId) {
+    searchHtml = '<div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="' + opts.searchId + '" placeholder="' + (opts.searchPlaceholder || '') + '" oninput="' + (opts.searchOnInput || '') + '" autocomplete="off"></div>';
+  }
+  var btnsHtml = buttons.map(function(b, i) {
+    var cls = i === 0 ? 'calc-index-btn-primary' : 'calc-index-btn-outline';
+    var extra = b.onclick ? ' onclick="' + b.onclick + '"' : '';
+    return '<a href="' + b.href + '" class="' + cls + '"' + extra + '>' + b.label + '</a>';
+  }).join('');
+  var statsHtml = stats.length ? '<div class="calc-index-hero-stats">' + stats.map(function(s) { return '<div class="calc-index-stat"><strong>' + s.value + '</strong><span>' + s.label + '</span></div>'; }).join('') + '</div>' : '';
+  return '<section class="calc-index-hero">\n<div class="calc-index-hero-inner">\n<div class="calc-index-hero-badge">' + badge + '</div><h1 class="calc-index-hero-title">' + title + '</h1><p class="calc-index-hero-sub">' + subtitle + '</p>\n' + searchHtml + '<div class="calc-index-hero-btns">' + btnsHtml + '</div>' + statsHtml + '</div>\n</section>';
+}
+
 function calcSvg(type) {
   const icons = {
     weight: `<svg viewBox="0 0 48 48" fill="none"><rect x="8" y="16" width="32" height="24" rx="4" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="24" cy="28" r="6" stroke="#52b788" stroke-width="2"/><path d="M24 22v6l4 2" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/></svg>`,
@@ -2085,12 +2107,22 @@ fs.writeFileSync('about.html', `${head('About Us | '+SITE_NAME, 'Learn about '+S
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'About Us',url:'/about.html'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'About Us',url:'/about.html'}]).schema}
-<section class="about-hero">
-<div class="container">
-<h1 class="fade-in">About ${SITE_NAME}</h1>
-<p class="fade-in">Making health information accessible, understandable, and actionable for everyone around the world.</p>
-</div>
-</section>
+${globalHero({
+  badge: '&#127758; About VitalHealth Hub',
+  title: 'Building Smarter<br>Health Experiences',
+  subtitle: 'Our mission is to make health tools and insights accessible to everyone.',
+  buttons: [
+    { label: '&#9889; Explore Tools', href: '/tools/' },
+    { label: '&#128218; Read Blog', href: '/blog.html' },
+    { label: '&#128231; Contact Us', href: '/contact.html' }
+  ],
+  stats: [
+    { value: '103+', label: 'Calculators' },
+    { value: '155+', label: 'Articles' },
+    { value: '15+', label: 'Tools' },
+    { value: 'Free', label: 'Always' }
+  ]
+})}
 <section class="section">
 <div class="container">
 <h2 class="fade-in">Our Mission</h2>
@@ -2140,10 +2172,24 @@ fs.writeFileSync('contact.html', `${head('Contact Us | '+SITE_NAME, 'Get in touc
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Contact',url:'/contact.html'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Contact',url:'/contact.html'}]).schema}
-<section class="content-page">
+${globalHero({
+  badge: '&#128233; Get in Touch',
+  title: "We'd Love to<br>Hear From You",
+  subtitle: 'Reach out for support, feedback, or collaboration.',
+  buttons: [
+    { label: '&#128231; Send Message', href: '#contact-form' },
+    { label: '&#9889; Explore Tools', href: '/tools/' },
+    { label: '&#10067; Visit FAQ', href: '/faq.html' }
+  ],
+  stats: [
+    { value: '24h', label: 'Response Time' },
+    { value: 'Free', label: 'Support' },
+    { value: 'Global', label: 'Available' },
+    { value: 'Friendly', label: 'Team' }
+  ]
+})}
+<section class="content-page" id="contact-form">
 <div class="container">
-<h1 class="fade-in" style="text-align:center;">Contact Us</h1>
-<p class="fade-in" style="text-align:center;max-width:600px;margin:0 auto 40px;">Have questions, feedback, or suggestions? We would love to hear from you.</p>
 <div class="contact-grid fade-in">
 <div class="contact-form">
 <form onsubmit="event.preventDefault();alert('Thank you for your message! We will respond within 24-48 hours.');">
@@ -2196,11 +2242,31 @@ ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'FAQ',url:'/faq.html'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'FAQ',url:'/faq.html'}]).schema}
 ${gfaq.schema}
-<section class="content-page">
+${globalHero({
+  badge: '&#10067; Help &amp; Support',
+  title: 'Frequently Asked<br>Questions',
+  subtitle: 'Find answers about tools, quizzes, calculators, and how everything works.',
+  searchId: 'faqHeroInput',
+  searchPlaceholder: 'Search questions...',
+  searchOnInput: 'faqHeroSearch(this.value)',
+  buttons: [
+    { label: '&#128218; Browse FAQs', href: '#faq-answers' },
+    { label: '&#128231; Contact Support', href: '/contact.html' },
+    { label: '&#9889; Explore Tools', href: '/tools/' }
+  ],
+  stats: [
+    { value: generalFaqs.length + '+', label: 'FAQs' },
+    { value: 'Free', label: 'Always' },
+    { value: 'Instant', label: 'Answers' },
+    { value: 'Private', label: 'No Data' }
+  ]
+})}
+<section class="content-page" id="faq-answers">
 <div class="container">
-<h1 class="fade-in" style="text-align:center;">Frequently Asked Questions</h1>
-<p class="fade-in" style="text-align:center;max-width:600px;margin:0 auto 40px;color:var(--gray-500);">Find answers to the most common questions about our health tools and resources.</p>
 ${gfaq.html}
+<script>
+function faqHeroSearch(q){q=(q||'').toLowerCase().trim();document.querySelectorAll('.faq-item').forEach(function(item){item.style.display=(q&&item.textContent.toLowerCase().indexOf(q)===-1)?'none':'';});}
+</script>
 </div>
 </section>
 ${FOOTER}
@@ -2425,33 +2491,23 @@ fs.writeFileSync('blog.html', `${head('Health & Wellness Blog \u2014 150+ Expert
 <body>
 ${NAV}
 
-<section class="blog-page-hero">
-<div class="blog-page-hero-glow2"></div>
-<div class="blog-hero-inner">
-<div class="blog-hero-badge">&#128293; ${blogPosts.length}+ Expert Health Articles</div>
-<h1 class="blog-hero-title">Explore Smarter<br>Health Insights</h1>
-<p class="blog-hero-subtitle">Science-backed articles on nutrition, fitness, mental health, and more &mdash; written by experts, free forever.</p>
-<div class="blog-hero-search-wrap">
-<div class="blog-hero-search-bar">
-<svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-<input type="text" id="blogHeroInput" placeholder="Search ${blogPosts.length}+ health articles..." oninput="blogHeroSearch(this.value)" onkeydown="if(event.key==='Enter'){openBlogSearch(this.value)}" autocomplete="off">
-<button class="blog-hero-search-btn" onclick="openBlogSearch(document.getElementById('blogHeroInput').value)">Search</button>
-</div>
-<div class="blog-hero-suggestions" id="blogHeroSugg"></div>
-</div>
-<div class="blog-hero-btns">
-<a href="/calculators/" class="blog-hero-btn-primary">&#9889; Explore Tools</a>
-<a href="/quizzes/" class="blog-hero-btn-outline">&#129504; Take a Quiz</a>
-<a href="#all-articles" class="blog-hero-btn-outline">&#128214; Browse Articles</a>
-</div>
-<div class="blog-hero-stats">
-<div class="blog-hero-stat"><strong>${blogPosts.length}+</strong><span>Articles</span></div>
-<div class="blog-hero-stat"><strong>${blogCategories.length}</strong><span>Categories</span></div>
-<div class="blog-hero-stat"><strong>Expert</strong><span>Reviewed</span></div>
-<div class="blog-hero-stat"><strong>Free</strong><span>Always</span></div>
-</div>
-</div>
-</section>
+${globalHero({
+  badge: '&#128218; ' + blogPosts.length + '+ Expert Health Articles',
+  title: 'Health &amp; Wellness Blog',
+  subtitle: 'Evidence-based guides on nutrition, fitness, mental health, and more.',
+  customSearch: '<div class="blog-hero-search-wrap"><div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="blogHeroInput" placeholder="Search ' + blogPosts.length + '+ articles..." oninput="blogHeroSearch(this.value)" onkeydown="if(event.key===\'Enter\'){openBlogSearch(this.value)}" autocomplete="off"><button class="calc-index-btn-primary" style="padding:8px 18px;font-size:0.875rem;" onclick="openBlogSearch(document.getElementById(\'blogHeroInput\').value)">Search</button></div><div class="blog-hero-suggestions" id="blogHeroSugg"></div></div>',
+  buttons: [
+    { label: '&#128214; Read Articles', href: '#all-articles' },
+    { label: '&#128202; Explore Topics', href: '#all-articles' },
+    { label: '&#9889; Try Tools', href: '/tools/' }
+  ],
+  stats: [
+    { value: blogPosts.length + '+', label: 'Articles' },
+    { value: blogCategories.length + '', label: 'Categories' },
+    { value: 'Expert', label: 'Reviewed' },
+    { value: 'Free', label: 'Always' }
+  ]
+})}
 
 <section class="blog-featured-section">
 <div class="blog-featured-header">
@@ -3055,19 +3111,25 @@ ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Quizzes',url:'/quizzes/'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Quizzes',url:'/quizzes/'}]).schema}
 
-<section class="quiz-index-hero">
-<div class="container">
-<span style="display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:30px;padding:6px 18px;font-size:.85rem;font-weight:600;letter-spacing:.04em;margin-bottom:18px;">🧠 ${quizzesData.length}+ Free Health Quizzes</span>
-<h1>Test Your Health Knowledge</h1>
-<p>Evidence-based quizzes on nutrition, fitness, mental health, and more. Instant scoring, personalised feedback, three difficulty levels.</p>
-<div class="quiz-index-stats">
-<div class="quiz-index-stat"><strong>${quizzesData.length}+</strong><span>Quizzes</span></div>
-<div class="quiz-index-stat"><strong>3</strong><span>Difficulty Levels</span></div>
-<div class="quiz-index-stat"><strong>${quizzesData.reduce((t,q)=>t+q.questions.length,0)}+</strong><span>Questions</span></div>
-<div class="quiz-index-stat"><strong>Free</strong><span>Always</span></div>
-</div>
-</div>
-</section>
+${globalHero({
+  badge: '&#129504; ' + quizzesData.length + '+ Interactive Health Quizzes',
+  title: 'Test Your Health<br>Knowledge Instantly',
+  subtitle: 'Challenge yourself with science-based quizzes and track your progress.',
+  searchId: 'quizHeroInput',
+  searchPlaceholder: 'Search quizzes...',
+  searchOnInput: 'quizHeroSearch(this.value)',
+  buttons: [
+    { label: '&#9654; Start Quiz', href: '#quiz-grid' },
+    { label: '&#127937; Browse Categories', href: '#quiz-grid' },
+    { label: '&#128202; View Results', href: '#quiz-grid' }
+  ],
+  stats: [
+    { value: quizzesData.length + '+', label: 'Quizzes' },
+    { value: '3', label: 'Difficulty Levels' },
+    { value: quizzesData.reduce(function(t,q){return t+q.questions.length;},0) + '+', label: 'Questions' },
+    { value: 'Free', label: 'Always' }
+  ]
+})}
 
 <div class="quiz-category-bar">
 <div class="quiz-category-bar-inner">${quizCatPills}</div>
@@ -3096,6 +3158,13 @@ function quizFilter(cat, btn) {
   btn.classList.add('active');
   document.querySelectorAll('.quiz-card').forEach(function(c){
     c.classList.toggle('hidden', cat !== 'All' && c.dataset.category !== cat);
+  });
+}
+function quizHeroSearch(q){
+  q=(q||'').toLowerCase().trim();
+  document.querySelectorAll('.quiz-card').forEach(function(c){
+    var text=(c.querySelector('h3')?c.querySelector('h3').textContent:'').toLowerCase()+' '+(c.dataset.category||'').toLowerCase();
+    c.classList.toggle('hidden', q.length>0 && text.indexOf(q)===-1);
   });
 }
 </script>
@@ -4173,23 +4242,25 @@ ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Tools Hub',url:'/tools/'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Tools Hub',url:'/tools/'}]).schema}
 
-<section class="tools-saas-hero">
-<div class="tools-saas-hero-inner">
-<div class="tools-saas-badge">✦ Premium Free Tools — No Sign-Up Required</div>
-<h1 class="tools-saas-title">Your Health &amp;<br>Productivity Hub</h1>
-<p class="tools-saas-sub">Habit trackers, sleep analysis, focus timers, text analytics and more — all free, all private, all in your browser.</p>
-<div class="tools-saas-search-wrap">
-<span class="tools-saas-search-icon">🔍</span>
-<input class="tools-saas-search" id="toolsSearch" placeholder="Search tools…" oninput="filterHub(this.value)" autocomplete="off">
-</div>
-<div class="tools-saas-stats">
-<div class="tools-saas-stat"><span class="tools-saas-stat-num">${toolsData.length}</span><span class="tools-saas-stat-label">Tools</span></div>
-<div class="tools-saas-stat"><span class="tools-saas-stat-num">4</span><span class="tools-saas-stat-label">Categories</span></div>
-<div class="tools-saas-stat"><span class="tools-saas-stat-num">100%</span><span class="tools-saas-stat-label">Free</span></div>
-<div class="tools-saas-stat"><span class="tools-saas-stat-num">Private</span><span class="tools-saas-stat-label">Data stays local</span></div>
-</div>
-</div>
-</section>
+${globalHero({
+  badge: '&#9889; Smart Tools for Daily Optimization',
+  title: 'All-in-One Health &amp;<br>Productivity Tools',
+  subtitle: 'Track habits, analyze health, and improve performance with powerful tools.',
+  searchId: 'toolsSearch',
+  searchPlaceholder: 'Search tools...',
+  searchOnInput: 'filterHub(this.value)',
+  buttons: [
+    { label: '&#128270; Browse Tools', href: '#tools-content' },
+    { label: '&#129504; Take a Quiz', href: '/quizzes/' },
+    { label: '&#128218; Read Articles', href: '/blog.html' }
+  ],
+  stats: [
+    { value: toolsData.length + '', label: 'Tools' },
+    { value: '4', label: 'Categories' },
+    { value: '100%', label: 'Free' },
+    { value: 'Private', label: 'Data stays local' }
+  ]
+})}
 
 <div class="tools-cat-nav">
 <div class="tools-cat-tabs">
@@ -4201,7 +4272,7 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'Tools Hub',url:'/tools/'}]).schema}
 </div>
 </div>
 
-<div class="tools-hub-content">
+<div class="tools-hub-content" id="tools-content">
 
 <div class="tools-activity-panel" id="activityPanel">
 <div class="tools-activity-head">⏱ Recently Used</div>

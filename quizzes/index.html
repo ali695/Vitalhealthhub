@@ -136,18 +136,10 @@
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><span>Quizzes</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.com/"},{"@type":"ListItem","position":2,"name":"Quizzes","item":"https://vitalhealthhub.com/quizzes/"}]}</script>
 
-<section class="quiz-index-hero">
-<div class="container">
-<span style="display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:30px;padding:6px 18px;font-size:.85rem;font-weight:600;letter-spacing:.04em;margin-bottom:18px;">🧠 22+ Free Health Quizzes</span>
-<h1>Test Your Health Knowledge</h1>
-<p>Evidence-based quizzes on nutrition, fitness, mental health, and more. Instant scoring, personalised feedback, three difficulty levels.</p>
-<div class="quiz-index-stats">
-<div class="quiz-index-stat"><strong>22+</strong><span>Quizzes</span></div>
-<div class="quiz-index-stat"><strong>3</strong><span>Difficulty Levels</span></div>
-<div class="quiz-index-stat"><strong>220+</strong><span>Questions</span></div>
-<div class="quiz-index-stat"><strong>Free</strong><span>Always</span></div>
-</div>
-</div>
+<section class="calc-index-hero">
+<div class="calc-index-hero-inner">
+<div class="calc-index-hero-badge">&#129504; 22+ Interactive Health Quizzes</div><h1 class="calc-index-hero-title">Test Your Health<br>Knowledge Instantly</h1><p class="calc-index-hero-sub">Challenge yourself with science-based quizzes and track your progress.</p>
+<div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="quizHeroInput" placeholder="Search quizzes..." oninput="quizHeroSearch(this.value)" autocomplete="off"></div><div class="calc-index-hero-btns"><a href="#quiz-grid" class="calc-index-btn-primary">&#9654; Start Quiz</a><a href="#quiz-grid" class="calc-index-btn-outline">&#127937; Browse Categories</a><a href="#quiz-grid" class="calc-index-btn-outline">&#128202; View Results</a></div><div class="calc-index-hero-stats"><div class="calc-index-stat"><strong>22+</strong><span>Quizzes</span></div><div class="calc-index-stat"><strong>3</strong><span>Difficulty Levels</span></div><div class="calc-index-stat"><strong>220+</strong><span>Questions</span></div><div class="calc-index-stat"><strong>Free</strong><span>Always</span></div></div></div>
 </section>
 
 <div class="quiz-category-bar">
@@ -177,6 +169,13 @@ function quizFilter(cat, btn) {
   btn.classList.add('active');
   document.querySelectorAll('.quiz-card').forEach(function(c){
     c.classList.toggle('hidden', cat !== 'All' && c.dataset.category !== cat);
+  });
+}
+function quizHeroSearch(q){
+  q=(q||'').toLowerCase().trim();
+  document.querySelectorAll('.quiz-card').forEach(function(c){
+    var text=(c.querySelector('h3')?c.querySelector('h3').textContent:'').toLowerCase()+' '+(c.dataset.category||'').toLowerCase();
+    c.classList.toggle('hidden', q.length>0 && text.indexOf(q)===-1);
   });
 }
 </script>
