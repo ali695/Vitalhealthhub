@@ -2200,7 +2200,7 @@ console.log('Generated index.html');
 // ========================
 
 // ABOUT
-fs.writeFileSync('about.html', `${head('About Us | '+SITE_NAME, 'Learn about '+SITE_NAME+' — our mission to make health information accessible with free calculators and expert wellness articles.', '/about.html')}
+fs.writeFileSync('about.html', `${head('About Us | '+SITE_NAME, 'Learn about '+SITE_NAME+' — our mission to make health tools and knowledge freely accessible to everyone through science-based calculators, interactive quizzes, and expert articles.', '/about.html')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'About Us',url:'/about.html'}]).html}
@@ -2208,44 +2208,236 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'About Us',url:'/about.html'}]).schema
 ${globalHero({
   badge: '&#127758; About VitalHealth Hub',
   title: 'Building Smarter<br>Health Experiences',
-  subtitle: 'Our mission is to make health tools and insights accessible to everyone.',
+  subtitle: 'We create powerful health calculators, tools, quizzes, and insights to help people understand and improve their daily lives.',
   buttons: [
-    { label: '&#9889; Explore Tools', href: '/tools/' },
-    { label: '&#128218; Read Blog', href: '/blog.html' },
-    { label: '&#128231; Contact Us', href: '/contact.html' }
+    { label: '&#9881; Explore Calculators', href: '/calculators/' },
+    { label: '&#128218; Read Articles', href: '/blog.html' },
+    { label: '&#129504; Take a Quiz', href: '/quizzes/' }
   ],
   stats: [
-    { value: '103+', label: 'Calculators' },
-    { value: '155+', label: 'Articles' },
-    { value: '15+', label: 'Tools' },
+    { value: calculators.length + '+', label: 'Calculators' },
+    { value: quizzesData.length + '+', label: 'Quizzes' },
+    { value: blogPosts.length + '+', label: 'Articles' },
     { value: 'Free', label: 'Always' }
   ]
 })}
-<section class="section">
+
+<!-- Section 2: Mission -->
+<section class="about-mission-section">
 <div class="container">
-<h2 class="fade-in">Our Mission</h2>
-<p class="fade-in">${SITE_NAME} was founded with a simple yet powerful mission: to empower people with free, evidence-based health calculators and expert-written wellness content. We believe that informed individuals make better health decisions, and we are committed to providing the tools and knowledge to support that journey.</p>
-<p class="fade-in">We strive to bridge the gap between complex medical data and everyday health understanding, ensuring that everyone — regardless of background, location, or income — has access to reliable health assessment tools.</p>
-<h2 class="fade-in">What We Offer</h2>
-<ul class="fade-in">
-<li><strong>115+ Free Health Calculators:</strong> From BMI and calorie calculators to specialized tools for fitness, nutrition, mental health, pregnancy, and disease risk assessment.</li>
-<li><strong>150+ Expert Articles:</strong> Comprehensive health and wellness content written and reviewed by healthcare professionals, updated regularly with the latest research.</li>
-<li><strong>Evidence-Based Information:</strong> All our calculators use established medical formulas (Mifflin-St Jeor, Harris-Benedict, WHO standards) and our content references peer-reviewed research.</li>
-<li><strong>Privacy-First Approach:</strong> Your health data stays on your device. We do not store, transmit, or sell personal health information. All computations happen locally in your browser.</li>
-</ul>
-<div class="numbers-grid fade-in" style="margin:40px 0;">
-<div class="number-item"><div class="stat-number">50+</div><p>Health Calculators</p></div>
-<div class="number-item"><div class="stat-number">100+</div><p>Expert Articles</p></div>
-<div class="number-item"><div class="stat-number">1M+</div><p>Users Helped</p></div>
-<div class="number-item"><div class="stat-number">10+</div><p>Health Categories</p></div>
+<div class="about-mission-inner">
+<div class="home-section-head fade-in" style="text-align:left;margin-bottom:28px;">
+<span class="home-section-badge">&#127919; Our Purpose</span>
+<h2>Our Mission</h2>
 </div>
-<h2 class="fade-in">Created By</h2>
+<div class="about-mission-body fade-in">
+<p class="about-mission-lead">VitalHealth Hub was built to make health tools and knowledge accessible to everyone. We believe that understanding your health should be simple, fast, and free — without complex apps or barriers.</p>
+<p>Our goal is to combine science-based insights with intuitive tools so users can make better decisions every day.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Section 3: What We Offer -->
+<section class="about-offer-section">
+<div class="container">
+<div class="home-section-head fade-in">
+<span class="home-section-badge">&#128161; Platform Overview</span>
+<h2>What We Offer</h2>
+<p>Everything you need to understand and improve your health — in one place, always free.</p>
+</div>
+<div class="about-offer-grid">
+<div class="about-offer-card fade-in">
+<span class="about-offer-icon">&#129518;</span>
+<h3>Health Calculators</h3>
+<p>Instant, science-based calculations for BMI, calories, macros, and more.</p>
+<a href="/calculators/" class="about-offer-link">Browse Calculators &#8594;</a>
+</div>
+<div class="about-offer-card fade-in">
+<span class="about-offer-icon">&#128202;</span>
+<h3>Smart Tools</h3>
+<p>Track habits, sleep, mood, and productivity with interactive daily tools.</p>
+<a href="/tools/" class="about-offer-link">Explore Tools &#8594;</a>
+</div>
+<div class="about-offer-card fade-in">
+<span class="about-offer-icon">&#129504;</span>
+<h3>Interactive Quizzes</h3>
+<p>Test your knowledge and gain personalised insights into your health.</p>
+<a href="/quizzes/" class="about-offer-link">Take a Quiz &#8594;</a>
+</div>
+<div class="about-offer-card fade-in">
+<span class="about-offer-icon">&#128218;</span>
+<h3>Expert Content</h3>
+<p>Evidence-based articles designed to guide your health journey every day.</p>
+<a href="/blog.html" class="about-offer-link">Read Articles &#8594;</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Section 4: Why We Built This -->
+<section class="about-why-section">
+<div class="container">
+<div class="about-why-inner fade-in">
+<span class="home-section-badge">&#128172; Our Story</span>
+<h2>Why VitalHealth Hub Exists</h2>
+<p class="about-why-lead">Most health platforms are either too complex, locked behind subscriptions, or difficult to use. We wanted to create something different — a simple, fast, and accessible platform where anyone can get value instantly.</p>
+<p>VitalHealth Hub focuses on clarity, usability, and meaningful insights that make a real difference in people's daily lives.</p>
+</div>
+</div>
+</section>
+
+<!-- Section 5: Core Values -->
+<section class="about-values-section">
+<div class="container">
+<div class="home-section-head fade-in">
+<span class="home-section-badge">&#11088; Core Values</span>
+<h2>What We Stand For</h2>
+<p>The principles that guide every tool, article, and feature we build.</p>
+</div>
+<div class="about-values-grid">
+<div class="about-value-card fade-in">
+<span class="about-value-icon">&#127758;</span>
+<h3>Accessibility</h3>
+<p>Free tools for everyone, regardless of background, location, or income.</p>
+</div>
+<div class="about-value-card fade-in">
+<span class="about-value-icon">&#10024;</span>
+<h3>Simplicity</h3>
+<p>No complicated systems. Clean interfaces that anyone can use in seconds.</p>
+</div>
+<div class="about-value-card fade-in">
+<span class="about-value-icon">&#128300;</span>
+<h3>Reliability</h3>
+<p>Built with structured, evidence-based logic validated against medical guidelines.</p>
+</div>
+<div class="about-value-card fade-in">
+<span class="about-value-icon">&#127919;</span>
+<h3>Usability</h3>
+<p>Designed for real people, not experts only. Instant results, clear explanations.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Section 6: How It Works -->
+<section class="home-how-works">
+<div class="container">
+<div class="home-section-head fade-in">
+<span class="home-section-badge">&#128161; Simple Process</span>
+<h2>How It Works</h2>
+<p>Getting health insights has never been simpler — three steps, under a minute.</p>
+</div>
+<div class="home-hw-grid">
+<div class="home-hw-step fade-in">
+<span class="home-hw-num">Step 01</span>
+<div class="home-hw-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="8" width="36" height="32" rx="4" stroke="white" stroke-width="2.5"/><path d="M14 18h20M14 24h20M14 30h12" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+<h3>Choose a Calculator, Tool, or Quiz</h3>
+<p>Browse our library of ${calculators.length}+ free health calculators, ${toolsData.length} tracking tools, and ${quizzesData.length} interactive quizzes.</p>
+</div>
+<div class="home-hw-step fade-in">
+<span class="home-hw-num">Step 02</span>
+<div class="home-hw-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><path d="M16 8h16v8H16zM12 16h24v24H12z" stroke="white" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 26h8M20 31h5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+<h3>Enter Your Data</h3>
+<p>Input your personal measurements or health information — no account required, no data stored on our servers.</p>
+</div>
+<div class="home-hw-step fade-in">
+<span class="home-hw-num">Step 03</span>
+<div class="home-hw-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><path d="M8 36l10-12 8 8 12-16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="38" cy="12" r="4" stroke="white" stroke-width="2.5"/></svg></div>
+<h3>Get Instant Results &amp; Insights</h3>
+<p>Receive colour-coded results, personalised recommendations, and actionable health insights immediately.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Section 7: Platform Stats -->
+<section class="about-stats-section">
+<div class="container">
+<div class="home-section-head fade-in">
+<span class="home-section-badge">&#128202; Platform Numbers</span>
+<h2>Built for Scale</h2>
+<p>A growing platform trusted by health-conscious users around the world.</p>
+</div>
+<div class="about-stats-grid">
+<div class="about-stat-box fade-in">
+<div class="about-stat-num">${calculators.length}+</div>
+<div class="about-stat-lbl">Calculators &amp; Tools</div>
+</div>
+<div class="about-stat-box fade-in">
+<div class="about-stat-num">${quizzesData.length}+</div>
+<div class="about-stat-lbl">Health Quizzes</div>
+</div>
+<div class="about-stat-box fade-in">
+<div class="about-stat-num">${blogPosts.length}+</div>
+<div class="about-stat-lbl">Expert Articles</div>
+</div>
+<div class="about-stat-box fade-in">
+<div class="about-stat-num">Free</div>
+<div class="about-stat-lbl">Always &amp; Forever</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Section 8: Trust/Value -->
+<section class="home-value-section">
+<div class="container">
+<div class="home-section-head fade-in">
+<span class="home-section-badge" style="background:rgba(255,255,255,0.1);color:#c8e6d4;">&#129309; Why Users Trust Us</span>
+<h2>Why Users Trust VitalHealth Hub</h2>
+<p>We built every feature with one goal: to earn your trust.</p>
+</div>
+<div class="home-value-grid">
+<div class="home-value-card fade-in">
+<span class="home-value-icon">&#9889;</span>
+<h3>Instant Results</h3>
+<p>All calculations happen in your browser. No waiting, no servers — results in milliseconds.</p>
+</div>
+<div class="home-value-card fade-in">
+<span class="home-value-icon">&#128300;</span>
+<h3>Science-Based Approach</h3>
+<p>Every tool uses validated medical formulas from WHO, NIH, and peer-reviewed research.</p>
+</div>
+<div class="home-value-card fade-in">
+<span class="home-value-icon">&#128274;</span>
+<h3>No Signup Required</h3>
+<p>Your health data stays on your device. We never collect, store, or share personal information.</p>
+</div>
+<div class="home-value-card fade-in">
+<span class="home-value-icon">&#128994;</span>
+<h3>Always Free</h3>
+<p>No paywalls, no subscriptions, no hidden fees. Everything is and will always be 100% free.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Section 9: Final CTA -->
+<section class="home-final-cta">
+<div class="fade-in">
+<h2>Start Improving Your Health Today</h2>
+<p>Free tools, science-backed insights — no account, no cost, no limits.</p>
+<div class="home-final-cta-btns">
+<a href="/calculators/" class="btn btn-primary btn-pulse">Explore Calculators</a>
+<a href="/quizzes/" class="btn btn-highlight">Take a Quiz</a>
+</div>
+</div>
+</section>
+
+<!-- Section 10: Created By -->
+<section class="about-creator-section">
+<div class="container">
+<div class="home-section-head fade-in">
+<span class="home-section-badge">&#128100; Meet the Creator</span>
+<h2>Created By</h2>
+</div>
 <div class="creator-card fade-in">
 <div class="creator-avatar"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#2d6a4f" stroke-width="2"/><path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#2d6a4f" stroke-width="2"/></svg></div>
 <div>
 <h3>Ali Haider</h3>
 <p style="color:var(--gray-500);margin-bottom:8px;">SEO Consultant &amp; Web Developer</p>
-<p>Ali Haider is a passionate SEO consultant and web developer who created ${SITE_NAME} to make health information freely available to everyone. With expertise in search engine optimization and a deep interest in health and wellness, Ali built this platform to combine technical excellence with medically accurate information, ensuring the tools reach the people who need them most.</p>
+<p>A passionate SEO consultant and developer who built VitalHealth Hub to make health tools and knowledge accessible worldwide. With expertise in search engine optimisation and a deep interest in health and wellness, Ali built this platform to combine technical excellence with medically accurate information, ensuring the tools reach the people who need them most.</p>
 <div class="creator-social">
 <a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
 <a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</a>
@@ -2253,11 +2445,9 @@ ${globalHero({
 </div>
 </div>
 </div>
-<h2 class="fade-in">Our Commitment</h2>
-<p class="fade-in">We are committed to maintaining the highest standards of accuracy and transparency. Our calculators are regularly reviewed against the latest medical guidelines, and our articles are updated to reflect current research. We encourage users to consult healthcare professionals for personalized advice.</p>
-<p class="fade-in">Have questions or feedback? <a href="/contact.html">Contact us</a> — we would love to hear from you.</p>
 </div>
 </section>
+
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js"></script>
