@@ -178,8 +178,11 @@
 
         <div class="form-field">
           <label class="form-label">Your Prompt <span>(describe what you want)</span></label>
-          <textarea class="field-textarea" id="promptInput" placeholder="e.g. A serene mountain lake at sunset with golden reflections, surrounded by pine trees and mist..." rows="4" maxlength="500"></textarea>
-          <div style="font-size:11px;color:#9ca3af;text-align:right;margin-top:3px"><span id="charCount">0</span>/500</div>
+          <textarea class="field-textarea" id="promptInput" placeholder="e.g. A bowl of grilled chicken kebabs with fresh salad and bread on a wooden table..." rows="4" maxlength="500"></textarea>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:5px">
+            <span style="font-size:11px;color:#f4a261;font-weight:600;">💡 Write in English for best results</span>
+            <span style="font-size:11px;color:#9ca3af"><span id="charCount">0</span>/500</span>
+          </div>
         </div>
 
         <div class="form-field">
@@ -544,18 +547,18 @@ function setGenerating(state) {
 }
 
 var STYLE_CONFIG = {
-  'realistic':    { model: 'flux-realism',  enhance: 'RAW photo, photorealistic, 8K UHD, DSLR camera, professional photography, natural lighting, ultra detailed, sharp focus, high resolution' },
-  'cinematic':    { model: 'flux',          enhance: 'cinematic movie still, dramatic lighting, film grain, anamorphic lens, Hollywood production, color graded, ultra detailed, 8K' },
-  'anime':        { model: 'flux-anime',    enhance: 'anime style, vibrant colors, detailed linework, high quality anime art, manga illustration' },
-  '3d-render':    { model: 'flux-3d',       enhance: '3D render, octane render, blender, photorealistic 3D, studio lighting, high poly, ray tracing, 8K render' },
-  'illustration': { model: 'flux',          enhance: 'digital illustration, concept art, artstation trending, highly detailed, vibrant colors, professional artwork' },
-  'watercolor':   { model: 'flux',          enhance: 'watercolor painting, soft edges, watercolor texture, beautiful brushwork, artistic watercolor, transparent washes' },
-  'digital-art':  { model: 'flux',          enhance: 'digital art, concept art, artstation, highly detailed, professional digital painting, vibrant colors' },
-  'oil-paint':    { model: 'flux',          enhance: 'oil painting, impasto technique, canvas texture, classical fine art, museum quality, rich colors, brushstrokes' },
-  'cyberpunk':    { model: 'any-dark',      enhance: 'cyberpunk, neon lights, futuristic city, blade runner aesthetic, high tech low life, rain reflections, dark atmosphere' }
+  'realistic':    { model: 'flux-realism',  suffix: 'photorealistic, real photograph, DSLR, 8K, sharp focus, natural lighting' },
+  'cinematic':    { model: 'flux-realism',  suffix: 'cinematic film still, movie photography, dramatic lighting, 8K, color graded' },
+  'anime':        { model: 'flux-anime',    suffix: 'anime illustration, vibrant colors, detailed linework, manga style' },
+  '3d-render':    { model: 'flux-3d',       suffix: '3D render, octane render, studio lighting, high poly, ray tracing' },
+  'illustration': { model: 'flux',          suffix: 'digital illustration, concept art, vibrant colors, highly detailed' },
+  'watercolor':   { model: 'flux',          suffix: 'watercolor painting, soft brushwork, artistic, transparent washes' },
+  'digital-art':  { model: 'flux',          suffix: 'digital art, concept art, highly detailed, professional' },
+  'oil-paint':    { model: 'flux',          suffix: 'oil painting, canvas texture, classical fine art, rich brushstrokes' },
+  'cyberpunk':    { model: 'any-dark',      suffix: 'cyberpunk, neon lights, futuristic, rain reflections, dark atmosphere' }
 };
 
-var DEFAULT_NEGATIVE = 'blurry, low quality, distorted, deformed, ugly, watermark, text, bad anatomy, worst quality, low resolution, duplicate, morbid, mutilated, extra limbs, poorly drawn face, mutation, disfigured';
+var DEFAULT_NEGATIVE = 'blurry, low quality, distorted, deformed, bad anatomy, watermark, text overlay, signature, worst quality, low resolution, duplicate, mutilated, disfigured';
 
 function generateImage() {
   if (isGenerating) return;
@@ -567,7 +570,7 @@ function generateImage() {
   setGenerating(true);
 
   var config = STYLE_CONFIG[selectedStyle] || STYLE_CONFIG['realistic'];
-  var finalPrompt = prompt + ', ' + config.enhance;
+  var finalPrompt = prompt + ', ' + config.suffix;
   var finalNegative = DEFAULT_NEGATIVE + (negative ? ', ' + negative : '');
 
   var url = 'https://image.pollinations.ai/prompt/' + encodeURIComponent(finalPrompt)
@@ -576,7 +579,6 @@ function generateImage() {
     + '&model=' + config.model
     + '&negative_prompt=' + encodeURIComponent(finalNegative)
     + '&nologo=true'
-    + '&enhance=true'
     + '&seed=' + Math.floor(Math.random() * 999999);
   currentImageUrl = url;
 
