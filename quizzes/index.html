@@ -42,12 +42,12 @@
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." oninput="vhhDdSearch(this.value)" autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator.html">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator.html">Body Fat Calculator</a></li>
@@ -57,7 +57,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator.html">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator.html">Macro Calculator</a></li>
@@ -67,7 +67,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator.html">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker.html">Blood Pressure</a></li>
@@ -77,7 +77,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator.html">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator.html">Running Pace</a></li>
@@ -102,36 +102,18 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<script>
-window.vhhDdSearch=function(q){
-  var grid=document.getElementById('ddGrid');
-  var res=document.getElementById('ddResults');
-  if(!q||!q.trim()){grid.style.display='';res.innerHTML='';res.style.display='none';return;}
-  var links=document.querySelectorAll('#ddGrid .mega-col a');
-  var matches=Array.from(links).filter(function(a){return a.textContent.toLowerCase().includes(q.toLowerCase());});
-  grid.style.display='none';
-  res.style.display='';
-  res.innerHTML=matches.length
-    ? matches.map(function(a){return '<a href="'+a.getAttribute('href')+'" class="dd-result-item">'+a.textContent+'</a>';}).join('')
-    : '<p class="dd-no-result">No results found — <a href="/calculators/">browse all calculators</a></p>';
-};
-window.vhhToggleCol=function(h4){
-  if(window.innerWidth>768)return;
-  var col=h4.closest('.mega-col');
-  col.classList.toggle('open');
-};
-</script>
+
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><span>Quizzes</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Quizzes","item":"https://vitalhealthhub.org/quizzes/"}]}</script>
 
 <section class="calc-index-hero">
 <div class="calc-index-hero-inner">
 <div class="calc-index-hero-badge">&#129504; 22+ Interactive Health Quizzes</div><h1 class="calc-index-hero-title">Test Your Health<br>Knowledge Instantly</h1><p class="calc-index-hero-sub">Challenge yourself with science-based quizzes and track your progress.</p>
-<div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="quizHeroInput" placeholder="Search quizzes..." oninput="quizHeroSearch(this.value)" autocomplete="off"></div><div class="calc-index-hero-btns"><a href="#quiz-grid" class="calc-index-btn-primary">&#9654; Start Quiz</a><a href="#quiz-grid" class="calc-index-btn-outline">&#127937; Browse Categories</a><a href="#quiz-grid" class="calc-index-btn-outline">&#128202; View Results</a></div><div class="calc-index-hero-stats"><div class="calc-index-stat"><strong>22+</strong><span>Quizzes</span></div><div class="calc-index-stat"><strong>3</strong><span>Difficulty Levels</span></div><div class="calc-index-stat"><strong>220+</strong><span>Questions</span></div><div class="calc-index-stat"><strong>Free</strong><span>Always</span></div></div></div>
+<div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="quizHeroInput" placeholder="Search quizzes..." autocomplete="off"></div><div class="calc-index-hero-btns"><a href="#quiz-grid" class="calc-index-btn-primary">&#9654; Start Quiz</a><a href="#quiz-grid" class="calc-index-btn-outline">&#127937; Browse Categories</a><a href="#quiz-grid" class="calc-index-btn-outline">&#128202; View Results</a></div><div class="calc-index-hero-stats"><div class="calc-index-stat"><strong>22+</strong><span>Quizzes</span></div><div class="calc-index-stat"><strong>3</strong><span>Difficulty Levels</span></div><div class="calc-index-stat"><strong>220+</strong><span>Questions</span></div><div class="calc-index-stat"><strong>Free</strong><span>Always</span></div></div></div>
 </section>
 
 <div class="quiz-category-bar">
-<div class="quiz-category-bar-inner"><button class="quiz-cat-pill active" onclick="quizFilter('All',this)">All</button><button class="quiz-cat-pill" onclick="quizFilter('Health',this)">Health</button><button class="quiz-cat-pill" onclick="quizFilter('Fitness',this)">Fitness</button><button class="quiz-cat-pill" onclick="quizFilter('Mental Health',this)">Mental Health</button><button class="quiz-cat-pill" onclick="quizFilter('Women\'s Health',this)">Women's Health</button><button class="quiz-cat-pill" onclick="quizFilter('Nutrition & Diet',this)">Nutrition & Diet</button><button class="quiz-cat-pill" onclick="quizFilter('General Health',this)">General Health</button></div>
+<div class="quiz-category-bar-inner"><button class="quiz-cat-pill active" data-quiz-filter="All">All</button><button class="quiz-cat-pill" data-quiz-filter="Health">Health</button><button class="quiz-cat-pill" data-quiz-filter="Fitness">Fitness</button><button class="quiz-cat-pill" data-quiz-filter="Mental Health">Mental Health</button><button class="quiz-cat-pill" data-quiz-filter="Women's Health">Women's Health</button><button class="quiz-cat-pill" data-quiz-filter="Nutrition & Diet">Nutrition & Diet</button><button class="quiz-cat-pill" data-quiz-filter="General Health">General Health</button></div>
 </div>
 
 <section class="quiz-grid-section">
@@ -270,7 +252,7 @@ ma7122671@gmail.com
 <div id="vh-chat-window" style="display:none;">
 <div id="vh-chat-header">
 <div style="display:flex;align-items:center;gap:10px;">
-<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub" width="38" height="38" loading="lazy"></div>
+<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="38" height="38" loading="lazy"></div>
 <div>
 <p style="color:#fff;font-weight:600;font-size:14px;margin:0;">VitalHealth Assistant</p>
 <p style="color:#a7f3d0;font-size:11px;margin:0;">🟢 Online — Health Q&A Bot</p>
@@ -282,14 +264,14 @@ ma7122671@gmail.com
 <div id="vh-quick-topics">
 <p style="font-size:11px;color:#6b7280;margin:0 0 8px;font-weight:500;">Quick Topics:</p>
 <div id="vh-topics-grid">
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('BMI')">⚖️ BMI</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Calories')">🔥 Calories</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Sleep')">😴 Sleep</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Water')">💧 Water</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Weight Loss')">📉 Weight Loss</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Protein')">💪 Protein</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Heart Health')">❤️ Heart</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Stress')">🧠 Stress</button>
+<button class="vh-topic-btn" data-vh-ask="BMI">⚖️ BMI</button>
+<button class="vh-topic-btn" data-vh-ask="Calories">🔥 Calories</button>
+<button class="vh-topic-btn" data-vh-ask="Sleep">😴 Sleep</button>
+<button class="vh-topic-btn" data-vh-ask="Water">💧 Water</button>
+<button class="vh-topic-btn" data-vh-ask="Weight Loss">📉 Weight Loss</button>
+<button class="vh-topic-btn" data-vh-ask="Protein">💪 Protein</button>
+<button class="vh-topic-btn" data-vh-ask="Heart Health">❤️ Heart</button>
+<button class="vh-topic-btn" data-vh-ask="Stress">🧠 Stress</button>
 </div>
 </div>
 <div id="vh-chat-input-area">

@@ -45,12 +45,12 @@
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." oninput="vhhDdSearch(this.value)" autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator.html">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator.html">Body Fat Calculator</a></li>
@@ -60,7 +60,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator.html">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator.html">Macro Calculator</a></li>
@@ -70,7 +70,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator.html">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker.html">Blood Pressure</a></li>
@@ -80,7 +80,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator.html">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator.html">Running Pace</a></li>
@@ -105,25 +105,7 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<script>
-window.vhhDdSearch=function(q){
-  var grid=document.getElementById('ddGrid');
-  var res=document.getElementById('ddResults');
-  if(!q||!q.trim()){grid.style.display='';res.innerHTML='';res.style.display='none';return;}
-  var links=document.querySelectorAll('#ddGrid .mega-col a');
-  var matches=Array.from(links).filter(function(a){return a.textContent.toLowerCase().includes(q.toLowerCase());});
-  grid.style.display='none';
-  res.style.display='';
-  res.innerHTML=matches.length
-    ? matches.map(function(a){return '<a href="'+a.getAttribute('href')+'" class="dd-result-item">'+a.textContent+'</a>';}).join('')
-    : '<p class="dd-no-result">No results found — <a href="/calculators/">browse all calculators</a></p>';
-};
-window.vhhToggleCol=function(h4){
-  if(window.innerWidth>768)return;
-  var col=h4.closest('.mega-col');
-  col.classList.toggle('open');
-};
-</script>
+
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/calculators/">Calculators</a><span>/</span><span>Heart Age Calculator</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://vitalhealthhub.org/calculators/"},{"@type":"ListItem","position":3,"name":"Heart Age Calculator","item":"https://vitalhealthhub.org/calculators/heart-age-calculator.html"}]}</script>
 
@@ -182,8 +164,8 @@ window.vhhToggleCol=function(h4){
 </div>
 <div class="form-group"><label for="age">Actual Age</label><input type="number" id="age" placeholder="45"></div><div class="form-group"><label for="gender">Gender</label><select id="gender"><option value="Male">Male</option><option value="Female">Female</option></select></div><div class="form-group"><label for="smoker">Current Smoker?</label><select id="smoker"><option value="No">No</option><option value="Yes">Yes</option></select></div><div class="form-group"><label for="bp">Systolic Blood Pressure (mmHg)</label><input type="number" id="bp" placeholder="120"></div><div class="form-group"><label for="chol">Total Cholesterol (mg/dL)</label><input type="number" id="chol" placeholder="190"></div><div class="form-group"><label for="diabetic">Diabetic?</label><select id="diabetic"><option value="No">No</option><option value="Yes">Yes</option></select></div><div class="form-group"><label for="exercise">Exercise (days/week)</label><input type="number" id="exercise" placeholder="3"></div>
 <div class="calc-btn-row">
-<button class="btn btn-primary calc-submit-btn" onclick="var age=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;var smoker=document.getElementById('smoker').value==='Yes';var bp=parseFloat(document.getElementById('bp').value)||120;var chol=parseFloat(document.getElementById('chol').value)||190;var diab=document.getElementById('diabetic').value==='Yes';var ex=parseFloat(document.getElementById('exercise').value)||0;if(!age){alert('Enter your age');return;}var heartAge=age;if(smoker)heartAge+=8;if(bp>140)heartAge+=6;else if(bp>130)heartAge+=3;if(chol>240)heartAge+=5;else if(chol>200)heartAge+=2;if(diab)heartAge+=4;if(g==='Male')heartAge+=2;if(ex>=4)heartAge-=4;else if(ex>=2)heartAge-=2;heartAge=Math.round(heartAge);var diff=heartAge-age;var c=diff>5?'red':diff>0?'yellow':'green';showResult('result',heartAge+' years','Estimated Heart Age',diff>0?'Your heart is functioning like someone '+diff+' years older. Focus on blood pressure control, quitting smoking, and regular exercise to reduce cardiovascular risk.':diff<0?'Your heart is in great shape — performing like someone '+(Math.abs(diff))+' years younger! Keep up your healthy lifestyle.':'Your heart age matches your actual age. Maintain your current healthy habits.','green');">&#9889; Calculate Results</button>
-<button class="calc-reset-btn" id="vhResetBtn" onclick="vhReset()">&#8635; Reset</button>
+<button class="btn btn-primary calc-submit-btn">&#9889; Calculate Results</button>
+<button class="calc-reset-btn" id="vhResetBtn">&#8635; Reset</button>
 </div>
 </div>
 <div class="calc-disclaimer-card fade-in">
@@ -212,9 +194,9 @@ window.vhhToggleCol=function(h4){
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
 <div class="result-suggestion"></div>
 <div class="calc-result-actions">
-<button class="calc-action-btn" id="vhCopyBtn" onclick="vhCopyResult()"><span class="calc-action-icon">&#128203;</span> Copy</button>
-<button class="calc-action-btn" onclick="window.print()"><span class="calc-action-icon">&#128424;</span> Print</button>
-<button class="calc-action-btn" onclick="vhShareResult()"><span class="calc-action-icon">&#128279;</span> Share</button>
+<button class="calc-action-btn" id="vhCopyBtn"><span class="calc-action-icon">&#128203;</span> Copy</button>
+<button class="calc-action-btn" data-print="1"><span class="calc-action-icon">&#128424;</span> Print</button>
+<button class="calc-action-btn" data-share="1"><span class="calc-action-icon">&#128279;</span> Share</button>
 </div>
 </div>
 </div>
@@ -240,6 +222,27 @@ window.vhhToggleCol=function(h4){
 <section class="ccs-section ccs-gray">
 <div class="container">
 <div class="ccs-article fade-in"><h2>Heart Age Calculator — Know Your Cardiovascular Age</h2><p>Your heart age may be older or younger than your actual age depending on your lifestyle and health factors. The Heart Age Calculator estimates cardiovascular age based on key risk factors including blood pressure, cholesterol, smoking status, diabetes, and physical activity. Understanding your heart age can be a powerful motivator for lifestyle change.</p><h3>Key Risk Factors</h3><p>The major modifiable risk factors for premature heart aging include high blood pressure (the single biggest risk factor), smoking, high cholesterol, physical inactivity, and diabetes. Addressing even one of these factors can meaningfully reduce your cardiovascular risk and lower your heart age.</p></div>
+</div>
+</section>
+
+
+<section class="ccs-section ccs-white">
+<div class="container">
+<div class="ccs-article fade-in">
+<h2>Who Should Use the Heart Age Calculator?</h2>
+<p>The Heart Age Calculator is built for adults concerned about cardiovascular health, people with a family history of heart disease, individuals managing hypertension or high cholesterol, and healthcare professionals. Whether you are proactively monitoring your health, managing a specific condition, or simply curious about where you stand, this tool provides a reliable, evidence-based starting point for understanding your current status and identifying where targeted change is possible.</p>
+<p>This calculator is appropriate for adults aged 18 and above. If you are under 18, pregnant, or managing a diagnosed medical condition, treat results as a general guide only and consult a qualified healthcare professional before making any changes to your diet, exercise routine, or treatment plan.</p>
+<p>For a more complete health picture, pair this tool with our <a href="/calculators/blood-pressure-checker.html">Blood Pressure Checker</a>, <a href="/calculators/heart-rate-calculator.html">Heart Rate Zone Calculator</a>, <a href="/calculators/cholesterol-risk-calculator.html">Cholesterol Risk Calculator</a> — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
+<h2>Common Mistakes to Avoid</h2>
+<p>Getting accurate, actionable results from the Heart Age Calculator depends on more than entering correct numbers. These are the most common errors that reduce the usefulness of your output:</p>
+<ul>
+<li><strong>Treating one measurement as definitive</strong> — blood pressure, heart rate, and cholesterol all fluctuate; trends matter more than single readings.</li>
+<li><strong>Not accounting for medications</strong> — many drugs directly affect cardiovascular metrics. Always note any relevant medications.</li>
+<li><strong>Misinterpreting borderline results</strong> — a slightly elevated result is not cause for panic, nor is it reason to ignore a pattern. Consult a doctor.</li>
+<li><strong>Measuring after exercise, caffeine, or stress</strong> — these raise readings significantly. Always measure at true rest for a meaningful baseline.</li>
+</ul>
+<p>Avoiding these pitfalls transforms this calculator from a one-time curiosity into a reliable instrument for genuine health monitoring and meaningful progress tracking over time.</p>
+</div>
 </div>
 </section>
 
@@ -491,7 +494,7 @@ ma7122671@gmail.com
 <div id="vh-chat-window" style="display:none;">
 <div id="vh-chat-header">
 <div style="display:flex;align-items:center;gap:10px;">
-<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub" width="38" height="38" loading="lazy"></div>
+<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="38" height="38" loading="lazy"></div>
 <div>
 <p style="color:#fff;font-weight:600;font-size:14px;margin:0;">VitalHealth Assistant</p>
 <p style="color:#a7f3d0;font-size:11px;margin:0;">🟢 Online — Health Q&A Bot</p>
@@ -503,14 +506,14 @@ ma7122671@gmail.com
 <div id="vh-quick-topics">
 <p style="font-size:11px;color:#6b7280;margin:0 0 8px;font-weight:500;">Quick Topics:</p>
 <div id="vh-topics-grid">
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('BMI')">⚖️ BMI</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Calories')">🔥 Calories</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Sleep')">😴 Sleep</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Water')">💧 Water</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Weight Loss')">📉 Weight Loss</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Protein')">💪 Protein</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Heart Health')">❤️ Heart</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Stress')">🧠 Stress</button>
+<button class="vh-topic-btn" data-vh-ask="BMI">⚖️ BMI</button>
+<button class="vh-topic-btn" data-vh-ask="Calories">🔥 Calories</button>
+<button class="vh-topic-btn" data-vh-ask="Sleep">😴 Sleep</button>
+<button class="vh-topic-btn" data-vh-ask="Water">💧 Water</button>
+<button class="vh-topic-btn" data-vh-ask="Weight Loss">📉 Weight Loss</button>
+<button class="vh-topic-btn" data-vh-ask="Protein">💪 Protein</button>
+<button class="vh-topic-btn" data-vh-ask="Heart Health">❤️ Heart</button>
+<button class="vh-topic-btn" data-vh-ask="Stress">🧠 Stress</button>
 </div>
 </div>
 <div id="vh-chat-input-area">

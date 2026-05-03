@@ -43,12 +43,12 @@
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." oninput="vhhDdSearch(this.value)" autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator.html">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator.html">Body Fat Calculator</a></li>
@@ -58,7 +58,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator.html">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator.html">Macro Calculator</a></li>
@@ -68,7 +68,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator.html">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker.html">Blood Pressure</a></li>
@@ -78,7 +78,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator.html">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator.html">Running Pace</a></li>
@@ -103,41 +103,23 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<script>
-window.vhhDdSearch=function(q){
-  var grid=document.getElementById('ddGrid');
-  var res=document.getElementById('ddResults');
-  if(!q||!q.trim()){grid.style.display='';res.innerHTML='';res.style.display='none';return;}
-  var links=document.querySelectorAll('#ddGrid .mega-col a');
-  var matches=Array.from(links).filter(function(a){return a.textContent.toLowerCase().includes(q.toLowerCase());});
-  grid.style.display='none';
-  res.style.display='';
-  res.innerHTML=matches.length
-    ? matches.map(function(a){return '<a href="'+a.getAttribute('href')+'" class="dd-result-item">'+a.textContent+'</a>';}).join('')
-    : '<p class="dd-no-result">No results found — <a href="/calculators/">browse all calculators</a></p>';
-};
-window.vhhToggleCol=function(h4){
-  if(window.innerWidth>768)return;
-  var col=h4.closest('.mega-col');
-  col.classList.toggle('open');
-};
-</script>
+
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><span>Tools Hub</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"}]}</script>
 
 <section class="calc-index-hero">
 <div class="calc-index-hero-inner">
 <div class="calc-index-hero-badge">&#9889; Smart Tools for Daily Optimization</div><h1 class="calc-index-hero-title">All-in-One Health &amp;<br>Productivity Tools</h1><p class="calc-index-hero-sub">Track habits, analyze health, and improve performance with powerful tools.</p>
-<div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="toolsSearch" placeholder="Search tools..." oninput="filterHub(this.value)" autocomplete="off"></div><div class="calc-index-hero-btns"><a href="#tools-content" class="calc-index-btn-primary">&#128270; Browse Tools</a><a href="/quizzes/" class="calc-index-btn-outline">&#129504; Take a Quiz</a><a href="/blog.html" class="calc-index-btn-outline">&#128218; Read Articles</a></div><div class="calc-index-hero-stats"><div class="calc-index-stat"><strong>15</strong><span>Tools</span></div><div class="calc-index-stat"><strong>4</strong><span>Categories</span></div><div class="calc-index-stat"><strong>100%</strong><span>Free</span></div><div class="calc-index-stat"><strong>Private</strong><span>Data stays local</span></div></div></div>
+<div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="toolsSearch" placeholder="Search tools..." autocomplete="off"></div><div class="calc-index-hero-btns"><a href="#tools-content" class="calc-index-btn-primary">&#128270; Browse Tools</a><a href="/quizzes/" class="calc-index-btn-outline">&#129504; Take a Quiz</a><a href="/blog.html" class="calc-index-btn-outline">&#128218; Read Articles</a></div><div class="calc-index-hero-stats"><div class="calc-index-stat"><strong>15</strong><span>Tools</span></div><div class="calc-index-stat"><strong>4</strong><span>Categories</span></div><div class="calc-index-stat"><strong>100%</strong><span>Free</span></div><div class="calc-index-stat"><strong>Private</strong><span>Data stays local</span></div></div></div>
 </section>
 
 <div class="tools-cat-nav">
 <div class="tools-cat-tabs">
-<button class="tools-cat-tab active" onclick="filterCat('all',this)">All Tools</button>
-<button class="tools-cat-tab" onclick="filterCat('health',this)">💪 Health &amp; Tracking</button>
-<button class="tools-cat-tab" onclick="filterCat('productivity',this)">⚡ Productivity</button>
-<button class="tools-cat-tab" onclick="filterCat('text',this)">📝 Text &amp; Content</button>
-<button class="tools-cat-tab" onclick="filterCat('utility',this)">🔧 Utility Tools</button>
+<button class="tools-cat-tab active" data-filter-cat="all">All Tools</button>
+<button class="tools-cat-tab" data-filter-cat="health">💪 Health &amp; Tracking</button>
+<button class="tools-cat-tab" data-filter-cat="productivity">⚡ Productivity</button>
+<button class="tools-cat-tab" data-filter-cat="text">📝 Text &amp; Content</button>
+<button class="tools-cat-tab" data-filter-cat="utility">🔧 Utility Tools</button>
 </div>
 </div>
 
@@ -362,7 +344,7 @@ ma7122671@gmail.com
 <div id="vh-chat-window" style="display:none;">
 <div id="vh-chat-header">
 <div style="display:flex;align-items:center;gap:10px;">
-<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub" width="38" height="38" loading="lazy"></div>
+<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="38" height="38" loading="lazy"></div>
 <div>
 <p style="color:#fff;font-weight:600;font-size:14px;margin:0;">VitalHealth Assistant</p>
 <p style="color:#a7f3d0;font-size:11px;margin:0;">🟢 Online — Health Q&A Bot</p>
@@ -374,14 +356,14 @@ ma7122671@gmail.com
 <div id="vh-quick-topics">
 <p style="font-size:11px;color:#6b7280;margin:0 0 8px;font-weight:500;">Quick Topics:</p>
 <div id="vh-topics-grid">
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('BMI')">⚖️ BMI</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Calories')">🔥 Calories</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Sleep')">😴 Sleep</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Water')">💧 Water</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Weight Loss')">📉 Weight Loss</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Protein')">💪 Protein</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Heart Health')">❤️ Heart</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Stress')">🧠 Stress</button>
+<button class="vh-topic-btn" data-vh-ask="BMI">⚖️ BMI</button>
+<button class="vh-topic-btn" data-vh-ask="Calories">🔥 Calories</button>
+<button class="vh-topic-btn" data-vh-ask="Sleep">😴 Sleep</button>
+<button class="vh-topic-btn" data-vh-ask="Water">💧 Water</button>
+<button class="vh-topic-btn" data-vh-ask="Weight Loss">📉 Weight Loss</button>
+<button class="vh-topic-btn" data-vh-ask="Protein">💪 Protein</button>
+<button class="vh-topic-btn" data-vh-ask="Heart Health">❤️ Heart</button>
+<button class="vh-topic-btn" data-vh-ask="Stress">🧠 Stress</button>
 </div>
 </div>
 <div id="vh-chat-input-area">

@@ -41,12 +41,12 @@ const NAV = `${TOPBAR}<nav class="navbar">
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." oninput="vhhDdSearch(this.value)" autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator.html">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator.html">Body Fat Calculator</a></li>
@@ -56,7 +56,7 @@ const NAV = `${TOPBAR}<nav class="navbar">
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator.html">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator.html">Macro Calculator</a></li>
@@ -66,7 +66,7 @@ const NAV = `${TOPBAR}<nav class="navbar">
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator.html">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker.html">Blood Pressure</a></li>
@@ -76,7 +76,7 @@ const NAV = `${TOPBAR}<nav class="navbar">
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator.html">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator.html">Running Pace</a></li>
@@ -101,25 +101,7 @@ const NAV = `${TOPBAR}<nav class="navbar">
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<script>
-window.vhhDdSearch=function(q){
-  var grid=document.getElementById('ddGrid');
-  var res=document.getElementById('ddResults');
-  if(!q||!q.trim()){grid.style.display='';res.innerHTML='';res.style.display='none';return;}
-  var links=document.querySelectorAll('#ddGrid .mega-col a');
-  var matches=Array.from(links).filter(function(a){return a.textContent.toLowerCase().includes(q.toLowerCase());});
-  grid.style.display='none';
-  res.style.display='';
-  res.innerHTML=matches.length
-    ? matches.map(function(a){return '<a href="'+a.getAttribute('href')+'" class="dd-result-item">'+a.textContent+'</a>';}).join('')
-    : '<p class="dd-no-result">No results found — <a href="/calculators/">browse all calculators</a></p>';
-};
-window.vhhToggleCol=function(h4){
-  if(window.innerWidth>768)return;
-  var col=h4.closest('.mega-col');
-  col.classList.toggle('open');
-};
-</script>`;
+`;
 
 const FOOTER = `<footer class="site-footer">
 <div class="footer-inner">
@@ -225,7 +207,7 @@ const CHATBOT = `<div id="vh-chatbot">
 <div id="vh-chat-window" style="display:none;">
 <div id="vh-chat-header">
 <div style="display:flex;align-items:center;gap:10px;">
-<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub" width="38" height="38" loading="lazy"></div>
+<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="38" height="38" loading="lazy"></div>
 <div>
 <p style="color:#fff;font-weight:600;font-size:14px;margin:0;">VitalHealth Assistant</p>
 <p style="color:#a7f3d0;font-size:11px;margin:0;">\uD83D\uDFE2 Online \u2014 Health Q&A Bot</p>
@@ -237,14 +219,14 @@ const CHATBOT = `<div id="vh-chatbot">
 <div id="vh-quick-topics">
 <p style="font-size:11px;color:#6b7280;margin:0 0 8px;font-weight:500;">Quick Topics:</p>
 <div id="vh-topics-grid">
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('BMI')">\u2696\uFE0F BMI</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Calories')">\uD83D\uDD25 Calories</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Sleep')">\uD83D\uDE34 Sleep</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Water')">\uD83D\uDCA7 Water</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Weight Loss')">\uD83D\uDCC9 Weight Loss</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Protein')">\uD83D\uDCAA Protein</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Heart Health')">\u2764\uFE0F Heart</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Stress')">\uD83E\uDDE0 Stress</button>
+<button class="vh-topic-btn" data-vh-ask="BMI">\u2696\uFE0F BMI</button>
+<button class="vh-topic-btn" data-vh-ask="Calories">\uD83D\uDD25 Calories</button>
+<button class="vh-topic-btn" data-vh-ask="Sleep">\uD83D\uDE34 Sleep</button>
+<button class="vh-topic-btn" data-vh-ask="Water">\uD83D\uDCA7 Water</button>
+<button class="vh-topic-btn" data-vh-ask="Weight Loss">\uD83D\uDCC9 Weight Loss</button>
+<button class="vh-topic-btn" data-vh-ask="Protein">\uD83D\uDCAA Protein</button>
+<button class="vh-topic-btn" data-vh-ask="Heart Health">\u2764\uFE0F Heart</button>
+<button class="vh-topic-btn" data-vh-ask="Stress">\uD83E\uDDE0 Stress</button>
 </div>
 </div>
 <div id="vh-chat-input-area">
@@ -328,7 +310,7 @@ function globalHero(opts) {
   if (customSearch) {
     searchHtml = customSearch;
   } else if (opts.searchId) {
-    searchHtml = '<div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="' + opts.searchId + '" placeholder="' + (opts.searchPlaceholder || '') + '" oninput="' + (opts.searchOnInput || '') + '" autocomplete="off"></div>';
+    searchHtml = '<div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="' + opts.searchId + '" placeholder="' + (opts.searchPlaceholder || '') + '" autocomplete="off"></div>';
   }
   var btnsHtml = buttons.map(function(b, i) {
     var cls = i === 0 ? 'calc-index-btn-primary' : 'calc-index-btn-outline';
@@ -1371,6 +1353,107 @@ ${toolCardsHtml ? `<div class="ccs-explore-block">
 </section>`;
 }
 
+function calcDepthSections(calc) {
+  const n = calc.name;
+  const cat = calc.category || 'Health';
+
+  const audienceMap = {
+    'Body Metrics':       'adults monitoring weight and body composition, athletes tracking fitness metrics, people starting a weight-loss or muscle-building programme, and healthcare providers conducting wellness screenings',
+    'Nutrition':          'anyone planning a balanced diet, athletes optimising performance nutrition, people managing specific conditions like diabetes or heart disease, and registered dietitians',
+    'Fitness':            'gym-goers at every level, personal trainers designing client programmes, competitive athletes monitoring performance, and anyone beginning a structured exercise routine',
+    'Fitness & Exercise': 'gym-goers at every level, personal trainers designing client programmes, competitive athletes monitoring performance, and anyone beginning a structured exercise routine',
+    'Heart Health':       'adults concerned about cardiovascular health, people with a family history of heart disease, individuals managing hypertension or high cholesterol, and healthcare professionals',
+    'Sleep':              'anyone struggling with sleep quality or fatigue, shift workers with irregular schedules, parents monitoring family sleep health, and clinicians in sleep medicine',
+    'Wellness':           'individuals managing daily stress, people experiencing burnout or low mood, mental health practitioners, and anyone tracking psychological wellbeing over time',
+    "Women's Health":     'women at all life stages from reproductive years through menopause, healthcare providers supporting women\'s health, and those managing hormone or cycle-related conditions',
+    'Disease Prevention': 'adults at risk of chronic conditions, people with a relevant family history, healthcare providers conducting risk screenings, and those taking a proactive approach to health',
+    'Health Risk':        'adults wanting to understand their personal health risk profile, people with multiple risk factors, healthcare professionals educating patients, and public health researchers',
+  };
+  const audience = audienceMap[cat] || 'adults of all ages who want to monitor, track, and improve their health with evidence-based tools';
+
+  const mistakesMap = {
+    'Body Metrics': [
+      '<strong>Taking measurements at inconsistent times</strong> — always measure at the same time of day (ideally morning, fasted) so readings are directly comparable.',
+      '<strong>Mistaking daily weight fluctuations for fat changes</strong> — water retention and glycogen shifts can move the scale by 1–3 kg without any real body-composition change.',
+      '<strong>Treating a single metric as the whole picture</strong> — no calculator captures complete health on its own. Combine results with other assessments.',
+      '<strong>Setting unrealistic timelines</strong> — sustainable body-composition change takes weeks to months, not days.',
+      '<strong>Skipping regular re-tests</strong> — a single reading is a snapshot. Track trends across 4–8 weeks for meaningful insight.',
+    ],
+    'Nutrition': [
+      '<strong>Using generic online values instead of actual food labels</strong> — macro content varies significantly between brands and cooking methods.',
+      '<strong>Forgetting cooking oils, sauces, and condiments</strong> — these add substantial hidden calories that are easy to overlook.',
+      '<strong>Keeping the same targets indefinitely</strong> — calorie and macro needs shift as your weight, activity level, and goals change.',
+      '<strong>Pursuing perfection over consistency</strong> — hitting targets 80% of the time outperforms rigid compliance followed by abandonment.',
+      '<strong>Focusing only on macros</strong> — ignoring micronutrients can lead to deficiencies even on a calorie-accurate diet.',
+    ],
+    'Fitness': [
+      '<strong>Skipping warm-ups</strong> — entering training cold significantly increases injury risk and reduces performance output.',
+      '<strong>Progressing too quickly</strong> — increasing load, volume, or intensity by more than 10% per week invites overuse injuries.',
+      '<strong>Undervaluing recovery</strong> — muscle growth and fitness adaptation happen during rest, not during training itself.',
+      '<strong>Training the same muscle groups on consecutive days</strong> — without adequate recovery time, gains stall and injury risk rises.',
+      '<strong>Ignoring pain signals</strong> — training discomfort is normal; sharp or joint pain is a warning to stop immediately.',
+    ],
+    'Heart Health': [
+      '<strong>Treating one measurement as definitive</strong> — blood pressure, heart rate, and cholesterol all fluctuate; trends matter more than single readings.',
+      '<strong>Not accounting for medications</strong> — many drugs directly affect cardiovascular metrics. Always note any relevant medications.',
+      '<strong>Misinterpreting borderline results</strong> — a slightly elevated result is not cause for panic, nor is it reason to ignore a pattern. Consult a doctor.',
+      '<strong>Measuring after exercise, caffeine, or stress</strong> — these raise readings significantly. Always measure at true rest for a meaningful baseline.',
+    ],
+    'Sleep': [
+      '<strong>Tracking duration but not quality</strong> — eight hours of fragmented sleep is very different from eight hours of consolidated, restorative rest.',
+      '<strong>Over-trusting consumer trackers</strong> — wearable sleep trackers have significant accuracy limitations compared to clinical polysomnography.',
+      '<strong>Ignoring sleep consistency</strong> — irregular sleep schedules disrupt circadian rhythm even when total hours look adequate.',
+      '<strong>Chasing perfect scores instead of patterns</strong> — identifying triggers for poor sleep nights is far more actionable than optimising a number.',
+    ],
+    'Wellness': [
+      '<strong>Treating a score as a clinical diagnosis</strong> — wellness assessments identify risk patterns, not medical conditions. They complement professional care.',
+      '<strong>Taking a single snapshot</strong> — mental and physical wellbeing fluctuates; track across several weeks for meaningful trends.',
+      '<strong>Dismissing sub-clinical results</strong> — mild stress or early burnout still benefits from targeted lifestyle intervention.',
+      '<strong>Using results to replace professional consultation</strong> — these tools are designed to inform, not substitute, healthcare advice.',
+    ],
+  };
+  const mistakes = mistakesMap[cat] || [
+    '<strong>Relying on a single reading</strong> — repeated measurements over time reveal the trends that single data points cannot.',
+    '<strong>Ignoring broader health context</strong> — calculators provide evidence-based guidance, not clinical diagnosis. Consult a professional for medical decisions.',
+    '<strong>Entering inaccurate data</strong> — the quality of your results depends entirely on the accuracy of what you input.',
+    '<strong>Treating results as fixed</strong> — your health metrics shift as your lifestyle, age, and circumstances evolve. Re-test regularly.',
+    '<strong>Skipping professional validation</strong> — use this tool to prepare for, not replace, meaningful conversations with your doctor or dietitian.',
+  ];
+
+  const linkMap = {
+    'Body Metrics':       ['<a href="/calculators/bmi-calculator.html">BMI Calculator</a>','<a href="/calculators/body-fat-calculator.html">Body Fat Calculator</a>','<a href="/calculators/tdee-calculator.html">TDEE Calculator</a>'],
+    'Nutrition':          ['<a href="/calculators/calorie-calculator.html">Calorie Calculator</a>','<a href="/calculators/macro-calculator.html">Macro Calculator</a>','<a href="/calculators/protein-intake-calculator.html">Protein Calculator</a>'],
+    'Fitness':            ['<a href="/calculators/tdee-calculator.html">TDEE Calculator</a>','<a href="/calculators/vo2-max-calculator.html">VO2 Max Calculator</a>','<a href="/calculators/one-rep-max-calculator.html">One Rep Max Calculator</a>'],
+    'Fitness & Exercise': ['<a href="/calculators/tdee-calculator.html">TDEE Calculator</a>','<a href="/calculators/vo2-max-calculator.html">VO2 Max Calculator</a>','<a href="/calculators/one-rep-max-calculator.html">One Rep Max Calculator</a>'],
+    'Heart Health':       ['<a href="/calculators/blood-pressure-checker.html">Blood Pressure Checker</a>','<a href="/calculators/heart-rate-calculator.html">Heart Rate Zone Calculator</a>','<a href="/calculators/cholesterol-risk-calculator.html">Cholesterol Risk Calculator</a>'],
+    'Sleep':              ['<a href="/calculators/sleep-calculator.html">Sleep Calculator</a>','<a href="/calculators/bmr-calculator.html">BMR Calculator</a>','<a href="/calculators/water-intake-calculator.html">Water Intake Calculator</a>'],
+    'Wellness':           ['<a href="/calculators/stress-level-calculator.html">Stress Level Calculator</a>','<a href="/calculators/anxiety-score-calculator.html">Anxiety Score Calculator</a>','<a href="/calculators/biological-age-calculator.html">Biological Age Calculator</a>'],
+    "Women's Health":     ['<a href="/calculators/bmi-calculator.html">BMI Calculator</a>','<a href="/calculators/calorie-calculator.html">Calorie Calculator</a>','<a href="/calculators/water-intake-calculator.html">Water Intake Calculator</a>'],
+    'Disease Prevention': ['<a href="/calculators/diabetes-risk-calculator.html">Diabetes Risk Calculator</a>','<a href="/calculators/blood-pressure-checker.html">Blood Pressure Checker</a>','<a href="/calculators/cholesterol-risk-calculator.html">Cholesterol Risk Calculator</a>'],
+    'Health Risk':        ['<a href="/calculators/biological-age-calculator.html">Biological Age Calculator</a>','<a href="/calculators/bmi-calculator.html">BMI Calculator</a>','<a href="/calculators/diabetes-risk-calculator.html">Diabetes Risk Calculator</a>'],
+  };
+  const links = linkMap[cat] || ['<a href="/calculators/bmi-calculator.html">BMI Calculator</a>','<a href="/calculators/calorie-calculator.html">Calorie Calculator</a>','<a href="/calculators/tdee-calculator.html">TDEE Calculator</a>'];
+  const relLinks = links.join(', ');
+
+  return `
+<section class="ccs-section ccs-white">
+<div class="container">
+<div class="ccs-article fade-in">
+<h2>Who Should Use the ${n}?</h2>
+<p>The ${n} is built for ${audience}. Whether you are proactively monitoring your health, managing a specific condition, or simply curious about where you stand, this tool provides a reliable, evidence-based starting point for understanding your current status and identifying where targeted change is possible.</p>
+<p>This calculator is appropriate for adults aged 18 and above. If you are under 18, pregnant, or managing a diagnosed medical condition, treat results as a general guide only and consult a qualified healthcare professional before making any changes to your diet, exercise routine, or treatment plan.</p>
+<p>For a more complete health picture, pair this tool with our ${relLinks} — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
+<h2>Common Mistakes to Avoid</h2>
+<p>Getting accurate, actionable results from the ${n} depends on more than entering correct numbers. These are the most common errors that reduce the usefulness of your output:</p>
+<ul>
+${mistakes.map(m => `<li>${m}</li>`).join('\n')}
+</ul>
+<p>Avoiding these pitfalls transforms this calculator from a one-time curiosity into a reliable instrument for genuine health monitoring and meaningful progress tracking over time.</p>
+</div>
+</div>
+</section>`;
+}
+
 function generateCalculatorPage(calc) {
   const bc = breadcrumb([{name:'Home',url:'/'},{name:'Calculators',url:'/calculators/'},{name:calc.name,url:'/calculators/'+calc.slug+'.html'}]);
   const faq = faqSection(calc.faqs);
@@ -1440,8 +1523,8 @@ ${getCalcHeroSvg(calc.slug)}
 </div>
 ${formFields}
 <div class="calc-btn-row">
-<button class="btn btn-primary calc-submit-btn" onclick="${safeLogic}">&#9889; Calculate Results</button>
-<button class="calc-reset-btn" id="vhResetBtn" onclick="vhReset()">&#8635; Reset</button>
+<button class="btn btn-primary calc-submit-btn">&#9889; Calculate Results</button>
+<button class="calc-reset-btn" id="vhResetBtn">&#8635; Reset</button>
 </div>
 </div>
 <div class="calc-disclaimer-card fade-in">
@@ -1470,9 +1553,9 @@ ${formFields}
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
 <div class="result-suggestion"></div>
 <div class="calc-result-actions">
-<button class="calc-action-btn" id="vhCopyBtn" onclick="vhCopyResult()"><span class="calc-action-icon">&#128203;</span> Copy</button>
-<button class="calc-action-btn" onclick="window.print()"><span class="calc-action-icon">&#128424;</span> Print</button>
-<button class="calc-action-btn" onclick="vhShareResult()"><span class="calc-action-icon">&#128279;</span> Share</button>
+<button class="calc-action-btn" id="vhCopyBtn"><span class="calc-action-icon">&#128203;</span> Copy</button>
+<button class="calc-action-btn" data-print="1"><span class="calc-action-icon">&#128424;</span> Print</button>
+<button class="calc-action-btn" data-share="1"><span class="calc-action-icon">&#128279;</span> Share</button>
 </div>
 </div>
 </div>
@@ -1492,6 +1575,8 @@ ${calcHowToSection(calc)}
 <div class="ccs-article fade-in">${calc.article}</div>
 </div>
 </section>
+
+${calcDepthSections(calc)}
 
 <section class="ccs-section ccs-white">
 <div class="container">
@@ -2428,7 +2513,7 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'All Calculators',url:'/calculators/'}
 <p class="calc-index-hero-sub">Science-backed calculators for BMI, calories, macros, heart rate, pregnancy, and more &mdash; free, instant, no sign-up needed.</p>
 <div class="calc-index-search-bar">
 <svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-<input type="text" id="calcSearch" placeholder="Search ${calculators.length}+ calculators..." oninput="filterCalcs()">
+<input type="text" id="calcSearch" placeholder="Search ${calculators.length}+ calculators...">
 </div>
 <div class="calc-index-hero-btns">
 <a href="#calcGrid" class="calc-index-btn-primary">&#128270; Browse All Tools</a>
@@ -2446,8 +2531,8 @@ ${breadcrumb([{name:'Home',url:'/'},{name:'All Calculators',url:'/calculators/'}
 
 <div class="calc-index-filter-section">
 <div class="filter-buttons fade-in" id="calcFilterBtns">
-<button class="filter-btn active" onclick="filterCat('all',this)">All</button>
-${catNames.map(c=>`<button class="filter-btn" onclick="filterCat('${c.replace(/'/g,"\\'")}',this)">${c}</button>`).join('')}
+<button class="filter-btn active" data-filter-cat="all">All</button>
+${catNames.map(c=>`<button class="filter-btn" data-filter-cat="${c.replace(/"/g,'&quot;')}">${c}</button>`).join('')}
 </div>
 </div>
 
@@ -3306,7 +3391,7 @@ const faqPageSchema = JSON.stringify({
 
 // Build category pills HTML
 const catPillsHTML = faqCategories.map(cat =>
-  `<button class="faq-pill" data-filter="${cat.id}" onclick="faqFilterCat('${cat.id}',this)">${cat.icon} ${cat.label}</button>`
+  `<button class="faq-pill" data-filter="${cat.id}" data-faq-cat="${cat.id}">${cat.icon} ${cat.label}</button>`
 ).join('');
 
 // Build category sections HTML
@@ -3356,7 +3441,7 @@ ${globalHero({
 <!-- Category Navigation Pills -->
 <div class="faq-pills-nav" id="faq-nav">
 <div class="faq-pills-inner">
-<button class="faq-pill faq-pill-active" data-filter="all" onclick="faqFilterCat('all',this)">&#127758; All Topics</button>
+<button class="faq-pill faq-pill-active" data-filter="all" data-faq-cat="all">&#127758; All Topics</button>
 ${catPillsHTML}
 </div>
 </div>
@@ -3655,7 +3740,7 @@ ${globalHero({
   badge: '&#128218; ' + blogPosts.length + '+ Expert Health Articles',
   title: 'VitalHealth Hub Blog',
   subtitle: 'Evidence-based guides on nutrition, fitness, mental health, and more &mdash; written by experts, free for everyone.',
-  customSearch: '<div class="blog-hero-search-wrap"><div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="blogHeroInput" placeholder="Search ' + blogPosts.length + '+ articles..." oninput="blogHeroSearch(this.value)" onkeydown="if(event.key===\'Enter\'){openBlogSearch(this.value)}" autocomplete="off"><button class="calc-index-btn-primary" style="padding:8px 18px;font-size:0.875rem;white-space:nowrap;" onclick="openBlogSearch(document.getElementById(\'blogHeroInput\').value)">Search</button></div><div class="blog-hero-suggestions" id="blogHeroSugg"></div></div>',
+  customSearch: '<div class="blog-hero-search-wrap"><div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="blogHeroInput" placeholder="Search ' + blogPosts.length + '+ articles..." autocomplete="off"><button class="calc-index-btn-primary" style="padding:8px 18px;font-size:0.875rem;white-space:nowrap;">Search</button></div><div class="blog-hero-suggestions" id="blogHeroSugg"></div></div>',
   buttons: [
     { label: '&#128214; Browse Articles', href: '#all-articles' },
     { label: '&#128202; Explore Topics', href: '#all-articles' },
@@ -3765,17 +3850,17 @@ ${trendingItems.map(t => `<a href="/blog/${t.slug}.html">${t.text}</a>`).join(''
 <div class="blog-category-bar">
 <div class="blog-category-bar-inner">
 <div class="blog-category-pills">
-<button class="blog-category-pill active" onclick="blogFilterCat('all',this)">All Articles</button>
-${blogCategories.map(c => `<button class="blog-category-pill" onclick="blogFilterCat('${c.replace(/'/g,"\\'")}',this)">${c}</button>`).join('')}
+<button class="blog-category-pill active" data-blog-cat="all">All Articles</button>
+${blogCategories.map(c => `<button class="blog-category-pill" data-blog-cat="${c.replace(/"/g,'&quot;')}">${c}</button>`).join('')}
 </div>
 <div class="blog-category-bar-actions">
-<select class="blog-sort-select" id="blogSortSelect" onchange="blogSort(this.value)">
+<select class="blog-sort-select" id="blogSortSelect">
 <option value="latest">Latest</option>
 <option value="oldest">Oldest First</option>
 <option value="az">A\u2013Z</option>
 <option value="zt">Z\u2013A</option>
 </select>
-<button class="blog-search-btn" onclick="openBlogSearch()" aria-label="Search articles">
+<button class="blog-search-btn" aria-label="Search articles">
 <svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
 </button>
 </div>
@@ -3783,8 +3868,8 @@ ${blogCategories.map(c => `<button class="blog-category-pill" onclick="blogFilte
 </div>
 
 <div class="blog-search-overlay" id="blogSearchOverlay">
-<button class="blog-search-overlay-close" onclick="closeBlogSearch()" aria-label="Close search">\u2715</button>
-<input class="blog-search-overlay-input" id="blogSearchInput" type="text" placeholder="Search 150+ health articles..." oninput="liveSearchBlog()">
+<button class="blog-search-overlay-close" aria-label="Close search">\u2715</button>
+<input class="blog-search-overlay-input" id="blogSearchInput" type="text" placeholder="Search 150+ health articles...">
 <div class="blog-search-overlay-results" id="blogSearchResults"></div>
 </div>
 
@@ -3809,7 +3894,7 @@ ${popularHtml}
 <div class="blog-progress-fill" id="blogProgressFill" style="width:${Math.round(ITEMS_PER_PAGE/blogPosts.length*100)}%"></div>
 </div>
 <span class="blog-articles-counter" id="blogCounter">Showing ${ITEMS_PER_PAGE} of ${blogPosts.length}</span>
-<button class="blog-view-all-btn" onclick="blogViewAll()">View All ${blogPosts.length} Articles</button>
+<button class="blog-view-all-btn">View All ${blogPosts.length} Articles</button>
 </div>
 </div>
 <div class="blog-articles-grid" id="blogGrid">
@@ -3818,7 +3903,7 @@ ${blogCardHtml}
 </section>
 
 <div class="blog-load-more" id="blogLoadMore">
-<button class="blog-load-more-btn" id="blogLoadMoreBtn" onclick="loadMoreBlog()">Load 24 More Articles &#8595;</button>
+<button class="blog-load-more-btn" id="blogLoadMoreBtn">Load 24 More Articles &#8595;</button>
 </div>
 
 <div class="blog-newsletter">
@@ -3843,7 +3928,7 @@ ${blogCardHtml}
 <section class="blog-tag-cloud">
 <h2>Browse by Health Topic</h2>
 <div class="blog-tag-cloud-inner">
-${popularTags.map(t => `<span class="blog-tag${t.size === 'lg' ? ' tag-lg' : t.size === 'sm' ? ' tag-sm' : ''}" onclick="blogTagClick('${t.name.replace(/'/g,"\\'")}',this)">${t.name}</span>`).join('\n')}
+${popularTags.map(t => `<span class="blog-tag${t.size === 'lg' ? ' tag-lg' : t.size === 'sm' ? ' tag-sm' : ''}" data-blog-tag="${t.name.replace(/"/g,'&quot;')}">${t.name}</span>`).join('\n')}
 </div>
 </section>
 
@@ -4072,19 +4157,19 @@ ${disclaimerHTML}
 <h2>Choose Your Difficulty</h2>
 <p>Select a level to begin. You can retake at any difficulty anytime.</p>
 <div class="quiz-diff-grid">
-<div class="quiz-diff-card" data-diff="easy" onclick="selectDiff('easy')">
+<div class="quiz-diff-card" data-diff="easy" data-quiz-diff="easy">
 <span class="quiz-diff-icon">🌱</span>
 <span class="quiz-diff-label">Easy</span>
 <span class="quiz-diff-count">5 Questions</span>
 <span class="quiz-diff-time">~3 min</span>
 </div>
-<div class="quiz-diff-card" data-diff="medium" onclick="selectDiff('medium')">
+<div class="quiz-diff-card" data-diff="medium" data-quiz-diff="medium">
 <span class="quiz-diff-icon">⚡</span>
 <span class="quiz-diff-label">Medium</span>
 <span class="quiz-diff-count">8 Questions</span>
 <span class="quiz-diff-time">~5 min</span>
 </div>
-<div class="quiz-diff-card" data-diff="hard" onclick="selectDiff('hard')">
+<div class="quiz-diff-card" data-diff="hard" data-quiz-diff="hard">
 <span class="quiz-diff-icon">🔥</span>
 <span class="quiz-diff-label">Hard</span>
 <span class="quiz-diff-count">10 Questions</span>
@@ -4092,7 +4177,7 @@ ${disclaimerHTML}
 </div>
 </div>
 <div style="text-align:center;">
-<button class="quiz-start-btn" id="quiz-start-btn" onclick="startQuiz()" disabled>Select a difficulty to begin</button>
+<button class="quiz-start-btn" id="quiz-start-btn" disabled>Select a difficulty to begin</button>
 </div>
 </div>
 
@@ -4106,7 +4191,7 @@ ${disclaimerHTML}
 <p class="quiz-q-text" id="quiz-q-text"></p>
 <div class="quiz-options" id="quiz-opts"></div>
 <div class="quiz-explanation" id="quiz-exp"></div>
-<button class="quiz-next-btn" id="quiz-next-btn" onclick="quizNext()">Next Question &rarr;</button>
+<button class="quiz-next-btn" id="quiz-next-btn">Next Question &rarr;</button>
 </div>
 </div>
 
@@ -4126,8 +4211,8 @@ ${disclaimerHTML}
 <p class="quiz-result-correct" id="res-correct"></p>
 <div class="quiz-result-feedback" id="res-feedback"></div>
 <div class="quiz-result-actions">
-<button class="quiz-retry-btn" onclick="quizRetry()">&#x1F504; Try Again</button>
-<button class="quiz-share-btn" onclick="quizShare()">&#x1F4E4; Share Result</button>
+<button class="quiz-retry-btn">&#x1F504; Try Again</button>
+<button class="quiz-share-btn">&#x1F4E4; Share Result</button>
 </div>
 </div>
 
@@ -4140,7 +4225,7 @@ ${nextQuizCards ? '<div class="quiz-funnel-section"><h3>🧠 You Might Also Like
 <p>Personalised tips based on your quiz results, delivered free every week.</p>
 <div class="quiz-email-form">
 <input type="email" class="quiz-email-input" id="quiz-email-input" placeholder="Your email address">
-<button class="quiz-email-submit" onclick="quizEmailSubmit()">Subscribe</button>
+<button class="quiz-email-submit">Subscribe</button>
 </div>
 <p class="quiz-email-success" id="quiz-email-success">✅ You're subscribed! Check your inbox soon.</p>
 </div>
@@ -4282,7 +4367,7 @@ console.log('Generated ' + quizzesData.length + ' quiz pages');
 // QUIZ INDEX PAGE
 const quizCategories = ['All', ...new Set(quizzesData.map(q => q.category))];
 const quizCatPills = quizCategories.map((c, i) =>
-  '<button class="quiz-cat-pill' + (i === 0 ? ' active' : '') + '" onclick="quizFilter(\'' + c.replace(/'/g, "\\'") + '\',this)">' + c + '</button>'
+  '<button class="quiz-cat-pill' + (i === 0 ? ' active' : '') + '" data-quiz-filter="' + c.replace(/"/g, '&quot;') + '">' + c + '</button>'
 ).join('');
 
 const quizCards = quizzesData.map(quiz =>
@@ -5210,7 +5295,7 @@ document.getElementById('ideaTopic').addEventListener('keydown',function(e){if(e
     <div>✅ <span id="compInfo" class="util-result-info"></span></div>
     <a id="compDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download</a>
   </div>
-  <img id="compPreview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
+  <img id="compPreview" alt="Compressed image preview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
 </div>
 <script>
 var cFile=null,cOrigSize=0;
@@ -5246,7 +5331,7 @@ function doCompress(){if(!cFile)return;var q=parseInt(document.getElementById('q
     <div>✅ <span id="convInfo" class="util-result-info"></span></div>
     <a id="convDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download</a>
   </div>
-  <img id="convPreview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
+  <img id="convPreview" alt="Converted image format preview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
 </div>
 <script>
 var convFile=null,fmtMime='image/jpeg',fmtExt='jpg';
@@ -5463,11 +5548,11 @@ ${globalHero({
 
 <div class="tools-cat-nav">
 <div class="tools-cat-tabs">
-<button class="tools-cat-tab active" onclick="filterCat('all',this)">All Tools</button>
-<button class="tools-cat-tab" onclick="filterCat('health',this)">💪 Health &amp; Tracking</button>
-<button class="tools-cat-tab" onclick="filterCat('productivity',this)">⚡ Productivity</button>
-<button class="tools-cat-tab" onclick="filterCat('text',this)">📝 Text &amp; Content</button>
-<button class="tools-cat-tab" onclick="filterCat('utility',this)">🔧 Utility Tools</button>
+<button class="tools-cat-tab active" data-filter-cat="all">All Tools</button>
+<button class="tools-cat-tab" data-filter-cat="health">💪 Health &amp; Tracking</button>
+<button class="tools-cat-tab" data-filter-cat="productivity">⚡ Productivity</button>
+<button class="tools-cat-tab" data-filter-cat="text">📝 Text &amp; Content</button>
+<button class="tools-cat-tab" data-filter-cat="utility">🔧 Utility Tools</button>
 </div>
 </div>
 

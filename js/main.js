@@ -580,10 +580,267 @@ const vhChat = {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  if (document.getElementById('vh-chatbot')) {
-    vhChat.init();
+// ─── Chatbot: Lazy Init on First Click ───────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  var chatEl = document.getElementById('vh-chatbot');
+  if (!chatEl) return;
+  var chatInitialized = false;
+  var chatToggle = document.getElementById('vh-chat-toggle');
+  if (chatToggle) {
+    chatToggle.addEventListener('click', function onFirstChatClick() {
+      if (!chatInitialized) {
+        chatInitialized = true;
+        chatToggle.removeEventListener('click', onFirstChatClick);
+        vhChat.init();
+        vhChat.toggle();
+      }
+    });
   }
+});
+
+// ─── NAV: Mega Menu Functions ─────────────────────────────────────────────────
+function vhhDdSearch(q) {
+  var grid = document.getElementById('ddGrid');
+  var res  = document.getElementById('ddResults');
+  if (!q || !q.trim()) {
+    grid.style.display = '';
+    res.innerHTML = '';
+    res.style.display = 'none';
+    return;
+  }
+  var links   = document.querySelectorAll('#ddGrid .mega-col a');
+  var matches = Array.from(links).filter(function(a) {
+    return a.textContent.toLowerCase().includes(q.toLowerCase());
+  });
+  grid.style.display = 'none';
+  res.style.display  = '';
+  res.innerHTML = matches.length
+    ? matches.map(function(a) {
+        return '<a href="' + a.getAttribute('href') + '" class="dd-result-item">' + a.textContent + '</a>';
+      }).join('')
+    : '<p class="dd-no-result">No results found — <a href="/calculators/">browse all calculators</a></p>';
+}
+
+function vhhToggleCol(h4) {
+  if (window.innerWidth > 768) return;
+  h4.closest('.mega-col').classList.toggle('open');
+}
+
+// ─── Global Event Delegation ──────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+
+  // NAV: mega dropdown search (debounced)
+  var ddInput = document.getElementById('ddSearchInput');
+  if (ddInput) {
+    var _ddT;
+    ddInput.addEventListener('input', function() {
+      clearTimeout(_ddT);
+      var v = this.value;
+      _ddT = setTimeout(function() { vhhDdSearch(v); }, 150);
+    });
+  }
+
+  // NAV: mega column toggle on mobile (event delegation)
+  document.addEventListener('click', function(e) {
+    var h = e.target.closest('.mega-col-title');
+    if (h) vhhToggleCol(h);
+  });
+
+  // Chatbot: quick topic buttons (data-vh-ask)
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-vh-ask]');
+    if (btn && window.vhChat) vhChat.quickAsk(btn.getAttribute('data-vh-ask'));
+  });
+
+  // Calculator: submit (calls vhAutoCalc defined per-page)
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.calc-submit-btn') && typeof window.vhAutoCalc === 'function') window.vhAutoCalc();
+  });
+
+  // Calculator: reset
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.calc-reset-btn') && typeof window.vhReset === 'function') window.vhReset();
+  });
+
+  // Calculator: copy result
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('#vhCopyBtn') && typeof window.vhCopyResult === 'function') window.vhCopyResult();
+  });
+
+  // Calculator: print (data-print)
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('[data-print]')) window.print();
+  });
+
+  // Calculator: share (data-share)
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('[data-share]') && typeof window.vhShareResult === 'function') window.vhShareResult();
+  });
+
+  // Calc index: search input (debounced)
+  var calcSrch = document.getElementById('calcSearch');
+  if (calcSrch) {
+    var _csT;
+    calcSrch.addEventListener('input', function() {
+      clearTimeout(_csT);
+      _csT = setTimeout(function() { if (typeof window.filterCalcs === 'function') window.filterCalcs(); }, 200);
+    });
+  }
+
+  // Calc index: filter category buttons (data-filter-cat)
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-filter-cat]');
+    if (btn && typeof window.filterCat === 'function') window.filterCat(btn.getAttribute('data-filter-cat'), btn);
+  });
+
+  // Blog: category filter pills (data-blog-cat)
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-blog-cat]');
+    if (btn && typeof window.blogFilterCat === 'function') window.blogFilterCat(btn.getAttribute('data-blog-cat'), btn);
+  });
+
+  // Blog: sort select
+  var blogSortSel = document.getElementById('blogSortSelect');
+  if (blogSortSel) {
+    blogSortSel.addEventListener('change', function() {
+      if (typeof window.blogSort === 'function') window.blogSort(this.value);
+    });
+  }
+
+  // Blog: open search button
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.blog-search-btn') && typeof window.openBlogSearch === 'function') window.openBlogSearch();
+  });
+
+  // Blog: close search overlay
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.blog-search-overlay-close') && typeof window.closeBlogSearch === 'function') window.closeBlogSearch();
+  });
+
+  // Blog: live search input (debounced)
+  var blogSrchInp = document.getElementById('blogSearchInput');
+  if (blogSrchInp) {
+    var _blT;
+    blogSrchInp.addEventListener('input', function() {
+      clearTimeout(_blT);
+      _blT = setTimeout(function() { if (typeof window.liveSearchBlog === 'function') window.liveSearchBlog(); }, 200);
+    });
+  }
+
+  // Blog: view all
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.blog-view-all-btn') && typeof window.blogViewAll === 'function') window.blogViewAll();
+  });
+
+  // Blog: load more (has persistent id)
+  var blLoadMore = document.getElementById('blogLoadMoreBtn');
+  if (blLoadMore) {
+    blLoadMore.addEventListener('click', function() { if (typeof window.loadMoreBlog === 'function') window.loadMoreBlog(); });
+  }
+
+  // Blog: tag cloud (data-blog-tag)
+  document.addEventListener('click', function(e) {
+    var tag = e.target.closest('[data-blog-tag]');
+    if (tag && typeof window.blogTagClick === 'function') window.blogTagClick(tag.getAttribute('data-blog-tag'), tag);
+  });
+
+  // Blog hero: search input (debounced) + enter key
+  var blogHeroInp = document.getElementById('blogHeroInput');
+  if (blogHeroInp) {
+    var _bhT;
+    blogHeroInp.addEventListener('input', function() {
+      clearTimeout(_bhT);
+      var v = this.value;
+      _bhT = setTimeout(function() { if (typeof window.blogHeroSearch === 'function') window.blogHeroSearch(v); }, 200);
+    });
+    blogHeroInp.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && typeof window.openBlogSearch === 'function') window.openBlogSearch(this.value);
+    });
+  }
+
+  // Blog hero: search button
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.blog-hero-search-wrap .calc-index-btn-primary');
+    if (btn) {
+      var inp = document.getElementById('blogHeroInput');
+      if (inp && typeof window.openBlogSearch === 'function') window.openBlogSearch(inp.value);
+    }
+  });
+
+  // FAQ: filter pills (data-faq-cat)
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-faq-cat]');
+    if (btn && typeof window.faqFilterCat === 'function') window.faqFilterCat(btn.getAttribute('data-faq-cat'), btn);
+  });
+
+  // FAQ hero: search input (debounced)
+  var faqHeroInp = document.getElementById('faqHeroInput');
+  if (faqHeroInp) {
+    var _fhT;
+    faqHeroInp.addEventListener('input', function() {
+      clearTimeout(_fhT);
+      var v = this.value;
+      _fhT = setTimeout(function() { if (typeof window.faqHeroSearch === 'function') window.faqHeroSearch(v); }, 200);
+    });
+  }
+
+  // Quiz page: difficulty card selection (data-quiz-diff)
+  document.addEventListener('click', function(e) {
+    var card = e.target.closest('[data-quiz-diff]');
+    if (card && typeof window.selectDiff === 'function') window.selectDiff(card.getAttribute('data-quiz-diff'));
+  });
+
+  // Quiz page: start button (has persistent id)
+  var quizStartBtn = document.getElementById('quiz-start-btn');
+  if (quizStartBtn) {
+    quizStartBtn.addEventListener('click', function() { if (typeof window.startQuiz === 'function') window.startQuiz(); });
+  }
+
+  // Quiz page: next question (has persistent id)
+  var quizNextBtn = document.getElementById('quiz-next-btn');
+  if (quizNextBtn) {
+    quizNextBtn.addEventListener('click', function() { if (typeof window.quizNext === 'function') window.quizNext(); });
+  }
+
+  // Quiz page: retry + share + email subscribe
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.quiz-retry-btn') && typeof window.quizRetry === 'function') window.quizRetry();
+  });
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.quiz-share-btn') && typeof window.quizShare === 'function') window.quizShare();
+  });
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.quiz-email-submit') && typeof window.quizEmailSubmit === 'function') window.quizEmailSubmit();
+  });
+
+  // Quiz index: category filter pills (data-quiz-filter)
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-quiz-filter]');
+    if (btn && typeof window.quizFilter === 'function') window.quizFilter(btn.getAttribute('data-quiz-filter'), btn);
+  });
+
+  // Quiz index: hero search input (debounced)
+  var quizHeroInp = document.getElementById('quizHeroInput');
+  if (quizHeroInp) {
+    var _qhT;
+    quizHeroInp.addEventListener('input', function() {
+      clearTimeout(_qhT);
+      var v = this.value;
+      _qhT = setTimeout(function() { if (typeof window.quizHeroSearch === 'function') window.quizHeroSearch(v); }, 200);
+    });
+  }
+
+  // Tools hub: search input (debounced)
+  var toolsSearchInp = document.getElementById('toolsSearch');
+  if (toolsSearchInp) {
+    var _tsT;
+    toolsSearchInp.addEventListener('input', function() {
+      clearTimeout(_tsT);
+      var v = this.value;
+      _tsT = setTimeout(function() { if (typeof window.filterHub === 'function') window.filterHub(v); }, 200);
+    });
+  }
+
 });
 
 function showResult(boxId, value, label, suggestion, color) {

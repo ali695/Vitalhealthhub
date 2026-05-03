@@ -43,12 +43,12 @@
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." oninput="vhhDdSearch(this.value)" autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator.html">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator.html">Body Fat Calculator</a></li>
@@ -58,7 +58,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator.html">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator.html">Macro Calculator</a></li>
@@ -68,7 +68,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator.html">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker.html">Blood Pressure</a></li>
@@ -78,7 +78,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator.html">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator.html">Running Pace</a></li>
@@ -103,32 +103,14 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<script>
-window.vhhDdSearch=function(q){
-  var grid=document.getElementById('ddGrid');
-  var res=document.getElementById('ddResults');
-  if(!q||!q.trim()){grid.style.display='';res.innerHTML='';res.style.display='none';return;}
-  var links=document.querySelectorAll('#ddGrid .mega-col a');
-  var matches=Array.from(links).filter(function(a){return a.textContent.toLowerCase().includes(q.toLowerCase());});
-  grid.style.display='none';
-  res.style.display='';
-  res.innerHTML=matches.length
-    ? matches.map(function(a){return '<a href="'+a.getAttribute('href')+'" class="dd-result-item">'+a.textContent+'</a>';}).join('')
-    : '<p class="dd-no-result">No results found — <a href="/calculators/">browse all calculators</a></p>';
-};
-window.vhhToggleCol=function(h4){
-  if(window.innerWidth>768)return;
-  var col=h4.closest('.mega-col');
-  col.classList.toggle('open');
-};
-</script>
+
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><span>Blog</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://vitalhealthhub.org/blog.html"}]}</script>
 
 <section class="calc-index-hero">
 <div class="calc-index-hero-inner">
 <div class="calc-index-hero-badge">&#128218; 155+ Expert Health Articles</div><h1 class="calc-index-hero-title">VitalHealth Hub Blog</h1><p class="calc-index-hero-sub">Evidence-based guides on nutrition, fitness, mental health, and more &mdash; written by experts, free for everyone.</p>
-<div class="blog-hero-search-wrap"><div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="blogHeroInput" placeholder="Search 155+ articles..." oninput="blogHeroSearch(this.value)" onkeydown="if(event.key==='Enter'){openBlogSearch(this.value)}" autocomplete="off"><button class="calc-index-btn-primary" style="padding:8px 18px;font-size:0.875rem;white-space:nowrap;" onclick="openBlogSearch(document.getElementById('blogHeroInput').value)">Search</button></div><div class="blog-hero-suggestions" id="blogHeroSugg"></div></div><div class="calc-index-hero-btns"><a href="#all-articles" class="calc-index-btn-primary">&#128214; Browse Articles</a><a href="#all-articles" class="calc-index-btn-outline">&#128202; Explore Topics</a><a href="/tools/" class="calc-index-btn-outline">&#9889; Try Tools</a></div><div class="calc-index-hero-stats"><div class="calc-index-stat"><strong>155+</strong><span>Articles</span></div><div class="calc-index-stat"><strong>17</strong><span>Categories</span></div><div class="calc-index-stat"><strong>Expert</strong><span>Reviewed</span></div><div class="calc-index-stat"><strong>Free</strong><span>Always</span></div></div></div>
+<div class="blog-hero-search-wrap"><div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="blogHeroInput" placeholder="Search 155+ articles..." autocomplete="off"><button class="calc-index-btn-primary" style="padding:8px 18px;font-size:0.875rem;white-space:nowrap;">Search</button></div><div class="blog-hero-suggestions" id="blogHeroSugg"></div></div><div class="calc-index-hero-btns"><a href="#all-articles" class="calc-index-btn-primary">&#128214; Browse Articles</a><a href="#all-articles" class="calc-index-btn-outline">&#128202; Explore Topics</a><a href="/tools/" class="calc-index-btn-outline">&#9889; Try Tools</a></div><div class="calc-index-hero-stats"><div class="calc-index-stat"><strong>155+</strong><span>Articles</span></div><div class="calc-index-stat"><strong>17</strong><span>Categories</span></div><div class="calc-index-stat"><strong>Expert</strong><span>Reviewed</span></div><div class="calc-index-stat"><strong>Free</strong><span>Always</span></div></div></div>
 </section>
 
 <section class="blog-featured-section">
@@ -329,17 +311,17 @@ window.vhhToggleCol=function(h4){
 <div class="blog-category-bar">
 <div class="blog-category-bar-inner">
 <div class="blog-category-pills">
-<button class="blog-category-pill active" onclick="blogFilterCat('all',this)">All Articles</button>
-<button class="blog-category-pill" onclick="blogFilterCat('BMI & Body Weight',this)">BMI & Body Weight</button><button class="blog-category-pill" onclick="blogFilterCat('Calories & Weight',this)">Calories & Weight</button><button class="blog-category-pill" onclick="blogFilterCat('Macronutrients',this)">Macronutrients</button><button class="blog-category-pill" onclick="blogFilterCat('TDEE & Metabolism',this)">TDEE & Metabolism</button><button class="blog-category-pill" onclick="blogFilterCat('Body Fat',this)">Body Fat</button><button class="blog-category-pill" onclick="blogFilterCat('Fitness & Exercise',this)">Fitness & Exercise</button><button class="blog-category-pill" onclick="blogFilterCat('Sleep & Recovery',this)">Sleep & Recovery</button><button class="blog-category-pill" onclick="blogFilterCat('Hydration',this)">Hydration</button><button class="blog-category-pill" onclick="blogFilterCat('Heart Rate',this)">Heart Rate</button><button class="blog-category-pill" onclick="blogFilterCat('Mental Health',this)">Mental Health</button><button class="blog-category-pill" onclick="blogFilterCat('Health Checks',this)">Health Checks</button><button class="blog-category-pill" onclick="blogFilterCat('Weight Loss',this)">Weight Loss</button><button class="blog-category-pill" onclick="blogFilterCat('Nutrition & Diet',this)">Nutrition & Diet</button><button class="blog-category-pill" onclick="blogFilterCat('Women\'s Health',this)">Women's Health</button><button class="blog-category-pill" onclick="blogFilterCat('Mental Health & Productivity',this)">Mental Health & Productivity</button><button class="blog-category-pill" onclick="blogFilterCat('Lifestyle & Habits',this)">Lifestyle & Habits</button><button class="blog-category-pill" onclick="blogFilterCat('General Tools',this)">General Tools</button>
+<button class="blog-category-pill active" data-blog-cat="all">All Articles</button>
+<button class="blog-category-pill" data-blog-cat="BMI & Body Weight">BMI & Body Weight</button><button class="blog-category-pill" data-blog-cat="Calories & Weight">Calories & Weight</button><button class="blog-category-pill" data-blog-cat="Macronutrients">Macronutrients</button><button class="blog-category-pill" data-blog-cat="TDEE & Metabolism">TDEE & Metabolism</button><button class="blog-category-pill" data-blog-cat="Body Fat">Body Fat</button><button class="blog-category-pill" data-blog-cat="Fitness & Exercise">Fitness & Exercise</button><button class="blog-category-pill" data-blog-cat="Sleep & Recovery">Sleep & Recovery</button><button class="blog-category-pill" data-blog-cat="Hydration">Hydration</button><button class="blog-category-pill" data-blog-cat="Heart Rate">Heart Rate</button><button class="blog-category-pill" data-blog-cat="Mental Health">Mental Health</button><button class="blog-category-pill" data-blog-cat="Health Checks">Health Checks</button><button class="blog-category-pill" data-blog-cat="Weight Loss">Weight Loss</button><button class="blog-category-pill" data-blog-cat="Nutrition & Diet">Nutrition & Diet</button><button class="blog-category-pill" data-blog-cat="Women's Health">Women's Health</button><button class="blog-category-pill" data-blog-cat="Mental Health & Productivity">Mental Health & Productivity</button><button class="blog-category-pill" data-blog-cat="Lifestyle & Habits">Lifestyle & Habits</button><button class="blog-category-pill" data-blog-cat="General Tools">General Tools</button>
 </div>
 <div class="blog-category-bar-actions">
-<select class="blog-sort-select" id="blogSortSelect" onchange="blogSort(this.value)">
+<select class="blog-sort-select" id="blogSortSelect">
 <option value="latest">Latest</option>
 <option value="oldest">Oldest First</option>
 <option value="az">A–Z</option>
 <option value="zt">Z–A</option>
 </select>
-<button class="blog-search-btn" onclick="openBlogSearch()" aria-label="Search articles">
+<button class="blog-search-btn" aria-label="Search articles">
 <svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
 </button>
 </div>
@@ -347,8 +329,8 @@ window.vhhToggleCol=function(h4){
 </div>
 
 <div class="blog-search-overlay" id="blogSearchOverlay">
-<button class="blog-search-overlay-close" onclick="closeBlogSearch()" aria-label="Close search">✕</button>
-<input class="blog-search-overlay-input" id="blogSearchInput" type="text" placeholder="Search 150+ health articles..." oninput="liveSearchBlog()">
+<button class="blog-search-overlay-close" aria-label="Close search">✕</button>
+<input class="blog-search-overlay-input" id="blogSearchInput" type="text" placeholder="Search 150+ health articles...">
 <div class="blog-search-overlay-results" id="blogSearchResults"></div>
 </div>
 
@@ -432,7 +414,7 @@ window.vhhToggleCol=function(h4){
 <div class="blog-progress-fill" id="blogProgressFill" style="width:15%"></div>
 </div>
 <span class="blog-articles-counter" id="blogCounter">Showing 24 of 155</span>
-<button class="blog-view-all-btn" onclick="blogViewAll()">View All 155 Articles</button>
+<button class="blog-view-all-btn">View All 155 Articles</button>
 </div>
 </div>
 <div class="blog-articles-grid" id="blogGrid">
@@ -1990,7 +1972,7 @@ window.vhhToggleCol=function(h4){
 </section>
 
 <div class="blog-load-more" id="blogLoadMore">
-<button class="blog-load-more-btn" id="blogLoadMoreBtn" onclick="loadMoreBlog()">Load 24 More Articles &#8595;</button>
+<button class="blog-load-more-btn" id="blogLoadMoreBtn">Load 24 More Articles &#8595;</button>
 </div>
 
 <div class="blog-newsletter">
@@ -2015,36 +1997,36 @@ window.vhhToggleCol=function(h4){
 <section class="blog-tag-cloud">
 <h2>Browse by Health Topic</h2>
 <div class="blog-tag-cloud-inner">
-<span class="blog-tag tag-lg" onclick="blogTagClick('Weight Loss',this)">Weight Loss</span>
-<span class="blog-tag tag-lg" onclick="blogTagClick('BMI',this)">BMI</span>
-<span class="blog-tag tag-lg" onclick="blogTagClick('Calories',this)">Calories</span>
-<span class="blog-tag" onclick="blogTagClick('Protein',this)">Protein</span>
-<span class="blog-tag tag-lg" onclick="blogTagClick('Sleep',this)">Sleep</span>
-<span class="blog-tag" onclick="blogTagClick('Hydration',this)">Hydration</span>
-<span class="blog-tag tag-lg" onclick="blogTagClick('Heart Health',this)">Heart Health</span>
-<span class="blog-tag" onclick="blogTagClick('Diabetes',this)">Diabetes</span>
-<span class="blog-tag" onclick="blogTagClick('Keto',this)">Keto</span>
-<span class="blog-tag tag-lg" onclick="blogTagClick('Intermittent Fasting',this)">Intermittent Fasting</span>
-<span class="blog-tag tag-lg" onclick="blogTagClick('Mental Health',this)">Mental Health</span>
-<span class="blog-tag" onclick="blogTagClick('Anxiety',this)">Anxiety</span>
-<span class="blog-tag tag-sm" onclick="blogTagClick('Depression',this)">Depression</span>
-<span class="blog-tag" onclick="blogTagClick('Meditation',this)">Meditation</span>
-<span class="blog-tag" onclick="blogTagClick('Yoga',this)">Yoga</span>
-<span class="blog-tag tag-sm" onclick="blogTagClick('Running',this)">Running</span>
-<span class="blog-tag tag-sm" onclick="blogTagClick('HIIT',this)">HIIT</span>
-<span class="blog-tag" onclick="blogTagClick('Cholesterol',this)">Cholesterol</span>
-<span class="blog-tag" onclick="blogTagClick('Blood Pressure',this)">Blood Pressure</span>
-<span class="blog-tag tag-sm" onclick="blogTagClick('Pregnancy',this)">Pregnancy</span>
-<span class="blog-tag" onclick="blogTagClick('Women\'s Health',this)">Women's Health</span>
-<span class="blog-tag tag-sm" onclick="blogTagClick('Men\'s Health',this)">Men's Health</span>
-<span class="blog-tag tag-sm" onclick="blogTagClick('Aging',this)">Aging</span>
-<span class="blog-tag" onclick="blogTagClick('Vitamins',this)">Vitamins</span>
-<span class="blog-tag" onclick="blogTagClick('Gut Health',this)">Gut Health</span>
-<span class="blog-tag" onclick="blogTagClick('Immunity',this)">Immunity</span>
-<span class="blog-tag tag-lg" onclick="blogTagClick('Stress',this)">Stress</span>
-<span class="blog-tag tag-sm" onclick="blogTagClick('Inflammation',this)">Inflammation</span>
-<span class="blog-tag tag-sm" onclick="blogTagClick('Hormones',this)">Hormones</span>
-<span class="blog-tag tag-sm" onclick="blogTagClick('Cancer Prevention',this)">Cancer Prevention</span>
+<span class="blog-tag tag-lg" data-blog-tag="Weight Loss">Weight Loss</span>
+<span class="blog-tag tag-lg" data-blog-tag="BMI">BMI</span>
+<span class="blog-tag tag-lg" data-blog-tag="Calories">Calories</span>
+<span class="blog-tag" data-blog-tag="Protein">Protein</span>
+<span class="blog-tag tag-lg" data-blog-tag="Sleep">Sleep</span>
+<span class="blog-tag" data-blog-tag="Hydration">Hydration</span>
+<span class="blog-tag tag-lg" data-blog-tag="Heart Health">Heart Health</span>
+<span class="blog-tag" data-blog-tag="Diabetes">Diabetes</span>
+<span class="blog-tag" data-blog-tag="Keto">Keto</span>
+<span class="blog-tag tag-lg" data-blog-tag="Intermittent Fasting">Intermittent Fasting</span>
+<span class="blog-tag tag-lg" data-blog-tag="Mental Health">Mental Health</span>
+<span class="blog-tag" data-blog-tag="Anxiety">Anxiety</span>
+<span class="blog-tag tag-sm" data-blog-tag="Depression">Depression</span>
+<span class="blog-tag" data-blog-tag="Meditation">Meditation</span>
+<span class="blog-tag" data-blog-tag="Yoga">Yoga</span>
+<span class="blog-tag tag-sm" data-blog-tag="Running">Running</span>
+<span class="blog-tag tag-sm" data-blog-tag="HIIT">HIIT</span>
+<span class="blog-tag" data-blog-tag="Cholesterol">Cholesterol</span>
+<span class="blog-tag" data-blog-tag="Blood Pressure">Blood Pressure</span>
+<span class="blog-tag tag-sm" data-blog-tag="Pregnancy">Pregnancy</span>
+<span class="blog-tag" data-blog-tag="Women's Health">Women's Health</span>
+<span class="blog-tag tag-sm" data-blog-tag="Men's Health">Men's Health</span>
+<span class="blog-tag tag-sm" data-blog-tag="Aging">Aging</span>
+<span class="blog-tag" data-blog-tag="Vitamins">Vitamins</span>
+<span class="blog-tag" data-blog-tag="Gut Health">Gut Health</span>
+<span class="blog-tag" data-blog-tag="Immunity">Immunity</span>
+<span class="blog-tag tag-lg" data-blog-tag="Stress">Stress</span>
+<span class="blog-tag tag-sm" data-blog-tag="Inflammation">Inflammation</span>
+<span class="blog-tag tag-sm" data-blog-tag="Hormones">Hormones</span>
+<span class="blog-tag tag-sm" data-blog-tag="Cancer Prevention">Cancer Prevention</span>
 </div>
 </section>
 
@@ -2291,7 +2273,7 @@ function blogTagClick(tag){
 <div id="vh-chat-window" style="display:none;">
 <div id="vh-chat-header">
 <div style="display:flex;align-items:center;gap:10px;">
-<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub" width="38" height="38" loading="lazy"></div>
+<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="38" height="38" loading="lazy"></div>
 <div>
 <p style="color:#fff;font-weight:600;font-size:14px;margin:0;">VitalHealth Assistant</p>
 <p style="color:#a7f3d0;font-size:11px;margin:0;">🟢 Online — Health Q&A Bot</p>
@@ -2303,14 +2285,14 @@ function blogTagClick(tag){
 <div id="vh-quick-topics">
 <p style="font-size:11px;color:#6b7280;margin:0 0 8px;font-weight:500;">Quick Topics:</p>
 <div id="vh-topics-grid">
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('BMI')">⚖️ BMI</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Calories')">🔥 Calories</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Sleep')">😴 Sleep</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Water')">💧 Water</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Weight Loss')">📉 Weight Loss</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Protein')">💪 Protein</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Heart Health')">❤️ Heart</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Stress')">🧠 Stress</button>
+<button class="vh-topic-btn" data-vh-ask="BMI">⚖️ BMI</button>
+<button class="vh-topic-btn" data-vh-ask="Calories">🔥 Calories</button>
+<button class="vh-topic-btn" data-vh-ask="Sleep">😴 Sleep</button>
+<button class="vh-topic-btn" data-vh-ask="Water">💧 Water</button>
+<button class="vh-topic-btn" data-vh-ask="Weight Loss">📉 Weight Loss</button>
+<button class="vh-topic-btn" data-vh-ask="Protein">💪 Protein</button>
+<button class="vh-topic-btn" data-vh-ask="Heart Health">❤️ Heart</button>
+<button class="vh-topic-btn" data-vh-ask="Stress">🧠 Stress</button>
 </div>
 </div>
 <div id="vh-chat-input-area">

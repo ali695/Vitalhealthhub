@@ -45,12 +45,12 @@
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." oninput="vhhDdSearch(this.value)" autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator.html">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator.html">Body Fat Calculator</a></li>
@@ -60,7 +60,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator.html">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator.html">Macro Calculator</a></li>
@@ -70,7 +70,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator.html">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker.html">Blood Pressure</a></li>
@@ -80,7 +80,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator.html">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator.html">Running Pace</a></li>
@@ -105,25 +105,7 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<script>
-window.vhhDdSearch=function(q){
-  var grid=document.getElementById('ddGrid');
-  var res=document.getElementById('ddResults');
-  if(!q||!q.trim()){grid.style.display='';res.innerHTML='';res.style.display='none';return;}
-  var links=document.querySelectorAll('#ddGrid .mega-col a');
-  var matches=Array.from(links).filter(function(a){return a.textContent.toLowerCase().includes(q.toLowerCase());});
-  grid.style.display='none';
-  res.style.display='';
-  res.innerHTML=matches.length
-    ? matches.map(function(a){return '<a href="'+a.getAttribute('href')+'" class="dd-result-item">'+a.textContent+'</a>';}).join('')
-    : '<p class="dd-no-result">No results found — <a href="/calculators/">browse all calculators</a></p>';
-};
-window.vhhToggleCol=function(h4){
-  if(window.innerWidth>768)return;
-  var col=h4.closest('.mega-col');
-  col.classList.toggle('open');
-};
-</script>
+
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/calculators/">Calculators</a><span>/</span><span>Sleep Hygiene Score</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://vitalhealthhub.org/calculators/"},{"@type":"ListItem","position":3,"name":"Sleep Hygiene Score","item":"https://vitalhealthhub.org/calculators/sleep-hygiene-calculator.html"}]}</script>
 
@@ -182,8 +164,8 @@ window.vhhToggleCol=function(h4){
 </div>
 <div class="form-group"><label for="bedtime">Consistent Bedtime? (0-3)</label><input type="number" id="bedtime" placeholder="2"></div><div class="form-group"><label for="screen">Screen-Free Before Bed? (0-3)</label><input type="number" id="screen" placeholder="1"></div><div class="form-group"><label for="caffeine">No Caffeine After 2pm? (0-3)</label><input type="number" id="caffeine" placeholder="2"></div><div class="form-group"><label for="temp">Cool Room (16-19°C)? (0-3)</label><input type="number" id="temp" placeholder="2"></div><div class="form-group"><label for="dark">Dark/Quiet Room? (0-3)</label><input type="number" id="dark" placeholder="2"></div><div class="form-group"><label for="wind">Wind-Down Routine? (0-3)</label><input type="number" id="wind" placeholder="1"></div><div class="form-group"><label for="alcohol">Avoid Alcohol Before Bed? (0-3)</label><input type="number" id="alcohol" placeholder="2"></div>
 <div class="calc-btn-row">
-<button class="btn btn-primary calc-submit-btn" onclick="var b=parseFloat(document.getElementById('bedtime').value)||0;var sc=parseFloat(document.getElementById('screen').value)||0;var ca=parseFloat(document.getElementById('caffeine').value)||0;var tp=parseFloat(document.getElementById('temp').value)||0;var dk=parseFloat(document.getElementById('dark').value)||0;var wd=parseFloat(document.getElementById('wind').value)||0;var al=parseFloat(document.getElementById('alcohol').value)||0;var total=b+sc+ca+tp+dk+wd+al;var max=21;var pct=Math.round(total/max*100);var col=pct>=75?'green':pct>=50?'yellow':'red';var l=pct>=75?'Excellent Sleep Hygiene':pct>=50?'Good Sleep Hygiene':'Poor Sleep Hygiene';var tips=[];if(sc<2)tips.push('Avoid screens 60+ min before bed');if(b<2)tips.push('Set a consistent sleep/wake time');if(ca<2)tips.push('No caffeine after 2pm');if(wd<2)tips.push('Add a 30-min wind-down routine');var tStr=tips.length?'Top improvements: '+tips.join('; ')+'.':'Keep up your excellent habits!';showResult('result',pct+'%',l,'Sleep hygiene score: '+total+'/21. '+tStr,col);">&#9889; Calculate Results</button>
-<button class="calc-reset-btn" id="vhResetBtn" onclick="vhReset()">&#8635; Reset</button>
+<button class="btn btn-primary calc-submit-btn">&#9889; Calculate Results</button>
+<button class="calc-reset-btn" id="vhResetBtn">&#8635; Reset</button>
 </div>
 </div>
 <div class="calc-disclaimer-card fade-in">
@@ -212,9 +194,9 @@ window.vhhToggleCol=function(h4){
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
 <div class="result-suggestion"></div>
 <div class="calc-result-actions">
-<button class="calc-action-btn" id="vhCopyBtn" onclick="vhCopyResult()"><span class="calc-action-icon">&#128203;</span> Copy</button>
-<button class="calc-action-btn" onclick="window.print()"><span class="calc-action-icon">&#128424;</span> Print</button>
-<button class="calc-action-btn" onclick="vhShareResult()"><span class="calc-action-icon">&#128279;</span> Share</button>
+<button class="calc-action-btn" id="vhCopyBtn"><span class="calc-action-icon">&#128203;</span> Copy</button>
+<button class="calc-action-btn" data-print="1"><span class="calc-action-icon">&#128424;</span> Print</button>
+<button class="calc-action-btn" data-share="1"><span class="calc-action-icon">&#128279;</span> Share</button>
 </div>
 </div>
 </div>
@@ -240,6 +222,27 @@ window.vhhToggleCol=function(h4){
 <section class="ccs-section ccs-gray">
 <div class="container">
 <div class="ccs-article fade-in"><h2>Sleep Hygiene Score Calculator</h2><p>Sleep hygiene refers to the habits and practices that promote consistent, restorative sleep. Poor sleep hygiene is among the most common and correctable causes of insomnia and poor sleep quality. Research consistently shows that behavioral changes — not medication — are the most effective long-term treatment for sleep problems.</p><h3>The Science of Sleep Hygiene</h3><p>Your circadian rhythm — the internal 24-hour clock regulating sleep — is sensitive to light, temperature, timing, and behavior. Consistent sleep/wake times, even on weekends, are the single most important sleep hygiene practice. Exposure to bright light in the morning and darkness in the evening helps regulate melatonin secretion and sleep onset.</p></div>
+</div>
+</section>
+
+
+<section class="ccs-section ccs-white">
+<div class="container">
+<div class="ccs-article fade-in">
+<h2>Who Should Use the Sleep Hygiene Score?</h2>
+<p>The Sleep Hygiene Score is built for individuals managing daily stress, people experiencing burnout or low mood, mental health practitioners, and anyone tracking psychological wellbeing over time. Whether you are proactively monitoring your health, managing a specific condition, or simply curious about where you stand, this tool provides a reliable, evidence-based starting point for understanding your current status and identifying where targeted change is possible.</p>
+<p>This calculator is appropriate for adults aged 18 and above. If you are under 18, pregnant, or managing a diagnosed medical condition, treat results as a general guide only and consult a qualified healthcare professional before making any changes to your diet, exercise routine, or treatment plan.</p>
+<p>For a more complete health picture, pair this tool with our <a href="/calculators/stress-level-calculator.html">Stress Level Calculator</a>, <a href="/calculators/anxiety-score-calculator.html">Anxiety Score Calculator</a>, <a href="/calculators/biological-age-calculator.html">Biological Age Calculator</a> — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
+<h2>Common Mistakes to Avoid</h2>
+<p>Getting accurate, actionable results from the Sleep Hygiene Score depends on more than entering correct numbers. These are the most common errors that reduce the usefulness of your output:</p>
+<ul>
+<li><strong>Treating a score as a clinical diagnosis</strong> — wellness assessments identify risk patterns, not medical conditions. They complement professional care.</li>
+<li><strong>Taking a single snapshot</strong> — mental and physical wellbeing fluctuates; track across several weeks for meaningful trends.</li>
+<li><strong>Dismissing sub-clinical results</strong> — mild stress or early burnout still benefits from targeted lifestyle intervention.</li>
+<li><strong>Using results to replace professional consultation</strong> — these tools are designed to inform, not substitute, healthcare advice.</li>
+</ul>
+<p>Avoiding these pitfalls transforms this calculator from a one-time curiosity into a reliable instrument for genuine health monitoring and meaningful progress tracking over time.</p>
+</div>
 </div>
 </section>
 
@@ -491,7 +494,7 @@ ma7122671@gmail.com
 <div id="vh-chat-window" style="display:none;">
 <div id="vh-chat-header">
 <div style="display:flex;align-items:center;gap:10px;">
-<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub" width="38" height="38" loading="lazy"></div>
+<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="38" height="38" loading="lazy"></div>
 <div>
 <p style="color:#fff;font-weight:600;font-size:14px;margin:0;">VitalHealth Assistant</p>
 <p style="color:#a7f3d0;font-size:11px;margin:0;">🟢 Online — Health Q&A Bot</p>
@@ -503,14 +506,14 @@ ma7122671@gmail.com
 <div id="vh-quick-topics">
 <p style="font-size:11px;color:#6b7280;margin:0 0 8px;font-weight:500;">Quick Topics:</p>
 <div id="vh-topics-grid">
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('BMI')">⚖️ BMI</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Calories')">🔥 Calories</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Sleep')">😴 Sleep</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Water')">💧 Water</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Weight Loss')">📉 Weight Loss</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Protein')">💪 Protein</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Heart Health')">❤️ Heart</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Stress')">🧠 Stress</button>
+<button class="vh-topic-btn" data-vh-ask="BMI">⚖️ BMI</button>
+<button class="vh-topic-btn" data-vh-ask="Calories">🔥 Calories</button>
+<button class="vh-topic-btn" data-vh-ask="Sleep">😴 Sleep</button>
+<button class="vh-topic-btn" data-vh-ask="Water">💧 Water</button>
+<button class="vh-topic-btn" data-vh-ask="Weight Loss">📉 Weight Loss</button>
+<button class="vh-topic-btn" data-vh-ask="Protein">💪 Protein</button>
+<button class="vh-topic-btn" data-vh-ask="Heart Health">❤️ Heart</button>
+<button class="vh-topic-btn" data-vh-ask="Stress">🧠 Stress</button>
 </div>
 </div>
 <div id="vh-chat-input-area">

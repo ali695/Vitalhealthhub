@@ -45,12 +45,12 @@
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." oninput="vhhDdSearch(this.value)" autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator.html">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator.html">Body Fat Calculator</a></li>
@@ -60,7 +60,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator.html">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator.html">Macro Calculator</a></li>
@@ -70,7 +70,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator.html">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker.html">Blood Pressure</a></li>
@@ -80,7 +80,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title" onclick="vhhToggleCol(this)">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator.html">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator.html">Running Pace</a></li>
@@ -105,25 +105,7 @@
 </ul>
 <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
-<script>
-window.vhhDdSearch=function(q){
-  var grid=document.getElementById('ddGrid');
-  var res=document.getElementById('ddResults');
-  if(!q||!q.trim()){grid.style.display='';res.innerHTML='';res.style.display='none';return;}
-  var links=document.querySelectorAll('#ddGrid .mega-col a');
-  var matches=Array.from(links).filter(function(a){return a.textContent.toLowerCase().includes(q.toLowerCase());});
-  grid.style.display='none';
-  res.style.display='';
-  res.innerHTML=matches.length
-    ? matches.map(function(a){return '<a href="'+a.getAttribute('href')+'" class="dd-result-item">'+a.textContent+'</a>';}).join('')
-    : '<p class="dd-no-result">No results found — <a href="/calculators/">browse all calculators</a></p>';
-};
-window.vhhToggleCol=function(h4){
-  if(window.innerWidth>768)return;
-  var col=h4.closest('.mega-col');
-  col.classList.toggle('open');
-};
-</script>
+
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/calculators/">Calculators</a><span>/</span><span>Steps to Calories Calculator</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://vitalhealthhub.org/calculators/"},{"@type":"ListItem","position":3,"name":"Steps to Calories Calculator","item":"https://vitalhealthhub.org/calculators/steps-to-calories-calculator.html"}]}</script>
 
@@ -207,8 +189,8 @@ window.vhhToggleCol=function(h4){
 </div>
 <div class="form-group"><label for="steps">Number of Steps</label><input type="number" id="steps" placeholder="10000"></div><div class="form-group"><label for="weight">Weight (kg)</label><input type="number" id="weight" placeholder="70"></div>
 <div class="calc-btn-row">
-<button class="btn btn-primary calc-submit-btn" onclick="var s=parseFloat(document.getElementById('steps').value);var w=parseFloat(document.getElementById('weight').value);if(!s||!w){alert('Fill fields');return;}var cal=Math.round(s*0.04*w/70);var km=(s*0.000762).toFixed(1);showResult('result',cal+' kcal','Calories Burned','You burned approximately '+cal+' calories walking '+s+' steps ('+km+' km). Aim for 10,000 steps daily for general health benefits.','green');">&#9889; Calculate Results</button>
-<button class="calc-reset-btn" id="vhResetBtn" onclick="vhReset()">&#8635; Reset</button>
+<button class="btn btn-primary calc-submit-btn">&#9889; Calculate Results</button>
+<button class="calc-reset-btn" id="vhResetBtn">&#8635; Reset</button>
 </div>
 </div>
 <div class="calc-disclaimer-card fade-in">
@@ -237,9 +219,9 @@ window.vhhToggleCol=function(h4){
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
 <div class="result-suggestion"></div>
 <div class="calc-result-actions">
-<button class="calc-action-btn" id="vhCopyBtn" onclick="vhCopyResult()"><span class="calc-action-icon">&#128203;</span> Copy</button>
-<button class="calc-action-btn" onclick="window.print()"><span class="calc-action-icon">&#128424;</span> Print</button>
-<button class="calc-action-btn" onclick="vhShareResult()"><span class="calc-action-icon">&#128279;</span> Share</button>
+<button class="calc-action-btn" id="vhCopyBtn"><span class="calc-action-icon">&#128203;</span> Copy</button>
+<button class="calc-action-btn" data-print="1"><span class="calc-action-icon">&#128424;</span> Print</button>
+<button class="calc-action-btn" data-share="1"><span class="calc-action-icon">&#128279;</span> Share</button>
 </div>
 </div>
 </div>
@@ -265,6 +247,28 @@ window.vhhToggleCol=function(h4){
 <section class="ccs-section ccs-gray">
 <div class="container">
 <div class="ccs-article fade-in"><h2>About the Steps to Calories Calculator</h2><p>The Steps to Calories Calculator is a valuable health tool that helps you understand important aspects of your wellness. This calculator uses established formulas and guidelines to provide personalized results based on your individual measurements and characteristics.</p><h3>Why Use This Calculator</h3><p>Understanding your health metrics is the first step toward making informed decisions about your lifestyle. Whether you are tracking fitness progress, managing a health condition, or simply curious about your current status, this tool provides quick, easy-to-understand results that can guide your health journey.</p><h3>How to Interpret Results</h3><p>Results are color-coded for easy interpretation: green indicates a healthy or optimal range, yellow suggests caution or borderline values, and red signals that you should consult a healthcare professional. Remember that these are estimates — individual factors can affect accuracy.</p><h3>Taking Action</h3><p>Use your results as a starting point for conversations with healthcare providers. Track your metrics over time to identify trends and measure progress. Combine multiple calculators for a more comprehensive view of your health status. Small, consistent changes in diet, exercise, and lifestyle habits can lead to significant improvements over time.</p></div>
+</div>
+</section>
+
+
+<section class="ccs-section ccs-white">
+<div class="container">
+<div class="ccs-article fade-in">
+<h2>Who Should Use the Steps to Calories Calculator?</h2>
+<p>The Steps to Calories Calculator is built for gym-goers at every level, personal trainers designing client programmes, competitive athletes monitoring performance, and anyone beginning a structured exercise routine. Whether you are proactively monitoring your health, managing a specific condition, or simply curious about where you stand, this tool provides a reliable, evidence-based starting point for understanding your current status and identifying where targeted change is possible.</p>
+<p>This calculator is appropriate for adults aged 18 and above. If you are under 18, pregnant, or managing a diagnosed medical condition, treat results as a general guide only and consult a qualified healthcare professional before making any changes to your diet, exercise routine, or treatment plan.</p>
+<p>For a more complete health picture, pair this tool with our <a href="/calculators/tdee-calculator.html">TDEE Calculator</a>, <a href="/calculators/vo2-max-calculator.html">VO2 Max Calculator</a>, <a href="/calculators/one-rep-max-calculator.html">One Rep Max Calculator</a> — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
+<h2>Common Mistakes to Avoid</h2>
+<p>Getting accurate, actionable results from the Steps to Calories Calculator depends on more than entering correct numbers. These are the most common errors that reduce the usefulness of your output:</p>
+<ul>
+<li><strong>Skipping warm-ups</strong> — entering training cold significantly increases injury risk and reduces performance output.</li>
+<li><strong>Progressing too quickly</strong> — increasing load, volume, or intensity by more than 10% per week invites overuse injuries.</li>
+<li><strong>Undervaluing recovery</strong> — muscle growth and fitness adaptation happen during rest, not during training itself.</li>
+<li><strong>Training the same muscle groups on consecutive days</strong> — without adequate recovery time, gains stall and injury risk rises.</li>
+<li><strong>Ignoring pain signals</strong> — training discomfort is normal; sharp or joint pain is a warning to stop immediately.</li>
+</ul>
+<p>Avoiding these pitfalls transforms this calculator from a one-time curiosity into a reliable instrument for genuine health monitoring and meaningful progress tracking over time.</p>
+</div>
 </div>
 </section>
 
@@ -516,7 +520,7 @@ ma7122671@gmail.com
 <div id="vh-chat-window" style="display:none;">
 <div id="vh-chat-header">
 <div style="display:flex;align-items:center;gap:10px;">
-<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub" width="38" height="38" loading="lazy"></div>
+<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="38" height="38" loading="lazy"></div>
 <div>
 <p style="color:#fff;font-weight:600;font-size:14px;margin:0;">VitalHealth Assistant</p>
 <p style="color:#a7f3d0;font-size:11px;margin:0;">🟢 Online — Health Q&A Bot</p>
@@ -528,14 +532,14 @@ ma7122671@gmail.com
 <div id="vh-quick-topics">
 <p style="font-size:11px;color:#6b7280;margin:0 0 8px;font-weight:500;">Quick Topics:</p>
 <div id="vh-topics-grid">
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('BMI')">⚖️ BMI</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Calories')">🔥 Calories</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Sleep')">😴 Sleep</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Water')">💧 Water</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Weight Loss')">📉 Weight Loss</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Protein')">💪 Protein</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Heart Health')">❤️ Heart</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Stress')">🧠 Stress</button>
+<button class="vh-topic-btn" data-vh-ask="BMI">⚖️ BMI</button>
+<button class="vh-topic-btn" data-vh-ask="Calories">🔥 Calories</button>
+<button class="vh-topic-btn" data-vh-ask="Sleep">😴 Sleep</button>
+<button class="vh-topic-btn" data-vh-ask="Water">💧 Water</button>
+<button class="vh-topic-btn" data-vh-ask="Weight Loss">📉 Weight Loss</button>
+<button class="vh-topic-btn" data-vh-ask="Protein">💪 Protein</button>
+<button class="vh-topic-btn" data-vh-ask="Heart Health">❤️ Heart</button>
+<button class="vh-topic-btn" data-vh-ask="Stress">🧠 Stress</button>
 </div>
 </div>
 <div id="vh-chat-input-area">
