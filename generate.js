@@ -3355,6 +3355,8 @@ const blogSchemaItems = blogPosts.map((p, i) => `{"@type":"ListItem","position":
 fs.writeFileSync('blog.html', `${head('Health & Wellness Blog \u2014 150+ Expert Articles | '+SITE_NAME, 'Browse 150+ evidence-based health articles covering weight loss, nutrition, fitness, mental health, heart health and more. Free expert wellness guides.', '/blog.html', '<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Health & Wellness Blog","description":"100+ evidence-based health articles","url":"'+SITE+'/blog.html","mainEntity":{"@type":"ItemList","numberOfItems":'+blogPosts.length+',"itemListElement":['+blogSchemaItems+']}}</script>')}
 <body>
 ${NAV}
+${breadcrumb([{name:'Home',url:'/'},{name:'Blog',url:'/blog.html'}]).html}
+${breadcrumb([{name:'Home',url:'/'},{name:'Blog',url:'/blog.html'}]).schema}
 
 ${globalHero({
   badge: '&#128218; ' + blogPosts.length + '+ Expert Health Articles',
