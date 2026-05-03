@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Mood Tracker</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Mood Tracker","item":"https://vitalhealthhub.org/tools/mood-tracker.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,22 +122,22 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="mood-tracker">
 <div class="saas-card">
 
 <div class="saas-card-title">🌈 How are you feeling today?</div>
 <div class="mood-selector" id="moodSelector">
-  <button class="mood-btn" onclick="selectMood(1)" data-m="1">😞<span class="mood-label">Low</span></button>
-  <button class="mood-btn" onclick="selectMood(2)" data-m="2">😟<span class="mood-label">Down</span></button>
-  <button class="mood-btn" onclick="selectMood(3)" data-m="3">😐<span class="mood-label">OK</span></button>
-  <button class="mood-btn" onclick="selectMood(4)" data-m="4">😊<span class="mood-label">Good</span></button>
-  <button class="mood-btn" onclick="selectMood(5)" data-m="5">😄<span class="mood-label">Great</span></button>
+  <button class="mood-btn" data-m="1">😞<span class="mood-label">Low</span></button>
+  <button class="mood-btn" data-m="2">😟<span class="mood-label">Down</span></button>
+  <button class="mood-btn" data-m="3">😐<span class="mood-label">OK</span></button>
+  <button class="mood-btn" data-m="4">😊<span class="mood-label">Good</span></button>
+  <button class="mood-btn" data-m="5">😄<span class="mood-label">Great</span></button>
 </div>
 <div class="saas-form-group">
   <label class="saas-label">Note (optional)</label>
   <input class="saas-input" id="moodNote" placeholder="What influenced your mood today?">
 </div>
-<button class="saas-btn saas-btn-primary" onclick="logMood()" style="width:100%">Log Today's Mood</button>
+<button class="saas-btn saas-btn-primary" data-tool-action="log-mood" style="width:100%">Log Today's Mood</button>
 <div id="moodConfirm" style="display:none;text-align:center;padding:14px;color:#166534;font-weight:600;font-size:0.9rem;"></div>
 <hr class="saas-divider">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
@@ -155,57 +153,29 @@
   <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#34d399"></span>Great</span>
   <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#f3f4f6"></span>No entry</span>
 </div>
-<script>
-var selMood=0;
-function selectMood(m){selMood=m;document.querySelectorAll('#moodSelector .mood-btn').forEach(function(b){b.classList.toggle('active',parseInt(b.dataset.m)===m);});}
-function loadMoods(){return JSON.parse(localStorage.getItem('vhh_mood')||'{}');}
-function saveMoods(d){localStorage.setItem('vhh_mood',JSON.stringify(d));}
-function logMood(){
-  if(!selMood){alert('Please select a mood first.');return;}
-  var today=new Date().toISOString().split('T')[0];
-  var data=loadMoods();data[today]={mood:selMood,note:document.getElementById('moodNote').value.trim()};
-  saveMoods(data);
-  var conf=document.getElementById('moodConfirm');
-  conf.style.display='block';conf.textContent='✅ Mood logged for today!';
-  setTimeout(function(){conf.style.display='none';},3000);
-  renderCalendar();
-}
-function renderCalendar(){
-  var data=loadMoods();var cal=document.getElementById('moodCal');var cells='';
-  var total=0;var count=0;
-  for(var i=34;i>=0;i--){
-    var d=new Date();d.setDate(d.getDate()-i);var k=d.toISOString().split('T')[0];
-    var e=data[k];var m=e?e.mood:0;
-    if(m){total+=m;count++;}
-    var title=k+(e?(' — '+(e.note||['','Low','Down','OK','Good','Great'][m])):'');
-    cells+='<div class="mood-cal-cell" data-mood="'+m+'" title="'+title+'"></div>';
-  }
-  cal.innerHTML=cells;
-  if(count>0){document.getElementById('moodAvg').textContent='7-day avg: '+(['','😞','😟','😐','😊','😄'][Math.round(total/count)]+' '+(['','Low','Down','OK','Good','Great'][Math.round(total/count)]));}
-}
-renderCalendar();
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Why Track Your Mood?</h2><p>Mood tracking is a core tool in Cognitive Behavioural Therapy (CBT) and is recommended by mental health professionals for identifying triggers, patterns, and the effectiveness of lifestyle interventions. When you can see that your mood consistently dips on certain days or after certain activities, you gain actionable insight to make positive changes.</p><h2>Mood and Physical Health</h2><p>Your emotional state is deeply connected to physical health. Chronic low mood is associated with increased inflammation, disrupted sleep, reduced immune function, and higher cortisol levels. Conversely, positive mood states correlate with better cardiovascular health, stronger immune response, and greater longevity. Tracking both mood and sleep together reveals powerful connections between the two.</p><h2>How to Use the Mood Calendar</h2><p>Log your mood once daily — ideally at the same time each day, such as before bed. Select the emoji that best represents how you felt overall during the day. Add an optional note to capture context. Over weeks, the calendar view will reveal patterns: days of the week when you feel best, the impact of exercise on your mood, correlations with sleep quality, and more.</p><h2>Understanding Your Mood Trends</h2><p>A 7-day average provides a more reliable measure than any single day. Focus on your weekly trend rather than daily fluctuations. If your average mood has been below 3 (neutral) for two or more weeks, consider speaking with a mental health professional — this may indicate clinical depression which benefits from professional support.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What do the mood levels mean?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">What do the mood levels mean?</div>
 <div class="tool-faq-a">1 = Very Low / Struggling, 2 = Low, 3 = Neutral / OK, 4 = Good, 5 = Excellent / Thriving.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How much history does the mood calendar show?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">How much history does the mood calendar show?</div>
 <div class="tool-faq-a">The calendar shows the last 35 days (5 weeks), giving you a clear visual of recent patterns.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I add notes to my mood entries?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">Can I add notes to my mood entries?</div>
 <div class="tool-faq-a">Yes, there is an optional notes field. Use it to capture what may have influenced your mood — sleep, exercise, diet, stress, or social events.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Is this a replacement for mental health support?</div>
+<div class="tool-faq-q" data-faq-id="tfaq3">Is this a replacement for mental health support?</div>
 <div class="tool-faq-a">No. This is a self-awareness tool, not a medical or therapeutic service. If you are struggling, please seek support from a qualified mental health professional.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/sleep-tracker.html" class="tool-related-card"><span class="tool-related-icon">😴</span>Sleep Tracker →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a><a href="/tools/health-dashboard.html" class="tool-related-card"><span class="tool-related-icon">📊</span>Health Dashboard →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

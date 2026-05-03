@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Image Converter</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Image Converter","item":"https://vitalhealthhub.org/tools/image-converter.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,22 +122,22 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="image-converter">
 <div class="saas-card">
 
 <div class="saas-card-title">🔄 Image Converter</div>
 <div class="util-format-tabs">
-  <button class="util-format-tab active" onclick="setFmt('image/jpeg','jpg',this)">JPG</button>
-  <button class="util-format-tab" onclick="setFmt('image/png','png',this)">PNG</button>
-  <button class="util-format-tab" onclick="setFmt('image/webp','webp',this)">WebP</button>
+  <button class="util-format-tab active" data-fmt-mime="image/jpeg" data-fmt-ext="jpg">JPG</button>
+  <button class="util-format-tab" data-fmt-mime="image/png" data-fmt-ext="png">PNG</button>
+  <button class="util-format-tab" data-fmt-mime="image/webp" data-fmt-ext="webp">WebP</button>
 </div>
-<div class="util-dropzone" id="convDrop" onclick="document.getElementById('convFile').click()">
+<div class="util-dropzone" id="convDrop">
   <div class="util-dropzone-icon">🖼️</div>
   <h3>Drop your image here</h3>
   <p>Any image format — PNG, JPG, WebP, GIF, BMP</p>
   <input type="file" id="convFile" accept="image/*">
 </div>
-<button class="saas-btn saas-btn-primary" id="convBtn" onclick="doConvert()" disabled style="width:100%;margin-top:16px">Convert Image</button>
+<button class="saas-btn saas-btn-primary" id="convBtn" data-tool-action="convert" disabled style="width:100%;margin-top:16px">Convert Image</button>
 <div class="util-result" id="convResult">
   <div class="util-result-inner">
     <div>✅ <span id="convInfo" class="util-result-info"></span></div>
@@ -147,33 +145,23 @@
   </div>
   <img id="convPreview" alt="Converted image format preview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
 </div>
-<script>
-var convFile=null,fmtMime='image/jpeg',fmtExt='jpg';
-var convDrop=document.getElementById('convDrop');
-var convFileInp=document.getElementById('convFile');
-function setFmt(mime,ext,btn){fmtMime=mime;fmtExt=ext;document.querySelectorAll('.util-format-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
-convDrop.addEventListener('dragover',function(e){e.preventDefault();convDrop.classList.add('drag-over');});
-convDrop.addEventListener('dragleave',function(){convDrop.classList.remove('drag-over');});
-convDrop.addEventListener('drop',function(e){e.preventDefault();convDrop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadConvFile(e.dataTransfer.files[0]);});
-convFileInp.addEventListener('change',function(){if(this.files[0])loadConvFile(this.files[0]);});
-function loadConvFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}convFile=f;convDrop.querySelector('h3').textContent=f.name;convDrop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB) — select format and convert';document.getElementById('convBtn').disabled=false;}
-function doConvert(){if(!convFile)return;var btn=document.getElementById('convBtn');btn.textContent='Converting…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(convFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');if(fmtMime==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);}ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('convDl');dl.href=oUrl;dl.download='converted.'+fmtExt;document.getElementById('convInfo').textContent='Converted to '+fmtExt.toUpperCase()+' ('+Math.round(blob.size/1024)+'KB)';var prev=document.getElementById('convPreview');prev.src=oUrl;prev.style.display='block';document.getElementById('convResult').classList.add('visible');btn.textContent='Convert Another';btn.disabled=false;URL.revokeObjectURL(url);},fmtMime,fmtMime==='image/jpeg'?0.92:1);};img.src=url;}
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Convert Between Image Formats</h2><p>Different contexts require different image formats. JPG is best for photographs and complex images where file size matters. PNG is ideal for graphics, logos, and images requiring transparency. WebP is Google's modern format that achieves 25–35% smaller file sizes than JPG at equivalent quality — recommended for web performance. This converter handles all three formats using the browser's Canvas API, with no uploads to any server.</p><h2>Which Format Should You Use?</h2><p>For web images: WebP is the best choice for performance (all modern browsers support it). For photographs shared by email or social media: JPG for photos, PNG for graphics. For images requiring transparent backgrounds: PNG only. JPG does not support transparency. WebP supports both lossy and lossless compression plus transparency.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is my image sent to any server?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">Is my image sent to any server?</div>
 <div class="tool-faq-a">No. All conversion happens in your browser using the HTML5 Canvas API.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Can I convert multiple images at once?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">Can I convert multiple images at once?</div>
 <div class="tool-faq-a">Currently the tool processes one image at a time. For batch conversion, process each image separately.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a><a href="/tools/pdf-merge.html" class="tool-related-card"><span class="tool-related-icon">📄</span>PDF Merge Tool →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

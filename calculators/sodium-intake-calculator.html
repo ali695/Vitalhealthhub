@@ -452,40 +452,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ var curr=parseFloat(document.getElementById('current').value)||2500;var cond=document.getElementById('condition').value;var ex=document.getElementById('exercise').value;var rec=cond==='Healthy Adult'?2300:1500;if(ex==='Active (5+ hrs/week)')rec+=500;var diff=curr-rec;var c=curr<=rec?'green':curr<=rec*1.3?'yellow':'red';var l=curr<=rec?'Within Safe Range':curr<=rec*1.3?'Slightly Over':'Significantly Over';var s='Recommended daily limit: '+rec+' mg. Current intake: '+curr+' mg. '+(diff>0?'You are consuming '+diff+' mg more than recommended. Reduce processed foods, canned goods, and restaurant meals.':'You are '+Math.abs(diff)+' mg under the limit. Good job managing your sodium!');showResult('result',curr+' mg/day',l,s,c); }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'Sodium Intake Calculator Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ var curr=parseFloat(document.getElementById('current').value)||2500;var cond=document.getElementById('condition').value;var ex=document.getElementById('exercise').value;var rec=cond==='Healthy Adult'?2300:1500;if(ex==='Active (5+ hrs/week)')rec+=500;var diff=curr-rec;var c=curr<=rec?'green':curr<=rec*1.3?'yellow':'red';var l=curr<=rec?'Within Safe Range':curr<=rec*1.3?'Slightly Over':'Significantly Over';var s='Recommended daily limit: '+rec+' mg. Current intake: '+curr+' mg. '+(diff>0?'You are consuming '+diff+' mg more than recommended. Reduce processed foods, canned goods, and restaurant meals.':'You are '+Math.abs(diff)+' mg under the limit. Good job managing your sodium!');showResult('result',curr+' mg/day',l,s,c); };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

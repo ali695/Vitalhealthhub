@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Focus Timer</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Focus Timer","item":"https://vitalhealthhub.org/tools/focus-timer.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,7 +122,7 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="focus-timer">
 <div class="saas-card">
 
 <div class="timer-container">
@@ -139,97 +137,52 @@
   </div>
   <div class="timer-sessions" id="timerSessions">Sessions completed: <strong>0</strong></div>
   <div class="timer-controls">
-    <button class="saas-btn saas-btn-primary" onclick="timerToggle()" id="timerStartBtn">▶ Start</button>
-    <button class="saas-btn saas-btn-secondary" onclick="timerReset()">↺ Reset</button>
-    <button class="saas-btn saas-btn-ghost" onclick="timerSkip()">⏭ Skip</button>
+    <button class="saas-btn saas-btn-primary" data-tool-action="timer-toggle" id="timerStartBtn">▶ Start</button>
+    <button class="saas-btn saas-btn-secondary" data-tool-action="timer-reset">↺ Reset</button>
+    <button class="saas-btn saas-btn-ghost" data-tool-action="timer-skip">⏭ Skip</button>
   </div>
 </div>
 <div class="timer-settings">
   <div class="timer-setting-group">
     <label class="timer-setting-label">Work (min)</label>
-    <input type="number" class="timer-setting-input" id="workMin" value="25" min="1" max="120" onchange="resetOnChange()">
+    <input type="number" class="timer-setting-input" id="workMin" value="25" min="1" max="120" data-timer-setting="work">
   </div>
   <div class="timer-setting-group">
     <label class="timer-setting-label">Short Break</label>
-    <input type="number" class="timer-setting-input" id="breakMin" value="5" min="1" max="60" onchange="resetOnChange()">
+    <input type="number" class="timer-setting-input" id="breakMin" value="5" min="1" max="60" data-timer-setting="break">
   </div>
   <div class="timer-setting-group">
     <label class="timer-setting-label">Long Break</label>
-    <input type="number" class="timer-setting-input" id="longBreakMin" value="20" min="1" max="120" onchange="resetOnChange()">
+    <input type="number" class="timer-setting-input" id="longBreakMin" value="20" min="1" max="120" data-timer-setting="long-break">
   </div>
   <div class="timer-setting-group">
     <label class="timer-setting-label">Sessions to Long Break</label>
-    <input type="number" class="timer-setting-input" id="sessionsToLong" value="4" min="1" max="10" onchange="resetOnChange()">
+    <input type="number" class="timer-setting-input" id="sessionsToLong" value="4" min="1" max="10" data-timer-setting="sessions-to-long">
   </div>
 </div>
-<script>
-var timerInterval=null;var isRunning=false;var isBreak=false;var sessionsCompleted=0;
-var totalSecs=25*60;var secsLeft=totalSecs;
-var C=2*Math.PI*88;var tc=document.getElementById('timerCircle');
-tc.style.strokeDasharray=C;tc.style.strokeDashoffset=0;
-function getWorkSecs(){return parseInt(document.getElementById('workMin').value||25)*60;}
-function getBreakSecs(){return parseInt(document.getElementById('breakMin').value||5)*60;}
-function getLongBreakSecs(){return parseInt(document.getElementById('longBreakMin').value||20)*60;}
-function getSessToLong(){return parseInt(document.getElementById('sessionsToLong').value||4);}
-function updateDisplay(){
-  var m=Math.floor(secsLeft/60);var s=secsLeft%60;
-  document.getElementById('timerDisplay').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-  document.title=document.getElementById('timerDisplay').textContent+' — '+(isBreak?'Break':'Focus');
-  var pct=1-(secsLeft/totalSecs);tc.style.strokeDashoffset=C*pct;
-}
-function timerToggle(){
-  if(isRunning){clearInterval(timerInterval);isRunning=false;document.getElementById('timerStartBtn').textContent='▶ Start';}
-  else{isRunning=true;document.getElementById('timerStartBtn').textContent='⏸ Pause';timerInterval=setInterval(tick,1000);}
-}
-function tick(){
-  if(secsLeft<=0){clearInterval(timerInterval);isRunning=false;
-    if(!isBreak){sessionsCompleted++;document.getElementById('timerSessions').innerHTML='Sessions completed: <strong>'+sessionsCompleted+'</strong>';}
-    timerSkip();
-    try{new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAA').play().catch(function(){});}catch(e){}
-    alert(isBreak?'Break time! Back to work.':'Great work! Time for a break.');
-    return;
-  }
-  secsLeft--;updateDisplay();
-}
-function timerReset(){
-  clearInterval(timerInterval);isRunning=false;
-  isBreak=false;totalSecs=getWorkSecs();secsLeft=totalSecs;
-  document.getElementById('timerStartBtn').textContent='▶ Start';
-  document.getElementById('timerModeBadge').textContent='Work Session';
-  document.getElementById('timerModeBadge').className='timer-mode-badge timer-work';
-  tc.style.strokeDashoffset=0;document.title='Focus Timer';
-  updateDisplay();
-}
-function timerSkip(){
-  clearInterval(timerInterval);isRunning=false;
-  if(isBreak){isBreak=false;totalSecs=getWorkSecs();document.getElementById('timerModeBadge').textContent='Work Session';document.getElementById('timerModeBadge').className='timer-mode-badge timer-work';}
-  else{isBreak=true;var isLong=(sessionsCompleted%getSessToLong()===0&&sessionsCompleted>0);totalSecs=isLong?getLongBreakSecs():getBreakSecs();document.getElementById('timerModeBadge').textContent=isLong?'Long Break':'Short Break';document.getElementById('timerModeBadge').className='timer-mode-badge timer-break';}
-  secsLeft=totalSecs;document.getElementById('timerStartBtn').textContent='▶ Start';tc.style.strokeDashoffset=0;updateDisplay();
-}
-function resetOnChange(){if(!isRunning)timerReset();}
-updateDisplay();
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>The Pomodoro Technique</h2><p>Developed by Francesco Cirillo in the late 1980s (named after his tomato-shaped kitchen timer), the Pomodoro Technique breaks work into 25-minute focused sessions separated by 5-minute breaks. After four sessions (pomodoros), take a longer 15–30 minute break. This structure leverages the brain's natural attention cycles and prevents mental fatigue.</p><h2>Why Timed Work Sessions Work</h2><p>The human brain can sustain high-quality focused attention for approximately 90 minutes before needing rest, but most people find 25-minute intervals more practical for starting difficult tasks. The timer creates a sense of urgency (the "artificial deadline effect") that reduces procrastination and increases the ability to begin. Knowing a break is coming also makes sustained focus more mentally accessible.</p><h2>Customising Your Focus Intervals</h2><p>The traditional 25/5 minute split is a starting point. Some people find 50/10 works better for complex creative tasks. Students often prefer 45/15. Knowledge workers doing deep analytical work sometimes use 90-minute sessions. Experiment to find what works for your cognitive profile, the type of task, and time of day. The key is consistency — use the same structure for a week before changing it.</p><h2>Maximising Your Focus Sessions</h2><p>Before starting a session, define exactly what you will work on. Silence notifications. Close irrelevant browser tabs. Keep water nearby. During the session, if a distracting thought occurs, write it down quickly and return to work — do not act on it. During breaks, step away from screens: stretch, walk, breathe. This prevents eye strain and allows the default mode network (critical for creativity and insight) to activate.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Can I customise the work and break times?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">Can I customise the work and break times?</div>
 <div class="tool-faq-a">Yes. Set any work duration (1–120 minutes) and break duration (1–60 minutes) using the settings inputs.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Will the timer continue if I switch tabs?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">Will the timer continue if I switch tabs?</div>
 <div class="tool-faq-a">Yes, the timer runs in the background. The page title updates with the remaining time so you can see it in your browser tab.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Does the timer make a sound when finished?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">Does the timer make a sound when finished?</div>
 <div class="tool-faq-a">Yes, a browser notification alert sounds when each session completes. Ensure your browser allows notifications from this site.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">How many sessions should I do per day?</div>
+<div class="tool-faq-q" data-faq-id="tfaq3">How many sessions should I do per day?</div>
 <div class="tool-faq-a">Most people find 4–8 Pomodoro sessions (2–4 hours of focused work) realistic. Quality of focus matters more than quantity of sessions.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/daily-planner.html" class="tool-related-card"><span class="tool-related-icon">📅</span>Daily Planner →</a><a href="/tools/goal-tracker.html" class="tool-related-card"><span class="tool-related-icon">🎯</span>Goal Tracker →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

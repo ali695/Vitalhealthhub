@@ -451,40 +451,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;var smoker=document.getElementById('smoker').value==='Yes';var bp=parseFloat(document.getElementById('bp').value)||120;var chol=parseFloat(document.getElementById('chol').value)||190;var diab=document.getElementById('diabetic').value==='Yes';var ex=parseFloat(document.getElementById('exercise').value)||0;if(!age){alert('Enter your age');return;}var heartAge=age;if(smoker)heartAge+=8;if(bp>140)heartAge+=6;else if(bp>130)heartAge+=3;if(chol>240)heartAge+=5;else if(chol>200)heartAge+=2;if(diab)heartAge+=4;if(g==='Male')heartAge+=2;if(ex>=4)heartAge-=4;else if(ex>=2)heartAge-=2;heartAge=Math.round(heartAge);var diff=heartAge-age;var c=diff>5?'red':diff>0?'yellow':'green';showResult('result',heartAge+' years','Estimated Heart Age',diff>0?'Your heart is functioning like someone '+diff+' years older. Focus on blood pressure control, quitting smoking, and regular exercise to reduce cardiovascular risk.':diff<0?'Your heart is in great shape — performing like someone '+(Math.abs(diff))+' years younger! Keep up your healthy lifestyle.':'Your heart age matches your actual age. Maintain your current healthy habits.','green'); }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'Heart Age Calculator Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ var age=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;var smoker=document.getElementById('smoker').value==='Yes';var bp=parseFloat(document.getElementById('bp').value)||120;var chol=parseFloat(document.getElementById('chol').value)||190;var diab=document.getElementById('diabetic').value==='Yes';var ex=parseFloat(document.getElementById('exercise').value)||0;if(!age){alert('Enter your age');return;}var heartAge=age;if(smoker)heartAge+=8;if(bp>140)heartAge+=6;else if(bp>130)heartAge+=3;if(chol>240)heartAge+=5;else if(chol>200)heartAge+=2;if(diab)heartAge+=4;if(g==='Male')heartAge+=2;if(ex>=4)heartAge-=4;else if(ex>=2)heartAge-=2;heartAge=Math.round(heartAge);var diff=heartAge-age;var c=diff>5?'red':diff>0?'yellow':'green';showResult('result',heartAge+' years','Estimated Heart Age',diff>0?'Your heart is functioning like someone '+diff+' years older. Focus on blood pressure control, quitting smoking, and regular exercise to reduce cardiovascular risk.':diff<0?'Your heart is in great shape — performing like someone '+(Math.abs(diff))+' years younger! Keep up your healthy lifestyle.':'Your heart age matches your actual age. Maintain your current healthy habits.','green'); };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

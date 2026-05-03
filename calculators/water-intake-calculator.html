@@ -495,40 +495,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var act=document.getElementById('activity').value;var cl=document.getElementById('climate').value;if(!w){alert('Enter weight');return;}var base=w*0.033;var am={'Sedentary':0,'Moderate':0.35,'Active':0.7,'Very Active':1.0};var cm={'Temperate':0,'Hot':0.5,'Cold':0};base+=am[act]||0;base+=cm[cl]||0;var liters=base.toFixed(1);var glasses=Math.round(base/0.25);showResult('result',liters+' L','Daily Water Intake','You should drink approximately '+liters+' liters ('+glasses+' glasses) of water per day. Adjust based on thirst, urine color, and individual needs.','green'); }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'Water Intake Calculator Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ var w=parseFloat(document.getElementById('weight').value);var act=document.getElementById('activity').value;var cl=document.getElementById('climate').value;if(!w){alert('Enter weight');return;}var base=w*0.033;var am={'Sedentary':0,'Moderate':0.35,'Active':0.7,'Very Active':1.0};var cm={'Temperate':0,'Hot':0.5,'Cold':0};base+=am[act]||0;base+=cm[cl]||0;var liters=base.toFixed(1);var glasses=Math.round(base/0.25);showResult('result',liters+' L','Daily Water Intake','You should drink approximately '+liters+' liters ('+glasses+' glasses) of water per day. Adjust based on thirst, urine color, and individual needs.','green'); };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

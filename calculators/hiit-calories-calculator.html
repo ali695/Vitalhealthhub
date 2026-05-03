@@ -452,40 +452,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ var w=parseFloat(document.getElementById('weight').value);var d=parseFloat(document.getElementById('duration').value);var intens=document.getElementById('intensity').value;var fit=document.getElementById('fitness').value;if(!w||!d){alert('Fill all fields');return;}var met={'Moderate (e.g., basic circuits)':8,'High (e.g., sprint intervals)':12,'Very High (e.g., Tabata, CrossFit)':15}[intens]||10;var fitMult={'Beginner':0.85,'Intermediate':1.0,'Advanced':1.1}[fit]||1;var cal=Math.round(met*w*d/60*fitMult);var epoc=Math.round(cal*0.15);var total=cal+epoc;showResult('result',total+' kcal','HIIT + EPOC Calories Burned','During workout: ~'+cal+' kcal | EPOC (afterburn effect): +'+epoc+' kcal | Total estimated burn: ~'+total+' kcal. HIIT burns '+Math.round(cal/d)+' kcal/minute vs ~'+Math.round(met*0.6*w/60)+' for steady-state cardio.','green'); }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'HIIT Calorie Calculator Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ var w=parseFloat(document.getElementById('weight').value);var d=parseFloat(document.getElementById('duration').value);var intens=document.getElementById('intensity').value;var fit=document.getElementById('fitness').value;if(!w||!d){alert('Fill all fields');return;}var met={'Moderate (e.g., basic circuits)':8,'High (e.g., sprint intervals)':12,'Very High (e.g., Tabata, CrossFit)':15}[intens]||10;var fitMult={'Beginner':0.85,'Intermediate':1.0,'Advanced':1.1}[fit]||1;var cal=Math.round(met*w*d/60*fitMult);var epoc=Math.round(cal*0.15);var total=cal+epoc;showResult('result',total+' kcal','HIIT + EPOC Calories Burned','During workout: ~'+cal+' kcal | EPOC (afterburn effect): +'+epoc+' kcal | Total estimated burn: ~'+total+' kcal. HIIT burns '+Math.round(cal/d)+' kcal/minute vs ~'+Math.round(met*0.6*w/60)+' for steady-state cardio.','green'); };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

@@ -882,7 +882,75 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Tool FAQ: toggle open/close (data-faq-id)
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-faq-id]');
+    if (!btn) return;
+    var id = btn.getAttribute('data-faq-id');
+    var el = document.getElementById(id);
+    if (el) el.classList.toggle('open');
+  });
+
+  // Home page: category filter pills (.home-cat-btn)
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.home-cat-btn[data-cat]');
+    if (btn && typeof window.homeFilterCat === 'function') window.homeFilterCat(btn.getAttribute('data-cat'), btn);
+  });
+
+  // Tools hub: category filter tabs (data-filter-cat)
+  document.addEventListener('click', function(e) {
+    var tab = e.target.closest('[data-filter-cat]');
+    if (tab && typeof window.filterCat === 'function') window.filterCat(tab.getAttribute('data-filter-cat'), tab);
+  });
+
+  // Tools hub: recent activity panel
+  (function() {
+    var panel = document.getElementById('activityPanel');
+    var list = document.getElementById('activityList');
+    if (!panel || !list) return;
+    try {
+      var toolNames = {};
+      document.querySelectorAll('.tool-premium-card, .utility-minimal-card').forEach(function(card) {
+        var href = card.getAttribute('href') || '';
+        var slug = href.replace('/tools/', '').replace('.html', '');
+        if (!slug) return;
+        var iconEl = card.querySelector('.tool-premium-icon, .utility-minimal-icon');
+        var nameEl = card.querySelector('.tool-premium-name');
+        if (iconEl && nameEl) {
+          toolNames[slug] = { name: nameEl.textContent.trim(), icon: iconEl.textContent.trim() };
+        } else if (iconEl) {
+          var text = card.textContent.replace(iconEl.textContent, '').trim();
+          toolNames[slug] = { name: text, icon: iconEl.textContent.trim() };
+        }
+      });
+      var recent = JSON.parse(localStorage.getItem('vhh_recent_tools') || '[]');
+      if (recent.length) {
+        var pills = recent.filter(function(s) { return toolNames[s]; }).map(function(s) {
+          var t = toolNames[s];
+          return '<a href="/tools/' + s + '.html" class="tools-activity-pill">' + t.icon + ' ' + t.name + '</a>';
+        }).join('');
+        if (pills) { panel.classList.add('has-activity'); list.innerHTML = pills; }
+      }
+    } catch (e) {}
+  })();
+
 });
+
+window.filterCat = function(cat, btn) {
+  document.querySelectorAll('.tools-cat-tab').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  document.querySelectorAll('[data-section]').forEach(function(s) { s.style.display = (cat === 'all' || s.dataset.section === cat) ? '' : 'none'; });
+  document.querySelectorAll('[data-cat]').forEach(function(c) { c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none'; });
+};
+
+window.filterHub = function(q) {
+  q = (q || '').toLowerCase().trim();
+  document.querySelectorAll('[data-name]').forEach(function(card) { card.style.display = (q && card.dataset.name.indexOf(q) === -1) ? 'none' : ''; });
+  document.querySelectorAll('[data-section]').forEach(function(sec) {
+    var vis = Array.from(sec.querySelectorAll('[data-name]')).filter(function(c) { return c.style.display !== 'none'; }).length;
+    sec.style.display = (vis === 0 && q) ? 'none' : '';
+  });
+};
 
 function showResult(boxId, value, label, suggestion, color) {
   var box = document.getElementById(boxId);

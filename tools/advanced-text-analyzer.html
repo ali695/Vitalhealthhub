@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Advanced Text Analyzer</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Advanced Text Analyzer","item":"https://vitalhealthhub.org/tools/advanced-text-analyzer.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,26 +122,26 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="advanced-text-analyzer">
 <div class="saas-card">
 
 <div class="text-analyzer-layout">
   <div class="text-analyzer-input-col">
     <div>
       <label class="saas-label">Paste or type your text below</label>
-      <textarea class="saas-textarea text-analyzer-textarea" id="textInput" placeholder="Paste your article, blog post, essay, or any text here…" oninput="analyzeText()"></textarea>
+      <textarea class="saas-textarea text-analyzer-textarea" id="textInput" placeholder="Paste your article, blog post, essay, or any text here…"></textarea>
     </div>
     <div>
       <div class="saas-section-heading">Text Cleaning Tools</div>
       <div class="text-clean-options">
-        <button class="text-clean-btn" onclick="cleanAction('trim')">Trim Spaces</button>
-        <button class="text-clean-btn" onclick="cleanAction('breaks')">Remove Extra Line Breaks</button>
-        <button class="text-clean-btn" onclick="cleanAction('special')">Remove Special Chars</button>
-        <button class="text-clean-btn" onclick="cleanAction('html')">Strip HTML Tags</button>
-        <button class="text-clean-btn" onclick="cleanAction('lower')">Lowercase</button>
+        <button class="text-clean-btn" data-clean="trim">Trim Spaces</button>
+        <button class="text-clean-btn" data-clean="breaks">Remove Extra Line Breaks</button>
+        <button class="text-clean-btn" data-clean="special">Remove Special Chars</button>
+        <button class="text-clean-btn" data-clean="html">Strip HTML Tags</button>
+        <button class="text-clean-btn" data-clean="lower">Lowercase</button>
       </div>
     </div>
-    <button class="saas-btn saas-btn-secondary saas-btn-sm" onclick="copyText()" style="align-self:flex-start">📋 Copy Text</button>
+    <button class="saas-btn saas-btn-secondary saas-btn-sm" data-tool-action="copy-text" style="align-self:flex-start">📋 Copy Text</button>
   </div>
   <div class="text-analyzer-stats-col">
     <div class="saas-stat-grid" style="grid-template-columns:repeat(2,1fr)">
@@ -165,76 +163,30 @@
     </table>
   </div>
 </div>
-<script>
-var STOP=['the','a','an','and','or','but','in','on','at','to','for','of','with','is','it','this','that','are','was','as','by','be','from','they','we','our','you','he','she','his','her','their','have','had','has','do','did','not','if','its','my','i','me','your','we','us','all','can','will','would','could','should','more','so','up','also','about','into','what','which','when','where','who','been'];
-function countSyllables(w){w=w.toLowerCase().replace(/[^a-z]/g,'');var c=0;var m=w.match(/[aeiou]+/g);if(m)c=m.length;if(w.endsWith('e')&&c>1)c--;return Math.max(1,c);}
-function analyzeText(){
-  var text=document.getElementById('textInput').value;
-  var words=text.trim()?text.trim().split(/s+/).filter(function(w){return w.length>0;}):[];
-  var chars=text.length;
-  var sents=text.split(/[.!?]+/).filter(function(s){return s.trim().length>1;}).length;
-  var paras=text.split(/
-s*
-/).filter(function(p){return p.trim().length>0;}).length;
-  var readMins=Math.ceil(words.length/200);
-  document.getElementById('statWords').textContent=words.length.toLocaleString();
-  document.getElementById('statChars').textContent=chars.toLocaleString();
-  document.getElementById('statSents').textContent=sents;
-  document.getElementById('statParas').textContent=paras||0;
-  document.getElementById('statRead').textContent=(readMins||0)+' min';
-  // Flesch
-  if(words.length>10&&sents>0){
-    var sylls=words.reduce(function(t,w){return t+countSyllables(w);},0);
-    var asl=words.length/sents;var asw=sylls/words.length;
-    var flesch=Math.round(206.835-1.015*asl-84.6*asw);
-    flesch=Math.max(0,Math.min(100,flesch));
-    document.getElementById('statFlesch').textContent=flesch;
-    var grade=flesch>=90?'5th':flesch>=80?'6th':flesch>=70?'7th':flesch>=60?'8-9th':flesch>=50?'10-12th':flesch>=30?'College':'Professional';
-    var gradeClass=flesch>=70?'saas-badge-green':flesch>=50?'saas-badge-yellow':'saas-badge-red';
-    document.getElementById('statGrade').textContent='Grade: '+grade;
-    document.getElementById('statGrade').className='readability-grade saas-badge '+gradeClass;
-  } else { document.getElementById('statFlesch').textContent='—';document.getElementById('statGrade').textContent='Grade: —';document.getElementById('statGrade').className='readability-grade saas-badge saas-badge-gray'; }
-  // Keywords
-  if(words.length>0){
-    var freq={};words.forEach(function(w){var k=w.toLowerCase().replace(/[^a-z]/g,'');if(k.length>2&&STOP.indexOf(k)===-1)freq[k]=(freq[k]||0)+1;});
-    var sorted=Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,10);
-    var maxF=sorted.length?freq[sorted[0]]:1;
-    var rows=sorted.map(function(w){var pct=Math.round((freq[w]/words.length)*100);var barPct=Math.round((freq[w]/maxF)*100);return '<tr><td>'+w+'</td><td>'+freq[w]+'</td><td>'+pct+'%</td><td class="keyword-bar-cell"><div class="keyword-mini-bar"><div class="keyword-mini-fill" style="width:'+barPct+'%"></div></div></td></tr>';}).join('');
-    document.getElementById('kwBody').innerHTML=rows||'<tr><td colspan="4" style="color:#9ca3af;text-align:center">No meaningful keywords found</td></tr>';
-  }
-}
-function cleanAction(type){
-  var el=document.getElementById('textInput');var t=el.value;
-  if(type==='trim')t=t.replace(/[ \t]+/g,' ').trim();
-  else if(type==='breaks')t=t.replace(/\n{3,}/g,'\n\n').trim();
-  else if(type==='special')t=t.replace(/[^a-zA-Z0-9\s.,!?;:\'"-]/g,'');
-  else if(type==='html')t=t.replace(/<[^>]+>/g,'');
-  else if(type==='lower')t=t.toLowerCase();
-  el.value=t;analyzeText();
-}
-function copyText(){navigator.clipboard.writeText(document.getElementById('textInput').value).then(function(){alert('Text copied to clipboard!');});}
-</script>
+
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Everything You Need to Analyse Your Content</h2><p>Professional content writers and SEO specialists need multiple metrics to evaluate their work. Word count alone does not tell the full story — you also need to know how readable your content is, how long it will take to read, which keywords are most prominent, and whether your sentence structure is optimised. This Advanced Text Analyzer delivers all these metrics simultaneously as you type, with no need to submit your text to any server.</p><h2>Key Metrics Explained</h2><p>Words and characters are counted by detecting whitespace-separated tokens and individual characters respectively. Sentences are counted by full stops, exclamation marks, and question marks. Reading time is calculated at 200 words per minute — the average adult silent reading speed. Paragraphs are detected by blank lines. The Flesch Reading Ease score uses the formula: 206.835 – (1.015 × ASL) – (84.6 × ASW), where ASL is average sentence length and ASW is average syllables per word.</p><h2>Readability for SEO and UX</h2><p>Google's search quality raters evaluate content readability as part of content quality assessment. For general web audiences, target a Flesch Reading Ease score of 60–70. Health content should target 60–75 to be accessible to the widest audience. Academic and technical content may score 30–50. The analyzer also shows grade level — most web content should target Grade 8 or below for maximum accessibility.</p><h2>Keyword Density for SEO</h2><p>The keyword density section shows the top 10 most-used meaningful words in your content (excluding common stop words). Ideal keyword density for your primary target keyword is 1–2%. Above 3–4% risks being flagged as keyword stuffing. Use this section to ensure your main topic keywords appear naturally and with appropriate frequency throughout your content.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Does this tool save or transmit my text?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">Does this tool save or transmit my text?</div>
 <div class="tool-faq-a">No. All analysis runs in your browser using JavaScript. Your text is never sent to any server.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What readability score should I aim for?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">What readability score should I aim for?</div>
 <div class="tool-faq-a">For general web content: 60–70 (Plain English). For health content targeting general public: 65–80. For academic writing: 30–50 is typical.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">How is reading time calculated?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">How is reading time calculated?</div>
 <div class="tool-faq-a">Based on 200 words per minute, the average adult reading speed. Adjust mentally if your audience includes slow readers (children, non-native speakers) or fast readers (experts in the field).</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Why are some common words excluded from keyword density?</div>
+<div class="tool-faq-q" data-faq-id="tfaq3">Why are some common words excluded from keyword density?</div>
 <div class="tool-faq-a">Stop words (the, a, is, of, and, etc.) are filtered out because they appear in all text and have no keyword significance.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/headline-analyzer.html" class="tool-related-card"><span class="tool-related-icon">📰</span>Headline Analyzer →</a><a href="/tools/content-idea-generator.html" class="tool-related-card"><span class="tool-related-icon">💡</span>Content Idea Generator →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

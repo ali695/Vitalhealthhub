@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Health Dashboard</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Health Dashboard","item":"https://vitalhealthhub.org/tools/health-dashboard.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,7 +122,7 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="health-dashboard">
 <div class="saas-card">
 
 <div class="saas-card-title">📊 Your Health Overview
@@ -143,64 +141,30 @@
     <a href="/tools/habit-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">🔥 Habit Tracker</a>
   </div>
 </div>
-<script>
-document.getElementById('dashDate').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-function buildDash(){
-  var sleepData=JSON.parse(localStorage.getItem('vhh_sleep')||'[]');
-  var moodData=JSON.parse(localStorage.getItem('vhh_mood')||'{}');
-  var stepData=JSON.parse(localStorage.getItem('vhh_steps')||'[]');
-  var habitData=JSON.parse(localStorage.getItem('vhh_habits')||'{"habits":[]}');
-  var today=new Date().toISOString().split('T')[0];
-  var metrics=[];
-  // Sleep
-  var ls=sleepData[0];
-  metrics.push({icon:'😴',label:'Last Sleep',val:ls?ls.hrs+'h (score '+ls.score+')':'Not logged yet',sub:ls?ls.date:'',href:'/tools/sleep-tracker.html',empty:!ls});
-  // Mood
-  var todayMood=moodData[today];
-  var moodLabels=['','😞 Low','😟 Down','😐 OK','😊 Good','😄 Great'];
-  metrics.push({icon:'🌈',label:"Today's Mood",val:todayMood?moodLabels[todayMood.mood]:'Not logged yet',sub:todayMood?todayMood.note:'',href:'/tools/mood-tracker.html',empty:!todayMood});
-  // Steps
-  var ts=stepData.find(function(e){return e.date===today;});
-  metrics.push({icon:'👟',label:"Today's Steps",val:ts?ts.steps.toLocaleString()+' / '+ts.goal.toLocaleString():'Not logged yet',sub:ts?Math.round((ts.steps/ts.goal)*100)+'% of goal':'',href:'/tools/step-tracker.html',empty:!ts});
-  // Habits
-  var total=habitData.habits.length;
-  var done=habitData.habits.filter(function(h){return h.history&&h.history[today];}).length;
-  metrics.push({icon:'🔥',label:'Habits Today',val:total?done+' / '+total+' done':'No habits set',sub:total?Math.round((done/total)*100)+'% completion':'',href:'/tools/habit-tracker.html',empty:!total});
-  var grid=document.getElementById('dashGrid');
-  grid.innerHTML=metrics.map(function(m){
-    return '<a href="'+m.href+'" class="dashboard-metric-card'+(m.empty?' empty-metric':'')+'">'+
-      '<div class="dashboard-metric-icon">'+m.icon+'</div>'+
-      '<div class="dashboard-metric-label">'+m.label+'</div>'+
-      '<div class="dashboard-metric-value">'+m.val+'</div>'+
-      (m.sub?'<div class="dashboard-metric-sub">'+m.sub+'</div>':'')+
-    '</a>';
-  }).join('');
-  var hasAny=sleepData.length||Object.keys(moodData).length||stepData.length||habitData.habits.length;
-  document.getElementById('dashNotice').style.display=hasAny?'none':'flex';
-}
-buildDash();
-</script>
+
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Your Personal Health Command Centre</h2><p>A health dashboard brings all your key wellness metrics together in one view, giving you the big picture at a glance. Rather than checking each tracker separately, the dashboard surfaces your most important numbers and shows how they relate to each other. Research consistently shows that what gets measured gets improved — and a unified view makes it easy to spot correlations between sleep, mood, activity, and habits.</p><h2>How the Dashboard Works</h2><p>The Health Dashboard reads data from your other VitalHealth Hub trackers — Sleep Tracker, Mood Tracker, Step Tracker, and Habit Tracker. All data is stored locally in your browser, so the dashboard simply reads and displays your latest entries. No account, no sync, no privacy concerns. Start with any tracker and the dashboard will display those metrics immediately.</p><h2>Reading Your Health Metrics</h2><p>The dashboard shows your most recent entry for each metric alongside a trend indicator (up, down, or stable) based on your 7-day average. Green indicators mean you are meeting your targets; amber indicates room for improvement; red suggests this metric needs attention. Use the dashboard as a daily health check — 30 seconds to see your overall wellness picture.</p><h2>The Power of Connected Metrics</h2><p>When you track multiple metrics, patterns emerge that are invisible in isolation. Poor sleep correlates with lower mood. Fewer steps on weekends correlates with lower habit completion. High stress correlates with worse sleep quality. The dashboard makes these connections visible, giving you data-driven insight to make targeted improvements to your lifestyle.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Where does the dashboard data come from?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">Where does the dashboard data come from?</div>
 <div class="tool-faq-a">It reads from the same localStorage used by the Sleep Tracker, Mood Tracker, Step Tracker, and Habit Tracker. Use those tools first to populate the dashboard.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What if I haven't used any trackers yet?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">What if I haven't used any trackers yet?</div>
 <div class="tool-faq-a">The dashboard will show empty states with links to each tracker. Start with whichever tracker matters most to you.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I see historical trends on the dashboard?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">Can I see historical trends on the dashboard?</div>
 <div class="tool-faq-a">The dashboard shows your latest entry and 7-day averages. For detailed history, visit the individual tracker pages.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Will the dashboard work across devices?</div>
+<div class="tool-faq-q" data-faq-id="tfaq3">Will the dashboard work across devices?</div>
 <div class="tool-faq-a">No. Each browser stores its own data locally. The dashboard reflects what you have tracked on that specific browser.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/sleep-tracker.html" class="tool-related-card"><span class="tool-related-icon">😴</span>Sleep Tracker →</a><a href="/tools/mood-tracker.html" class="tool-related-card"><span class="tool-related-icon">🌈</span>Mood Tracker →</a><a href="/tools/step-tracker.html" class="tool-related-card"><span class="tool-related-icon">👟</span>Step Tracker →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

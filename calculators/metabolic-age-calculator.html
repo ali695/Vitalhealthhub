@@ -452,40 +452,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ var age=parseFloat(document.getElementById('age').value);var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var g=document.getElementById('gender').value;var muscle=document.getElementById('muscle').value;if(!age||!w||!h){alert('Fill all fields');return;}var bmr=g==='Male'?10*w+6.25*h-5*age+5:10*w+6.25*h-5*age-161;if(muscle==='Lean/Athletic')bmr+=150;if(muscle==='Bulky/Heavy')bmr-=80;var avgBmr;if(g==='Male'){avgBmr=age<30?1950:age<40?1870:age<50?1800:age<60?1720:1640;}else{avgBmr=age<30?1550:age<40?1490:age<50?1440:age<60?1370:1310;}var metAge=Math.round(age*(avgBmr/bmr));var diff=metAge-age;var c=diff>8?'red':diff>3?'yellow':'green';showResult('result',metAge+' years','Estimated Metabolic Age',diff>0?'Your metabolic age is '+diff+' years older than actual. Increase muscle mass through strength training and optimize your diet to boost your BMR.':diff<0?'Excellent! Your metabolism runs '+(Math.abs(diff))+' years younger than average. Your fitness and muscle mass are working in your favor.':'Your metabolic age closely matches your actual age.',c); }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'Metabolic Age Calculator Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ var age=parseFloat(document.getElementById('age').value);var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var g=document.getElementById('gender').value;var muscle=document.getElementById('muscle').value;if(!age||!w||!h){alert('Fill all fields');return;}var bmr=g==='Male'?10*w+6.25*h-5*age+5:10*w+6.25*h-5*age-161;if(muscle==='Lean/Athletic')bmr+=150;if(muscle==='Bulky/Heavy')bmr-=80;var avgBmr;if(g==='Male'){avgBmr=age<30?1950:age<40?1870:age<50?1800:age<60?1720:1640;}else{avgBmr=age<30?1550:age<40?1490:age<50?1440:age<60?1370:1310;}var metAge=Math.round(age*(avgBmr/bmr));var diff=metAge-age;var c=diff>8?'red':diff>3?'yellow':'green';showResult('result',metAge+' years','Estimated Metabolic Age',diff>0?'Your metabolic age is '+diff+' years older than actual. Increase muscle mass through strength training and optimize your diet to boost your BMR.':diff<0?'Excellent! Your metabolism runs '+(Math.abs(diff))+' years younger than average. Your fitness and muscle mass are working in your favor.':'Your metabolic age closely matches your actual age.',c); };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

@@ -1608,40 +1608,8 @@ ${calcCrossContentSection(calc)}
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ ${calc.logic} }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'${calcName} Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ ${calc.logic} };</script>
 ${CHATBOT}
 </body></html>`;
 }
@@ -2881,7 +2849,7 @@ ${featuredPosts.map(p => {
 <div class="home-newsletter-v2-inner">
 <h2>Stay Updated with Health Tips</h2>
 <p>Weekly health insights, new calculator launches, and expert wellness advice — delivered to your inbox.</p>
-<form class="home-newsletter-form-v2" onsubmit="event.preventDefault();alert('Thank you for subscribing!');">
+<form class="home-newsletter-form-v2" id="homeNewsletterForm">
 <input type="email" placeholder="Enter your email address" required>
 <button type="submit">Subscribe</button>
 </form>
@@ -2904,19 +2872,6 @@ ${featuredPosts.map(p => {
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js" defer></script>
-<script>
-function homeFilterCat(cat,btn){
-  document.querySelectorAll('.home-cat-btn').forEach(function(b){b.classList.remove('active');});
-  if(btn)btn.classList.add('active');
-  document.querySelectorAll('#homeBlogGrid .blog-card').forEach(function(card){
-    if(cat==='all'||card.getAttribute('data-hcat')===cat){
-      card.style.display='';
-    } else {
-      card.style.display='none';
-    }
-  });
-}
-</script>
 ${CHATBOT}
 </body></html>`;
 
@@ -3208,7 +3163,7 @@ ${globalHero({
 <div class="container">
 <div class="contact-grid fade-in">
 <div class="contact-form">
-<form onsubmit="event.preventDefault();alert('Thank you for your message! We will respond within 24-48 hours.');">
+<form id="contactForm">
 <div class="form-row"><div class="form-group"><label for="name">Full Name</label><input type="text" id="name" placeholder="Your name" required></div><div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="your@email.com" required></div></div>
 <div class="form-group"><label for="subject">Subject</label><select id="subject"><option>General Inquiry</option><option>Calculator Feedback</option><option>Content Suggestion</option><option>Bug Report</option><option>Partnership</option><option>SEO Consultation</option></select></div>
 <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="Your message..." required></textarea></div>
@@ -4250,113 +4205,8 @@ ${nextQuizCards ? '<div class="quiz-funnel-section"><h3>🧠 You Might Also Like
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>
-(function(){
-var QD=${quizJSON};
-var COUNTS={easy:5,medium:8,hard:Math.min(QD.questions.length,10)};
-var qs=[],ci=0,sc=0,done=false,mode='';
-function gi(id){return document.getElementById(id);}
-function showScreen(s){
-gi('quiz-diff-screen').style.display=s==='diff'?'block':'none';
-gi('quiz-q-screen').style.display=s==='q'?'block':'none';
-gi('quiz-result-screen').style.display=s==='res'?'block':'none';
-var funnel=gi('quiz-funnel');
-if(funnel)funnel.style.display=s==='res'?'block':'none';
-}
-function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
-var selectedDiff='';
-window.selectDiff=function(d){
-selectedDiff=d;
-document.querySelectorAll('.quiz-diff-card').forEach(function(c){
-c.className='quiz-diff-card';
-});
-var card=document.querySelector('[data-diff="'+d+'"]');
-if(card)card.className='quiz-diff-card diff-selected-'+d;
-var btn=gi('quiz-start-btn');
-var labels={easy:'Start Easy — 5 Questions →',medium:'Start Medium — 8 Questions →',hard:'Start Hard — 10 Questions →'};
-btn.textContent=labels[d]||'Start Quiz →';
-btn.disabled=false;
-};
-window.startQuiz=function(){
-if(!selectedDiff)return;
-mode=selectedDiff;sc=0;ci=0;done=false;
-qs=shuffle(QD.questions).slice(0,COUNTS[mode]);
-showScreen('q');renderQ();
-};
-function renderQ(){
-var q=qs[ci];var total=qs.length;
-var pct=Math.round(ci/total*100);
-gi('quiz-prog-fill').style.width=pct+'%';
-gi('quiz-prog-txt').textContent='Question '+(ci+1)+' of '+total;
-gi('quiz-score-live').textContent='Score: '+sc;
-var numEl=gi('quiz-q-num');
-if(numEl)numEl.textContent='Question '+(ci+1)+' of '+total;
-gi('quiz-q-text').textContent=q.q;
-gi('quiz-opts').innerHTML=q.opts.map(function(o,i){return '<button class="quiz-opt" onclick="quizAns('+i+')">'+o+'</button>';}).join('');
-gi('quiz-exp').style.display='none';gi('quiz-exp').className='quiz-explanation';gi('quiz-exp').textContent='';
-gi('quiz-next-btn').style.display='none';done=false;
-}
-window.quizAns=function(idx){
-if(done)return;done=true;
-var q=qs[ci];var ok=idx===q.ans;if(ok)sc++;
-document.querySelectorAll('.quiz-opt').forEach(function(b,i){
-b.disabled=true;
-if(i===q.ans)b.classList.add('correct');
-else if(i===idx&&!ok)b.classList.add('wrong');
-});
-var ex=gi('quiz-exp');
-ex.textContent=(ok?'\u2713 Correct! ':'\u2717 Incorrect. ')+q.exp;
-ex.className='quiz-explanation'+(ok?'':' wrong-exp');ex.style.display='block';
-gi('quiz-next-btn').style.display='block';
-gi('quiz-next-btn').textContent=ci>=qs.length-1?'See My Results \u2192':'Next Question \u2192';
-};
-window.quizNext=function(){ci++;if(ci>=qs.length){showResult();return;}renderQ();};
-function animateRing(pct){
-var ring=gi('res-ring');
-if(!ring)return;
-var circumference=326.7;
-var offset=circumference-(pct/100)*circumference;
-setTimeout(function(){ring.style.strokeDashoffset=offset;},120);
-}
-function showResult(){
-var pct=Math.round(sc/qs.length*100);
-var range=QD.scoring[0];
-for(var i=0;i<QD.scoring.length;i++){if(pct>=QD.scoring[i].min&&pct<=QD.scoring[i].max){range=QD.scoring[i];break;}}
-gi('res-pct').textContent=pct+'%';
-gi('res-label').textContent=range.icon+' '+range.label;
-gi('res-correct').textContent=sc+' out of '+qs.length+' correct';
-gi('res-feedback').textContent=range.feedback;
-try{
-var h=JSON.parse(localStorage.getItem('vhh_quiz_hist')||'[]');
-h.unshift({slug:QD.slug,name:QD.name,pct:pct,mode:mode,date:new Date().toISOString()});
-if(h.length>20)h=h.slice(0,20);
-localStorage.setItem('vhh_quiz_hist',JSON.stringify(h));
-}catch(e){}
-var ring=gi('res-ring');
-if(ring)ring.style.strokeDashoffset='326.7';
-showScreen('res');
-animateRing(pct);
-window.scrollTo({top:0,behavior:'smooth'});
-}
-window.quizRetry=function(){selectedDiff='';showScreen('diff');};
-window.quizShare=function(){
-var txt='I scored '+gi('res-pct').textContent+' on the '+QD.name+' quiz at VitalHealth Hub! '+window.location.href;
-if(navigator.share){navigator.share({title:QD.name,text:txt,url:window.location.href});}
-else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){alert('Result copied to clipboard!');});}
-else{alert(txt);}
-};
-window.quizEmailSubmit=function(){
-var inp=gi('quiz-email-input');
-var suc=gi('quiz-email-success');
-if(!inp||!inp.value||!inp.value.includes('@'))return;
-inp.style.display='none';
-document.querySelector('.quiz-email-submit').style.display='none';
-if(suc)suc.style.display='block';
-try{localStorage.setItem('vhh_email_sub',inp.value);}catch(e){}
-};
-showScreen('diff');
-})();
-</script>
+<script>window.vhQuizData=${quizJSON};</script>
+<script src="/js/quiz.js" defer></script>
 ${FOOTER}
 ${CHATBOT}
 </body></html>`;
@@ -4442,22 +4292,6 @@ ${globalHero({
 </div>
 </section>
 
-<script>
-function quizFilter(cat, btn) {
-  document.querySelectorAll('.quiz-cat-pill').forEach(function(p){p.classList.remove('active');});
-  btn.classList.add('active');
-  document.querySelectorAll('.quiz-card').forEach(function(c){
-    c.classList.toggle('hidden', cat !== 'All' && c.dataset.category !== cat);
-  });
-}
-function quizHeroSearch(q){
-  q=(q||'').toLowerCase().trim();
-  document.querySelectorAll('.quiz-card').forEach(function(c){
-    var text=(c.querySelector('h3')?c.querySelector('h3').textContent:'').toLowerCase()+' '+(c.dataset.category||'').toLowerCase();
-    c.classList.toggle('hidden', q.length>0 && text.indexOf(q)===-1);
-  });
-}
-</script>
 ${FOOTER}
 ${CHATBOT}
 </body></html>`);
@@ -4486,9 +4320,7 @@ ensureDir('tools');
 })();
 
 // Inject tool visit tracking on every tool page
-const TOOL_TRACKER_JS = `<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>`;
+const TOOL_TRACKER_JS = '';
 
 // ── TOOL UI REGISTRY ─────────────────────────────────────────────────────────
 function toolUIByType(tool) {
@@ -4502,45 +4334,13 @@ function toolUIByType(tool) {
 </div>
 <div class="habit-add-form">
   <input class="saas-input" id="habitInput" placeholder="Add a new habit (e.g. Drink 8 glasses of water)…" maxlength="80">
-  <button class="saas-btn saas-btn-primary" onclick="addHabit()">+ Add</button>
+  <button class="saas-btn saas-btn-primary" data-tool-action="add-habit">+ Add</button>
 </div>
 <div id="habitList" class="habit-list"></div>
 <div id="habitEmpty" class="saas-empty-state" style="display:none">
   <div class="saas-empty-icon">🌱</div>
   <p class="saas-empty-text">No habits yet. Add your first habit above to get started!</p>
-</div>
-<script>
-var TODAY=new Date().toISOString().split('T')[0];
-document.getElementById('habitDateLabel').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
-function loadData(){return JSON.parse(localStorage.getItem('vhh_habits')||'{"habits":[]}');}
-function saveData(d){localStorage.setItem('vhh_habits',JSON.stringify(d));}
-function getStreak(hist){var s=0;var d=new Date();for(var i=0;i<365;i++){var k=new Date(d);k.setDate(k.getDate()-i);var ks=k.toISOString().split('T')[0];if(hist[ks]){s++;}else if(i>0){break;}}return s;}
-function getLast7(hist){var days=[];for(var i=6;i>=0;i--){var d=new Date();d.setDate(d.getDate()-i);days.push(d.toISOString().split('T')[0]);}return days;}
-function addHabit(){var inp=document.getElementById('habitInput');var name=inp.value.trim();if(!name)return;var d=loadData();d.habits.push({id:Date.now().toString(),name:name,history:{}});saveData(d);inp.value='';renderHabits();}
-function toggleHabit(id){var d=loadData();var h=d.habits.find(function(h){return h.id===id;});if(!h)return;if(h.history[TODAY]){delete h.history[TODAY];}else{h.history[TODAY]=true;}saveData(d);renderHabits();}
-function deleteHabit(id){var d=loadData();d.habits=d.habits.filter(function(h){return h.id!==id;});saveData(d);renderHabits();}
-function renderHabits(){
-  var d=loadData();var list=document.getElementById('habitList');var empty=document.getElementById('habitEmpty');
-  if(!d.habits.length){list.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  var days=getLast7({});
-  list.innerHTML=d.habits.map(function(h){
-    var done=!!h.history[TODAY];
-    var streak=getStreak(h.history);
-    var dots=getLast7(h.history).map(function(dk){return '<div class="habit-dot'+(h.history[dk]?' done':'')+'"></div>';}).join('');
-    var hotClass=streak>=3?' hot':'';
-    return '<div class="habit-item'+(done?' done-today':'')+'" id="hi-'+h.id+'">'+
-      '<div class="habit-checkbox" onclick="toggleHabit(\''+h.id+'\')" title="Mark as done">'+(done?'✓':'')+'</div>'+
-      '<span class="habit-name">'+h.name+'</span>'+
-      '<div class="habit-weekly">'+dots+'</div>'+
-      '<span class="habit-streak-badge'+hotClass+'">'+(streak>=3?'🔥':'')+streak+' day'+(streak===1?'':'s')+'</span>'+
-      '<button class="habit-del-btn" onclick="deleteHabit(\''+h.id+'\')" title="Delete habit">✕</button>'+
-    '</div>';
-  }).join('');
-}
-document.getElementById('habitInput').addEventListener('keydown',function(e){if(e.key==='Enter')addHabit();});
-renderHabits();
-</script>`;
+</div>`;
   }
 
   // ── SLEEP TRACKER ────────────────────────────────────────────────────────
@@ -4560,63 +4360,22 @@ renderHabits();
 <div class="saas-form-group">
   <label class="saas-label">Sleep Quality</label>
   <div style="display:flex;gap:8px;margin-top:4px;" id="qualityBtns">
-    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(1)" data-q="1">😞 Poor</button>
-    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(2)" data-q="2">😕 Fair</button>
-    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(3)" data-q="3">😐 OK</button>
-    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(4)" data-q="4">😊 Good</button>
-    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(5)" data-q="5">😄 Great</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" data-q="1">😞 Poor</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" data-q="2">😕 Fair</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" data-q="3">😐 OK</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" data-q="4">😊 Good</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" data-q="5">😄 Great</button>
   </div>
 </div>
 <div class="saas-form-group">
   <label class="saas-label">Notes (optional)</label>
   <input class="saas-input" id="sleepNote" placeholder="Any factors affecting sleep tonight?">
 </div>
-<button class="saas-btn saas-btn-primary" onclick="logSleep()" style="width:100%">Log Sleep Entry</button>
+<button class="saas-btn saas-btn-primary" data-tool-action="log-sleep" style="width:100%">Log Sleep Entry</button>
 <div id="sleepResult" class="saas-result-section hidden" style="margin-top:24px;"></div>
 <hr class="saas-divider">
 <div class="saas-section-heading">📅 Sleep History</div>
-<div id="sleepHistory"></div>
-<script>
-var selQ=4;
-function setQ(q){selQ=q;document.querySelectorAll('#qualityBtns button').forEach(function(b){b.classList.toggle('saas-btn-primary',parseInt(b.dataset.q)===q);b.classList.toggle('saas-btn-secondary',parseInt(b.dataset.q)!==q);});}
-setQ(4);
-function loadSleep(){return JSON.parse(localStorage.getItem('vhh_sleep')||'[]');}
-function saveSleep(d){localStorage.setItem('vhh_sleep',JSON.stringify(d));}
-function calcScore(hrs,q){var durScore=Math.min(100,Math.max(0,(hrs/8)*60+(hrs>=7&&hrs<=9?20:0)));var qScore=(q/5)*40;return Math.round(Math.min(100,durScore+qScore));}
-function scoreGrade(s){return s>=80?['Excellent','saas-badge-green']:s>=60?['Good','saas-badge-blue']:s>=40?['Fair','saas-badge-yellow']:['Poor','saas-badge-red'];}
-function timeToMins(t){var p=t.split(':');return parseInt(p[0])*60+parseInt(p[1]);}
-function minsToHrs(m){return (m/60).toFixed(1);}
-function logSleep(){
-  var bed=document.getElementById('sleepBed').value;
-  var wake=document.getElementById('sleepWake').value;
-  var note=document.getElementById('sleepNote').value.trim();
-  if(!bed||!wake){alert('Please enter bedtime and wake time.');return;}
-  var bm=timeToMins(bed);var wm=timeToMins(wake);
-  var dur=wm>bm?wm-bm:wm+(24*60-bm);
-  var hrs=dur/60;
-  var score=calcScore(hrs,selQ);
-  var g=scoreGrade(score);
-  var entry={date:new Date().toISOString().split('T')[0],bed:bed,wake:wake,hrs:hrs.toFixed(1),quality:selQ,score:score,note:note};
-  var data=loadSleep();data.unshift(entry);if(data.length>14)data=data.slice(0,14);saveSleep(data);
-  var res=document.getElementById('sleepResult');
-  res.classList.remove('hidden');
-  res.innerHTML='<div class="saas-result-header"><span class="saas-result-check">✅</span><span class="saas-result-title">Sleep logged successfully!</span></div>'+
-    '<div class="saas-stat-grid" style="grid-template-columns:repeat(3,1fr)">'+
-    '<div class="saas-stat-card"><div class="saas-stat-value">'+hrs.toFixed(1)+'h</div><div class="saas-stat-label">Duration</div></div>'+
-    '<div class="saas-stat-card"><div class="saas-stat-value">'+score+'</div><div class="saas-stat-label">Score</div></div>'+
-    '<div class="saas-stat-card"><div class="saas-stat-value"><span class="saas-badge '+g[1]+'">'+g[0]+'</span></div><div class="saas-stat-label">Quality</div></div>'+
-    '</div>';
-  renderSleepHistory();
-}
-function renderSleepHistory(){
-  var data=loadSleep();var el=document.getElementById('sleepHistory');
-  if(!data.length){el.innerHTML='<div class="saas-empty-state"><div class="saas-empty-icon">📋</div><p class="saas-empty-text">No sleep entries yet. Log your first night above!</p></div>';return;}
-  var html='<table class="sleep-history-table"><thead><tr><th>Date</th><th>Hours</th><th>Quality</th><th>Score</th><th>Notes</th></tr></thead><tbody>';
-  data.forEach(function(e){var g=scoreGrade(e.score);html+='<tr><td>'+e.date+'</td><td>'+e.hrs+'h</td><td>'+(['','😞','😕','😐','😊','😄'][e.quality]||'-')+'</td><td><span class="saas-badge '+g[1]+'">'+e.score+'</span></td><td style="color:#9ca3af;font-size:0.8rem">'+e.note+'</td></tr>';});
-  html+='</tbody></table>';el.innerHTML=html;
-}
-renderSleepHistory();
-</script>`;
+<div id="sleepHistory"></div>`;
   }
 
   // ── MOOD TRACKER ─────────────────────────────────────────────────────────
@@ -4624,17 +4383,17 @@ renderSleepHistory();
     return `
 <div class="saas-card-title">🌈 How are you feeling today?</div>
 <div class="mood-selector" id="moodSelector">
-  <button class="mood-btn" onclick="selectMood(1)" data-m="1">😞<span class="mood-label">Low</span></button>
-  <button class="mood-btn" onclick="selectMood(2)" data-m="2">😟<span class="mood-label">Down</span></button>
-  <button class="mood-btn" onclick="selectMood(3)" data-m="3">😐<span class="mood-label">OK</span></button>
-  <button class="mood-btn" onclick="selectMood(4)" data-m="4">😊<span class="mood-label">Good</span></button>
-  <button class="mood-btn" onclick="selectMood(5)" data-m="5">😄<span class="mood-label">Great</span></button>
+  <button class="mood-btn" data-m="1">😞<span class="mood-label">Low</span></button>
+  <button class="mood-btn" data-m="2">😟<span class="mood-label">Down</span></button>
+  <button class="mood-btn" data-m="3">😐<span class="mood-label">OK</span></button>
+  <button class="mood-btn" data-m="4">😊<span class="mood-label">Good</span></button>
+  <button class="mood-btn" data-m="5">😄<span class="mood-label">Great</span></button>
 </div>
 <div class="saas-form-group">
   <label class="saas-label">Note (optional)</label>
   <input class="saas-input" id="moodNote" placeholder="What influenced your mood today?">
 </div>
-<button class="saas-btn saas-btn-primary" onclick="logMood()" style="width:100%">Log Today's Mood</button>
+<button class="saas-btn saas-btn-primary" data-tool-action="log-mood" style="width:100%">Log Today's Mood</button>
 <div id="moodConfirm" style="display:none;text-align:center;padding:14px;color:#166534;font-weight:600;font-size:0.9rem;"></div>
 <hr class="saas-divider">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
@@ -4649,37 +4408,7 @@ renderSleepHistory();
   <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#a7f3d0"></span>Good</span>
   <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#34d399"></span>Great</span>
   <span class="mood-legend-item"><span class="mood-legend-dot" style="background:#f3f4f6"></span>No entry</span>
-</div>
-<script>
-var selMood=0;
-function selectMood(m){selMood=m;document.querySelectorAll('#moodSelector .mood-btn').forEach(function(b){b.classList.toggle('active',parseInt(b.dataset.m)===m);});}
-function loadMoods(){return JSON.parse(localStorage.getItem('vhh_mood')||'{}');}
-function saveMoods(d){localStorage.setItem('vhh_mood',JSON.stringify(d));}
-function logMood(){
-  if(!selMood){alert('Please select a mood first.');return;}
-  var today=new Date().toISOString().split('T')[0];
-  var data=loadMoods();data[today]={mood:selMood,note:document.getElementById('moodNote').value.trim()};
-  saveMoods(data);
-  var conf=document.getElementById('moodConfirm');
-  conf.style.display='block';conf.textContent='✅ Mood logged for today!';
-  setTimeout(function(){conf.style.display='none';},3000);
-  renderCalendar();
-}
-function renderCalendar(){
-  var data=loadMoods();var cal=document.getElementById('moodCal');var cells='';
-  var total=0;var count=0;
-  for(var i=34;i>=0;i--){
-    var d=new Date();d.setDate(d.getDate()-i);var k=d.toISOString().split('T')[0];
-    var e=data[k];var m=e?e.mood:0;
-    if(m){total+=m;count++;}
-    var title=k+(e?(' — '+(e.note||['','Low','Down','OK','Good','Great'][m])):'');
-    cells+='<div class="mood-cal-cell" data-mood="'+m+'" title="'+title+'"></div>';
-  }
-  cal.innerHTML=cells;
-  if(count>0){document.getElementById('moodAvg').textContent='7-day avg: '+(['','😞','😟','😐','😊','😄'][Math.round(total/count)]+' '+(['','Low','Down','OK','Good','Great'][Math.round(total/count)]));}
-}
-renderCalendar();
-</script>`;
+</div>`;
   }
 
   // ── STEP TRACKER ─────────────────────────────────────────────────────────
@@ -4696,7 +4425,7 @@ renderCalendar();
     <input class="saas-input" type="number" id="stepGoal" value="10000" min="1000" max="50000">
   </div>
 </div>
-<button class="saas-btn saas-btn-primary" onclick="logSteps()" style="width:100%">Log Steps</button>
+<button class="saas-btn saas-btn-primary" data-tool-action="log-steps" style="width:100%">Log Steps</button>
 <div class="step-ring-wrap" id="stepRingWrap" style="display:none">
   <svg class="timer-svg" width="160" height="160" viewBox="0 0 160 160" id="stepRingSvg">
     <circle cx="80" cy="80" r="68" fill="none" stroke="#e5e7eb" stroke-width="12"/>
@@ -4710,45 +4439,7 @@ renderCalendar();
 </div>
 <hr class="saas-divider">
 <div class="saas-section-heading">📊 Last 7 Days</div>
-<div id="stepChart" class="step-chart-wrap"></div>
-<script>
-function loadSteps(){return JSON.parse(localStorage.getItem('vhh_steps')||'[]');}
-function saveSteps(d){localStorage.setItem('vhh_steps',JSON.stringify(d));}
-var C=2*Math.PI*68;var stepCircle=document.getElementById('stepCircle');
-stepCircle.style.strokeDasharray=C;stepCircle.style.strokeDashoffset=C;
-function setRing(pct){stepCircle.style.strokeDashoffset=C-(pct/100)*C;}
-function logSteps(){
-  var steps=parseInt(document.getElementById('stepInput').value);
-  var goal=parseInt(document.getElementById('stepGoal').value)||10000;
-  if(!steps||steps<0){alert('Please enter a valid step count.');return;}
-  var today=new Date().toISOString().split('T')[0];
-  var data=loadSteps();
-  data=data.filter(function(e){return e.date!==today;});
-  data.unshift({date:today,steps:steps,goal:goal});
-  if(data.length>14)data=data.slice(0,14);
-  saveSteps(data);
-  var pct=Math.min(100,Math.round((steps/goal)*100));
-  document.getElementById('stepRingWrap').style.display='flex';
-  document.getElementById('stepPct').textContent=pct+'%';
-  document.getElementById('stepCount').textContent=steps.toLocaleString()+' / '+goal.toLocaleString()+' steps';
-  setTimeout(function(){setRing(pct);},50);
-  renderStepChart();
-}
-function renderStepChart(){
-  var data=loadSteps().slice(0,7).reverse();var el=document.getElementById('stepChart');
-  if(!data.length){el.innerHTML='<div class="saas-empty-state"><div class="saas-empty-icon">👣</div><p class="saas-empty-text">Log steps to see your weekly chart!</p></div>';return;}
-  var maxS=Math.max.apply(null,data.map(function(e){return e.steps;}));
-  var today=new Date().toISOString().split('T')[0];
-  var bars=data.map(function(e){
-    var pct=maxS>0?Math.max(8,Math.round((e.steps/maxS)*100)):8;
-    var isToday=e.date===today;
-    var day=new Date(e.date+'T12:00:00').toLocaleDateString('en-GB',{weekday:'short'});
-    return '<div class="step-bar-col"><div class="step-bar'+(isToday?' active':'')+'" style="height:'+pct+'px" title="'+e.steps.toLocaleString()+' steps"></div><div class="step-bar-label">'+day+'</div></div>';
-  }).join('');
-  el.innerHTML='<div class="step-bar-chart">'+bars+'</div>';
-}
-renderStepChart();
-</script>`;
+<div id="stepChart" class="step-chart-wrap"></div>`;
   }
 
   // ── HEALTH DASHBOARD ─────────────────────────────────────────────────────
@@ -4770,43 +4461,7 @@ renderStepChart();
     <a href="/tools/habit-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">🔥 Habit Tracker</a>
   </div>
 </div>
-<script>
-document.getElementById('dashDate').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-function buildDash(){
-  var sleepData=JSON.parse(localStorage.getItem('vhh_sleep')||'[]');
-  var moodData=JSON.parse(localStorage.getItem('vhh_mood')||'{}');
-  var stepData=JSON.parse(localStorage.getItem('vhh_steps')||'[]');
-  var habitData=JSON.parse(localStorage.getItem('vhh_habits')||'{"habits":[]}');
-  var today=new Date().toISOString().split('T')[0];
-  var metrics=[];
-  // Sleep
-  var ls=sleepData[0];
-  metrics.push({icon:'😴',label:'Last Sleep',val:ls?ls.hrs+'h (score '+ls.score+')':'Not logged yet',sub:ls?ls.date:'',href:'/tools/sleep-tracker.html',empty:!ls});
-  // Mood
-  var todayMood=moodData[today];
-  var moodLabels=['','😞 Low','😟 Down','😐 OK','😊 Good','😄 Great'];
-  metrics.push({icon:'🌈',label:"Today's Mood",val:todayMood?moodLabels[todayMood.mood]:'Not logged yet',sub:todayMood?todayMood.note:'',href:'/tools/mood-tracker.html',empty:!todayMood});
-  // Steps
-  var ts=stepData.find(function(e){return e.date===today;});
-  metrics.push({icon:'👟',label:"Today's Steps",val:ts?ts.steps.toLocaleString()+' / '+ts.goal.toLocaleString():'Not logged yet',sub:ts?Math.round((ts.steps/ts.goal)*100)+'% of goal':'',href:'/tools/step-tracker.html',empty:!ts});
-  // Habits
-  var total=habitData.habits.length;
-  var done=habitData.habits.filter(function(h){return h.history&&h.history[today];}).length;
-  metrics.push({icon:'🔥',label:'Habits Today',val:total?done+' / '+total+' done':'No habits set',sub:total?Math.round((done/total)*100)+'% completion':'',href:'/tools/habit-tracker.html',empty:!total});
-  var grid=document.getElementById('dashGrid');
-  grid.innerHTML=metrics.map(function(m){
-    return '<a href="'+m.href+'" class="dashboard-metric-card'+(m.empty?' empty-metric':'')+'">'+
-      '<div class="dashboard-metric-icon">'+m.icon+'</div>'+
-      '<div class="dashboard-metric-label">'+m.label+'</div>'+
-      '<div class="dashboard-metric-value">'+m.val+'</div>'+
-      (m.sub?'<div class="dashboard-metric-sub">'+m.sub+'</div>':'')+
-    '</a>';
-  }).join('');
-  var hasAny=sleepData.length||Object.keys(moodData).length||stepData.length||habitData.habits.length;
-  document.getElementById('dashNotice').style.display=hasAny?'none':'flex';
-}
-buildDash();
-</script>`;
+`;
   }
 
   // ── DAILY PLANNER ────────────────────────────────────────────────────────
@@ -4814,7 +4469,7 @@ buildDash();
     return `
 <div class="planner-date-header">
   <div class="planner-today" id="plannerDate"></div>
-  <button class="saas-btn saas-btn-ghost saas-btn-sm" onclick="clearDone()">Clear Completed</button>
+  <button class="saas-btn saas-btn-ghost saas-btn-sm" data-tool-action="clear-done">Clear Completed</button>
 </div>
 <div class="planner-add-form">
   <input class="saas-input" id="plannerTask" placeholder="Add a task…" maxlength="120">
@@ -4824,54 +4479,14 @@ buildDash();
     <option value="medium" selected>🟡 Medium</option>
     <option value="low">🟢 Low</option>
   </select>
-  <button class="saas-btn saas-btn-primary" onclick="addTask()">+ Add</button>
+  <button class="saas-btn saas-btn-primary" data-tool-action="add-task">+ Add</button>
 </div>
 <div id="plannerList" class="planner-task-list"></div>
 <div id="plannerEmpty" class="saas-empty-state" style="display:none">
   <div class="saas-empty-icon">📋</div>
   <p class="saas-empty-text">No tasks yet. Add your first task for today!</p>
 </div>
-<div class="planner-stats" id="plannerStats"></div>
-<script>
-var TODAY=new Date().toISOString().split('T')[0];
-var PKEY='vhh_planner_'+TODAY;
-var PLABELS={high:'🔴 High',medium:'🟡 Medium',low:'🟢 Low'};
-document.getElementById('plannerDate').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-function loadTasks(){return JSON.parse(localStorage.getItem(PKEY)||'[]');}
-function saveTasks(d){localStorage.setItem(PKEY,JSON.stringify(d));}
-function addTask(){
-  var name=document.getElementById('plannerTask').value.trim();
-  if(!name)return;
-  var time=document.getElementById('plannerTime').value;
-  var pri=document.getElementById('plannerPriority').value;
-  var tasks=loadTasks();
-  tasks.push({id:Date.now().toString(),name:name,time:time,priority:pri,done:false});
-  tasks.sort(function(a,b){var o={high:0,medium:1,low:2};return o[a.priority]-o[b.priority];});
-  saveTasks(tasks);document.getElementById('plannerTask').value='';renderTasks();
-}
-function toggleTask(id){var t=loadTasks();var tk=t.find(function(x){return x.id===id;});if(tk)tk.done=!tk.done;saveTasks(t);renderTasks();}
-function deleteTask(id){var t=loadTasks().filter(function(x){return x.id!==id;});saveTasks(t);renderTasks();}
-function clearDone(){var t=loadTasks().filter(function(x){return !x.done;});saveTasks(t);renderTasks();}
-function renderTasks(){
-  var tasks=loadTasks();var list=document.getElementById('plannerList');var empty=document.getElementById('plannerEmpty');
-  if(!tasks.length){list.innerHTML='';empty.style.display='block';document.getElementById('plannerStats').innerHTML='';return;}
-  empty.style.display='none';
-  list.innerHTML=tasks.map(function(tk){
-    var badgeMap={high:'saas-badge-red',medium:'saas-badge-yellow',low:'saas-badge-green'};
-    return '<div class="planner-task'+(tk.done?' done-task':'')+'">'+
-      '<input type="checkbox" class="planner-task-cb"'+(tk.done?' checked':'')+' onclick="toggleTask(\''+tk.id+'\')">'+
-      '<span class="planner-task-time">'+tk.time+'</span>'+
-      '<span class="planner-task-name">'+tk.name+'</span>'+
-      '<span class="planner-priority"><span class="saas-badge '+badgeMap[tk.priority]+'">'+PLABELS[tk.priority]+'</span></span>'+
-      '<button class="planner-task-del" onclick="deleteTask(\''+tk.id+'\')">✕</button>'+
-    '</div>';
-  }).join('');
-  var done=tasks.filter(function(t){return t.done;}).length;
-  document.getElementById('plannerStats').innerHTML='<span class="planner-stat"><strong>'+tasks.length+'</strong> total</span><span class="planner-stat"><strong>'+done+'</strong> done</span><span class="planner-stat"><strong>'+(tasks.length-done)+'</strong> remaining</span>';
-}
-document.getElementById('plannerTask').addEventListener('keydown',function(e){if(e.key==='Enter')addTask();});
-renderTasks();
-</script>`;
+<div class="planner-stats" id="plannerStats"></div>`;
   }
 
   // ── FOCUS TIMER ──────────────────────────────────────────────────────────
@@ -4889,76 +4504,29 @@ renderTasks();
   </div>
   <div class="timer-sessions" id="timerSessions">Sessions completed: <strong>0</strong></div>
   <div class="timer-controls">
-    <button class="saas-btn saas-btn-primary" onclick="timerToggle()" id="timerStartBtn">▶ Start</button>
-    <button class="saas-btn saas-btn-secondary" onclick="timerReset()">↺ Reset</button>
-    <button class="saas-btn saas-btn-ghost" onclick="timerSkip()">⏭ Skip</button>
+    <button class="saas-btn saas-btn-primary" data-tool-action="timer-toggle" id="timerStartBtn">▶ Start</button>
+    <button class="saas-btn saas-btn-secondary" data-tool-action="timer-reset">↺ Reset</button>
+    <button class="saas-btn saas-btn-ghost" data-tool-action="timer-skip">⏭ Skip</button>
   </div>
 </div>
 <div class="timer-settings">
   <div class="timer-setting-group">
     <label class="timer-setting-label">Work (min)</label>
-    <input type="number" class="timer-setting-input" id="workMin" value="25" min="1" max="120" onchange="resetOnChange()">
+    <input type="number" class="timer-setting-input" id="workMin" value="25" min="1" max="120" data-timer-setting="work">
   </div>
   <div class="timer-setting-group">
     <label class="timer-setting-label">Short Break</label>
-    <input type="number" class="timer-setting-input" id="breakMin" value="5" min="1" max="60" onchange="resetOnChange()">
+    <input type="number" class="timer-setting-input" id="breakMin" value="5" min="1" max="60" data-timer-setting="break">
   </div>
   <div class="timer-setting-group">
     <label class="timer-setting-label">Long Break</label>
-    <input type="number" class="timer-setting-input" id="longBreakMin" value="20" min="1" max="120" onchange="resetOnChange()">
+    <input type="number" class="timer-setting-input" id="longBreakMin" value="20" min="1" max="120" data-timer-setting="long-break">
   </div>
   <div class="timer-setting-group">
     <label class="timer-setting-label">Sessions to Long Break</label>
-    <input type="number" class="timer-setting-input" id="sessionsToLong" value="4" min="1" max="10" onchange="resetOnChange()">
+    <input type="number" class="timer-setting-input" id="sessionsToLong" value="4" min="1" max="10" data-timer-setting="sessions-to-long">
   </div>
-</div>
-<script>
-var timerInterval=null;var isRunning=false;var isBreak=false;var sessionsCompleted=0;
-var totalSecs=25*60;var secsLeft=totalSecs;
-var C=2*Math.PI*88;var tc=document.getElementById('timerCircle');
-tc.style.strokeDasharray=C;tc.style.strokeDashoffset=0;
-function getWorkSecs(){return parseInt(document.getElementById('workMin').value||25)*60;}
-function getBreakSecs(){return parseInt(document.getElementById('breakMin').value||5)*60;}
-function getLongBreakSecs(){return parseInt(document.getElementById('longBreakMin').value||20)*60;}
-function getSessToLong(){return parseInt(document.getElementById('sessionsToLong').value||4);}
-function updateDisplay(){
-  var m=Math.floor(secsLeft/60);var s=secsLeft%60;
-  document.getElementById('timerDisplay').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-  document.title=document.getElementById('timerDisplay').textContent+' — '+(isBreak?'Break':'Focus');
-  var pct=1-(secsLeft/totalSecs);tc.style.strokeDashoffset=C*pct;
-}
-function timerToggle(){
-  if(isRunning){clearInterval(timerInterval);isRunning=false;document.getElementById('timerStartBtn').textContent='▶ Start';}
-  else{isRunning=true;document.getElementById('timerStartBtn').textContent='⏸ Pause';timerInterval=setInterval(tick,1000);}
-}
-function tick(){
-  if(secsLeft<=0){clearInterval(timerInterval);isRunning=false;
-    if(!isBreak){sessionsCompleted++;document.getElementById('timerSessions').innerHTML='Sessions completed: <strong>'+sessionsCompleted+'</strong>';}
-    timerSkip();
-    try{new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAA').play().catch(function(){});}catch(e){}
-    alert(isBreak?'Break time! Back to work.':'Great work! Time for a break.');
-    return;
-  }
-  secsLeft--;updateDisplay();
-}
-function timerReset(){
-  clearInterval(timerInterval);isRunning=false;
-  isBreak=false;totalSecs=getWorkSecs();secsLeft=totalSecs;
-  document.getElementById('timerStartBtn').textContent='▶ Start';
-  document.getElementById('timerModeBadge').textContent='Work Session';
-  document.getElementById('timerModeBadge').className='timer-mode-badge timer-work';
-  tc.style.strokeDashoffset=0;document.title='Focus Timer';
-  updateDisplay();
-}
-function timerSkip(){
-  clearInterval(timerInterval);isRunning=false;
-  if(isBreak){isBreak=false;totalSecs=getWorkSecs();document.getElementById('timerModeBadge').textContent='Work Session';document.getElementById('timerModeBadge').className='timer-mode-badge timer-work';}
-  else{isBreak=true;var isLong=(sessionsCompleted%getSessToLong()===0&&sessionsCompleted>0);totalSecs=isLong?getLongBreakSecs():getBreakSecs();document.getElementById('timerModeBadge').textContent=isLong?'Long Break':'Short Break';document.getElementById('timerModeBadge').className='timer-mode-badge timer-break';}
-  secsLeft=totalSecs;document.getElementById('timerStartBtn').textContent='▶ Start';tc.style.strokeDashoffset=0;updateDisplay();
-}
-function resetOnChange(){if(!isRunning)timerReset();}
-updateDisplay();
-</script>`;
+</div>`;
   }
 
   // ── GOAL TRACKER ─────────────────────────────────────────────────────────
@@ -4986,60 +4554,13 @@ updateDisplay();
       <input class="saas-input" type="number" id="goalTarget" placeholder="e.g. 70">
     </div>
   </div>
-  <button class="saas-btn saas-btn-primary" onclick="addGoal()" style="width:100%">+ Add Goal</button>
+  <button class="saas-btn saas-btn-primary" data-tool-action="add-goal" style="width:100%">+ Add Goal</button>
 </div>
 <div id="goalList" class="goal-list"></div>
 <div id="goalEmpty" class="saas-empty-state" style="display:none">
   <div class="saas-empty-icon">🎯</div>
   <p class="saas-empty-text">No goals yet. Add your first goal above to start tracking!</p>
-</div>
-<script>
-function loadGoals(){return JSON.parse(localStorage.getItem('vhh_goals')||'[]');}
-function saveGoals(d){localStorage.setItem('vhh_goals',JSON.stringify(d));}
-function calcPct(c,t){if(t===0)return 0;var p=Math.round((c/t)*100);return Math.min(100,Math.max(0,p));}
-function addGoal(){
-  var name=document.getElementById('goalName').value.trim();
-  var unit=document.getElementById('goalUnit').value.trim()||'units';
-  var cur=parseFloat(document.getElementById('goalCurrent').value);
-  var tgt=parseFloat(document.getElementById('goalTarget').value);
-  if(!name||isNaN(cur)||isNaN(tgt)){alert('Please fill in all goal fields.');return;}
-  var goals=loadGoals();
-  goals.push({id:Date.now().toString(),name:name,unit:unit,current:cur,target:tgt});
-  saveGoals(goals);
-  ['goalName','goalUnit','goalCurrent','goalTarget'].forEach(function(id){document.getElementById(id).value='';});
-  renderGoals();
-}
-function deleteGoal(id){saveGoals(loadGoals().filter(function(g){return g.id!==id;}));renderGoals();}
-function updateGoal(id){
-  var inp=document.getElementById('gupd-'+id);if(!inp)return;
-  var val=parseFloat(inp.value);if(isNaN(val)){alert('Please enter a valid number.');return;}
-  var goals=loadGoals();var g=goals.find(function(g){return g.id===id;});if(g)g.current=val;
-  saveGoals(goals);renderGoals();
-}
-function renderGoals(){
-  var goals=loadGoals();var list=document.getElementById('goalList');var empty=document.getElementById('goalEmpty');
-  if(!goals.length){list.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  list.innerHTML=goals.map(function(g){
-    var pct=calcPct(g.current,g.target);
-    var fillClass=pct>=80?'':pct>=50?'':pct<30?'danger':'warn';
-    var complete=pct>=100;
-    return '<div class="goal-card">'+
-      '<div class="goal-card-header">'+
-        '<div><div class="goal-name">'+g.name+'</div><div class="goal-target-info">'+g.current+' / '+g.target+' '+g.unit+'</div></div>'+
-        '<div class="goal-card-actions">'+
-          '<span class="saas-badge '+(pct>=100?'saas-badge-green':pct>=70?'saas-badge-blue':pct>=40?'saas-badge-yellow':'saas-badge-red')+'">'+pct+'%</span>'+
-          '<button class="saas-btn saas-btn-danger saas-btn-sm" onclick="deleteGoal(\''+g.id+'\')">Delete</button>'+
-        '</div>'+
-      '</div>'+
-      '<div class="saas-progress-wrap"><div class="saas-progress-bar"><div class="saas-progress-fill '+fillClass+'" style="width:'+pct+'%"></div></div></div>'+
-      (complete?'<div class="goal-complete-badge">🎉 Goal achieved!</div>':
-        '<div class="goal-update-form"><span style="font-size:0.85rem;color:#6b7280">Update:</span><input class="goal-update-input" id="gupd-'+g.id+'" type="number" placeholder="New value"><button class="saas-btn saas-btn-ghost saas-btn-sm" onclick="updateGoal(\''+g.id+'\')">Save</button></div>')+
-    '</div>';
-  }).join('');
-}
-renderGoals();
-</script>`;
+</div>`;
   }
 
   // ── ADVANCED TEXT ANALYZER ───────────────────────────────────────────────
@@ -5049,19 +4570,19 @@ renderGoals();
   <div class="text-analyzer-input-col">
     <div>
       <label class="saas-label">Paste or type your text below</label>
-      <textarea class="saas-textarea text-analyzer-textarea" id="textInput" placeholder="Paste your article, blog post, essay, or any text here…" oninput="analyzeText()"></textarea>
+      <textarea class="saas-textarea text-analyzer-textarea" id="textInput" placeholder="Paste your article, blog post, essay, or any text here…"></textarea>
     </div>
     <div>
       <div class="saas-section-heading">Text Cleaning Tools</div>
       <div class="text-clean-options">
-        <button class="text-clean-btn" onclick="cleanAction('trim')">Trim Spaces</button>
-        <button class="text-clean-btn" onclick="cleanAction('breaks')">Remove Extra Line Breaks</button>
-        <button class="text-clean-btn" onclick="cleanAction('special')">Remove Special Chars</button>
-        <button class="text-clean-btn" onclick="cleanAction('html')">Strip HTML Tags</button>
-        <button class="text-clean-btn" onclick="cleanAction('lower')">Lowercase</button>
+        <button class="text-clean-btn" data-clean="trim">Trim Spaces</button>
+        <button class="text-clean-btn" data-clean="breaks">Remove Extra Line Breaks</button>
+        <button class="text-clean-btn" data-clean="special">Remove Special Chars</button>
+        <button class="text-clean-btn" data-clean="html">Strip HTML Tags</button>
+        <button class="text-clean-btn" data-clean="lower">Lowercase</button>
       </div>
     </div>
-    <button class="saas-btn saas-btn-secondary saas-btn-sm" onclick="copyText()" style="align-self:flex-start">📋 Copy Text</button>
+    <button class="saas-btn saas-btn-secondary saas-btn-sm" data-tool-action="copy-text" style="align-self:flex-start">📋 Copy Text</button>
   </div>
   <div class="text-analyzer-stats-col">
     <div class="saas-stat-grid" style="grid-template-columns:repeat(2,1fr)">
@@ -5083,53 +4604,7 @@ renderGoals();
     </table>
   </div>
 </div>
-<script>
-var STOP=['the','a','an','and','or','but','in','on','at','to','for','of','with','is','it','this','that','are','was','as','by','be','from','they','we','our','you','he','she','his','her','their','have','had','has','do','did','not','if','its','my','i','me','your','we','us','all','can','will','would','could','should','more','so','up','also','about','into','what','which','when','where','who','been'];
-function countSyllables(w){w=w.toLowerCase().replace(/[^a-z]/g,'');var c=0;var m=w.match(/[aeiou]+/g);if(m)c=m.length;if(w.endsWith('e')&&c>1)c--;return Math.max(1,c);}
-function analyzeText(){
-  var text=document.getElementById('textInput').value;
-  var words=text.trim()?text.trim().split(/\s+/).filter(function(w){return w.length>0;}):[];
-  var chars=text.length;
-  var sents=text.split(/[.!?]+/).filter(function(s){return s.trim().length>1;}).length;
-  var paras=text.split(/\n\s*\n/).filter(function(p){return p.trim().length>0;}).length;
-  var readMins=Math.ceil(words.length/200);
-  document.getElementById('statWords').textContent=words.length.toLocaleString();
-  document.getElementById('statChars').textContent=chars.toLocaleString();
-  document.getElementById('statSents').textContent=sents;
-  document.getElementById('statParas').textContent=paras||0;
-  document.getElementById('statRead').textContent=(readMins||0)+' min';
-  // Flesch
-  if(words.length>10&&sents>0){
-    var sylls=words.reduce(function(t,w){return t+countSyllables(w);},0);
-    var asl=words.length/sents;var asw=sylls/words.length;
-    var flesch=Math.round(206.835-1.015*asl-84.6*asw);
-    flesch=Math.max(0,Math.min(100,flesch));
-    document.getElementById('statFlesch').textContent=flesch;
-    var grade=flesch>=90?'5th':flesch>=80?'6th':flesch>=70?'7th':flesch>=60?'8-9th':flesch>=50?'10-12th':flesch>=30?'College':'Professional';
-    var gradeClass=flesch>=70?'saas-badge-green':flesch>=50?'saas-badge-yellow':'saas-badge-red';
-    document.getElementById('statGrade').textContent='Grade: '+grade;
-    document.getElementById('statGrade').className='readability-grade saas-badge '+gradeClass;
-  } else { document.getElementById('statFlesch').textContent='—';document.getElementById('statGrade').textContent='Grade: —';document.getElementById('statGrade').className='readability-grade saas-badge saas-badge-gray'; }
-  // Keywords
-  if(words.length>0){
-    var freq={};words.forEach(function(w){var k=w.toLowerCase().replace(/[^a-z]/g,'');if(k.length>2&&STOP.indexOf(k)===-1)freq[k]=(freq[k]||0)+1;});
-    var sorted=Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,10);
-    var maxF=sorted.length?freq[sorted[0]]:1;
-    var rows=sorted.map(function(w){var pct=Math.round((freq[w]/words.length)*100);var barPct=Math.round((freq[w]/maxF)*100);return '<tr><td>'+w+'</td><td>'+freq[w]+'</td><td>'+pct+'%</td><td class="keyword-bar-cell"><div class="keyword-mini-bar"><div class="keyword-mini-fill" style="width:'+barPct+'%"></div></div></td></tr>';}).join('');
-    document.getElementById('kwBody').innerHTML=rows||'<tr><td colspan="4" style="color:#9ca3af;text-align:center">No meaningful keywords found</td></tr>';
-  }
-}
-function cleanAction(type){
-  var el=document.getElementById('textInput');var t=el.value;
-  if(type==='trim')t=t.replace(/[ \\t]+/g,' ').trim();
-  else if(type==='breaks')t=t.replace(/\\n{3,}/g,'\\n\\n').trim();
-  else if(type==='special')t=t.replace(/[^a-zA-Z0-9\\s.,!?;:\\'"-]/g,'');
-  else if(type==='html')t=t.replace(/<[^>]+>/g,'');
-  else if(type==='lower')t=t.toLowerCase();
-  el.value=t;analyzeText();
-}
-function copyText(){navigator.clipboard.writeText(document.getElementById('textInput').value).then(function(){alert('Text copied to clipboard!');});}
-</script>`;
+`;
   }
 
   // ── HEADLINE ANALYZER ────────────────────────────────────────────────────
@@ -5138,7 +4613,7 @@ function copyText(){navigator.clipboard.writeText(document.getElementById('textI
     return `
 <div class="saas-form-group">
   <label class="saas-label">Enter your headline</label>
-  <input class="saas-input" id="headlineInput" placeholder="e.g. 7 Proven Ways to Sleep Better Tonight and Wake Up Energised" oninput="analyzeHeadline()" maxlength="200" style="font-size:1.1rem;padding:16px 18px">
+  <input class="saas-input" id="headlineInput" placeholder="e.g. 7 Proven Ways to Sleep Better Tonight and Wake Up Energised" maxlength="200" style="font-size:1.1rem;padding:16px 18px">
   <div style="margin-top:6px;font-size:0.78rem;color:#9ca3af"><span id="headlineLen">0</span> characters (ideal: 55–70)</div>
 </div>
 <div id="headlineResults" style="display:none">
@@ -5167,65 +4642,7 @@ function copyText(){navigator.clipboard.writeText(document.getElementById('textI
     <div class="saas-section-heading">✨ Power Words Found</div>
     <div class="headline-pw-list" id="hlPwList"></div>
   </div>
-</div>
-<script>
-var HL_POWER=${JSON.stringify(powerWords)};
-var HL_C=2*Math.PI*50;
-var hlCircle=document.getElementById('hlCircle');hlCircle.style.strokeDasharray=HL_C;hlCircle.style.strokeDashoffset=HL_C;
-function analyzeHeadline(){
-  var h=document.getElementById('headlineInput').value.trim();
-  document.getElementById('headlineLen').textContent=h.length;
-  if(h.length<3){document.getElementById('headlineResults').style.display='none';return;}
-  document.getElementById('headlineResults').style.display='block';
-  var words=h.split(/\\s+/).filter(function(w){return w.length>0;});
-  var wCount=words.length;
-  // Length score
-  var lenScore=0;if(h.length>=55&&h.length<=70)lenScore=100;else if(h.length>=40&&h.length<55)lenScore=70;else if(h.length>70&&h.length<=90)lenScore=60;else if(h.length<40)lenScore=Math.round((h.length/40)*60);else lenScore=Math.max(20,60-Math.round((h.length-90)/3)*5);
-  // Power words
-  var lowerWords=words.map(function(w){return w.toLowerCase().replace(/[^a-z]/g,'');});
-  var foundPw=HL_POWER.filter(function(pw){return lowerWords.indexOf(pw)!==-1;});
-  var pwScore=Math.min(100,foundPw.length*25);
-  // Numbers
-  var hasNum=/\\d/.test(h);var numScore=hasNum?100:0;
-  // Word count score
-  var wcScore=wCount>=6&&wCount<=12?100:wCount>=4&&wCount<6?70:wCount>12&&wCount<=16?75:Math.max(0,50-(Math.abs(wCount-9)*8));
-  // Sentiment/emotional score (simple: check for emotion words)
-  var emotWords=['amazing','incredible','shocking','surprising','life-changing','revolutionary','game-changer','powerful','essential','critical','never','always','every','guaranteed','simple','easy','faster'];
-  var hasEmot=emotWords.some(function(w){return h.toLowerCase().indexOf(w)!==-1;});
-  var emotScore=hasEmot?80:foundPw.length>0?50:20;
-  // Total score
-  var total=Math.round(lenScore*0.25+pwScore*0.30+numScore*0.20+wcScore*0.15+emotScore*0.10);
-  // Update UI
-  var pct=total/100;hlCircle.style.strokeDashoffset=HL_C-(pct*HL_C);
-  document.getElementById('hlScoreVal').textContent=total;
-  var grade=total>=70?['Excellent!','saas-badge-green']:total>=50?['Good','saas-badge-blue']:total>=35?['Needs Work','saas-badge-yellow']:['Weak','saas-badge-red'];
-  document.getElementById('hlGradeBadge').textContent=grade[0];document.getElementById('hlGradeBadge').className='headline-grade-badge saas-badge '+grade[1];
-  // Breakdown
-  var breakdown=[
-    {label:'Length',score:lenScore,color:'#52b788'},
-    {label:'Power Words',score:pwScore,color:'#2d6a4f'},
-    {label:'Has Number',score:numScore,color:'#40916c'},
-    {label:'Word Count',score:wcScore,color:'#74c69d'},
-    {label:'Emotion',score:emotScore,color:'#95d5b2'},
-  ];
-  document.getElementById('hlBreakdown').innerHTML=breakdown.map(function(b){
-    return '<div class="headline-breakdown-row"><span class="headline-breakdown-label">'+b.label+'</span>'+
-      '<div class="headline-breakdown-bar"><div class="headline-breakdown-fill" style="width:'+b.score+'%;background:'+b.color+'"></div></div>'+
-      '<span class="headline-breakdown-score">'+b.score+'</span></div>';
-  }).join('');
-  // Suggestions
-  var suggs=[];
-  if(h.length<55)suggs.push({icon:'📏',text:'Your headline is too short. Aim for 55–70 characters for best SEO performance.'});
-  if(h.length>70)suggs.push({icon:'✂️',text:'Your headline is long. Google may truncate it in search results. Try to keep under 70 characters.'});
-  if(!hasNum)suggs.push({icon:'🔢',text:'Add a specific number to your headline (e.g. "7 Ways...", "3 Proven..."). Headlines with numbers get significantly more clicks.'});
-  if(foundPw.length===0)suggs.push({icon:'⚡',text:'Add a power word to trigger an emotional response. Try: proven, secret, ultimate, transform, discover, boost.'});
-  if(wCount<6)suggs.push({icon:'➕',text:'Your headline is too short — add more detail. Aim for 8–12 words for optimal engagement.'});
-  if(wCount>16)suggs.push({icon:'✂️',text:'Your headline is quite long. Consider trimming to 8–12 words for better impact.'});
-  if(total>=70)suggs.push({icon:'🎉',text:'Great headline! It has strong length, power words, and structure. Test it against an alternative for best results.'});
-  document.getElementById('hlSuggestions').innerHTML='<div class="saas-section-heading">💡 Suggestions</div>'+suggs.map(function(s){return '<div class="headline-suggestion-item"><span class="headline-suggestion-icon">'+s.icon+'</span>'+s.text+'</div>';}).join('');
-  if(foundPw.length>0){document.getElementById('hlPowerWords').style.display='block';document.getElementById('hlPwList').innerHTML=foundPw.map(function(w){return '<span class="headline-pw-chip">'+w+'</span>';}).join('');}else{document.getElementById('hlPowerWords').style.display='none';}
-}
-</script>`;
+</div>`;
   }
 
   // ── CONTENT IDEA GENERATOR ───────────────────────────────────────────────
@@ -5241,51 +4658,16 @@ function analyzeHeadline(){
     <option value="seniors">Seniors (50+)</option>
     <option value="women">Women's health</option>
   </select>
-  <button class="saas-btn saas-btn-primary" onclick="generateIdeas()">✨ Generate Ideas</button>
+  <button class="saas-btn saas-btn-primary" data-tool-action="generate-ideas">✨ Generate Ideas</button>
 </div>
-<div id="ideaOutput" class="idea-results"></div>
-<script>
-var FRAMEWORKS={
-  blog:['The Definitive Guide to {topic} for {audience}','How {topic} Changed My Life (And How It Can Change Yours)','X Things Nobody Tells You About {topic}','Is {topic} Right for You? A Complete Breakdown','The Science Behind {topic}: What Research Actually Says','Common {topic} Myths Debunked by Health Experts','How to Get Started with {topic} This Week','The Beginner\'s Roadmap to {topic}: Step by Step','Why {topic} Is the Health Habit You\'ve Been Missing','Top {topic} Mistakes and How to Avoid Them','How to Build a {topic} Routine That Actually Sticks','The {audience}\'s Complete Guide to {topic}'],
-  social:['Swipe to see why {topic} could transform your health 👉','Hot take: {topic} is more important than you think 🔥','I tried {topic} for 30 days — here\'s what happened','3 {topic} tips I wish I knew sooner (save this!)','Myth vs. Fact: Everything you think you know about {topic}','Tag someone who needs this {topic} tip 👇','The one {topic} habit that changed everything for me','Your weekly reminder to prioritise your {topic} journey'],
-  faq:['What is {topic} and is it right for me?','How does {topic} actually work?','What are the benefits of {topic}?','Are there any risks or side effects to {topic}?','How long does it take to see results from {topic}?','Can beginners start {topic} right away?','What does the science say about {topic}?','How is {topic} different from similar approaches?'],
-  action:['Create a free {topic} checklist for beginners','Build a 30-day {topic} challenge for your audience','Design a {topic} tracker template for download','Write a {topic} quiz to assess reader knowledge','Produce a step-by-step {topic} infographic']
-};
-function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
-function fillTemplate(t,topic,audience){return t.replace(/\\{topic\\}/g,topic).replace(/\\{audience\\}/g,audience).replace(/X /,'7 ');}
-function generateIdeas(){
-  var topic=document.getElementById('ideaTopic').value.trim();
-  if(!topic){alert('Please enter a health topic first.');return;}
-  var audience=document.getElementById('ideaAudience').options[document.getElementById('ideaAudience').selectedIndex].text;
-  var output=document.getElementById('ideaOutput');
-  output.innerHTML='<div class="idea-gen-generating">⚡ Generating ideas for "<strong>'+topic+'</strong>"…</div>';
-  setTimeout(function(){
-    var sections=[
-      {label:'📝 Blog Post Ideas',key:'blog',icon:'📝'},
-      {label:'📲 Social Media Angles',key:'social',icon:'📲'},
-      {label:'❓ FAQs to Answer',key:'faq',icon:'❓'},
-      {label:'⚡ Action Content',key:'action',icon:'⚡'}
-    ];
-    var html=sections.map(function(s){
-      var ideas=FRAMEWORKS[s.key].slice(0,s.key==='action'?4:6).map(function(t){return fillTemplate(t,topic,audience);});
-      var cards=ideas.map(function(idea){
-        return '<div class="idea-card"><span class="idea-card-text">'+cap(idea)+'</span><button class="idea-copy-btn" onclick="copyIdea(this,\''+idea.replace(/\'/g,'\\\\\'').replace(/"/g,'&quot;')+'\')" >Copy</button></div>';
-      }).join('');
-      return '<div class="idea-category-block"><div class="idea-category-title">'+s.icon+' '+s.label+'</div><div class="idea-cards">'+cards+'</div></div>';
-    }).join('');
-    output.innerHTML=html;
-  },600);
-}
-function copyIdea(btn,text){navigator.clipboard.writeText(text).then(function(){btn.textContent='✓ Copied!';setTimeout(function(){btn.textContent='Copy';},2000);});}
-document.getElementById('ideaTopic').addEventListener('keydown',function(e){if(e.key==='Enter')generateIdeas();});
-</script>`;
+<div id="ideaOutput" class="idea-results"></div>`;
   }
 
   // ── IMAGE COMPRESSOR (Utility/Minimal) ───────────────────────────────────
   if (t === 'image-compressor') {
     return `
 <div class="saas-card-title">⚡ Image Compressor</div>
-<div class="util-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
+<div class="util-dropzone" id="toolDrop">
   <div class="util-dropzone-icon">🖼️</div>
   <h3>Drop your image here</h3>
   <p>JPG, PNG, WebP, GIF supported — or click to browse</p>
@@ -5293,27 +4675,16 @@ document.getElementById('ideaTopic').addEventListener('keydown',function(e){if(e
 </div>
 <div class="saas-form-group" style="margin-top:18px">
   <label class="saas-label">Quality: <span id="qualVal">75</span>%</label>
-  <input type="range" id="qualSlider" min="10" max="95" value="75" oninput="document.getElementById('qualVal').textContent=this.value" style="width:100%;accent-color:#2d6a4f;margin-top:8px">
+  <input type="range" id="qualSlider" min="10" max="95" value="75" data-tool-action="quality-display" style="width:100%;accent-color:#2d6a4f;margin-top:8px">
 </div>
-<button class="saas-btn saas-btn-primary" id="compressBtn" onclick="doCompress()" disabled style="width:100%;margin-top:4px">Compress Image</button>
+<button class="saas-btn saas-btn-primary" id="compressBtn" data-tool-action="compress" disabled style="width:100%;margin-top:4px">Compress Image</button>
 <div class="util-result" id="compResult">
   <div class="util-result-inner">
     <div>✅ <span id="compInfo" class="util-result-info"></span></div>
     <a id="compDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download</a>
   </div>
   <img id="compPreview" alt="Compressed image preview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
-</div>
-<script>
-var cFile=null,cOrigSize=0;
-var drop=document.getElementById('toolDrop');
-var fileInp=document.getElementById('toolFile');
-drop.addEventListener('dragover',function(e){e.preventDefault();drop.classList.add('drag-over');});
-drop.addEventListener('dragleave',function(){drop.classList.remove('drag-over');});
-drop.addEventListener('drop',function(e){e.preventDefault();drop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadImgFile(e.dataTransfer.files[0]);});
-fileInp.addEventListener('change',function(){if(this.files[0])loadImgFile(this.files[0]);});
-function loadImgFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}cFile=f;cOrigSize=f.size;drop.querySelector('h3').textContent=f.name;drop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB) — ready to compress';document.getElementById('compressBtn').disabled=false;}
-function doCompress(){if(!cFile)return;var q=parseInt(document.getElementById('qualSlider').value)/100;var btn=document.getElementById('compressBtn');btn.textContent='Compressing…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(cFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('compDl');dl.href=oUrl;dl.download='compressed.jpg';var saved=Math.round((1-blob.size/cOrigSize)*100);document.getElementById('compInfo').textContent='Original: '+Math.round(cOrigSize/1024)+'KB → '+Math.round(blob.size/1024)+'KB (saved '+saved+'%)';var prev=document.getElementById('compPreview');prev.src=oUrl;prev.style.display='block';document.getElementById('compResult').classList.add('visible');btn.textContent='Compress Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/jpeg',q);};img.src=url;}
-</script>`;
+</div>`;
   }
 
   // ── IMAGE CONVERTER (Utility/Minimal) ────────────────────────────────────
@@ -5321,36 +4692,24 @@ function doCompress(){if(!cFile)return;var q=parseInt(document.getElementById('q
     return `
 <div class="saas-card-title">🔄 Image Converter</div>
 <div class="util-format-tabs">
-  <button class="util-format-tab active" onclick="setFmt('image/jpeg','jpg',this)">JPG</button>
-  <button class="util-format-tab" onclick="setFmt('image/png','png',this)">PNG</button>
-  <button class="util-format-tab" onclick="setFmt('image/webp','webp',this)">WebP</button>
+  <button class="util-format-tab active" data-fmt-mime="image/jpeg" data-fmt-ext="jpg">JPG</button>
+  <button class="util-format-tab" data-fmt-mime="image/png" data-fmt-ext="png">PNG</button>
+  <button class="util-format-tab" data-fmt-mime="image/webp" data-fmt-ext="webp">WebP</button>
 </div>
-<div class="util-dropzone" id="convDrop" onclick="document.getElementById('convFile').click()">
+<div class="util-dropzone" id="convDrop">
   <div class="util-dropzone-icon">🖼️</div>
   <h3>Drop your image here</h3>
   <p>Any image format — PNG, JPG, WebP, GIF, BMP</p>
   <input type="file" id="convFile" accept="image/*">
 </div>
-<button class="saas-btn saas-btn-primary" id="convBtn" onclick="doConvert()" disabled style="width:100%;margin-top:16px">Convert Image</button>
+<button class="saas-btn saas-btn-primary" id="convBtn" data-tool-action="convert" disabled style="width:100%;margin-top:16px">Convert Image</button>
 <div class="util-result" id="convResult">
   <div class="util-result-inner">
     <div>✅ <span id="convInfo" class="util-result-info"></span></div>
     <a id="convDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download</a>
   </div>
   <img id="convPreview" alt="Converted image format preview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
-</div>
-<script>
-var convFile=null,fmtMime='image/jpeg',fmtExt='jpg';
-var convDrop=document.getElementById('convDrop');
-var convFileInp=document.getElementById('convFile');
-function setFmt(mime,ext,btn){fmtMime=mime;fmtExt=ext;document.querySelectorAll('.util-format-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
-convDrop.addEventListener('dragover',function(e){e.preventDefault();convDrop.classList.add('drag-over');});
-convDrop.addEventListener('dragleave',function(){convDrop.classList.remove('drag-over');});
-convDrop.addEventListener('drop',function(e){e.preventDefault();convDrop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadConvFile(e.dataTransfer.files[0]);});
-convFileInp.addEventListener('change',function(){if(this.files[0])loadConvFile(this.files[0]);});
-function loadConvFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}convFile=f;convDrop.querySelector('h3').textContent=f.name;convDrop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB) — select format and convert';document.getElementById('convBtn').disabled=false;}
-function doConvert(){if(!convFile)return;var btn=document.getElementById('convBtn');btn.textContent='Converting…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(convFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');if(fmtMime==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);}ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('convDl');dl.href=oUrl;dl.download='converted.'+fmtExt;document.getElementById('convInfo').textContent='Converted to '+fmtExt.toUpperCase()+' ('+Math.round(blob.size/1024)+'KB)';var prev=document.getElementById('convPreview');prev.src=oUrl;prev.style.display='block';document.getElementById('convResult').classList.add('visible');btn.textContent='Convert Another';btn.disabled=false;URL.revokeObjectURL(url);},fmtMime,fmtMime==='image/jpeg'?0.92:1);};img.src=url;}
-</script>`;
+</div>`;
   }
 
   // ── PDF MERGE (Utility/Minimal) ───────────────────────────────────────────
@@ -5363,29 +4722,16 @@ function doConvert(){if(!convFile)return;var btn=document.getElementById('convBt
   <h3>Drop PDF files here</h3>
   <p>Add two or more PDFs to merge into one document</p>
   <input type="file" id="mergeFile" accept="application/pdf" multiple>
-  <div style="margin-top:12px"><button class="saas-btn saas-btn-ghost saas-btn-sm" type="button" onclick="event.stopPropagation();document.getElementById('mergeFile').click()">📁 Browse Files</button></div>
+  <div style="margin-top:12px"><button class="saas-btn saas-btn-ghost saas-btn-sm" type="button" data-tool-action="browse-merge">📁 Browse Files</button></div>
 </div>
 <div class="util-file-list" id="mergeFileList"></div>
-<button class="saas-btn saas-btn-primary" id="mergeBtn" onclick="doMerge()" disabled style="width:100%;margin-top:4px">Merge PDFs</button>
+<button class="saas-btn saas-btn-primary" id="mergeBtn" data-tool-action="merge" disabled style="width:100%;margin-top:4px">Merge PDFs</button>
 <div class="util-result" id="mergeResult">
   <div class="util-result-inner">
     <div>✅ <span id="mergeInfo" class="util-result-info"></span></div>
     <a id="mergeDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download PDF</a>
   </div>
-</div>
-<script>
-var mFiles=[];
-var mDrop=document.getElementById('mergeDrop');
-mDrop.addEventListener('dragover',function(e){e.preventDefault();mDrop.classList.add('drag-over');});
-mDrop.addEventListener('dragleave',function(){mDrop.classList.remove('drag-over');});
-mDrop.addEventListener('drop',function(e){e.preventDefault();mDrop.classList.remove('drag-over');addMFiles(Array.from(e.dataTransfer.files));});
-mDrop.addEventListener('click',function(e){if(e.target===mDrop||['H3','P','DIV'].indexOf(e.target.tagName)!==-1&&!e.target.classList.contains('saas-btn'))document.getElementById('mergeFile').click();});
-document.getElementById('mergeFile').addEventListener('change',function(){addMFiles(Array.from(this.files));this.value='';});
-function addMFiles(files){files.forEach(function(f){if(f.type==='application/pdf')mFiles.push(f);});renderMFiles();}
-function renderMFiles(){var el=document.getElementById('mergeFileList');el.innerHTML=mFiles.map(function(f,i){return '<div class="util-file-item"><span>📄</span><span class="util-file-name">'+f.name+'</span><span class="util-file-size">'+Math.round(f.size/1024)+'KB</span><button class="util-file-del" onclick="removeMFile('+i+')">✕</button></div>';}).join('');document.getElementById('mergeBtn').disabled=mFiles.length<2;}
-function removeMFile(i){mFiles.splice(i,1);renderMFiles();}
-async function doMerge(){if(mFiles.length<2)return;var btn=document.getElementById('mergeBtn');btn.textContent='Merging…';btn.disabled=true;try{var merged=await PDFLib.PDFDocument.create();for(var f of mFiles){var buf=await f.arrayBuffer();var src=await PDFLib.PDFDocument.load(buf);var pages=await merged.copyPages(src,src.getPageIndices());pages.forEach(function(p){merged.addPage(p);});}var bytes=await merged.save();var blob=new Blob([bytes],{type:'application/pdf'});var url=URL.createObjectURL(blob);var dl=document.getElementById('mergeDl');dl.href=url;dl.download='merged.pdf';document.getElementById('mergeInfo').textContent=mFiles.length+' PDFs merged successfully';document.getElementById('mergeResult').classList.add('visible');btn.textContent='Merge Again';btn.disabled=false;}catch(e){alert('Error merging PDFs: '+e.message);btn.textContent='Merge PDFs';btn.disabled=false;}}
-</script>`;
+</div>`;
   }
 
   // ── PDF SPLIT (Utility/Minimal) ───────────────────────────────────────────
@@ -5393,7 +4739,7 @@ async function doMerge(){if(mFiles.length<2)return;var btn=document.getElementBy
     return `
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
 <div class="saas-card-title">✂️ PDF Splitter</div>
-<div class="util-dropzone" id="splitDrop" onclick="document.getElementById('splitFile').click()">
+<div class="util-dropzone" id="splitDrop">
   <div class="util-dropzone-icon">✂️</div>
   <h3>Drop your PDF here</h3>
   <p>Select a single PDF file to extract pages from</p>
@@ -5405,24 +4751,13 @@ async function doMerge(){if(mFiles.length<2)return;var btn=document.getElementBy
   <input class="saas-input" id="splitRange" placeholder="e.g. 1-3 or 1,3,5 or 2-4,7" style="font-family:monospace">
   <p style="font-size:0.78rem;color:#9ca3af;margin-top:6px">Use ranges (1-5), specific pages (1,3,7), or combine (1-3,7,10-12)</p>
 </div>
-<button class="saas-btn saas-btn-primary" id="splitBtn" onclick="doSplit()" disabled style="width:100%">Extract Pages</button>
+<button class="saas-btn saas-btn-primary" id="splitBtn" data-tool-action="split" disabled style="width:100%">Extract Pages</button>
 <div class="util-result" id="splitResult">
   <div class="util-result-inner">
     <div>✅ <span id="splitInfo" class="util-result-info"></span></div>
     <a id="splitDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download PDF</a>
   </div>
-</div>
-<script>
-var splitPdfFile=null;
-var sDrop=document.getElementById('splitDrop');
-sDrop.addEventListener('dragover',function(e){e.preventDefault();sDrop.classList.add('drag-over');});
-sDrop.addEventListener('dragleave',function(){sDrop.classList.remove('drag-over');});
-sDrop.addEventListener('drop',function(e){e.preventDefault();sDrop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadSplitFile(e.dataTransfer.files[0]);});
-document.getElementById('splitFile').addEventListener('change',function(){if(this.files[0])loadSplitFile(this.files[0]);});
-function loadSplitFile(f){if(f.type!=='application/pdf'){alert('Please upload a PDF file.');return;}splitPdfFile=f;sDrop.querySelector('h3').textContent=f.name;sDrop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB)';PDFLib.PDFDocument.load(f.arrayBuffer()).then(function(doc){var n=doc.getPageCount();document.getElementById('splitPageInfo').style.display='block';document.getElementById('splitPageInfo').textContent='PDF has '+n+' page'+(n===1?'':'s')+'. Enter the page range you want to extract.';document.getElementById('splitBtn').disabled=false;});}
-function parseRange(str,total){var pages=new Set();str.split(',').forEach(function(part){part=part.trim();if(part.indexOf('-')!==-1){var pts=part.split('-');var a=parseInt(pts[0]);var b=parseInt(pts[1]);for(var i=a;i<=b&&i<=total;i++)if(i>=1)pages.add(i-1);}else{var p=parseInt(part);if(p>=1&&p<=total)pages.add(p-1);}});return Array.from(pages).sort(function(a,b){return a-b;});}
-async function doSplit(){if(!splitPdfFile)return;var rangeStr=document.getElementById('splitRange').value.trim();if(!rangeStr){alert('Please enter a page range.');return;}var btn=document.getElementById('splitBtn');btn.textContent='Extracting…';btn.disabled=true;try{var buf=await splitPdfFile.arrayBuffer();var src=await PDFLib.PDFDocument.load(buf);var total=src.getPageCount();var indices=parseRange(rangeStr,total);if(!indices.length){alert('No valid pages found. Check your range and try again.');btn.textContent='Extract Pages';btn.disabled=false;return;}var out=await PDFLib.PDFDocument.create();var pages=await out.copyPages(src,indices);pages.forEach(function(p){out.addPage(p);});var bytes=await out.save();var blob=new Blob([bytes],{type:'application/pdf'});var url=URL.createObjectURL(blob);document.getElementById('splitDl').href=url;document.getElementById('splitDl').download='extracted_pages.pdf';document.getElementById('splitInfo').textContent='Extracted '+indices.length+' page'+(indices.length===1?'':'s')+' from '+total+'-page PDF';document.getElementById('splitResult').classList.add('visible');btn.textContent='Extract Again';btn.disabled=false;}catch(e){alert('Error processing PDF: '+e.message);btn.textContent='Extract Pages';btn.disabled=false;}}
-</script>`;
+</div>`;
   }
 
   return `<div class="saas-empty-state"><div class="saas-empty-icon">🔧</div><p class="saas-empty-text">Tool UI coming soon.</p></div>`;
@@ -5445,7 +4780,7 @@ function genToolPage(tool) {
 
   const faqHtml = (tool.faq || []).map((item, i) =>
     `<div class="tool-faq-item" id="tfaq${i}">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq${i}');el.classList.toggle('open');">${item.q}</div>
+<div class="tool-faq-q" data-faq-id="tfaq${i}">${item.q}</div>
 <div class="tool-faq-a">${item.a}</div>
 </div>`
   ).join('');
@@ -5471,7 +4806,7 @@ ${TOOL_TRACKER_JS}
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="${tool.type}">
 <div class="saas-card">
 ${toolUIByType(tool)}
 </div>
@@ -5483,6 +4818,8 @@ ${faqHtml ? `<div class="tool-faq-section"><h2>Frequently Asked Questions</h2>${
 
 ${relatedHtml ? `<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid">${relatedHtml}</div></div>` : ''}
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 ${FOOTER}
 ${CHATBOT}
 </body></html>`;
@@ -5583,38 +4920,6 @@ ${catSections}
 
 ${FOOTER}
 ${CHATBOT}
-<script>
-// Recent activity
-(function(){
-  try{
-    var toolNames=${JSON.stringify(toolsData.reduce((acc,t)=>{acc[t.slug]={name:t.name,icon:t.icon};return acc;},{}))};
-    var recent=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');
-    if(recent.length){
-      var panel=document.getElementById('activityPanel');panel.classList.add('has-activity');
-      var list=document.getElementById('activityList');
-      list.innerHTML=recent.filter(function(s){return toolNames[s];}).map(function(s){
-        var t=toolNames[s];return '<a href="/tools/'+s+'.html" class="tools-activity-pill">'+t.icon+' '+t.name+'</a>';
-      }).join('');
-    }
-  }catch(e){}
-})();
-
-function filterCat(cat,btn){
-  document.querySelectorAll('.tools-cat-tab').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  document.querySelectorAll('[data-section]').forEach(function(s){s.style.display=(cat==='all'||s.dataset.section===cat)?'':'none';});
-  document.querySelectorAll('[data-cat]').forEach(function(c){c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';});
-}
-
-function filterHub(q){
-  q=(q||'').toLowerCase().trim();
-  document.querySelectorAll('[data-name]').forEach(function(card){card.style.display=(q&&card.dataset.name.indexOf(q)===-1)?'none':'';});
-  document.querySelectorAll('[data-section]').forEach(function(sec){
-    var vis=Array.from(sec.querySelectorAll('[data-name]')).filter(function(c){return c.style.display!=='none';}).length;
-    sec.style.display=(vis===0&&q)?'none':'';
-  });
-}
-</script>
 </body></html>`);
 console.log('Generated tools/index.html');
 

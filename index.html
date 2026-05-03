@@ -480,7 +480,7 @@
 <div class="home-newsletter-v2-inner">
 <h2>Stay Updated with Health Tips</h2>
 <p>Weekly health insights, new calculator launches, and expert wellness advice — delivered to your inbox.</p>
-<form class="home-newsletter-form-v2" onsubmit="event.preventDefault();alert('Thank you for subscribing!');">
+<form class="home-newsletter-form-v2" id="homeNewsletterForm">
 <input type="email" placeholder="Enter your email address" required>
 <button type="submit">Subscribe</button>
 </form>
@@ -596,19 +596,6 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-function homeFilterCat(cat,btn){
-  document.querySelectorAll('.home-cat-btn').forEach(function(b){b.classList.remove('active');});
-  if(btn)btn.classList.add('active');
-  document.querySelectorAll('#homeBlogGrid .blog-card').forEach(function(card){
-    if(cat==='all'||card.getAttribute('data-hcat')===cat){
-      card.style.display='';
-    } else {
-      card.style.display='none';
-    }
-  });
-}
-</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

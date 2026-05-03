@@ -452,40 +452,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ var cond=document.getElementById('condition').value;var fish=parseFloat(document.getElementById('fish').value)||0;var flax=parseFloat(document.getElementById('flax').value)||0;var nuts=parseFloat(document.getElementById('nuts').value)||0;var targets={'General Health':500,'Heart Health':1000,'Anti-Inflammatory':2000,'Brain Health':1000,'Pregnancy/Breastfeeding':1400}[cond]||500;var current=Math.round(fish*7*1500/7+flax*2300+nuts*0.7*2300);var gap=Math.max(0,targets-current);var c=current>=targets?'green':current>=targets*0.7?'yellow':'red';var l=current>=targets?'Target Met':'Additional Needed';showResult('result',current+' mg/day','Omega-3 Intake','Daily intake: ~'+current+' mg EPA+DHA | Target for '+cond+': '+targets+' mg | Gap: '+(gap>0?gap+' mg — consider fish oil supplements.':'none — your intake is sufficient!')+'  Sources: salmon (2000mg/serving), sardines (1500mg), mackerel (2500mg). Plant omega-3 (ALA) from flax/chia converts at only 5-10% efficiency.',c); }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'Omega-3 Intake Calculator Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ var cond=document.getElementById('condition').value;var fish=parseFloat(document.getElementById('fish').value)||0;var flax=parseFloat(document.getElementById('flax').value)||0;var nuts=parseFloat(document.getElementById('nuts').value)||0;var targets={'General Health':500,'Heart Health':1000,'Anti-Inflammatory':2000,'Brain Health':1000,'Pregnancy/Breastfeeding':1400}[cond]||500;var current=Math.round(fish*7*1500/7+flax*2300+nuts*0.7*2300);var gap=Math.max(0,targets-current);var c=current>=targets?'green':current>=targets*0.7?'yellow':'red';var l=current>=targets?'Target Met':'Additional Needed';showResult('result',current+' mg/day','Omega-3 Intake','Daily intake: ~'+current+' mg EPA+DHA | Target for '+cond+': '+targets+' mg | Gap: '+(gap>0?gap+' mg — consider fish oil supplements.':'none — your intake is sufficient!')+'  Sources: salmon (2000mg/serving), sardines (1500mg), mackerel (2500mg). Plant omega-3 (ALA) from flax/chia converts at only 5-10% efficiency.',c); };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

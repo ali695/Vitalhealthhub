@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Daily Planner</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Daily Planner","item":"https://vitalhealthhub.org/tools/daily-planner.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,12 +122,12 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="daily-planner">
 <div class="saas-card">
 
 <div class="planner-date-header">
   <div class="planner-today" id="plannerDate"></div>
-  <button class="saas-btn saas-btn-ghost saas-btn-sm" onclick="clearDone()">Clear Completed</button>
+  <button class="saas-btn saas-btn-ghost saas-btn-sm" data-tool-action="clear-done">Clear Completed</button>
 </div>
 <div class="planner-add-form">
   <input class="saas-input" id="plannerTask" placeholder="Add a task…" maxlength="120">
@@ -139,7 +137,7 @@
     <option value="medium" selected>🟡 Medium</option>
     <option value="low">🟢 Low</option>
   </select>
-  <button class="saas-btn saas-btn-primary" onclick="addTask()">+ Add</button>
+  <button class="saas-btn saas-btn-primary" data-tool-action="add-task">+ Add</button>
 </div>
 <div id="plannerList" class="planner-task-list"></div>
 <div id="plannerEmpty" class="saas-empty-state" style="display:none">
@@ -147,67 +145,29 @@
   <p class="saas-empty-text">No tasks yet. Add your first task for today!</p>
 </div>
 <div class="planner-stats" id="plannerStats"></div>
-<script>
-var TODAY=new Date().toISOString().split('T')[0];
-var PKEY='vhh_planner_'+TODAY;
-var PLABELS={high:'🔴 High',medium:'🟡 Medium',low:'🟢 Low'};
-document.getElementById('plannerDate').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-function loadTasks(){return JSON.parse(localStorage.getItem(PKEY)||'[]');}
-function saveTasks(d){localStorage.setItem(PKEY,JSON.stringify(d));}
-function addTask(){
-  var name=document.getElementById('plannerTask').value.trim();
-  if(!name)return;
-  var time=document.getElementById('plannerTime').value;
-  var pri=document.getElementById('plannerPriority').value;
-  var tasks=loadTasks();
-  tasks.push({id:Date.now().toString(),name:name,time:time,priority:pri,done:false});
-  tasks.sort(function(a,b){var o={high:0,medium:1,low:2};return o[a.priority]-o[b.priority];});
-  saveTasks(tasks);document.getElementById('plannerTask').value='';renderTasks();
-}
-function toggleTask(id){var t=loadTasks();var tk=t.find(function(x){return x.id===id;});if(tk)tk.done=!tk.done;saveTasks(t);renderTasks();}
-function deleteTask(id){var t=loadTasks().filter(function(x){return x.id!==id;});saveTasks(t);renderTasks();}
-function clearDone(){var t=loadTasks().filter(function(x){return !x.done;});saveTasks(t);renderTasks();}
-function renderTasks(){
-  var tasks=loadTasks();var list=document.getElementById('plannerList');var empty=document.getElementById('plannerEmpty');
-  if(!tasks.length){list.innerHTML='';empty.style.display='block';document.getElementById('plannerStats').innerHTML='';return;}
-  empty.style.display='none';
-  list.innerHTML=tasks.map(function(tk){
-    var badgeMap={high:'saas-badge-red',medium:'saas-badge-yellow',low:'saas-badge-green'};
-    return '<div class="planner-task'+(tk.done?' done-task':'')+'">'+
-      '<input type="checkbox" class="planner-task-cb"'+(tk.done?' checked':'')+' onclick="toggleTask(''+tk.id+'')">'+
-      '<span class="planner-task-time">'+tk.time+'</span>'+
-      '<span class="planner-task-name">'+tk.name+'</span>'+
-      '<span class="planner-priority"><span class="saas-badge '+badgeMap[tk.priority]+'">'+PLABELS[tk.priority]+'</span></span>'+
-      '<button class="planner-task-del" onclick="deleteTask(''+tk.id+'')">✕</button>'+
-    '</div>';
-  }).join('');
-  var done=tasks.filter(function(t){return t.done;}).length;
-  document.getElementById('plannerStats').innerHTML='<span class="planner-stat"><strong>'+tasks.length+'</strong> total</span><span class="planner-stat"><strong>'+done+'</strong> done</span><span class="planner-stat"><strong>'+(tasks.length-done)+'</strong> remaining</span>';
-}
-document.getElementById('plannerTask').addEventListener('keydown',function(e){if(e.key==='Enter')addTask();});
-renderTasks();
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Why Time Blocking Works</h2><p>Time blocking — assigning specific tasks to specific time slots — is one of the most effective productivity techniques used by high performers including Elon Musk, Cal Newport, and Bill Gates. When you write down what you will do and when, you eliminate decision fatigue and significantly reduce the mental overhead of deciding what to work on next. Research shows that people who write down their plans are up to 42% more likely to achieve their goals.</p><h2>Priority Levels Explained</h2><p>This planner uses three priority levels: High (critical tasks that must be done today), Medium (important but not urgent tasks), and Low (nice-to-do tasks or small admin items). The Eisenhower Matrix recommends doing high-priority items first thing in the morning when your cognitive energy is at its peak. Schedule creative and strategic work earlier in the day, and administrative tasks later.</p><h2>Building a Productive Day</h2><p>Start each morning by reviewing yesterday's incomplete tasks and adding today's new ones. Block your most important task (MIT) in your first time slot. Schedule similar tasks together to benefit from context-switching efficiency. Build in buffer time between tasks — research shows that tasks almost always take 1.5–2x longer than estimated. End with a brief review of what was completed.</p><h2>The Science of Task Completion</h2><p>Checking off completed tasks triggers a small dopamine release in the brain, reinforcing productive behaviour. The "Zeigarnik Effect" means that uncompleted tasks occupy mental bandwidth — writing them down and planning them frees up cognitive resources for focused work. The daily planner works as a cognitive offload system, freeing your mind to focus on execution rather than organisation.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is my planner saved for tomorrow?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">Is my planner saved for tomorrow?</div>
 <div class="tool-faq-a">Each day has its own task list saved in localStorage. When you open the planner tomorrow, you will start fresh. Previous days' lists are preserved.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How many tasks can I add?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">How many tasks can I add?</div>
 <div class="tool-faq-a">There is no hard limit. However, research suggests that planning more than 5–7 significant tasks per day leads to incomplete days and lower satisfaction. Prioritise ruthlessly.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I move a task to tomorrow?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">Can I move a task to tomorrow?</div>
 <div class="tool-faq-a">Uncheck the task and it will appear again when you visit the planner tomorrow. Manually copy the task name to tomorrow's list if needed.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Is there a mobile version?</div>
+<div class="tool-faq-q" data-faq-id="tfaq3">Is there a mobile version?</div>
 <div class="tool-faq-a">The planner is fully responsive and works on mobile browsers. All functionality including saving is available on any device.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/focus-timer.html" class="tool-related-card"><span class="tool-related-icon">⏱️</span>Focus Timer →</a><a href="/tools/goal-tracker.html" class="tool-related-card"><span class="tool-related-icon">🎯</span>Goal Tracker →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

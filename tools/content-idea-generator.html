@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Content Idea Generator</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Content Idea Generator","item":"https://vitalhealthhub.org/tools/content-idea-generator.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,7 +122,7 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="content-idea-generator">
 <div class="saas-card">
 
 <div class="saas-card-title">💡 Generate Content Ideas</div>
@@ -137,65 +135,32 @@
     <option value="seniors">Seniors (50+)</option>
     <option value="women">Women's health</option>
   </select>
-  <button class="saas-btn saas-btn-primary" onclick="generateIdeas()">✨ Generate Ideas</button>
+  <button class="saas-btn saas-btn-primary" data-tool-action="generate-ideas">✨ Generate Ideas</button>
 </div>
 <div id="ideaOutput" class="idea-results"></div>
-<script>
-var FRAMEWORKS={
-  blog:['The Definitive Guide to {topic} for {audience}','How {topic} Changed My Life (And How It Can Change Yours)','X Things Nobody Tells You About {topic}','Is {topic} Right for You? A Complete Breakdown','The Science Behind {topic}: What Research Actually Says','Common {topic} Myths Debunked by Health Experts','How to Get Started with {topic} This Week','The Beginner's Roadmap to {topic}: Step by Step','Why {topic} Is the Health Habit You've Been Missing','Top {topic} Mistakes and How to Avoid Them','How to Build a {topic} Routine That Actually Sticks','The {audience}'s Complete Guide to {topic}'],
-  social:['Swipe to see why {topic} could transform your health 👉','Hot take: {topic} is more important than you think 🔥','I tried {topic} for 30 days — here's what happened','3 {topic} tips I wish I knew sooner (save this!)','Myth vs. Fact: Everything you think you know about {topic}','Tag someone who needs this {topic} tip 👇','The one {topic} habit that changed everything for me','Your weekly reminder to prioritise your {topic} journey'],
-  faq:['What is {topic} and is it right for me?','How does {topic} actually work?','What are the benefits of {topic}?','Are there any risks or side effects to {topic}?','How long does it take to see results from {topic}?','Can beginners start {topic} right away?','What does the science say about {topic}?','How is {topic} different from similar approaches?'],
-  action:['Create a free {topic} checklist for beginners','Build a 30-day {topic} challenge for your audience','Design a {topic} tracker template for download','Write a {topic} quiz to assess reader knowledge','Produce a step-by-step {topic} infographic']
-};
-function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
-function fillTemplate(t,topic,audience){return t.replace(/\{topic\}/g,topic).replace(/\{audience\}/g,audience).replace(/X /,'7 ');}
-function generateIdeas(){
-  var topic=document.getElementById('ideaTopic').value.trim();
-  if(!topic){alert('Please enter a health topic first.');return;}
-  var audience=document.getElementById('ideaAudience').options[document.getElementById('ideaAudience').selectedIndex].text;
-  var output=document.getElementById('ideaOutput');
-  output.innerHTML='<div class="idea-gen-generating">⚡ Generating ideas for "<strong>'+topic+'</strong>"…</div>';
-  setTimeout(function(){
-    var sections=[
-      {label:'📝 Blog Post Ideas',key:'blog',icon:'📝'},
-      {label:'📲 Social Media Angles',key:'social',icon:'📲'},
-      {label:'❓ FAQs to Answer',key:'faq',icon:'❓'},
-      {label:'⚡ Action Content',key:'action',icon:'⚡'}
-    ];
-    var html=sections.map(function(s){
-      var ideas=FRAMEWORKS[s.key].slice(0,s.key==='action'?4:6).map(function(t){return fillTemplate(t,topic,audience);});
-      var cards=ideas.map(function(idea){
-        return '<div class="idea-card"><span class="idea-card-text">'+cap(idea)+'</span><button class="idea-copy-btn" onclick="copyIdea(this,''+idea.replace(/'/g,'\\'').replace(/"/g,'&quot;')+'')" >Copy</button></div>';
-      }).join('');
-      return '<div class="idea-category-block"><div class="idea-category-title">'+s.icon+' '+s.label+'</div><div class="idea-cards">'+cards+'</div></div>';
-    }).join('');
-    output.innerHTML=html;
-  },600);
-}
-function copyIdea(btn,text){navigator.clipboard.writeText(text).then(function(){btn.textContent='✓ Copied!';setTimeout(function(){btn.textContent='Copy';},2000);});}
-document.getElementById('ideaTopic').addEventListener('keydown',function(e){if(e.key==='Enter')generateIdeas();});
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>The Content Creator's Biggest Challenge</h2><p>Coming up with fresh, relevant content ideas consistently is one of the hardest parts of content marketing. Research shows that health and wellness is one of the most searched categories online, with billions of monthly searches covering nutrition, fitness, mental health, sleep, and chronic conditions. Yet many health content creators run out of ideas or default to writing about the same general topics as everyone else.</p><h2>How the Idea Generator Works</h2><p>Enter any health topic or keyword, select a content type, and the generator produces a list of targeted content ideas derived from high-traffic health content categories and proven content frameworks. Ideas are grouped into: long-form blog posts (best for SEO and authority building), social media content angles (optimised for engagement and sharing), FAQ content (targets question-based search queries and featured snippets), and tool-specific content (helps readers take action).</p><h2>SEO-First Content Strategy for Health Sites</h2><p>The most effective health content strategy combines: evergreen educational content that ranks for high-volume keywords, question-based content that targets featured snippets and voice search, case studies and personal stories that generate social sharing, and data-driven content that earns backlinks from other health sites. This generator helps you produce ideas across all four content types for any health topic you choose.</p><h2>E-E-A-T and Health Content</h2><p>Google applies especially high quality standards to health content under its E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) guidelines. Health topics are classified as "Your Money or Your Life" (YMYL) content, meaning they require demonstrated expertise, accurate information, clear authorship, and references to credible sources. Use the generated ideas as starting points and ensure the final content meets these high standards.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">How many ideas does the generator produce?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">How many ideas does the generator produce?</div>
 <div class="tool-faq-a">The generator produces 12–16 ideas per topic, across four content types: blog posts, social media, FAQs, and action-oriented content.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Are the ideas unique to my topic?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">Are the ideas unique to my topic?</div>
 <div class="tool-faq-a">Ideas are generated by combining your topic with proven content frameworks and health-specific angles. They are tailored to your input but based on patterns from successful health content.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I generate ideas for non-health topics?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">Can I generate ideas for non-health topics?</div>
 <div class="tool-faq-a">The generator is optimised for health and wellness topics. It will produce ideas for other topics but the results may be less targeted.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Can I copy the generated ideas?</div>
+<div class="tool-faq-q" data-faq-id="tfaq3">Can I copy the generated ideas?</div>
 <div class="tool-faq-a">Yes, each idea has a copy button. You can also select and copy the full output to paste into your content planning tool.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/headline-analyzer.html" class="tool-related-card"><span class="tool-related-icon">📰</span>Headline Analyzer →</a><a href="/tools/advanced-text-analyzer.html" class="tool-related-card"><span class="tool-related-icon">📝</span>Advanced Text Analyzer →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

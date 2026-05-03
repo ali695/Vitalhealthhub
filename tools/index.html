@@ -379,36 +379,4 @@ ma7122671@gmail.com
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
-<script>
-// Recent activity
-(function(){
-  try{
-    var toolNames={"habit-tracker":{"name":"Habit Tracker","icon":"🔥"},"sleep-tracker":{"name":"Sleep Tracker","icon":"😴"},"mood-tracker":{"name":"Mood Tracker","icon":"🌈"},"step-tracker":{"name":"Step Tracker","icon":"👟"},"health-dashboard":{"name":"Health Dashboard","icon":"📊"},"daily-planner":{"name":"Daily Planner","icon":"📅"},"focus-timer":{"name":"Focus Timer","icon":"⏱️"},"goal-tracker":{"name":"Goal Tracker","icon":"🎯"},"advanced-text-analyzer":{"name":"Advanced Text Analyzer","icon":"📝"},"headline-analyzer":{"name":"Headline Analyzer","icon":"📰"},"content-idea-generator":{"name":"Content Idea Generator","icon":"💡"},"image-compressor":{"name":"Image Compressor","icon":"⚡"},"image-converter":{"name":"Image Converter","icon":"🔄"},"pdf-merge":{"name":"PDF Merge Tool","icon":"📄"},"pdf-split":{"name":"PDF Splitter","icon":"✂️"}};
-    var recent=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');
-    if(recent.length){
-      var panel=document.getElementById('activityPanel');panel.classList.add('has-activity');
-      var list=document.getElementById('activityList');
-      list.innerHTML=recent.filter(function(s){return toolNames[s];}).map(function(s){
-        var t=toolNames[s];return '<a href="/tools/'+s+'.html" class="tools-activity-pill">'+t.icon+' '+t.name+'</a>';
-      }).join('');
-    }
-  }catch(e){}
-})();
-
-function filterCat(cat,btn){
-  document.querySelectorAll('.tools-cat-tab').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  document.querySelectorAll('[data-section]').forEach(function(s){s.style.display=(cat==='all'||s.dataset.section===cat)?'':'none';});
-  document.querySelectorAll('[data-cat]').forEach(function(c){c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';});
-}
-
-function filterHub(q){
-  q=(q||'').toLowerCase().trim();
-  document.querySelectorAll('[data-name]').forEach(function(card){card.style.display=(q&&card.dataset.name.indexOf(q)===-1)?'none':'';});
-  document.querySelectorAll('[data-section]').forEach(function(sec){
-    var vis=Array.from(sec.querySelectorAll('[data-name]')).filter(function(c){return c.style.display!=='none';}).length;
-    sec.style.display=(vis===0&&q)?'none':'';
-  });
-}
-</script>
 </body></html>

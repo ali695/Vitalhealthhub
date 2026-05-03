@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>PDF Merge Tool</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"PDF Merge Tool","item":"https://vitalhealthhub.org/tools/pdf-merge.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,7 +122,7 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="pdf-merge">
 <div class="saas-card">
 
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
@@ -134,44 +132,33 @@
   <h3>Drop PDF files here</h3>
   <p>Add two or more PDFs to merge into one document</p>
   <input type="file" id="mergeFile" accept="application/pdf" multiple>
-  <div style="margin-top:12px"><button class="saas-btn saas-btn-ghost saas-btn-sm" type="button" onclick="event.stopPropagation();document.getElementById('mergeFile').click()">📁 Browse Files</button></div>
+  <div style="margin-top:12px"><button class="saas-btn saas-btn-ghost saas-btn-sm" type="button" data-tool-action="browse-merge">📁 Browse Files</button></div>
 </div>
 <div class="util-file-list" id="mergeFileList"></div>
-<button class="saas-btn saas-btn-primary" id="mergeBtn" onclick="doMerge()" disabled style="width:100%;margin-top:4px">Merge PDFs</button>
+<button class="saas-btn saas-btn-primary" id="mergeBtn" data-tool-action="merge" disabled style="width:100%;margin-top:4px">Merge PDFs</button>
 <div class="util-result" id="mergeResult">
   <div class="util-result-inner">
     <div>✅ <span id="mergeInfo" class="util-result-info"></span></div>
     <a id="mergeDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download PDF</a>
   </div>
 </div>
-<script>
-var mFiles=[];
-var mDrop=document.getElementById('mergeDrop');
-mDrop.addEventListener('dragover',function(e){e.preventDefault();mDrop.classList.add('drag-over');});
-mDrop.addEventListener('dragleave',function(){mDrop.classList.remove('drag-over');});
-mDrop.addEventListener('drop',function(e){e.preventDefault();mDrop.classList.remove('drag-over');addMFiles(Array.from(e.dataTransfer.files));});
-mDrop.addEventListener('click',function(e){if(e.target===mDrop||['H3','P','DIV'].indexOf(e.target.tagName)!==-1&&!e.target.classList.contains('saas-btn'))document.getElementById('mergeFile').click();});
-document.getElementById('mergeFile').addEventListener('change',function(){addMFiles(Array.from(this.files));this.value='';});
-function addMFiles(files){files.forEach(function(f){if(f.type==='application/pdf')mFiles.push(f);});renderMFiles();}
-function renderMFiles(){var el=document.getElementById('mergeFileList');el.innerHTML=mFiles.map(function(f,i){return '<div class="util-file-item"><span>📄</span><span class="util-file-name">'+f.name+'</span><span class="util-file-size">'+Math.round(f.size/1024)+'KB</span><button class="util-file-del" onclick="removeMFile('+i+')">✕</button></div>';}).join('');document.getElementById('mergeBtn').disabled=mFiles.length<2;}
-function removeMFile(i){mFiles.splice(i,1);renderMFiles();}
-async function doMerge(){if(mFiles.length<2)return;var btn=document.getElementById('mergeBtn');btn.textContent='Merging…';btn.disabled=true;try{var merged=await PDFLib.PDFDocument.create();for(var f of mFiles){var buf=await f.arrayBuffer();var src=await PDFLib.PDFDocument.load(buf);var pages=await merged.copyPages(src,src.getPageIndices());pages.forEach(function(p){merged.addPage(p);});}var bytes=await merged.save();var blob=new Blob([bytes],{type:'application/pdf'});var url=URL.createObjectURL(blob);var dl=document.getElementById('mergeDl');dl.href=url;dl.download='merged.pdf';document.getElementById('mergeInfo').textContent=mFiles.length+' PDFs merged successfully';document.getElementById('mergeResult').classList.add('visible');btn.textContent='Merge Again';btn.disabled=false;}catch(e){alert('Error merging PDFs: '+e.message);btn.textContent='Merge PDFs';btn.disabled=false;}}
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Merge PDFs Instantly in Your Browser</h2><p>Combining multiple PDFs into one document is a common need — assembling report chapters, combining a CV with cover letter and supporting documents, or joining scanned pages into one file. This tool uses pdf-lib, a powerful open-source JavaScript library, to merge your PDFs entirely in your browser. No files are uploaded to any server — all processing is local, fast, and completely private.</p><h2>Maintaining PDF Quality</h2><p>PDF merging using pdf-lib preserves the original quality of all content including text, vector graphics, images, and embedded fonts. The merged output is identical in quality to the source files. Page order is maintained exactly as you add the files — drag and arrange them before merging for precise control.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Are my PDFs uploaded to any server?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">Are my PDFs uploaded to any server?</div>
 <div class="tool-faq-a">No. Merging happens entirely in your browser using pdf-lib. Your files never leave your device.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How many PDFs can I merge?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">How many PDFs can I merge?</div>
 <div class="tool-faq-a">There is no hard limit. Performance depends on file sizes and your browser's available memory. Keep total file size under 100MB for best results.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-converter.html" class="tool-related-card"><span class="tool-related-icon">🔄</span>Image Converter →</a><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a><a href="/tools/pdf-split.html" class="tool-related-card"><span class="tool-related-icon">✂️</span>PDF Splitter →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

@@ -452,40 +452,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ var g=parseFloat(document.getElementById('goals').value)||0;var p=parseFloat(document.getElementById('priority').value)||0;var d=parseFloat(document.getElementById('distract').value)||0;var b=parseFloat(document.getElementById('breaks').value)||0;var s=parseFloat(document.getElementById('sleep').value)||0;var e=parseFloat(document.getElementById('exercise').value)||0;var total=g+p+d+b+s+e;var max=24;var pct=Math.round(total/max*100);var col=pct>=75?'green':pct>=50?'yellow':'red';var l=pct>=75?'High Productivity':pct>=50?'Moderate Productivity':'Low Productivity';var s2=pct>=75?'Excellent habits! You have a strong productivity foundation. Continue refining systems as your goals evolve.':pct>=50?'Good foundations with room to grow. Focus on planning the night before, blocking distraction, and protecting your best hours for deep work.':'Significant improvement opportunities exist. Start with one change: either consistent sleep time or a morning planning ritual — these two habits create a cascade of productivity gains.';showResult('result',pct+'%',l,s2,col); }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'Productivity Score Calculator Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ var g=parseFloat(document.getElementById('goals').value)||0;var p=parseFloat(document.getElementById('priority').value)||0;var d=parseFloat(document.getElementById('distract').value)||0;var b=parseFloat(document.getElementById('breaks').value)||0;var s=parseFloat(document.getElementById('sleep').value)||0;var e=parseFloat(document.getElementById('exercise').value)||0;var total=g+p+d+b+s+e;var max=24;var pct=Math.round(total/max*100);var col=pct>=75?'green':pct>=50?'yellow':'red';var l=pct>=75?'High Productivity':pct>=50?'Moderate Productivity':'Low Productivity';var s2=pct>=75?'Excellent habits! You have a strong productivity foundation. Continue refining systems as your goals evolve.':pct>=50?'Good foundations with room to grow. Focus on planning the night before, blocking distraction, and protecting your best hours for deep work.':'Significant improvement opportunities exist. Start with one change: either consistent sleep time or a morning planning ritual — these two habits create a cascade of productivity gains.';showResult('result',pct+'%',l,s2,col); };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

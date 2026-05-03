@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Sleep Tracker</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Sleep Tracker","item":"https://vitalhealthhub.org/tools/sleep-tracker.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,7 +122,7 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="sleep-tracker">
 <div class="saas-card">
 
 <div class="saas-card-title">😴 Log Tonight's Sleep</div>
@@ -141,84 +139,45 @@
 <div class="saas-form-group">
   <label class="saas-label">Sleep Quality</label>
   <div style="display:flex;gap:8px;margin-top:4px;" id="qualityBtns">
-    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(1)" data-q="1">😞 Poor</button>
-    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(2)" data-q="2">😕 Fair</button>
-    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(3)" data-q="3">😐 OK</button>
-    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(4)" data-q="4">😊 Good</button>
-    <button class="saas-btn saas-btn-sm saas-btn-secondary" onclick="setQ(5)" data-q="5">😄 Great</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" data-q="1">😞 Poor</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" data-q="2">😕 Fair</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" data-q="3">😐 OK</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" data-q="4">😊 Good</button>
+    <button class="saas-btn saas-btn-sm saas-btn-secondary" data-q="5">😄 Great</button>
   </div>
 </div>
 <div class="saas-form-group">
   <label class="saas-label">Notes (optional)</label>
   <input class="saas-input" id="sleepNote" placeholder="Any factors affecting sleep tonight?">
 </div>
-<button class="saas-btn saas-btn-primary" onclick="logSleep()" style="width:100%">Log Sleep Entry</button>
+<button class="saas-btn saas-btn-primary" data-tool-action="log-sleep" style="width:100%">Log Sleep Entry</button>
 <div id="sleepResult" class="saas-result-section hidden" style="margin-top:24px;"></div>
 <hr class="saas-divider">
 <div class="saas-section-heading">📅 Sleep History</div>
 <div id="sleepHistory"></div>
-<script>
-var selQ=4;
-function setQ(q){selQ=q;document.querySelectorAll('#qualityBtns button').forEach(function(b){b.classList.toggle('saas-btn-primary',parseInt(b.dataset.q)===q);b.classList.toggle('saas-btn-secondary',parseInt(b.dataset.q)!==q);});}
-setQ(4);
-function loadSleep(){return JSON.parse(localStorage.getItem('vhh_sleep')||'[]');}
-function saveSleep(d){localStorage.setItem('vhh_sleep',JSON.stringify(d));}
-function calcScore(hrs,q){var durScore=Math.min(100,Math.max(0,(hrs/8)*60+(hrs>=7&&hrs<=9?20:0)));var qScore=(q/5)*40;return Math.round(Math.min(100,durScore+qScore));}
-function scoreGrade(s){return s>=80?['Excellent','saas-badge-green']:s>=60?['Good','saas-badge-blue']:s>=40?['Fair','saas-badge-yellow']:['Poor','saas-badge-red'];}
-function timeToMins(t){var p=t.split(':');return parseInt(p[0])*60+parseInt(p[1]);}
-function minsToHrs(m){return (m/60).toFixed(1);}
-function logSleep(){
-  var bed=document.getElementById('sleepBed').value;
-  var wake=document.getElementById('sleepWake').value;
-  var note=document.getElementById('sleepNote').value.trim();
-  if(!bed||!wake){alert('Please enter bedtime and wake time.');return;}
-  var bm=timeToMins(bed);var wm=timeToMins(wake);
-  var dur=wm>bm?wm-bm:wm+(24*60-bm);
-  var hrs=dur/60;
-  var score=calcScore(hrs,selQ);
-  var g=scoreGrade(score);
-  var entry={date:new Date().toISOString().split('T')[0],bed:bed,wake:wake,hrs:hrs.toFixed(1),quality:selQ,score:score,note:note};
-  var data=loadSleep();data.unshift(entry);if(data.length>14)data=data.slice(0,14);saveSleep(data);
-  var res=document.getElementById('sleepResult');
-  res.classList.remove('hidden');
-  res.innerHTML='<div class="saas-result-header"><span class="saas-result-check">✅</span><span class="saas-result-title">Sleep logged successfully!</span></div>'+
-    '<div class="saas-stat-grid" style="grid-template-columns:repeat(3,1fr)">'+
-    '<div class="saas-stat-card"><div class="saas-stat-value">'+hrs.toFixed(1)+'h</div><div class="saas-stat-label">Duration</div></div>'+
-    '<div class="saas-stat-card"><div class="saas-stat-value">'+score+'</div><div class="saas-stat-label">Score</div></div>'+
-    '<div class="saas-stat-card"><div class="saas-stat-value"><span class="saas-badge '+g[1]+'">'+g[0]+'</span></div><div class="saas-stat-label">Quality</div></div>'+
-    '</div>';
-  renderSleepHistory();
-}
-function renderSleepHistory(){
-  var data=loadSleep();var el=document.getElementById('sleepHistory');
-  if(!data.length){el.innerHTML='<div class="saas-empty-state"><div class="saas-empty-icon">📋</div><p class="saas-empty-text">No sleep entries yet. Log your first night above!</p></div>';return;}
-  var html='<table class="sleep-history-table"><thead><tr><th>Date</th><th>Hours</th><th>Quality</th><th>Score</th><th>Notes</th></tr></thead><tbody>';
-  data.forEach(function(e){var g=scoreGrade(e.score);html+='<tr><td>'+e.date+'</td><td>'+e.hrs+'h</td><td>'+(['','😞','😕','😐','😊','😄'][e.quality]||'-')+'</td><td><span class="saas-badge '+g[1]+'">'+e.score+'</span></td><td style="color:#9ca3af;font-size:0.8rem">'+e.note+'</td></tr>';});
-  html+='</tbody></table>';el.innerHTML=html;
-}
-renderSleepHistory();
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Why Sleep Tracking Matters</h2><p>Sleep is one of the most powerful levers for health, performance, and longevity. The National Sleep Foundation recommends 7–9 hours per night for adults, yet surveys consistently show that over 35% of adults report getting fewer than 7 hours. Tracking your sleep creates awareness of patterns that you would otherwise miss.</p><h2>Understanding Your Sleep Score</h2><p>This tracker calculates a sleep score based on two key factors: sleep duration (how many hours you slept) and sleep quality (your subjective rating of how rested you feel). A score of 80–100 indicates excellent sleep; 60–79 is good; 40–59 suggests room for improvement; below 40 indicates poor sleep that may be affecting your health.</p><h2>Sleep Duration Guidelines</h2><p>Adults aged 18–64 need 7–9 hours per night. Adults 65+ typically need 7–8 hours. Chronic sleep deprivation — consistently sleeping less than 7 hours — is associated with increased risk of obesity, diabetes, cardiovascular disease, and impaired cognitive function. Even one hour less than your personal optimum can affect alertness, mood, and decision-making.</p><h2>Tips for Better Sleep</h2><p>Maintain a consistent sleep schedule even on weekends. Keep your bedroom cool (around 18°C/65°F), dark, and quiet. Avoid screens for 60 minutes before bed. Limit caffeine after 2 PM. Exercise regularly but not within 3 hours of bedtime. These evidence-based practices consistently produce improvements in both sleep duration and quality.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">How is my sleep score calculated?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">How is my sleep score calculated?</div>
 <div class="tool-faq-a">The score combines sleep duration (weighted 60%) and your quality rating (weighted 40%). 8 hours at quality 5 produces a perfect 100 score.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How many sleep entries does the tracker store?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">How many sleep entries does the tracker store?</div>
 <div class="tool-faq-a">The tracker keeps your last 14 days of sleep entries for trend analysis.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">What if I take naps?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">What if I take naps?</div>
 <div class="tool-faq-a">Log each sleep session separately. You can add a note to indicate it was a nap.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Why does my score vary even when I sleep the same hours?</div>
+<div class="tool-faq-q" data-faq-id="tfaq3">Why does my score vary even when I sleep the same hours?</div>
 <div class="tool-faq-a">Sleep quality matters as much as duration. Poor quality sleep (restless, frequent waking) can produce worse outcomes than slightly shorter but higher quality sleep.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/mood-tracker.html" class="tool-related-card"><span class="tool-related-icon">🌈</span>Mood Tracker →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a><a href="/tools/health-dashboard.html" class="tool-related-card"><span class="tool-related-icon">📊</span>Health Dashboard →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

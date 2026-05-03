@@ -452,40 +452,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ (function(){var h=parseInt(document.getElementById('hours').value)||0;var m=parseInt(document.getElementById('minutes').value)||0;var s=parseInt(document.getElementById('seconds').value)||0;var total=h*3600+m*60+s;if(!total){alert('Enter a time duration');return;}var end=Date.now()+total*1000;var rb=document.getElementById('result');rb.style.display='block';rb.querySelector('.result-label').textContent='Countdown Running';clearInterval(window._cdTimer);window._cdTimer=setInterval(function(){var rem=Math.max(0,Math.floor((end-Date.now())/1000));var rh=Math.floor(rem/3600);var rm=Math.floor((rem%3600)/60);var rs=rem%60;rb.querySelector('.result-value').textContent=(rh?rh+'h ':'')+rm+'m '+rs+'s';rb.querySelector('.result-suggestion').textContent='Timer running — stay focused and make the most of your time!';if(rem<=0){clearInterval(window._cdTimer);rb.querySelector('.result-label').textContent='Time Is Up!';rb.querySelector('.result-value').textContent='DONE';rb.querySelector('.result-suggestion').textContent='Your countdown has finished! Great work.';}},1000);})() }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'Countdown Timer Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ (function(){var h=parseInt(document.getElementById('hours').value)||0;var m=parseInt(document.getElementById('minutes').value)||0;var s=parseInt(document.getElementById('seconds').value)||0;var total=h*3600+m*60+s;if(!total){alert('Enter a time duration');return;}var end=Date.now()+total*1000;var rb=document.getElementById('result');rb.style.display='block';rb.querySelector('.result-label').textContent='Countdown Running';clearInterval(window._cdTimer);window._cdTimer=setInterval(function(){var rem=Math.max(0,Math.floor((end-Date.now())/1000));var rh=Math.floor(rem/3600);var rm=Math.floor((rem%3600)/60);var rs=rem%60;rb.querySelector('.result-value').textContent=(rh?rh+'h ':'')+rm+'m '+rs+'s';rb.querySelector('.result-suggestion').textContent='Timer running — stay focused and make the most of your time!';if(rem<=0){clearInterval(window._cdTimer);rb.querySelector('.result-label').textContent='Time Is Up!';rb.querySelector('.result-value').textContent='DONE';rb.querySelector('.result-suggestion').textContent='Your countdown has finished! Great work.';}},1000);})() };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

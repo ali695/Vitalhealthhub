@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Habit Tracker</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Habit Tracker","item":"https://vitalhealthhub.org/tools/habit-tracker.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,7 +122,7 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="habit-tracker">
 <div class="saas-card">
 
 <div class="saas-card-title">🔥 Today's Habits
@@ -132,66 +130,36 @@
 </div>
 <div class="habit-add-form">
   <input class="saas-input" id="habitInput" placeholder="Add a new habit (e.g. Drink 8 glasses of water)…" maxlength="80">
-  <button class="saas-btn saas-btn-primary" onclick="addHabit()">+ Add</button>
+  <button class="saas-btn saas-btn-primary" data-tool-action="add-habit">+ Add</button>
 </div>
 <div id="habitList" class="habit-list"></div>
 <div id="habitEmpty" class="saas-empty-state" style="display:none">
   <div class="saas-empty-icon">🌱</div>
   <p class="saas-empty-text">No habits yet. Add your first habit above to get started!</p>
 </div>
-<script>
-var TODAY=new Date().toISOString().split('T')[0];
-document.getElementById('habitDateLabel').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
-function loadData(){return JSON.parse(localStorage.getItem('vhh_habits')||'{"habits":[]}');}
-function saveData(d){localStorage.setItem('vhh_habits',JSON.stringify(d));}
-function getStreak(hist){var s=0;var d=new Date();for(var i=0;i<365;i++){var k=new Date(d);k.setDate(k.getDate()-i);var ks=k.toISOString().split('T')[0];if(hist[ks]){s++;}else if(i>0){break;}}return s;}
-function getLast7(hist){var days=[];for(var i=6;i>=0;i--){var d=new Date();d.setDate(d.getDate()-i);days.push(d.toISOString().split('T')[0]);}return days;}
-function addHabit(){var inp=document.getElementById('habitInput');var name=inp.value.trim();if(!name)return;var d=loadData();d.habits.push({id:Date.now().toString(),name:name,history:{}});saveData(d);inp.value='';renderHabits();}
-function toggleHabit(id){var d=loadData();var h=d.habits.find(function(h){return h.id===id;});if(!h)return;if(h.history[TODAY]){delete h.history[TODAY];}else{h.history[TODAY]=true;}saveData(d);renderHabits();}
-function deleteHabit(id){var d=loadData();d.habits=d.habits.filter(function(h){return h.id!==id;});saveData(d);renderHabits();}
-function renderHabits(){
-  var d=loadData();var list=document.getElementById('habitList');var empty=document.getElementById('habitEmpty');
-  if(!d.habits.length){list.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  var days=getLast7({});
-  list.innerHTML=d.habits.map(function(h){
-    var done=!!h.history[TODAY];
-    var streak=getStreak(h.history);
-    var dots=getLast7(h.history).map(function(dk){return '<div class="habit-dot'+(h.history[dk]?' done':'')+'"></div>';}).join('');
-    var hotClass=streak>=3?' hot':'';
-    return '<div class="habit-item'+(done?' done-today':'')+'" id="hi-'+h.id+'">'+
-      '<div class="habit-checkbox" onclick="toggleHabit(''+h.id+'')" title="Mark as done">'+(done?'✓':'')+'</div>'+
-      '<span class="habit-name">'+h.name+'</span>'+
-      '<div class="habit-weekly">'+dots+'</div>'+
-      '<span class="habit-streak-badge'+hotClass+'">'+(streak>=3?'🔥':'')+streak+' day'+(streak===1?'':'s')+'</span>'+
-      '<button class="habit-del-btn" onclick="deleteHabit(''+h.id+'')" title="Delete habit">✕</button>'+
-    '</div>';
-  }).join('');
-}
-document.getElementById('habitInput').addEventListener('keydown',function(e){if(e.key==='Enter')addHabit();});
-renderHabits();
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Why Habit Tracking Works</h2><p>Habit tracking is one of the most evidence-backed strategies for behaviour change. When you mark a habit as complete each day, you create a visual record of progress — and the desire to maintain that streak becomes a powerful motivational force. Research published in the British Journal of General Practice found that tracking behaviour significantly increases the likelihood of achieving health goals.</p><h2>The Compound Effect of Daily Habits</h2><p>Small habits compound over time. Exercising for 20 minutes daily might seem insignificant, but over a year that is over 120 hours of exercise. Habits do not produce instant results, but they accumulate into extraordinary outcomes. The key is consistency, not perfection — even maintaining a 90% completion rate over months produces enormous positive change.</p><h2>How to Use This Habit Tracker</h2><p>Add habits that matter to your health journey — drinking 8 glasses of water, meditating for 10 minutes, exercising, reading, or any other daily practice. Check off each habit as you complete it. The tracker shows your current streak, a weekly completion grid, and your overall consistency. Your data is saved privately in your browser and persists across sessions.</p><h2>The Science of Streaks</h2><p>James Clear, author of Atomic Habits, recommends the "never miss twice" rule — if you miss a day, make it a rule to never miss two in a row. The tracker's streak counter helps you apply this principle by making your streak visible and motivating you to keep it alive.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is my habit data saved permanently?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">Is my habit data saved permanently?</div>
 <div class="tool-faq-a">Your data is saved in your browser's localStorage and persists as long as you use the same browser on the same device without clearing site data.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How is the streak calculated?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">How is the streak calculated?</div>
 <div class="tool-faq-a">The streak counts consecutive days you have completed a habit, going back from today. Missing one day resets the streak to zero.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Can I track multiple habits?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">Can I track multiple habits?</div>
 <div class="tool-faq-a">Yes, add as many habits as you like. Research suggests starting with 2–3 habits and adding more once they feel automatic.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Is my data synced across devices?</div>
+<div class="tool-faq-q" data-faq-id="tfaq3">Is my data synced across devices?</div>
 <div class="tool-faq-a">No, data is stored locally in your browser. For cross-device access, we recommend using a cloud-based app like Habitica.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/sleep-tracker.html" class="tool-related-card"><span class="tool-related-icon">😴</span>Sleep Tracker →</a><a href="/tools/mood-tracker.html" class="tool-related-card"><span class="tool-related-icon">🌈</span>Mood Tracker →</a><a href="/tools/goal-tracker.html" class="tool-related-card"><span class="tool-related-icon">🎯</span>Goal Tracker →</a><a href="/tools/health-dashboard.html" class="tool-related-card"><span class="tool-related-icon">📊</span>Health Dashboard →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

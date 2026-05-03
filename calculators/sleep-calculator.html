@@ -485,40 +485,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ var wu=document.getElementById('wakeup').value;var age=parseFloat(document.getElementById('age').value);if(!wu){alert('Enter wake time');return;}var parts=wu.split(':');var wh=parseInt(parts[0]);var wm=parseInt(parts[1]);var cycles=[6,5,4];var times=[];cycles.forEach(function(c){var totalMin=c*90+14;var bh=wh;var bMin=wm-totalMin;while(bMin<0){bMin+=60;bh--;}while(bh<0)bh+=24;var ampm=bh>=12?'PM':'AM';var dh=bh%12||12;times.push(dh+':'+(bMin<10?'0':'')+bMin+' '+ampm+' ('+c+' cycles)');});showResult('result','Sleep Times','Optimal Bedtimes','Go to bed at: '+times.join(' or ')+'. Each sleep cycle is about 90 minutes. Waking between cycles helps you feel more refreshed.','green'); }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'Sleep Calculator Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ var wu=document.getElementById('wakeup').value;var age=parseFloat(document.getElementById('age').value);if(!wu){alert('Enter wake time');return;}var parts=wu.split(':');var wh=parseInt(parts[0]);var wm=parseInt(parts[1]);var cycles=[6,5,4];var times=[];cycles.forEach(function(c){var totalMin=c*90+14;var bh=wh;var bMin=wm-totalMin;while(bMin<0){bMin+=60;bh--;}while(bh<0)bh+=24;var ampm=bh>=12?'PM':'AM';var dh=bh%12||12;times.push(dh+':'+(bMin<10?'0':'')+bMin+' '+ampm+' ('+c+' cycles)');});showResult('result','Sleep Times','Optimal Bedtimes','Go to bed at: '+times.join(' or ')+'. Each sleep cycle is about 90 minutes. Waking between cycles helps you feel more refreshed.','green'); };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

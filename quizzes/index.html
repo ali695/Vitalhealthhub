@@ -133,22 +133,6 @@
 </div>
 </section>
 
-<script>
-function quizFilter(cat, btn) {
-  document.querySelectorAll('.quiz-cat-pill').forEach(function(p){p.classList.remove('active');});
-  btn.classList.add('active');
-  document.querySelectorAll('.quiz-card').forEach(function(c){
-    c.classList.toggle('hidden', cat !== 'All' && c.dataset.category !== cat);
-  });
-}
-function quizHeroSearch(q){
-  q=(q||'').toLowerCase().trim();
-  document.querySelectorAll('.quiz-card').forEach(function(c){
-    var text=(c.querySelector('h3')?c.querySelector('h3').textContent:'').toLowerCase()+' '+(c.dataset.category||'').toLowerCase();
-    c.classList.toggle('hidden', q.length>0 && text.indexOf(q)===-1);
-  });
-}
-</script>
 <footer class="site-footer">
 <div class="footer-inner">
 

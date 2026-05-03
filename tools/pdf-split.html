@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>PDF Splitter</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"PDF Splitter","item":"https://vitalhealthhub.org/tools/pdf-split.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,12 +122,12 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="pdf-split">
 <div class="saas-card">
 
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
 <div class="saas-card-title">✂️ PDF Splitter</div>
-<div class="util-dropzone" id="splitDrop" onclick="document.getElementById('splitFile').click()">
+<div class="util-dropzone" id="splitDrop">
   <div class="util-dropzone-icon">✂️</div>
   <h3>Drop your PDF here</h3>
   <p>Select a single PDF file to extract pages from</p>
@@ -141,42 +139,33 @@
   <input class="saas-input" id="splitRange" placeholder="e.g. 1-3 or 1,3,5 or 2-4,7" style="font-family:monospace">
   <p style="font-size:0.78rem;color:#9ca3af;margin-top:6px">Use ranges (1-5), specific pages (1,3,7), or combine (1-3,7,10-12)</p>
 </div>
-<button class="saas-btn saas-btn-primary" id="splitBtn" onclick="doSplit()" disabled style="width:100%">Extract Pages</button>
+<button class="saas-btn saas-btn-primary" id="splitBtn" data-tool-action="split" disabled style="width:100%">Extract Pages</button>
 <div class="util-result" id="splitResult">
   <div class="util-result-inner">
     <div>✅ <span id="splitInfo" class="util-result-info"></span></div>
     <a id="splitDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download PDF</a>
   </div>
 </div>
-<script>
-var splitPdfFile=null;
-var sDrop=document.getElementById('splitDrop');
-sDrop.addEventListener('dragover',function(e){e.preventDefault();sDrop.classList.add('drag-over');});
-sDrop.addEventListener('dragleave',function(){sDrop.classList.remove('drag-over');});
-sDrop.addEventListener('drop',function(e){e.preventDefault();sDrop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadSplitFile(e.dataTransfer.files[0]);});
-document.getElementById('splitFile').addEventListener('change',function(){if(this.files[0])loadSplitFile(this.files[0]);});
-function loadSplitFile(f){if(f.type!=='application/pdf'){alert('Please upload a PDF file.');return;}splitPdfFile=f;sDrop.querySelector('h3').textContent=f.name;sDrop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB)';PDFLib.PDFDocument.load(f.arrayBuffer()).then(function(doc){var n=doc.getPageCount();document.getElementById('splitPageInfo').style.display='block';document.getElementById('splitPageInfo').textContent='PDF has '+n+' page'+(n===1?'':'s')+'. Enter the page range you want to extract.';document.getElementById('splitBtn').disabled=false;});}
-function parseRange(str,total){var pages=new Set();str.split(',').forEach(function(part){part=part.trim();if(part.indexOf('-')!==-1){var pts=part.split('-');var a=parseInt(pts[0]);var b=parseInt(pts[1]);for(var i=a;i<=b&&i<=total;i++)if(i>=1)pages.add(i-1);}else{var p=parseInt(part);if(p>=1&&p<=total)pages.add(p-1);}});return Array.from(pages).sort(function(a,b){return a-b;});}
-async function doSplit(){if(!splitPdfFile)return;var rangeStr=document.getElementById('splitRange').value.trim();if(!rangeStr){alert('Please enter a page range.');return;}var btn=document.getElementById('splitBtn');btn.textContent='Extracting…';btn.disabled=true;try{var buf=await splitPdfFile.arrayBuffer();var src=await PDFLib.PDFDocument.load(buf);var total=src.getPageCount();var indices=parseRange(rangeStr,total);if(!indices.length){alert('No valid pages found. Check your range and try again.');btn.textContent='Extract Pages';btn.disabled=false;return;}var out=await PDFLib.PDFDocument.create();var pages=await out.copyPages(src,indices);pages.forEach(function(p){out.addPage(p);});var bytes=await out.save();var blob=new Blob([bytes],{type:'application/pdf'});var url=URL.createObjectURL(blob);document.getElementById('splitDl').href=url;document.getElementById('splitDl').download='extracted_pages.pdf';document.getElementById('splitInfo').textContent='Extracted '+indices.length+' page'+(indices.length===1?'':'s')+' from '+total+'-page PDF';document.getElementById('splitResult').classList.add('visible');btn.textContent='Extract Again';btn.disabled=false;}catch(e){alert('Error processing PDF: '+e.message);btn.textContent='Extract Pages';btn.disabled=false;}}
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Extract Exactly the Pages You Need</h2><p>Sometimes you need just a few pages from a large PDF — a single chapter from a report, specific pages from a legal document, or selected slides from a presentation. This PDF Splitter lets you extract any pages by specifying a range (e.g., "1-5" or "3, 7, 12"). Powered by pdf-lib, all processing happens in your browser with no upload required.</p><h2>How Page Extraction Works</h2><p>Enter the PDF page range you want to keep. The tool loads your PDF, copies only the specified pages to a new PDF document, and prepares it for download. The original PDF is not modified. Text, images, fonts, and vector graphics are preserved at full quality in the extracted pages.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Is my PDF uploaded to any server?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">Is my PDF uploaded to any server?</div>
 <div class="tool-faq-a">No. The splitting happens entirely in your browser using pdf-lib.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What page range format should I use?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">What page range format should I use?</div>
 <div class="tool-faq-a">Enter pages as "1-5" for a range, "3,7,12" for specific pages, or combine: "1-3, 7, 10-12".</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Will the original PDF be changed?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">Will the original PDF be changed?</div>
 <div class="tool-faq-a">No. The tool creates a new PDF with the extracted pages. Your original file is untouched.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/pdf-merge.html" class="tool-related-card"><span class="tool-related-icon">📄</span>PDF Merge Tool →</a><a href="/tools/image-converter.html" class="tool-related-card"><span class="tool-related-icon">🔄</span>Image Converter →</a><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

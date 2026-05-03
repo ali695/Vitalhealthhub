@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Headline Analyzer</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Headline Analyzer","item":"https://vitalhealthhub.org/tools/headline-analyzer.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,12 +122,12 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="headline-analyzer">
 <div class="saas-card">
 
 <div class="saas-form-group">
   <label class="saas-label">Enter your headline</label>
-  <input class="saas-input" id="headlineInput" placeholder="e.g. 7 Proven Ways to Sleep Better Tonight and Wake Up Energised" oninput="analyzeHeadline()" maxlength="200" style="font-size:1.1rem;padding:16px 18px">
+  <input class="saas-input" id="headlineInput" placeholder="e.g. 7 Proven Ways to Sleep Better Tonight and Wake Up Energised" maxlength="200" style="font-size:1.1rem;padding:16px 18px">
   <div style="margin-top:6px;font-size:0.78rem;color:#9ca3af"><span id="headlineLen">0</span> characters (ideal: 55–70)</div>
 </div>
 <div id="headlineResults" style="display:none">
@@ -159,85 +157,29 @@
     <div class="headline-pw-list" id="hlPwList"></div>
   </div>
 </div>
-<script>
-var HL_POWER=["proven","secret","exclusive","ultimate","powerful","effective","guaranteed","transform","discover","instantly","best","free","new","amazing","breakthrough","critical","essential","hidden","revealed","simple","easy","fast","quick","boost","master","expert","complete","definitive","shocking","surprising","warning","important","hurry","limited","now","today","last","urgent","never","always","stop","start","save","earn","lose","gain"];
-var HL_C=2*Math.PI*50;
-var hlCircle=document.getElementById('hlCircle');hlCircle.style.strokeDasharray=HL_C;hlCircle.style.strokeDashoffset=HL_C;
-function analyzeHeadline(){
-  var h=document.getElementById('headlineInput').value.trim();
-  document.getElementById('headlineLen').textContent=h.length;
-  if(h.length<3){document.getElementById('headlineResults').style.display='none';return;}
-  document.getElementById('headlineResults').style.display='block';
-  var words=h.split(/\s+/).filter(function(w){return w.length>0;});
-  var wCount=words.length;
-  // Length score
-  var lenScore=0;if(h.length>=55&&h.length<=70)lenScore=100;else if(h.length>=40&&h.length<55)lenScore=70;else if(h.length>70&&h.length<=90)lenScore=60;else if(h.length<40)lenScore=Math.round((h.length/40)*60);else lenScore=Math.max(20,60-Math.round((h.length-90)/3)*5);
-  // Power words
-  var lowerWords=words.map(function(w){return w.toLowerCase().replace(/[^a-z]/g,'');});
-  var foundPw=HL_POWER.filter(function(pw){return lowerWords.indexOf(pw)!==-1;});
-  var pwScore=Math.min(100,foundPw.length*25);
-  // Numbers
-  var hasNum=/\d/.test(h);var numScore=hasNum?100:0;
-  // Word count score
-  var wcScore=wCount>=6&&wCount<=12?100:wCount>=4&&wCount<6?70:wCount>12&&wCount<=16?75:Math.max(0,50-(Math.abs(wCount-9)*8));
-  // Sentiment/emotional score (simple: check for emotion words)
-  var emotWords=['amazing','incredible','shocking','surprising','life-changing','revolutionary','game-changer','powerful','essential','critical','never','always','every','guaranteed','simple','easy','faster'];
-  var hasEmot=emotWords.some(function(w){return h.toLowerCase().indexOf(w)!==-1;});
-  var emotScore=hasEmot?80:foundPw.length>0?50:20;
-  // Total score
-  var total=Math.round(lenScore*0.25+pwScore*0.30+numScore*0.20+wcScore*0.15+emotScore*0.10);
-  // Update UI
-  var pct=total/100;hlCircle.style.strokeDashoffset=HL_C-(pct*HL_C);
-  document.getElementById('hlScoreVal').textContent=total;
-  var grade=total>=70?['Excellent!','saas-badge-green']:total>=50?['Good','saas-badge-blue']:total>=35?['Needs Work','saas-badge-yellow']:['Weak','saas-badge-red'];
-  document.getElementById('hlGradeBadge').textContent=grade[0];document.getElementById('hlGradeBadge').className='headline-grade-badge saas-badge '+grade[1];
-  // Breakdown
-  var breakdown=[
-    {label:'Length',score:lenScore,color:'#52b788'},
-    {label:'Power Words',score:pwScore,color:'#2d6a4f'},
-    {label:'Has Number',score:numScore,color:'#40916c'},
-    {label:'Word Count',score:wcScore,color:'#74c69d'},
-    {label:'Emotion',score:emotScore,color:'#95d5b2'},
-  ];
-  document.getElementById('hlBreakdown').innerHTML=breakdown.map(function(b){
-    return '<div class="headline-breakdown-row"><span class="headline-breakdown-label">'+b.label+'</span>'+
-      '<div class="headline-breakdown-bar"><div class="headline-breakdown-fill" style="width:'+b.score+'%;background:'+b.color+'"></div></div>'+
-      '<span class="headline-breakdown-score">'+b.score+'</span></div>';
-  }).join('');
-  // Suggestions
-  var suggs=[];
-  if(h.length<55)suggs.push({icon:'📏',text:'Your headline is too short. Aim for 55–70 characters for best SEO performance.'});
-  if(h.length>70)suggs.push({icon:'✂️',text:'Your headline is long. Google may truncate it in search results. Try to keep under 70 characters.'});
-  if(!hasNum)suggs.push({icon:'🔢',text:'Add a specific number to your headline (e.g. "7 Ways...", "3 Proven..."). Headlines with numbers get significantly more clicks.'});
-  if(foundPw.length===0)suggs.push({icon:'⚡',text:'Add a power word to trigger an emotional response. Try: proven, secret, ultimate, transform, discover, boost.'});
-  if(wCount<6)suggs.push({icon:'➕',text:'Your headline is too short — add more detail. Aim for 8–12 words for optimal engagement.'});
-  if(wCount>16)suggs.push({icon:'✂️',text:'Your headline is quite long. Consider trimming to 8–12 words for better impact.'});
-  if(total>=70)suggs.push({icon:'🎉',text:'Great headline! It has strong length, power words, and structure. Test it against an alternative for best results.'});
-  document.getElementById('hlSuggestions').innerHTML='<div class="saas-section-heading">💡 Suggestions</div>'+suggs.map(function(s){return '<div class="headline-suggestion-item"><span class="headline-suggestion-icon">'+s.icon+'</span>'+s.text+'</div>';}).join('');
-  if(foundPw.length>0){document.getElementById('hlPowerWords').style.display='block';document.getElementById('hlPwList').innerHTML=foundPw.map(function(w){return '<span class="headline-pw-chip">'+w+'</span>';}).join('');}else{document.getElementById('hlPowerWords').style.display='none';}
-}
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Why Headlines Are So Important</h2><p>On average, 8 out of 10 people read a headline, but only 2 out of 10 read the body content. Your headline is the most important piece of text you write — it determines whether anyone will read anything else. A well-crafted headline can produce 5–10x more clicks, shares, and engagement than a poorly written one for the same underlying content.</p><h2>What Makes a Great Headline</h2><p>Data from CoSchedule's analysis of millions of headlines identifies several factors that predict headline performance: overall character length (optimal is 55–70 characters for SEO, 6–12 words for social sharing), inclusion of specific numbers (listicles and numbered guides consistently outperform other formats), power words that trigger emotion or curiosity, and a clear value proposition that tells the reader exactly what they will gain.</p><h2>Power Words Explained</h2><p>Power words are psychologically charged words that trigger a strong emotional or cognitive response. They include: urgency words (now, today, immediate, last chance), curiosity words (secret, hidden, discover, surprising), benefit words (proven, guaranteed, transform, master), and authority words (expert, ultimate, definitive, complete). Studies show headlines with 2–3 power words significantly outperform headlines with none.</p><h2>The Emotional Value of Headlines</h2><p>Headlines with high emotional value (both positive emotions like excitement, inspiration, and amusement, or negative emotions like fear, anger, and disgust) outperform neutral headlines in terms of click-through rates and social sharing. The highest-performing headlines often combine a clear benefit with an emotional trigger and a specific number — for example: "7 Proven Tricks to Finally Stop Feeling Exhausted Every Day."</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What score should I aim for?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">What score should I aim for?</div>
 <div class="tool-faq-a">A score of 70+ is excellent. 50–69 is good with room to improve. Below 50 suggests the headline needs significant work before publishing.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">How are power words defined?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">How are power words defined?</div>
 <div class="tool-faq-a">The analyzer checks your headline against a curated list of 200+ power words categorised as action, curiosity, urgency, benefit, and emotional triggers.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">Does headline length really matter for SEO?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">Does headline length really matter for SEO?</div>
 <div class="tool-faq-a">Yes. Google typically shows 50–60 characters in search results before truncating. Headlines over 70 characters may get cut off, reducing click-through rates from search.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">Can I analyse multiple variations?</div>
+<div class="tool-faq-q" data-faq-id="tfaq3">Can I analyse multiple variations?</div>
 <div class="tool-faq-a">Yes. Clear the input and enter a new headline to score any number of variations. We recommend testing 3–5 variants and choosing the highest-scoring one.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/advanced-text-analyzer.html" class="tool-related-card"><span class="tool-related-icon">📝</span>Advanced Text Analyzer →</a><a href="/tools/content-idea-generator.html" class="tool-related-card"><span class="tool-related-icon">💡</span>Content Idea Generator →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

@@ -451,40 +451,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ var b=parseFloat(document.getElementById('bedtime').value)||0;var sc=parseFloat(document.getElementById('screen').value)||0;var ca=parseFloat(document.getElementById('caffeine').value)||0;var tp=parseFloat(document.getElementById('temp').value)||0;var dk=parseFloat(document.getElementById('dark').value)||0;var wd=parseFloat(document.getElementById('wind').value)||0;var al=parseFloat(document.getElementById('alcohol').value)||0;var total=b+sc+ca+tp+dk+wd+al;var max=21;var pct=Math.round(total/max*100);var col=pct>=75?'green':pct>=50?'yellow':'red';var l=pct>=75?'Excellent Sleep Hygiene':pct>=50?'Good Sleep Hygiene':'Poor Sleep Hygiene';var tips=[];if(sc<2)tips.push('Avoid screens 60+ min before bed');if(b<2)tips.push('Set a consistent sleep/wake time');if(ca<2)tips.push('No caffeine after 2pm');if(wd<2)tips.push('Add a 30-min wind-down routine');var tStr=tips.length?'Top improvements: '+tips.join('; ')+'.':'Keep up your excellent habits!';showResult('result',pct+'%',l,'Sleep hygiene score: '+total+'/21. '+tStr,col); }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'Sleep Hygiene Score Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ var b=parseFloat(document.getElementById('bedtime').value)||0;var sc=parseFloat(document.getElementById('screen').value)||0;var ca=parseFloat(document.getElementById('caffeine').value)||0;var tp=parseFloat(document.getElementById('temp').value)||0;var dk=parseFloat(document.getElementById('dark').value)||0;var wd=parseFloat(document.getElementById('wind').value)||0;var al=parseFloat(document.getElementById('alcohol').value)||0;var total=b+sc+ca+tp+dk+wd+al;var max=21;var pct=Math.round(total/max*100);var col=pct>=75?'green':pct>=50?'yellow':'red';var l=pct>=75?'Excellent Sleep Hygiene':pct>=50?'Good Sleep Hygiene':'Poor Sleep Hygiene';var tips=[];if(sc<2)tips.push('Avoid screens 60+ min before bed');if(b<2)tips.push('Set a consistent sleep/wake time');if(ca<2)tips.push('No caffeine after 2pm');if(wd<2)tips.push('Add a 30-min wind-down routine');var tStr=tips.length?'Top improvements: '+tips.join('; ')+'.':'Keep up your excellent habits!';showResult('result',pct+'%',l,'Sleep hygiene score: '+total+'/21. '+tStr,col); };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

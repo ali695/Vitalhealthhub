@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Goal Tracker</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Goal Tracker","item":"https://vitalhealthhub.org/tools/goal-tracker.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,7 +122,7 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="goal-tracker">
 <div class="saas-card">
 
 <div class="saas-card-title">🎯 Your Goals</div>
@@ -149,81 +147,36 @@
       <input class="saas-input" type="number" id="goalTarget" placeholder="e.g. 70">
     </div>
   </div>
-  <button class="saas-btn saas-btn-primary" onclick="addGoal()" style="width:100%">+ Add Goal</button>
+  <button class="saas-btn saas-btn-primary" data-tool-action="add-goal" style="width:100%">+ Add Goal</button>
 </div>
 <div id="goalList" class="goal-list"></div>
 <div id="goalEmpty" class="saas-empty-state" style="display:none">
   <div class="saas-empty-icon">🎯</div>
   <p class="saas-empty-text">No goals yet. Add your first goal above to start tracking!</p>
 </div>
-<script>
-function loadGoals(){return JSON.parse(localStorage.getItem('vhh_goals')||'[]');}
-function saveGoals(d){localStorage.setItem('vhh_goals',JSON.stringify(d));}
-function calcPct(c,t){if(t===0)return 0;var p=Math.round((c/t)*100);return Math.min(100,Math.max(0,p));}
-function addGoal(){
-  var name=document.getElementById('goalName').value.trim();
-  var unit=document.getElementById('goalUnit').value.trim()||'units';
-  var cur=parseFloat(document.getElementById('goalCurrent').value);
-  var tgt=parseFloat(document.getElementById('goalTarget').value);
-  if(!name||isNaN(cur)||isNaN(tgt)){alert('Please fill in all goal fields.');return;}
-  var goals=loadGoals();
-  goals.push({id:Date.now().toString(),name:name,unit:unit,current:cur,target:tgt});
-  saveGoals(goals);
-  ['goalName','goalUnit','goalCurrent','goalTarget'].forEach(function(id){document.getElementById(id).value='';});
-  renderGoals();
-}
-function deleteGoal(id){saveGoals(loadGoals().filter(function(g){return g.id!==id;}));renderGoals();}
-function updateGoal(id){
-  var inp=document.getElementById('gupd-'+id);if(!inp)return;
-  var val=parseFloat(inp.value);if(isNaN(val)){alert('Please enter a valid number.');return;}
-  var goals=loadGoals();var g=goals.find(function(g){return g.id===id;});if(g)g.current=val;
-  saveGoals(goals);renderGoals();
-}
-function renderGoals(){
-  var goals=loadGoals();var list=document.getElementById('goalList');var empty=document.getElementById('goalEmpty');
-  if(!goals.length){list.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  list.innerHTML=goals.map(function(g){
-    var pct=calcPct(g.current,g.target);
-    var fillClass=pct>=80?'':pct>=50?'':pct<30?'danger':'warn';
-    var complete=pct>=100;
-    return '<div class="goal-card">'+
-      '<div class="goal-card-header">'+
-        '<div><div class="goal-name">'+g.name+'</div><div class="goal-target-info">'+g.current+' / '+g.target+' '+g.unit+'</div></div>'+
-        '<div class="goal-card-actions">'+
-          '<span class="saas-badge '+(pct>=100?'saas-badge-green':pct>=70?'saas-badge-blue':pct>=40?'saas-badge-yellow':'saas-badge-red')+'">'+pct+'%</span>'+
-          '<button class="saas-btn saas-btn-danger saas-btn-sm" onclick="deleteGoal(''+g.id+'')">Delete</button>'+
-        '</div>'+
-      '</div>'+
-      '<div class="saas-progress-wrap"><div class="saas-progress-bar"><div class="saas-progress-fill '+fillClass+'" style="width:'+pct+'%"></div></div></div>'+
-      (complete?'<div class="goal-complete-badge">🎉 Goal achieved!</div>':
-        '<div class="goal-update-form"><span style="font-size:0.85rem;color:#6b7280">Update:</span><input class="goal-update-input" id="gupd-'+g.id+'" type="number" placeholder="New value"><button class="saas-btn saas-btn-ghost saas-btn-sm" onclick="updateGoal(''+g.id+'')">Save</button></div>')+
-    '</div>';
-  }).join('');
-}
-renderGoals();
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>The SMART Goal Framework</h2><p>Goals that are Specific, Measurable, Achievable, Relevant, and Time-bound (SMART) are dramatically more likely to be achieved than vague intentions. "Exercise more" is an intention; "Run 5km three times per week by March" is a SMART goal. This tracker is designed for measurable goals — ones where you can assign a number to your current progress and a target number to aim for.</p><h2>Why Visual Progress Tracking Works</h2><p>Visual feedback on progress triggers motivational psychology that purely mental goal-keeping cannot. Seeing a progress bar at 67% creates a powerful drive to reach 100% — psychologists call this "goal gradient effect" — the closer you are to your goal, the faster and harder you work. This is why the final stretch of a project often moves faster than the beginning.</p><h2>Examples of Trackable Goals</h2><p>This tracker works for any measurable goal: weight loss (current weight vs target), strength training (current max lifts vs PR goals), water intake (glasses per day), books read (current vs annual target), savings (current balance vs savings goal), steps (weekly average vs target), sleep hours, business revenue, or any other quantifiable target.</p><h2>Goal Setting and Health</h2><p>Health-specific goals benefit enormously from clear targets. Research from the American Journal of Health Promotion shows that people who set specific health targets and track progress are three times more likely to achieve their goals than those who rely on motivation alone. The act of setting a goal changes your unconscious behaviour — you begin to notice opportunities that align with your goal without consciously looking for them.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">What types of goals can I track?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">What types of goals can I track?</div>
 <div class="tool-faq-a">Any goal with a numerical current value and a target. Examples: weight (75kg → 70kg), pushups (20 → 50), water glasses (4 → 8 per day), books read (3 → 12 per year).</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">Can I track multiple goals at once?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">Can I track multiple goals at once?</div>
 <div class="tool-faq-a">Yes. Add as many goals as you like. Research suggests focusing on 3–5 key goals at a time for best results.</div>
 </div><div class="tool-faq-item" id="tfaq2">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq2');el.classList.toggle('open');">How do I update my progress?</div>
+<div class="tool-faq-q" data-faq-id="tfaq2">How do I update my progress?</div>
 <div class="tool-faq-a">Click the "Update" button on any goal and enter your new current value. The progress bar will animate to the new percentage.</div>
 </div><div class="tool-faq-item" id="tfaq3">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq3');el.classList.toggle('open');">What happens when I reach 100%?</div>
+<div class="tool-faq-q" data-faq-id="tfaq3">What happens when I reach 100%?</div>
 <div class="tool-faq-a">The goal card shows a completion celebration. You can then set a new, higher target to continue progress.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/daily-planner.html" class="tool-related-card"><span class="tool-related-icon">📅</span>Daily Planner →</a><a href="/tools/focus-timer.html" class="tool-related-card"><span class="tool-related-icon">⏱️</span>Focus Timer →</a><a href="/tools/habit-tracker.html" class="tool-related-card"><span class="tool-related-icon">🔥</span>Habit Tracker →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

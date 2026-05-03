@@ -105,9 +105,7 @@
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/tools/">Tools Hub</a><span>/</span><span>Image Compressor</span></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Tools Hub","item":"https://vitalhealthhub.org/tools/"},{"@type":"ListItem","position":3,"name":"Image Compressor","item":"https://vitalhealthhub.org/tools/image-compressor.html"}]}</script>
-<script>
-(function(){var sl=window.location.pathname.split('/').pop().replace('.html','');try{var r=JSON.parse(localStorage.getItem('vhh_recent_tools')||'[]');r=r.filter(function(s){return s!==sl;});r.unshift(sl);if(r.length>5)r=r.slice(0,5);localStorage.setItem('vhh_recent_tools',JSON.stringify(r));}catch(e){}})();
-</script>
+
 
 <section class="saas-tool-hero">
 <div class="saas-tool-hero-inner">
@@ -124,11 +122,11 @@
 </div>
 </section>
 
-<div class="saas-workspace">
+<div class="saas-workspace" data-tool-type="image-compressor">
 <div class="saas-card">
 
 <div class="saas-card-title">⚡ Image Compressor</div>
-<div class="util-dropzone" id="toolDrop" onclick="document.getElementById('toolFile').click()">
+<div class="util-dropzone" id="toolDrop">
   <div class="util-dropzone-icon">🖼️</div>
   <h3>Drop your image here</h3>
   <p>JPG, PNG, WebP, GIF supported — or click to browse</p>
@@ -136,9 +134,9 @@
 </div>
 <div class="saas-form-group" style="margin-top:18px">
   <label class="saas-label">Quality: <span id="qualVal">75</span>%</label>
-  <input type="range" id="qualSlider" min="10" max="95" value="75" oninput="document.getElementById('qualVal').textContent=this.value" style="width:100%;accent-color:#2d6a4f;margin-top:8px">
+  <input type="range" id="qualSlider" min="10" max="95" value="75" data-tool-action="quality-display" style="width:100%;accent-color:#2d6a4f;margin-top:8px">
 </div>
-<button class="saas-btn saas-btn-primary" id="compressBtn" onclick="doCompress()" disabled style="width:100%;margin-top:4px">Compress Image</button>
+<button class="saas-btn saas-btn-primary" id="compressBtn" data-tool-action="compress" disabled style="width:100%;margin-top:4px">Compress Image</button>
 <div class="util-result" id="compResult">
   <div class="util-result-inner">
     <div>✅ <span id="compInfo" class="util-result-info"></span></div>
@@ -146,32 +144,23 @@
   </div>
   <img id="compPreview" alt="Compressed image preview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
 </div>
-<script>
-var cFile=null,cOrigSize=0;
-var drop=document.getElementById('toolDrop');
-var fileInp=document.getElementById('toolFile');
-drop.addEventListener('dragover',function(e){e.preventDefault();drop.classList.add('drag-over');});
-drop.addEventListener('dragleave',function(){drop.classList.remove('drag-over');});
-drop.addEventListener('drop',function(e){e.preventDefault();drop.classList.remove('drag-over');if(e.dataTransfer.files[0])loadImgFile(e.dataTransfer.files[0]);});
-fileInp.addEventListener('change',function(){if(this.files[0])loadImgFile(this.files[0]);});
-function loadImgFile(f){if(!f.type.startsWith('image/')){alert('Please upload an image file.');return;}cFile=f;cOrigSize=f.size;drop.querySelector('h3').textContent=f.name;drop.querySelector('p').textContent='Loaded ('+Math.round(f.size/1024)+'KB) — ready to compress';document.getElementById('compressBtn').disabled=false;}
-function doCompress(){if(!cFile)return;var q=parseInt(document.getElementById('qualSlider').value)/100;var btn=document.getElementById('compressBtn');btn.textContent='Compressing…';btn.disabled=true;var img=new Image();var url=URL.createObjectURL(cFile);img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);c.toBlob(function(blob){var oUrl=URL.createObjectURL(blob);var dl=document.getElementById('compDl');dl.href=oUrl;dl.download='compressed.jpg';var saved=Math.round((1-blob.size/cOrigSize)*100);document.getElementById('compInfo').textContent='Original: '+Math.round(cOrigSize/1024)+'KB → '+Math.round(blob.size/1024)+'KB (saved '+saved+'%)';var prev=document.getElementById('compPreview');prev.src=oUrl;prev.style.display='block';document.getElementById('compResult').classList.add('visible');btn.textContent='Compress Again';btn.disabled=false;URL.revokeObjectURL(url);},'image/jpeg',q);};img.src=url;}
-</script>
 </div>
 </div>
 
 <div class="tool-content-section"><div class="tool-content-inner"><h2>Why Compress Images?</h2><p>Large image files are one of the biggest causes of slow websites. Google uses page speed as a direct ranking factor, and images are typically the heaviest assets on any web page. Compressing images before uploading can reduce load times by 40–80% with no visible quality difference. This tool processes images entirely in your browser using the Canvas API — your files never leave your device.</p><h2>How Much Can You Compress?</h2><p>Most photographs can be compressed to 65–80% quality with no perceptible quality loss to the naked eye. At 75% quality, a 2MB photo typically compresses to 300–500KB — a 75–85% reduction. For website images, this dramatically improves Core Web Vitals scores, which directly affect search rankings. The preview lets you compare before downloading.</p></div></div>
 
 <div class="tool-faq-section"><h2>Frequently Asked Questions</h2><div class="tool-faq-item" id="tfaq0">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq0');el.classList.toggle('open');">Are my images uploaded to a server?</div>
+<div class="tool-faq-q" data-faq-id="tfaq0">Are my images uploaded to a server?</div>
 <div class="tool-faq-a">No. All compression happens in your browser using the HTML5 Canvas API. Your files never leave your device.</div>
 </div><div class="tool-faq-item" id="tfaq1">
-<div class="tool-faq-q" onclick="var el=document.getElementById('tfaq1');el.classList.toggle('open');">What quality level should I use?</div>
+<div class="tool-faq-q" data-faq-id="tfaq1">What quality level should I use?</div>
 <div class="tool-faq-a">For web images, 70–80% produces excellent results with significant size savings. For print, use 85–90%.</div>
 </div></div>
 
 <div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-converter.html" class="tool-related-card"><span class="tool-related-icon">🔄</span>Image Converter →</a><a href="/tools/pdf-merge.html" class="tool-related-card"><span class="tool-related-icon">📄</span>PDF Merge Tool →</a></div></div>
 
+<script src="/js/main.js" defer></script>
+<script src="/js/tools.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
 

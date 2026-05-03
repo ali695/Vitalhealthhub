@@ -452,40 +452,8 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  function vhAutoCalc(){ var mode=document.getElementById('mode').value;var x=parseFloat(document.getElementById('val1').value);var y=parseFloat(document.getElementById('val2').value);if(isNaN(x)||isNaN(y)){alert('Enter both values');return;}var res,label,info;if(mode==='What is X% of Y?'){res=(x/100*y).toFixed(2);label=x+'% of '+y;info=x+'% of '+y+' equals '+res+'. Example: a '+x+'% discount on $'+y+' saves you $'+res+'.';}else if(mode==='X is what % of Y?'){res=(x/y*100).toFixed(2);label='Percentage Result';info=x+' is '+res+'% of '+y+'. To verify: '+y+' x '+res+'% = '+x+'.';}else if(mode==='% Change from X to Y'){var ch=((y-x)/Math.abs(x)*100).toFixed(2);res=ch+'%';label=ch>0?'Increase':'Decrease';info='From '+x+' to '+y+' is a '+(ch>0?'+'+ ch:''+ch)+'% change. Difference: '+(y-x).toFixed(2)+'.';}else if(mode==='Add X% to Y'){res=(y*(1+x/100)).toFixed(2);label='Result After Adding '+x+'%';info=y+' + '+x+'% = '+res+'. Added amount: '+(y*x/100).toFixed(2)+'.';}else{res=(y*(1-x/100)).toFixed(2);label='Result After Subtracting '+x+'%';info=y+' - '+x+'% = '+res+'. Subtracted amount: '+(y*x/100).toFixed(2)+'.';}showResult('result',res,label,info,'green'); }
-  window.vhReset=function(){
-    document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){el.value='';});
-    var r=document.getElementById('result');
-    if(r){r.className='result-box';}
-    var ph=document.getElementById('calcPlaceholder');
-    if(ph){ph.style.display='flex';}
-  };
-  window.vhCopyResult=function(){
-    var v=document.querySelector('#result .result-value')?document.querySelector('#result .result-value').textContent:'';
-    var l=document.querySelector('#result .result-label')?document.querySelector('#result .result-label').textContent:'';
-    var s=document.querySelector('#result .result-suggestion')?document.querySelector('#result .result-suggestion').textContent:'';
-    var text=v+(l?' - '+l:'')+(s?'\n'+s:'');
-    if(navigator.clipboard&&text.trim()){navigator.clipboard.writeText(text).then(function(){var b=document.getElementById('vhCopyBtn');if(b){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);}});}
-  };
-  window.vhShareResult=function(){
-    if(navigator.share){navigator.share({title:'Percentage Calculator Result',url:window.location.href});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){alert('Link copied to clipboard!');});}
-  };
-  document.querySelectorAll('.calc-input-card input,.calc-input-card select').forEach(function(el){
-    el.addEventListener('change',vhAutoCalc);
-  });
-  var origShowResult=window.showResult;
-  if(origShowResult){
-    window.showResult=function(id,val,label,sugg,color){
-      origShowResult(id,val,label,sugg,color);
-      var ph=document.getElementById('calcPlaceholder');
-      if(ph){ph.style.display='none';}
-    };
-  }
-})();
-</script>
+<script src="/js/calculators.js" defer></script>
+<script>window._vhCalcFn=function(){ var mode=document.getElementById('mode').value;var x=parseFloat(document.getElementById('val1').value);var y=parseFloat(document.getElementById('val2').value);if(isNaN(x)||isNaN(y)){alert('Enter both values');return;}var res,label,info;if(mode==='What is X% of Y?'){res=(x/100*y).toFixed(2);label=x+'% of '+y;info=x+'% of '+y+' equals '+res+'. Example: a '+x+'% discount on $'+y+' saves you $'+res+'.';}else if(mode==='X is what % of Y?'){res=(x/y*100).toFixed(2);label='Percentage Result';info=x+' is '+res+'% of '+y+'. To verify: '+y+' x '+res+'% = '+x+'.';}else if(mode==='% Change from X to Y'){var ch=((y-x)/Math.abs(x)*100).toFixed(2);res=ch+'%';label=ch>0?'Increase':'Decrease';info='From '+x+' to '+y+' is a '+(ch>0?'+'+ ch:''+ch)+'% change. Difference: '+(y-x).toFixed(2)+'.';}else if(mode==='Add X% to Y'){res=(y*(1+x/100)).toFixed(2);label='Result After Adding '+x+'%';info=y+' + '+x+'% = '+res+'. Added amount: '+(y*x/100).toFixed(2)+'.';}else{res=(y*(1-x/100)).toFixed(2);label='Result After Subtracting '+x+'%';info=y+' - '+x+'% = '+res+'. Subtracted amount: '+(y*x/100).toFixed(2)+'.';}showResult('result',res,label,info,'green'); };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
