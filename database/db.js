@@ -77,6 +77,22 @@ db.exec(`
     alt_text      TEXT DEFAULT '',
     uploaded_at   TEXT DEFAULT (datetime('now'))
   );
+
+  CREATE TABLE IF NOT EXISTS pages (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    title       TEXT NOT NULL,
+    slug        TEXT UNIQUE NOT NULL,
+    content     TEXT DEFAULT '',
+    meta_title  TEXT DEFAULT '',
+    meta_desc   TEXT DEFAULT '',
+    canonical   TEXT DEFAULT '',
+    page_type   TEXT DEFAULT 'general',
+    status      TEXT DEFAULT 'published',
+    in_nav      INTEGER DEFAULT 0,
+    in_footer   INTEGER DEFAULT 0,
+    created_at  TEXT DEFAULT (datetime('now')),
+    updated_at  TEXT DEFAULT (datetime('now'))
+  );
 `);
 
 const migrations = [

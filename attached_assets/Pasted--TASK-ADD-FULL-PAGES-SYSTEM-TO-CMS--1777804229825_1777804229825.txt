@@ -1,0 +1,241 @@
+--------------------------------------------------
+TASK: ADD FULL "PAGES" SYSTEM TO CMS
+--------------------------------------------------
+
+GOAL:
+Extend the CMS to support STATIC PAGES like:
+
+✔ Home
+✔ About
+✔ Contact
+✔ FAQ
+✔ Privacy Policy
+✔ Terms
+✔ Custom landing pages
+
+All pages must be:
+
+✔ editable from dashboard
+✔ SEO optimized
+✔ dynamically generated
+✔ included in sitemap
+✔ internally linked
+
+--------------------------------------------------
+SECTION 1: DATA STRUCTURE
+--------------------------------------------------
+
+Create new file:
+
+/data/pages.json
+
+--------------------------------------------------
+
+Structure:
+
+[
+  {
+    "id": "page-1",
+    "title": "About Us",
+    "slug": "about",
+    "content": "<h1>About</h1><p>...</p>",
+    "metaTitle": "About VitalHealth Hub",
+    "metaDescription": "Learn about VitalHealth Hub...",
+    "canonical": "/about.html",
+    "status": "published",
+    "createdAt": "...",
+    "updatedAt": "..."
+  }
+]
+
+--------------------------------------------------
+SECTION 2: DASHBOARD UI (NEW)
+--------------------------------------------------
+
+Add sidebar item:
+
+CONTENT:
+- Pages Manager
+
+--------------------------------------------------
+
+Pages Manager features:
+
+✔ Create Page  
+✔ Edit Page  
+✔ Delete Page  
+✔ Draft / Publish toggle  
+✔ Search pages  
+
+--------------------------------------------------
+
+Page form fields:
+
+✔ Page Title  
+✔ Slug  
+✔ Content (rich HTML textarea)  
+✔ Meta Title  
+✔ Meta Description  
+✔ Canonical URL  
+
+--------------------------------------------------
+SECTION 3: PAGE GENERATION ENGINE
+--------------------------------------------------
+
+When user clicks:
+
+[ Create & Generate HTML ]
+
+--------------------------------------------------
+
+System must:
+
+1. Load template (/templates/page.html)
+2. Inject:
+   - title
+   - meta
+   - canonical
+   - content
+
+3. Save:
+
+/pages/slug.html
+
+--------------------------------------------------
+
+SPECIAL RULE:
+
+Homepage = /
+
+→ If slug = "home"
+
+Save as:
+
+/index.html
+
+--------------------------------------------------
+SECTION 4: TEMPLATE STRUCTURE
+--------------------------------------------------
+
+Create:
+
+/templates/page.html
+
+--------------------------------------------------
+
+Structure:
+
+✔ Header (global)
+✔ Hero section (optional)
+✔ Content section
+✔ Footer (global)
+
+--------------------------------------------------
+
+Inject content:
+
+<div class="page-content">
+  {{content}}
+</div>
+
+--------------------------------------------------
+SECTION 5: INTERNAL LINKING (IMPORTANT)
+--------------------------------------------------
+
+Auto-link pages:
+
+✔ Footer → About, Contact, FAQ  
+✔ Header → main pages  
+✔ Blog → link to pages where relevant  
+
+--------------------------------------------------
+SECTION 6: SITEMAP INTEGRATION
+--------------------------------------------------
+
+Update sitemap generator:
+
+Include:
+
+✔ pages  
+✔ calculators  
+✔ blogs  
+✔ tools  
+✔ quizzes  
+
+--------------------------------------------------
+
+Example:
+
+<url>
+  <loc>https://vitalhealthhub.org/about.html</loc>
+</url>
+
+--------------------------------------------------
+SECTION 7: REDIRECT SYSTEM (EXTEND)
+--------------------------------------------------
+
+When page slug changes:
+
+Add redirect automatically:
+
+"/about.html": "/about-us.html"
+
+--------------------------------------------------
+SECTION 8: SEO AUTOMATION
+--------------------------------------------------
+
+Each page must include:
+
+✔ meta title  
+✔ meta description  
+✔ canonical  
+✔ robots index  
+
+--------------------------------------------------
+
+Optional schema:
+
+✔ About → Organization  
+✔ Contact → ContactPage  
+✔ FAQ → FAQPage  
+
+--------------------------------------------------
+SECTION 9: NAVIGATION INTEGRATION
+--------------------------------------------------
+
+Allow selecting pages in dashboard:
+
+✔ Add to header menu  
+✔ Add to footer  
+
+--------------------------------------------------
+
+Store menu structure:
+
+/data/menu.json
+
+--------------------------------------------------
+SECTION 10: PERMISSIONS / SAFETY
+--------------------------------------------------
+
+✔ Prevent deleting homepage  
+✔ Prevent duplicate slugs  
+✔ Validate URL structure  
+
+--------------------------------------------------
+SECTION 11: FINAL RESULT
+--------------------------------------------------
+
+After implementation:
+
+✔ Full CMS system (like WordPress)  
+✔ Pages fully manageable  
+✔ SEO optimized structure  
+✔ Dynamic page creation  
+✔ Internal linking complete  
+
+--------------------------------------------------
+CONFIRMATION
+--------------------------------------------------
+
+"Pages system successfully integrated into CMS with full SEO and dynamic generation support"

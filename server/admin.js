@@ -121,6 +121,7 @@ function getFlash(req) {
 ══════════════════════════════════════════════════ */
 router.get('/', async (req, res) => {
   try {
+    const totalPages   = db.prepare('SELECT COUNT(*) as c FROM pages').get().c;
     const totalBlogs   = db.prepare('SELECT COUNT(*) as c FROM blogs').get().c;
     const totalCalcs   = db.prepare('SELECT COUNT(*) as c FROM calculators').get().c;
     const totalTools   = db.prepare('SELECT COUNT(*) as c FROM tools').get().c;
@@ -134,7 +135,7 @@ router.get('/', async (req, res) => {
     const recentQuizzes = db.prepare('SELECT * FROM quizzes ORDER BY created_at DESC LIMIT 5').all();
     const flash = getFlash(req);
     const html = await renderView('overview', {
-      totalBlogs, totalCalcs, totalTools, totalQuizzes, totalMedia, missingMeta, missingAlt,
+      totalPages, totalBlogs, totalCalcs, totalTools, totalQuizzes, totalMedia, missingMeta, missingAlt,
       recentBlogs, recentCalcs, recentTools, recentQuizzes, flash,
       pageTitle: 'Overview', topbarActions: ''
     });
@@ -606,6 +607,166 @@ router.post('/media/:id/delete', (req, res) => {
     if (fs.existsSync(fp)) fs.unlinkSync(fp);
     flashMsg(req, 'info', `"${file.original_name}" deleted.`);
     res.redirect('/admin/media');
+  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+});
+
+/* ══════════════════════════════════════════════════
+   PAGES
+══════════════════════════════════════════════════ */
+
+const PROTECTED_SLUGS = ['home','about','contact','faq','privacy','terms'];
+const ROOT_DIR = path.join(__dirname, '..');
+
+async function generatePageHtml(page) {
+  return ejs.renderFile(path.join(__dirname, '..', 'templates', 'page.ejs'), {
+    ...page,
+    nav: NAV, footer: FOOTER, chatbot: CHATBOT, btt: BTT
+  });
+}
+
+function pageOutputPath(slug) {
+  if (slug === 'home') return path.join(ROOT_DIR, 'index.html');
+  return path.join(ROOT_DIR, slug + '.html');
+}
+
+function pageSitemapUrl(slug) {
+  return slug === 'home' ? '/' : '/' + slug + '.html';
+}
+
+router.get('/pages', async (req, res) => {
+  try {
+    const q            = req.query.q || '';
+    const statusFilter = req.query.status || '';
+    let stmt = 'SELECT * FROM pages';
+    const params = [], conds = [];
+    if (q)            { conds.push("(title LIKE ? OR slug LIKE ?)"); params.push('%'+q+'%','%'+q+'%'); }
+    if (statusFilter) { conds.push("status=?"); params.push(statusFilter); }
+    if (conds.length) stmt += ' WHERE ' + conds.join(' AND ');
+    stmt += " ORDER BY CASE slug WHEN 'home' THEN 0 ELSE 1 END, title ASC";
+    const pages = db.prepare(stmt).all(...params);
+    const flash = getFlash(req);
+    const topbarActions = `<a href="/admin/pages/new" class="btn btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Page</a>
+      <form method="POST" action="/admin/pages/regenerate-all" style="display:inline"><button type="submit" class="btn btn-secondary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> Regenerate All</button></form>`;
+    const html = await renderView('pages', { pages, q, statusFilter, flash, pageTitle: 'Pages Manager', topbarActions });
+    res.send(html);
+  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+});
+
+router.get('/pages/new', async (req, res) => {
+  try {
+    const html = await renderView('page-form', { page: null, flash: null, pageTitle: 'New Page', topbarActions: '' });
+    res.send(html);
+  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+});
+
+router.post('/pages/new', async (req, res) => {
+  try {
+    const { title, slug: rawSlug, content, meta_title, meta_desc, canonical, page_type, status, in_nav, in_footer } = req.body;
+    const slug = rawSlug ? slugify(rawSlug) : slugify(title);
+    if (!title || !slug) return res.status(400).send('Title and slug are required');
+    db.prepare(`INSERT INTO pages (title,slug,content,meta_title,meta_desc,canonical,page_type,status,in_nav,in_footer)
+                VALUES (?,?,?,?,?,?,?,?,?,?)`)
+      .run(title, slug, content||'', meta_title||'', meta_desc||'', canonical||'', page_type||'general', status||'published', in_nav?1:0, in_footer?1:0);
+    const page = db.prepare('SELECT * FROM pages WHERE slug=?').get(slug);
+    if (page.status === 'published') {
+      const htmlContent = await generatePageHtml(page);
+      fs.writeFileSync(pageOutputPath(slug), htmlContent);
+      updateSitemap(pageSitemapUrl(slug), 'add');
+    }
+    flashMsg(req, 'success', `Page "${title}" created${page.status==='published'?' and published to '+pageSitemapUrl(slug):' as draft'}.`);
+    res.redirect('/admin/pages');
+  } catch (e) {
+    if (e.message.includes('UNIQUE')) return res.status(400).send('A page with that slug already exists.');
+    res.status(500).send(`<pre>Error: ${e.message}</pre>`);
+  }
+});
+
+router.get('/pages/:id/edit', async (req, res) => {
+  try {
+    const page = db.prepare('SELECT * FROM pages WHERE id=?').get(req.params.id);
+    if (!page) return res.status(404).send('Page not found');
+    const viewUrl = pageSitemapUrl(page.slug);
+    const topbarActions = `<a href="${viewUrl}" target="_blank" class="btn btn-secondary btn-sm">View Page ↗</a>`;
+    const html = await renderView('page-form', { page, flash: null, pageTitle: 'Edit: ' + page.title, topbarActions });
+    res.send(html);
+  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+});
+
+router.post('/pages/:id/edit', async (req, res) => {
+  try {
+    const { title, slug: rawSlug, content, meta_title, meta_desc, canonical, page_type, status, in_nav, in_footer } = req.body;
+    const old = db.prepare('SELECT * FROM pages WHERE id=?').get(req.params.id);
+    if (!old) return res.status(404).send('Page not found');
+    const slug = PROTECTED_SLUGS.includes(old.slug) ? old.slug : (rawSlug ? slugify(rawSlug) : slugify(title));
+    db.prepare(`UPDATE pages SET title=?,slug=?,content=?,meta_title=?,meta_desc=?,canonical=?,page_type=?,status=?,in_nav=?,in_footer=?,updated_at=datetime('now') WHERE id=?`)
+      .run(title, slug, content||'', meta_title||'', meta_desc||'', canonical||'', page_type||'general', status||'published', in_nav?1:0, in_footer?1:0, req.params.id);
+    const page = db.prepare('SELECT * FROM pages WHERE id=?').get(req.params.id);
+    if (old.slug !== slug) {
+      const oldPath = pageOutputPath(old.slug);
+      if (fs.existsSync(oldPath) && old.slug !== 'home') fs.unlinkSync(oldPath);
+      updateSitemap(pageSitemapUrl(old.slug), 'remove');
+    }
+    if (page.status === 'published') {
+      const htmlContent = await generatePageHtml(page);
+      fs.writeFileSync(pageOutputPath(slug), htmlContent);
+      updateSitemap(pageSitemapUrl(slug), 'add');
+    } else {
+      updateSitemap(pageSitemapUrl(slug), 'remove');
+    }
+    flashMsg(req, 'success', `Page "${title}" saved${page.status==='published'?' and published':' as draft'}.`);
+    res.redirect('/admin/pages');
+  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+});
+
+router.post('/pages/:id/toggle-status', async (req, res) => {
+  try {
+    const page = db.prepare('SELECT * FROM pages WHERE id=?').get(req.params.id);
+    if (!page) return res.status(404).send('Not found');
+    const newStatus = page.status === 'published' ? 'draft' : 'published';
+    db.prepare(`UPDATE pages SET status=?,updated_at=datetime('now') WHERE id=?`).run(newStatus, req.params.id);
+    const updated = db.prepare('SELECT * FROM pages WHERE id=?').get(req.params.id);
+    if (newStatus === 'published') {
+      const htmlContent = await generatePageHtml(updated);
+      fs.writeFileSync(pageOutputPath(page.slug), htmlContent);
+      updateSitemap(pageSitemapUrl(page.slug), 'add');
+      flashMsg(req, 'success', `"${page.title}" published.`);
+    } else {
+      updateSitemap(pageSitemapUrl(page.slug), 'remove');
+      flashMsg(req, 'info', `"${page.title}" set to draft.`);
+    }
+    res.redirect('/admin/pages');
+  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+});
+
+router.post('/pages/:id/delete', (req, res) => {
+  try {
+    const page = db.prepare('SELECT * FROM pages WHERE id=?').get(req.params.id);
+    if (!page) return res.status(404).send('Not found');
+    if (PROTECTED_SLUGS.includes(page.slug)) {
+      flashMsg(req, 'error', `"${page.title}" is a core page and cannot be deleted.`);
+      return res.redirect('/admin/pages');
+    }
+    db.prepare('DELETE FROM pages WHERE id=?').run(req.params.id);
+    const outPath = pageOutputPath(page.slug);
+    if (fs.existsSync(outPath)) fs.unlinkSync(outPath);
+    updateSitemap(pageSitemapUrl(page.slug), 'remove');
+    flashMsg(req, 'info', `Page "${page.title}" deleted.`);
+    res.redirect('/admin/pages');
+  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+});
+
+router.post('/pages/regenerate-all', async (req, res) => {
+  try {
+    const pages = db.prepare("SELECT * FROM pages WHERE status='published'").all();
+    let count = 0;
+    for (const page of pages) {
+      const htmlContent = await generatePageHtml(page);
+      fs.writeFileSync(pageOutputPath(page.slug), htmlContent);
+      updateSitemap(pageSitemapUrl(page.slug), 'add');
+      count++;
+    }
+    flashMsg(req, 'success', `Regenerated ${count} page${count!==1?'s':''}.`);
+    res.redirect('/admin/pages');
   } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
 });
 

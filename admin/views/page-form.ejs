@@ -1,0 +1,179 @@
+<% var isEdit = !!page; %>
+<% if (flash) { %>
+<div class="flash flash-<%= flash.type %>"><%= flash.msg %></div>
+<% } %>
+
+<form method="POST" action="/admin/pages/<%= isEdit ? page.id + '/edit' : 'new' %>" id="page-form">
+  <div style="display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start">
+
+    <div style="display:flex;flex-direction:column;gap:20px">
+
+      <div class="card">
+        <div class="card-header"><h2>Page Content</h2></div>
+        <div class="card-body">
+          <div class="form-group" style="margin-bottom:16px">
+            <label>Page Title *</label>
+            <input type="text" name="title" value="<%= isEdit ? page.title : '' %>" placeholder="e.g. About Us, Privacy Policy..." required id="titleInput">
+          </div>
+          <div class="form-group" style="margin-bottom:16px">
+            <label>URL Slug</label>
+            <input type="text" name="slug" value="<%= isEdit ? page.slug : '' %>" placeholder="auto-generated" id="slugInput" <%= isEdit && ['home','about','contact','faq','privacy','terms'].includes(page.slug) ? 'readonly style="background:#f3f4f6;color:#9ca3af"' : '' %>>
+            <div class="form-hint">
+              URL: <strong id="urlPreview">
+                <% if (isEdit) { %><%= page.slug === 'home' ? '/' : '/' + page.slug + '.html' %><% } else { %>/slug.html<% } %>
+              </strong>
+              <% if (isEdit && ['home','about','contact','faq','privacy','terms'].includes(page.slug)) { %>
+              &nbsp;<span style="color:#f4a261">⚠ Slug locked for core pages</span>
+              <% } %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Content <span style="font-weight:400;text-transform:none;color:#9ca3af">(HTML supported)</span></label>
+            <textarea name="content" class="content-editor" style="min-height:480px" placeholder="Write your page content using HTML tags. Examples:&#10;&lt;h2&gt;Section Title&lt;/h2&gt;&#10;&lt;p&gt;Paragraph text here.&lt;/p&gt;&#10;&lt;ul&gt;&lt;li&gt;List item&lt;/li&gt;&lt;/ul&gt;"><%= isEdit ? page.content : '' %></textarea>
+            <div class="form-hint">Supports full HTML — headings, paragraphs, lists, links, images, tables.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>SEO Settings</h2></div>
+        <div class="card-body">
+          <div class="form-grid">
+            <div class="form-group full">
+              <label>Meta Title <span style="font-weight:400;text-transform:none;color:#9ca3af">(50–60 chars ideal)</span></label>
+              <input type="text" name="meta_title" id="metaTitle" value="<%= isEdit ? page.meta_title : '' %>" placeholder="Page title for search engines...">
+              <div data-char-target="metaTitle" data-max="60" class="char-count"></div>
+            </div>
+            <div class="form-group full">
+              <label>Meta Description <span style="font-weight:400;text-transform:none;color:#9ca3af">(140–160 chars ideal)</span></label>
+              <textarea name="meta_desc" id="metaDesc" rows="3" placeholder="Compelling description shown in search results..."><%= isEdit ? page.meta_desc : '' %></textarea>
+              <div data-char-target="metaDesc" data-max="160" class="char-count"></div>
+            </div>
+            <div class="form-group full">
+              <label>Custom Canonical URL <span style="font-weight:400;text-transform:none;color:#9ca3af">(leave blank for auto)</span></label>
+              <input type="text" name="canonical" value="<%= isEdit ? page.canonical : '' %>" placeholder="/about.html">
+              <div class="form-hint">Auto-set to /<%= isEdit ? page.slug : 'slug' %>.html if left blank.</div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;padding:14px;background:#f0fdf4;border-radius:10px;border:1px solid #d1fae5">
+            <div style="font-size:12px;font-weight:700;color:#2d6a4f;margin-bottom:8px">SERP Preview</div>
+            <div style="font-size:18px;color:#1a0dab;line-height:1.3;margin-bottom:4px" id="serp-title"><%= isEdit ? (page.meta_title || page.title) : 'Page Title' %></div>
+            <div style="font-size:13px;color:#006621;margin-bottom:4px">vitalhealthhub.com/<strong id="serp-slug"><%= isEdit ? (page.slug==='home'?'':page.slug+'.html') : 'slug.html' %></strong></div>
+            <div style="font-size:13px;color:#545454;line-height:1.5" id="serp-desc"><%= isEdit ? page.meta_desc : 'Meta description will appear here...' %></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px">
+
+      <div class="card">
+        <div class="card-header"><h2>Publish</h2></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:12px">
+          <div class="form-group">
+            <label>Status</label>
+            <select name="status">
+              <option value="published" <%= (!isEdit||page.status==='published')?'selected':'' %>>Published</option>
+              <option value="draft"     <%= (isEdit&&page.status==='draft')?'selected':'' %>>Draft</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <%= isEdit ? 'Save & Regenerate HTML' : 'Create & Generate HTML' %>
+          </button>
+          <a href="/admin/pages" class="btn btn-secondary" style="width:100%;justify-content:center">Cancel</a>
+          <% if (isEdit) { %>
+          <div style="padding-top:12px;border-top:1px solid #f3f4f6">
+            <p style="font-size:11px;color:#9ca3af;margin-bottom:6px">Output file:</p>
+            <code style="font-size:11px;background:#f3f4f6;padding:4px 8px;border-radius:6px;display:block;word-break:break-all">
+              <%= page.slug === 'home' ? '/index.html' : '/' + page.slug + '.html' %>
+            </code>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>Page Settings</h2></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:16px">
+          <div class="form-group">
+            <label>Page Type <span style="font-weight:400;text-transform:none;color:#9ca3af">(sets schema)</span></label>
+            <select name="page_type">
+              <option value="general" <%= (!isEdit||page.page_type==='general')?'selected':'' %>>General (WebPage)</option>
+              <option value="home"    <%= (isEdit&&page.page_type==='home')?'selected':'' %>>Home (WebSite)</option>
+              <option value="about"   <%= (isEdit&&page.page_type==='about')?'selected':'' %>>About (AboutPage)</option>
+              <option value="contact" <%= (isEdit&&page.page_type==='contact')?'selected':'' %>>Contact (ContactPage)</option>
+              <option value="faq"     <%= (isEdit&&page.page_type==='faq')?'selected':'' %>>FAQ (FAQPage)</option>
+              <option value="landing" <%= (isEdit&&page.page_type==='landing')?'selected':'' %>>Landing Page</option>
+              <option value="privacy" <%= (isEdit&&page.page_type==='privacy')?'selected':'' %>>Privacy Policy</option>
+              <option value="terms"   <%= (isEdit&&page.page_type==='terms')?'selected':'' %>>Terms & Conditions</option>
+            </select>
+          </div>
+
+          <div style="padding:14px;background:#f9fafb;border-radius:10px;border:1px solid #e5e7eb">
+            <div style="font-size:11px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Navigation Placement</div>
+            <label style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:400;text-transform:none;letter-spacing:0;cursor:pointer;margin-bottom:8px">
+              <input type="checkbox" name="in_nav" value="1" <%= (isEdit&&page.in_nav)?'checked':'' %> style="width:16px;height:16px;cursor:pointer">
+              Add to header navigation
+            </label>
+            <label style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:400;text-transform:none;letter-spacing:0;cursor:pointer">
+              <input type="checkbox" name="in_footer" value="1" <%= (isEdit&&page.in_footer)?'checked':'' %> style="width:16px;height:16px;cursor:pointer">
+              Add to footer links
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <% if (isEdit && !['home','about','contact','faq','privacy','terms'].includes(page.slug)) { %>
+      <div class="card">
+        <div class="card-body">
+          <span class="confirm-delete">
+            <form method="POST" action="/admin/pages/<%= page.id %>/delete">
+              <button type="submit" class="btn btn-danger" style="width:100%;justify-content:center">Delete This Page</button>
+            </form>
+          </span>
+        </div>
+      </div>
+      <% } %>
+
+    </div>
+  </div>
+</form>
+
+<script>
+const titleInput = document.getElementById('titleInput');
+const slugInput  = document.getElementById('slugInput');
+const urlPreview = document.getElementById('urlPreview');
+const serpTitle  = document.getElementById('serp-title');
+const serpSlug   = document.getElementById('serp-slug');
+const serpDesc   = document.getElementById('serp-desc');
+const metaTitle  = document.getElementById('metaTitle');
+const metaDesc   = document.getElementById('metaDesc');
+
+function makeSlug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+
+function updatePreview() {
+  const slug = slugInput ? slugInput.value : '';
+  const slugDisplay = slug === 'home' ? '' : (slug || 'slug') + '.html';
+  if (urlPreview) urlPreview.textContent = slug === 'home' ? '/' : '/' + (slug||'slug') + '.html';
+  if (serpSlug) serpSlug.textContent = slugDisplay;
+  if (serpTitle && metaTitle) serpTitle.textContent = metaTitle.value || titleInput.value || 'Page Title';
+  if (serpDesc  && metaDesc)  serpDesc.textContent  = metaDesc.value  || 'Meta description will appear here...';
+}
+
+<% if (!isEdit || !['home','about','contact','faq','privacy','terms'].includes(page ? page.slug : '')) { %>
+if (titleInput && !<%= isEdit ? 'true' : 'false' %>) {
+  titleInput.addEventListener('input', function() {
+    const s = makeSlug(this.value);
+    if (slugInput) slugInput.value = s;
+    updatePreview();
+  });
+}
+if (slugInput) slugInput.addEventListener('input', updatePreview);
+<% } %>
+if (metaTitle) metaTitle.addEventListener('input', updatePreview);
+if (metaDesc)  metaDesc.addEventListener('input',  updatePreview);
+updatePreview();
+</script>

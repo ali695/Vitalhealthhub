@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= meta_title || title %></title>
+<meta name="description" content="<%= meta_desc %>">
+<% const canon = canonical || ('/' + (slug === 'home' ? '' : slug + '.html')); %>
+<link rel="canonical" href="https://vitalhealthhub.com<%= canon %>">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="<%= meta_title || title %>">
+<meta property="og:description" content="<%= meta_desc %>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vitalhealthhub.com<%= canon %>">
+<meta property="og:site_name" content="VitalHealth Hub">
+<link rel="stylesheet" href="/css/style.css">
+<% if (page_type === 'about') { %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "<%= title %>",
+  "description": "<%= meta_desc %>",
+  "url": "https://vitalhealthhub.com<%= canon %>",
+  "publisher": {
+    "@type": "Organization",
+    "name": "VitalHealth Hub",
+    "url": "https://vitalhealthhub.com",
+    "logo": {"@type": "ImageObject", "url": "https://vitalhealthhub.com/images/logo.png"}
+  }
+}
+</script>
+<% } else if (page_type === 'contact') { %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "<%= title %>",
+  "description": "<%= meta_desc %>",
+  "url": "https://vitalhealthhub.com<%= canon %>",
+  "publisher": {"@type": "Organization", "name": "VitalHealth Hub", "url": "https://vitalhealthhub.com"}
+}
+</script>
+<% } else if (page_type === 'faq') { %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "name": "<%= title %>",
+  "description": "<%= meta_desc %>",
+  "url": "https://vitalhealthhub.com<%= canon %>"
+}
+</script>
+<% } else if (page_type === 'home') { %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "VitalHealth Hub",
+  "description": "<%= meta_desc %>",
+  "url": "https://vitalhealthhub.com",
+  "potentialAction": {"@type": "SearchAction", "target": "https://vitalhealthhub.com/blog.html?q={search_term_string}", "query-input": "required name=search_term_string"}
+}
+</script>
+<% } else { %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "<%= title %>",
+  "description": "<%= meta_desc %>",
+  "url": "https://vitalhealthhub.com<%= canon %>",
+  "publisher": {"@type": "Organization", "name": "VitalHealth Hub", "url": "https://vitalhealthhub.com"}
+}
+</script>
+<% } %>
+</head>
+<body>
+<%- nav %>
+
+<% if (slug !== 'home') { %>
+<div class="breadcrumbs"><div class="breadcrumbs-inner">
+  <a href="/">Home</a><span>/</span><span><%= title %></span>
+</div></div>
+<% } %>
+
+<main class="content-page" style="padding-top:<%= slug==='home'?'100px':'130px' %>;padding-bottom:80px;">
+  <div class="container" style="max-width:900px;">
+
+    <% if (slug !== 'home') { %>
+    <div class="section-title" style="margin-bottom:40px;">
+      <h1 style="font-size:2.4rem;line-height:1.2;color:var(--green-dark);"><%= title %></h1>
+      <% if (meta_desc) { %><p style="color:var(--gray-500);font-size:1.05rem;margin-top:14px;line-height:1.7;max-width:680px;"><%= meta_desc %></p><% } %>
+    </div>
+    <% } %>
+
+    <div class="page-content prose" style="color:var(--gray-700);line-height:1.85;font-size:1rem;">
+      <%- content %>
+    </div>
+
+    <% if (in_nav || in_footer) { %>
+    <div style="margin-top:56px;padding-top:32px;border-top:1px solid var(--gray-100);display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="/calculators/" class="btn btn-secondary" style="font-size:0.9rem;">Free Calculators</a>
+      <a href="/blog.html" class="btn btn-secondary" style="font-size:0.9rem;">Health Blog</a>
+      <a href="/quizzes/" class="btn btn-secondary" style="font-size:0.9rem;">Health Quizzes</a>
+      <a href="/tools/" class="btn btn-secondary" style="font-size:0.9rem;">Wellness Tools</a>
+    </div>
+    <% } %>
+
+  </div>
+</main>
+
+<%- footer %>
+<%- btt %>
+<script src="/js/main.js"></script>
+<%- chatbot %>
+</body>
+</html>

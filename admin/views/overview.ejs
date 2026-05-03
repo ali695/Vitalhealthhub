@@ -5,7 +5,11 @@
 </div>
 <% } %>
 
-<div class="stats-row">
+<div class="stats-row" style="grid-template-columns:repeat(7,1fr)">
+  <div class="stat-card">
+    <div class="stat-number"><%= totalPages %></div>
+    <div class="stat-label">Pages</div>
+  </div>
   <div class="stat-card">
     <div class="stat-number"><%= totalBlogs %></div>
     <div class="stat-label">Blog Posts</div>
