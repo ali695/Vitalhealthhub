@@ -2067,9 +2067,9 @@ function getCalcEmbedWidget(calcSlug, calcName) {
   const name = calcName || (calculators.find(c=>c.slug===calcSlug)||{name:'Health Calculator'}).name;
   return `
 <div class="calc-embed-widget fade-in">
-  <p class="calc-embed-heading">🧮 Try It Yourself: ${name}</p>
+  <p class="calc-embed-heading">Try It Yourself: ${name}</p>
   <p style="color:#6b9e80;font-size:0.9rem;margin:0 0 16px;">Get your personalized results in under 30 seconds — 100% free, no sign-up needed.</p>
-  <a href="/calculators/${calcSlug}.html" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:8px;">Open Free Calculator &rarr;</a>
+  <a href="/calculators/${calcSlug}.html" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:8px;">Calculate Now Open Free Calculator &rarr;rarr;</a>
   <p class="calc-embed-caption">Used by 100,000+ people monthly. Evidence-based results, instantly.</p>
 </div>`;
 }
@@ -2560,7 +2560,7 @@ ${NAV}
 <section class="home-pop-calcs">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge">🧮 Top Calculators</span>
+<span class="home-section-badge">Top Calculators</span>
 <h2>Popular Health Calculators</h2>
 <p>Science-backed tools to understand your body and guide your wellness journey.</p>
 </div>
@@ -2580,28 +2580,28 @@ ${popularCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="home-calc-
 <section class="home-quick-action">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge">⚡ Get Started</span>
+<span class="home-section-badge">Get Started</span>
 <h2>What do you want to do today?</h2>
 <p>Pick a path and we'll guide you to the right tools and content.</p>
 </div>
 <div class="home-qa-grid">
 <a href="/calculators/" class="home-qa-card fade-in">
-<span class="home-qa-icon">🧮</span>
+<span class="home-qa-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg></span>
 <div class="home-qa-label">Calculate Health Metrics</div>
 <div class="home-qa-sub">BMI, calories, macros, heart rate and 100+ more free calculators</div>
 </a>
 <a href="/tools/" class="home-qa-card fade-in">
-<span class="home-qa-icon">📊</span>
+<span class="home-qa-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></span>
 <div class="home-qa-label">Track Habits &amp; Health</div>
 <div class="home-qa-sub">Daily trackers, planners, mood logs and sleep monitoring</div>
 </a>
 <a href="/quizzes/" class="home-qa-card fade-in">
-<span class="home-qa-icon">🧠</span>
+<span class="home-qa-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a4 4 0 0 0-4 4v1a3 3 0 0 0 0 6v1a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-1a3 3 0 0 0 0-6V7a4 4 0 0 0-4-4H9z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="15" x2="13" y2="15"/></svg></span>
 <div class="home-qa-label">Take a Health Quiz</div>
 <div class="home-qa-sub">Test your nutrition, fitness and wellness knowledge</div>
 </a>
 <a href="/blog.html" class="home-qa-card fade-in">
-<span class="home-qa-icon">📚</span>
+<span class="home-qa-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
 <div class="home-qa-label">Read Expert Articles</div>
 <div class="home-qa-sub">Evidence-based guides on health, fitness and longevity</div>
 </a>
@@ -2613,7 +2613,7 @@ ${popularCalcs.map(c => `<a href="/calculators/${c.slug}.html" class="home-calc-
 <section class="home-tools-section">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge">⚡ Premium Tools</span>
+<span class="home-section-badge">Premium Tools</span>
 <h2>Track Your Health Daily</h2>
 <p>Free tools to build lasting habits, monitor your wellness, and stay productive.</p>
 </div>
@@ -2633,7 +2633,7 @@ ${homeToolsDisplay.map(t => `<a href="/tools/${t.slug}.html" class="home-tool-ca
 <section class="home-quiz-section">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge">🧠 Test Yourself</span>
+<span class="home-section-badge">Test Yourself</span>
 <h2>Interactive Health Quizzes</h2>
 <p>Challenge yourself and discover what you know about your health and wellness.</p>
 </div>
@@ -2662,7 +2662,7 @@ ${homeQuizzesDisplay.map(q => {
 <section class="home-blog-v2">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge">📚 Latest Articles</span>
+<span class="home-section-badge">Latest Articles</span>
 <h2>VitalHealth Hub Blog</h2>
 <p>Evidence-based guides written by experts to help you live better every day.</p>
 </div>
@@ -2680,7 +2680,7 @@ ${featuredPosts.map(p => {
 <section class="home-how-works">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge">💡 Simple Process</span>
+<span class="home-section-badge">Simple Process</span>
 <h2>Get Results in 3 Simple Steps</h2>
 <p>From choosing a tool to getting personalised insights — it takes under a minute.</p>
 </div>
@@ -2711,28 +2711,28 @@ ${featuredPosts.map(p => {
 <section class="home-value-section">
 <div class="container">
 <div class="home-section-head fade-in">
-<span class="home-section-badge" style="background:rgba(255,255,255,0.1);color:#c8e6d4;">⭐ Why Choose Us</span>
+<span class="home-section-badge" style="background:rgba(255,255,255,0.1);color:#c8e6d4;">Why Choose Us</span>
 <h2>Why VitalHealth Hub?</h2>
 <p>We built this so you get the tools you need — without the paywalls, sign-ups, or noise.</p>
 </div>
 <div class="home-value-grid">
 <div class="home-value-card fade-in">
-<span class="home-value-icon">⚡</span>
+<span class="home-value-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
 <h3>Instant Results</h3>
 <p>All calculations happen in your browser. No loading, no servers — results in milliseconds.</p>
 </div>
 <div class="home-value-card fade-in">
-<span class="home-value-icon">🔬</span>
+<span class="home-value-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 3v13l-3 5h18l-3-5V3"/><path d="M8 9h8"/></svg></span>
 <h3>Science-Based</h3>
 <p>Every tool uses validated medical formulas from WHO, NIH, and peer-reviewed research.</p>
 </div>
 <div class="home-value-card fade-in">
-<span class="home-value-icon">🆓</span>
+<span class="home-value-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></span>
 <h3>Free Forever</h3>
 <p>No paywalls, no subscriptions, no hidden fees. All ${calculators.length}+ tools and articles, always free.</p>
 </div>
 <div class="home-value-card fade-in">
-<span class="home-value-icon">🔒</span>
+<span class="home-value-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
 <h3>No Signup Needed</h3>
 <p>Your health data stays on your device. We never collect, store, or share any personal information.</p>
 </div>
@@ -3655,12 +3655,12 @@ ${sidebarPosts.map(sp => {
 
 ${(() => {
   const blogHubDefs = [
-    { cat:'Fitness & Exercise', icon:'💪', desc:'Workouts, strength training, cardio, VO2 max and physical performance guides' },
-    { cat:'Sleep & Recovery',   icon:'😴', desc:'Sleep science, circadian rhythms, sleep quality and overnight recovery' },
-    { cat:'Macronutrients',     icon:'🥗', desc:'Protein, carbohydrates, fats — understanding macros for optimal health' },
-    { cat:'Calories & Weight',  icon:'⚖️', desc:'Calorie tracking, weight management, TDEE and body composition science' },
-    { cat:'Mental Health',      icon:'🧠', desc:'Stress reduction, anxiety, mindfulness and emotional wellbeing strategies' },
-    { cat:'Nutrition',          icon:'🌿', desc:'Evidence-based eating, food quality, micronutrients and nutritional science' },
+    { cat:'Fitness & Exercise', icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h2m8 0h2M7 5v4a5 5 0 0 0 10 0V5"/><path d="M9 21H7a2 2 0 0 1-2-2v-1h14v1a2 2 0 0 1-2 2h-2"/></svg>', desc:'Workouts, strength training, cardio, VO2 max and physical performance guides' },
+    { cat:'Sleep & Recovery',   icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>', desc:'Sleep science, circadian rhythms, sleep quality and overnight recovery' },
+    { cat:'Macronutrients',     icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l4-4 4 4 4-4 4 4"/><path d="M3 18h18"/><circle cx="12" cy="6" r="2"/></svg>', desc:'Protein, carbohydrates, fats — understanding macros for optimal health' },
+    { cat:'Calories & Weight',  icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l3.5 7H8.5L12 3z"/><path d="M3 14l4.5-4h9l4.5 4"/><line x1="12" y1="10" x2="12" y2="21"/><line x1="5" y1="21" x2="19" y2="21"/></svg>', desc:'Calorie tracking, weight management, TDEE and body composition science' },
+    { cat:'Mental Health',      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9h.01M15 9h.01M9 15s1 2 3 2 3-2 3-2"/></svg>', desc:'Stress reduction, anxiety, mindfulness and emotional wellbeing strategies' },
+    { cat:'Nutrition',          icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12M12 12C12 12 7 7 2 7c0 5 5 5 5 5s5-5 10-5c0 5-5 5-5 5z"/></svg>', desc:'Evidence-based eating, food quality, micronutrients and nutritional science' },
   ];
   const sections = blogHubDefs.map(def => {
     const posts = blogPosts.filter(p => p.category === def.cat).slice(0, 4);
@@ -3850,7 +3850,7 @@ function genQuizPage(quiz) {
   ).join('');
 
   const disclaimerHTML = quiz.disclaimer
-    ? '<div class="quiz-disclaimer-box"><strong>⚠️ Medical Notice:</strong> ' + quiz.disclaimer + '</div>'
+    ? '<div class="quiz-disclaimer-box"><strong>Medical Notice:</strong> ' + quiz.disclaimer + '</div>'
     : '';
 
   const quizJSON = JSON.stringify({
@@ -3888,19 +3888,19 @@ ${disclaimerHTML}
 <p>Select a level to begin. You can retake at any difficulty anytime.</p>
 <div class="quiz-diff-grid">
 <div class="quiz-diff-card" data-diff="easy" data-quiz-diff="easy">
-<span class="quiz-diff-icon">🌱</span>
+<span class="quiz-diff-icon">E</span>
 <span class="quiz-diff-label">Easy</span>
 <span class="quiz-diff-count">5 Questions</span>
 <span class="quiz-diff-time">~3 min</span>
 </div>
 <div class="quiz-diff-card" data-diff="medium" data-quiz-diff="medium">
-<span class="quiz-diff-icon">⚡</span>
+<span class="quiz-diff-icon">M</span>
 <span class="quiz-diff-label">Medium</span>
 <span class="quiz-diff-count">8 Questions</span>
 <span class="quiz-diff-time">~5 min</span>
 </div>
 <div class="quiz-diff-card" data-diff="hard" data-quiz-diff="hard">
-<span class="quiz-diff-icon">🔥</span>
+<span class="quiz-diff-icon">H</span>
 <span class="quiz-diff-label">Hard</span>
 <span class="quiz-diff-count">10 Questions</span>
 <span class="quiz-diff-time">~7 min</span>
@@ -3941,23 +3941,23 @@ ${disclaimerHTML}
 <p class="quiz-result-correct" id="res-correct"></p>
 <div class="quiz-result-feedback" id="res-feedback"></div>
 <div class="quiz-result-actions">
-<button class="quiz-retry-btn">&#x1F504; Try Again</button>
-<button class="quiz-share-btn">&#x1F4E4; Share Result</button>
+<button class="quiz-retry-btn">Try Again</button>
+<button class="quiz-share-btn">Share Result</button>
 </div>
 </div>
 
 <div class="quiz-funnel" id="quiz-funnel">
-${funnelTools ? '<div class="quiz-funnel-section"><h3>🔧 Improve Your Results — Try These Tools</h3><div class="quiz-funnel-tools">' + funnelTools + '</div></div>' : ''}
-${funnelBlogs ? '<div class="quiz-funnel-section"><h3>📖 Learn More — Related Articles</h3><div class="quiz-funnel-blogs">' + funnelBlogs + '</div></div>' : ''}
-${nextQuizCards ? '<div class="quiz-funnel-section"><h3>🧠 You Might Also Like</h3><div class="quiz-next-cards">' + nextQuizCards + '</div></div>' : ''}
+${funnelTools ? '<div class="quiz-funnel-section"><h3>Improve Your Results — Try These Tools</h3><div class="quiz-funnel-tools">' + funnelTools + '</div></div>' : ''}
+${funnelBlogs ? '<div class="quiz-funnel-section"><h3>Learn More — Related Articles</h3><div class="quiz-funnel-blogs">' + funnelBlogs + '</div></div>' : ''}
+${nextQuizCards ? '<div class="quiz-funnel-section"><h3>You Might Also Like</h3><div class="quiz-next-cards">' + nextQuizCards + '</div></div>' : ''}
 <div class="quiz-email-capture">
-<h3>📬 Get Weekly Health Insights</h3>
+<h3>Get Weekly Health Insights</h3>
 <p>Personalised tips based on your quiz results, delivered free every week.</p>
 <div class="quiz-email-form">
 <input type="email" class="quiz-email-input" id="quiz-email-input" placeholder="Your email address">
 <button class="quiz-email-submit">Subscribe</button>
 </div>
-<p class="quiz-email-success" id="quiz-email-success">✅ You're subscribed! Check your inbox soon.</p>
+<p class="quiz-email-success" id="quiz-email-success">You're subscribed! Check your inbox soon.</p>
 </div>
 </div>
 
@@ -4098,7 +4098,7 @@ function toolUIByType(tool) {
   // ── HABIT TRACKER ────────────────────────────────────────────────────────
   if (t === 'habit-tracker') {
     return `
-<div class="saas-card-title">🔥 Today's Habits
+<div class="saas-card-title">Today's Habits
   <span id="habitDateLabel" style="margin-left:auto;font-size:0.82rem;font-weight:500;color:#6b7280;"></span>
 </div>
 <div class="habit-add-form">
@@ -4107,7 +4107,7 @@ function toolUIByType(tool) {
 </div>
 <div id="habitList" class="habit-list"></div>
 <div id="habitEmpty" class="saas-empty-state" style="display:none">
-  <div class="saas-empty-icon">🌱</div>
+  <div class="saas-empty-icon">+</div>
   <p class="saas-empty-text">No habits yet. Add your first habit above to get started!</p>
 </div>`;
   }
@@ -4115,7 +4115,7 @@ function toolUIByType(tool) {
   // ── SLEEP TRACKER ────────────────────────────────────────────────────────
   if (t === 'sleep-tracker') {
     return `
-<div class="saas-card-title">😴 Log Tonight's Sleep</div>
+<div class="saas-card-title">Log Tonight's Sleep</div>
 <div class="saas-form-row">
   <div class="saas-form-group">
     <label class="saas-label">Bedtime</label>
@@ -4143,14 +4143,14 @@ function toolUIByType(tool) {
 <button class="saas-btn saas-btn-primary" data-tool-action="log-sleep" style="width:100%">Log Sleep Entry</button>
 <div id="sleepResult" class="saas-result-section hidden" style="margin-top:24px;"></div>
 <hr class="saas-divider">
-<div class="saas-section-heading">📅 Sleep History</div>
+<div class="saas-section-heading">Sleep History</div>
 <div id="sleepHistory"></div>`;
   }
 
   // ── MOOD TRACKER ─────────────────────────────────────────────────────────
   if (t === 'mood-tracker') {
     return `
-<div class="saas-card-title">🌈 How are you feeling today?</div>
+<div class="saas-card-title">How are you feeling today?</div>
 <div class="mood-selector" id="moodSelector">
   <button class="mood-btn" data-m="1">😞<span class="mood-label">Low</span></button>
   <button class="mood-btn" data-m="2">😟<span class="mood-label">Down</span></button>
@@ -4166,7 +4166,7 @@ function toolUIByType(tool) {
 <div id="moodConfirm" style="display:none;text-align:center;padding:14px;color:#166534;font-weight:600;font-size:0.9rem;"></div>
 <hr class="saas-divider">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-  <div class="saas-section-heading" style="margin:0">📅 Last 35 Days</div>
+  <div class="saas-section-heading" style="margin:0">Last 35 Days</div>
   <div id="moodAvg" style="font-size:0.88rem;color:#6b7280;"></div>
 </div>
 <div class="mood-calendar" id="moodCal"></div>
@@ -4183,7 +4183,7 @@ function toolUIByType(tool) {
   // ── STEP TRACKER ─────────────────────────────────────────────────────────
   if (t === 'step-tracker') {
     return `
-<div class="saas-card-title">👟 Log Today's Steps</div>
+<div class="saas-card-title">Log Today's Steps</div>
 <div class="saas-form-row" style="margin-bottom:18px">
   <div class="saas-form-group">
     <label class="saas-label">Steps Today</label>
@@ -4207,27 +4207,27 @@ function toolUIByType(tool) {
   </div>
 </div>
 <hr class="saas-divider">
-<div class="saas-section-heading">📊 Last 7 Days</div>
+<div class="saas-section-heading">Last 7 Days</div>
 <div id="stepChart" class="step-chart-wrap"></div>`;
   }
 
   // ── HEALTH DASHBOARD ─────────────────────────────────────────────────────
   if (t === 'health-dashboard') {
     return `
-<div class="saas-card-title">📊 Your Health Overview
+<div class="saas-card-title">Your Health Overview
   <span style="margin-left:auto;font-size:0.78rem;font-weight:500;color:#9ca3af;" id="dashDate"></span>
 </div>
 <div id="dashNotice" class="saas-notice saas-notice-info" style="margin-bottom:24px">
-  ℹ️ This dashboard reads data from your other trackers. Use the individual tools to log data, and it will appear here automatically.
+  This dashboard reads data from your other trackers. Use the individual tools to log data, and it will appear here automatically.
 </div>
 <div class="dashboard-grid" id="dashGrid"></div>
 <div style="margin-top:24px;padding-top:20px;border-top:1px solid #f0f5f1;">
   <div class="saas-section-heading">Quick Access</div>
   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-    <a href="/tools/sleep-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">😴 Sleep Tracker</a>
-    <a href="/tools/mood-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">🌈 Mood Tracker</a>
-    <a href="/tools/step-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">👟 Step Tracker</a>
-    <a href="/tools/habit-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">🔥 Habit Tracker</a>
+    <a href="/tools/sleep-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">Sleep Tracker</a>
+    <a href="/tools/mood-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">Mood Tracker</a>
+    <a href="/tools/step-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">Step Tracker</a>
+    <a href="/tools/habit-tracker.html" class="saas-btn saas-btn-secondary saas-btn-sm">Habit Tracker</a>
   </div>
 </div>
 `;
@@ -4244,15 +4244,15 @@ function toolUIByType(tool) {
   <input class="saas-input" id="plannerTask" placeholder="Add a task…" maxlength="120">
   <input class="saas-input" type="time" id="plannerTime" style="max-width:130px" value="09:00">
   <select class="planner-select" id="plannerPriority">
-    <option value="high">🔴 High</option>
-    <option value="medium" selected>🟡 Medium</option>
-    <option value="low">🟢 Low</option>
+    <option value="high">High</option>
+    <option value="medium" selected>Medium</option>
+    <option value="low">Low</option>
   </select>
   <button class="saas-btn saas-btn-primary" data-tool-action="add-task">+ Add</button>
 </div>
 <div id="plannerList" class="planner-task-list"></div>
 <div id="plannerEmpty" class="saas-empty-state" style="display:none">
-  <div class="saas-empty-icon">📋</div>
+  <div class="saas-empty-icon">&#9776;</div>
   <p class="saas-empty-text">No tasks yet. Add your first task for today!</p>
 </div>
 <div class="planner-stats" id="plannerStats"></div>`;
@@ -4301,7 +4301,7 @@ function toolUIByType(tool) {
   // ── GOAL TRACKER ─────────────────────────────────────────────────────────
   if (t === 'goal-tracker') {
     return `
-<div class="saas-card-title">🎯 Your Goals</div>
+<div class="saas-card-title">Your Goals</div>
 <div class="goal-add-form">
   <div class="saas-form-row">
     <div class="saas-form-group">
@@ -4327,7 +4327,7 @@ function toolUIByType(tool) {
 </div>
 <div id="goalList" class="goal-list"></div>
 <div id="goalEmpty" class="saas-empty-state" style="display:none">
-  <div class="saas-empty-icon">🎯</div>
+  <div class="saas-empty-icon">&#9678;</div>
   <p class="saas-empty-text">No goals yet. Add your first goal above to start tracking!</p>
 </div>`;
   }
@@ -4351,7 +4351,7 @@ function toolUIByType(tool) {
         <button class="text-clean-btn" data-clean="lower">Lowercase</button>
       </div>
     </div>
-    <button class="saas-btn saas-btn-secondary saas-btn-sm" data-tool-action="copy-text" style="align-self:flex-start">📋 Copy Text</button>
+    <button class="saas-btn saas-btn-secondary saas-btn-sm" data-tool-action="copy-text" style="align-self:flex-start">Copy Text</button>
   </div>
   <div class="text-analyzer-stats-col">
     <div class="saas-stat-grid" style="grid-template-columns:repeat(2,1fr)">
@@ -4408,7 +4408,7 @@ function toolUIByType(tool) {
   </div>
   <div class="headline-suggestions" id="hlSuggestions"></div>
   <div class="headline-power-words" id="hlPowerWords" style="display:none">
-    <div class="saas-section-heading">✨ Power Words Found</div>
+    <div class="saas-section-heading">Power Words Found</div>
     <div class="headline-pw-list" id="hlPwList"></div>
   </div>
 </div>`;
@@ -4417,7 +4417,7 @@ function toolUIByType(tool) {
   // ── CONTENT IDEA GENERATOR ───────────────────────────────────────────────
   if (t === 'content-idea-generator') {
     return `
-<div class="saas-card-title">💡 Generate Content Ideas</div>
+<div class="saas-card-title">Generate Content Ideas</div>
 <div class="idea-gen-form">
   <input class="saas-input" id="ideaTopic" placeholder="Enter a health topic (e.g. intermittent fasting, sleep quality, stress…)" maxlength="80">
   <select class="saas-select" id="ideaAudience" style="max-width:180px">
@@ -4427,7 +4427,7 @@ function toolUIByType(tool) {
     <option value="seniors">Seniors (50+)</option>
     <option value="women">Women's health</option>
   </select>
-  <button class="saas-btn saas-btn-primary" data-tool-action="generate-ideas">✨ Generate Ideas</button>
+  <button class="saas-btn saas-btn-primary" data-tool-action="generate-ideas">Generate Ideas</button>
 </div>
 <div id="ideaOutput" class="idea-results"></div>`;
   }
@@ -4435,9 +4435,9 @@ function toolUIByType(tool) {
   // ── IMAGE COMPRESSOR (Utility/Minimal) ───────────────────────────────────
   if (t === 'image-compressor') {
     return `
-<div class="saas-card-title">⚡ Image Compressor</div>
+<div class="saas-card-title">Image Compressor</div>
 <div class="util-dropzone" id="toolDrop">
-  <div class="util-dropzone-icon">🖼️</div>
+  <div class="util-dropzone-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="8" width="32" height="24" rx="4"/><circle cx="14" cy="18" r="3"/><path d="M4 28l8-8 6 6 4-4 6 6"/></svg></div>
   <h3>Drop your image here</h3>
   <p>JPG, PNG, WebP, GIF supported — or click to browse</p>
   <input type="file" id="toolFile" accept="image/*">
@@ -4449,7 +4449,7 @@ function toolUIByType(tool) {
 <button class="saas-btn saas-btn-primary" id="compressBtn" data-tool-action="compress" disabled style="width:100%;margin-top:4px">Compress Image</button>
 <div class="util-result" id="compResult">
   <div class="util-result-inner">
-    <div>✅ <span id="compInfo" class="util-result-info"></span></div>
+    <div class="util-success-msg"><svg viewBox="0 0 16 16" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg> <span id="compInfo" class="util-result-info"></span></div>
     <a id="compDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download</a>
   </div>
   <img id="compPreview" alt="Compressed image preview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
@@ -4459,14 +4459,14 @@ function toolUIByType(tool) {
   // ── IMAGE CONVERTER (Utility/Minimal) ────────────────────────────────────
   if (t === 'image-converter') {
     return `
-<div class="saas-card-title">🔄 Image Converter</div>
+<div class="saas-card-title">Image Converter</div>
 <div class="util-format-tabs">
   <button class="util-format-tab active" data-fmt-mime="image/jpeg" data-fmt-ext="jpg">JPG</button>
   <button class="util-format-tab" data-fmt-mime="image/png" data-fmt-ext="png">PNG</button>
   <button class="util-format-tab" data-fmt-mime="image/webp" data-fmt-ext="webp">WebP</button>
 </div>
 <div class="util-dropzone" id="convDrop">
-  <div class="util-dropzone-icon">🖼️</div>
+  <div class="util-dropzone-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="8" width="32" height="24" rx="4"/><circle cx="14" cy="18" r="3"/><path d="M4 28l8-8 6 6 4-4 6 6"/></svg></div>
   <h3>Drop your image here</h3>
   <p>Any image format — PNG, JPG, WebP, GIF, BMP</p>
   <input type="file" id="convFile" accept="image/*">
@@ -4474,7 +4474,7 @@ function toolUIByType(tool) {
 <button class="saas-btn saas-btn-primary" id="convBtn" data-tool-action="convert" disabled style="width:100%;margin-top:16px">Convert Image</button>
 <div class="util-result" id="convResult">
   <div class="util-result-inner">
-    <div>✅ <span id="convInfo" class="util-result-info"></span></div>
+    <div class="util-success-msg"><svg viewBox="0 0 16 16" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg> <span id="convInfo" class="util-result-info"></span></div>
     <a id="convDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download</a>
   </div>
   <img id="convPreview" alt="Converted image format preview" style="max-width:100%;border-radius:10px;margin-top:12px;display:none">
@@ -4485,19 +4485,19 @@ function toolUIByType(tool) {
   if (t === 'pdf-merge') {
     return `
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
-<div class="saas-card-title">📄 PDF Merge Tool</div>
+<div class="saas-card-title">PDF Merge Tool</div>
 <div class="util-dropzone" id="mergeDrop">
-  <div class="util-dropzone-icon">📄</div>
+  <div class="util-dropzone-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 4h14l8 8v24H10V4z"/><path d="M24 4v8h8"/><line x1="15" y1="20" x2="27" y2="20"/><line x1="15" y1="26" x2="27" y2="26"/></svg></div>
   <h3>Drop PDF files here</h3>
   <p>Add two or more PDFs to merge into one document</p>
   <input type="file" id="mergeFile" accept="application/pdf" multiple>
-  <div style="margin-top:12px"><button class="saas-btn saas-btn-ghost saas-btn-sm" type="button" data-tool-action="browse-merge">📁 Browse Files</button></div>
+  <div style="margin-top:12px"><button class="saas-btn saas-btn-ghost saas-btn-sm" type="button" data-tool-action="browse-merge">Browse Files</button></div>
 </div>
 <div class="util-file-list" id="mergeFileList"></div>
 <button class="saas-btn saas-btn-primary" id="mergeBtn" data-tool-action="merge" disabled style="width:100%;margin-top:4px">Merge PDFs</button>
 <div class="util-result" id="mergeResult">
   <div class="util-result-inner">
-    <div>✅ <span id="mergeInfo" class="util-result-info"></span></div>
+    <div class="util-success-msg"><svg viewBox="0 0 16 16" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg> <span id="mergeInfo" class="util-result-info"></span></div>
     <a id="mergeDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download PDF</a>
   </div>
 </div>`;
@@ -4507,9 +4507,9 @@ function toolUIByType(tool) {
   if (t === 'pdf-split') {
     return `
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
-<div class="saas-card-title">✂️ PDF Splitter</div>
+<div class="saas-card-title">PDF Splitter</div>
 <div class="util-dropzone" id="splitDrop">
-  <div class="util-dropzone-icon">✂️</div>
+  <div class="util-dropzone-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="4"/><circle cx="10" cy="30" r="4"/><line x1="14" y1="12" x2="34" y2="34"/><line x1="14" y1="28" x2="34" y2="6"/></svg></div>
   <h3>Drop your PDF here</h3>
   <p>Select a single PDF file to extract pages from</p>
   <input type="file" id="splitFile" accept="application/pdf">
@@ -4523,13 +4523,13 @@ function toolUIByType(tool) {
 <button class="saas-btn saas-btn-primary" id="splitBtn" data-tool-action="split" disabled style="width:100%">Extract Pages</button>
 <div class="util-result" id="splitResult">
   <div class="util-result-inner">
-    <div>✅ <span id="splitInfo" class="util-result-info"></span></div>
+    <div class="util-success-msg"><svg viewBox="0 0 16 16" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg> <span id="splitInfo" class="util-result-info"></span></div>
     <a id="splitDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download PDF</a>
   </div>
 </div>`;
   }
 
-  return `<div class="saas-empty-state"><div class="saas-empty-icon">🔧</div><p class="saas-empty-text">Tool UI coming soon.</p></div>`;
+  return `<div class="saas-empty-state"><div class="saas-empty-icon">&#9881;</div><p class="saas-empty-text">Tool UI coming soon.</p></div>`;
 }
 
 // ── PREMIUM SAAS TOOL PAGE TEMPLATE ─────────────────────────────────────────
@@ -4585,7 +4585,7 @@ ${tool.content ? `<div class="tool-content-section"><div class="tool-content-inn
 
 ${faqHtml ? `<div class="tool-faq-section"><h2>Frequently Asked Questions</h2>${faqHtml}</div>` : ''}
 
-${relatedHtml ? `<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid">${relatedHtml}</div></div>` : ''}
+${relatedHtml ? `<div class="tool-related-section"><h2>Related Tools</h2><div class="tool-related-grid">${relatedHtml}</div></div>` : ''}
 
 <script src="/js/main.js" defer></script>
 <script src="/js/tools.js" defer></script>
@@ -4602,9 +4602,9 @@ console.log('Generated ' + toolsData.length + ' tool pages');
 
 // ── TOOLS INDEX (Premium Hub Page) ───────────────────────────────────────────
 const hubCategories = [
-  { id: 'health', name: 'Health & Tracking', icon: '💪', desc: 'Habit streaks, sleep analysis, mood calendar, step goals' },
-  { id: 'productivity', name: 'Productivity', icon: '⚡', desc: 'Pomodoro timer, daily planner, goal tracking' },
-  { id: 'text', name: 'Text & Content', icon: '📝', desc: 'Text analysis, headline scoring, content idea generation' },
+  { id: 'health', name: 'Health & Tracking', icon: '', desc: 'Habit streaks, sleep analysis, mood calendar, step goals' },
+  { id: 'productivity', name: 'Productivity', icon: '', desc: 'Pomodoro timer, daily planner, goal tracking' },
+  { id: 'text', name: 'Text & Content', icon: '', desc: 'Text analysis, headline scoring, content idea generation' },
 ];
 const utilityTools = toolsData.filter(t => t.categorySlug === 'utility');
 
@@ -4661,10 +4661,10 @@ ${globalHero({
 <div class="tools-cat-nav">
 <div class="tools-cat-tabs">
 <button class="tools-cat-tab active" data-filter-cat="all">All Tools</button>
-<button class="tools-cat-tab" data-filter-cat="health">💪 Health &amp; Tracking</button>
-<button class="tools-cat-tab" data-filter-cat="productivity">⚡ Productivity</button>
-<button class="tools-cat-tab" data-filter-cat="text">📝 Text &amp; Content</button>
-<button class="tools-cat-tab" data-filter-cat="utility">🔧 Utility Tools</button>
+<button class="tools-cat-tab" data-filter-cat="health">Health &amp; Tracking</button>
+<button class="tools-cat-tab" data-filter-cat="productivity">Productivity</button>
+<button class="tools-cat-tab" data-filter-cat="text">Text &amp; Content</button>
+<button class="tools-cat-tab" data-filter-cat="utility">Utility Tools</button>
 </div>
 </div>
 
@@ -4679,7 +4679,7 @@ ${catSections}
 
 <div class="tools-hub-section utility-minimal-section" data-section="utility">
 <div class="tools-hub-section-header">
-<div class="tools-hub-section-icon">🔧</div>
+
 <div><div class="tools-hub-section-title">Utility Tools</div><div class="tools-hub-section-desc">File conversion, PDF tools — minimal, fast, private</div></div>
 </div>
 <div class="utility-minimal-grid">${utilityCards}</div>

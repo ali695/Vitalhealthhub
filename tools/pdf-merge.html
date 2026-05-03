@@ -127,19 +127,19 @@
 <div class="saas-card">
 
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
-<div class="saas-card-title">📄 PDF Merge Tool</div>
+<div class="saas-card-title">PDF Merge Tool</div>
 <div class="util-dropzone" id="mergeDrop">
-  <div class="util-dropzone-icon">📄</div>
+  <div class="util-dropzone-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 4h14l8 8v24H10V4z"/><path d="M24 4v8h8"/><line x1="15" y1="20" x2="27" y2="20"/><line x1="15" y1="26" x2="27" y2="26"/></svg></div>
   <h3>Drop PDF files here</h3>
   <p>Add two or more PDFs to merge into one document</p>
   <input type="file" id="mergeFile" accept="application/pdf" multiple>
-  <div style="margin-top:12px"><button class="saas-btn saas-btn-ghost saas-btn-sm" type="button" data-tool-action="browse-merge">📁 Browse Files</button></div>
+  <div style="margin-top:12px"><button class="saas-btn saas-btn-ghost saas-btn-sm" type="button" data-tool-action="browse-merge">Browse Files</button></div>
 </div>
 <div class="util-file-list" id="mergeFileList"></div>
 <button class="saas-btn saas-btn-primary" id="mergeBtn" data-tool-action="merge" disabled style="width:100%;margin-top:4px">Merge PDFs</button>
 <div class="util-result" id="mergeResult">
   <div class="util-result-inner">
-    <div>✅ <span id="mergeInfo" class="util-result-info"></span></div>
+    <div class="util-success-msg"><svg viewBox="0 0 16 16" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg> <span id="mergeInfo" class="util-result-info"></span></div>
     <a id="mergeDl" class="saas-btn saas-btn-primary saas-btn-sm">⬇ Download PDF</a>
   </div>
 </div>
@@ -156,7 +156,7 @@
 <div class="tool-faq-a">There is no hard limit. Performance depends on file sizes and your browser's available memory. Keep total file size under 100MB for best results.</div>
 </div></div>
 
-<div class="tool-related-section"><h2>🔧 Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-converter.html" class="tool-related-card"><span class="tool-related-icon">🔄</span>Image Converter →</a><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a><a href="/tools/pdf-split.html" class="tool-related-card"><span class="tool-related-icon">✂️</span>PDF Splitter →</a></div></div>
+<div class="tool-related-section"><h2>Related Tools</h2><div class="tool-related-grid"><a href="/tools/image-converter.html" class="tool-related-card"><span class="tool-related-icon">🔄</span>Image Converter →</a><a href="/tools/image-compressor.html" class="tool-related-card"><span class="tool-related-icon">⚡</span>Image Compressor →</a><a href="/tools/pdf-split.html" class="tool-related-card"><span class="tool-related-icon">✂️</span>PDF Splitter →</a></div></div>
 
 <script src="/js/main.js" defer></script>
 <script src="/js/tools.js" defer></script>

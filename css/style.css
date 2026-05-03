@@ -1,26 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap');
 
 :root {
-  --primary: #2d6a4f;
-  --accent: #52b788;
+  --primary: #22C55E;
+  --primary-hover: #16A34A;
+  --accent: #16A34A;
   --highlight: #f4a261;
-  --bg: #f0faf2;
-  --dark: #1b1f1e;
+  --bg: #ECFDF5;
+  --dark: #111827;
+  --dark-bg: #052e1f;
+  --dark-secondary: #064e3b;
   --white: #ffffff;
   --gray-100: #f7f7f7;
-  --gray-200: #e5e5e5;
+  --gray-200: #d1d5db;
   --gray-300: #d4d4d4;
-  --gray-500: #737373;
-  --gray-700: #404040;
-  --green-light: #d8f3dc;
+  --gray-500: #6B7280;
+  --gray-700: #374151;
+  --green-light: #D1FAE5;
   --yellow-light: #fff3cd;
   --red-light: #f8d7da;
   --green-text: #155724;
   --yellow-text: #856404;
   --red-text: #721c24;
-  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow: 0 10px 25px rgba(0,0,0,0.05);
   --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
-  --radius: 12px;
+  --radius: 16px;
   --transition: 0.3s ease;
 }
 
@@ -31,8 +34,8 @@ html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--bg);
-  color: var(--dark);
-  line-height: 1.7;
+  color: var(--gray-700);
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
@@ -40,6 +43,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', serif;
   line-height: 1.3;
   color: var(--dark);
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 h1 { font-size: 2.5rem; font-weight: 800; }
@@ -288,8 +293,8 @@ img, svg { max-width: 100%; height: auto; }
   font-size: 1rem; border: none; cursor: pointer;
   transition: all var(--transition); font-family: 'DM Sans', sans-serif;
 }
-.btn-primary { background: var(--primary); color: var(--white); }
-.btn-primary:hover { background: var(--accent); color: var(--white); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.btn-primary { background: var(--primary); color: var(--white); box-shadow: 0 4px 14px rgba(34,197,94,0.25); }
+.btn-primary:hover { background: var(--primary-hover); color: var(--white); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(34,197,94,0.35); }
 .btn-highlight { background: var(--highlight); color: var(--white); }
 .btn-highlight:hover { background: #e8944f; color: var(--white); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 .btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
@@ -360,7 +365,7 @@ img, svg { max-width: 100%; height: auto; }
   transition: border-color var(--transition); background: var(--white);
 }
 .form-group input:focus, .form-group select:focus {
-  outline: none; border-color: var(--accent);
+  outline: none; border-color: #22C55E; box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
 }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .radio-group { display: flex; gap: 16px; margin-top: 8px; }
@@ -3189,7 +3194,7 @@ img, svg { max-width: 100%; height: auto; }
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(10, 20, 15, 0.78);
+  background: linear-gradient(135deg, rgba(5,46,31,0.58) 0%, rgba(10,20,15,0.52) 100%);
   z-index: 1;
 }
 @keyframes btnPulse {
@@ -7266,4 +7271,169 @@ table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .vh-live-label { color: #c8d8cf; }
   .vh-live-val { color: #7dd4a6; }
   .vh-live-sub { color: #6a8a7a; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN SYSTEM OVERRIDES — Premium UI Refinement
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Hero text colors ─────────────────────────────────────────── */
+.hero-bg h1, .hero-bg .hero h1 { color: #ffffff; }
+.hero-bg h2 { color: #D1FAE5; }
+.hero-bg p { color: #A7F3D0; }
+.hero-bg .hero-subheading { color: #D1FAE5; }
+
+/* ── Global table system ──────────────────────────────────────── */
+.table-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+table thead th {
+  background: #064e3b;
+  color: #ECFDF5;
+  padding: 14px 20px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+table thead th:first-child { border-radius: 16px 0 0 0; }
+table thead th:last-child  { border-radius: 0 16px 0 0; padding-right: 20px; }
+table tbody tr:nth-child(odd)  td { background: #052e1f; color: #ECFDF5; }
+table tbody tr:nth-child(even) td { background: #064e3b; color: #A7F3D0; }
+table tbody td {
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  border: none;
+  transition: background 0.15s;
+}
+table tbody td:last-child, table thead th:last-child { padding-right: 20px; }
+table tbody tr:hover td { background: #065f46 !important; color: #ECFDF5 !important; }
+
+/* ── Article/blog content tables (light override) ─────────────── */
+.blog-article table, article table {
+  min-width: 400px;
+}
+
+/* ── Inputs — clearer visible focus ───────────────────────────── */
+input, select, textarea {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #22C55E;
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+}
+
+/* ── Checkbox ─────────────────────────────────────────────────── */
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #22C55E;
+  accent-color: #22C55E;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked { background: #22C55E; }
+
+/* ── Card design system ───────────────────────────────────────── */
+.card {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+  background: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+.card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.1) !important;
+}
+
+/* ── Section body text ────────────────────────────────────────── */
+p { color: #374151; line-height: 1.6; }
+.section-title p, .section-desc { color: #6B7280; }
+
+/* ── Home section badge ───────────────────────────────────────── */
+.home-section-badge {
+  background: #D1FAE5;
+  color: #16A34A;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+/* ── Home QA icon — SVG based ─────────────────────────────────── */
+.home-qa-icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  background: #D1FAE5;
+  border-radius: 14px;
+  margin: 0 auto 14px;
+  color: #16A34A;
+  font-size: 1.5rem;
+}
+.home-qa-icon svg { width: 26px; height: 26px; stroke: #16A34A; fill: none; }
+
+/* ── Home value icon — SVG based ──────────────────────────────── */
+.home-value-icon {
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.12);
+  border-radius: 16px;
+  margin: 0 auto 16px;
+  color: #A7F3D0;
+  font-size: 1.5rem;
+}
+.home-value-icon svg { width: 28px; height: 28px; stroke: #A7F3D0; fill: none; }
+
+/* ── Quiz diff icon — number badge ───────────────────────────── */
+.quiz-diff-icon {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: 'DM Sans', sans-serif;
+}
+.quiz-diff-card[data-diff="easy"]   .quiz-diff-icon { background: #D1FAE5; color: #16A34A; }
+.quiz-diff-card[data-diff="medium"] .quiz-diff-icon { background: #FEF3C7; color: #D97706; }
+.quiz-diff-card[data-diff="hard"]   .quiz-diff-icon { background: #FEE2E2; color: #DC2626; }
+
+/* ── Saas empty state icon ────────────────────────────────────── */
+.saas-empty-icon {
+  width: 48px; height: 48px;
+  background: #D1FAE5; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 1.4rem;
+}
+
+/* ── Calc embed widget ────────────────────────────────────────── */
+.calc-embed-heading { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 8px; }
+
+/* ── Filter buttons ───────────────────────────────────────────── */
+.filter-btn:hover, .filter-btn.active {
+  background: #22C55E;
+  border-color: #22C55E;
+  color: #fff;
+}
+
+/* ── Mobile table ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  table { min-width: 500px; }
+  .table-container { border-radius: 12px; }
 }

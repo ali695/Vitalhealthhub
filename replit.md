@@ -85,6 +85,19 @@ Hero background: `photo-1571019614242-c5c5dee9f50b` (premium fitness lifestyle, 
 - **24** tool pages + index
 - **9** static pages (home, about, contact, faq, blog, privacy, disclaimer, terms, sitemap)
 
+## UI/UX Design System (Completed)
+Applied across all 306 pages via css/style.css:
+- **Colors**: Updated `:root` variables — new primary #22C55E, bg #ECFDF5, dark #111827, body text #374151
+- **Hero overlay**: Reduced from 0.78 → gradient 0.52-0.58 opacity for lighter, more readable hero sections
+- **Buttons**: Pill border-radius (50px), primary button has green box-shadow + translateY(-3px) hover lift
+- **Cards**: border-radius 16px, box-shadow 0 10px 25px rgba(0,0,0,0.05), translateY(-4px) hover
+- **Tables**: Dark row system — odd rows #052e1f, even rows #064e3b, full-width with overflow scroll
+- **Inputs**: Focus ring via box-shadow 0 0 0 3px rgba(34,197,94,0.2), green border on focus
+- **Checkboxes**: 18px, green accent-color #22C55E
+- **Typography**: Headings letter-spacing -0.02em, body line-height 1.6, body color #374151
+- **Emoji removal**: All decorative emojis removed from headings, section badges, CTAs, card titles, tool card headers; replaced with inline SVG icons for home QA section, value section, and blog category icons
+- **Section badges**: Removed all emoji prefixes; pure text badges with green pill style
+
 ## Key Features
 - **103 fully functional health calculators** with real JS logic across 10+ categories
 - **155 SEO blog posts** covering 8 categories with full content, FAQs, author boxes, related articles
@@ -181,12 +194,17 @@ Session cookie also hardened: `httpOnly: true, sameSite: 'lax'`
 - Facebook: https://www.facebook.com/AliHadi768
 - Instagram: https://www.instagram.com/ali_haiderseo/
 
-## Color Palette
-- Primary: #2d6a4f (deep green)
-- Accent: #52b788 (light green)
+## Color Palette (updated — premium design system)
+- Primary: #22C55E (vibrant green)
+- Primary Hover: #16A34A
+- Accent: #16A34A
 - Highlight: #f4a261 (warm orange)
-- Background: #f0faf2 (pale green-white)
-- Dark: #1b1f1e
+- Background: #ECFDF5 (pale mint)
+- Dark: #111827
+- Dark BG: #052e1f
+- Dark Secondary: #064e3b
+- Text Body: #374151
+- Text Soft: #6B7280
 
 ## Fonts
 - Headings: Playfair Display (Google Fonts)
