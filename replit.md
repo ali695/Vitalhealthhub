@@ -105,17 +105,20 @@ Hero background: `photo-1571019614242-c5c5dee9f50b` (premium fitness lifestyle, 
 ## SEO + Structure Optimization (Completed)
 All 5 sections applied and regenerated across all 306 pages:
 
-### Section 1 — Inline JS Removal
-All inline `onclick`/`oninput`/`onchange` handlers replaced with data attributes + event delegation in `js/main.js`:
+### Section 1 — Inline JS Removal (COMPLETE — 0 inline handlers across all 306 pages)
+All inline `onclick`/`oninput`/`onchange`/`onsubmit` handlers removed from every generated HTML page and moved to modular external JS (`js/main.js`, `js/calculators.js`, `js/quiz.js`, `js/tools.js`):
 - **NAV**: `vhhDdSearch` + `vhhToggleCol` moved from inline `<script>` block → `js/main.js`; mega-col-title `onclick` removed; `ddSearchInput` `oninput` removed
-- **Chatbot topics**: `onclick="vhChat.quickAsk('X')"` → `data-vh-ask="X"` (8 buttons)
+- **Chatbot topics**: `onclick="vhChat.quickAsk('X')"` → `data-vh-ask="X"` (all pages)
 - **Calculator buttons**: `onclick` removed from Submit, Reset, Copy; `onclick="window.print()"` → `data-print="1"`; `onclick="vhShareResult()"` → `data-share="1"`
-- **Calc index**: `oninput="filterCalcs()"` removed; filter pills use `data-filter-cat`
-- **Blog**: sort select `onchange` removed; search open/close `onclick` removed; search input `oninput` removed; category pills use `data-blog-cat`; tag cloud uses `data-blog-tag`; hero search inline handlers removed
-- **FAQ**: filter pills use `data-faq-cat`; hero search `oninput` removed from `globalHero()`
+- **Calc index**: `oninput="filterCalcs()"` removed; filter pills use `data-filter-cat`; `window.filterCalcs()` + `window.filterCat()` (context-aware) implemented in main.js
+- **Blog**: sort select `onchange` removed; search open/close `onclick` removed; search input `oninput` removed; category pills use `data-blog-cat`; tag cloud uses `data-blog-tag`; hero search inline handlers removed; all `window.blogFilterCat/applyBlogFilters/loadMoreBlog/blogViewAll/blogSort/blogHeroSearch/openBlogSearch/closeBlogSearch/liveSearchBlog/blogTagClick` implemented in main.js
+- **FAQ**: filter pills use `data-faq-cat`; hero search `oninput` removed; `window.faqFilterCat()` + `window.faqHeroSearch()` implemented in main.js
 - **Quiz page**: diff cards use `data-quiz-diff`; Start/Next/Retry/Share/Subscribe `onclick` removed
 - **Quiz index**: category pills use `data-quiz-filter`
 - **Tools hub**: category tabs use `data-filter-cat`
+- **Blog posts (TOC)**: scroll-spy moved from inline `<script>` block → main.js DOMContentLoaded IIFE
+- **Blog index (large script)**: entire `blogCurrentCat/blogCurrentPage/blogViewAllMode/allBlogData` state + all 11 functions removed from inline block → window.* functions in main.js; blog cards now carry `data-slug` + `data-title-display` for DOM-driven data sourcing
+- **Orphan cleanup**: 85 old blog HTML files (from previous slug scheme with old onclick chatbot) deleted; all 155 current blog pages regenerated cleanly with `data-vh-ask` chatbot
 
 ### Section 2 — Internal Linking
 `calcDepthSections()` function inserts category-specific contextual paragraph links on every calculator page pointing to 2–3 related calculators (33 internal links per page average).

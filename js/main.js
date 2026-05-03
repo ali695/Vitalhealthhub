@@ -897,11 +897,39 @@ document.addEventListener('DOMContentLoaded', function() {
     if (btn && typeof window.homeFilterCat === 'function') window.homeFilterCat(btn.getAttribute('data-cat'), btn);
   });
 
-  // Tools hub: category filter tabs (data-filter-cat)
+  // Blog hero suggestion: close on outside click
   document.addEventListener('click', function(e) {
-    var tab = e.target.closest('[data-filter-cat]');
-    if (tab && typeof window.filterCat === 'function') window.filterCat(tab.getAttribute('data-filter-cat'), tab);
+    var wrap = document.getElementById('blogHeroSugg');
+    var inp = document.getElementById('blogHeroInput');
+    if (wrap && inp && !wrap.contains(e.target) && e.target !== inp) wrap.classList.remove('active');
   });
+
+  // Blog/tools search: close overlay on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && typeof window.closeBlogSearch === 'function') window.closeBlogSearch();
+  });
+
+  // Blog: initialize items-per-page from initially visible cards
+  var blogGridEl = document.getElementById('blogGrid');
+  if (blogGridEl) {
+    window._blogItemsPerPage = blogGridEl.querySelectorAll('.blog-card:not([style*="display:none"])').length || 12;
+  }
+
+  // Blog post TOC: scroll spy
+  (function() {
+    var links = document.querySelectorAll('.bp-toc-link');
+    if (!links.length) return;
+    var ids = Array.from(links).map(function(l) { return l.dataset.target; });
+    var sections = ids.map(function(id) { return document.getElementById(id); }).filter(Boolean);
+    function onScroll() {
+      var scrollY = window.scrollY + 120;
+      var current = sections[0] && sections[0].id;
+      sections.forEach(function(s) { if (s.offsetTop <= scrollY) current = s.id; });
+      links.forEach(function(l) { l.classList.toggle('active', l.dataset.target === current); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
 
   // Tools hub: recent activity panel
   (function() {
@@ -936,11 +964,219 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+window._currentCalcCat = 'all';
+
 window.filterCat = function(cat, btn) {
-  document.querySelectorAll('.tools-cat-tab').forEach(function(b) { b.classList.remove('active'); });
+  if (document.getElementById('calcGrid')) {
+    window._currentCalcCat = cat;
+    document.querySelectorAll('#calcFilterBtns .filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    if (typeof window.filterCalcs === 'function') window.filterCalcs();
+  } else {
+    document.querySelectorAll('.tools-cat-tab').forEach(function(b) { b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    document.querySelectorAll('[data-section]').forEach(function(s) { s.style.display = (cat === 'all' || s.dataset.section === cat) ? '' : 'none'; });
+    document.querySelectorAll('[data-cat]').forEach(function(c) { c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none'; });
+  }
+};
+
+window.filterCalcs = function() {
+  var q = document.getElementById('calcSearch') ? document.getElementById('calcSearch').value.toLowerCase() : '';
+  var currentCat = window._currentCalcCat || 'all';
+  document.querySelectorAll('#calcGrid .card').forEach(function(card) {
+    var title = card.getAttribute('data-title') || '';
+    var cat = card.getAttribute('data-category') || '';
+    var matchQ = !q || title.indexOf(q) !== -1;
+    var matchC = currentCat === 'all' || cat === currentCat;
+    card.style.display = (matchQ && matchC) ? '' : 'none';
+  });
+};
+
+window.faqFilterCat = function(filter, btn) {
+  document.querySelectorAll('.faq-pill').forEach(function(p) { p.classList.remove('faq-pill-active'); });
+  if (btn) btn.classList.add('faq-pill-active');
+  document.querySelectorAll('.faq-cat-section').forEach(function(s) {
+    s.style.display = (filter === 'all' || s.dataset.cat === filter) ? '' : 'none';
+  });
+  var searchVal = document.getElementById('faqHeroInput') ? document.getElementById('faqHeroInput').value : '';
+  if (searchVal) window.faqHeroSearch(searchVal);
+};
+
+window.faqHeroSearch = function(q) {
+  q = (q || '').toLowerCase().trim();
+  var notice = document.getElementById('faqSearchNotice');
+  var msg = document.getElementById('faqSearchMsg');
+  var count = 0;
+  if (q) {
+    document.querySelectorAll('.faq-cat-section').forEach(function(s) { s.style.display = ''; });
+    document.querySelectorAll('.faq-pill').forEach(function(p) { p.classList.remove('faq-pill-active'); });
+  }
+  document.querySelectorAll('.faq-item').forEach(function(item) {
+    var match = !q || item.textContent.toLowerCase().indexOf(q) !== -1;
+    item.style.display = match ? '' : 'none';
+    if (match) count++;
+  });
+  document.querySelectorAll('.faq-cat-section').forEach(function(s) {
+    var hasVisible = Array.from(s.querySelectorAll('.faq-item')).some(function(i) { return i.style.display !== 'none'; });
+    s.style.display = (!q || hasVisible) ? '' : 'none';
+  });
+  if (notice && msg) {
+    notice.style.display = q ? '' : 'none';
+    msg.textContent = q ? 'Found ' + count + ' result' + (count !== 1 ? 's' : '') + ' for "' + q + '"' : '';
+  }
+};
+
+var _allBlogData = null;
+
+function _getBlogData() {
+  if (_allBlogData) return _allBlogData;
+  _allBlogData = [];
+  document.querySelectorAll('#blogGrid .blog-card').forEach(function(card) {
+    _allBlogData.push({
+      slug: card.getAttribute('data-slug') || '',
+      title: card.getAttribute('data-title-display') || card.getAttribute('data-title') || '',
+      category: card.getAttribute('data-category') || '',
+      date: card.getAttribute('data-date') || ''
+    });
+  });
+  return _allBlogData;
+}
+
+var _blogCurrentCat = 'all';
+var _blogCurrentPage = 1;
+var _blogViewAllMode = false;
+
+window.blogFilterCat = function(cat, btn) {
+  _blogCurrentCat = cat;
+  _blogViewAllMode = false;
+  document.querySelectorAll('.blog-category-pill').forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');
-  document.querySelectorAll('[data-section]').forEach(function(s) { s.style.display = (cat === 'all' || s.dataset.section === cat) ? '' : 'none'; });
-  document.querySelectorAll('[data-cat]').forEach(function(c) { c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none'; });
+  _blogCurrentPage = 1;
+  var vab = document.querySelector('.blog-view-all-btn');
+  if (vab) vab.textContent = 'View All Articles';
+  window.applyBlogFilters();
+  var arts = document.querySelector('.blog-articles-section');
+  if (arts) window.scrollTo({ top: arts.offsetTop - 140, behavior: 'smooth' });
+};
+
+window.applyBlogFilters = function() {
+  var cards = document.querySelectorAll('#blogGrid .blog-card');
+  var shown = 0; var total = 0; var newlyShown = [];
+  var perPage = window._blogItemsPerPage || 12;
+  cards.forEach(function(card) {
+    var cat = card.getAttribute('data-category');
+    var matchC = _blogCurrentCat === 'all' || cat === _blogCurrentCat;
+    if (matchC) {
+      total++;
+      if (_blogViewAllMode || total <= _blogCurrentPage * perPage) {
+        var wasHidden = card.style.display === 'none';
+        card.style.display = '';
+        if (wasHidden) newlyShown.push(card);
+        shown++;
+      } else { card.style.display = 'none'; }
+    } else { card.style.display = 'none'; }
+  });
+  newlyShown.forEach(function(c) {
+    c.classList.add('blog-card-reveal');
+    setTimeout(function() { c.classList.remove('blog-card-reveal'); }, 600);
+  });
+  var counter = document.getElementById('blogCounter');
+  if (counter) counter.textContent = 'Showing ' + shown + ' of ' + total;
+  var pf = document.getElementById('blogProgressFill');
+  if (pf) pf.style.width = (total > 0 ? Math.round(shown / total * 100) : 0) + '%';
+  var loadBtn = document.getElementById('blogLoadMore');
+  if (loadBtn) loadBtn.style.display = (shown < total && !_blogViewAllMode) ? 'flex' : 'none';
+};
+
+window.loadMoreBlog = function() {
+  _blogCurrentPage++;
+  window.applyBlogFilters();
+  var grid = document.getElementById('blogGrid');
+  if (grid) window.scrollTo({ top: grid.scrollHeight + grid.offsetTop - 300, behavior: 'smooth' });
+};
+
+window.blogViewAll = function() {
+  _blogViewAllMode = true;
+  window.applyBlogFilters();
+  var btn = document.querySelector('.blog-view-all-btn');
+  if (btn) btn.textContent = '\u2713 Showing All Articles';
+};
+
+window.blogSort = function(val) {
+  var grid = document.getElementById('blogGrid');
+  if (!grid) return;
+  var cards = Array.from(grid.querySelectorAll('.blog-card'));
+  cards.sort(function(a, b) {
+    if (val === 'az') return (a.getAttribute('data-title') || '').localeCompare(b.getAttribute('data-title') || '');
+    if (val === 'zt') return (b.getAttribute('data-title') || '').localeCompare(a.getAttribute('data-title') || '');
+    if (val === 'oldest') return (a.getAttribute('data-date') || '').localeCompare(b.getAttribute('data-date') || '');
+    return (b.getAttribute('data-date') || '').localeCompare(a.getAttribute('data-date') || '');
+  });
+  cards.forEach(function(c) { grid.appendChild(c); });
+  _blogCurrentPage = 1;
+  window.applyBlogFilters();
+};
+
+window.blogHeroSearch = function(q) {
+  var sugg = document.getElementById('blogHeroSugg');
+  if (!sugg) return;
+  q = (q || '').toLowerCase().trim();
+  if (!q) { sugg.classList.remove('active'); sugg.innerHTML = ''; return; }
+  var data = _getBlogData();
+  var matches = data.filter(function(p) {
+    return p.title.toLowerCase().indexOf(q) !== -1 || p.category.toLowerCase().indexOf(q) !== -1;
+  }).slice(0, 6);
+  if (!matches.length) { sugg.classList.remove('active'); return; }
+  sugg.innerHTML = matches.map(function(p) {
+    return '<a href="/blog/' + p.slug + '.html" class="blog-hero-sugg-item"><span class="blog-hero-sugg-cat">' + p.category + '</span><span class="blog-hero-sugg-title">' + p.title + '</span></a>';
+  }).join('');
+  sugg.classList.add('active');
+};
+
+window.openBlogSearch = function(q) {
+  var overlay = document.getElementById('blogSearchOverlay');
+  var inp = document.getElementById('blogSearchInput');
+  if (overlay) overlay.classList.add('active');
+  if (inp) { inp.focus(); if (q) { inp.value = q; window.liveSearchBlog(); } }
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeBlogSearch = function() {
+  var overlay = document.getElementById('blogSearchOverlay');
+  var inp = document.getElementById('blogSearchInput');
+  var results = document.getElementById('blogSearchResults');
+  if (overlay) overlay.classList.remove('active');
+  if (inp) inp.value = '';
+  if (results) results.innerHTML = '';
+  document.body.style.overflow = '';
+};
+
+window.liveSearchBlog = function() {
+  var inp = document.getElementById('blogSearchInput');
+  var results = document.getElementById('blogSearchResults');
+  if (!inp || !results) return;
+  var q = inp.value.toLowerCase().trim();
+  if (!q) { results.innerHTML = ''; return; }
+  var data = _getBlogData();
+  var matches = data.filter(function(p) {
+    return p.title.toLowerCase().indexOf(q) !== -1 || p.category.toLowerCase().indexOf(q) !== -1;
+  }).slice(0, 12);
+  if (!matches.length) {
+    results.innerHTML = '<a style="pointer-events:none;color:var(--gray-500);">No articles found for "' + q + '"</a>';
+    return;
+  }
+  results.innerHTML = matches.map(function(p) {
+    return '<a href="/blog/' + p.slug + '.html"><span class="search-result-category">' + p.category + '</span> ' + p.title + '</a>';
+  }).join('');
+};
+
+window.blogTagClick = function(tag) {
+  if (typeof window.closeBlogSearch === 'function') window.closeBlogSearch();
+  var catMap = {'Weight Loss':'Body Metrics','BMI':'Body Metrics','Calories':'Nutrition','Protein':'Nutrition','Sleep':'Sleep','Hydration':'Nutrition','Heart Health':'Heart Health','Diabetes':'Disease Prevention','Keto':'Nutrition','Intermittent Fasting':'Nutrition','Mental Health':'Mental Health','Anxiety':'Mental Health','Depression':'Mental Health','Meditation':'Mental Health','Yoga':'Fitness','Running':'Fitness','HIIT':'Fitness','Cholesterol':'Heart Health','Blood Pressure':'Heart Health','Pregnancy':"Women's Health","Women's Health":"Women's Health","Men's Health":'Wellness','Aging':'Wellness','Vitamins':'Nutrition','Gut Health':'Wellness','Immunity':'Nutrition','Stress':'Mental Health','Inflammation':'Nutrition','Hormones':'Wellness','Cancer Prevention':'Disease Prevention'};
+  var matchedCat = catMap[tag] || 'all';
+  var pill = null;
+  document.querySelectorAll('.blog-category-pill').forEach(function(b) { if (b.textContent === matchedCat) pill = b; });
+  window.blogFilterCat(matchedCat, pill || document.querySelector('.blog-category-pill'));
 };
 
 window.filterHub = function(q) {

@@ -2431,24 +2431,6 @@ ${relatedQuizzes.map(q => `<a href="/quizzes/${q.slug}.html" class="bp-bottom-qu
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js" defer></script>
-<script>
-(function(){
-  var links=document.querySelectorAll('.bp-toc-link');
-  if(!links.length)return;
-  var ids=Array.from(links).map(function(l){return l.dataset.target;});
-  var sections=ids.map(function(id){return document.getElementById(id);}).filter(Boolean);
-  function onScroll(){
-    var scrollY=window.scrollY+120;
-    var current=sections[0]&&sections[0].id;
-    sections.forEach(function(s){if(s.offsetTop<=scrollY)current=s.id;});
-    links.forEach(function(l){
-      l.classList.toggle('active',l.dataset.target===current);
-    });
-  }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  onScroll();
-})();
-</script>
 ${CHATBOT}
 </body></html>`;
 }
@@ -2522,25 +2504,6 @@ ${calculators.map(c => {
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js" defer></script>
-<script>
-var currentCalcCat='all';
-function filterCalcs(){
-  var q=document.getElementById('calcSearch').value.toLowerCase();
-  document.querySelectorAll('#calcGrid .card').forEach(function(card){
-    var title=card.getAttribute('data-title');
-    var cat=card.getAttribute('data-category');
-    var matchQ=!q||title.indexOf(q)!==-1;
-    var matchC=currentCalcCat==='all'||cat===currentCalcCat;
-    card.style.display=(matchQ&&matchC)?'':'none';
-  });
-}
-function filterCat(cat,btn){
-  currentCalcCat=cat;
-  document.querySelectorAll('#calcFilterBtns .filter-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  filterCalcs();
-}
-</script>
 ${CHATBOT}
 </body></html>`);
 console.log('Generated calculators/index.html');
@@ -3436,47 +3399,6 @@ ${FOOTER}
 ${BTT}
 <script src="/js/main.js" defer></script>
 ${CHATBOT}
-<script>
-// FAQ Category Filter
-function faqFilterCat(filter, btn) {
-  document.querySelectorAll('.faq-pill').forEach(function(p){p.classList.remove('faq-pill-active');});
-  if(btn) btn.classList.add('faq-pill-active');
-  var sections = document.querySelectorAll('.faq-cat-section');
-  sections.forEach(function(s){
-    s.style.display = (filter === 'all' || s.dataset.cat === filter) ? '' : 'none';
-  });
-  // If search is active, reapply
-  var searchVal = document.getElementById('faqHeroInput') ? document.getElementById('faqHeroInput').value : '';
-  if(searchVal) faqHeroSearch(searchVal);
-}
-// FAQ Hero Search
-function faqHeroSearch(q) {
-  q = (q||'').toLowerCase().trim();
-  var notice = document.getElementById('faqSearchNotice');
-  var msg = document.getElementById('faqSearchMsg');
-  var count = 0;
-  // Reset category filter when searching
-  if(q) {
-    document.querySelectorAll('.faq-cat-section').forEach(function(s){s.style.display='';});
-    document.querySelectorAll('.faq-pill').forEach(function(p){p.classList.remove('faq-pill-active');});
-  }
-  document.querySelectorAll('.faq-item').forEach(function(item){
-    var match = !q || item.textContent.toLowerCase().indexOf(q) !== -1;
-    item.style.display = match ? '' : 'none';
-    if(match) count++;
-  });
-  // Hide empty sections
-  document.querySelectorAll('.faq-cat-section').forEach(function(s){
-    var visible = s.querySelectorAll('.faq-item[style=""],.faq-item:not([style])').length;
-    var hasVisible = Array.from(s.querySelectorAll('.faq-item')).some(function(i){return i.style.display !== 'none';});
-    s.style.display = (!q || hasVisible) ? '' : 'none';
-  });
-  if(notice && msg) {
-    notice.style.display = q ? '' : 'none';
-    msg.textContent = q ? 'Found ' + count + ' result' + (count !== 1 ? 's' : '') + ' for "' + q + '"' : '';
-  }
-}
-</script>
 </body></html>`);
 
 // PRIVACY
@@ -3677,7 +3599,7 @@ const popularHtml = popularPosts.slice(0,6).map(p => {
 
 const blogCardHtml = blogPosts.map((p, i) => {
   const img = blogCardImage(p.slug);
-  return `<a href="/blog/${p.slug}.html" class="blog-card fade-in" data-category="${p.category}" data-title="${p.title.toLowerCase()}" data-index="${i}" data-date="${p.date}" style="${i >= ITEMS_PER_PAGE ? 'display:none;' : ''}">
+  return `<a href="/blog/${p.slug}.html" class="blog-card fade-in" data-category="${p.category}" data-title="${p.title.toLowerCase()}" data-title-display="${p.title.replace(/"/g,'&quot;')}" data-slug="${p.slug}" data-index="${i}" data-date="${p.date}" style="${i >= ITEMS_PER_PAGE ? 'display:none;' : ''}">
 <div class="blog-card-image"><img src="${img.url}" alt="${img.alt}" title="${p.title}" width="600" height="340" loading="lazy"></div>
 <div class="blog-card-body">
 <div class="blog-card-meta"><span class="blog-card-category">${p.category}</span><span>${p.readTime}</span></div>
@@ -3896,144 +3818,6 @@ ${popularTags.map(t => `<span class="blog-tag${t.size === 'lg' ? ' tag-lg' : t.s
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js" defer></script>
-<script>
-var blogCurrentCat='all';
-var blogCurrentPage=1;
-var blogItemsPerPage=${ITEMS_PER_PAGE};
-var blogTotal=${blogPosts.length};
-var blogViewAllMode=false;
-var allBlogData=${JSON.stringify(blogPosts.map(p => ({slug:p.slug,title:p.title,category:p.category,date:p.date})))};
-
-function blogFilterCat(cat,btn){
-  blogCurrentCat=cat;
-  blogViewAllMode=false;
-  document.querySelectorAll('.blog-category-pill').forEach(function(b){b.classList.remove('active');});
-  if(btn)btn.classList.add('active');
-  blogCurrentPage=1;
-  var vab=document.querySelector('.blog-view-all-btn');
-  if(vab)vab.textContent='View All Articles';
-  applyBlogFilters();
-  window.scrollTo({top:document.querySelector('.blog-articles-section').offsetTop-140,behavior:'smooth'});
-}
-
-function applyBlogFilters(){
-  var cards=document.querySelectorAll('#blogGrid .blog-card');
-  var shown=0;
-  var total=0;
-  var newlyShown=[];
-  cards.forEach(function(card){
-    var cat=card.getAttribute('data-category');
-    var matchC=blogCurrentCat==='all'||cat===blogCurrentCat;
-    if(matchC){
-      total++;
-      if(blogViewAllMode||total<=blogCurrentPage*blogItemsPerPage){
-        if(card.style.display==='none'||card.style.display===''){
-          var wasHidden=card.style.display==='none';
-          card.style.display='';
-          if(wasHidden)newlyShown.push(card);
-          shown++;
-        } else {
-          card.style.display='';
-          shown++;
-        }
-      } else {
-        card.style.display='none';
-      }
-    } else {
-      card.style.display='none';
-    }
-  });
-  newlyShown.forEach(function(c){c.classList.add('blog-card-reveal');setTimeout(function(){c.classList.remove('blog-card-reveal');},600);});
-  var counter=document.getElementById('blogCounter');
-  if(counter)counter.textContent='Showing '+shown+' of '+total;
-  var pf=document.getElementById('blogProgressFill');
-  if(pf)pf.style.width=(total>0?Math.round(shown/total*100):0)+'%';
-  var loadBtn=document.getElementById('blogLoadMore');
-  if(loadBtn)loadBtn.style.display=(shown<total&&!blogViewAllMode)?'flex':'none';
-}
-
-function loadMoreBlog(){
-  blogCurrentPage++;
-  applyBlogFilters();
-  window.scrollTo({top:document.getElementById('blogGrid').scrollHeight+document.getElementById('blogGrid').offsetTop-300,behavior:'smooth'});
-}
-
-function blogViewAll(){
-  blogViewAllMode=true;
-  applyBlogFilters();
-  var btn=document.querySelector('.blog-view-all-btn');
-  if(btn)btn.textContent='\u2713 Showing All Articles';
-}
-
-function blogSort(val){
-  var grid=document.getElementById('blogGrid');
-  var cards=Array.from(grid.querySelectorAll('.blog-card'));
-  cards.sort(function(a,b){
-    if(val==='az') return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
-    if(val==='zt') return b.getAttribute('data-title').localeCompare(a.getAttribute('data-title'));
-    if(val==='oldest') return (a.getAttribute('data-date')||'').localeCompare(b.getAttribute('data-date')||'');
-    return (b.getAttribute('data-date')||'').localeCompare(a.getAttribute('data-date')||'');
-  });
-  cards.forEach(function(c){grid.appendChild(c);});
-  blogCurrentPage=1;
-  applyBlogFilters();
-}
-
-function blogHeroSearch(q){
-  var sugg=document.getElementById('blogHeroSugg');
-  if(!sugg)return;
-  q=(q||'').toLowerCase().trim();
-  if(!q){sugg.classList.remove('active');sugg.innerHTML='';return;}
-  var matches=allBlogData.filter(function(p){return p.title.toLowerCase().indexOf(q)!==-1||p.category.toLowerCase().indexOf(q)!==-1;}).slice(0,6);
-  if(!matches.length){sugg.classList.remove('active');return;}
-  sugg.innerHTML=matches.map(function(p){return '<a href="/blog/'+p.slug+'.html" class="blog-hero-sugg-item"><span class="blog-hero-sugg-cat">'+p.category+'</span><span class="blog-hero-sugg-title">'+p.title+'</span></a>';}).join('');
-  sugg.classList.add('active');
-}
-document.addEventListener('click',function(e){
-  var wrap=document.getElementById('blogHeroSugg');
-  var inp=document.getElementById('blogHeroInput');
-  if(wrap&&inp&&!wrap.contains(e.target)&&e.target!==inp){wrap.classList.remove('active');}
-});
-
-function openBlogSearch(q){
-  var overlay=document.getElementById('blogSearchOverlay');
-  var inp=document.getElementById('blogSearchInput');
-  if(overlay)overlay.classList.add('active');
-  if(inp){inp.focus();if(q){inp.value=q;liveSearchBlog();}}
-  document.body.style.overflow='hidden';
-}
-
-function closeBlogSearch(){
-  document.getElementById('blogSearchOverlay').classList.remove('active');
-  document.getElementById('blogSearchInput').value='';
-  document.getElementById('blogSearchResults').innerHTML='';
-  document.body.style.overflow='';
-}
-
-function liveSearchBlog(){
-  var q=document.getElementById('blogSearchInput').value.toLowerCase().trim();
-  var results=document.getElementById('blogSearchResults');
-  if(!q){results.innerHTML='';return;}
-  var matches=allBlogData.filter(function(p){
-    return p.title.toLowerCase().indexOf(q)!==-1||p.category.toLowerCase().indexOf(q)!==-1;
-  }).slice(0,12);
-  if(matches.length===0){results.innerHTML='<a style="pointer-events:none;color:var(--gray-500);">No articles found for "'+q+'"</a>';return;}
-  results.innerHTML=matches.map(function(p){return '<a href="/blog/'+p.slug+'.html"><span class="search-result-category">'+p.category+'</span> '+p.title+'</a>';}).join('');
-}
-
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape') closeBlogSearch();
-});
-
-function blogTagClick(tag){
-  closeBlogSearch();
-  var catMap={'Weight Loss':'Body Metrics','BMI':'Body Metrics','Calories':'Nutrition','Protein':'Nutrition','Sleep':'Sleep','Hydration':'Nutrition','Heart Health':'Heart Health','Diabetes':'Disease Prevention','Keto':'Nutrition','Intermittent Fasting':'Nutrition','Mental Health':'Mental Health','Anxiety':'Mental Health','Depression':'Mental Health','Meditation':'Mental Health','Yoga':'Fitness','Running':'Fitness','HIIT':'Fitness','Cholesterol':'Heart Health','Blood Pressure':'Heart Health','Pregnancy':"Women's Health","Women's Health":"Women's Health","Men's Health":'Wellness','Aging':'Wellness','Vitamins':'Nutrition','Gut Health':'Wellness','Immunity':'Nutrition','Stress':'Mental Health','Inflammation':'Nutrition','Hormones':'Wellness','Cancer Prevention':'Disease Prevention'};
-  var matchedCat=catMap[tag]||'all';
-  var pill=null;
-  document.querySelectorAll('.blog-category-pill').forEach(function(b){if(b.textContent===matchedCat)pill=b;});
-  blogFilterCat(matchedCat,pill||document.querySelector('.blog-category-pill'));
-}
-</script>
 ${CHATBOT}
 </body></html>`);
 

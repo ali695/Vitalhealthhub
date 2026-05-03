@@ -124,14 +124,14 @@ const CHATBOT = `<div id="vh-chatbot">
 <div id="vh-quick-topics">
 <p style="font-size:11px;color:#6b7280;margin:0 0 8px;font-weight:500;">Quick Topics:</p>
 <div id="vh-topics-grid">
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('BMI')">⚖️ BMI</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Calories')">🔥 Calories</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Sleep')">😴 Sleep</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Water')">💧 Water</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Weight Loss')">📉 Weight Loss</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Protein')">💪 Protein</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Heart Health')">❤️ Heart</button>
-<button class="vh-topic-btn" onclick="vhChat.quickAsk('Stress')">🧠 Stress</button>
+<button class="vh-topic-btn" data-vh-ask="BMI">⚖️ BMI</button>
+<button class="vh-topic-btn" data-vh-ask="Calories">🔥 Calories</button>
+<button class="vh-topic-btn" data-vh-ask="Sleep">😴 Sleep</button>
+<button class="vh-topic-btn" data-vh-ask="Water">💧 Water</button>
+<button class="vh-topic-btn" data-vh-ask="Weight Loss">📉 Weight Loss</button>
+<button class="vh-topic-btn" data-vh-ask="Protein">💪 Protein</button>
+<button class="vh-topic-btn" data-vh-ask="Heart Health">❤️ Heart</button>
+<button class="vh-topic-btn" data-vh-ask="Stress">🧠 Stress</button>
 </div>
 </div>
 <div id="vh-chat-input-area">

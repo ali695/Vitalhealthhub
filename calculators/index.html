@@ -237,25 +237,6 @@ ma7122671@gmail.com
 </footer>
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
-<script>
-var currentCalcCat='all';
-function filterCalcs(){
-  var q=document.getElementById('calcSearch').value.toLowerCase();
-  document.querySelectorAll('#calcGrid .card').forEach(function(card){
-    var title=card.getAttribute('data-title');
-    var cat=card.getAttribute('data-category');
-    var matchQ=!q||title.indexOf(q)!==-1;
-    var matchC=currentCalcCat==='all'||cat===currentCalcCat;
-    card.style.display=(matchQ&&matchC)?'':'none';
-  });
-}
-function filterCat(cat,btn){
-  currentCalcCat=cat;
-  document.querySelectorAll('#calcFilterBtns .filter-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  filterCalcs();
-}
-</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

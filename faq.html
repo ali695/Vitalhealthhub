@@ -334,45 +334,4 @@ ma7122671@gmail.com
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
-<script>
-// FAQ Category Filter
-function faqFilterCat(filter, btn) {
-  document.querySelectorAll('.faq-pill').forEach(function(p){p.classList.remove('faq-pill-active');});
-  if(btn) btn.classList.add('faq-pill-active');
-  var sections = document.querySelectorAll('.faq-cat-section');
-  sections.forEach(function(s){
-    s.style.display = (filter === 'all' || s.dataset.cat === filter) ? '' : 'none';
-  });
-  // If search is active, reapply
-  var searchVal = document.getElementById('faqHeroInput') ? document.getElementById('faqHeroInput').value : '';
-  if(searchVal) faqHeroSearch(searchVal);
-}
-// FAQ Hero Search
-function faqHeroSearch(q) {
-  q = (q||'').toLowerCase().trim();
-  var notice = document.getElementById('faqSearchNotice');
-  var msg = document.getElementById('faqSearchMsg');
-  var count = 0;
-  // Reset category filter when searching
-  if(q) {
-    document.querySelectorAll('.faq-cat-section').forEach(function(s){s.style.display='';});
-    document.querySelectorAll('.faq-pill').forEach(function(p){p.classList.remove('faq-pill-active');});
-  }
-  document.querySelectorAll('.faq-item').forEach(function(item){
-    var match = !q || item.textContent.toLowerCase().indexOf(q) !== -1;
-    item.style.display = match ? '' : 'none';
-    if(match) count++;
-  });
-  // Hide empty sections
-  document.querySelectorAll('.faq-cat-section').forEach(function(s){
-    var visible = s.querySelectorAll('.faq-item[style=""],.faq-item:not([style])').length;
-    var hasVisible = Array.from(s.querySelectorAll('.faq-item')).some(function(i){return i.style.display !== 'none';});
-    s.style.display = (!q || hasVisible) ? '' : 'none';
-  });
-  if(notice && msg) {
-    notice.style.display = q ? '' : 'none';
-    msg.textContent = q ? 'Found ' + count + ' result' + (count !== 1 ? 's' : '') + ' for "' + q + '"' : '';
-  }
-}
-</script>
 </body></html>
