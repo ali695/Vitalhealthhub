@@ -136,8 +136,26 @@ document.addEventListener('DOMContentLoaded', function() {
     var opt = e.target.closest('.quiz-opt');
     if (opt) {
       var optsEl = gi('quiz-opts');
-      if (optsEl && optsEl.contains(opt)) window.quizAns(parseInt(opt.dataset.ans));
+      if (optsEl && optsEl.contains(opt)) { window.quizAns(parseInt(opt.dataset.ans)); return; }
     }
+
+    var diffCard = e.target.closest('.quiz-diff-card');
+    if (diffCard && diffCard.dataset.diff) { window.selectDiff(diffCard.dataset.diff); return; }
+
+    var startBtn = e.target.closest('#quiz-start-btn');
+    if (startBtn && !startBtn.disabled) { window.startQuiz(); return; }
+
+    var nextBtn = e.target.closest('#quiz-next-btn');
+    if (nextBtn) { window.quizNext(); return; }
+
+    var retryBtn = e.target.closest('.quiz-retry-btn');
+    if (retryBtn) { window.quizRetry(); return; }
+
+    var shareBtn = e.target.closest('.quiz-share-btn');
+    if (shareBtn) { window.quizShare(); return; }
+
+    var emailBtn = e.target.closest('.quiz-email-submit');
+    if (emailBtn) { window.quizEmailSubmit(); return; }
   });
 
   showScreen('diff');
