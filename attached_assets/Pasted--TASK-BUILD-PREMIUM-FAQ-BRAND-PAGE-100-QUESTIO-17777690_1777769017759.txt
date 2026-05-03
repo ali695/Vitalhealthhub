@@ -1,0 +1,246 @@
+--------------------------------------------------
+TASK: BUILD PREMIUM FAQ BRAND PAGE (100+ QUESTIONS)
+--------------------------------------------------
+
+I want you to create a high-quality FAQ page that feels like a BRAND AUTHORITY PAGE.
+
+IMPORTANT:
+This must NOT look like a boring SaaS FAQ page.
+
+It must feel like:
+- a trusted health platform
+- a knowledge hub
+- a professional content page
+
+--------------------------------------------------
+GLOBAL GOAL
+--------------------------------------------------
+
+Create an FAQ page that:
+
+- Builds trust
+- Ranks on Google
+- Covers calculators, tools, quizzes, and blog topics
+- Looks premium and engaging
+- Is structured for SEO
+
+--------------------------------------------------
+SECTION 1: HERO (USE GLOBAL HERO SYSTEM)
+--------------------------------------------------
+
+Badge:
+"❓ Help & Knowledge Hub"
+
+Heading:
+"Frequently Asked Questions"
+
+Subtext:
+"Find clear answers about health calculators, tools, quizzes, and how to use the platform effectively."
+
+Search:
+"Search questions, topics..."
+
+Buttons:
+- Explore Calculators
+- Use Tools
+- Read Articles
+
+--------------------------------------------------
+SECTION 2: CATEGORY NAVIGATION (IMPORTANT)
+--------------------------------------------------
+
+Add category tabs (pill style):
+
+- Calculators
+- Health & Nutrition
+- Fitness & Lifestyle
+- Tools & Trackers
+- Quizzes
+- General
+
+Make:
+- clickable filters
+- smooth animation
+
+--------------------------------------------------
+SECTION 3: STRUCTURE OF FAQ CONTENT
+--------------------------------------------------
+
+Organize into sections:
+
+Each section must have:
+- title
+- short intro paragraph
+- multiple FAQs
+
+--------------------------------------------------
+SECTION 4: CALCULATOR FAQs (25+ QUESTIONS)
+--------------------------------------------------
+
+Topics:
+
+- BMI calculator accuracy
+- calorie calculation logic
+- macro calculator usage
+- TDEE explanation
+- body fat estimation
+- ideal weight meaning
+- heart rate zones
+- pregnancy calculations
+
+Example questions:
+
+- What is a BMI calculator and how accurate is it?
+- How does a calorie calculator work?
+- What is TDEE and why does it matter?
+- Are macro calculators reliable?
+- How often should I recalculate my calories?
+
+--------------------------------------------------
+SECTION 5: HEALTH & NUTRITION FAQs (25+ QUESTIONS)
+--------------------------------------------------
+
+Topics:
+
+- protein intake
+- carbs and fats
+- metabolism
+- hydration
+- diet myths
+
+Example:
+
+- How much protein do I need daily?
+- Are carbs bad for weight loss?
+- What is a balanced diet?
+- How does hydration affect metabolism?
+
+--------------------------------------------------
+SECTION 6: FITNESS & LIFESTYLE FAQs (15+ QUESTIONS)
+--------------------------------------------------
+
+Topics:
+
+- exercise frequency
+- recovery
+- sleep
+- stress
+
+Example:
+
+- How often should I exercise?
+- How important is sleep for health?
+- What is overtraining?
+
+--------------------------------------------------
+SECTION 7: TOOLS & TRACKERS FAQs (15+ QUESTIONS)
+--------------------------------------------------
+
+Topics:
+
+- habit tracker usage
+- sleep tracker accuracy
+- mood tracking benefits
+
+Example:
+
+- How does a habit tracker work?
+- Can I rely on sleep tracking tools?
+- What is a mood tracker used for?
+
+--------------------------------------------------
+SECTION 8: QUIZ FAQs (10+ QUESTIONS)
+--------------------------------------------------
+
+Topics:
+
+- quiz scoring
+- purpose
+- accuracy
+
+Example:
+
+- Are health quizzes accurate?
+- How are quiz scores calculated?
+- Can quizzes replace professional advice?
+
+--------------------------------------------------
+SECTION 9: GENERAL FAQs (10+ QUESTIONS)
+--------------------------------------------------
+
+Topics:
+
+- platform usage
+- privacy
+- free access
+
+Example:
+
+- Is VitalHealth Hub free?
+- Do I need an account?
+- Is my data محفوظ?
+
+--------------------------------------------------
+SECTION 10: FAQ DESIGN (VERY IMPORTANT)
+--------------------------------------------------
+
+DO NOT use boring list.
+
+Use:
+
+- accordion cards
+- smooth open/close animation
+- clean spacing
+- soft shadows
+- rounded cards
+
+--------------------------------------------------
+SECTION 11: SEO OPTIMIZATION
+--------------------------------------------------
+
+Each FAQ must:
+
+- include keywords naturally
+- be clear and concise
+- be informative
+
+Add:
+
+- FAQ schema markup
+- internal links:
+   → calculators
+   → tools
+   → blog articles
+
+--------------------------------------------------
+SECTION 12: VISUAL IMPROVEMENTS
+--------------------------------------------------
+
+Add:
+
+- icons for sections
+- subtle dividers
+- alternating backgrounds
+
+--------------------------------------------------
+SECTION 13: FINAL CTA
+--------------------------------------------------
+
+Add at end:
+
+"Still have questions?"
+
+Buttons:
+- Contact Us
+- Explore Tools
+
+--------------------------------------------------
+FINAL GOAL
+--------------------------------------------------
+
+Create an FAQ page that:
+
+- looks like a premium brand page
+- ranks for multiple keywords
+- builds authority and trust
+- supports SEO growth

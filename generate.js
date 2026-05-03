@@ -2509,58 +2509,291 @@ ${BTT}
 ${CHATBOT}
 </body></html>`);
 
-// FAQ
-const generalFaqs = [
-  {q:'What is '+SITE_NAME+'?',a:SITE_NAME+' is a free health and wellness platform offering 115+ health calculators and 100+ expert articles to help you understand and improve your health.'},
-  {q:'Are the calculators free to use?',a:'Yes, all calculators on '+SITE_NAME+' are completely free. No registration or payment required.'},
-  {q:'How accurate are your health calculators?',a:'Our calculators use established medical formulas and are reviewed by healthcare professionals. They provide estimates — for medical decisions, consult your doctor.'},
-  {q:'Do you store my health data?',a:'No. All calculations happen in your browser. We do not collect, store, or transmit any personal health data.'},
-  {q:'Who writes your health articles?',a:'Our content is written and reviewed by Dr. Sarah Mitchell, MD, a board-certified physician with 15+ years of experience in preventive medicine.'},
-  {q:'Can I use your calculators for medical diagnosis?',a:'No. Our tools are for informational and educational purposes only. They are not substitutes for professional medical advice or diagnosis.'},
-  {q:'How often is your content updated?',a:'We regularly review and update our content and calculators to reflect the latest medical guidelines and research.'},
-  {q:'Can I suggest a new calculator or article topic?',a:'Absolutely! We welcome suggestions. Please use our contact page to share your ideas.'},
-  {q:'Do you offer mobile apps?',a:'Currently, '+SITE_NAME+' is a mobile-responsive website accessible from any device. No app download needed.'},
-  {q:'How can I support '+SITE_NAME+'?',a:'Share our tools and articles with friends and family. Your support helps us continue providing free health resources.'},
+// FAQ — PREMIUM BRAND PAGE
+const faqCategories = [
+  {
+    id: 'calculators', icon: '&#129518;', label: 'Calculators', alt: false,
+    title: 'Health Calculators',
+    intro: 'Everything you need to know about how our free health calculators work, how accurate they are, and how to use them to reach your health goals.',
+    faqs: [
+      {q:'What is a BMI calculator and how accurate is it?', a:'A BMI (Body Mass Index) calculator measures your weight relative to your height using the formula: weight (kg) ÷ height² (m). It provides a general indicator of whether you are underweight, normal weight, overweight, or obese. BMI is a population-level screening tool — it does not account for muscle mass, bone density, or fat distribution, so it should be used alongside other health metrics.'},
+      {q:'How does a calorie calculator work?', a:'A calorie calculator estimates your Total Daily Energy Expenditure (TDEE) based on your age, gender, height, weight, and activity level. It typically uses the Mifflin-St Jeor equation to calculate your Basal Metabolic Rate (BMR), then multiplies it by an activity factor to give your daily calorie needs. <a href="/calculators/">Try our calorie calculator</a> to find your personal number.'},
+      {q:'What is TDEE and why does it matter?', a:'TDEE stands for Total Daily Energy Expenditure — the total number of calories your body burns in a day, including your resting metabolism and all physical activity. Knowing your TDEE is essential for weight management: eating below TDEE creates a calorie deficit for fat loss, while eating above it supports muscle gain or weight gain.'},
+      {q:'Are macro calculators reliable?', a:'Macro calculators provide reliable starting estimates for your protein, carbohydrate, and fat targets based on your body weight, goals, and activity level. They use established nutritional guidelines (typically 0.8–2.2g of protein per kg bodyweight depending on goal). Actual needs vary individually, so results should be adjusted based on real-world progress.'},
+      {q:'How often should I recalculate my calories?', a:'You should recalculate your calorie needs every 4–6 weeks, or whenever your weight changes by more than 3–5 kg, your activity level changes significantly, or you shift your health goals (e.g., from fat loss to muscle building). Our <a href="/calculators/">calorie calculators</a> make this quick and free.'},
+      {q:'What is a Basal Metabolic Rate (BMR) calculator?', a:'A BMR calculator estimates the number of calories your body needs to maintain basic physiological functions at complete rest — breathing, circulation, cell repair. BMR does not include calories burned through activity. The Mifflin-St Jeor equation (used on this platform) is the most widely validated formula for BMR calculation in adults.'},
+      {q:'How do body fat percentage calculators work?', a:'Body fat percentage calculators use measurements such as waist circumference, neck size, and height (using the U.S. Navy method) or BMI-based equations to estimate the proportion of your body weight that is fat. These are estimates — DEXA scans and hydrostatic weighing provide more accurate results but require clinical equipment.'},
+      {q:'What is an ideal body weight calculator?', a:'Ideal body weight calculators estimate a target weight range based on your height, gender, and frame size. Common formulas include Hamwi, Robinson, and Miller. These formulas are guidelines from clinical contexts — they do not account for athletic build or individual body composition. Use them alongside BMI and body fat data for a fuller picture.'},
+      {q:'How do heart rate zone calculators work?', a:'Heart rate zone calculators determine your target training intensity zones based on your maximum heart rate (usually estimated as 220 minus your age). Zones range from light activity (50–60% max HR) through to maximum effort (90–100% max HR). Training in specific zones optimises fat burning, cardiovascular fitness, or endurance performance.'},
+      {q:'What does a pregnancy due date calculator measure?', a:'A pregnancy due date calculator estimates your expected delivery date based on the first day of your last menstrual period (LMP). It adds 280 days (40 weeks) to your LMP date. The calculator also shows your gestational age week by week. Always confirm dates with your midwife or obstetrician via ultrasound.'},
+      {q:'How does a water intake calculator work?', a:'Water intake calculators estimate daily hydration needs based on your body weight, activity level, and climate. A common baseline is 35ml per kg of body weight, with additional amounts added for exercise and heat. Adequate hydration supports metabolism, kidney function, cognitive performance, and physical endurance.'},
+      {q:'What is the Mifflin-St Jeor equation used in your calculators?', a:'The Mifflin-St Jeor equation is the most clinically validated formula for estimating BMR. For men: (10 × weight in kg) + (6.25 × height in cm) − (5 × age) + 5. For women: (10 × weight in kg) + (6.25 × height in cm) − (5 × age) − 161. It is more accurate than the older Harris-Benedict equation for most adults.'},
+      {q:'Can I use your calculators during pregnancy?', a:'Most general health calculators (BMI, calorie, and weight-based calculators) are not designed for use during pregnancy, as caloric and nutritional needs differ significantly. We offer a dedicated pregnancy due date calculator. For specific nutritional guidance during pregnancy, always consult your midwife, OB-GYN, or registered dietitian.'},
+      {q:'How does an intermittent fasting calculator work?', a:'An intermittent fasting calculator helps you plan your eating and fasting windows based on popular protocols such as 16:8, 18:6, or 5:2. It sets your daily eating window, fasting start and end times, and optionally estimates calorie targets for the eating window. It is a scheduling tool — not a medical prescription.'},
+      {q:'What is a lean body mass calculator?', a:'A lean body mass calculator estimates the weight of everything in your body except fat — muscles, bones, organs, water, and connective tissue. It is calculated as: total body weight × (1 − body fat percentage). Lean body mass is important for calculating accurate protein intake targets and metabolic rate.'},
+      {q:'How does a protein intake calculator determine my needs?', a:'Protein intake calculators base your target on body weight and goal. Typical guidelines: 0.8g/kg for sedentary individuals, 1.2–1.6g/kg for moderate activity, 1.6–2.2g/kg for muscle building, and up to 2.4g/kg for cutting phases. Our <a href="/calculators/">protein calculator</a> adjusts for goal, activity level, and body composition.'},
+      {q:'How accurate are sleep calculators?', a:'Sleep calculators estimate optimal bedtime and wake times based on sleep cycle duration (approximately 90 minutes per cycle). They are useful for scheduling sleep to avoid waking mid-cycle, which causes grogginess. Accuracy depends on actual individual cycle length, which varies by person, age, and sleep quality. Use them as a guide, not a strict prescription.'},
+      {q:'What is a waist-to-hip ratio calculator?', a:'A waist-to-hip ratio (WHR) calculator measures fat distribution by dividing your waist circumference by your hip circumference. A WHR above 0.90 (men) or 0.85 (women) is associated with increased cardiovascular and metabolic risk according to WHO guidelines. It is a better indicator of health risk than BMI alone for many people.'},
+      {q:'What is a calorie deficit and how do calculators estimate it?', a:'A calorie deficit occurs when you consume fewer calories than your TDEE. A deficit of approximately 500 calories per day is estimated to produce ~0.45kg (1lb) of fat loss per week. Our calculators help you set a safe, sustainable deficit — typically recommending no more than a 20–25% reduction below TDEE to preserve muscle mass.'},
+      {q:'How does a one-rep max calculator work?', a:'A one-rep max (1RM) calculator estimates the maximum weight you can lift for a single repetition of an exercise, based on a submaximal lift. Common formulas include Epley (weight × (1 + reps/30)) and Brzycki. 1RM data helps athletes programme training loads for strength, hypertrophy, or endurance phases.'},
+      {q:'What is an ovulation calculator used for?', a:'An ovulation calculator estimates your most fertile days within your menstrual cycle based on your cycle length and the date of your last period. Ovulation typically occurs 12–16 days before the next period. These are estimates — actual ovulation timing varies and is best confirmed with ovulation predictor kits or ultrasound.'},
+      {q:'What does a step counter calorie calculator measure?', a:'A step counter calorie calculator estimates calories burned from walking based on step count, pace, body weight, and stride length. It uses MET (Metabolic Equivalent of Task) values to convert movement into calorie expenditure. Results are approximations — actual burn depends on individual fitness and terrain.'},
+      {q:'What is an alcohol unit calculator?', a:'An alcohol unit calculator helps you track and understand your weekly alcohol consumption. In the UK, one unit equals 10ml or 8g of pure alcohol. The calculator converts drink types and sizes into units, helping you compare your intake against recommended health guidelines (UK: no more than 14 units per week).'},
+      {q:'How does a resting metabolic rate calculator differ from BMR?', a:'Resting Metabolic Rate (RMR) and Basal Metabolic Rate (BMR) are often used interchangeably, but RMR is measured under less strict conditions (seated rest rather than post-sleep fasting). RMR is typically 10–20% higher than true BMR. For practical purposes in nutrition planning, both terms refer to your baseline calorie burn at rest.'},
+      {q:'Are online health calculators safe to use?', a:'Yes — our health calculators are completely safe. All calculations run locally in your browser; no personal data is sent to or stored on our servers. They are built using validated medical formulas and are designed for general informational use. They are not diagnostic tools — always consult a healthcare professional for medical decisions.'},
+    ]
+  },
+  {
+    id: 'nutrition', icon: '&#129367;', label: 'Health & Nutrition', alt: true,
+    title: 'Health & Nutrition',
+    intro: 'Answers to the most common nutrition and diet questions, from macronutrients and calorie needs to metabolism, hydration, and healthy eating habits.',
+    faqs: [
+      {q:'How much protein do I need daily?', a:'Protein needs depend on your body weight, age, activity level, and goals. General guidelines: 0.8g per kg for sedentary adults, 1.2–1.6g per kg for moderately active individuals, and 1.6–2.2g per kg for those building muscle or in a calorie deficit. Use our <a href="/calculators/">protein intake calculator</a> for a personalised target.'},
+      {q:'Are carbohydrates bad for weight loss?', a:'Carbohydrates are not inherently bad for weight loss. Total calorie intake is the primary driver of fat loss. Carbohydrates are the body\'s preferred energy source, particularly for the brain and high-intensity exercise. The quality of carbs matters — whole grains, vegetables, and legumes are far superior to refined sugars and processed foods.'},
+      {q:'What is a balanced diet?', a:'A balanced diet provides adequate amounts of all essential nutrients — carbohydrates, protein, healthy fats, vitamins, minerals, and water. The NHS Eatwell Guide recommends basing meals on starchy carbohydrates, eating plenty of fruit and vegetables, including moderate protein sources, and limiting saturated fats, salt, and added sugars.'},
+      {q:'How does hydration affect metabolism?', a:'Adequate hydration is essential for metabolic function. Water is required for nutrient transport, temperature regulation, and cellular energy production. Even mild dehydration (1–2% body weight) can reduce metabolic rate and impair physical and cognitive performance. Drinking water before meals can also slightly reduce calorie intake.'},
+      {q:'What are macronutrients and why do they matter?', a:'Macronutrients are the three major dietary energy sources: carbohydrates (4 kcal/g), protein (4 kcal/g), and fat (9 kcal/g). They provide fuel for all body functions and are needed in large quantities daily. The right balance of macros supports energy levels, body composition, hormonal health, and athletic performance.'},
+      {q:'How many calories does an average adult need per day?', a:'Average calorie needs range from approximately 1,600–2,400 kcal/day for women and 2,000–3,000 kcal/day for men, depending on age, height, weight, and activity level. These are broad averages. Use our <a href="/calculators/">TDEE calculator</a> for a personalised estimate based on your specific data.'},
+      {q:'What is the difference between saturated and unsaturated fats?', a:'Saturated fats (found in butter, red meat, and coconut oil) raise LDL ("bad") cholesterol when consumed in excess. Unsaturated fats — both monounsaturated (olive oil, avocados) and polyunsaturated (oily fish, nuts) — support heart health. Trans fats (found in partially hydrogenated oils) are the most harmful and should be avoided entirely.'},
+      {q:'What are micronutrients and why are they important?', a:'Micronutrients are vitamins and minerals required in small amounts for essential bodily functions. Key examples include vitamin D (bone health), iron (oxygen transport), magnesium (muscle function), zinc (immune health), and B vitamins (energy metabolism). Deficiencies in micronutrients can impair immunity, energy, mood, and long-term health.'},
+      {q:'Is intermittent fasting effective for weight loss?', a:'Intermittent fasting (IF) is an effective weight management strategy for many people. By restricting eating to specific windows, IF naturally reduces calorie intake for most individuals. Evidence suggests IF produces similar weight loss outcomes to continuous calorie restriction. It may also improve insulin sensitivity and metabolic health markers in some people.'},
+      {q:'What is metabolic rate and can I increase it?', a:'Your metabolic rate is the speed at which your body burns calories. It is influenced by muscle mass, age, hormones, and genetics. You can support a healthy metabolism by building and preserving lean muscle through resistance training, staying active throughout the day, eating enough protein, getting adequate sleep, and avoiding severe calorie restriction.'},
+      {q:'How does gut health affect overall wellness?', a:'Gut health influences immunity, mental health (via the gut-brain axis), nutrient absorption, inflammation, and hormonal balance. A diverse gut microbiome supports better digestion, mood regulation, and immune function. Fibre-rich foods, fermented foods (yoghurt, kefir, kimchi), and minimising ultra-processed food support gut health.'},
+      {q:'What vitamins are most important for daily health?', a:'Key vitamins for daily health include: Vitamin D (bone health, immunity — often deficient in the UK), B12 (nerve function, red blood cells — especially important for vegans), Vitamin C (immune function, collagen synthesis), Vitamin A (vision, immunity), and folate (cell division, especially important during pregnancy).'},
+      {q:'How much sugar should I consume daily?', a:'The NHS and WHO recommend that free sugars (added sugars plus those in fruit juice and honey) should not exceed 5% of total daily energy intake. For an average adult, this is approximately 30g (about 7 teaspoons) per day. Added sugars in processed foods, soft drinks, and confectionery are the primary concern.'},
+      {q:'What is glycaemic index and why does it matter?', a:'The Glycaemic Index (GI) ranks carbohydrate foods by how quickly they raise blood glucose levels after eating. High-GI foods (white bread, sugary drinks) cause rapid blood sugar spikes and crashes, while low-GI foods (oats, legumes, most vegetables) produce slower, steadier energy release. Low-GI diets support sustained energy and appetite control.'},
+      {q:'What is the best time to eat for optimal health?', a:'While total daily calorie and nutrient intake matters most, meal timing can influence energy, performance, and recovery. Eating most calories earlier in the day aligns with circadian rhythms and may improve metabolic outcomes. Pre-workout meals 1–3 hours before exercise and post-workout protein within 2 hours of training support performance and recovery.'},
+      {q:'What is the difference between plant and animal protein?', a:'Animal proteins (meat, fish, eggs, dairy) are complete proteins — they contain all nine essential amino acids. Most plant proteins are incomplete (lacking one or more essential amino acids), though soy, quinoa, and hemp are exceptions. Vegans and vegetarians can meet all protein needs by combining varied plant sources throughout the day.'},
+      {q:'How does sleep affect nutrition and metabolism?', a:'Poor sleep disrupts hormones that regulate appetite — increasing ghrelin (hunger hormone) and decreasing leptin (satiety hormone). This leads to increased calorie intake and cravings for high-calorie foods. Chronic sleep deprivation also impairs insulin sensitivity and promotes fat storage. 7–9 hours of quality sleep per night supports healthy metabolism.'},
+      {q:'What are superfoods and are they worth the hype?', a:'The term "superfood" is a marketing label, not a scientific classification. Foods often called superfoods (blueberries, salmon, kale, avocado, turmeric) do have genuine nutritional benefits. However, no single food is transformative — overall dietary pattern matters far more than any individual "superfood." A diverse, whole-food diet outperforms any superfood.'},
+      {q:'How does alcohol affect nutrition and health?', a:'Alcohol provides 7 kcal per gram (more than carbs or protein) but has no nutritional value — it is often called "empty calories." Alcohol impairs protein synthesis, disrupts sleep quality, depletes B vitamins and zinc, increases appetite, and impairs fat metabolism. Regular heavy consumption is associated with liver disease, cancer, and cardiovascular risk.'},
+      {q:'What is a caloric surplus and when should I be in one?', a:'A caloric surplus means consuming more calories than you burn (above your TDEE). This is necessary for muscle building (bulking), as muscle tissue cannot be built in significant quantities without extra energy and protein. A moderate surplus of 200–500 kcal above TDEE is typically recommended for clean bulking — minimising fat gain while building muscle.'},
+      {q:'How does stress affect eating habits?', a:'Chronic stress elevates cortisol, which increases appetite and promotes cravings for high-sugar, high-fat "comfort foods." Stress also disrupts meal timing, reduces motivation to cook, and can trigger emotional eating or restriction. Managing stress through exercise, sleep, and mindfulness supports healthier eating patterns and metabolic health.'},
+      {q:'What is the role of antioxidants in health?', a:'Antioxidants are compounds that neutralise free radicals — unstable molecules that damage cells and contribute to ageing, inflammation, and chronic disease. Key dietary antioxidants include vitamins C and E, beta-carotene, selenium, and polyphenols found in berries, green tea, dark chocolate, and colourful vegetables. A varied plant-rich diet provides ample antioxidants.'},
+      {q:'How do I calculate my daily fibre intake?', a:'The UK recommendation is 30g of fibre per day for adults. Most people consume only 18–20g. Foods high in fibre include whole grains, legumes, vegetables, fruits, nuts, and seeds. Increasing fibre gradually (to avoid digestive discomfort) and drinking adequate water are important when boosting fibre intake.'},
+      {q:'What are diet myths about fats and carbs?', a:'Common myths: (1) "Fat makes you fat" — dietary fat does not directly cause fat gain; excess calories do. (2) "Carbs cause weight gain" — no macronutrient alone causes weight gain without a calorie surplus. (3) "Eating at night causes fat gain" — total daily intake matters more than timing for most people. Focus on whole food quality and calorie balance.'},
+      {q:'How do I start eating healthier without a strict diet?', a:'Start with small, sustainable changes: add a serving of vegetables to every meal, swap refined grains for whole grains, reduce liquid calories (sugary drinks, alcohol), eat more protein at each meal to improve satiety, and cook at home more often. Consistency with modest improvements outperforms perfect compliance with a rigid diet.'},
+    ]
+  },
+  {
+    id: 'fitness', icon: '&#128170;', label: 'Fitness & Lifestyle', alt: false,
+    title: 'Fitness & Lifestyle',
+    intro: 'Answers to common questions about exercise frequency, recovery, sleep, and building a sustainable, healthy lifestyle.',
+    faqs: [
+      {q:'How often should I exercise per week?', a:'The NHS recommends adults do at least 150 minutes of moderate-intensity aerobic activity (or 75 minutes of vigorous intensity) per week, plus muscle-strengthening exercises on two or more days. For weight loss or athletic goals, 4–5 sessions per week is typical. Rest and recovery days are essential for progress and injury prevention.'},
+      {q:'What is the best type of exercise for weight loss?', a:'The most effective exercise for weight loss is whichever type you will do consistently. A combination of resistance training (to preserve muscle mass while in a calorie deficit) and cardiovascular exercise (to increase calorie burn) produces the best long-term results. Total calorie deficit — primarily from diet — remains the primary driver of fat loss.'},
+      {q:'How important is sleep for physical health?', a:'Sleep is fundamental to physical health and performance. During sleep, growth hormone is released for muscle repair and growth, the immune system recharges, the brain consolidates memory, and cortisol levels reset. Adults need 7–9 hours per night. Consistently poor sleep impairs fat loss, muscle building, athletic performance, and immune function.'},
+      {q:'What is overtraining and how do I avoid it?', a:'Overtraining occurs when training volume and intensity exceed the body\'s ability to recover. Symptoms include persistent fatigue, declining performance, mood disturbances, increased injury rate, and disrupted sleep. Avoid it by programming adequate rest days, periodising training intensity, eating enough protein and calories, and monitoring subjective wellbeing.'},
+      {q:'How long should a workout session last?', a:'Effective workout sessions typically range from 30 to 75 minutes depending on goal, training type, and intensity. Sessions beyond 90 minutes are rarely necessary for most goals and may increase cortisol and muscle breakdown. Quality, intensity, and progressive overload matter more than session length.'},
+      {q:'What is active recovery and why does it matter?', a:'Active recovery involves low-intensity movement on rest days — walking, yoga, swimming, or light cycling. It promotes blood flow to muscles, accelerates the removal of metabolic waste products, reduces muscle soreness (DOMS), and maintains training consistency without adding excessive stress. It is superior to complete inactivity for recovery.'},
+      {q:'What is the difference between cardio and strength training?', a:'Cardio (aerobic exercise) primarily trains the cardiovascular system and burns calories during the session — examples include running, cycling, and swimming. Strength training builds and preserves muscle mass, increases resting metabolic rate, and improves bone density. Both are important for long-term health; the optimal approach combines both forms of exercise.'},
+      {q:'How does stress affect physical health?', a:'Chronic psychological stress elevates cortisol, which promotes fat storage (particularly visceral fat), impairs muscle recovery and synthesis, disrupts sleep, suppresses immune function, and increases cardiovascular risk. Exercise is one of the most effective stress management tools, but excessive training without adequate recovery can itself become a stressor.'},
+      {q:'What is the 10,000 steps daily goal based on?', a:'The 10,000 steps per day target originated from a 1960s Japanese marketing campaign, not scientific research. However, research does support benefits from higher daily step counts. Studies show significant health benefits beginning around 7,000 steps/day, with diminishing but continuing returns beyond 10,000. Any increase in daily movement provides health benefit.'},
+      {q:'Can I lose weight without going to the gym?', a:'Yes — weight loss is primarily determined by calorie deficit, which can be achieved through diet alone. Physical activity accelerates fat loss, preserves muscle mass, and improves long-term maintenance, but gym membership is not required. Home workouts, walking, cycling, swimming, and bodyweight training are all effective alternatives.'},
+      {q:'What is HIIT and is it effective?', a:'High-Intensity Interval Training (HIIT) involves alternating short bursts of maximal effort with brief recovery periods. It is highly time-efficient, producing cardiovascular and metabolic benefits comparable to longer moderate-intensity sessions. HIIT also generates a significant "afterburn" effect (EPOC). However, it is demanding and should be limited to 2–3 sessions per week.'},
+      {q:'How does flexibility training benefit overall health?', a:'Regular flexibility and mobility training improves joint range of motion, reduces injury risk, decreases muscle tension and soreness, improves posture, and supports functional movement quality. Yoga, dynamic stretching, and foam rolling are effective approaches. Flexibility training becomes increasingly important for joint health and injury prevention with age.'},
+      {q:'What is a healthy resting heart rate?', a:'A healthy resting heart rate for adults is typically 60–100 beats per minute (bpm). Highly trained athletes may have a resting heart rate of 40–60 bpm due to increased cardiac efficiency. A consistently elevated resting heart rate (above 100 bpm) may indicate dehydration, stress, or underlying cardiovascular issues and warrants medical review.'},
+      {q:'How do I track fitness progress effectively?', a:'Effective fitness tracking combines multiple metrics: body weight (weekly average), body measurements (waist, hips, chest), progress photos, performance data (weights lifted, distances, times), and subjective wellbeing. No single metric tells the full story. Use our <a href="/tools/">tracking tools</a> to log and monitor your progress consistently.'},
+      {q:'How do I build a sustainable fitness routine?', a:'Sustainable fitness routines share key characteristics: they are scheduled (specific days and times), gradually progressive, enjoyable enough to continue, balanced with adequate recovery, and realistic for your life and fitness level. Start with 2–3 sessions per week and increase gradually. Consistency over months matters more than intensity in any single session.'},
+    ]
+  },
+  {
+    id: 'tools', icon: '&#128202;', label: 'Tools & Trackers', alt: true,
+    title: 'Tools & Trackers',
+    intro: 'Learn how our free interactive health tracking tools work and how to get the most out of habit trackers, sleep tools, mood trackers, and more.',
+    faqs: [
+      {q:'How does a habit tracker work?', a:'A habit tracker helps you monitor daily consistency with target behaviours — exercise, hydration, sleep, nutrition, or productivity habits. You log each habit as completed or not each day. Visual streaks and progress patterns build accountability and motivation. Research shows habit tracking significantly improves long-term behaviour change success rates. <a href="/tools/">Try our habit tracker.</a>'},
+      {q:'Can I rely on online sleep tracking tools?', a:'Online sleep calculators are useful for scheduling optimal wake times based on 90-minute sleep cycles. They are planning tools rather than measurement tools — they cannot measure your actual sleep stages or quality. For sleep quality tracking, wearable devices (Garmin, Fitbit, Oura Ring) provide more detailed data. Use online tools for scheduling, wearables for monitoring.'},
+      {q:'What is a mood tracker used for?', a:'Mood trackers help you log your emotional state daily and identify patterns over time. Regular mood tracking can reveal links between lifestyle factors (sleep, exercise, nutrition, stress) and mental wellbeing. It also supports self-awareness and can be a valuable tool for people managing anxiety, depression, or stress. Data can also be shared with healthcare providers.'},
+      {q:'How do I use a calorie tracker effectively?', a:'To use a calorie tracker effectively: weigh food using a kitchen scale rather than estimating, log everything including cooking oils and drinks, track for at least 2–4 weeks to understand patterns, and use data to adjust intake based on actual results (weight trend) rather than calculator estimates alone. Consistency matters more than perfection.'},
+      {q:'What is a hydration tracker and how does it help?', a:'A hydration tracker helps you log daily water intake and compare it against your personalised hydration target (based on body weight and activity). It prompts regular water intake, helps you identify days of under-hydration, and builds the habit of consistent drinking. Adequate hydration improves energy, cognition, digestion, and skin health.'},
+      {q:'How does a step tracker motivate behaviour change?', a:'Step trackers leverage psychological principles of goal-setting, immediate feedback, and visible progress to motivate increased daily movement. Seeing your step count in real time encourages you to "close the gap" to your daily goal. Daily step goals are one of the most accessible and evidence-backed ways to increase physical activity in sedentary individuals.'},
+      {q:'Are free online health tools as good as paid apps?', a:'For most general health tracking needs — calorie counting, habit logging, sleep scheduling, and basic metric tracking — free tools are highly effective and evidence-based. Paid apps often add features like AI coaching, integrations with wearables, or clinical-grade tracking. Our free tools at <a href="/tools/">VitalHealth Hub</a> provide excellent functionality with zero cost or sign-up.'},
+      {q:'How does a food diary help with weight management?', a:'Food diary research consistently shows that people who track their food intake lose significantly more weight than those who do not. The act of recording creates awareness of portion sizes, hidden calories, and eating patterns. Even imperfect tracking that captures 80% of intake provides valuable data for improving dietary choices and managing calorie balance.'},
+      {q:'What data should I track for weight loss?', a:'For effective weight loss tracking: log daily food intake (calories and protein), track weekly body weight (use the weekly average to reduce day-to-day fluctuation noise), take monthly body measurements and photos, and record training performance. Tracking energy levels and sleep can also reveal factors impacting progress. Use <a href="/tools/">our tools</a> to streamline this.'},
+      {q:'How often should I update my health tracking data?', a:'For body weight: daily weigh-ins with weekly averages provide the most reliable trend data. For food intake: daily logging during active tracking phases. For body measurements: monthly. For fitness performance data: every session. Tracking frequency should match your goal urgency — during active weight loss or muscle building phases, more frequent monitoring accelerates progress.'},
+      {q:'What is a BMI tracker and how is it different from a calculator?', a:'A BMI calculator gives a one-time result; a BMI tracker logs your BMI over time so you can monitor trends as your weight and body composition change. Tracking BMI over weeks and months provides context — the direction of change matters as much as the absolute value. Use it alongside other metrics like waist circumference for a fuller health picture.'},
+      {q:'How do productivity trackers help with health?', a:'Productivity and time-tracking tools indirectly support health by helping you identify time available for exercise, meal prep, and sleep. Structured daily routines that include dedicated time for health behaviours are associated with better physical and mental health outcomes. Managing cognitive load and reducing work stress also positively impacts physical health.'},
+      {q:'Are digital health tools suitable for older adults?', a:'Yes — many digital health tools are designed for accessibility and simplicity. Our tools at VitalHealth Hub are built to be intuitive with clear layouts, large readable text, and straightforward interfaces. Older adults benefit particularly from tools that track medication timing, hydration, mobility, and cognitive engagement. No account or technical expertise is required.'},
+      {q:'How do habit trackers help build long-term routines?', a:'Habit trackers exploit the psychological "habit loop" — cue, routine, reward. By making habit completion visible (checking off a day), they create an immediate reward (visual streak or completion satisfaction). The streak effect — not wanting to "break the chain" — is a powerful motivator. Research shows 66 days of consistent behaviour is the average time to form an automatic habit.'},
+      {q:'Can tracking tools replace professional health monitoring?', a:'No — tracking tools are designed to support self-awareness and motivation, not to replace clinical monitoring. If you have a diagnosed health condition (diabetes, hypertension, heart disease, etc.), your healthcare team should direct your monitoring programme. Our tools complement professional care — they are informational and educational resources, not medical devices.'},
+    ]
+  },
+  {
+    id: 'quizzes', icon: '&#129504;', label: 'Quizzes', alt: false,
+    title: 'Health Quizzes',
+    intro: 'Answers to questions about our interactive health quizzes — how they are scored, what they test, and how to interpret your results.',
+    faqs: [
+      {q:'Are health quizzes on VitalHealth Hub accurate?', a:'Our quizzes are built using evidence-based health information and peer-reviewed research. They are designed to test knowledge and provide health insights — not to diagnose conditions. Quiz results should be interpreted as educational guidance. For accurate health assessment, always consult a qualified healthcare professional. <a href="/quizzes/">Browse our quizzes.</a>'},
+      {q:'How are quiz scores calculated?', a:'Quiz scores are calculated based on the number of correct answers selected from multiple-choice or true/false questions. Each correct answer typically contributes equally to the final score, which is displayed as a percentage or band (e.g., Good / Needs Improvement / Excellent). Some quizzes use weighted scoring to reflect question difficulty.'},
+      {q:'Can quizzes replace professional medical advice?', a:'No. Our health quizzes are educational tools designed to improve health literacy and self-awareness — they are not diagnostic instruments. They cannot replace a physical examination, laboratory tests, or clinical assessment by a trained healthcare provider. If a quiz raises a concern about your health, please consult your GP or a relevant specialist.'},
+      {q:'What types of health quizzes are available?', a:'We offer a wide range of health quizzes across categories including: nutrition knowledge, fitness and exercise, mental wellbeing, sleep health, hydration, cardiovascular health, weight management, and general wellness. All quizzes are free to take with no registration required. <a href="/quizzes/">View all quizzes here.</a>'},
+      {q:'How often can I retake a quiz?', a:'You can retake any quiz as many times as you like — there is no limit. Retaking quizzes is encouraged as a learning tool, particularly after reading related articles. Seeing how your score improves over time can be a motivating indicator of increasing health knowledge.'},
+      {q:'Are quiz results stored or shared?', a:'No quiz results are stored or shared. All quiz processing happens in your browser — we do not collect, record, or transmit your quiz answers or scores. Your results are completely private. Refresh the page to reset any quiz at any time.'},
+      {q:'What is the purpose of a health knowledge quiz?', a:'Health knowledge quizzes serve multiple purposes: they identify gaps in your health literacy, reinforce learning from articles and tools, raise awareness of important health topics, and provide actionable recommendations based on your results. Improving health knowledge is strongly associated with better health behaviours and outcomes.'},
+      {q:'How do I interpret my quiz results?', a:'Each quiz provides a score summary with clear interpretation bands and personalised recommendations. Higher scores indicate strong knowledge in that health area. Lower scores highlight topics for further learning — use the linked articles and tools within your quiz results to deepen your understanding in areas where your score indicates room for improvement.'},
+      {q:'Are quizzes based on medical research?', a:'Yes — all quiz content is developed from peer-reviewed medical literature, established clinical guidelines (NHS, WHO, NIH), and validated nutritional and fitness science. Questions are reviewed for accuracy. However, health science evolves — if you believe a question requires updating, please use our contact page to share your feedback.'},
+      {q:'Can I share my quiz results?', a:'Your quiz results are generated in your browser session and can be shared by taking a screenshot. We do not currently provide a built-in social sharing feature for quiz results. However, we encourage sharing the quiz links with friends and family — helping others improve their health literacy is one of the best ways to support the platform.'},
+    ]
+  },
+  {
+    id: 'general', icon: '&#128172;', label: 'General', alt: true,
+    title: 'General Questions',
+    intro: 'Common questions about the VitalHealth Hub platform — including privacy, access, how it was built, and how to get support.',
+    faqs: [
+      {q:'Is VitalHealth Hub completely free to use?', a:'Yes — every calculator, tool, quiz, and article on VitalHealth Hub is 100% free to use. There are no subscription plans, no premium tiers, no paywalls, and no in-app purchases. Access to all platform features is unlimited, permanent, and requires no payment of any kind.'},
+      {q:'Do I need to create an account to use the platform?', a:'No account or registration is required for any feature on VitalHealth Hub. All calculators, tools, quizzes, and articles are immediately accessible to any visitor. We believe health information should be instantly accessible without friction, barriers, or data collection.'},
+      {q:'Is my personal health data safe on VitalHealth Hub?', a:'Yes — your privacy is fully protected. All health calculations and quiz processing occur entirely within your browser. No personal data (age, weight, health metrics, quiz answers) is transmitted to, stored on, or processed by our servers. We do not use tracking pixels, advertising networks, or data brokers. See our <a href="/privacy.html">Privacy Policy</a> for full details.'},
+      {q:'Who built VitalHealth Hub?', a:'VitalHealth Hub was built by Ali Haider — a passionate SEO consultant and web developer with a deep interest in health and wellness. Ali built the platform to make high-quality health tools and knowledge accessible to everyone, combining technical excellence with science-based content. Read more on our <a href="/about.html">About page.</a>'},
+      {q:'Can I suggest a new calculator, tool, or quiz?', a:'Absolutely — we welcome feature suggestions and feedback. If there is a health calculator, tracking tool, or quiz topic you would like to see on the platform, please reach out via our <a href="/contact.html">contact page</a>. User suggestions have directly shaped the development of several existing features.'},
+      {q:'How do I contact VitalHealth Hub?', a:'You can reach us via our <a href="/contact.html">contact page</a>. We respond to enquiries about content accuracy, feature suggestions, partnership opportunities, and general feedback. We aim to respond to all messages within 2–5 business days.'},
+      {q:'Are your tools suitable for use by medical professionals?', a:'Our tools are informational and educational — they use validated medical formulas and peer-reviewed guidelines. They are not clinical-grade instruments and should not replace professional medical software or clinical decision-making tools. Healthcare professionals may find them useful as quick reference aids or as tools to recommend to patients for self-monitoring.'},
+      {q:'How frequently is the VitalHealth Hub platform updated?', a:'We continuously update existing content and add new calculators, tools, quizzes, and articles. Existing calculators are reviewed against current medical guidelines. Blog articles are refreshed when research or clinical guidelines evolve. New features are added regularly based on user demand and health topic relevance.'},
+      {q:'Does VitalHealth Hub have a mobile app?', a:'VitalHealth Hub is a fully mobile-responsive website, optimised to work excellently on smartphones, tablets, and desktops without downloading anything. All tools and calculators work in any modern mobile browser. A dedicated mobile app is not currently available, but the mobile web experience is designed to be fast and intuitive.'},
+      {q:'How can I support VitalHealth Hub?', a:'The best ways to support the platform are: share our tools and articles with friends, family, and colleagues who might benefit; link to our calculators from your own website or blog; and recommend specific tools to people in health and fitness communities. Your sharing directly helps us reach more people and continue providing free health resources.'},
+    ]
+  },
 ];
-const gfaq = faqSection(generalFaqs);
 
-fs.writeFileSync('faq.html', `${head('Frequently Asked Questions | '+SITE_NAME, 'Find answers to common questions about '+SITE_NAME+' health calculators, articles, and wellness tools.', '/faq.html')}
+// Build combined schema for all FAQ questions
+const allFaqItems = faqCategories.flatMap(cat => cat.faqs);
+const faqPageSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": allFaqItems.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a.replace(/<[^>]+>/g,'') }
+  }))
+});
+
+// Build category pills HTML
+const catPillsHTML = faqCategories.map(cat =>
+  `<button class="faq-pill" data-filter="${cat.id}" onclick="faqFilterCat('${cat.id}',this)">${cat.icon} ${cat.label}</button>`
+).join('');
+
+// Build category sections HTML
+function buildFaqCatSection(cat) {
+  const bgStyle = cat.alt ? 'background:#f0faf4;' : 'background:var(--white);';
+  let items = cat.faqs.map(f =>
+    `<div class="faq-item" data-cat="${cat.id}"><button class="faq-question">${f.q}<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">${f.a}</div></div></div>`
+  ).join('');
+  return `<section class="faq-cat-section" id="faq-${cat.id}" data-cat="${cat.id}" style="${bgStyle}">
+<div class="container">
+<div class="faq-cat-header fade-in">
+<span class="faq-cat-icon">${cat.icon}</span>
+<div><h2>${cat.title}</h2><p class="faq-cat-intro">${cat.intro}</p></div>
+</div>
+<div class="faq-list faq-cat-list">${items}</div>
+</div>
+</section>`;
+}
+const faqSectionsHTML = faqCategories.map(cat => buildFaqCatSection(cat)).join('');
+
+fs.writeFileSync('faq.html', `${head('Frequently Asked Questions | '+SITE_NAME, 'Find clear answers about health calculators, nutrition, fitness, tools, quizzes, and platform usage. 100+ questions answered by the VitalHealth Hub team.', '/faq.html')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'FAQ',url:'/faq.html'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'FAQ',url:'/faq.html'}]).schema}
-${gfaq.schema}
+<script type="application/ld+json">${faqPageSchema}</script>
 ${globalHero({
-  badge: '&#10067; Help &amp; Support',
+  badge: '&#10067; Help &amp; Knowledge Hub',
   title: 'Frequently Asked<br>Questions',
-  subtitle: 'Find answers about tools, quizzes, calculators, and how everything works.',
+  subtitle: 'Find clear answers about health calculators, tools, quizzes, and how to use the platform effectively.',
   searchId: 'faqHeroInput',
-  searchPlaceholder: 'Search questions...',
+  searchPlaceholder: 'Search questions, topics...',
   searchOnInput: 'faqHeroSearch(this.value)',
   buttons: [
-    { label: '&#128218; Browse FAQs', href: '#faq-answers' },
-    { label: '&#128231; Contact Support', href: '/contact.html' },
-    { label: '&#9889; Explore Tools', href: '/tools/' }
+    { label: '&#9881; Explore Calculators', href: '/calculators/' },
+    { label: '&#128202; Use Tools', href: '/tools/' },
+    { label: '&#128218; Read Articles', href: '/blog.html' }
   ],
   stats: [
-    { value: generalFaqs.length + '+', label: 'FAQs' },
+    { value: allFaqItems.length + '+', label: 'Questions Answered' },
+    { value: faqCategories.length + '', label: 'Topic Categories' },
     { value: 'Free', label: 'Always' },
-    { value: 'Instant', label: 'Answers' },
-    { value: 'Private', label: 'No Data' }
+    { value: 'Private', label: 'No Data Stored' }
   ]
 })}
-<section class="content-page" id="faq-answers">
+
+<!-- Category Navigation Pills -->
+<div class="faq-pills-nav" id="faq-nav">
+<div class="faq-pills-inner">
+<button class="faq-pill faq-pill-active" data-filter="all" onclick="faqFilterCat('all',this)">&#127758; All Topics</button>
+${catPillsHTML}
+</div>
+</div>
+
+<!-- FAQ Search Results Notice -->
+<div class="faq-search-notice" id="faqSearchNotice" style="display:none;">
+<div class="container"><p id="faqSearchMsg">Showing results for your search.</p></div>
+</div>
+
+<!-- FAQ Sections -->
+<div id="faq-answers">
+${faqSectionsHTML}
+</div>
+
+<!-- Final CTA -->
+<section class="faq-final-cta">
 <div class="container">
-${gfaq.html}
-<script>
-function faqHeroSearch(q){q=(q||'').toLowerCase().trim();document.querySelectorAll('.faq-item').forEach(function(item){item.style.display=(q&&item.textContent.toLowerCase().indexOf(q)===-1)?'none':'';});}
-</script>
+<div class="faq-cta-inner fade-in">
+<span class="faq-cta-icon">&#128172;</span>
+<h2>Still Have Questions?</h2>
+<p>Can't find what you're looking for? Get in touch — we're happy to help with any questions about the platform, our tools, or health topics.</p>
+<div class="faq-cta-btns">
+<a href="/contact.html" class="btn btn-primary btn-pulse">&#128231; Contact Us</a>
+<a href="/tools/" class="btn btn-outline">&#128202; Explore Tools</a>
+</div>
+</div>
 </div>
 </section>
+
 ${FOOTER}
 ${BTT}
 <script src="/js/main.js"></script>
 ${CHATBOT}
+<script>
+// FAQ Category Filter
+function faqFilterCat(filter, btn) {
+  document.querySelectorAll('.faq-pill').forEach(function(p){p.classList.remove('faq-pill-active');});
+  if(btn) btn.classList.add('faq-pill-active');
+  var sections = document.querySelectorAll('.faq-cat-section');
+  sections.forEach(function(s){
+    s.style.display = (filter === 'all' || s.dataset.cat === filter) ? '' : 'none';
+  });
+  // If search is active, reapply
+  var searchVal = document.getElementById('faqHeroInput') ? document.getElementById('faqHeroInput').value : '';
+  if(searchVal) faqHeroSearch(searchVal);
+}
+// FAQ Hero Search
+function faqHeroSearch(q) {
+  q = (q||'').toLowerCase().trim();
+  var notice = document.getElementById('faqSearchNotice');
+  var msg = document.getElementById('faqSearchMsg');
+  var count = 0;
+  // Reset category filter when searching
+  if(q) {
+    document.querySelectorAll('.faq-cat-section').forEach(function(s){s.style.display='';});
+    document.querySelectorAll('.faq-pill').forEach(function(p){p.classList.remove('faq-pill-active');});
+  }
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var match = !q || item.textContent.toLowerCase().indexOf(q) !== -1;
+    item.style.display = match ? '' : 'none';
+    if(match) count++;
+  });
+  // Hide empty sections
+  document.querySelectorAll('.faq-cat-section').forEach(function(s){
+    var visible = s.querySelectorAll('.faq-item[style=""],.faq-item:not([style])').length;
+    var hasVisible = Array.from(s.querySelectorAll('.faq-item')).some(function(i){return i.style.display !== 'none';});
+    s.style.display = (!q || hasVisible) ? '' : 'none';
+  });
+  if(notice && msg) {
+    notice.style.display = q ? '' : 'none';
+    msg.textContent = q ? 'Found ' + count + ' result' + (count !== 1 ? 's' : '') + ' for "' + q + '"' : '';
+  }
+}
+</script>
 </body></html>`);
 
 // PRIVACY
