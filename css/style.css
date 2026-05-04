@@ -7365,12 +7365,17 @@ h3 { font-size: clamp(1.15rem, 2.2vw, 1.5rem); }
 }
 
 /* ── Prevent horizontal overflow globally ───────────────── */
-main, section, article, aside, header, footer { max-width: 100%; overflow-x: hidden; }
+/* Only html/body get overflow-x:hidden — NOT article/section/aside
+   (those break fixed nav drawers and table scroll containers on iOS) */
+main, section, article, aside, header, footer { max-width: 100%; }
 
 /* ── Responsive images — ensure no overflow ─────────────── */
 img { max-width: 100%; height: auto; display: block; }
 figure { max-width: 100%; }
-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+/* Generic tables: scrollable block — but NOT .data-table (has its own wrapper) */
+table:not(.data-table) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+/* .data-table stays as a proper table inside its scrollable wrapper */
+.data-table { display: table; width: 100%; border-collapse: collapse; }
 
 
 /* ── Chatbot: Live Data Cards ───────────────────────────── */
@@ -8089,12 +8094,21 @@ table { width: 100%; }
   }
   #vh-chat-toggle { width: 52px !important; height: 52px !important; right: 16px !important; bottom: 16px !important; }
 
-  /* ── Tables ─────────────────────────────────────── */
-  table { font-size: 0.85rem; }
-  thead { display: none; }
-  tbody tr { display: block; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; padding: 12px; }
-  tbody td { display: flex; justify-content: space-between; padding: 6px 0; border: none !important; }
-  tbody td::before { content: attr(data-label); font-weight: 600; color: var(--vh-text-primary); }
+  /* ── Tables (card-style for generic tables with data-label) ── */
+  table:not(.data-table) { font-size: 0.85rem; }
+  table:not(.data-table) thead { display: none; }
+  table:not(.data-table) tbody tr { display: block; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; padding: 12px; }
+  table:not(.data-table) tbody td { display: flex; justify-content: space-between; padding: 6px 0; border: none !important; }
+  table:not(.data-table) tbody td::before { content: attr(data-label); font-weight: 600; color: var(--vh-text-primary); }
+
+  /* ── Blog .data-table — keep normal scrollable layout ── */
+  .data-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  .data-table { display: table !important; font-size: 0.8rem; min-width: 480px; }
+  .data-table thead { display: table-header-group !important; }
+  .data-table thead th { white-space: nowrap; padding: 10px 12px !important; }
+  .data-table tbody tr { display: table-row !important; border: none !important; border-radius: 0 !important; margin-bottom: 0 !important; padding: 0 !important; }
+  .data-table tbody td { display: table-cell !important; padding: 9px 12px !important; border-bottom: 1px solid #1a3028 !important; }
+  .data-table tbody td::before { content: none !important; }
 
   /* ── Breadcrumbs ────────────────────────────────── */
   .breadcrumbs-inner { font-size: 0.78rem; padding: 8px 16px; }
@@ -8166,14 +8180,14 @@ table { width: 100%; }
     flex-direction: column !important;
     padding: 20px 16px !important;
     gap: 4px !important;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
-    transform: translateY(-100%) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18) !important;
+    transform: translateY(-110%) !important;
     opacity: 0 !important;
-    transition: transform 0.3s ease, opacity 0.3s ease !important;
+    transition: transform 0.3s ease, opacity 0.25s ease !important;
     pointer-events: none !important;
     max-height: calc(100vh - 107px) !important;
     overflow-y: auto !important;
-    z-index: 999 !important;
+    z-index: 9990 !important;
   }
   .nav-links.active {
     transform: translateY(0) !important;
@@ -8339,17 +8353,14 @@ body.nav-open {
 }
 
 /* ═══════════════════════════════════════════════════
-   HORIZONTAL OVERFLOW GUARD — safe for all elements
+   HORIZONTAL OVERFLOW GUARD — html/body only
+   NOTE: Never put overflow-x:hidden on .navbar,
+   .container, or .section — it breaks fixed-position
+   nav drawers (iOS Safari) and table scroll.
 ═══════════════════════════════════════════════════ */
+html, body { overflow-x: hidden; }
+
 @media (max-width: 767px) {
-  .container,
-  .section,
-  .navbar,
-  .footer,
-  .hero {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
   /* Ensure grids don't force horizontal scroll */
   .grid-2,
   .grid-3,
@@ -8368,23 +8379,55 @@ body.nav-open {
 ═══════════════════════════════════════════════════ */
 @media (max-width: 600px) {
   .quiz-app-wrap { padding: 0 14px 48px; margin: 24px auto; }
-  .quiz-diff-grid { grid-template-columns: 1fr; gap: 12px; }
-  .quiz-diff-card { padding: 20px 16px; display: flex; align-items: center; gap: 14px; text-align: left; }
-  .quiz-diff-icon { margin-bottom: 0; font-size: 1.7rem; }
-  .quiz-q-box { padding: 22px 16px; }
+  /* Difficulty grid: 1 column, tappable cards */
+  .quiz-diff-grid { grid-template-columns: 1fr !important; gap: 10px; max-width: 100%; }
+  .quiz-diff-card {
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 14px;
+    row-gap: 2px;
+    text-align: left;
+    align-items: center;
+    -webkit-tap-highlight-color: rgba(45,106,79,0.15);
+  }
+  .quiz-diff-icon {
+    grid-row: 1 / 3;
+    font-size: 2rem;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+  }
+  .quiz-diff-label { grid-column: 2; font-size: 1rem; }
+  .quiz-diff-count { grid-column: 2; }
+  .quiz-diff-time  { grid-column: 2; }
+  /* Start button full width */
+  .quiz-start-btn { width: 100%; justify-content: center; }
+  /* Question box */
+  .quiz-q-box { padding: 20px 16px; }
   .quiz-q-text { font-size: 1.05rem; }
-  .quiz-opt { padding: 12px 14px; font-size: 0.9rem; }
+  /* Answer options — big tap targets */
+  .quiz-opt { padding: 14px 14px; font-size: 0.92rem; min-height: 52px; }
+  /* Next button */
+  .quiz-next-btn { padding: 14px; font-size: 0.95rem; }
+  /* Email funnel */
   .quiz-email-form { flex-direction: column; }
   .quiz-email-submit { width: 100%; }
+  /* Funnel tool grid */
   .quiz-funnel-tools { grid-template-columns: repeat(2, 1fr); }
+  /* Share buttons */
   .quiz-share-btn { padding: 9px 14px; font-size: 0.85rem; }
+  /* Result ring */
   .quiz-result-ring-wrap { width: 120px; height: 120px; }
   .quiz-result-ring-wrap svg { width: 120px; height: 120px; }
   #res-pct { font-size: 1.6rem; }
 }
 @media (max-width: 380px) {
-  .quiz-diff-grid { gap: 10px; }
   .quiz-funnel-tools { grid-template-columns: 1fr; }
+  .quiz-opt { font-size: 0.88rem; }
 }
 
 /* ═══════════════════════════════════════════════════
