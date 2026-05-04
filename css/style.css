@@ -3694,7 +3694,7 @@ img, svg { max-width: 100%; height: auto; }
 .quiz-index-stat strong { display: block; font-size: 2rem; font-weight: 800; color: #74c69d; line-height: 1.1; }
 .quiz-index-stat span { font-size: .85rem; opacity: .75; }
 
-.quiz-category-bar { background: #fff; border-bottom: 1px solid #e9ecef; padding: 0 20px; position: sticky; top: 74px; z-index: 90; }
+.quiz-category-bar { background: #fff; border-bottom: 1px solid #e9ecef; padding: 0 20px; position: sticky; top: 107px; z-index: 90; }
 .quiz-category-bar-inner { display: flex; gap: 8px; overflow-x: auto; padding: 14px 0; max-width: 1200px; margin: 0 auto; scrollbar-width: none; }
 .quiz-category-bar-inner::-webkit-scrollbar { display: none; }
 .quiz-cat-pill {
@@ -5921,7 +5921,7 @@ img, svg { max-width: 100%; height: auto; }
 ══════════════════════════════════════════════════════════ */
 
 /* Category Pills Nav */
-.faq-pills-nav { background:var(--white); border-bottom:1px solid #e8f5ee; position:sticky; top:0; z-index:90; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.faq-pills-nav { background:var(--white); border-bottom:1px solid #e8f5ee; position:sticky; top:107px; z-index:90; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
 .faq-pills-inner { max-width:1200px; margin:0 auto; padding:14px 20px; display:flex; gap:10px; overflow-x:auto; scrollbar-width:none; align-items:center; flex-wrap:nowrap; }
 .faq-pills-inner::-webkit-scrollbar { display:none; }
 .faq-pill { flex-shrink:0; padding:9px 18px; border-radius:50px; border:1.5px solid #b7e4c7; background:transparent; color:var(--primary); font-size:0.84rem; font-weight:600; cursor:pointer; transition:all 0.2s ease; white-space:nowrap; font-family:inherit; }
@@ -8484,3 +8484,125 @@ html, body { overflow-x: hidden; }
   .bp-content h2 { font-size: 1.2rem; }
   .bp-bottom-block-title { font-size: 0.74rem; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPREHENSIVE CROSS-DEVICE AUDIT FIXES
+   Coverage: Android touch, iOS scroll, hero sizing, nav offsets,
+   stacking contexts, table interaction, small-phone polish.
+═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. Data table: guaranteed horizontal scroll on Android ── */
+/* The global * { touch-action: manipulation } in pointer:coarse
+   must be overridden to allow pan-x on table scroll containers */
+.data-table-wrap {
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+}
+@media (pointer: coarse) {
+  .data-table-wrap {
+    touch-action: pan-x pan-y !important;
+    overflow-x: auto !important;
+    cursor: grab;
+  }
+  /* Thin thumb indicator for Android Chrome */
+  .data-table-wrap::-webkit-scrollbar { height: 5px; }
+  .data-table-wrap::-webkit-scrollbar-track { background: #f0faf4; border-radius: 4px; }
+  .data-table-wrap::-webkit-scrollbar-thumb { background: #52b788; border-radius: 4px; }
+}
+
+/* ── 2. Nav + chatbot always interactive — never blocked ── */
+.navbar           { pointer-events: all; }
+.nav-links.active { pointer-events: all; }
+#vh-chatbot       { pointer-events: all; }
+#vh-chat-toggle   { pointer-events: all; }
+.hamburger        { pointer-events: all; }
+/* Prevent any quiz or page section creating a rogue stacking context */
+.quiz-app-wrap, .quiz-diff-screen,
+.quiz-q-screen, .quiz-result-screen { z-index: auto; }
+
+/* ── 3. Home hero — small-phone responsive ── */
+@media (max-width: 640px) {
+  .hero { padding: 130px 20px 60px; }
+  .hero h1 { font-size: clamp(1.6rem, 6vw, 2.1rem); margin-bottom: 14px; }
+  .hero p  { font-size: 1rem; max-width: 100%; }
+  .hero-buttons { flex-direction: column; align-items: center; gap: 12px; }
+  .hero-buttons .btn { width: 100%; max-width: 290px; text-align: center; justify-content: center; }
+}
+@media (max-width: 400px) {
+  .hero { padding: 118px 16px 52px; }
+  .hero h1 { font-size: 1.5rem; }
+  .hero p  { font-size: 0.93rem; }
+}
+
+/* ── 4. Home stats strip — proper mobile stacking ── */
+@media (max-width: 600px) {
+  .home-stats-strip-inner {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .home-stat-item {
+    flex: 0 0 50%;
+    max-width: 50%;
+    border-right: none;
+    border-bottom: 1px solid #1e3a2f;
+  }
+  .home-stat-item:last-child { border-bottom: none; }
+  .home-stat-div { display: none; }
+}
+@media (max-width: 380px) {
+  .home-stat-item { flex: 0 0 100%; max-width: 100%; }
+}
+
+/* ── 5. Quiz index category bar — mobile sticky offset ── */
+@media (max-width: 767px) {
+  /* On mobile the ann-bar stays 37px, navbar is 70px ⟹ 107px */
+  .quiz-category-bar { top: 107px; }
+}
+
+/* ── 6. FAQ pills nav — ensure it sticks below full nav ── */
+@media (max-width: 767px) {
+  .faq-pills-nav { top: 107px; }
+}
+
+/* ── 7. Calc page hero — avoid cut-off on very small phones ── */
+@media (max-width: 380px) {
+  .calc-page-hero  { padding: 56px 12px 34px !important; }
+  .calc-index-hero { padding: 64px 12px 44px !important; }
+}
+
+/* ── 8. Blog data table scroll hint — mobile only ── */
+@media (max-width: 767px) {
+  .data-table-wrap::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0; right: 0;
+    width: 28px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.85));
+    pointer-events: none;
+    border-radius: 0 10px 10px 0;
+  }
+  /* Wrap must be relative for the pseudo-element */
+  .data-table-wrap { position: relative; }
+}
+
+/* ── 9. General touch-target minimums for quiz elements ── */
+@media (pointer: coarse) {
+  .quiz-diff-card  { min-height: 80px; }
+  .quiz-ans-btn    { min-height: 52px; }
+  .quiz-cat-pill   { min-height: 40px; }
+  .quiz-start-btn,
+  .quiz-next-btn,
+  .quiz-retry-btn  { min-height: 52px; }
+  .vh-chat-toggle  { width: 60px; height: 60px; }
+}
+
+/* ── 10. Prevent iOS rubber-band bleed on quiz hero ── */
+.quiz-hero { -webkit-overflow-scrolling: auto; }
+
+/* ── 11. Ann-bar stays visible on ALL phone sizes (37px + navbar 70px = 107px always) ── */
+/* No offset change needed at small sizes — top: 107px holds across all breakpoints */

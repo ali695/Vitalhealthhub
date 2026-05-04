@@ -295,6 +295,50 @@ The following mobile issues were identified and fixed:
 11. **Grid overflow guards** — all major home section grids get `width: 100%; min-width: 0` on mobile to prevent horizontal scroll.
 12. **Express trust proxy** — added `app.set('trust proxy', 1)` to fix rate-limiter `ERR_ERL_UNEXPECTED_X_FORWARDED_FOR` warning.
 
+## Cross-Device Audit Fixes (May 2026 — Round 2)
+
+### Z-Index Hierarchy (canonical)
+| Layer | z-index | Element |
+|---|---|---|
+| Chatbot fullscreen | 100000 | `#vh-chat-window` on mobile |
+| Chatbot | 99999 | `#vh-chatbot` |
+| Blog search overlay | 10000 | `.blog-search-overlay` |
+| Mobile nav drawer | 9990 | `.nav-links.active` |
+| Announcement bar | 1001 | `.ann-bar` |
+| Navbar | 1000 | `.navbar` |
+| Sticky sub-navs | 90 | `.quiz-category-bar`, `.faq-pills-nav` |
+
+### Sticky Offset = 107px
+All sticky sub-navigation bars (`quiz-category-bar`, `faq-pills-nav`) use `top: 107px` = ann-bar (37px) + navbar (70px). The ann-bar is never hidden on any phone size — offset never drops below 107px.
+
+### Quiz Fixes
+- `js/quiz.js`: Full event delegation via `document.addEventListener('click', ...)` covering diff cards, start/next/retry/share/email buttons.
+- Quiz diff card layout rebuilt with CSS Grid (icon col + text col), ≤600px stacks to 1-col.
+- Answer buttons: `min-height: 52px`, full-width start button, `-webkit-tap-highlight-color` for Android.
+- Quiz elements set to `z-index: auto` to avoid creating rogue stacking contexts that block nav/chatbot.
+
+### Blog Data Tables (iOS + Android scroll)
+- Removed `overflow: hidden` from `.data-table-wrap` (was overriding `overflow-x: auto`).
+- Generic `table { display: block }` scoped to `table:not(.data-table)`.
+- Card-style mobile transform (`thead{display:none}`, `tbody tr{display:block}`) scoped to `table:not(.data-table)`.
+- `.data-table { display: table }` restored with `!important`.
+- `touch-action: pan-x pan-y !important` on `.data-table-wrap` in `@media (pointer: coarse)` — overrides the global `manipulation` so Android users can swipe tables.
+- Scroll fade gradient hint added on mobile via `::after` pseudo-element.
+
+### Overflow Guard (no more blocking parents)
+- `overflow-x: hidden` removed from `.navbar`, `.container`, `.section`, `article`, `aside`, `header`, `footer`.
+- Only `html, body` carry `overflow-x: hidden`.
+
+### Mobile Nav Drawer
+- `z-index: 9990 !important` on `.nav-links.active`.
+- Removed `overflow-x: hidden` from `.navbar` (was clipping fixed drawer on iOS Safari).
+
+### Home Page Responsive
+- Hero: stacks cleanly ≤640px and ≤400px with `clamp()` font sizing and full-width stacked CTA buttons.
+- Stats strip: 2-col flex on ≤600px, 1-col on ≤380px (uses flex, not broken grid-template-columns).
+- Grids (tools/quiz/blog): 3-col → 2-col (≤900px) → 1-col (≤600px).
+- Calc cards: 4-col → 2-col (≤1024px) → 1-col (≤480px).
+
 ## Dependencies
 - express
 - express-session
