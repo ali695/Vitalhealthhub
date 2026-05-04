@@ -1232,3 +1232,25 @@ function showResult(boxId, value, label, suggestion, color) {
   }
   box.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
+
+/* ── Responsive data-table: auto-add data-label to every td ── */
+(function() {
+  function labelDataTables() {
+    document.querySelectorAll('table.data-table').forEach(function(tbl) {
+      var headers = Array.from(tbl.querySelectorAll('thead th')).map(function(th) {
+        return th.textContent.trim();
+      });
+      if (!headers.length) return;
+      tbl.querySelectorAll('tbody tr').forEach(function(row) {
+        Array.from(row.querySelectorAll('td')).forEach(function(td, i) {
+          if (headers[i]) td.setAttribute('data-label', headers[i]);
+        });
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', labelDataTables);
+  } else {
+    labelDataTables();
+  }
+})();

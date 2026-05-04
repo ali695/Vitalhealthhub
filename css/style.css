@@ -3761,7 +3761,8 @@ img, svg { max-width: 100%; height: auto; }
 .quiz-card[data-category].hidden { display: none; }
 
 /* ── INDIVIDUAL QUIZ PAGE ── */
-.quiz-hero { background: linear-gradient(135deg, #1b4332, #2d6a4f); padding: 60px 20px 50px; text-align: center; color: #fff; position: relative; overflow: hidden; }
+.quiz-hero { background: linear-gradient(135deg, #1b4332, #2d6a4f); padding: 60px 20px 50px; text-align: center; color: #fff; position: relative; }
+/* NOTE: overflow:hidden removed — causes iOS Safari stacking-context bug that blocks fixed nav/chatbot clicks */
 .quiz-hero::before { content: ''; position: absolute; top: -30%; right: -10%; width: 340px; height: 340px; background: radial-gradient(circle, rgba(82,183,136,0.2) 0%, transparent 70%); pointer-events: none; }
 .quiz-hero-icon { font-size: 3rem; margin-bottom: 16px; position: relative; z-index: 1; }
 .quiz-hero-cat { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 4px 14px; font-size: .82rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 16px; position: relative; z-index: 1; }
@@ -6875,8 +6876,8 @@ img, svg { max-width: 100%; height: auto; }
 .bp-callout-icon { font-size: 2.2rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
 .bp-callout-box p { color: rgba(255,255,255,0.92); font-size: 0.96rem; margin-bottom: 16px; line-height: 1.65; }
 .bp-callout-box p a { color: #a7f3d0; font-weight: 700; text-decoration: underline; }
-.bp-callout-box .btn { background: #fff; color: #1b4332; font-weight: 700; border: none; }
-.bp-callout-box .btn:hover { background: #d1fae5; }
+.bp-callout-box .btn { background: var(--highlight) !important; color: #fff !important; font-weight: 700 !important; border: none !important; box-shadow: 0 4px 14px rgba(244,162,97,0.35) !important; }
+.bp-callout-box .btn:hover { background: #e8944f !important; color: #fff !important; transform: translateY(-2px); }
 
 /* ── FAQ section ── */
 .bp-faq-section { margin: 50px 0 40px; }
@@ -8606,3 +8607,95 @@ html, body { overflow-x: hidden; }
 
 /* ── 11. Ann-bar stays visible on ALL phone sizes (37px + navbar 70px = 107px always) ── */
 /* No offset change needed at small sizes — top: 107px holds across all breakpoints */
+
+/* ═══════════════════════════════════════════════════════════════
+   FULLY RESPONSIVE DATA-TABLE — Card layout on mobile
+   JS in main.js adds data-label to every td from thead th values.
+═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+
+  /* Wrapper: no horizontal scroll needed in card mode */
+  .data-table-wrap {
+    overflow-x: visible !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 20px 0 !important;
+    background: transparent !important;
+    position: static !important;
+  }
+  /* Remove the scroll-hint gradient on mobile card mode */
+  .data-table-wrap::after { display: none !important; }
+
+  /* Table becomes a block container */
+  .data-table {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+  }
+
+  /* Hide column headers */
+  .data-table thead { display: none !important; }
+
+  /* tbody becomes a block */
+  .data-table tbody { display: block !important; width: 100% !important; }
+
+  /* Each row becomes a card */
+  .data-table tbody tr {
+    display: block !important;
+    width: 100% !important;
+    background: #0f2218 !important;
+    border: 1px solid #1e3a2f !important;
+    border-radius: 12px !important;
+    margin-bottom: 12px !important;
+    padding: 4px 0 !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25) !important;
+    overflow: hidden !important;
+  }
+  .data-table tbody tr:last-child { margin-bottom: 0 !important; }
+
+  /* Each cell: label on left, value on right */
+  .data-table tbody td {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 10px 14px !important;
+    border-bottom: 1px solid #1a3028 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    word-break: break-word !important;
+    color: #9ec8b0 !important;
+  }
+  .data-table tbody td:last-child {
+    border-bottom: none !important;
+  }
+
+  /* Column label (from data-label attribute) */
+  .data-table tbody td::before {
+    content: attr(data-label) !important;
+    font-weight: 700 !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: #52b788 !important;
+    flex-shrink: 0 !important;
+    max-width: 44% !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Value side */
+  .data-table tbody td > * {
+    text-align: right !important;
+  }
+
+  /* Badges stay inline */
+  .tbl-badge {
+    display: inline-block !important;
+    font-size: 0.72rem !important;
+    padding: 2px 8px !important;
+  }
+}
