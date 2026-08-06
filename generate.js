@@ -10,10 +10,10 @@ const SITE_NAME = 'VitalHealth Hub';
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
 
 const _ANN_MSGS = [
-  '115+ Free Health Calculators',
+  '100+ Free Health Calculators',
   'Practical Tools and Clear Guides',
-  '50+ Interactive Quizzes',
-  '155+ Expert Health Articles',
+  '20+ Interactive Quizzes',
+  '155 Health Articles',
   'Instant Results &mdash; No Sign-Up Required',
   'Designed for Clarity and Simplicity',
 ];
@@ -89,7 +89,7 @@ const NAV = `${TOPBAR}<nav class="navbar">
 <div class="mega-search-results" id="ddResults"></div>
 <div class="mega-dropdown-bottom">
 <span>Practical tools, free forever</span>
-<a href="/calculators/" class="mega-cta-btn"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> View All 115+ Calculators &rarr;</a>
+<a href="/calculators/" class="mega-cta-btn"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> View All 100+ Calculators &rarr;</a>
 </div>
 </div>
 </li>
@@ -112,7 +112,7 @@ const FOOTER = `<footer class="site-footer">
 <a href="/" class="footer-logo-link" aria-label="VitalHealth Hub Home">
 <img src="/images/logo.png" alt="VitalHealth Hub" class="footer-logo-img2">
 </a>
-<p class="footer-brand-desc">Powerful health calculators, smart tools, and expert insights to help you make better decisions every day.</p>
+<p class="footer-brand-desc">Practical health calculators, useful tools, and clear guides to help you make better-informed everyday decisions.</p>
 <a href="mailto:ma7122671@gmail.com" class="footer-email-link">
 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
 ma7122671@gmail.com
@@ -151,7 +151,7 @@ ma7122671@gmail.com
 <li><a href="/tools/sleep-tracker.html">Sleep Tracker</a></li>
 <li><a href="/tools/mood-tracker.html">Mood Tracker</a></li>
 <li><a href="/tools/daily-planner.html">Daily Planner</a></li>
-<li><a href="/tools/text-analyzer.html">Text Analyzer</a></li>
+<li><a href="/tools/advanced-text-analyzer.html">Text Analyzer</a></li>
 <li><a href="/tools/" class="footer-link-more">All Tools &#8594;</a></li>
 </ul>
 </div>
@@ -1023,20 +1023,20 @@ calculators.push(...newCalcs2);
 // Fill in missing data for remaining calculators
 calculators.forEach(calc => {
   if (!calc.article) {
-    calc.article = `<h2>About the ${calc.name}</h2><p>The ${calc.name} is a valuable health tool that helps you understand important aspects of your wellness. This calculator uses established formulas and guidelines to provide personalized results based on your individual measurements and characteristics.</p><h3>Why Use This Calculator</h3><p>Understanding your health metrics is the first step toward making informed decisions about your lifestyle. Whether you are tracking fitness progress, managing a health condition, or simply curious about your current status, this tool provides quick, easy-to-understand results that can guide your health journey.</p><h3>How to Interpret Results</h3><p>Results are color-coded for easy interpretation: green indicates a healthy or optimal range, yellow suggests caution or borderline values, and red signals that you should consult a healthcare professional. Remember that these are estimates — individual factors can affect accuracy.</p><h3>Taking Action</h3><p>Use your results as a starting point for conversations with healthcare providers. Track your metrics over time to identify trends and measure progress. Combine multiple calculators for a more comprehensive view of your health status. Small, consistent changes in diet, exercise, and lifestyle habits can lead to significant improvements over time.</p>`;
+    calc.article = `<h2>Understanding the ${calc.name}</h2><p>The ${calc.name} turns the values entered in the form into an educational estimate. Check every input and unit before calculating.</p><h3>How to Interpret the Result</h3><p>Read the output together with the method and limitations on the page. A calculator simplifies real-world variation and cannot reproduce a clinical examination, laboratory measurement, or individual professional assessment.</p><h3>Important Limits</h3><p>Do not use an online result alone to diagnose a condition, change medication, restrict a child’s diet, or ignore concerning symptoms. The intended population and quality of the underlying method matter.</p><h3>Practical Next Step</h3><p>Save the inputs with the result, focus on meaningful trends, and confirm high-stakes decisions with the responsible qualified professional.</p>`;
   }
   if (!calc.faqs) {
     calc.faqs = [
       {q:`What is the ${calc.name}?`,a:`The ${calc.name} is a tool that helps you ${calc.desc.toLowerCase()}`},
       {q:'How accurate is this calculator?',a:'This calculator provides estimates based on established formulas. For medical decisions, always consult a healthcare professional.'},
-      {q:'How often should I use this calculator?',a:'For tracking purposes, using the calculator monthly provides useful trend data. More frequent use is fine for awareness.'},
+      {q:'How often should I use this calculator?',a:'Repeat a calculation only when the underlying inputs have changed or when a qualified professional recommends monitoring.'},
       {q:'Can I rely on these results for medical decisions?',a:'This tool is for informational purposes only. Always consult qualified healthcare professionals for medical advice and decisions.'},
       {q:'What factors affect the accuracy?',a:'Individual variation, measurement technique, and the limitations of estimation formulas can all affect accuracy.'},
       {q:'Should I share results with my doctor?',a:'Yes, sharing calculator results with your healthcare provider can facilitate productive discussions about your health.'},
       {q:'Is this calculator suitable for all ages?',a:'Most calculators are designed for adults. Pediatric assessments may require different formulas and professional evaluation.'},
-      {q:'What do the colors mean?',a:'Green indicates healthy/optimal, yellow means caution/borderline, and red suggests you should consult a healthcare professional.'},
+      {q:'What do the colors mean?',a:'Colors are interface prompts, not a diagnosis. Read the written explanation and discuss concerning results or symptoms with a qualified professional.'},
       {q:'Can lifestyle changes improve my results?',a:'Yes, improvements in diet, exercise, sleep, and stress management can positively impact most health metrics over time.'},
-      {q:'Where do the formulas come from?',a:'Our calculators use peer-reviewed, established medical and scientific formulas that are widely used by healthcare professionals.'},
+      {q:'Where do the formulas come from?',a:'Methods differ between calculators. Use a result only when the page clearly identifies the method, intended population, inputs, and limitations.'},
     ];
   }
   if (!calc.related) {
@@ -1329,8 +1329,8 @@ function calcSeoMeta(calc) {
     'body-recomposition-calculator': { title: 'Body Recomposition Calculator – Lose Fat & Gain Muscle | VitalHealth Hub', desc: 'Losing fat while gaining muscle is possible with the right numbers. Calculate your recomposition calories and macros to begin transforming your body composition the smart way today.' }
   };
   const found = CALC_META[calc.slug];
-  const metaTitle = found ? found.title : `${calc.name} – Instant Accurate Results | ${SITE_NAME}`;
-  const metaDesc = found ? found.desc : `Use our free ${calc.name} for instant, science-based results. Get personalized insights with healthy range guidance. No sign-up required.`;
+  const metaTitle = found ? found.title : `${calc.name} – Free Online Estimate | ${SITE_NAME}`;
+  const metaDesc = found ? found.desc : `Use our free ${calc.name} for an educational estimate. Read the result with its assumptions and limitations. No sign-up required.`;
   const keywords = `${n.toLowerCase()} calculator, free ${n.toLowerCase()} calculator, ${n.toLowerCase()} calculator online, calculate ${n.toLowerCase()} online, accurate ${n.toLowerCase()} calculator, ${n.toLowerCase()} for men, ${n.toLowerCase()} for women, how to calculate ${n.toLowerCase()}, what is a healthy ${n.toLowerCase()}, ${n.toLowerCase()} explained, ${n.toLowerCase()} ranges for adults`;
   return { metaTitle, metaDesc, keywords };
 }
@@ -1342,8 +1342,8 @@ function calcHowToSection(calc) {
 <h2>How to Use the ${n}</h2>
 <ol class="how-to-steps">
 ${fieldList}</li>
-<li><strong>Step ${calc.fields.length+1} — Click Calculate:</strong> Press the Calculate button to instantly get your personalized results.</li>
-<li><strong>Step ${calc.fields.length+2} — Read Your Results:</strong> Your result will appear color-coded — green for healthy, yellow for borderline, red for at-risk ranges.</li>
+<li><strong>Step ${calc.fields.length+1} — Click Calculate:</strong> Press the Calculate button to generate the result from the values supplied.</li>
+<li><strong>Step ${calc.fields.length+2} — Read Your Results:</strong> Treat colors as interface prompts and read the written explanation, assumptions, and limitations.</li>
 <li><strong>Step ${calc.fields.length+3} — Take Action:</strong> Use the personalized suggestion in your results to guide your next health steps. Consult a doctor for medical decisions.</li>
 </ol>
 </section>`;
@@ -1576,8 +1576,8 @@ function calcDepthSections(calc) {
 <div class="container">
 <div class="ccs-article fade-in">
 <h2>Who Should Use the ${n}?</h2>
-<p>The ${n} is built for ${audience}. Whether you are proactively monitoring your health, managing a specific condition, or simply curious about where you stand, this tool provides a reliable, evidence-based starting point for understanding your current status and identifying where targeted change is possible.</p>
-<p>This calculator is appropriate for adults aged 18 and above. If you are under 18, pregnant, or managing a diagnosed medical condition, treat results as a general guide only and consult a qualified healthcare professional before making any changes to your diet, exercise routine, or treatment plan.</p>
+<p>This tool is intended as an educational estimate for people who understand the inputs and limitations described on this page. Whether it is appropriate depends on the calculation, the user’s circumstances, and the decision being considered.</p>
+<p>Check the stated intended population before using the result. Children, pregnancy, diagnosed conditions, medicines, and unusual symptoms often require a different method or professional interpretation.</p>
 <p>For a more complete health picture, pair this tool with our ${relLinks} — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
 <h2>Common Mistakes to Avoid</h2>
 <p>Getting accurate, actionable results from the ${n} depends on more than entering correct numbers. These are the most common errors that reduce the usefulness of your output:</p>
@@ -1873,8 +1873,8 @@ const blogPosts = [
   // ── CATEGORY 13: Nutrition & Diet ──
   {slug:'mediterranean-diet-complete-guide',title:'Mediterranean Diet: Complete Beginner Guide With Meal Ideas',category:'Nutrition & Diet',date:'2025-01-26',readTime:'10 min',calcEmbed:'macro-calculator',tags:['mediterranean diet','heart healthy eating','olive oil','diet guide','anti-inflammatory diet']},
   {slug:'plant-based-diet-for-beginners',title:'Plant-Based Diet for Beginners: Getting Enough Protein and Nutrients',category:'Nutrition & Diet',date:'2025-01-29',readTime:'9 min',calcEmbed:'protein-intake-calculator',tags:['plant based diet','vegan protein','vegetarian nutrition','whole food plant based','meat alternatives']},
-  {slug:'omega-3-fatty-acids-complete-guide',title:'Omega-3 Fatty Acids: Benefits, Sources and How Much You Need',category:'Nutrition & Diet',date:'2025-02-01',readTime:'8 min',calcEmbed:'omega-3-calculator',tags:['omega-3 benefits','fish oil','EPA DHA','omega-3 sources','heart brain health']},
-  {slug:'anti-inflammatory-diet-guide',title:'Anti-Inflammatory Diet: Foods to Eat and Avoid for Better Health',category:'Nutrition & Diet',date:'2025-02-04',readTime:'9 min',calcEmbed:'anti-inflammatory-score-calculator',tags:['anti-inflammatory foods','inflammation diet','turmeric berries','chronic inflammation','healing diet']},
+  {slug:'omega-3-fatty-acids-complete-guide',title:'Omega-3 Fatty Acids: Benefits, Sources and How Much You Need',category:'Nutrition & Diet',date:'2025-02-01',readTime:'8 min',calcEmbed:'omega3-calculator',tags:['omega-3 benefits','fish oil','EPA DHA','omega-3 sources','heart brain health']},
+  {slug:'anti-inflammatory-diet-guide',title:'Anti-Inflammatory Diet: Foods to Eat and Avoid for Better Health',category:'Nutrition & Diet',date:'2025-02-04',readTime:'9 min',calcEmbed:'anti-inflammatory-score',tags:['anti-inflammatory foods','inflammation diet','turmeric berries','chronic inflammation','healing diet']},
   {slug:'gut-health-and-weight-loss',title:'Gut Health and Weight Loss: The Microbiome Connection',category:'Nutrition & Diet',date:'2025-02-07',readTime:'8 min',calcEmbed:'fiber-intake-calculator',tags:['gut health weight loss','microbiome','probiotics','fiber gut','digestive health diet']},
   {slug:'daily-sodium-intake-guide',title:'Daily Sodium Intake: How Much Salt Is Too Much?',category:'Nutrition & Diet',date:'2025-02-10',readTime:'7 min',calcEmbed:'sodium-intake-calculator',tags:['sodium intake','daily salt','high sodium diet','blood pressure salt','sodium limits']},
   {slug:'best-vitamins-for-energy-and-health',title:'Best Vitamins and Minerals for Energy, Immunity and Health',category:'Nutrition & Diet',date:'2025-02-13',readTime:'8 min',calcEmbed:'vitamin-d-calculator',tags:['vitamins for energy','vitamin D B12','iron deficiency','supplement guide','micronutrients health']},
@@ -1893,8 +1893,8 @@ const blogPosts = [
   {slug:'ovulation-calculator-complete-guide',title:'Ovulation Calculator Guide: How to Find Your Most Fertile Days',category:"Women's Health",date:'2025-03-12',readTime:'8 min',calcEmbed:'ovulation-calculator',tags:['ovulation calculator','fertile window','ovulation symptoms','cycle tracking','TTC ovulation']},
   {slug:'pregnancy-week-by-week-guide',title:'Pregnancy Week by Week: What to Expect at Every Stage',category:"Women's Health",date:'2025-03-15',readTime:'10 min',calcEmbed:'pregnancy-due-date-calculator',tags:['pregnancy week by week','fetal development','trimester guide','pregnancy symptoms','prenatal care']},
   {slug:'pcos-symptoms-and-management',title:'PCOS Symptoms: How to Manage Polycystic Ovary Syndrome Naturally',category:"Women's Health",date:'2025-03-18',readTime:'9 min',calcEmbed:'pcos-risk-calculator',tags:['PCOS symptoms','polycystic ovary syndrome','PCOS diet','PCOS weight loss','hormonal imbalance']},
-  {slug:'breastfeeding-calorie-and-nutrition-guide',title:'Breastfeeding Nutrition: How Many Calories Do You Need?',category:"Women's Health",date:'2025-03-21',readTime:'8 min',calcEmbed:'breastfeeding-calories-calculator',tags:['breastfeeding calories','nursing nutrition','lactation diet','postpartum nutrition','breastfeeding needs']},
-  {slug:'menopause-weight-gain-tips',title:'Menopause and Weight Gain: Why It Happens and How to Fight It',category:"Women's Health",date:'2025-03-24',readTime:'9 min',calcEmbed:'menopause-symptoms-calculator',tags:['menopause weight gain','perimenopause','hormone weight gain','menopause diet','estrogen weight']},
+  {slug:'breastfeeding-calorie-and-nutrition-guide',title:'Breastfeeding Nutrition: How Many Calories Do You Need?',category:"Women's Health",date:'2025-03-21',readTime:'8 min',calcEmbed:'breastfeeding-calorie-calculator',tags:['breastfeeding calories','nursing nutrition','lactation diet','postpartum nutrition','breastfeeding needs']},
+  {slug:'menopause-weight-gain-tips',title:'Menopause and Weight Gain: Why It Happens and How to Fight It',category:"Women's Health",date:'2025-03-24',readTime:'9 min',calcEmbed:'menopause-symptom-calculator',tags:['menopause weight gain','perimenopause','hormone weight gain','menopause diet','estrogen weight']},
   {slug:'menstrual-cycle-and-fitness',title:'How Your Menstrual Cycle Affects Your Workouts and Energy',category:"Women's Health",date:'2025-03-27',readTime:'8 min',calcEmbed:'menstrual-cycle-calculator',tags:['menstrual cycle fitness','cycle syncing','period workout','hormones exercise','female fitness']},
   {slug:'fertility-boosting-nutrition',title:'Fertility-Boosting Foods and Nutrients: What Science Actually Says',category:"Women's Health",date:'2025-03-30',readTime:'9 min',calcEmbed:'fertility-calculator',tags:['fertility foods','nutrition fertility','folate CoQ10','fertility diet','conception nutrition']},
   {slug:'hormone-balance-for-women',title:'How to Balance Hormones Naturally: Diet and Lifestyle Changes',category:"Women's Health",date:'2025-04-02',readTime:'9 min',calcEmbed:'ovulation-calculator',tags:['hormone balance','estrogen progesterone','hormonal imbalance symptoms','natural hormone health','womens hormones']},
@@ -2581,7 +2581,7 @@ const calcCategories = {
 };
 const catNames = Object.keys(calcCategories);
 
-fs.writeFileSync('calculators/index.html', `${head('50+ Free Health Calculators | '+SITE_NAME, 'Browse all free health calculators including BMI, calorie, macro, heart rate, pregnancy, and 50+ more science-backed tools at '+SITE_NAME+'.', '/calculators/')}
+fs.writeFileSync('calculators/index.html', `${head('100+ Free Health Calculators | '+SITE_NAME, 'Browse 100+ free calculators for health education, nutrition planning, fitness, dates, and everyday estimates at '+SITE_NAME+'.', '/calculators/')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'All Calculators',url:'/calculators/'}]).html}
@@ -2691,7 +2691,7 @@ const homeBlogExcerpt = {
   'is-bmi-accurate': 'Millions of healthy people are labelled "overweight" by BMI alone. Here\'s what the research says about its accuracy and real-world limits.',
 };
 
-const indexHtml = `${head(SITE_NAME+' - Your Guide to a Healthier Life', 'Free health calculators, evidence-based articles, and wellness tools. BMI calculator, calorie counter, and 50+ tools to help you live healthier.', '/', homeExtraHead, 'website', homeOgImage, homeOgImage)}
+const indexHtml = `${head(SITE_NAME+' - Your Guide to a Healthier Life', 'Explore free health calculators, practical articles, wellness tools, and clear explanations of their assumptions and limitations.', '/', homeExtraHead, 'website', homeOgImage, homeOgImage)}
 <body>
 ${NAV}
 
@@ -2699,7 +2699,7 @@ ${NAV}
 <div class="hero-overlay"></div>
 <div class="container hero-inner">
 <h1 class="fade-in">Your Guide to a Healthier Life</h1>
-<p class="fade-in">Free health calculators, evidence-based articles, and wellness tools trusted by millions. Take control of your health journey today.</p>
+<p class="fade-in">Free health calculators, practical articles, and wellness tools for everyday learning and planning.</p>
 <div class="hero-buttons fade-in">
 <a href="/calculators/" class="btn btn-primary btn-pulse">Explore Calculators</a>
 <a href="/blog.html" class="btn btn-highlight">Read Blog</a>
@@ -2995,7 +2995,7 @@ console.log('Generated index.html');
 // ========================
 
 // ABOUT
-fs.writeFileSync('about.html', `${head('About Us | '+SITE_NAME, 'Learn about VitalHealth Hub — free science-based health calculators, expert wellness articles, interactive quizzes, and tools trusted by millions worldwide.', '/about.html')}
+fs.writeFileSync('about.html', `${head('About Us | '+SITE_NAME, 'Learn about VitalHealth Hub, including our free educational calculators, practical wellness articles, quizzes, and everyday tools.', '/about.html')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'About Us',url:'/about.html'}]).html}
@@ -3152,7 +3152,7 @@ ${globalHero({
 <div class="home-section-head fade-in">
 <span class="home-section-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg> Platform Numbers</span>
 <h2>Built for Scale</h2>
-<p>A growing platform trusted by health-conscious users around the world.</p>
+<p>A growing platform for people looking for practical health information and tools.</p>
 </div>
 <div class="about-stats-grid">
 <div class="about-stat-box fade-in">
@@ -3762,16 +3762,16 @@ const blogCardHtml = blogPosts.map((p, i) => {
 
 const blogSchemaItems = blogPosts.map((p, i) => `{"@type":"ListItem","position":${i+1},"url":"${SITE}/blog/${p.slug}.html","name":"${p.title.replace(/"/g,'\\"')}"}`).join(',');
 
-fs.writeFileSync('blog.html', `${head('VitalHealth Hub Blog \u2014 150+ Expert Articles | '+SITE_NAME, 'Browse 150+ evidence-based health articles covering weight loss, nutrition, fitness, mental health, heart health and more. Free expert wellness guides at VitalHealth Hub.', '/blog.html', '<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"VitalHealth Hub Blog","description":"150+ evidence-based health articles from VitalHealth Hub","url":"'+SITE+'/blog.html","mainEntity":{"@type":"ItemList","numberOfItems":'+blogPosts.length+',"itemListElement":['+blogSchemaItems+']}}</script>')}
+fs.writeFileSync('blog.html', `${head('VitalHealth Hub Blog \u2014 150+ Practical Health Articles | '+SITE_NAME, 'Browse 150+ practical health articles covering weight, nutrition, fitness, mental health, heart health, sleep, and more.', '/blog.html', '<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"VitalHealth Hub Blog","description":"150+ practical health articles from VitalHealth Hub","url":"'+SITE+'/blog.html","mainEntity":{"@type":"ItemList","numberOfItems":'+blogPosts.length+',"itemListElement":['+blogSchemaItems+']}}</script>')}
 <body>
 ${NAV}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Blog',url:'/blog.html'}]).html}
 ${breadcrumb([{name:'Home',url:'/'},{name:'Blog',url:'/blog.html'}]).schema}
 
 ${globalHero({
-  badge: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> ' + blogPosts.length + '+ Expert Health Articles',
+  badge: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> ' + blogPosts.length + ' Health Articles',
   title: 'VitalHealth Hub Blog',
-  subtitle: 'Evidence-based guides on nutrition, fitness, mental health, and more &mdash; written by experts, free for everyone.',
+  subtitle: 'Practical guides on nutrition, fitness, mental health, and more &mdash; with source links and clear limitations.',
   customSearch: '<div class="blog-hero-search-wrap"><div class="calc-index-search-bar"><svg viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="text" id="blogHeroInput" placeholder="Search ' + blogPosts.length + '+ articles..." autocomplete="off"><button class="calc-index-btn-primary blog-search-btn">Search</button></div><div class="blog-hero-suggestions" id="blogHeroSugg"></div></div>',
   buttons: [
     { label: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Browse Articles', href: '#all-articles' },
@@ -3781,7 +3781,7 @@ ${globalHero({
   stats: [
     { value: blogPosts.length + '+', label: 'Articles' },
     { value: blogCategories.length + '', label: 'Categories' },
-    { value: 'Expert', label: 'Reviewed' },
+    { value: 'Sources', label: 'Included' },
     { value: 'Free', label: 'Always' }
   ]
 })}
@@ -3882,7 +3882,7 @@ ${trendingItems.map(t => `<a href="/blog/${t.slug}.html">${t.text}</a>`).join(''
 </div>
 </div>
 
-<div class="blog-category-bar">
+<div class="blog-category-bar" id="all-articles">
 <div class="blog-category-bar-inner">
 <div class="blog-category-pills">
 <button class="blog-category-pill active" data-blog-cat="all">All Articles</button>

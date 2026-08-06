@@ -234,7 +234,7 @@ module.exports = [
     icon: '⚡',
     category: "Women's Health",
     disclaimer: 'This quiz is educational only and is not a substitute for medical advice or hormonal testing.',
-    relatedTools: ['pcos-risk-calculator','menopause-symptoms-calculator','ovulation-calculator'],
+    relatedTools: ['pcos-risk-calculator','menopause-symptom-calculator','ovulation-calculator'],
     relatedBlogs: ['hormone-balance-for-women','pcos-symptoms-and-management','menopause-weight-gain-tips'],
     questions: [
       { q: 'Oestrogen primarily regulates which functions in women?', opts: ['Blood sugar control only','Reproductive cycle, bone density, and cardiovascular health','Muscle growth','Blood pressure alone'], ans: 1, exp: 'Oestrogen regulates the menstrual cycle, maintains bone density, supports cardiovascular health, and affects mood and cognition.' },

@@ -4,6 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build": "node scripts/generate-sitemap.js",
+    "content:update": "node scripts/apply-indexed-blog-content.js && node scripts/apply-remaining-blog-content.js && node scripts/clean-all-page-claims.js && node scripts/upgrade-calculator-content.js && node scripts/optimize-page-metadata.js && node scripts/generate-sitemap.js",
+    "content:validate": "node scripts/validate-all-content.js",
     "sitemap": "node scripts/generate-sitemap.js",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
