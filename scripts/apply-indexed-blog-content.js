@@ -3,7 +3,7 @@ const path = require('path');
 const articles = require('../content/indexed-blog-content');
 
 const root = path.resolve(__dirname, '..');
-const modified = '2026-08-06';
+const modified = '2026-08-07';
 
 function escapeHtml(value) {
   return String(value)
@@ -29,7 +29,7 @@ function tocHtml(sections, sidebar = false) {
 }
 
 function faqHtml(faqs) {
-  return `<div class="faq-list">${faqs.map((faq) => `<div class="faq-item"><button class="faq-question">${escapeHtml(faq.question)}<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">${faq.answer}</div></div></div>`).join('')}</div>`;
+  return `<div class="faq-list">${faqs.map((faq) => `<div class="faq-item"><button class="faq-question">${escapeHtml(faq.question)}<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">${escapeHtml(faq.answer)}</div></div></div>`).join('')}</div>`;
 }
 
 function updateJsonLd(html, type, updater, file) {
@@ -63,7 +63,7 @@ for (const article of articles) {
   const mobileToc = tocHtml(article.sections);
   const sidebarToc = tocHtml(article.sections, true);
   const takeaways = `<ul>${article.takeaways.map((item) => `<li>${item}</li>`).join('')}</ul>`;
-  const visibleFaq = `<section class="bp-faq-section fade-in">\n<h2>Frequently Asked Questions</h2>\n${faqHtml(article.faqs)}\n</section>`;
+  const visibleFaq = `<section class="bp-faq-section fade-in">\n<h2>Important FAQs About ${escapeHtml(article.keywords[0])}</h2>\n${faqHtml(article.faqs)}\n</section>`;
 
   html = replaceOnce(html, /<meta name="description" content="[^"]*">/, `<meta name="description" content="${escapeHtml(article.description)}">`, 'meta description', article.path);
   html = replaceOnce(html, /<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${escapeHtml(article.description)}">`, 'Open Graph description', article.path);

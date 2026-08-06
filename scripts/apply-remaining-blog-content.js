@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const profiles = require('../content/remaining-blog-profiles');
+const { getGuidance } = require('../content/blog-depth-guidance');
 
 const root = path.resolve(__dirname, '..');
-const modified = '2026-08-06';
+const modified = '2026-08-07';
 
 const sourceLibrary = {
   cdcBmi: ['CDC: About BMI', 'https://www.cdc.gov/bmi/about/index.html'],
@@ -47,6 +48,48 @@ const sourceLibrary = {
 const htmlEscape = (value) => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const textOnly = (value) => String(value).replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim();
 
+const guidanceOverrides = {
+  'bmi-for-athletes': 'BMI & Body Weight',
+  'date-difference-calculator-guide': 'Date Tools',
+  'fitness-after-40': 'Fitness & Exercise',
+  'healthy-lifestyle-checklist': 'Lifestyle & Habits',
+  'how-to-build-healthy-habits': 'Lifestyle & Habits',
+  'how-to-stay-consistent-with-fitness': 'Fitness & Exercise',
+  'how-age-calculator-works': 'Date Tools',
+  'how-birthday-calculator-works': 'Date Tools',
+  'pregnancy-weight-gain': "Women's Health",
+  'realistic-fitness-goals': 'Fitness & Exercise',
+  'morning-routines-healthy-people': 'Lifestyle & Habits',
+  'swimming-calories-and-fitness': 'Swimming & Aquatics',
+  'weight-loss-after-50': 'Weight Loss'
+};
+
+const guidanceFor = (profile) => getGuidance(guidanceOverrides[profile.slug] || profile.category);
+
+function naturalTopicLabel(value) {
+  const text = String(value).trim();
+  const firstWord = text.split(/\s+/)[0];
+  if (/^[A-Z0-9&-]{2,}$/.test(firstWord)) return text;
+  return `${text.charAt(0).toLowerCase()}${text.slice(1)}`;
+}
+
+const lowerFirst = (value) => `${String(value).charAt(0).toLowerCase()}${String(value).slice(1)}`;
+const withoutFinalPeriod = (value) => String(value).replace(/[.!?]+$/, '');
+
+function stableHash(value) {
+  let hash = 2166136261;
+  for (const character of String(value)) {
+    hash ^= character.charCodeAt(0);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function guidanceExcerpt(value, slug, slot) {
+  const sentences = String(value).match(/[^.!?]+[.!?]+|[^.!?]+$/g)?.map((item) => item.trim()).filter(Boolean) || [String(value)];
+  return sentences[stableHash(`${slug}:guidance:${slot}`) % sentences.length];
+}
+
 function descriptionFor(profile) {
   if (profile.description) return profile.description;
   const text = textOnly(profile.overview);
@@ -54,32 +97,46 @@ function descriptionFor(profile) {
   return `${text.slice(0, 151).replace(/\s+\S*$/, '')}.`;
 }
 
-function questionsFor(profile, variant) {
-  const faqLabel = `${profile.shortTopic.charAt(0).toLowerCase()}${profile.shortTopic.slice(1)}`;
-  const sets = [
-    [`What should I know about ${faqLabel}?`, `Which factors affect guidance on ${faqLabel}?`, 'What is a sensible first step?', 'What are the main limitations?', 'When is professional advice important?'],
-    [`How should I approach ${faqLabel}?`, `What can change the answer for ${faqLabel}?`, 'How can I apply this information?', 'What common mistake should I avoid?', 'Who needs individual guidance?'],
-    [`What is the most useful way to think about ${faqLabel}?`, `Why does advice about ${faqLabel} vary?`, 'Where should a beginner start?', 'Can one number or habit tell the whole story?', 'When should I speak with a qualified professional?'],
-    [`What matters most for ${faqLabel}?`, `How reliable are general rules about ${faqLabel}?`, 'What action can I take today?', 'What should I not assume?', 'Are there situations that need medical advice?']
+function questionsFor(profile) {
+  const guide = guidanceFor(profile);
+  const label = naturalTopicLabel(profile.shortTopic);
+  const sections = [
+    {
+      question: `What is the most important thing to understand about ${label}?`,
+      answer: `${profile.overview} ${guide.meaning}`
+    },
+    {
+      question: `Why can guidance about ${label} differ between people?`,
+      answer: `${profile.context} ${guide.personal}`
+    },
+    {
+      question: `How can I use this ${label} information in practice?`,
+      answer: `${profile.actions[0]} ${profile.actions[1]} ${guide.practice}`
+    },
+    {
+      question: `What common mistakes should I avoid with ${label}?`,
+      answer: `${profile.cautions.join(' ')} ${guide.limits}`
+    },
+    {
+      question: `When should I get professional advice about ${label}?`,
+      answer: `${profile.guidance} ${guide.safety}`
+    }
   ];
-  const q = sets[variant % sets.length];
-  return [
-    { question: q[0], answer: profile.overview },
-    { question: q[1], answer: profile.facts[1] || profile.facts[0] },
-    { question: q[2], answer: profile.actions[0] },
-    { question: q[3], answer: profile.cautions[0] },
-    { question: q[4], answer: profile.guidance }
-  ];
+  return sections;
 }
 
-function headingsFor(profile, variant) {
-  const sets = [
-    [`${profile.topic}: The Essential Context`, `Key Facts About ${profile.shortTopic}`, `What Changes the Answer`, `How to Use This Information`, `Mistakes and Misleading Shortcuts`, `When General Advice Is Not Enough`, 'Sources and Further Reading'],
-    [`Understanding ${profile.topic}`, `The Numbers and Terms Explained`, `Why Results Differ Between People`, `A Practical Starting Plan`, `Limits to Keep in Mind`, `Questions to Discuss With a Professional`, 'References and Further Reading'],
-    [`${profile.topic} in Plain Language`, `What the Main Evidence Shows`, `Personal Factors That Matter`, `Step-by-Step: What to Do Next`, `Common Errors to Avoid`, `Safety and Individual Guidance`, 'Authoritative Sources'],
-    [`A Clear Guide to ${profile.topic}`, `Important Details Behind the Headline`, `How to Interpret the Information`, `Practical Actions That Fit Real Life`, `What This Guide Cannot Tell You`, `When to Seek Qualified Help`, 'Sources Used for This Guide']
+function headingsFor(profile) {
+  const label = naturalTopicLabel(profile.shortTopic);
+  return [
+    `Understanding ${label}`,
+    `${profile.topic}: Evidence and Practical Meaning`,
+    `Factors That Change the Answer`,
+    `How to Apply This Information`,
+    `How to Monitor Progress`,
+    `Common Mistakes and Important Limits`,
+    `When to Seek Qualified Help`,
+    'Sources and Further Reading'
   ];
-  return sets[variant % sets.length];
 }
 
 function sourcesHtml(profile) {
@@ -87,104 +144,45 @@ function sourcesHtml(profile) {
     const source = sourceLibrary[id];
     if (!source) throw new Error(`Unknown source id ${id}`);
     return `<li><a href="${source[1]}" target="_blank" rel="noopener noreferrer">${htmlEscape(source[0])}</a></li>`;
-  }).join('')}</ul><p><strong>Editorial status:</strong> This educational draft remains noindexed pending final editorial or clinical review. It does not replace individual medical care.</p>`;
+  }).join('')}</ul>`;
 }
 
-function sectionsFor(profile, variant) {
-  const headings = headingsFor(profile, variant);
-  const nuance = [
-    'Population guidance is useful for orientation, but it should be adjusted to the person, setting, and goal.',
-    'A single reading or short observation window rarely tells the whole story; patterns and context are more useful.',
-    'Use ranges and trends rather than treating an estimated value as exact.',
-    'Good decisions combine the general evidence with symptoms, preferences, access, and medical history.',
-    'Separate what is measured directly from what is estimated, then note the assumptions that connect the two.',
-    'The most useful comparison is usually with a consistent earlier measurement, not with an idealised person online.',
-    'Before changing a routine, identify the outcome you want and a realistic way to observe whether it improves.',
-    'Definitions, units, and time frames can change the meaning of a number even when the arithmetic is correct.',
-    'A recommendation for a population is a starting point; tolerance, resources, health, and priorities shape the individual plan.',
-    'Quality matters alongside quantity, especially when a target can be reached through several very different behaviours.',
-    'Short-term fluctuations are expected, so look for a consistent pattern before drawing a strong conclusion.',
-    'Reliable self-tracking uses the same method, similar conditions, and enough time for a meaningful change to appear.'
+function sectionsFor(profile) {
+  const headings = headingsFor(profile);
+  const guide = guidanceFor(profile);
+  const topic = naturalTopicLabel(profile.shortTopic);
+  const sections = [
+    {
+      heading: headings[0],
+      html: `<p>${htmlEscape(profile.overview)}</p><p>In this article, ${htmlEscape(topic)} is used within a wider definition: ${htmlEscape(lowerFirst(guidanceExcerpt(guide.meaning, profile.slug, 0)))}</p><p>${htmlEscape(profile.facts[0])}</p>`
+    },
+    {
+      heading: headings[1],
+      html: `<h3>The main influence on the answer</h3><p>${htmlEscape(profile.facts[1])} This detail changes how ${htmlEscape(topic)} should be interpreted and why one person’s experience cannot automatically predict another person’s outcome.</p><h3>The limit behind the headline</h3><p>${htmlEscape(profile.facts[2])} Keep that qualification beside the main claim; leaving it out would make the article sound more certain than the available information allows.</p><h3>What the facts support</h3><p>Taken together, these points support a measured approach: ${htmlEscape(lowerFirst(profile.actions[0]))} They do not support ignoring the warning to ${htmlEscape(withoutFinalPeriod(lowerFirst(profile.cautions[0])))}.</p>`
+    },
+    {
+      heading: headings[2],
+      html: `<p>Personal interpretation of ${htmlEscape(topic)} should account for this context: ${htmlEscape(lowerFirst(profile.context))}</p><p>The individual factors for ${htmlEscape(topic)} also include the following: ${htmlEscape(lowerFirst(guidanceExcerpt(guide.personal, profile.slug, 1)))}</p><p>Before applying the guidance, identify which of these circumstances are present and whether they alter the starting assumption that ${htmlEscape(lowerFirst(profile.facts[0]))}</p>`
+    },
+    {
+      heading: headings[3],
+      html: `<h3>1. Establish a reliable starting point</h3><p>${htmlEscape(profile.actions[0])} This step is designed to address the first key finding: ${htmlEscape(lowerFirst(profile.facts[0]))}</p><h3>2. Make the next step workable</h3><p>${htmlEscape(profile.actions[1])} ${htmlEscape(guidanceExcerpt(guide.practice, profile.slug, 2))}</p><h3>3. Review before changing the plan again</h3><p>${htmlEscape(profile.actions[2])} Use the review to test whether ${htmlEscape(lowerFirst(profile.facts[2]))} If the picture is still unclear, improve consistency or allow a more suitable observation period rather than changing several variables at once.</p>`
+    },
+    {
+      heading: headings[4],
+      html: `<p>Progress on ${htmlEscape(topic)} should be assessed in this way: ${htmlEscape(lowerFirst(guidanceExcerpt(guide.review, profile.slug, 3)))}</p><p>For ${htmlEscape(topic)}, the review should show whether ${htmlEscape(withoutFinalPeriod(lowerFirst(profile.actions[0])))} helped without creating the problem described in this caution: ${htmlEscape(lowerFirst(profile.cautions[0]))}</p><p>If progress is unclear, revisit the evidence that ${htmlEscape(lowerFirst(profile.facts[1]))} Then check measurement consistency, changing circumstances, and whether the plan was actually repeatable before making it more restrictive or difficult.</p>`
+    },
+    {
+      heading: headings[5],
+      html: `<h3>Do not overstate what the result proves</h3><p>${htmlEscape(profile.cautions[0])} That limit follows directly from the fact that ${htmlEscape(lowerFirst(profile.facts[0]))}</p><h3>Avoid a shortcut that creates a new problem</h3><p>${htmlEscape(profile.cautions[1])} A safer approach remains consistent with the practical recommendation to ${htmlEscape(withoutFinalPeriod(lowerFirst(profile.actions[1])))}.</p><p>One further limit applies specifically when using this ${htmlEscape(topic)} guidance: ${htmlEscape(lowerFirst(guidanceExcerpt(guide.limits, profile.slug, 4)))}</p>`
+    },
+    {
+      heading: headings[6],
+      html: `<p>Individual advice about ${htmlEscape(topic)} is especially important in these situations: ${htmlEscape(lowerFirst(profile.guidance))}</p><p>A separate safety boundary also applies to ${htmlEscape(topic)}: ${htmlEscape(lowerFirst(guidanceExcerpt(guide.safety, profile.slug, 5)))}</p><p>When asking for individual advice about ${htmlEscape(topic)}, bring the relevant measurements, dates, symptoms, medicines, and a record of the attempt to ${htmlEscape(withoutFinalPeriod(lowerFirst(profile.actions[2])))}.</p>`
+    },
+    { heading: headings[7], html: sourcesHtml(profile) }
   ];
-  const interpretation = [
-    `For ${profile.shortTopic}, first distinguish a screening estimate from a diagnosis or direct measurement. That distinction determines how confidently you can act on the result.`,
-    `When reading advice about ${profile.shortTopic}, check who the guidance was written for, what outcome it addresses, and whether your circumstances match those assumptions.`,
-    `A practical interpretation of ${profile.shortTopic} starts with the units, the time period, and the method. Small differences may reflect measurement conditions rather than real change.`,
-    `To make ${profile.shortTopic} useful, connect each number or recommendation with a concrete question. If it does not change a sensible decision, extra precision may add little value.`,
-    `Good information about ${profile.shortTopic} should state both what is known and what remains uncertain. Treat a confident promise without limitations as a warning sign.`,
-    `For decisions involving ${profile.shortTopic}, compare like with like. Changing the device, formula, serving definition, or timing can create an apparent trend that is not real.`,
-    `The headline result for ${profile.shortTopic} is only one part of the picture. Symptoms, function, consistency, and the direction of change often add more useful context.`,
-    `Interpret ${profile.shortTopic} on the time scale that matches the goal. A daily fluctuation should not be judged as though it were a long-term outcome.`,
-    `Before applying a general rule to ${profile.shortTopic}, identify exceptions that matter for age, pregnancy, medicines, diagnosed conditions, training status, or access to food and care.`,
-    `With ${profile.shortTopic}, a range is usually more honest than a single perfect target. Build in room for normal variation and measurement error.`,
-    `Use ${profile.shortTopic} to support a decision, not to create a grade about your body or behaviour. The goal is a safer, more workable next step.`,
-    `For ${profile.shortTopic}, write down the source and date alongside the result. This makes it easier to spot outdated guidance and compare future readings fairly.`
-  ];
-  const progress = [
-    `Review progress in ${profile.shortTopic} after a realistic interval and keep other variables as consistent as practical. Change the plan when the outcome, not just motivation, shows it is needed.`,
-    `Choose one primary measure for ${profile.shortTopic} and one supporting observation, such as symptoms, performance, hunger, mood, or sleep. More tracking is not always more informative.`,
-    `For ${profile.shortTopic}, decide in advance what would count as improvement, no change, or a reason to stop. Clear criteria reduce impulsive decisions from one result.`,
-    `Make the first step for ${profile.shortTopic} small enough to repeat in an ordinary week. A sustainable action provides better information than a brief extreme effort.`,
-    `Record the circumstances around ${profile.shortTopic}, including timing and relevant changes. Context helps explain why two apparently similar readings may differ.`,
-    `If a change related to ${profile.shortTopic} produces pain, marked fatigue, dizziness, worsening symptoms, or loss of function, stop treating it as a self-improvement problem and seek advice.`,
-    `Use a short review cycle for ${profile.shortTopic}: plan one action, observe the relevant outcome, and then keep, adjust, or discontinue it based on what happened.`,
-    `Avoid changing several parts of ${profile.shortTopic} at once. A simpler experiment is easier to follow and makes the result easier to interpret.`,
-    `When monitoring ${profile.shortTopic}, expect imperfect weeks. Return to the core action without compensating through unsafe restriction, excessive exercise, or an unrealistic catch-up plan.`,
-    `Compare progress in ${profile.shortTopic} with your own baseline and goal. Online examples may use different methods, starting points, resources, and health circumstances.`,
-    `For ${profile.shortTopic}, keep the plan flexible enough for work, caregiving, culture, disability, budget, and access. A theoretically ideal plan that cannot be followed has limited value.`,
-    `Recheck the evidence behind ${profile.shortTopic} when the goal, health situation, medicine, life stage, or measurement method changes.`
-  ];
-  const intro = [
-    `Use this guide to separate the main evidence about ${profile.shortTopic} from assumptions that need individual interpretation.`,
-    `The aim is to make ${profile.shortTopic} understandable enough to support a sensible decision without creating false precision.`,
-    `Start with the definition of ${profile.shortTopic}, then check the population, measurement method, and limits behind any recommendation.`,
-    `This guide focuses on the details that make ${profile.shortTopic} useful in everyday life and the situations in which general advice is not enough.`,
-    `A clear view of ${profile.shortTopic} requires both the headline facts and the context that can change their meaning.`,
-    `Read the guidance on ${profile.shortTopic} as a practical framework, then adjust it for real symptoms, resources, preferences, and professional advice.`,
-    `Use the sections below to understand ${profile.shortTopic}, avoid common shortcuts, and choose a next step that can be reviewed safely.`,
-    `Good decisions about ${profile.shortTopic} begin with accurate terms and realistic expectations rather than a perfect score or guaranteed outcome.`,
-    `The most useful question about ${profile.shortTopic} is not only “what is typical?” but also “what does this change for me?”`,
-    `Approach ${profile.shortTopic} by checking the evidence, the limits of the method, and the action that best fits the actual goal.`,
-    `This explanation of ${profile.shortTopic} is designed for orientation and planning; diagnosis and treatment still require individual assessment.`,
-    `Use this page as a map for ${profile.shortTopic}: identify the reliable landmarks, recognise uncertainty, and avoid acting on one isolated number.`
-  ];
-  const cautionClosers = [
-    'Be wary of guaranteed outcomes or urgency that is used in place of a clear method and honest limitations.',
-    'A trustworthy recommendation explains trade-offs and uncertainty instead of presenting one rule as suitable for everyone.',
-    'Products and programmes should not borrow medical language to make an unvalidated promise sound certain.',
-    'If a claim cannot explain its measurement, population, time frame, and limits, do not base a high-stakes decision on it.',
-    'More data is not automatically better when the underlying device, formula, or interpretation has not been shown to answer the question.',
-    'Avoid plans that demand rapid escalation, unsafe restriction, secrecy, or stopping prescribed care.',
-    'Testimonials can describe an experience, but they cannot establish what result another person will have.',
-    'A dramatic before-and-after result may hide differences in time, method, starting point, health, and access to support.',
-    'Treat “natural,” “clinical,” and “doctor recommended” as claims to verify, not as proof of safety or effectiveness.',
-    'Do not let a colour, badge, or confident label replace the explanation of how the conclusion was reached.',
-    'A plan becomes less credible when it hides costs, side effects, exclusions, or the possibility that no meaningful change will occur.',
-    'Prefer sources that update their guidance, show who it applies to, and acknowledge where evidence is limited.'
-  ];
-  const safetyClosers = [
-    'New, severe, or rapidly worsening symptoms deserve prompt assessment rather than another online calculation.',
-    'If symptoms create immediate danger or major loss of function, use urgent local medical services.',
-    'A professional review is especially important when several symptoms or risk factors occur together.',
-    'Do not wait for a routine follow-up when there is sudden deterioration, severe pain, fainting, confusion, or breathing difficulty.',
-    'Bring the relevant measurements, dates, medicines, and questions to an appointment so the result can be interpreted in context.',
-    'When advice from a calculator conflicts with a treatment plan, follow the responsible clinician and ask for clarification.',
-    'Children, pregnancy, frailty, and complex medical conditions often need population-specific assessment rather than general adult guidance.',
-    'Professional advice is not only for abnormal numbers; it is also useful when the correct target or measurement method is uncertain.',
-    'Use emergency services for immediate danger and routine clinical care for persistent, unexplained, or function-limiting concerns.',
-    'A reassuring result should never be used to dismiss symptoms that would otherwise need medical attention.',
-    'If self-monitoring is increasing fear, compulsive checking, or unsafe behaviour, pause it and seek appropriate support.',
-    'Keep online guidance in its proper role: preparation for a better conversation, not a replacement for individual care.'
-  ];
-  return [
-    { heading: headings[0], html: `<p>${profile.overview}</p><p>${profile.facts[0]}</p><p>${intro[variant % intro.length]}</p>` },
-    { heading: headings[1], html: `<ul>${profile.facts.slice(1).map((fact) => `<li>${fact}</li>`).join('')}</ul><p>${nuance[variant % nuance.length]}</p><p>${interpretation[variant % interpretation.length]}</p>` },
-    { heading: headings[2], html: `<p>${profile.context}</p><p>${nuance[(variant + 1) % nuance.length]}</p>` },
-    { heading: headings[3], html: `<ol>${profile.actions.map((action) => `<li>${action}</li>`).join('')}</ol><p>${progress[variant % progress.length]}</p>` },
-    { heading: headings[4], html: `<ul>${profile.cautions.map((item) => `<li>${item}</li>`).join('')}</ul><p>${cautionClosers[variant % cautionClosers.length]}</p>` },
-    { heading: headings[5], html: `<p>${profile.guidance}</p><p>${safetyClosers[variant % safetyClosers.length]}</p>` },
-    { heading: headings[6], html: sourcesHtml(profile) }
-  ];
+  return sections;
 }
 
 function replaceOnce(html, pattern, replacement, label, file) {
@@ -229,23 +227,21 @@ for (const profile of profiles) {
 }
 
 const updates = [];
-for (const [profileIndex, profile] of profiles.entries()) {
+for (const profile of profiles) {
   const file = path.join(root, 'blog', `${profile.slug}.html`);
   let html = fs.readFileSync(file, 'utf8');
   if (!/<meta name="robots" content="noindex, follow">/i.test(html)) throw new Error(`${profile.slug}: expected noindex, follow`);
 
-  const slugSeed = [...profile.slug].reduce((total, char) => total + char.charCodeAt(0), 0);
-  const variant = (profileIndex + slugSeed) % 12;
-  const sections = sectionsFor(profile, variant);
-  const faqs = questionsFor(profile, variant);
+  const sections = sectionsFor(profile);
+  const faqs = questionsFor(profile);
   const description = descriptionFor(profile);
   const keywords = [profile.primaryKeyword, ...profile.variations].join(', ');
   const calculatorWidget = html.match(/<div class="calc-embed-widget fade-in">[\s\S]*?<\/div>/)?.[0] || '';
   const body = sections.map((section, index) => `<h2 id="bp-sec-${index}">${htmlEscape(section.heading)}</h2>\n${section.html}${index === 2 ? `\n${calculatorWidget}` : ''}`).join('\n');
   const toc = (sidebar) => `<ol class="bp-toc-list">${sections.map((section, index) => `<li><a href="#bp-sec-${index}"${sidebar ? ` class="bp-toc-link" data-target="bp-sec-${index}"` : ''}>${index + 1}. ${htmlEscape(section.heading)}</a></li>`).join('')}</ol>`;
   const takeaways = [...profile.facts.slice(0, 3), profile.actions[0], profile.cautions[0]];
-  const faqList = `<div class="faq-list">${faqs.map((faq) => `<div class="faq-item"><button class="faq-question">${htmlEscape(faq.question)}<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">${faq.answer}</div></div></div>`).join('')}</div>`;
-  const visibleFaq = `<section class="bp-faq-section fade-in">\n<h2>Frequently Asked Questions</h2>\n${faqList}\n</section>`;
+  const faqList = `<div class="faq-list">${faqs.map((faq) => `<div class="faq-item"><button class="faq-question">${htmlEscape(faq.question)}<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">${htmlEscape(faq.answer)}</div></div></div>`).join('')}</div>`;
+  const visibleFaq = `<section class="bp-faq-section fade-in">\n<h2>Important FAQs About ${htmlEscape(naturalTopicLabel(profile.shortTopic))}</h2>\n${faqList}\n</section>`;
 
   html = replaceOnce(html, /<meta name="description" content="[^"]*">/, `<meta name="description" content="${htmlEscape(description)}">`, 'description', profile.slug);
   html = replaceOnce(html, /<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${htmlEscape(description)}">`, 'OG description', profile.slug);

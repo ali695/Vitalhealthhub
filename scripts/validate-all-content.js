@@ -52,9 +52,14 @@ for (const name of blogFiles) {
   const noindexed = /\bnoindex\b/i.test(robotsOf(html));
   if (noindexed) noindexBlogs += 1; else indexedBlogs += 1;
   const body = html.match(/<!-- Article body -->([\s\S]*?)<!-- CTA Callout box -->/)?.[1] || '';
+  const faqBody = html.match(/<!-- FAQ -->([\s\S]*?)<\/section>/)?.[1] || '';
   if (!body) failures.push(`${file}: article body markers missing`);
   const bodyWords = words(body).length;
-  if (bodyWords < 370) failures.push(`${file}: article body too short (${bodyWords} words)`);
+  const totalEditorialWords = words(`${body} ${faqBody}`).length;
+  if (bodyWords < 640) failures.push(`${file}: article body too short (${bodyWords} words)`);
+  if (totalEditorialWords < 900) failures.push(`${file}: article plus FAQ content too short (${totalEditorialWords} words)`);
+  if (count(body, /<p>/g) < 12) failures.push(`${file}: insufficient explanatory paragraphs`);
+  if (count(body, /<h2\b/g) < 7) failures.push(`${file}: insufficient article sections`);
   const description = html.match(/<meta name="description" content="([^"]*)">/i)?.[1] || '';
   if (!description || description.length > 160) failures.push(`${file}: description length ${description.length}`);
   const sourceLinks = count(body, /target="_blank" rel="noopener noreferrer"/g);
@@ -62,9 +67,15 @@ for (const name of blogFiles) {
   const faqSchema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
     .map((match) => { try { return JSON.parse(match[1]); } catch { return null; } })
     .find((item) => item?.['@type'] === 'FAQPage');
-  if (!faqSchema || faqSchema.mainEntity?.length < 4) failures.push(`${file}: FAQ schema is missing or too small`);
-  if (noindexed && !/remains noindexed pending final editorial or clinical review/i.test(body)) failures.push(`${file}: missing noindex editorial status`);
-  articleBodies.push({ file, set: shingles(body), wordCount: bodyWords });
+  if (!faqSchema || faqSchema.mainEntity?.length !== 5) failures.push(`${file}: FAQ schema must contain five questions`);
+  if (faqSchema?.mainEntity) {
+    faqSchema.mainEntity.forEach((item, index) => {
+      if (words(item?.acceptedAnswer?.text || '').length < 35) failures.push(`${file}: FAQ ${index + 1} answer is too short`);
+    });
+  }
+  if (/Editorial status:|remains noindexed pending final editorial or clinical review/i.test(html)) failures.push(`${file}: obsolete editorial-status notice remains`);
+  if (/headline result|Use the sections below to understand|only one part of the picture/i.test(body)) failures.push(`${file}: old generic draft language remains`);
+  articleBodies.push({ file, set: shingles(body), wordCount: bodyWords, totalEditorialWords });
 }
 
 let maximumSimilarity = 0;
@@ -129,6 +140,9 @@ report.noindexBlogs = noindexBlogs;
 report.blogWordCountMin = Math.min(...articleBodies.map((item) => item.wordCount));
 report.blogWordCountMedian = articleBodies.map((item) => item.wordCount).sort((a, b) => a - b)[Math.floor(articleBodies.length / 2)];
 report.blogWordCountMax = Math.max(...articleBodies.map((item) => item.wordCount));
+report.blogWithFaqWordCountMin = Math.min(...articleBodies.map((item) => item.totalEditorialWords));
+report.blogWithFaqWordCountMedian = articleBodies.map((item) => item.totalEditorialWords).sort((a, b) => a - b)[Math.floor(articleBodies.length / 2)];
+report.blogWithFaqWordCountMax = Math.max(...articleBodies.map((item) => item.totalEditorialWords));
 report.maxArticleSimilarityPercent = Number((maximumSimilarity * 100).toFixed(2));
 report.closestArticlePair = closestPair;
 report.calculatorPages = calculatorFiles.length;

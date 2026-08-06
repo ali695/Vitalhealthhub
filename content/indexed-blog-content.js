@@ -1,3 +1,5 @@
+const { getGuidance } = require('./blog-depth-guidance');
+
 const articles = [
   {
     path: 'blog/how-to-calculate-bmi.html',
@@ -586,7 +588,7 @@ const articles = [
     takeaways: [
       'Sleep deficiency can affect hunger signals, food choices, insulin response, mood, and activity',
       'It raises weight-management difficulty but does not make weight gain inevitable',
-      'Most adults need a regular opportunity for roughly seven to eight hours of sleep',
+      'Most adults need a regular opportunity for roughly seven to nine hours of sleep',
       'Consistent timing, morning light, and a quiet wind-down can improve sleep opportunity',
       'Loud snoring, breathing pauses, or severe daytime sleepiness need clinical assessment'
     ],
@@ -594,7 +596,7 @@ const articles = [
       { heading: 'How Sleep Connects to Weight', html: `<p>Sleep affects brain function, appetite regulation, glucose metabolism, decision-making, and physical activity. When sleep is short or poorly timed, people may feel hungrier, prefer energy-dense foods, move less, and find meal planning harder.</p><p>These effects increase risk; they do not guarantee weight gain. Food access, work schedule, stress, medication, health, and activity also contribute.</p>` },
       { heading: 'Hunger and Food Choice', html: `<p>NHLBI notes that insufficient sleep can alter hormones involved in hunger and fullness. Fatigue also changes behaviour: convenience food becomes more appealing, portions may increase, and late waking time adds opportunities to snack.</p><p>Rather than blaming willpower, improve the environment—prepare easy meals, keep a regular bedtime opportunity, and avoid using caffeine so late that it extends the cycle.</p>` },
       { heading: 'Glucose and Metabolic Health', html: `<p>Sleep deficiency can reduce the body’s response to insulin and is associated with higher blood glucose and long-term cardiometabolic risk. Circadian timing also helps coordinate how the body handles nutrients.</p><p>A few short nights do not diagnose diabetes or permanent metabolic damage, but persistent sleep problems deserve attention alongside nutrition and movement.</p>` },
-      { heading: 'How Much Sleep Do Adults Need?', html: `<p>NHLBI summarises adult guidance as roughly seven to eight hours per day, while individual needs vary. Sleep quality, timing, and regularity matter as well as duration.</p><p>If you allow enough time but still wake unrefreshed, fall asleep unintentionally, or rely heavily on catch-up sleep, consider whether insomnia, sleep apnoea, medication, shift work, pain, or another condition is involved.</p>` },
+      { heading: 'How Much Sleep Do Adults Need?', html: `<p>NHLBI summarises adult guidance as roughly seven to nine hours per day, while individual needs vary. Sleep quality, timing, and regularity matter as well as duration.</p><p>If you allow enough time but still wake unrefreshed, fall asleep unintentionally, or rely heavily on catch-up sleep, consider whether insomnia, sleep apnoea, medication, shift work, pain, or another condition is involved.</p>` },
       { heading: 'Build a Better Sleep Routine', html: `<ul><li>Keep wake time consistent, including most weekends.</li><li>Get daylight and movement earlier in the day.</li><li>Create a dark, quiet, comfortably cool bedroom.</li><li>Stop optional work and scrolling before bed.</li><li>Limit late caffeine, nicotine, heavy meals, and alcohol.</li><li>Use the bed mainly for sleep and intimacy.</li></ul>` },
       { heading: 'Weight Loss When Sleep Is Limited', html: `<p>Use a smaller, manageable calorie deficit and prioritise regular meals with protein and fibre. Choose moderate activity and maintain strength work without adding so much training that recovery worsens.</p><p>If work or caregiving temporarily restricts sleep, maintenance may be more realistic than aggressive loss. Address the schedule where possible instead of relying on supplements marketed as metabolic fixes.</p>` },
       { heading: 'When to Seek Help', html: `<p>Speak with a clinician about loud habitual snoring, witnessed breathing pauses, gasping, morning headaches, persistent insomnia, restless legs, or severe daytime sleepiness. Do not drive when struggling to stay awake.</p><p>Cognitive behavioural therapy for insomnia is an evidence-based treatment for chronic insomnia. Sleep apnoea requires proper diagnosis and treatment, not only weight-loss advice.</p>` },
@@ -602,12 +604,60 @@ const articles = [
     ],
     faqs: [
       { question: 'Can lack of sleep cause weight gain?', answer: 'It can increase risk by affecting hunger, food choices, glucose regulation, and activity, but it does not make gain inevitable.' },
-      { question: 'How much sleep do adults need for weight management?', answer: 'Most adults should allow roughly seven to eight hours, while individual needs, quality, and consistency also matter.' },
+      { question: 'How much sleep do adults need for weight management?', answer: 'Most adults should allow roughly seven to nine hours, while individual needs, quality, and consistency also matter.' },
       { question: 'Does sleeping more speed up metabolism?', answer: 'Adequate sleep supports normal metabolic and behavioural regulation, but extra sleep is not a standalone fat-loss method.' },
       { question: 'Can sleep apnoea affect weight and health?', answer: 'Yes. It disrupts sleep and is linked with cardiovascular and metabolic risk. Loud snoring or breathing pauses should be evaluated.' },
       { question: 'What is the first sleep habit to change?', answer: 'A consistent wake time is a useful anchor. Pair it with morning light and a regular wind-down before bed.' }
     ]
   }
 ];
+
+const categoryBySlug = {
+  'how-to-calculate-bmi': 'BMI & Body Weight',
+  'body-fat-percentage-chart': 'Body Fat',
+  'calorie-calculator-complete-guide': 'Calories & Weight',
+  'how-many-calories-should-i-eat': 'Calories & Weight',
+  'calorie-deficit-for-weight-loss': 'Calories & Weight',
+  'what-is-tdee': 'TDEE & Metabolism',
+  'bmr-vs-tdee': 'TDEE & Metabolism',
+  'best-cardio-exercises-calorie-burn': 'Fitness & Exercise',
+  'cardio-vs-strength-training': 'Fitness & Exercise',
+  'exercises-to-reduce-belly-fat': 'Fitness & Exercise',
+  'how-to-boost-metabolism': 'TDEE & Metabolism',
+  'how-to-build-muscle': 'Fitness & Exercise',
+  'how-much-protein-per-day': 'Macronutrients',
+  'high-protein-foods-list': 'Macronutrients',
+  'how-much-water-should-you-drink': 'Hydration',
+  'cortisol-and-weight-gain': 'Mental Health & Productivity',
+  'digital-detox-how-to-guide': 'Mental Health & Productivity',
+  'intermittent-fasting-for-weight-loss': 'Nutrition & Diet',
+  'keto-diet-beginners-guide': 'Nutrition & Diet',
+  'mediterranean-diet-complete-guide': 'Nutrition & Diet',
+  'sleep-deprivation-weight-metabolism': 'Sleep & Recovery'
+};
+
+const lowerFirst = (value) => `${String(value).charAt(0).toLowerCase()}${String(value).slice(1)}`;
+
+for (const article of articles) {
+  const slug = article.path.split('/').pop().replace(/\.html$/, '');
+  const category = categoryBySlug[slug];
+  if (!category) throw new Error(`Missing indexed-blog category for ${slug}`);
+
+  const guide = getGuidance(category);
+  const keyword = article.keywords[0];
+  const sourcesIndex = article.sections.findIndex((section) => /sources|references/i.test(section.heading));
+  if (sourcesIndex < 0) throw new Error(`Missing sources section for ${slug}`);
+
+  article.sections.splice(sourcesIndex, 0, {
+    heading: `How to Apply This ${keyword} Guide`,
+    html: `<p>When applying ${keyword}, personal context matters: ${lowerFirst(guide.personal)}</p><p>A workable ${keyword} plan should follow this principle: ${lowerFirst(guide.practice)}</p><p>For ${keyword}, choose one primary outcome and use the same method long enough to see a meaningful pattern. ${guide.review}</p><p>The aim is not to follow every possible tip. It is to use the article’s main evidence—starting with “${article.takeaways[0]}”—to make one realistic decision, observe the result, and adjust without losing sight of health, function, and sustainability.</p>`
+  });
+
+  const faqContext = [guide.meaning, guide.personal, guide.practice, guide.limits, guide.safety];
+  article.faqs = article.faqs.map((faq, index) => ({
+    ...faq,
+    answer: `${faq.answer} ${faqContext[index]}`
+  }));
+}
 
 module.exports = articles;
