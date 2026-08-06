@@ -11,11 +11,11 @@ function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true
 
 const _ANN_MSGS = [
   '115+ Free Health Calculators',
-  'Evidence-Based Tools and Insights',
+  'Practical Tools and Clear Guides',
   '50+ Interactive Quizzes',
   '155+ Expert Health Articles',
   'Instant Results &mdash; No Sign-Up Required',
-  'Designed for Accuracy and Simplicity',
+  'Designed for Clarity and Simplicity',
 ];
 const _annTrack = (_ANN_MSGS.join('<span class="ann-sep">&bull;</span>') + '<span class="ann-sep">&bull;</span>').repeat(2);
 
@@ -88,7 +88,7 @@ const NAV = `${TOPBAR}<nav class="navbar">
 </div>
 <div class="mega-search-results" id="ddResults"></div>
 <div class="mega-dropdown-bottom">
-<span>Science-backed tools, free forever</span>
+<span>Practical tools, free forever</span>
 <a href="/calculators/" class="mega-cta-btn"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> View All 115+ Calculators &rarr;</a>
 </div>
 </div>
@@ -1437,7 +1437,7 @@ function calcCrossContentSection(calc) {
 <div class="ccs-xlink-body">
 <span class="ccs-xlink-badge">${post.category}</span>
 <h4>${post.title}</h4>
-<div class="ccs-xlink-meta">${post.readTime} read &bull; Expert reviewed</div>
+<div class="ccs-xlink-meta">${post.readTime} read &bull; Educational guide</div>
 <span class="ccs-xlink-cta">Read Article &rarr;</span>
 </div></a>`;
   }).join('');
@@ -2196,9 +2196,9 @@ function getCalcEmbedWidget(calcSlug, calcName) {
 <div class="calc-embed-widget fade-in">
   <span class="calc-embed-badge">Free Calculator</span>
   <h3 class="calc-embed-heading">Try It Yourself: ${name}</h3>
-  <p class="calc-embed-desc">Get precise results tailored to your body and goals. Understand key health metrics, track performance, and make smarter decisions — instantly and for free.</p>
+  <p class="calc-embed-desc">Use this free calculator for a quick starting estimate, then interpret the result with the limits explained in the guide.</p>
   <a href="/calculators/${calcSlug}.html" class="calc-embed-btn">Calculate Now &rarr;</a>
-  <p class="calc-embed-trust">Trusted by thousands of users for smarter health decisions.</p>
+  <p class="calc-embed-trust">Free to use, with no sign-up required.</p>
 </div>`;
 }
 
@@ -2461,7 +2461,7 @@ ${contentWithIds}
 <div class="bp-callout-box fade-in">
 <div class="bp-callout-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
 <div>
-<p>Ready to get your personalized result? Try our free <a href="/calculators/${calcs[0]}.html">${(calculators.find(c=>c.slug===calcs[0])||{name:'health calculator'}).name}</a> — instant, science-based, no sign-up needed.</p>
+<p>Ready to get a starting estimate? Try our free <a href="/calculators/${calcs[0]}.html">${(calculators.find(c=>c.slug===calcs[0])||{name:'health calculator'}).name}</a> — instant and no sign-up needed.</p>
 <a href="/calculators/${calcs[0]}.html" class="btn btn-primary">Try Free Calculator &rarr;</a>
 </div>
 </div>

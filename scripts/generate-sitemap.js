@@ -54,18 +54,13 @@ function scanHtml(dir, base = '') {
     if (entry.isDirectory()) {
       urls.push(...scanHtml(fullPath, relPath));
     } else if (entry.isFile() && entry.name.endsWith('.html')) {
+      const html = fs.readFileSync(fullPath, 'utf8');
+      const robots = html.match(/<meta\s+name=["']robots["'][^>]*content=["']([^"']+)["']/i)?.[1] || '';
+      if (/\bnoindex\b/i.test(robots)) continue;
+
       let urlPath = '/' + relPath;
 
-      if (urlPath === '/index.html') urlPath = '/';
-
-      const excluded = [
-        '/sitemap.html',
-        '/blog.html',
-        '/calculators/index.html',
-        '/tools/index.html',
-        '/quizzes/index.html',
-      ];
-      if (excluded.includes(urlPath)) continue;
+      urlPath = urlPath.replace(/\/index\.html$/, '/');
 
       urls.push(urlPath);
     }
