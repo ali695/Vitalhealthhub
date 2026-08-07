@@ -2,9 +2,3 @@ node_modules/
 *.log
 dist/
 .runtime/
-database/*.db
-database/*.db-wal
-database/*.db-shm
-.env
-.env.*
-!.env.example

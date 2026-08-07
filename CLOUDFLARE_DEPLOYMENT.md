@@ -1,6 +1,6 @@
 # Cloudflare Pages production settings
 
-The repository contains source code and optional local CMS tooling. Cloudflare must publish only the generated `dist` directory.
+The repository is a static-site project. Cloudflare must publish only the generated `dist` directory.
 
 ## Pages build
 
@@ -19,4 +19,4 @@ The `www` hostname requires Cloudflare zone configuration and cannot be repaired
 2. Create a Cloudflare Bulk Redirect from `www.vitalhealthhub.org` to `https://vitalhealthhub.org`.
 3. Use status `301` and enable preserve query string, subpath matching, and preserve path suffix.
 
-After deployment, verify that an unknown path returns HTTP 404, `.html` URLs redirect once to extensionless URLs, `www` redirects to the apex hostname, security headers are present, and `/server.js` plus `/database/vitalhealth.db` return 404.
+After deployment, verify that an unknown path returns HTTP 404, `.html` URLs redirect once to extensionless URLs, `www` redirects to the apex hostname, and security headers are present.

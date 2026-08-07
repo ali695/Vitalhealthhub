@@ -8,8 +8,7 @@ const OUT_DIR   = path.join(ROOT, 'sitemaps');
 const TODAY     = new Date().toISOString().slice(0, 10);
 
 const EXCLUDE_DIRS = new Set([
-  'node_modules', '.git', '.runtime', 'admin', 'content', 'database', 'deployment', 'dist',
-  'scripts', 'server', 'shared', 'svgs', 'templates', 'uploads', 'wp-plugin', 'wp-theme',
+  'node_modules', '.git', '.runtime', 'content', 'deployment', 'dist', 'scripts',
   'attached_assets', '.local', 'css', 'js', 'images', 'fonts', 'icons'
 ]);
 

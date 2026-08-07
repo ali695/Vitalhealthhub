@@ -11,8 +11,7 @@ const forbiddenNames = new Set([
 ]);
 const forbiddenExtensions = new Set(['.db', '.ejs', '.php', '.shm', '.sql', '.toml', '.wal', '.zip']);
 const forbiddenDirectories = new Set([
-  'admin', 'attached_assets', 'content', 'database', 'deployment', 'node_modules',
-  'scripts', 'server', 'shared', 'svgs', 'templates', 'wp-plugin', 'wp-theme',
+  'content', 'deployment', 'node_modules', 'scripts',
 ]);
 
 function walk(directory, relative = '') {
