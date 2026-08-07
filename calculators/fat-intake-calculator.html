@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Fat Intake Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Determine your optimal daily fat intake.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Determine your optimal daily fat intake.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -491,7 +491,11 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var cal=parseFloat(document.getElementById('calories').value);var goal=document.getElementById('goal').value;if(!cal){alert('Enter calories');return;}var pct={'Standard':0.3,'Low Fat':0.2,'Moderate':0.35,'High Fat/Keto':0.7};var fat=Math.round(cal*(pct[goal]||0.3)/9);showResult('result',fat+'g','Daily Fat Intake','You need approximately '+fat+' grams of fat per day. Prioritize healthy fats from avocados, nuts, olive oil, and fatty fish.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var calories = parseFloat(document.getElementById('calories').value); var goal = document.getElementById('goal').value;
+    if (!Number.isFinite(calories) || calories < 800 || calories > 10000) { alert('Enter a valid calorie target'); return; } var ranges = {'Standard': [0.20, 0.35], 'Low Fat': [0.20, 0.25], 'Moderate': [0.25, 0.35], 'High Fat/Keto': [0.60, 0.75]}; var range = ranges[goal] || ranges.Standard; var low = Math.round(calories * range[0] / 9); var high = Math.round(calories * range[1] / 9);
+    showResult('result', low + '–' + high + ' g/day', 'Illustrative dietary-fat range', Math.round(range[0] * 100) + '–' + Math.round(range[1] * 100) + '% of calories. Prioritize unsaturated fats; restrictive diets require attention to total nutrition and individual medical needs.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

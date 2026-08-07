@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Protein Intake Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your daily protein requirements.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your daily protein requirements.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -494,7 +494,13 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var w=parseFloat(document.getElementById('weight').value);var goal=document.getElementById('goal').value;if(!w){alert('Enter weight');return;}var mult={'Sedentary Adult':0.8,'Active/Fitness':1.2,'Muscle Building':1.6,'Weight Loss':1.4,'Endurance Athlete':1.4};var p=Math.round(w*(mult[goal]||0.8));showResult('result',p+'g','Daily Protein','You need approximately '+p+' grams of protein per day. Spread intake across 3-5 meals for optimal absorption. Good sources include lean meats, fish, eggs, dairy, and legumes.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var weight = parseFloat(document.getElementById('weight').value); var goal = document.getElementById('goal').value;
+    if (!Number.isFinite(weight) || weight <= 0) { alert('Enter a valid body weight'); return; }
+    var ranges = {'Sedentary Adult': [0.8, 0.8], 'Active/Fitness': [1.2, 1.6], 'Muscle Building': [1.6, 2.2], 'Weight Loss': [1.2, 1.6], 'Endurance Athlete': [1.2, 1.6]}; var range = ranges[goal] || [0.8, 0.8];
+    var low = Math.round(weight * range[0]); var high = Math.round(weight * range[1]);
+    showResult('result', low === high ? low + ' g/day' : low + '–' + high + ' g/day', 'Protein reference range', 'Based on ' + range[0] + (range[0] === range[1] ? '' : '–' + range[1]) + ' g/kg/day for the selected goal. Kidney disease, pregnancy, older age, total energy intake, and clinical care can change needs. Protein is digested across meals; this tool does not claim a fixed absorption limit.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

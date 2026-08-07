@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Text Counter & Word Count</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Count words, characters, sentences, and reading time in any text.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Count words, characters, sentences, and reading time in any text.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var t=document.getElementById('text').value;if(!t.trim()){alert('Enter some text');return;}var words=t.trim()?t.trim().split(/\s+/).length:0;var chars=t.length;var charsNS=t.replace(/\s/g,'').length;var sentences=t.split(/[.!?]+/).filter(function(s){return s.trim().length>0;}).length;var paras=t.split(/\n+/).filter(function(p){return p.trim().length>0;}).length;var readMin=Math.ceil(words/200);showResult('result',words+' words','Text Statistics','Characters: '+chars+' (without spaces: '+charsNS+') | Sentences: '+sentences+' | Paragraphs: '+paras+' | Reading time: ~'+readMin+' min (at 200 wpm)','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var text = document.getElementById('text').value; if (!text.trim()) { alert('Enter some text'); return; } var words = (text.trim().match(/\S+/g) || []).length; var characters = Array.from(text).length; var charactersNoSpace = Array.from(text.replace(/\s/gu, '')).length; var sentences = (text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || []).filter(function (item) { return item.trim(); }).length; var paragraphs = text.split(/\n\s*\n|\n+/).filter(function (item) { return item.trim(); }).length;
+    showResult('result', words + ' words', 'Text statistics', 'Characters: ' + characters + ' | Without whitespace: ' + charactersNoSpace + ' | Sentences: ' + sentences + ' | Paragraphs: ' + paragraphs + ' | Reading time at 200 wpm: ' + Math.max(1, Math.ceil(words / 200)) + ' min.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

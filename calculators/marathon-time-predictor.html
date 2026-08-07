@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Marathon Time Predictor</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Predict your marathon or half marathon finish time from a recent race or training pace.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Predict your marathon or half marathon finish time from a recent race or training pace.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var dist={'5K':5,'10K':10,'Half Marathon':21.1,'Recent Long Run':16}[document.getElementById('dist').value]||10;var t=parseFloat(document.getElementById('time').value);var goal={'5K':5,'10K':10,'Half Marathon (21.1km)':21.1,'Marathon (42.2km)':42.2}[document.getElementById('goal').value]||42.2;if(!t){alert('Enter your time');return;}var pace=t/dist;var predicted=Math.round(pace*goal*Math.pow(goal/dist,0.07));var ph=Math.floor(predicted/60);var pm=predicted%60;var perKm=Math.round(predicted/goal);var pkm_m=Math.floor(perKm/60);var pkm_s=perKm%60;showResult('result',ph+'h '+pm+'m','Predicted '+document.getElementById('goal').value+' Time','Required pace: '+pkm_m+':'+(pkm_s<10?'0':'')+pkm_s+'/km. This prediction uses the Riegel formula which accounts for fatigue factor over longer distances. Train at 80% easy pace + 20% hard intervals for optimal results.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var sourceDistance = {'5K': 5, '10K': 10, 'Half Marathon': 21.0975, 'Recent Long Run': 16}[document.getElementById('dist').value]; var time = parseFloat(document.getElementById('time').value); var targetDistance = {'5K': 5, '10K': 10, 'Half Marathon (21.1km)': 21.0975, 'Marathon (42.2km)': 42.195}[document.getElementById('goal').value]; if (!sourceDistance || !targetDistance || !Number.isFinite(time) || time <= 0) { alert('Enter a valid recent race time'); return; } var predictedMinutes = time * Math.pow(targetDistance / sourceDistance, 1.06); var totalSeconds = Math.round(predictedMinutes * 60); var hours = Math.floor(totalSeconds / 3600); var minutes = Math.floor(totalSeconds % 3600 / 60); var seconds = totalSeconds % 60; var paceSeconds = Math.round(totalSeconds / targetDistance);
+    showResult('result', (hours ? hours + 'h ' : '') + minutes + 'm ' + seconds + 's', 'Riegel race-time estimate', 'Exponent 1.06 from a ' + sourceDistance + ' km performance. Estimated pace: ' + Math.floor(paceSeconds / 60) + ':' + String(paceSeconds % 60).padStart(2, '0') + '/km. Training specificity, terrain, weather, fueling, and endurance can produce large differences.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

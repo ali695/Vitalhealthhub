@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">TDEE Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your Total Daily Energy Expenditure.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your Total Daily Energy Expenditure.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -496,7 +496,12 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var a=parseFloat(document.getElementById('age').value);var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var g=document.getElementById('gender').value;var act=document.getElementById('activity').value;if(!a||!w||!h){alert('Fill all fields');return;}var bmr=g==='Male'?10*w+6.25*h-5*a+5:10*w+6.25*h-5*a-161;var m={'Sedentary':1.2,'Lightly Active':1.375,'Moderately Active':1.55,'Very Active':1.725,'Extra Active':1.9};var tdee=Math.round(bmr*(m[act]||1.2));showResult('result',tdee+' kcal','Total Daily Energy Expenditure','You burn approximately '+tdee+' calories per day. To lose weight, eat below this. To gain weight, eat above this. A 500 calorie adjustment equals about 0.5 kg per week.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var age = parseFloat(document.getElementById('age').value); var weight = parseFloat(document.getElementById('weight').value); var height = parseFloat(document.getElementById('height').value); var sex = document.getElementById('gender').value; var activity = document.getElementById('activity').value;
+    if (!Number.isFinite(age) || age < 18 || !Number.isFinite(weight) || weight <= 0 || !Number.isFinite(height) || height <= 0) { alert('Enter valid adult age, weight, and height'); return; }
+    var bmr = sex === 'Male' ? 10 * weight + 6.25 * height - 5 * age + 5 : 10 * weight + 6.25 * height - 5 * age - 161; var multipliers = {'Sedentary': 1.2, 'Lightly Active': 1.375, 'Moderately Active': 1.55, 'Very Active': 1.725, 'Extra Active': 1.9}; var tdee = Math.round(bmr * (multipliers[activity] || 1.2));
+    showResult('result', '~' + tdee + ' kcal/day', 'Estimated total daily energy expenditure', 'Mifflin–St Jeor BMR multiplied by the selected activity factor. Treat this as a starting estimate and adjust from observed weight and intake trends; a fixed 500-kcal change does not guarantee a specific weekly result.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

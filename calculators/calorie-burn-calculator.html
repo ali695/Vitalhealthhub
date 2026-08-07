@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Activity Calorie Burn Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate calories burned for 40+ common activities based on your weight and duration.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate calories burned for 40+ common activities based on your weight and duration.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,13 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var w=parseFloat(document.getElementById('weight').value);var act=document.getElementById('activity').value;var dur=parseFloat(document.getElementById('duration').value);if(!w||!dur){alert('Fill all fields');return;}var mets={'Walking (moderate)':3.5,'Running (8 km/h)':8.3,'Running (12 km/h)':11.8,'Cycling (moderate)':6.8,'Swimming':7,'HIIT Training':12,'Weight Training':4,'Yoga':2.5,'Pilates':3,'Dancing':5,'Hiking':6,'Rowing':7,'Jump Rope':11,'Basketball':8,'Tennis':7.3,'Golf':4,'Gardening':4,'Cleaning House':3.5,'Cooking':2.5,'Office Work':1.5};var met=mets[act]||4;var cal=Math.round(met*w*dur/60);showResult('result',cal+' kcal','Calories Burned: '+act,'You burned approximately '+cal+' calories during '+dur+' minutes of '+act+'. Rate: '+Math.round(cal/(dur/60))+' kcal/hour. For weight loss, combine activity with a moderate calorie deficit.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var weight = parseFloat(document.getElementById('weight').value); var activity = document.getElementById('activity').value; var duration = parseFloat(document.getElementById('duration').value);
+    if (!Number.isFinite(weight) || weight <= 0 || !Number.isFinite(duration) || duration <= 0 || duration > 1440) { alert('Enter valid weight and duration'); return; }
+    var mets = {'Walking (moderate)': 3.5, 'Running (8 km/h)': 8.3, 'Running (12 km/h)': 11.8, 'Cycling (moderate)': 6.8, 'Swimming': 7, 'HIIT Training': 12, 'Weight Training': 4, 'Yoga': 2.5, 'Pilates': 3, 'Dancing': 5, 'Hiking': 6, 'Rowing': 7, 'Jump Rope': 11, 'Basketball': 8, 'Tennis': 7.3, 'Golf': 4, 'Gardening': 4, 'Cleaning House': 3.5, 'Cooking': 2.5, 'Office Work': 1.5}; var met = mets[activity];
+    if (!met) { alert('Choose an activity'); return; } var calories = met * 3.5 * weight / 200 * duration;
+    showResult('result', '~' + Math.round(calories) + ' kcal', 'MET-based energy estimate', met + ' MET × ' + duration + ' minutes. Actual energy use varies with pace, efficiency, fitness, environment, and equipment.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

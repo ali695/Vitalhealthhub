@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">HOMA-IR Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your HOMA-IR score to estimate insulin resistance from fasting glucose and insulin levels.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your HOMA-IR score to estimate insulin resistance from fasting glucose and insulin levels.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -238,7 +238,7 @@
 <h2>Who Should Use the HOMA-IR Calculator?</h2>
 <p>This tool is intended as an educational estimate for people who understand the inputs and limitations described on this page. Whether it is appropriate depends on the calculation, your circumstances, and the decision you are trying to make.</p>
 <p>Check the stated intended population before using the result. Children, pregnancy, diagnosed conditions, medicines, and unusual symptoms often require a different method or professional interpretation.</p>
-<p>For a more complete health picture, pair this tool with our <a href="/calculators/biological-age-calculator.html">Biological Age Calculator</a>, <a href="/calculators/bmi-calculator.html">BMI Calculator</a>, <a href="/calculators/diabetes-risk-calculator.html">Diabetes Risk Calculator</a> — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
+<p>For a more complete health picture, pair this tool with our <a href="/calculators/biological-age-calculator.html">Healthy Aging Habit Checklist</a>, <a href="/calculators/bmi-calculator.html">BMI Calculator</a>, <a href="/calculators/diabetes-risk-calculator.html">Diabetes Risk Calculator</a> — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
 <h2>Common Mistakes to Avoid</h2>
 <p>Getting accurate, actionable results from the HOMA-IR Calculator depends on more than entering correct numbers. These are the most common errors that reduce the usefulness of your output:</p>
 <ul>
@@ -459,7 +459,13 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var glu=parseFloat(document.getElementById('glucose').value);var ins=parseFloat(document.getElementById('insulin').value);if(!glu||!ins){alert('Enter both values');return;}var gluMmol=glu/18;var homa=(gluMmol*ins)/22.5;homa=homa.toFixed(2);var c='green',l='Insulin Sensitive',s='Your HOMA-IR score suggests good insulin sensitivity. Maintain a healthy diet and regular exercise to preserve this.';if(homa>2.9){c='red';l='Insulin Resistant';s='Your HOMA-IR is elevated, suggesting significant insulin resistance. Consult your doctor to discuss lifestyle changes and possible testing for prediabetes or type 2 diabetes.';}else if(homa>1.9){c='yellow';l='Borderline Resistance';s='Your HOMA-IR suggests early insulin resistance. A low-glycemic diet, regular exercise, and weight management can help improve insulin sensitivity.';}showResult('result',homa,'HOMA-IR Score',s,c); };</script>
+<script>window._vhCalcFn=function () {
+    var glucose = parseFloat(document.getElementById('glucose').value);
+    var insulin = parseFloat(document.getElementById('insulin').value);
+    if (!Number.isFinite(glucose) || glucose <= 0 || !Number.isFinite(insulin) || insulin <= 0) { alert('Enter valid fasting glucose and insulin values'); return; }
+    var homa = (glucose / 18 * insulin) / 22.5;
+    showResult('result', homa.toFixed(2), 'HOMA-IR estimate', 'Formula: fasting insulin (µU/mL) × fasting glucose (mmol/L) ÷ 22.5. Cutoffs vary by laboratory and population, so this result must be interpreted by a clinician and is not a diagnosis.', 'yellow');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

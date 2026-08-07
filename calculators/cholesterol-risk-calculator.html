@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Cholesterol Risk Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Assess your cholesterol levels and cardiovascular risk.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Assess your cholesterol levels and cardiovascular risk.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -272,7 +272,7 @@
 <h2>Who Should Use the Cholesterol Risk Calculator?</h2>
 <p>This tool is intended as an educational estimate for people who understand the inputs and limitations described on this page. Whether it is appropriate depends on the calculation, your circumstances, and the decision you are trying to make.</p>
 <p>Check the stated intended population before using the result. Children, pregnancy, diagnosed conditions, medicines, and unusual symptoms often require a different method or professional interpretation.</p>
-<p>For a more complete health picture, pair this tool with our <a href="/calculators/biological-age-calculator.html">Biological Age Calculator</a>, <a href="/calculators/bmi-calculator.html">BMI Calculator</a>, <a href="/calculators/diabetes-risk-calculator.html">Diabetes Risk Calculator</a> — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
+<p>For a more complete health picture, pair this tool with our <a href="/calculators/biological-age-calculator.html">Healthy Aging Habit Checklist</a>, <a href="/calculators/bmi-calculator.html">BMI Calculator</a>, <a href="/calculators/diabetes-risk-calculator.html">Diabetes Risk Calculator</a> — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
 <h2>Common Mistakes to Avoid</h2>
 <p>Getting accurate, actionable results from the Cholesterol Risk Calculator depends on more than entering correct numbers. These are the most common errors that reduce the usefulness of your output:</p>
 <ul>
@@ -493,7 +493,15 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var t=parseFloat(document.getElementById('total').value);var hdl=parseFloat(document.getElementById('hdl').value);var ldl=parseFloat(document.getElementById('ldl').value);if(!t||!hdl||!ldl){alert('Fill all fields');return;}var ratio=(t/hdl).toFixed(1);var c='green',l='Optimal',s='Your cholesterol levels appear healthy. Continue with heart-healthy habits.';if(ratio>5||ldl>160){c='red';l='High Risk';s='Your cholesterol levels suggest elevated cardiovascular risk. Consult your doctor about lifestyle changes and possible treatment.';}else if(ratio>4||ldl>130){c='yellow';l='Borderline',s='Your cholesterol is borderline high. Focus on diet, exercise, and regular monitoring.';}showResult('result','Ratio: '+ratio,l,s,c); };</script>
+<script>window._vhCalcFn=function () {
+    var total = parseFloat(document.getElementById('total').value); var hdl = parseFloat(document.getElementById('hdl').value); var ldl = parseFloat(document.getElementById('ldl').value);
+    if (![total, hdl, ldl].every(function (value) { return Number.isFinite(value) && value > 0; })) { alert('Enter valid lipid values'); return; }
+    var ratio = total / hdl; var flags = [];
+    if (total >= 240) flags.push('high total cholesterol'); else if (total >= 200) flags.push('borderline-high total cholesterol');
+    if (ldl >= 190) flags.push('very high LDL'); else if (ldl >= 160) flags.push('high LDL'); else if (ldl >= 130) flags.push('borderline-high LDL');
+    if (hdl < 40) flags.push('low HDL');
+    showResult('result', 'Total/HDL ' + ratio.toFixed(1), 'Lipid summary', (flags.length ? 'Flags: ' + flags.join(', ') + '. ' : 'No listed threshold flags. ') + 'A total/HDL ratio alone is not a cardiovascular-risk calculation; age, blood pressure, smoking, diabetes, treatment, and other factors matter.', flags.length >= 2 ? 'red' : flags.length ? 'yellow' : 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

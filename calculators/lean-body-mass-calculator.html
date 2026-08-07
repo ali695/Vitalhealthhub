@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Lean Body Mass Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your lean body mass (fat-free mass).</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your lean body mass (fat-free mass).</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -486,7 +486,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var g=document.getElementById('gender').value;if(!w||!h){alert('Fill fields');return;}var lbm;if(g==='Male'){lbm=0.407*w+0.267*h-19.2;}else{lbm=0.252*w+0.473*h-48.3;}lbm=Math.max(0,lbm).toFixed(1);var pct=((lbm/w)*100).toFixed(0);showResult('result',lbm+' kg','Lean Body Mass','Your lean body mass is '+lbm+' kg ('+pct+'% of total weight). This includes muscle, bone, water, and organs — everything except stored fat.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var weight = parseFloat(document.getElementById('weight').value); var height = parseFloat(document.getElementById('height').value); var sex = document.getElementById('gender').value; if (!Number.isFinite(weight) || weight <= 0 || !Number.isFinite(height) || height <= 0) { alert('Enter valid weight and height'); return; } var lean = sex === 'Male' ? 0.407 * weight + 0.267 * height - 19.2 : 0.252 * weight + 0.473 * height - 48.3; if (!Number.isFinite(lean) || lean <= 0 || lean > weight) { alert('These measurements are outside the valid range for this estimate'); return; }
+    showResult('result', lean.toFixed(1) + ' kg', 'Hume lean-body-mass estimate', 'Estimated lean mass is ' + (lean / weight * 100).toFixed(0) + '% of body weight. This regression estimate is not a direct body-composition measurement.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

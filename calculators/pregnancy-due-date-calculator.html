@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Pregnancy Due Date Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Estimate your baby's due date from your last menstrual period.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Estimate your baby's due date from your last menstrual period.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -505,7 +505,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var lmp=document.getElementById('lmp').value;if(!lmp){alert('Enter date');return;}var d=new Date(lmp);d.setDate(d.getDate()+280);var months=['January','February','March','April','May','June','July','August','September','October','November','December'];var due=months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();var now=new Date();var weeks=Math.floor((now-new Date(lmp))/(7*24*60*60*1000));showResult('result',due,'Estimated Due Date','You are approximately '+weeks+' weeks pregnant. Your estimated due date is '+due+'. Remember, only 5% of babies arrive on their exact due date.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var raw = document.getElementById('lmp').value; if (!raw) { alert('Enter the first day of the last menstrual period'); return; } var lmp = new Date(raw + 'T00:00:00'); var today = new Date(); if (Number.isNaN(lmp.getTime()) || lmp > today) { alert('Enter a valid past date'); return; } var due = new Date(lmp); due.setDate(due.getDate() + 280); var gestationDays = Math.floor((Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(lmp.getFullYear(), lmp.getMonth(), lmp.getDate())) / 86400000); if (gestationDays > 308) { alert('The entered date is outside a typical current-pregnancy range'); return; } var format = function (date) { return date.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'}); };
+    showResult('result', format(due), 'Estimated due date', 'Based on 280 days from LMP: approximately ' + Math.floor(gestationDays / 7) + ' weeks ' + gestationDays % 7 + ' days today. Cycle length and ultrasound dating can change the clinical due date.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

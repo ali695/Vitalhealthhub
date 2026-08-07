@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Steps to Calories Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Convert your daily steps into estimated calories burned.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Convert your daily steps into estimated calories burned.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -484,7 +484,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var s=parseFloat(document.getElementById('steps').value);var w=parseFloat(document.getElementById('weight').value);if(!s||!w){alert('Fill fields');return;}var cal=Math.round(s*0.04*w/70);var km=(s*0.000762).toFixed(1);showResult('result',cal+' kcal','Calories Burned','You burned approximately '+cal+' calories walking '+s+' steps ('+km+' km). Aim for 10,000 steps daily for general health benefits.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var steps = parseFloat(document.getElementById('steps').value); var weight = parseFloat(document.getElementById('weight').value); if (!Number.isFinite(steps) || steps < 0 || !Number.isFinite(weight) || weight <= 0) { alert('Enter valid steps and weight'); return; } var low = steps * 0.03 * weight / 70; var high = steps * 0.06 * weight / 70; var distance = steps * 0.000762;
+    showResult('result', '~' + Math.round(low) + '–' + Math.round(high) + ' kcal', 'Broad step-based estimate', 'Approximate distance using a 0.762 m step: ' + distance.toFixed(1) + ' km. Without pace, incline, stride, and duration, calories cannot be calculated precisely.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

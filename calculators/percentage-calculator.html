@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Percentage Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate percentages, percent change, and what percentage one number is of another.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate percentages, percent change, and what percentage one number is of another.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,19 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var mode=document.getElementById('mode').value;var x=parseFloat(document.getElementById('val1').value);var y=parseFloat(document.getElementById('val2').value);if(isNaN(x)||isNaN(y)){alert('Enter both values');return;}var res,label,info;if(mode==='What is X% of Y?'){res=(x/100*y).toFixed(2);label=x+'% of '+y;info=x+'% of '+y+' equals '+res+'. Example: a '+x+'% discount on $'+y+' saves you $'+res+'.';}else if(mode==='X is what % of Y?'){res=(x/y*100).toFixed(2);label='Percentage Result';info=x+' is '+res+'% of '+y+'. To verify: '+y+' x '+res+'% = '+x+'.';}else if(mode==='% Change from X to Y'){var ch=((y-x)/Math.abs(x)*100).toFixed(2);res=ch+'%';label=ch>0?'Increase':'Decrease';info='From '+x+' to '+y+' is a '+(ch>0?'+'+ ch:''+ch)+'% change. Difference: '+(y-x).toFixed(2)+'.';}else if(mode==='Add X% to Y'){res=(y*(1+x/100)).toFixed(2);label='Result After Adding '+x+'%';info=y+' + '+x+'% = '+res+'. Added amount: '+(y*x/100).toFixed(2)+'.';}else{res=(y*(1-x/100)).toFixed(2);label='Result After Subtracting '+x+'%';info=y+' - '+x+'% = '+res+'. Subtracted amount: '+(y*x/100).toFixed(2)+'.';}showResult('result',res,label,info,'green'); };</script>
+<script>window._vhCalcFn=function () {
+    var mode = document.getElementById('mode').value;
+    var x = parseFloat(document.getElementById('val1').value);
+    var y = parseFloat(document.getElementById('val2').value);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) { alert('Enter both values'); return; }
+    var result; var label; var note;
+    if (mode === 'What is X% of Y?') { result = x / 100 * y; label = x + '% of ' + y; note = x + '% × ' + y + ' = ' + result.toFixed(2); }
+    else if (mode === 'X is what % of Y?') { if (y === 0) { alert('The comparison value cannot be zero'); return; } result = x / y * 100; label = 'Percentage result'; note = x + ' is ' + result.toFixed(2) + '% of ' + y + '.'; }
+    else if (mode === '% Change from X to Y') { if (x === 0) { alert('Percent change is undefined when the starting value is zero'); return; } result = (y - x) / Math.abs(x) * 100; label = result > 0 ? 'Increase' : result < 0 ? 'Decrease' : 'No change'; note = 'Difference: ' + (y - x).toFixed(2) + '.'; }
+    else if (mode === 'Add X% to Y') { result = y * (1 + x / 100); label = 'After adding ' + x + '%'; note = 'Added amount: ' + (y * x / 100).toFixed(2) + '.'; }
+    else { result = y * (1 - x / 100); label = 'After subtracting ' + x + '%'; note = 'Subtracted amount: ' + (y * x / 100).toFixed(2) + '.'; }
+    showResult('result', result.toFixed(2) + (mode === '% Change from X to Y' ? '%' : ''), label, note, 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

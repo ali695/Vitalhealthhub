@@ -2,17 +2,36 @@ document.addEventListener('DOMContentLoaded', function() {
   var calcFn = window._vhCalcFn;
   if (!calcFn) return;
 
-  document.querySelectorAll('.calc-input-card input, .calc-input-card select').forEach(function(el) {
-    el.addEventListener('change', calcFn);
+  var fields = Array.from(document.querySelectorAll('.calc-input-card input, .calc-input-card select, .calc-input-card textarea'));
+  fields.forEach(function(el) {
+    el.dataset.vhInitialValue = el.value;
   });
 
+  var runCalculator = function() {
+    try {
+      calcFn();
+    } catch (error) {
+      console.error('Calculator error:', error);
+      alert('This calculator could not complete the calculation. Check the values and try again.');
+    }
+  };
+
   var submitBtn = document.querySelector('.calc-submit-btn');
-  if (submitBtn) submitBtn.addEventListener('click', calcFn);
+  if (submitBtn) submitBtn.addEventListener('click', runCalculator);
+
+  fields.forEach(function(el) {
+    el.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && el.tagName !== 'TEXTAREA') {
+        event.preventDefault();
+        runCalculator();
+      }
+    });
+  });
 
   var resetBtn = document.getElementById('vhResetBtn');
   if (resetBtn) {
     resetBtn.addEventListener('click', function() {
-      document.querySelectorAll('.calc-input-card input, .calc-input-card select').forEach(function(el) { el.value = ''; });
+      fields.forEach(function(el) { el.value = el.dataset.vhInitialValue || ''; });
       var r = document.getElementById('result');
       if (r) r.className = 'result-box';
       var ph = document.getElementById('calcPlaceholder');
@@ -53,6 +72,13 @@ document.addEventListener('DOMContentLoaded', function() {
       orig(id, val, label, sugg, color);
       var ph = document.getElementById('calcPlaceholder');
       if (ph) ph.style.display = 'none';
+      var result = document.getElementById(id);
+      if (result) {
+        result.setAttribute('role', 'status');
+        result.setAttribute('aria-live', 'polite');
+        result.setAttribute('tabindex', '-1');
+        result.focus({ preventScroll: true });
+      }
     };
   }
 });

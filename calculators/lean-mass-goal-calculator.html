@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Lean Mass Goal Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate how much muscle you need to gain to reach your ideal body composition.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate how much muscle you need to gain to reach your ideal body composition.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,21 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var w=parseFloat(document.getElementById('weight').value);var bf=parseFloat(document.getElementById('bodyfat').value);var tbf=parseFloat(document.getElementById('targetbf').value);var goal=document.getElementById('goal').value;if(!w||!bf||!tbf){alert('Fill all fields');return;}var lm=w*(1-bf/100);var fatMass=w-lm;var c=bf>tbf?'green':'yellow';if(goal==='Lose Fat (maintain muscle)'){var targetW=lm/(1-tbf/100);var fatLoss=w-targetW;showResult('result',fatLoss.toFixed(1)+' kg fat loss','Fat Loss Required to Hit '+tbf+'% BF','Current lean mass: '+lm.toFixed(1)+'kg | Target weight: '+targetW.toFixed(1)+'kg | Fat to lose: '+fatLoss.toFixed(1)+'kg. At safe rate of 0.5kg/week, this takes '+Math.round(fatLoss/0.5)+' weeks.',c);}else if(goal==='Build Muscle (slight fat gain OK)'){var muscleNeeded=w*tbf/100-fatMass+lm-lm;var newLM=lm+(fatMass*(tbf/100));showResult('result',lm.toFixed(1)+' kg current lean mass','Muscle Building Target','Current lean mass: '+lm.toFixed(1)+'kg | Fat mass: '+fatMass.toFixed(1)+'kg. At 0.5-1kg muscle/month for naturals, reaching significant composition change takes 6-18 months of consistent training and adequate protein (1.6-2.2g/kg).','green');}else{showResult('result',lm.toFixed(1)+' kg lean mass','Body Recomposition Plan','Recomp works best for beginners and those returning to training. Aim for: 1g+ protein per lb bodyweight, slight calorie deficit (200-300 kcal), progressive resistance training 3-4x/week. Expect slow but simultaneous fat loss and muscle gain.','green');} };</script>
+<script>window._vhCalcFn=function () {
+    var weight = parseFloat(document.getElementById('weight').value);
+    var bodyFat = parseFloat(document.getElementById('bodyfat').value);
+    var targetBodyFat = parseFloat(document.getElementById('targetbf').value);
+    var goal = document.getElementById('goal').value;
+    if (!Number.isFinite(weight) || weight <= 0 || !Number.isFinite(bodyFat) || bodyFat <= 0 || bodyFat >= 70 || !Number.isFinite(targetBodyFat) || targetBodyFat <= 0 || targetBodyFat >= 70) { alert('Enter valid weight and body-fat percentages'); return; }
+    var leanMass = weight * (1 - bodyFat / 100);
+    if (goal === 'Lose Fat (maintain muscle)') {
+      var targetWeight = leanMass / (1 - targetBodyFat / 100);
+      var change = weight - targetWeight;
+      showResult('result', change > 0 ? change.toFixed(1) + ' kg' : 'Target is not below current fat level', 'Theoretical fat-mass change', 'If lean mass stayed exactly constant, target weight would be ' + targetWeight.toFixed(1) + ' kg. Real changes are not perfectly linear, and body-fat estimates contain measurement error.', change > 0 ? 'green' : 'yellow');
+    } else {
+      showResult('result', leanMass.toFixed(1) + ' kg', 'Current estimated lean mass', 'Current estimated fat mass: ' + (weight - leanMass).toFixed(1) + ' kg. Muscle-gain speed and resulting body-fat percentage cannot be predicted accurately from these inputs; track repeated measurements instead.', 'green');
+    }
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

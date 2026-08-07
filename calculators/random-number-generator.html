@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Random Number Generator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Generate random numbers within any range, including multiple numbers at once.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Generate random numbers within any range, including multiple numbers at once.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -227,7 +227,7 @@
 
 <section class="ccs-section ccs-gray">
 <div class="container">
-<div class="ccs-article fade-in"><h2>Random Number Generator</h2><p>Our Random Number Generator produces truly random integers within any range you specify. Generate a single number or up to 20 numbers at once. This tool is useful for games, lotteries, statistical sampling, classroom activities, and anywhere you need unbiased random selection.</p><h3>True vs Pseudo-Random Numbers</h3><p>Computer-generated random numbers are technically "pseudo-random" — produced by mathematical algorithms that appear statistically random. Our generator uses JavaScript's Math.random(), which is suitable for games, education, and casual use but not for cryptographic security applications.</p></div>
+<div class="ccs-article fade-in"><h2>Random Number Generator</h2><p>Our Random Number Generator produces truly random integers within any range you specify. Generate a single number or up to 20 numbers at once. This tool is useful for games, lotteries, statistical sampling, classroom activities, and anywhere you need unbiased random selection.</p><h3>True vs Pseudo-Random Numbers</h3><p>Browser-generated values come from the operating system randomness exposed through the Web Crypto API. This generator uses the browser Web Crypto API with rejection sampling to produce unbiased integers within the selected range.</p></div>
 </div>
 </section>
 
@@ -459,7 +459,14 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var mn=parseInt(document.getElementById('min').value)||1;var mx=parseInt(document.getElementById('max').value)||100;var cnt=Math.max(1,Math.min(20,parseInt(document.getElementById('count').value)||1));if(mn>mx){alert('Minimum must be less than maximum');return;}var nums=[];for(var i=0;i<cnt;i++)nums.push(Math.floor(Math.random()*(mx-mn+1))+mn);showResult('result',nums.join(', '),'Random Numbers Generated','Generated '+cnt+' random number'+(cnt>1?'s':'')+' between '+mn+' and '+mx+'. Range size: '+(mx-mn+1)+' possible values. Click Generate again for new numbers.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var min = parseInt(document.getElementById('min').value, 10); var max = parseInt(document.getElementById('max').value, 10); var count = Math.max(1, Math.min(20, parseInt(document.getElementById('count').value, 10) || 1));
+    if (!Number.isInteger(min) || !Number.isInteger(max) || min > max || max - min >= 4294967296) { alert('Enter a valid integer range smaller than 2^32'); return; }
+    if (!window.crypto || !window.crypto.getRandomValues) { alert('Secure random generation is unavailable'); return; }
+    var size = max - min + 1; var ceiling = Math.floor(4294967296 / size) * size; var values = [];
+    while (values.length < count) { var buffer = new Uint32Array(1); window.crypto.getRandomValues(buffer); if (buffer[0] < ceiling) values.push(min + buffer[0] % size); }
+    showResult('result', values.join(', '), 'Random integers', 'Generated with the browser Web Crypto API. Repeats are allowed.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

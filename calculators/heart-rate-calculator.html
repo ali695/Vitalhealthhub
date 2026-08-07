@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Heart Rate Zone Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your target heart rate zones for exercise.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your target heart rate zones for exercise.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -485,7 +485,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var age=parseFloat(document.getElementById('age').value);var rhr=parseFloat(document.getElementById('rhr').value);if(!age||!rhr){alert('Fill all fields');return;}var mhr=220-age;var z1l=Math.round(rhr+0.5*(mhr-rhr));var z1h=Math.round(rhr+0.6*(mhr-rhr));var z2l=Math.round(rhr+0.6*(mhr-rhr));var z2h=Math.round(rhr+0.7*(mhr-rhr));var z3l=Math.round(rhr+0.7*(mhr-rhr));var z3h=Math.round(rhr+0.8*(mhr-rhr));var z4l=Math.round(rhr+0.8*(mhr-rhr));var z4h=Math.round(rhr+0.9*(mhr-rhr));showResult('result','MHR: '+mhr+' bpm','Heart Rate Zones','Zone 1 (Fat Burn): '+z1l+'-'+z1h+' bpm | Zone 2 (Cardio): '+z2l+'-'+z2h+' bpm | Zone 3 (Aerobic): '+z3l+'-'+z3h+' bpm | Zone 4 (Anaerobic): '+z4l+'-'+z4h+' bpm','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var age = parseFloat(document.getElementById('age').value); var resting = parseFloat(document.getElementById('rhr').value); if (!Number.isFinite(age) || age < 18 || age > 100 || !Number.isFinite(resting) || resting < 30 || resting > 150) { alert('Enter valid adult age and resting heart rate'); return; } var maximum = 208 - 0.7 * age; var reserve = maximum - resting; var zone = function (low, high) { return Math.round(resting + reserve * low) + '–' + Math.round(resting + reserve * high); };
+    showResult('result', 'Est. max ' + Math.round(maximum) + ' bpm', 'Heart-rate reserve training zones', '50–60%: ' + zone(0.5, 0.6) + ' bpm | 60–70%: ' + zone(0.6, 0.7) + ' bpm | 70–80%: ' + zone(0.7, 0.8) + ' bpm | 80–90%: ' + zone(0.8, 0.9) + ' bpm. Estimated maximum heart rate has individual error; medications and conditions can change safe targets.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

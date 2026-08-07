@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Intermittent Fasting Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Plan your intermittent fasting eating window.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Plan your intermittent fasting eating window.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -493,7 +493,23 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var method=document.getElementById('method').value;var start=document.getElementById('start').value;if(!start){alert('Enter start time');return;}var hours={'16:8':8,'18:6':6,'20:4':4,'5:2':8};var eating=hours[method]||8;var p=start.split(':');var sh=parseInt(p[0]);var sm=parseInt(p[1]);var eh=sh+eating;var eampm=eh>=12?'PM':'AM';eh=eh%12||12;var sampm=sh>=12?'PM':'AM';var dsh=sh%12||12;showResult('result',method+' Protocol','Your Fasting Schedule','Eating window: '+dsh+':'+((sm<10)?'0':'')+sm+' '+sampm+' to '+eh+':'+((sm<10)?'0':'')+sm+' '+eampm+' ('+eating+' hours). During fasting, drink water, black coffee, or tea. Break your fast with a balanced meal.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var method = document.getElementById('method').value;
+    var start = document.getElementById('start').value;
+    if (!start) { alert('Enter an eating-window start time'); return; }
+    if (method === '5:2') {
+      showResult('result', '5:2 weekly pattern', 'Choose two non-consecutive reduced-intake days', 'The 5:2 method is based on days, not a daily eating window. Eat normally on five days and use the two reduced-intake days only if appropriate for you. Avoid fasting during pregnancy, eating-disorder recovery, or when medication/medical conditions require regular meals.', 'yellow');
+      return;
+    }
+    var hours = {'16:8': 8, '18:6': 6, '20:4': 4};
+    var eating = hours[method];
+    if (!eating) { alert('Choose a supported fasting method'); return; }
+    var parts = start.split(':');
+    var startMinutes = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+    var endMinutes = (startMinutes + eating * 60) % 1440;
+    var format = function (minutes) { var hour = Math.floor(minutes / 60); var minute = minutes % 60; return (hour % 12 || 12) + ':' + (minute < 10 ? '0' : '') + minute + ' ' + (hour < 12 ? 'AM' : 'PM'); };
+    showResult('result', method + ' schedule', 'Eating window', format(startMinutes) + ' to ' + format(endMinutes) + ' (' + eating + ' hours). This is a scheduling aid, not a medical recommendation.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

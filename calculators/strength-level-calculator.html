@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Strength Level Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Assess your strength level for bench press, squat, and deadlift relative to body weight.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Assess your strength level for bench press, squat, and deadlift relative to body weight.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,16 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var bw=parseFloat(document.getElementById('weight').value);var bp=parseFloat(document.getElementById('bench').value);var sq=parseFloat(document.getElementById('squat').value);var dl=parseFloat(document.getElementById('deadlift').value);var g=document.getElementById('gender').value;if(!bw){alert('Enter body weight');return;}var benchRatio=bp?bp/bw:0;var squatRatio=sq?sq/bw:0;var deadRatio=dl?dl/bw:0;var levels=g==='Male'?{novice:[0.5,0.75,1],intermediate:[1,1.25,1.5],advanced:[1.5,1.75,2],elite:[2,2.25,2.5]}:{novice:[0.35,0.5,0.65],intermediate:[0.75,1,1.15],advanced:[1.1,1.4,1.6],elite:[1.5,1.8,2]};function getLevel(r,lev){return r>=lev.elite[0]?'Elite':r>=lev.advanced[0]?'Advanced':r>=lev.intermediate[0]?'Intermediate':r>=lev.novice[0]?'Novice':'Beginner';}var bl=getLevel(benchRatio,levels);var sl=getLevel(squatRatio,levels);var dl2=getLevel(deadRatio,levels);var parts=[];if(bp)parts.push('Bench: '+bp+'kg ('+benchRatio.toFixed(2)+'x BW) = '+bl);if(sq)parts.push('Squat: '+sq+'kg ('+squatRatio.toFixed(2)+'x BW) = '+sl);if(dl)parts.push('Deadlift: '+dl+'kg ('+deadRatio.toFixed(2)+'x BW) = '+dl2);showResult('result',bl,'Overall Strength Level',parts.join(' | ')+'. Use progressive overload to advance to the next level — add 2.5-5kg per session for compound lifts.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var bodyWeight = parseFloat(document.getElementById('weight').value);
+    if (!Number.isFinite(bodyWeight) || bodyWeight <= 0) { alert('Enter body weight'); return; }
+    var lifts = [['Bench', parseFloat(document.getElementById('bench').value)], ['Squat', parseFloat(document.getElementById('squat').value)], ['Deadlift', parseFloat(document.getElementById('deadlift').value)]];
+    var valid = lifts.filter(function (item) { return Number.isFinite(item[1]) && item[1] > 0; });
+    if (!valid.length) { alert('Enter at least one lift'); return; }
+    var details = valid.map(function (item) { return item[0] + ': ' + item[1] + ' kg (' + (item[1] / bodyWeight).toFixed(2) + '× body weight)'; });
+    var average = valid.reduce(function (sum, item) { return sum + item[1] / bodyWeight; }, 0) / valid.length;
+    showResult('result', average.toFixed(2) + '× average', 'Body-weight-relative lift summary', details.join(' | ') + '. Strength standards depend on lift, sex, age, technique, equipment, and training population, so this tool does not assign a universal rank.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

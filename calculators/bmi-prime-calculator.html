@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">BMI Prime Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your BMI Prime — a refined BMI measure showing how you compare to the upper healthy limit.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your BMI Prime — a refined BMI measure showing how you compare to the upper healthy limit.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -277,7 +277,7 @@
 <div class="container">
 <section class="seo-section fade-in">
 <h2>Related Calculators You Might Find Useful</h2>
-<div class="related-calcs-grid"><a href="/calculators/bmi-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="28" width="36" height="14" rx="3" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 28v-8a8 8 0 0 1 16 0v8" stroke="#52b788" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="35" r="2" fill="#2d6a4f"/></svg></div><div><h4>BMI Calculator</h4><p>Calculate your Body Mass Index based on height and weight.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/ideal-weight-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="24" cy="24" r="8" stroke="#52b788" stroke-width="2"/><circle cx="24" cy="24" r="3" fill="#2d6a4f"/></svg></div><div><h4>Ideal Weight Calculator</h4><p>Find your ideal weight range based on height and frame size.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/body-fat-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="11" r="5" stroke="#2d6a4f" stroke-width="2.5"/><path d="M15 20h18l-2 20H17L15 20z" stroke="#2d6a4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M19 26h10M20 32h8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Body Fat Calculator</h4><p>Estimate your body fat percentage using body measurements.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
+<div class="related-calcs-grid"><a href="/calculators/bmi-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="28" width="36" height="14" rx="3" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 28v-8a8 8 0 0 1 16 0v8" stroke="#52b788" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="35" r="2" fill="#2d6a4f"/></svg></div><div><h4>BMI Calculator</h4><p>Calculate your Body Mass Index based on height and weight.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/ideal-weight-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="24" cy="24" r="8" stroke="#52b788" stroke-width="2"/><circle cx="24" cy="24" r="3" fill="#2d6a4f"/></svg></div><div><h4>Ideal Weight Calculator</h4><p>Review the historical Devine reference-weight formula and its limits.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/body-fat-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="11" r="5" stroke="#2d6a4f" stroke-width="2.5"/><path d="M15 20h18l-2 20H17L15 20z" stroke="#2d6a4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M19 26h10M20 32h8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Body Fat Calculator</h4><p>Estimate your body fat percentage using body measurements.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
 </section>
 </div>
 </section>
@@ -459,7 +459,16 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value)/100;if(!w||!h){alert('Fill all fields');return;}var bmi=w/(h*h);var bmiPrime=(bmi/25).toFixed(2);var c=bmiPrime<=1.0?'green':bmiPrime<=1.2?'yellow':'red';var l=bmiPrime<0.74?'Underweight':bmiPrime<=1.0?'Optimal':bmiPrime<=1.2?'Overweight':'Obese';showResult('result',bmiPrime,'BMI Prime','BMI: '+bmi.toFixed(1)+' | BMI Prime: '+bmiPrime+'. A BMI Prime of 1.0 means your BMI exactly equals the upper healthy limit (25). Values below 1.0 are healthy; above 1.0 indicates excess weight. This measure makes it easy to see how far from optimal your weight is.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var weight = parseFloat(document.getElementById('weight').value);
+    var height = parseFloat(document.getElementById('height').value) / 100;
+    if (!Number.isFinite(weight) || weight <= 0 || !Number.isFinite(height) || height <= 0) { alert('Enter valid weight and height'); return; }
+    var bmi = weight / (height * height);
+    var prime = bmi / 25;
+    var color = prime < 0.74 ? 'yellow' : prime <= 1 ? 'green' : prime <= 1.2 ? 'yellow' : 'red';
+    var label = bmi < 18.5 ? 'Below adult healthy range' : bmi < 25 ? 'Within adult healthy range' : bmi < 30 ? 'Above adult healthy range' : 'Obesity range';
+    showResult('result', prime.toFixed(2), 'BMI Prime: ' + label, 'BMI ' + bmi.toFixed(1) + ' divided by 25 equals ' + prime.toFixed(2) + '. This screening measure is for adults and does not diagnose health status.', color);
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Calcium Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your daily calcium requirements.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your daily calcium requirements.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -487,7 +487,12 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var a=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;if(!a){alert('Enter age');return;}var ca=1000;if(a<=18)ca=1300;if(a>50&&g==='Female')ca=1200;if(a>70)ca=1200;showResult('result',ca+' mg','Daily Calcium','You need approximately '+ca+' mg of calcium per day. Good sources include dairy, leafy greens, fortified foods, and almonds. Vitamin D helps calcium absorption.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var age = parseFloat(document.getElementById('age').value); var sex = document.getElementById('gender').value;
+    if (!Number.isFinite(age) || age < 1 || age > 120) { alert('Enter a valid age'); return; }
+    var calcium = age <= 3 ? 700 : age <= 8 ? 1000 : age <= 18 ? 1300 : age <= 50 ? 1000 : age <= 70 ? (sex === 'Female' ? 1200 : 1000) : 1200;
+    showResult('result', calcium + ' mg/day', 'Calcium RDA', 'Reference amount for age ' + age + ' and ' + sex.toLowerCase() + ' sex. This is total intake from food and supplements; medical conditions and medications can change advice.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

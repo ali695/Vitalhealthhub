@@ -8,7 +8,8 @@
     "content:validate": "node scripts/validate-all-content.js",
     "sitemap": "node scripts/generate-sitemap.js",
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test:calculators && npm run content:validate",
+    "test:calculators": "node scripts/validate-calculators.js && node scripts/test-calculator-formulas.js"
   },
   "keywords": [],
   "author": "",

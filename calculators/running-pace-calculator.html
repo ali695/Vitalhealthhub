@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Running Pace Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your running pace, speed, and finish times.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your running pace, speed, and finish times.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -486,7 +486,16 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var d=parseFloat(document.getElementById('distance').value);var t=parseFloat(document.getElementById('time').value);if(!d||!t){alert('Fill fields');return;}var pace=(t/d).toFixed(2);var speed=(d/(t/60)).toFixed(1);var min=Math.floor(pace);var sec=Math.round((pace-min)*60);showResult('result',min+':'+((sec<10)?'0':'')+sec+'/km','Running Pace','Your pace is '+min+':'+((sec<10)?'0':'')+sec+' per km ('+speed+' km/h). 5K estimate: '+Math.round(pace*5)+' min | 10K: '+Math.round(pace*10)+' min | Half Marathon: '+Math.round(pace*21.1)+' min.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var distance = parseFloat(document.getElementById('distance').value);
+    var time = parseFloat(document.getElementById('time').value);
+    if (!Number.isFinite(distance) || distance <= 0 || !Number.isFinite(time) || time <= 0) { alert('Enter a valid distance and time'); return; }
+    var paceSeconds = Math.round(time * 60 / distance);
+    var minutes = Math.floor(paceSeconds / 60);
+    var seconds = paceSeconds % 60;
+    var speed = distance / (time / 60);
+    showResult('result', minutes + ':' + (seconds < 10 ? '0' : '') + seconds + '/km', 'Average running pace', 'Average speed: ' + speed.toFixed(1) + ' km/h. Same-pace projections: 5 km ' + Math.round(paceSeconds * 5 / 60) + ' min; 10 km ' + Math.round(paceSeconds * 10 / 60) + ' min. Longer-race performance usually slows, so these are not race predictions.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

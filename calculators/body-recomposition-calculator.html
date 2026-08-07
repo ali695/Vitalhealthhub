@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Body Recomposition Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate calories and macros for simultaneous fat loss and muscle gain (body recomposition).</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate calories and macros for simultaneous fat loss and muscle gain (body recomposition).</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,13 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var a=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;var act=document.getElementById('activity').value;var bf=parseFloat(document.getElementById('bodyfat').value)||20;if(!w||!h||!a){alert('Fill all fields');return;}var bmr=g==='Male'?10*w+6.25*h-5*a+5:10*w+6.25*h-5*a-161;var m={'Sedentary':1.2,'Lightly Active':1.375,'Moderately Active':1.55,'Very Active':1.725};var tdee=Math.round(bmr*(m[act]||1.375));var recompCal=Math.round(tdee*0.95);var protein=Math.round(w*2.2);var fat=Math.round(w*0.8);var carbCal=recompCal-protein*4-fat*9;var carbs=Math.max(50,Math.round(carbCal/4));showResult('result',recompCal+' kcal','Body Recomposition Targets','TDEE: '+tdee+' kcal → Recomp: '+recompCal+' kcal (5% deficit) | Protein: '+protein+'g | Fat: '+fat+'g | Carbs: '+carbs+'g. Training: 3-4x strength + 2-3x cardio/week. Expect slow progress (1-2 lbs fat loss/month) but simultaneous muscle gain. Best for beginners and those returning to training.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var weight = parseFloat(document.getElementById('weight').value); var height = parseFloat(document.getElementById('height').value); var age = parseFloat(document.getElementById('age').value); var sex = document.getElementById('gender').value; var activity = document.getElementById('activity').value;
+    if (!Number.isFinite(weight) || weight <= 0 || !Number.isFinite(height) || height <= 0 || !Number.isFinite(age) || age < 18) { alert('Enter valid adult measurements'); return; }
+    var bmr = sex === 'Male' ? 10 * weight + 6.25 * height - 5 * age + 5 : 10 * weight + 6.25 * height - 5 * age - 161; var multipliers = {'Sedentary': 1.2, 'Lightly Active': 1.375, 'Moderately Active': 1.55, 'Very Active': 1.725}; var maintenance = Math.round(bmr * (multipliers[activity] || 1.375));
+    var proteinLow = Math.round(weight * 1.6); var proteinHigh = Math.round(weight * 2.2);
+    showResult('result', '~' + maintenance + ' kcal/day', 'Recomposition starting estimates', 'Estimated maintenance energy: ' + maintenance + ' kcal/day; protein reference range: ' + proteinLow + '–' + proteinHigh + ' g/day. A fixed 5% deficit does not guarantee recomposition; adjust from measured trends and resistance-training performance.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

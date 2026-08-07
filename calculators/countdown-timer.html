@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Countdown Timer</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Set a countdown timer for any duration — live real-time countdown in your browser.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Set a countdown timer for any duration — live real-time countdown in your browser.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,11 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ (function(){var h=parseInt(document.getElementById('hours').value)||0;var m=parseInt(document.getElementById('minutes').value)||0;var s=parseInt(document.getElementById('seconds').value)||0;var total=h*3600+m*60+s;if(!total){alert('Enter a time duration');return;}var end=Date.now()+total*1000;var rb=document.getElementById('result');rb.style.display='block';rb.querySelector('.result-label').textContent='Countdown Running';clearInterval(window._cdTimer);window._cdTimer=setInterval(function(){var rem=Math.max(0,Math.floor((end-Date.now())/1000));var rh=Math.floor(rem/3600);var rm=Math.floor((rem%3600)/60);var rs=rem%60;rb.querySelector('.result-value').textContent=(rh?rh+'h ':'')+rm+'m '+rs+'s';rb.querySelector('.result-suggestion').textContent='Timer running — stay focused and make the most of your time!';if(rem<=0){clearInterval(window._cdTimer);rb.querySelector('.result-label').textContent='Time Is Up!';rb.querySelector('.result-value').textContent='DONE';rb.querySelector('.result-suggestion').textContent='Your countdown has finished! Great work.';}},1000);})() };</script>
+<script>window._vhCalcFn=function () {
+    var hours = parseInt(document.getElementById('hours').value, 10) || 0; var minutes = parseInt(document.getElementById('minutes').value, 10) || 0; var seconds = parseInt(document.getElementById('seconds').value, 10) || 0;
+    if ([hours, minutes, seconds].some(function (value) { return value < 0; }) || minutes > 59 || seconds > 59) { alert('Use non-negative hours and 0–59 minutes/seconds'); return; } var total = hours * 3600 + minutes * 60 + seconds; if (!total) { alert('Enter a time duration'); return; }
+    var end = Date.now() + total * 1000; var box = document.getElementById('result'); box.style.display = 'block'; box.className = 'result-box show green'; clearInterval(window._cdTimer); window._cdTimer = setInterval(function () { var remaining = Math.max(0, Math.ceil((end - Date.now()) / 1000)); var h = Math.floor(remaining / 3600); var m = Math.floor(remaining % 3600 / 60); var s = remaining % 60; box.querySelector('.result-value').textContent = (h ? h + 'h ' : '') + m + 'm ' + s + 's'; box.querySelector('.result-label').textContent = remaining ? 'Countdown running' : 'Time is up'; box.querySelector('.result-suggestion').textContent = remaining ? 'The timer continues while this page remains open.' : 'Countdown finished.'; if (!remaining) clearInterval(window._cdTimer); }, 250);
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

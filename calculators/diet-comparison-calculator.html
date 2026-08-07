@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Diet Comparison Tool</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Compare macronutrient ratios and calorie distribution across popular diets.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Compare macronutrient ratios and calorie distribution across popular diets.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,22 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var cal=parseFloat(document.getElementById('calories').value)||2000;var w=parseFloat(document.getElementById('weight').value)||75;var diet=document.getElementById('diet').value;var profiles={'Standard Western':{p:0.15,c:0.55,f:0.30,score:4},'Mediterranean':{p:0.20,c:0.50,f:0.30,score:9},'Ketogenic':{p:0.20,c:0.05,f:0.75,score:7},'High Protein':{p:0.35,c:0.40,f:0.25,score:8},'Plant-Based':{p:0.15,c:0.60,f:0.25,score:9},'Paleo':{p:0.30,c:0.35,f:0.35,score:7},'Low Carb':{p:0.30,c:0.20,f:0.50,score:7},'Intermittent Fasting (16:8)':{p:0.25,c:0.45,f:0.30,score:8}};var d=profiles[diet];var pg=Math.round(cal*d.p/4);var cg=Math.round(cal*d.c/4);var fg=Math.round(cal*d.f/9);showResult('result',diet,'Diet Profile',diet+' macros at '+cal+' kcal: Protein '+pg+'g ('+Math.round(d.p*100)+'%) | Carbs '+cg+'g ('+Math.round(d.c*100)+'%) | Fat '+fg+'g ('+Math.round(d.f*100)+'%). Evidence score: '+d.score+'/10. Best for: '+({'Standard Western':'convenience (not health-optimized)','Mediterranean':'heart health, longevity, sustainability','Ketogenic':'rapid fat loss, epilepsy, insulin resistance','High Protein':'muscle building, satiety, weight loss','Plant-Based':'environmental impact, cardiovascular health','Paleo':'whole food approach, reducing processed foods','Low Carb':'blood sugar control, weight loss','Intermittent Fasting (16:8)':'metabolic flexibility, simplicity'}[diet]||'general health'),'green'); };</script>
+<script>window._vhCalcFn=function () {
+    var calories = parseFloat(document.getElementById('calories').value);
+    var diet = document.getElementById('diet').value;
+    if (!Number.isFinite(calories) || calories < 800 || calories > 10000) { alert('Enter a valid daily calorie amount'); return; }
+    var profiles = {
+      'Standard Western': [0.15, 0.55, 0.30], 'Mediterranean': [0.20, 0.50, 0.30], 'Ketogenic': [0.20, 0.05, 0.75],
+      'High Protein': [0.35, 0.40, 0.25], 'Plant-Based': [0.15, 0.60, 0.25], 'Paleo': [0.30, 0.35, 0.35],
+      'Low Carb': [0.30, 0.20, 0.50], 'Intermittent Fasting (16:8)': [0.25, 0.45, 0.30]
+    };
+    var profile = profiles[diet];
+    if (!profile) { alert('Choose a diet pattern'); return; }
+    var protein = Math.round(calories * profile[0] / 4);
+    var carbs = Math.round(calories * profile[1] / 4);
+    var fat = Math.round(calories * profile[2] / 9);
+    showResult('result', diet, 'Illustrative macro profile', 'At ' + calories + ' kcal: approximately ' + protein + ' g protein, ' + carbs + ' g carbohydrate, and ' + fat + ' g fat. These are example ratios, not an evidence ranking or personalized prescription.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

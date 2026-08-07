@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Sodium Intake Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your recommended daily sodium intake and check if your current intake is safe.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your recommended daily sodium intake and check if your current intake is safe.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -277,7 +277,7 @@
 <div class="container">
 <section class="seo-section fade-in">
 <h2>Related Calculators You Might Find Useful</h2>
-<div class="related-calcs-grid"><a href="/calculators/blood-pressure-checker.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 40s-14-8.4-14-18c0-5.5 4.5-10 10-10 3.5 0 6.5 2 8 4a10 10 0 0 1 8-4c5.5 0 10 4.5 10 10 0 9.6-14 18-14 18z" stroke="#2d6a4f" stroke-width="2.5" fill="none"/></svg></div><div><h4>Blood Pressure Checker</h4><p>Check if your blood pressure reading is in a healthy range.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/water-intake-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6c0 0-12 14-12 22a12 12 0 0 0 24 0c0-8-12-22-12-22z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 30c0-3.3 2.7-6 6-6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M30 36l4-4" stroke="#52b788" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><h4>Water Intake Calculator</h4><p>Find out how much water you should drink daily.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/heart-age-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 40s-14-8.4-14-18c0-5.5 4.5-10 10-10 3.5 0 6.5 2 8 4a10 10 0 0 1 8-4c5.5 0 10 4.5 10 10 0 9.6-14 18-14 18z" stroke="#2d6a4f" stroke-width="2.5" fill="none"/></svg></div><div><h4>Heart Age Calculator</h4><p>Estimate your cardiovascular heart age based on key risk factors.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
+<div class="related-calcs-grid"><a href="/calculators/blood-pressure-checker.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 40s-14-8.4-14-18c0-5.5 4.5-10 10-10 3.5 0 6.5 2 8 4a10 10 0 0 1 8-4c5.5 0 10 4.5 10 10 0 9.6-14 18-14 18z" stroke="#2d6a4f" stroke-width="2.5" fill="none"/></svg></div><div><h4>Blood Pressure Checker</h4><p>Check if your blood pressure reading is in a healthy range.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/water-intake-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6c0 0-12 14-12 22a12 12 0 0 0 24 0c0-8-12-22-12-22z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 30c0-3.3 2.7-6 6-6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M30 36l4-4" stroke="#52b788" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><h4>Water Intake Calculator</h4><p>Review a rough total-fluid starting range and factors that change it.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/heart-age-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 40s-14-8.4-14-18c0-5.5 4.5-10 10-10 3.5 0 6.5 2 8 4a10 10 0 0 1 8-4c5.5 0 10 4.5 10 10 0 9.6-14 18-14 18z" stroke="#2d6a4f" stroke-width="2.5" fill="none"/></svg></div><div><h4>Heart Health Factor Checklist</h4><p>Estimate your cardiovascular heart age based on key risk factors.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
 </section>
 </div>
 </section>
@@ -459,7 +459,17 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var curr=parseFloat(document.getElementById('current').value)||2500;var cond=document.getElementById('condition').value;var ex=document.getElementById('exercise').value;var rec=cond==='Healthy Adult'?2300:1500;if(ex==='Active (5+ hrs/week)')rec+=500;var diff=curr-rec;var c=curr<=rec?'green':curr<=rec*1.3?'yellow':'red';var l=curr<=rec?'Within Safe Range':curr<=rec*1.3?'Slightly Over':'Significantly Over';var s='Recommended daily limit: '+rec+' mg. Current intake: '+curr+' mg. '+(diff>0?'You are consuming '+diff+' mg more than recommended. Reduce processed foods, canned goods, and restaurant meals.':'You are '+Math.abs(diff)+' mg under the limit. Good job managing your sodium!');showResult('result',curr+' mg/day',l,s,c); };</script>
+<script>window._vhCalcFn=function () {
+    var current = parseFloat(document.getElementById('current').value);
+    var condition = document.getElementById('condition').value;
+    if (!Number.isFinite(current) || current < 0 || current > 30000) { alert('Enter a valid estimated sodium intake'); return; }
+    var limit = 2300;
+    var color = current <= limit ? 'green' : current <= limit * 1.3 ? 'yellow' : 'red';
+    var note = 'General adult limit used here: less than 2,300 mg/day. Your estimate is ' + Math.abs(current - limit).toFixed(0) + ' mg ' + (current > limit ? 'above' : 'below') + ' that level.';
+    if (condition !== 'Healthy Adult') note += ' A fixed 1,500 mg target should not be assigned solely from this dropdown; ask your clinician for an individualized target.';
+    note += ' Heavy prolonged exercise can change replacement needs, but this tool does not add an arbitrary exercise allowance.';
+    showResult('result', current.toFixed(0) + ' mg/day', current <= limit ? 'At or below general limit' : 'Above general limit', note, color);
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

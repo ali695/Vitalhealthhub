@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Ovulation Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Predict your most fertile days for conception planning.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Predict your most fertile days for conception planning.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -474,7 +474,17 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var lmp=document.getElementById('lmp').value;var cl=parseFloat(document.getElementById('cycle').value)||28;if(!lmp){alert('Enter date');return;}var d=new Date(lmp);var ov=new Date(d);ov.setDate(ov.getDate()+cl-14);var fs=new Date(ov);fs.setDate(fs.getDate()-2);var fe=new Date(ov);fe.setDate(fe.getDate()+1);var fmt=function(dt){return(dt.getMonth()+1)+'/'+dt.getDate();};showResult('result',fmt(ov),'Estimated Ovulation Date','Your fertile window is approximately '+fmt(fs)+' to '+fmt(fe)+'. Ovulation likely occurs around '+fmt(ov)+'. Track symptoms like cervical mucus changes and basal body temperature for better accuracy.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var raw = document.getElementById('lmp').value;
+    var cycle = parseFloat(document.getElementById('cycle').value);
+    if (!raw || !Number.isFinite(cycle) || cycle < 21 || cycle > 45) { alert('Enter a period start date and a typical cycle length from 21 to 45 days'); return; }
+    var start = new Date(raw + 'T00:00:00');
+    var ovulation = new Date(start); ovulation.setDate(ovulation.getDate() + cycle - 14);
+    var fertileStart = new Date(ovulation); fertileStart.setDate(fertileStart.getDate() - 5);
+    var fertileEnd = new Date(ovulation); fertileEnd.setDate(fertileEnd.getDate() + 1);
+    var format = function (date) { return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear(); };
+    showResult('result', format(ovulation), 'Estimated ovulation date', 'Estimated fertile window: ' + format(fertileStart) + ' to ' + format(fertileEnd) + '. Calendar estimates are unreliable with irregular cycles and cannot prevent or confirm pregnancy.', 'yellow');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

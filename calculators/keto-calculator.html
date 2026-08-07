@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Keto Macro Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your ideal macros for a ketogenic diet.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your ideal macros for a ketogenic diet.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -493,7 +493,14 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var cal=parseFloat(document.getElementById('calories').value);var w=parseFloat(document.getElementById('weight').value);var pp=document.getElementById('protein').value;if(!cal||!w){alert('Fill fields');return;}var pmult=parseFloat(pp);var protein=Math.round(w*pmult);var netCarbs=25;var carbCal=netCarbs*4;var protCal=protein*4;var fatCal=cal-carbCal-protCal;var fat=Math.round(fatCal/9);showResult('result','F:'+fat+'g P:'+protein+'g C:'+netCarbs+'g','Keto Macros','Fat: '+fat+'g ('+Math.round(fatCal/cal*100)+'%) | Protein: '+protein+'g ('+Math.round(protCal/cal*100)+'%) | Net Carbs: '+netCarbs+'g ('+Math.round(carbCal/cal*100)+'%). Keep net carbs under 25-50g to maintain ketosis.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var calories = parseFloat(document.getElementById('calories').value); var weight = parseFloat(document.getElementById('weight').value); var proteinMultiplier = parseFloat(document.getElementById('protein').value);
+    if (!Number.isFinite(calories) || calories < 800 || !Number.isFinite(weight) || weight <= 0 || !Number.isFinite(proteinMultiplier) || proteinMultiplier <= 0) { alert('Enter valid calories, weight, and protein target'); return; }
+    var protein = Math.round(weight * proteinMultiplier); var carbs = 25; var fatCalories = calories - protein * 4 - carbs * 4;
+    if (fatCalories <= 0) { alert('The calorie target is too low for the selected protein and carbohydrate amounts'); return; }
+    var fat = Math.round(fatCalories / 9);
+    showResult('result', 'P ' + protein + 'g | C ' + carbs + 'g | F ' + fat + 'g', 'Illustrative ketogenic macro split', 'This arithmetic fills remaining calories with fat after the selected protein target and 25 g net carbohydrate. It does not confirm ketosis or medical suitability.', 'yellow');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

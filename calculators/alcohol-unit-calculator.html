@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Alcohol Unit Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate alcohol units and calories in your drinks.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate alcohol units and calories in your drinks.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -490,7 +490,16 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var v=parseFloat(document.getElementById('volume').value);var abv=parseFloat(document.getElementById('abv').value);var n=parseFloat(document.getElementById('drinks').value)||1;if(!v||!abv){alert('Fill fields');return;}var units=((v*abv/1000)*n).toFixed(1);var cal=Math.round(units*80);var c='green',l='Moderate',s='Stay within recommended limits of 14 units per week.';if(units>6){c='red';l='Excessive';s='This amount significantly exceeds single-session guidelines. Consider reducing intake.';}else if(units>3){c='yellow';l='Above Moderate';s='This is above moderate levels. Consider pacing yourself and drinking water between drinks.';}showResult('result',units+' units','Alcohol Intake: '+l,s+' Estimated calories: '+cal+' kcal.',c); };</script>
+<script>window._vhCalcFn=function () {
+    var volume = parseFloat(document.getElementById('volume').value);
+    var abv = parseFloat(document.getElementById('abv').value);
+    var drinks = parseFloat(document.getElementById('drinks').value);
+    if (!Number.isFinite(volume) || volume <= 0 || !Number.isFinite(abv) || abv <= 0 || abv > 100 || !Number.isFinite(drinks) || drinks <= 0) { alert('Enter valid drink volume, ABV, and count'); return; }
+    var units = volume * abv / 1000 * drinks;
+    var grams = units * 8;
+    var alcoholCalories = grams * 7;
+    showResult('result', units.toFixed(1) + ' UK units', 'Pure alcohol estimate', grams.toFixed(1) + ' g alcohol and at least ' + Math.round(alcoholCalories) + ' kcal from alcohol alone. This does not estimate impairment and excludes sugar or other drink calories.', units > 6 ? 'red' : units > 3 ? 'yellow' : 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

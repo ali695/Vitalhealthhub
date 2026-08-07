@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Ideal Weight Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Find your ideal weight range based on height and frame size.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Review the historical Devine reference-weight formula and its limits.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -497,7 +497,12 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var h=parseFloat(document.getElementById('height').value);var g=document.getElementById('gender').value;if(!h){alert('Enter height');return;}var hi=h/2.54;var iw;if(g==='Male'){iw=50+2.3*(hi-60);}else{iw=45.5+2.3*(hi-60);}var lo=Math.round(iw*0.9);var up=Math.round(iw*1.1);iw=Math.round(iw);showResult('result',lo+'-'+up+' kg','Ideal Weight Range','Your ideal weight range is '+lo+'-'+up+' kg based on the Devine formula. Individual factors like muscle mass and frame size also matter.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var height = parseFloat(document.getElementById('height').value); var sex = document.getElementById('gender').value;
+    if (!Number.isFinite(height) || height < 152.4 || height > 250) { alert('The Devine formula is intended for heights of at least 152.4 cm (5 ft)'); return; }
+    var inches = height / 2.54; var estimate = (sex === 'Male' ? 50 : 45.5) + 2.3 * (inches - 60);
+    showResult('result', estimate.toFixed(1) + ' kg', 'Devine formula estimate', 'This historical formula gives one reference value, not a medically ideal weight or a 10% “ideal range.” Body composition, health, and individual context are not included.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

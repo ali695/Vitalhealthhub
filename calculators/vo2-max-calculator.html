@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">VO2 Max Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Estimate your VO2 max aerobic fitness level.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Estimate your VO2 max aerobic fitness level.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -482,7 +482,12 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var a=parseFloat(document.getElementById('age').value);var g=document.getElementById('gender').value;var rhr=parseFloat(document.getElementById('rhr').value);if(!a||!rhr){alert('Fill fields');return;}var vo2=15.3*(220-a)/rhr;vo2=vo2.toFixed(1);var c='green',l='Good Fitness',s='Your VO2 max suggests good cardiovascular fitness.';if(vo2<30){c='red';l='Below Average';s='Your VO2 max is below average. Regular cardio exercise can significantly improve this.';}else if(vo2<40){c='yellow';l='Average';s='Your VO2 max is average. Incorporate more aerobic training to improve.';}else if(vo2>50){l='Excellent';s='Excellent cardiovascular fitness! Keep up your training routine.';}showResult('result',vo2+' ml/kg/min',l,s,c); };</script>
+<script>window._vhCalcFn=function () {
+    var age = parseFloat(document.getElementById('age').value); var resting = parseFloat(document.getElementById('rhr').value);
+    if (!Number.isFinite(age) || age < 18 || age > 100 || !Number.isFinite(resting) || resting < 30 || resting > 220) { alert('Enter valid adult age and resting heart rate'); return; }
+    var maxHeartRate = 208 - 0.7 * age; var estimate = 15.3 * maxHeartRate / resting;
+    showResult('result', estimate.toFixed(1) + ' mL/kg/min', 'Non-exercise VO₂ max estimate', 'Uses estimated maximum heart rate (208 − 0.7 × age) and resting heart rate. It is not a measured exercise-test result, and age/sex fitness categories are intentionally not assigned from this limited estimate.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

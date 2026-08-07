@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Age Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your exact age in years, months, days and weeks.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your exact age in years, months, days and weeks.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -277,7 +277,7 @@
 <div class="container">
 <section class="seo-section fade-in">
 <h2>Related Calculators You Might Find Useful</h2>
-<div class="related-calcs-grid"><a href="/calculators/birthday-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="12" r="6" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 22h16v4l-4 14h-2l-2-10-2 10h-2l-4-14v-4z" stroke="#2d6a4f" stroke-width="2" fill="none"/></svg></div><div><h4>Birthday Calculator</h4><p>Find days until your next birthday and fun birthday stats.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/date-difference-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="12" r="6" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 22h16v4l-4 14h-2l-2-10-2 10h-2l-4-14v-4z" stroke="#2d6a4f" stroke-width="2" fill="none"/></svg></div><div><h4>Date Difference Calculator</h4><p>Calculate the exact difference between two dates in days, weeks, months and years.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/biological-age-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="12" r="6" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 22h16v4l-4 14h-2l-2-10-2 10h-2l-4-14v-4z" stroke="#2d6a4f" stroke-width="2" fill="none"/></svg></div><div><h4>Biological Age Calculator</h4><p>Estimate your biological age vs chronological age.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
+<div class="related-calcs-grid"><a href="/calculators/birthday-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="12" r="6" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 22h16v4l-4 14h-2l-2-10-2 10h-2l-4-14v-4z" stroke="#2d6a4f" stroke-width="2" fill="none"/></svg></div><div><h4>Birthday Calculator</h4><p>Find days until your next birthday and fun birthday stats.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/date-difference-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="12" r="6" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 22h16v4l-4 14h-2l-2-10-2 10h-2l-4-14v-4z" stroke="#2d6a4f" stroke-width="2" fill="none"/></svg></div><div><h4>Date Difference Calculator</h4><p>Calculate the exact difference between two dates in days, weeks, months and years.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/biological-age-calculator.html" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="12" r="6" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 22h16v4l-4 14h-2l-2-10-2 10h-2l-4-14v-4z" stroke="#2d6a4f" stroke-width="2" fill="none"/></svg></div><div><h4>Healthy Aging Habit Checklist</h4><p>Estimate your biological age vs chronological age.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
 </section>
 </div>
 </section>
@@ -459,7 +459,23 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var dob=new Date(document.getElementById('dob').value);if(!document.getElementById('dob').value){alert('Enter your date of birth');return;}var now=new Date();var y=now.getFullYear()-dob.getFullYear();var mo=now.getMonth()-dob.getMonth();var d=now.getDate()-dob.getDate();if(d<0){mo--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}if(mo<0){y--;mo+=12;}var td=Math.floor((now-dob)/86400000);var nextBd=new Date(now.getFullYear(),dob.getMonth(),dob.getDate());if(nextBd<=now)nextBd.setFullYear(now.getFullYear()+1);var daysLeft=Math.ceil((nextBd-now)/86400000);showResult('result',y+' years '+mo+'mo '+d+'d','Your Exact Age','You are '+y+' years, '+mo+' months, and '+d+' days old — about '+td.toLocaleString()+' total days ('+Math.round(td/7).toLocaleString()+' weeks). Next birthday in '+daysLeft+' days.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var raw = document.getElementById('dob').value;
+    if (!raw) { alert('Enter your date of birth'); return; }
+    var birth = new Date(raw + 'T00:00:00');
+    var today = new Date();
+    if (Number.isNaN(birth.getTime()) || birth > today) { alert('Enter a valid past date'); return; }
+    var years = today.getFullYear() - birth.getFullYear();
+    var months = today.getMonth() - birth.getMonth();
+    var days = today.getDate() - birth.getDate();
+    if (days < 0) { months -= 1; var previousMonth = new Date(today.getFullYear(), today.getMonth(), 0); days += previousMonth.getDate(); }
+    if (months < 0) { years -= 1; months += 12; }
+    var totalDays = Math.floor((Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(birth.getFullYear(), birth.getMonth(), birth.getDate())) / 86400000);
+    var next = new Date(today.getFullYear(), birth.getMonth(), birth.getDate());
+    if (next < today || next.toDateString() === today.toDateString()) next.setFullYear(today.getFullYear() + 1);
+    var daysLeft = Math.ceil((Date.UTC(next.getFullYear(), next.getMonth(), next.getDate()) - Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())) / 86400000);
+    showResult('result', years + ' years ' + months + 'mo ' + days + 'd', 'Calendar age', totalDays.toLocaleString() + ' complete days since birth. Next birthday in ' + daysLeft + ' days.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

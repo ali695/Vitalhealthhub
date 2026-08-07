@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Fiber Intake Score</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your daily fiber intake and see if you are meeting recommended guidelines.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your daily fiber intake and see if you are meeting recommended guidelines.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var fr=parseFloat(document.getElementById('fruits').value)||0;var vg=parseFloat(document.getElementById('veggies').value)||0;var gr=parseFloat(document.getElementById('grains').value)||0;var lg=parseFloat(document.getElementById('legumes').value)||0;var nt=parseFloat(document.getElementById('nuts').value)||0;var total=Math.round(fr*2.5+vg*2.5+gr*3+lg*2+nt*2);var rec=30;var pct=Math.min(100,Math.round(total/rec*100));var c=total>=rec?'green':total>=rec*0.7?'yellow':'red';var l=total>=rec?'Meeting Goals':total>=rec*0.7?'Almost There':'Below Target';showResult('result',total+'g/day',l+'  ('+pct+'% of '+rec+'g target)','Most adults get only 15g/day vs the recommended 25-38g. '+(total<rec?'Increase legumes (highest fiber), add a handful of nuts, swap refined grains for whole grains, and load up on vegetables.':'Excellent! Your fiber intake supports digestive health, blood sugar control, and cardiovascular health.'),'green'); };</script>
+<script>window._vhCalcFn=function () {
+    var fruit = parseFloat(document.getElementById('fruits').value) || 0; var vegetables = parseFloat(document.getElementById('veggies').value) || 0; var grains = parseFloat(document.getElementById('grains').value) || 0; var legumes = parseFloat(document.getElementById('legumes').value) || 0; var nuts = parseFloat(document.getElementById('nuts').value) || 0; if ([fruit, vegetables, grains, legumes, nuts].some(function (value) { return value < 0; })) { alert('Enter non-negative servings'); return; } var estimate = fruit * 2.5 + vegetables * 2.5 + grains * 3 + legumes * 7 + nuts * 3;
+    showResult('result', '~' + Math.round(estimate) + ' g/day', 'Serving-based fiber estimate', 'Uses broad assumptions per serving, so package labels or a food database will be more accurate. Adult reference amounts commonly range from about 21 to 38 g/day depending on age and sex.', estimate >= 25 ? 'green' : 'yellow');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

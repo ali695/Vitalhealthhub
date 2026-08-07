@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Vitamin D Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Estimate your daily vitamin D needs.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Estimate your daily vitamin D needs.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -498,7 +498,12 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var a=parseFloat(document.getElementById('age').value);var sun=document.getElementById('sun').value;var skin=document.getElementById('skin').value;if(!a){alert('Enter age');return;}var iu=600;if(a>70)iu=800;if(sun==='Minimal (< 10 min/day)')iu+=400;if(skin==='Dark')iu+=200;showResult('result',iu+' IU','Daily Vitamin D','Your estimated daily vitamin D need is '+iu+' IU. Consider food sources like fatty fish, fortified milk, and eggs. Talk to your doctor about testing your levels.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var age = parseFloat(document.getElementById('age').value);
+    if (!Number.isFinite(age) || age < 1 || age > 120) { alert('Enter a valid age'); return; }
+    var amount = age > 70 ? 800 : 600;
+    showResult('result', amount + ' IU (15' + (age > 70 ? '–20' : '') + ' mcg)', 'General daily reference amount', 'The adult reference amount is 600 IU through age 70 and 800 IU after 70. Sun exposure and skin tone do not translate into a safe supplement dose; testing, diet, medications, and medical history should guide individualized advice.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

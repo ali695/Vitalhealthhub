@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Macro Timing Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate optimal macronutrient distribution for pre-workout, post-workout, and other meals.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate optimal macronutrient distribution for pre-workout, post-workout, and other meals.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var cal=parseFloat(document.getElementById('calories').value);var prot=parseFloat(document.getElementById('protein').value);var meals=Math.max(2,Math.min(6,parseFloat(document.getElementById('meals').value)||4));var wt=document.getElementById('workouttime').value;if(!cal||!prot){alert('Fill all fields');return;}var preCal=Math.round(cal*0.25);var postCal=Math.round(cal*0.30);var restCal=cal-preCal-postCal;var preCarbs=Math.round(preCal*0.5/4);var postCarbs=Math.round(postCal*0.4/4);var preP=Math.round(prot*0.2);var postP=Math.round(prot*0.35);var restP=prot-preP-postP;showResult('result',wt+' Workout','Meal Timing Guide','PRE-workout (1-2hr before): ~'+preCal+' kcal | '+preP+'g protein | '+preCarbs+'g carbs. POST-workout (within 1hr): ~'+postCal+' kcal | '+postP+'g protein | '+postCarbs+'g carbs. Remaining '+Math.round(restCal)+' kcal & '+restP+'g protein spread over other '+Math.max(1,meals-2)+' meal(s).','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var calories = parseFloat(document.getElementById('calories').value); var protein = parseFloat(document.getElementById('protein').value); var meals = parseInt(document.getElementById('meals').value, 10); var workout = document.getElementById('workouttime').value; if (!Number.isFinite(calories) || calories < 800 || !Number.isFinite(protein) || protein <= 0 || !Number.isInteger(meals) || meals < 2 || meals > 6) { alert('Enter valid calories, protein, and 2–6 meals'); return; } var perMeal = protein / meals;
+    showResult('result', '~' + Math.round(perMeal) + ' g protein/meal', 'Simple distribution plan', 'Spread ' + protein + ' g across ' + meals + ' meals around a ' + workout + ' workout. A practical per-meal average is ' + perMeal.toFixed(1) + ' g; there is no requirement for exactly 25% before and 35% within one hour after training.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

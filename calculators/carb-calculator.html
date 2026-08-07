@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Carb Intake Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Find your optimal daily carbohydrate intake.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Find your optimal daily carbohydrate intake.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -487,7 +487,12 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var cal=parseFloat(document.getElementById('calories').value);var goal=document.getElementById('goal').value;if(!cal){alert('Enter calories');return;}var pct={'Balanced':0.45,'Low Carb':0.25,'Keto':0.05,'High Performance':0.55};var carbs=Math.round(cal*(pct[goal]||0.45)/4);showResult('result',carbs+'g','Daily Carbs','You need approximately '+carbs+' grams of carbohydrates per day ('+Math.round((pct[goal]||0.45)*100)+'% of calories). Focus on complex carbs from whole grains, fruits, and vegetables.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var calories = parseFloat(document.getElementById('calories').value); var goal = document.getElementById('goal').value;
+    if (!Number.isFinite(calories) || calories < 800 || calories > 10000) { alert('Enter a valid calorie target'); return; }
+    var ranges = {'Balanced': [0.45, 0.65], 'Low Carb': [0.20, 0.35], 'Keto': [0.05, 0.10], 'High Performance': [0.50, 0.65]}; var range = ranges[goal] || ranges.Balanced; var low = Math.round(calories * range[0] / 4); var high = Math.round(calories * range[1] / 4);
+    showResult('result', low + '–' + high + ' g/day', 'Illustrative carbohydrate range', Math.round(range[0] * 100) + '–' + Math.round(range[1] * 100) + '% of entered calories. Medical conditions, training load, pregnancy, and medication can make restrictive patterns inappropriate.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

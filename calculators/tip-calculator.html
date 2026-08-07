@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Tip Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate how much to tip and split the bill among friends.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate how much to tip and split the bill among friends.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var bill=parseFloat(document.getElementById('bill').value);var tipPct=parseFloat(document.getElementById('tip').value);var people=parseFloat(document.getElementById('people').value)||1;if(!bill||isNaN(tipPct)){alert('Enter bill and tip %');return;}var tipAmt=bill*tipPct/100;var total=bill+tipAmt;var perPerson=total/people;showResult('result','$'+tipAmt.toFixed(2)+' tip','Bill Split','Total with '+tipPct+'% tip: $'+total.toFixed(2)+' | Per person ('+people+'): $'+perPerson.toFixed(2)+' | Tip per person: $'+(tipAmt/people).toFixed(2)+' | Just bill per person: $'+(bill/people).toFixed(2)+'','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var bill = parseFloat(document.getElementById('bill').value); var tipPercent = parseFloat(document.getElementById('tip').value); var people = parseInt(document.getElementById('people').value, 10); if (!Number.isFinite(bill) || bill < 0 || !Number.isFinite(tipPercent) || tipPercent < 0 || !Number.isInteger(people) || people < 1) { alert('Enter valid bill, tip percentage, and number of people'); return; } var tip = bill * tipPercent / 100; var total = bill + tip;
+    showResult('result', '$' + tip.toFixed(2) + ' tip', 'Bill split', 'Total: $' + total.toFixed(2) + ' | Per person: $' + (total / people).toFixed(2) + ' | Tip per person: $' + (tip / people).toFixed(2) + '.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

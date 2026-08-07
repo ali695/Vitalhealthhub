@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Step Goal Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your personalized daily step goal based on your health objectives.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Set a gradual next-step target from your current activity.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -459,7 +459,12 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var w=parseFloat(document.getElementById('weight').value);var h=parseFloat(document.getElementById('height').value);var goal=document.getElementById('goal').value;var curr=parseFloat(document.getElementById('current').value)||5000;var base={'General Health':8000,'Weight Loss':12000,'Heart Health':10000,'Active Lifestyle':10000,'Athletic Performance':15000}[goal]||10000;var strideM=(h*0.413)/100;var target=base;var calories=Math.round(target*0.04*w/70);var km=(target*strideM/1000).toFixed(1);var increase=Math.max(0,target-curr);showResult('result',target.toLocaleString()+' steps/day','Your Daily Step Goal','Goal: '+goal+' | Distance: ~'+km+' km | Calories: ~'+calories+' kcal | Increase from current: +'+increase.toLocaleString()+' steps. Tip: Increase by no more than 10% per week to avoid injury.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var height = parseFloat(document.getElementById('height').value); var current = parseFloat(document.getElementById('current').value); var goal = document.getElementById('goal').value;
+    if (!Number.isFinite(height) || height <= 0 || !Number.isFinite(current) || current < 0) { alert('Enter valid height and current steps'); return; }
+    var increase = current < 5000 ? 500 : current < 10000 ? 1000 : Math.round(current * 0.1); var target = Math.round((current + increase) / 100) * 100; var distance = target * (height * 0.413 / 100) / 1000;
+    showResult('result', target.toLocaleString() + ' steps/day', 'Gradual next target', 'Current: ' + current.toLocaleString() + '; suggested initial increase: ' + increase.toLocaleString() + ' steps. Approximate distance: ' + distance.toFixed(1) + ' km. There is no universal goal for ' + goal.toLowerCase() + '; adjust for ability, symptoms, and clinical advice.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

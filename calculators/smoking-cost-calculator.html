@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Smoking Cost Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. See how much smoking costs you financially and health-wise.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. See how much smoking costs you financially and health-wise.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -499,7 +499,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var pd=parseFloat(document.getElementById('perday').value);var pp=parseFloat(document.getElementById('price').value);var y=parseFloat(document.getElementById('years').value);if(!pd||!pp){alert('Fill fields');return;}var daily=(pd/20)*pp;var monthly=Math.round(daily*30);var yearly=Math.round(daily*365);var total=Math.round(daily*365*y);showResult('result','$'+yearly+'/year','Smoking Cost','Daily: $'+daily.toFixed(2)+' | Monthly: $'+monthly+' | Yearly: $'+yearly+' | Total spent: $'+total.toLocaleString()+' over '+y+' years. Quitting now saves money and adds years to your life.','red'); };</script>
+<script>window._vhCalcFn=function () {
+    var perDay = parseFloat(document.getElementById('perday').value); var packPrice = parseFloat(document.getElementById('price').value); var years = parseFloat(document.getElementById('years').value); if (!Number.isFinite(perDay) || perDay < 0 || !Number.isFinite(packPrice) || packPrice < 0 || !Number.isFinite(years) || years < 0) { alert('Enter non-negative cigarettes, price, and years'); return; } var daily = perDay / 20 * packPrice; var annual = daily * 365; var total = annual * years;
+    showResult('result', '$' + annual.toFixed(2) + '/year', 'Estimated cigarette cost', '$' + daily.toFixed(2) + '/day | $' + (daily * 30.4375).toFixed(2) + '/average month | $' + total.toFixed(2) + ' over ' + years + ' years. Excludes price changes and health-related costs.', perDay > 0 ? 'red' : 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

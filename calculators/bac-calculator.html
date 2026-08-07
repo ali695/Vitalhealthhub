@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">BAC Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Estimate your blood alcohol concentration.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Estimate your blood alcohol concentration.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -467,7 +467,18 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var dr=parseFloat(document.getElementById('drinks').value);var w=parseFloat(document.getElementById('weight').value);var g=document.getElementById('gender').value;var h=parseFloat(document.getElementById('hours').value);if(!dr||!w){alert('Fill fields');return;}var r=g==='Male'?0.68:0.55;var bac=((dr*14)/(w*1000*r)*100-0.015*h);bac=Math.max(0,bac).toFixed(3);var c='green',l='Sober/Minimal',s='Your estimated BAC is very low.';if(bac>=0.08){c='red';l='Above Legal Limit';s='Your BAC is above the legal driving limit in most jurisdictions. Do NOT drive. Arrange alternative transportation.';}else if(bac>=0.04){c='yellow';l='Impaired';s='You may be impaired. Avoid driving and making important decisions.';}else if(bac>0.01){c='yellow';l='Minimal Effect';s='Slight effects possible. Be cautious about driving.';}showResult('result',bac+'%',l,s,c); };</script>
+<script>window._vhCalcFn=function () {
+    var drinks = parseFloat(document.getElementById('drinks').value);
+    var weight = parseFloat(document.getElementById('weight').value);
+    var sex = document.getElementById('gender').value;
+    var hours = parseFloat(document.getElementById('hours').value);
+    if (!Number.isFinite(drinks) || drinks < 0 || !Number.isFinite(weight) || weight <= 0 || !Number.isFinite(hours) || hours < 0) { alert('Enter valid drinks, weight, and elapsed time'); return; }
+    var ratio = sex === 'Male' ? 0.68 : 0.55;
+    var estimate = drinks * 14 / (weight * 1000 * ratio) * 100 - 0.015 * hours;
+    estimate = Math.max(0, estimate);
+    var note = 'Widmark-style estimate only. Drink strength, timing, food, medications, physiology, and pour size can change actual BAC. Never use a calculator to decide whether to drive; use alternate transportation after drinking.';
+    showResult('result', estimate.toFixed(3) + '%', 'Estimated BAC—not a measurement', note, estimate >= 0.08 ? 'red' : estimate > 0 ? 'yellow' : 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

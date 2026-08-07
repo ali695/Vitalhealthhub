@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">One Rep Max Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Estimate your one-repetition maximum for any lift.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Estimate your one-repetition maximum for any lift.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -489,7 +489,12 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var w=parseFloat(document.getElementById('weight').value);var r=parseFloat(document.getElementById('reps').value);if(!w||!r){alert('Fill fields');return;}var orm=Math.round(w*(1+r/30));showResult('result',orm+' kg','Estimated 1RM','Your estimated one-rep max is '+orm+' kg. Training zones: 90-100% (strength), 70-85% (hypertrophy), 50-65% (endurance).','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var weight = parseFloat(document.getElementById('weight').value); var reps = parseInt(document.getElementById('reps').value, 10);
+    if (!Number.isFinite(weight) || weight <= 0 || !Number.isInteger(reps) || reps < 1 || reps > 12) { alert('Enter a lifted weight and 1 to 12 repetitions'); return; }
+    var estimate = weight * (1 + reps / 30);
+    showResult('result', Math.round(estimate) + ' kg', 'Epley estimated 1RM', 'Estimate based on ' + weight + ' kg for ' + reps + ' reps. Accuracy decreases at higher repetitions and varies by exercise, technique, fatigue, and athlete.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

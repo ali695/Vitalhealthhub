@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Macro Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your ideal protein, carbs, and fat intake.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your ideal protein, carbs, and fat intake.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -484,7 +484,10 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var cal=parseFloat(document.getElementById('calories').value);var goal=document.getElementById('goal').value;if(!cal){alert('Enter your daily calories');return;}var p,c,f;if(goal==='Balanced'){p=0.3;c=0.4;f=0.3;}else if(goal==='Low Carb'){p=0.35;c=0.25;f=0.4;}else if(goal==='High Protein'){p=0.4;c=0.3;f=0.3;}else{p=0.25;c=0.05;f=0.7;}var pg=Math.round(cal*p/4);var cg=Math.round(cal*c/4);var fg=Math.round(cal*f/9);showResult('result','P:'+pg+'g C:'+cg+'g F:'+fg+'g','Macro Split','Protein: '+pg+'g ('+Math.round(p*100)+'%) | Carbs: '+cg+'g ('+Math.round(c*100)+'%) | Fat: '+fg+'g ('+Math.round(f*100)+'%). Adjust based on your training and how your body responds.','green'); };</script>
+<script>window._vhCalcFn=function () {
+    var calories = parseFloat(document.getElementById('calories').value); var goal = document.getElementById('goal').value; if (!Number.isFinite(calories) || calories < 800 || calories > 10000) { alert('Enter a valid calorie target'); return; } var profiles = {'Balanced': [0.30, 0.40, 0.30], 'Low Carb': [0.35, 0.25, 0.40], 'High Protein': [0.40, 0.30, 0.30], 'Keto': [0.25, 0.05, 0.70]}; var profile = profiles[goal]; if (!profile) { alert('Choose a macro profile'); return; } var protein = Math.round(calories * profile[0] / 4); var carbs = Math.round(calories * profile[1] / 4); var fat = Math.round(calories * profile[2] / 9);
+    showResult('result', 'P ' + protein + 'g | C ' + carbs + 'g | F ' + fat + 'g', 'Illustrative macro split', 'Arithmetic conversion from the selected percentage profile. This is not personalized to body weight, training, pregnancy, or medical conditions.', 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

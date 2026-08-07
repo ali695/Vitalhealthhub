@@ -121,7 +121,7 @@
 <div class="calc-page-hero-left">
 <span class="calc-page-hero-badge"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Health Calculator</span>
 <h1 class="calc-page-hero-title">Sleep Debt Calculator</h1>
-<p class="calc-page-hero-sub">Get accurate, science-based results instantly. Calculate your accumulated sleep debt.</p>
+<p class="calc-page-hero-sub">Enter your information to get a transparent educational result. Calculate your accumulated sleep debt.</p>
 <div class="calc-page-hero-pills">
 <span class="calc-pill">&#10003; Free Forever</span>
 <span class="calc-pill">&#10003; Science-Based</span>
@@ -271,7 +271,7 @@
 <h2>Who Should Use the Sleep Debt Calculator?</h2>
 <p>This tool is intended as an educational estimate for people who understand the inputs and limitations described on this page. Whether it is appropriate depends on the calculation, your circumstances, and the decision you are trying to make.</p>
 <p>Check the stated intended population before using the result. Children, pregnancy, diagnosed conditions, medicines, and unusual symptoms often require a different method or professional interpretation.</p>
-<p>For a more complete health picture, pair this tool with our <a href="/calculators/stress-level-calculator.html">Stress Level Calculator</a>, <a href="/calculators/anxiety-score-calculator.html">Anxiety Score Calculator</a>, <a href="/calculators/biological-age-calculator.html">Biological Age Calculator</a> — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
+<p>For a more complete health picture, pair this tool with our <a href="/calculators/stress-level-calculator.html">Stress and Wellbeing Check-In</a>, <a href="/calculators/anxiety-score-calculator.html">Anxiety Score Calculator</a>, <a href="/calculators/biological-age-calculator.html">Healthy Aging Habit Checklist</a> — together they give you a multi-dimensional view of the metrics that matter most to long-term wellbeing.</p>
 <h2>Common Mistakes to Avoid</h2>
 <p>Getting accurate, actionable results from the Sleep Debt Calculator depends on more than entering correct numbers. These are the most common errors that reduce the usefulness of your output:</p>
 <ul>
@@ -491,7 +491,12 @@ ma7122671@gmail.com
 <button class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="/js/main.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function(){ var need=parseFloat(document.getElementById('needed').value);var act=parseFloat(document.getElementById('actual').value);var days=parseFloat(document.getElementById('days').value);if(!need||!act||!days){alert('Fill fields');return;}var daily=need-act;var total=(daily*days).toFixed(1);var c='green',l='Well Rested',s='You are getting adequate sleep. Keep up the good habits!';if(total>14){c='red';l='Severe Sleep Debt';s='You have significant sleep debt. Prioritize sleep and consider consulting a sleep specialist.';}else if(total>7){c='yellow';l='Moderate Sleep Debt';s='Your sleep debt is building up. Try adding 30-60 minutes of extra sleep each night.';}else if(total>0){c='yellow';l='Mild Sleep Debt';s='You have a mild sleep deficit. Try to get an extra 15-30 minutes of sleep each night.';}if(total<=0){total='0';l='No Debt';s='Great! You are meeting or exceeding your sleep needs.';}showResult('result',total+' hours',l,s,c); };</script>
+<script>window._vhCalcFn=function () {
+    var needed = parseFloat(document.getElementById('needed').value); var actual = parseFloat(document.getElementById('actual').value); var days = parseInt(document.getElementById('days').value, 10);
+    if (!Number.isFinite(needed) || needed <= 0 || needed > 16 || !Number.isFinite(actual) || actual < 0 || actual > 24 || !Number.isInteger(days) || days <= 0 || days > 365) { alert('Enter valid sleep hours and number of days'); return; }
+    var shortfall = Math.max(0, (needed - actual) * days);
+    showResult('result', shortfall.toFixed(1) + ' hours', 'Cumulative reported sleep shortfall', shortfall ? 'This is arithmetic, not a clinical “debt” that can be repaid hour for hour. Aim for a consistent opportunity to sleep and seek care for persistent insomnia, excessive sleepiness, or breathing symptoms.' : 'Reported sleep meets or exceeds the selected need. Sleep quality and symptoms still matter.', shortfall > 14 ? 'red' : shortfall > 0 ? 'yellow' : 'green');
+  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
