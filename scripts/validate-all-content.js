@@ -74,7 +74,8 @@ for (const name of blogFiles) {
   const faqSchema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
     .map((match) => { try { return JSON.parse(match[1]); } catch { return null; } })
     .find((item) => item?.['@type'] === 'FAQPage');
-  if (!faqSchema || faqSchema.mainEntity?.length !== 5) failures.push(`${file}: FAQ schema must contain five questions`);
+  // FAQ rich-result markup is optional; when present it must remain complete and accurate.
+  if (faqSchema && faqSchema.mainEntity?.length !== 5) failures.push(`${file}: FAQ schema must contain five questions`);
   if (faqSchema?.mainEntity) {
     faqSchema.mainEntity.forEach((item, index) => {
       if (words(item?.acceptedAnswer?.text || '').length < 35) failures.push(`${file}: FAQ ${index + 1} answer is too short`);

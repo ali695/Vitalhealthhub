@@ -28,9 +28,9 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta name="keywords" content="omega-3 intake calculator, free omega-3 intake calculator, omega-3 intake calculator online, calculate omega-3 intake online, accurate omega-3 intake calculator, omega-3 intake for men, omega-3 intake for women, how to calculate omega-3 intake, what is a healthy omega-3 intake, omega-3 intake explained, omega-3 intake ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Omega-3 Intake Calculator","url":"https://vitalhealthhub.org/calculators/omega3-calculator","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Most people get far less omega-3 than they actually need. Calculate your optimal daily intake based on your health needs and current diet. Support your."}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What foods are high in omega-3?","acceptedAnswer":{"@type":"Answer","text":"Fatty fish (salmon, sardines, mackerel), fish oil supplements, flaxseed, chia seeds, walnuts, and algae oil."}},{"@type":"Question","name":"What is the difference between ALA, EPA, and DHA?","acceptedAnswer":{"@type":"Answer","text":"ALA is plant-based; EPA and DHA are marine-based. The body converts ALA to EPA/DHA at only 5-10% efficiency, so direct EPA/DHA sources are more effective."}},{"@type":"Question","name":"How much omega-3 should I take?","acceptedAnswer":{"@type":"Answer","text":"500mg EPA+DHA for general health; 1,000mg for heart health; 2,000-4,000mg for anti-inflammatory or high triglycerides."}},{"@type":"Question","name":"Should I take fish oil supplements?","acceptedAnswer":{"@type":"Answer","text":"If you do not eat fatty fish 2-3 times weekly, high-quality fish oil or algae omega-3 supplements are recommended."}},{"@type":"Question","name":"Can I take too much omega-3?","acceptedAnswer":{"@type":"Answer","text":"Very high doses (above 5g EPA+DHA) may increase bleeding risk. Doses up to 3g are generally considered safe for most adults."}}]}</script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="ann-bar" role="marquee" aria-label="Site announcements">
 <div class="ann-ticker-wrap">
 <div class="ann-ticker">100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span>100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span></div>
@@ -43,20 +43,20 @@
 </div><nav class="navbar">
 <div class="nav-container">
 <a href="/" class="nav-logo" aria-label="VitalHealth Hub — Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="nav-logo-img"></a>
-<ul class="nav-links">
+<ul class="nav-links" id="primary-navigation">
 <li><a href="/">Home</a></li>
 <li class="nav-dropdown-wrap">
-<a href="/calculators/" class="nav-dropdown-trigger">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a href="/calculators/" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 <div class="mega-dropdown">
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false" aria-label="Search calculators...">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator">Body Fat Calculator</a></li>
@@ -66,7 +66,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator">Macro Calculator</a></li>
@@ -76,7 +76,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker">Blood Pressure</a></li>
@@ -86,7 +86,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator">Running Pace</a></li>
@@ -109,13 +109,13 @@
 <li><a href="/about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
-<button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+<button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button>
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/calculators/">Calculators</a><span>/</span><span>Omega-3 Intake Calculator</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://vitalhealthhub.org/calculators/"},{"@type":"ListItem","position":3,"name":"Omega-3 Intake Calculator","item":"https://vitalhealthhub.org/calculators/omega3-calculator"}]}</script>
 
-<section class="calc-page-hero">
+<section class="calc-page-hero" id="main-content" tabindex="-1">
 <div class="container">
 <div class="calc-page-hero-inner">
 <div class="calc-page-hero-left">
@@ -164,7 +164,7 @@
 <div class="calc-input-header">
 <span class="calc-input-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span>
 <div>
-<h3 class="calc-input-title">Enter Your Details</h3>
+<h2 class="calc-input-title">Enter Your Details</h2>
 <p class="calc-input-sub">Fill in the fields below for instant results</p>
 </div>
 </div>
@@ -194,7 +194,7 @@
 <div class="calc-ph-step"><span>3</span>Get instant results</div>
 </div>
 </div>
-<div id="result" class="result-box">
+<div id="result" class="result-box" role="status" aria-live="polite">
 <div class="result-value"></div>
 <div class="result-label"></div>
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
@@ -268,7 +268,7 @@
 <div class="container">
 <div class="ccs-faq-wrap fade-in">
 <div class="ccs-section-heading"><h2>Frequently Asked Questions About Omega-3 Intake</h2></div>
-<div class="faq-list"><div class="faq-item"><button class="faq-question">What foods are high in omega-3?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Fatty fish (salmon, sardines, mackerel), fish oil supplements, flaxseed, chia seeds, walnuts, and algae oil.</div></div></div><div class="faq-item"><button class="faq-question">What is the difference between ALA, EPA, and DHA?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">ALA is plant-based; EPA and DHA are marine-based. The body converts ALA to EPA/DHA at only 5-10% efficiency, so direct EPA/DHA sources are more effective.</div></div></div><div class="faq-item"><button class="faq-question">How much omega-3 should I take?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">500mg EPA+DHA for general health; 1,000mg for heart health; 2,000-4,000mg for anti-inflammatory or high triglycerides.</div></div></div><div class="faq-item"><button class="faq-question">Should I take fish oil supplements?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">If you do not eat fatty fish 2-3 times weekly, high-quality fish oil or algae omega-3 supplements are recommended.</div></div></div><div class="faq-item"><button class="faq-question">Can I take too much omega-3?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Very high doses (above 5g EPA+DHA) may increase bleeding risk. Doses up to 3g are generally considered safe for most adults.</div></div></div></div>
+<div class="faq-list"><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-omega3-calculator-1">What foods are high in omega-3?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-omega3-calculator-1"><div class="faq-answer-inner">Fatty fish (salmon, sardines, mackerel), fish oil supplements, flaxseed, chia seeds, walnuts, and algae oil.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-omega3-calculator-2">What is the difference between ALA, EPA, and DHA?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-omega3-calculator-2"><div class="faq-answer-inner">ALA is plant-based; EPA and DHA are marine-based. The body converts ALA to EPA/DHA at only 5-10% efficiency, so direct EPA/DHA sources are more effective.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-omega3-calculator-3">How much omega-3 should I take?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-omega3-calculator-3"><div class="faq-answer-inner">500mg EPA+DHA for general health; 1,000mg for heart health; 2,000-4,000mg for anti-inflammatory or high triglycerides.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-omega3-calculator-4">Should I take fish oil supplements?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-omega3-calculator-4"><div class="faq-answer-inner">If you do not eat fatty fish 2-3 times weekly, high-quality fish oil or algae omega-3 supplements are recommended.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-omega3-calculator-5">Can I take too much omega-3?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-omega3-calculator-5"><div class="faq-answer-inner">Very high doses (above 5g EPA+DHA) may increase bleeding risk. Doses up to 3g are generally considered safe for most adults.</div></div></div></div>
 </div>
 </div>
 </section>
@@ -277,7 +277,7 @@
 <div class="container">
 <section class="seo-section fade-in">
 <h2>Related Calculators You Might Find Useful</h2>
-<div class="related-calcs-grid"><a href="/calculators/calorie-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c0 0-8 10-8 18a8 8 0 0 0 16 0c0-8-8-18-8-18z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 29c0-2.2 1.8-4 4-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Calorie Calculator</h4><p>Find out how many calories you need daily based on your goals.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/sugar-intake-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="12" y="12" width="24" height="24" rx="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 22h12M18 28h8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M28 8v4M20 8v4M28 36v4M20 36v4" stroke="#f4a261" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Sugar Intake Calculator</h4><p>Calculate your daily sugar intake and see if it is within healthy limits.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/electrolyte-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6c0 0-12 14-12 22a12 12 0 0 0 24 0c0-8-12-22-12-22z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 30c0-3.3 2.7-6 6-6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Electrolyte Reference Tool</h4><p>Review general adult electrolyte reference amounts and important limitations.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
+<div class="related-calcs-grid"><a href="/calculators/calorie-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c0 0-8 10-8 18a8 8 0 0 0 16 0c0-8-8-18-8-18z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 29c0-2.2 1.8-4 4-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h3>Calorie Calculator</h3><p>Find out how many calories you need daily based on your goals.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/sugar-intake-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="12" y="12" width="24" height="24" rx="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 22h12M18 28h8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M28 8v4M20 8v4M28 36v4M20 36v4" stroke="#f4a261" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Sugar Intake Calculator</h4><p>Calculate your daily sugar intake and see if it is within healthy limits.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/electrolyte-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6c0 0-12 14-12 22a12 12 0 0 0 24 0c0-8-12-22-12-22z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M18 30c0-3.3 2.7-6 6-6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Electrolyte Reference Tool</h4><p>Review general adult electrolyte reference amounts and important limitations.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
 </section>
 </div>
 </section>
@@ -294,7 +294,7 @@
 <div class="ccs-xlink-img"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=440&h=220&fit=crop&auto=format&q=80" alt="Healthy balanced meal daily calorie planning | VitalHealth Hub" width="440" height="220" loading="lazy"></div>
 <div class="ccs-xlink-body">
 <span class="ccs-xlink-badge">Calories & Weight</span>
-<h4>How Many Calories Should I Eat Per Day? Complete Guide</h4>
+<h3>How Many Calories Should I Eat Per Day? Complete Guide</h3>
 <div class="ccs-xlink-meta">8 min read &bull; Educational guide</div>
 <span class="ccs-xlink-cta">Read Article &rarr;</span>
 </div></a><a href="/blog/calorie-deficit-for-weight-loss" class="ccs-xlink-card">
@@ -466,7 +466,7 @@ ma7122671@gmail.com
     showResult('result', '~' + Math.round(marineDaily) + ' mg EPA+DHA/day', 'Food-based omega-3 estimate', 'Estimated plant ALA: ~' + Math.round(alaDaily) + ' mg/day. Plant ALA is not equivalent to EPA+DHA and should not be added as though conversion were complete. Medical-dose omega-3 for triglycerides or other conditions requires clinician guidance; selected goal: ' + condition + '.', 'green');
   };</script>
 <div id="vh-chatbot">
-<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
+<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
 </button>
 <div id="vh-chat-window">

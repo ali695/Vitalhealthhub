@@ -28,9 +28,9 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta name="keywords" content="heart rate zone calculator, free heart rate zone calculator, heart rate zone calculator online, calculate heart rate zone online, accurate heart rate zone calculator, heart rate zone for men, heart rate zone for women, how to calculate heart rate zone, what is a healthy heart rate zone, heart rate zone explained, heart rate zone ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Heart Rate Zone Calculator","url":"https://vitalhealthhub.org/calculators/heart-rate-calculator","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Stop guessing during workouts. Calculate your target heart rate zones for fat burn, cardio, and peak performance. Train at the right intensity and make."}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is maximum heart rate?","acceptedAnswer":{"@type":"Answer","text":"Maximum heart rate is the highest number of beats per minute your heart can achieve. It is commonly estimated as 220 minus your age."}},{"@type":"Question","name":"What is a normal resting heart rate?","acceptedAnswer":{"@type":"Answer","text":"A normal resting heart rate for adults is 60-100 bpm. Well-trained athletes may have rates as low as 40-50 bpm."}},{"@type":"Question","name":"Which zone burns the most fat?","acceptedAnswer":{"@type":"Answer","text":"Zone 2 (60-70% HRR) burns the highest percentage of fat, but higher zones burn more total calories."}},{"@type":"Question","name":"How do I measure resting heart rate?","acceptedAnswer":{"@type":"Answer","text":"Measure your pulse for 60 seconds first thing in the morning before getting out of bed. Take the average over several days."}},{"@type":"Question","name":"Is it dangerous to exercise in Zone 5?","acceptedAnswer":{"@type":"Answer","text":"Zone 5 is very intense and should only be done briefly by healthy individuals. Consult your doctor if you have heart conditions."}},{"@type":"Question","name":"Does heart rate zone training work?","acceptedAnswer":{"@type":"Answer","text":"Yes. Zone training is an evidence-based approach used by athletes and recommended by exercise physiologists."}},{"@type":"Question","name":"Why does my heart rate vary day to day?","acceptedAnswer":{"@type":"Answer","text":"Stress, sleep quality, caffeine, hydration, and illness can all affect daily heart rate readings."}},{"@type":"Question","name":"Can medication affect heart rate zones?","acceptedAnswer":{"@type":"Answer","text":"Yes. Beta blockers and other medications can lower heart rate, making standard formulas less accurate."}},{"@type":"Question","name":"How often should I train in each zone?","acceptedAnswer":{"@type":"Answer","text":"Follow the 80/20 rule: 80% of training in Zones 1-2, and 20% in Zones 3-5 for optimal results."}},{"@type":"Question","name":"What is heart rate variability?","acceptedAnswer":{"@type":"Answer","text":"HRV measures the variation between heartbeats and is an indicator of nervous system health and recovery status."}}]}</script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="ann-bar" role="marquee" aria-label="Site announcements">
 <div class="ann-ticker-wrap">
 <div class="ann-ticker">100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span>100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span></div>
@@ -43,20 +43,20 @@
 </div><nav class="navbar">
 <div class="nav-container">
 <a href="/" class="nav-logo" aria-label="VitalHealth Hub — Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="nav-logo-img"></a>
-<ul class="nav-links">
+<ul class="nav-links" id="primary-navigation">
 <li><a href="/">Home</a></li>
 <li class="nav-dropdown-wrap">
-<a href="/calculators/" class="nav-dropdown-trigger">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a href="/calculators/" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 <div class="mega-dropdown">
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false" aria-label="Search calculators...">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator">Body Fat Calculator</a></li>
@@ -66,7 +66,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator">Macro Calculator</a></li>
@@ -76,7 +76,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker">Blood Pressure</a></li>
@@ -86,7 +86,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator">Running Pace</a></li>
@@ -109,13 +109,13 @@
 <li><a href="/about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
-<button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+<button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button>
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/calculators/">Calculators</a><span>/</span><span>Heart Rate Zone Calculator</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://vitalhealthhub.org/calculators/"},{"@type":"ListItem","position":3,"name":"Heart Rate Zone Calculator","item":"https://vitalhealthhub.org/calculators/heart-rate-calculator"}]}</script>
 
-<section class="calc-page-hero">
+<section class="calc-page-hero" id="main-content" tabindex="-1">
 <div class="container">
 <div class="calc-page-hero-inner">
 <div class="calc-page-hero-left">
@@ -190,7 +190,7 @@
 <div class="calc-input-header">
 <span class="calc-input-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span>
 <div>
-<h3 class="calc-input-title">Enter Your Details</h3>
+<h2 class="calc-input-title">Enter Your Details</h2>
 <p class="calc-input-sub">Fill in the fields below for instant results</p>
 </div>
 </div>
@@ -220,7 +220,7 @@
 <div class="calc-ph-step"><span>3</span>Get instant results</div>
 </div>
 </div>
-<div id="result" class="result-box">
+<div id="result" class="result-box" role="status" aria-live="polite">
 <div class="result-value"></div>
 <div class="result-label"></div>
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
@@ -294,7 +294,7 @@
 <div class="container">
 <div class="ccs-faq-wrap fade-in">
 <div class="ccs-section-heading"><h2>Frequently Asked Questions About Heart Rate Zone</h2></div>
-<div class="faq-list"><div class="faq-item"><button class="faq-question">What is maximum heart rate?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Maximum heart rate is the highest number of beats per minute your heart can achieve. It is commonly estimated as 220 minus your age.</div></div></div><div class="faq-item"><button class="faq-question">What is a normal resting heart rate?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">A normal resting heart rate for adults is 60-100 bpm. Well-trained athletes may have rates as low as 40-50 bpm.</div></div></div><div class="faq-item"><button class="faq-question">Which zone burns the most fat?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Zone 2 (60-70% HRR) burns the highest percentage of fat, but higher zones burn more total calories.</div></div></div><div class="faq-item"><button class="faq-question">How do I measure resting heart rate?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Measure your pulse for 60 seconds first thing in the morning before getting out of bed. Take the average over several days.</div></div></div><div class="faq-item"><button class="faq-question">Is it dangerous to exercise in Zone 5?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Zone 5 is very intense and should only be done briefly by healthy individuals. Consult your doctor if you have heart conditions.</div></div></div><div class="faq-item"><button class="faq-question">Does heart rate zone training work?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Zone training is an evidence-based approach used by athletes and recommended by exercise physiologists.</div></div></div><div class="faq-item"><button class="faq-question">Why does my heart rate vary day to day?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Stress, sleep quality, caffeine, hydration, and illness can all affect daily heart rate readings.</div></div></div><div class="faq-item"><button class="faq-question">Can medication affect heart rate zones?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Beta blockers and other medications can lower heart rate, making standard formulas less accurate.</div></div></div><div class="faq-item"><button class="faq-question">How often should I train in each zone?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Follow the 80/20 rule: 80% of training in Zones 1-2, and 20% in Zones 3-5 for optimal results.</div></div></div><div class="faq-item"><button class="faq-question">What is heart rate variability?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">HRV measures the variation between heartbeats and is an indicator of nervous system health and recovery status.</div></div></div></div>
+<div class="faq-list"><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-heart-rate-calculator-1">What is maximum heart rate?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-heart-rate-calculator-1"><div class="faq-answer-inner">Maximum heart rate is the highest number of beats per minute your heart can achieve. It is commonly estimated as 220 minus your age.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-heart-rate-calculator-2">What is a normal resting heart rate?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-heart-rate-calculator-2"><div class="faq-answer-inner">A normal resting heart rate for adults is 60-100 bpm. Well-trained athletes may have rates as low as 40-50 bpm.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-heart-rate-calculator-3">Which zone burns the most fat?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-heart-rate-calculator-3"><div class="faq-answer-inner">Zone 2 (60-70% HRR) burns the highest percentage of fat, but higher zones burn more total calories.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-heart-rate-calculator-4">How do I measure resting heart rate?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-heart-rate-calculator-4"><div class="faq-answer-inner">Measure your pulse for 60 seconds first thing in the morning before getting out of bed. Take the average over several days.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-heart-rate-calculator-5">Is it dangerous to exercise in Zone 5?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-heart-rate-calculator-5"><div class="faq-answer-inner">Zone 5 is very intense and should only be done briefly by healthy individuals. Consult your doctor if you have heart conditions.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-heart-rate-calculator-6">Does heart rate zone training work?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-heart-rate-calculator-6"><div class="faq-answer-inner">Yes. Zone training is an evidence-based approach used by athletes and recommended by exercise physiologists.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-heart-rate-calculator-7">Why does my heart rate vary day to day?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-heart-rate-calculator-7"><div class="faq-answer-inner">Stress, sleep quality, caffeine, hydration, and illness can all affect daily heart rate readings.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-heart-rate-calculator-8">Can medication affect heart rate zones?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-heart-rate-calculator-8"><div class="faq-answer-inner">Yes. Beta blockers and other medications can lower heart rate, making standard formulas less accurate.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-heart-rate-calculator-9">How often should I train in each zone?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-heart-rate-calculator-9"><div class="faq-answer-inner">Follow the 80/20 rule: 80% of training in Zones 1-2, and 20% in Zones 3-5 for optimal results.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-heart-rate-calculator-10">What is heart rate variability?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-heart-rate-calculator-10"><div class="faq-answer-inner">HRV measures the variation between heartbeats and is an indicator of nervous system health and recovery status.</div></div></div></div>
 </div>
 </div>
 </section>
@@ -303,7 +303,7 @@
 <div class="container">
 <section class="seo-section fade-in">
 <h2>Related Calculators You Might Find Useful</h2>
-<div class="related-calcs-grid"><a href="/calculators/vo2-max-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M14 36c0-8 3-14 6-18s4-8 4-10c0 2 1 6 4 10s6 10 6 18" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M12 36h24" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M20 28h8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>VO2 Max Calculator</h4><p>Estimate your VO2 max aerobic fitness level.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/steps-to-calories-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M8 24h32" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><rect x="12" y="18" width="4" height="12" rx="1" stroke="#2d6a4f" stroke-width="2"/><rect x="32" y="18" width="4" height="12" rx="1" stroke="#2d6a4f" stroke-width="2"/><rect x="6" y="20" width="4" height="8" rx="1" stroke="#52b788" stroke-width="2"/><rect x="38" y="20" width="4" height="8" rx="1" stroke="#52b788" stroke-width="2"/></svg></div><div><h4>Steps to Calories Calculator</h4><p>Convert your daily steps into estimated calories burned.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/running-pace-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="30" cy="8" r="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M26 16l-6 10 6 4-4 12" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 26l-8 6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="32" r="4" stroke="#52b788" stroke-width="2"/><path d="M8 30l4 4" stroke="#52b788" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><h4>Running Pace Calculator</h4><p>Calculate your running pace, speed, and finish times.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
+<div class="related-calcs-grid"><a href="/calculators/vo2-max-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M14 36c0-8 3-14 6-18s4-8 4-10c0 2 1 6 4 10s6 10 6 18" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M12 36h24" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M20 28h8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h3>VO2 Max Calculator</h3><p>Estimate your VO2 max aerobic fitness level.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/steps-to-calories-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M8 24h32" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><rect x="12" y="18" width="4" height="12" rx="1" stroke="#2d6a4f" stroke-width="2"/><rect x="32" y="18" width="4" height="12" rx="1" stroke="#2d6a4f" stroke-width="2"/><rect x="6" y="20" width="4" height="8" rx="1" stroke="#52b788" stroke-width="2"/><rect x="38" y="20" width="4" height="8" rx="1" stroke="#52b788" stroke-width="2"/></svg></div><div><h4>Steps to Calories Calculator</h4><p>Convert your daily steps into estimated calories burned.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/running-pace-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="30" cy="8" r="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M26 16l-6 10 6 4-4 12" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 26l-8 6" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="32" r="4" stroke="#52b788" stroke-width="2"/><path d="M8 30l4 4" stroke="#52b788" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><h4>Running Pace Calculator</h4><p>Calculate your running pace, speed, and finish times.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
 </section>
 </div>
 </section>
@@ -320,7 +320,7 @@
 <div class="ccs-xlink-img"><img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=440&h=220&fit=crop&auto=format&q=80" alt="Building muscle science based strength training | VitalHealth Hub" width="440" height="220" loading="lazy"></div>
 <div class="ccs-xlink-body">
 <span class="ccs-xlink-badge">Fitness & Exercise</span>
-<h4>How to Build Muscle: A Complete Science-Based Guide</h4>
+<h3>How to Build Muscle: A Complete Science-Based Guide</h3>
 <div class="ccs-xlink-meta">10 min read &bull; Educational guide</div>
 <span class="ccs-xlink-cta">Read Article &rarr;</span>
 </div></a><a href="/blog/cardio-vs-strength-training" class="ccs-xlink-card">
@@ -490,7 +490,7 @@ ma7122671@gmail.com
     showResult('result', 'Est. max ' + Math.round(maximum) + ' bpm', 'Heart-rate reserve training zones', '50–60%: ' + zone(0.5, 0.6) + ' bpm | 60–70%: ' + zone(0.6, 0.7) + ' bpm | 70–80%: ' + zone(0.7, 0.8) + ' bpm | 80–90%: ' + zone(0.8, 0.9) + ' bpm. Estimated maximum heart rate has individual error; medications and conditions can change safe targets.', 'green');
   };</script>
 <div id="vh-chatbot">
-<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
+<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
 </button>
 <div id="vh-chat-window">

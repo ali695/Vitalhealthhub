@@ -28,9 +28,9 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta name="keywords" content="caffeine intake calculator, free caffeine intake calculator, caffeine intake calculator online, calculate caffeine intake online, accurate caffeine intake calculator, caffeine intake for men, caffeine intake for women, how to calculate caffeine intake, what is a healthy caffeine intake, caffeine intake explained, caffeine intake ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Caffeine Intake Calculator","url":"https://vitalhealthhub.org/calculators/caffeine-intake-calculator","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Too much caffeine triggers anxiety, crashes, and poor sleep. Calculate your total caffeine from coffee, tea, and energy drinks. Stay within safe limits."}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the Caffeine Intake Calculator?","acceptedAnswer":{"@type":"Answer","text":"The Caffeine Intake Calculator is a tool that helps you track your daily caffeine consumption."}},{"@type":"Question","name":"How accurate is this calculator?","acceptedAnswer":{"@type":"Answer","text":"This calculator provides an educational estimate. Its usefulness depends on the stated method, the quality of the inputs, and whether it was designed for your situation."}},{"@type":"Question","name":"How often should I use this calculator?","acceptedAnswer":{"@type":"Answer","text":"Repeat a calculation only when the underlying inputs have changed or when a qualified professional recommends monitoring."}},{"@type":"Question","name":"Can I rely on these results for medical decisions?","acceptedAnswer":{"@type":"Answer","text":"This tool is for informational purposes only. Always consult qualified healthcare professionals for medical advice and decisions."}},{"@type":"Question","name":"What factors affect the accuracy?","acceptedAnswer":{"@type":"Answer","text":"Individual variation, measurement technique, and the limitations of estimation formulas can all affect accuracy."}},{"@type":"Question","name":"Should I share results with my doctor?","acceptedAnswer":{"@type":"Answer","text":"Yes, sharing calculator results with your healthcare provider can facilitate productive discussions about your health."}},{"@type":"Question","name":"Is this calculator suitable for all ages?","acceptedAnswer":{"@type":"Answer","text":"Most calculators are designed for adults. Pediatric assessments may require different formulas and professional evaluation."}},{"@type":"Question","name":"What do the colors mean?","acceptedAnswer":{"@type":"Answer","text":"Colors are interface prompts, not a diagnosis. Read the written explanation and discuss concerning results or symptoms with a qualified professional."}},{"@type":"Question","name":"Can lifestyle changes improve my results?","acceptedAnswer":{"@type":"Answer","text":"The useful next step depends on what the calculator measures. Avoid changing treatment, medication, or a child’s care based only on an online result."}},{"@type":"Question","name":"Where do the formulas come from?","acceptedAnswer":{"@type":"Answer","text":"Methods differ between calculators. Use a result only when the page clearly identifies the method, intended population, required inputs, and limitations."}}]}</script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="ann-bar" role="marquee" aria-label="Site announcements">
 <div class="ann-ticker-wrap">
 <div class="ann-ticker">100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span>100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span></div>
@@ -43,20 +43,20 @@
 </div><nav class="navbar">
 <div class="nav-container">
 <a href="/" class="nav-logo" aria-label="VitalHealth Hub — Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="nav-logo-img"></a>
-<ul class="nav-links">
+<ul class="nav-links" id="primary-navigation">
 <li><a href="/">Home</a></li>
 <li class="nav-dropdown-wrap">
-<a href="/calculators/" class="nav-dropdown-trigger">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a href="/calculators/" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 <div class="mega-dropdown">
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false" aria-label="Search calculators...">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator">Body Fat Calculator</a></li>
@@ -66,7 +66,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator">Macro Calculator</a></li>
@@ -76,7 +76,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker">Blood Pressure</a></li>
@@ -86,7 +86,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator">Running Pace</a></li>
@@ -109,13 +109,13 @@
 <li><a href="/about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
-<button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+<button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button>
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/calculators/">Calculators</a><span>/</span><span>Caffeine Intake Calculator</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://vitalhealthhub.org/calculators/"},{"@type":"ListItem","position":3,"name":"Caffeine Intake Calculator","item":"https://vitalhealthhub.org/calculators/caffeine-intake-calculator"}]}</script>
 
-<section class="calc-page-hero">
+<section class="calc-page-hero" id="main-content" tabindex="-1">
 <div class="container">
 <div class="calc-page-hero-inner">
 <div class="calc-page-hero-left">
@@ -194,7 +194,7 @@
 <div class="calc-input-header">
 <span class="calc-input-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span>
 <div>
-<h3 class="calc-input-title">Enter Your Details</h3>
+<h2 class="calc-input-title">Enter Your Details</h2>
 <p class="calc-input-sub">Fill in the fields below for instant results</p>
 </div>
 </div>
@@ -224,7 +224,7 @@
 <div class="calc-ph-step"><span>3</span>Get instant results</div>
 </div>
 </div>
-<div id="result" class="result-box">
+<div id="result" class="result-box" role="status" aria-live="polite">
 <div class="result-value"></div>
 <div class="result-label"></div>
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
@@ -298,7 +298,7 @@
 <div class="container">
 <div class="ccs-faq-wrap fade-in">
 <div class="ccs-section-heading"><h2>Frequently Asked Questions About Caffeine Intake</h2></div>
-<div class="faq-list"><div class="faq-item"><button class="faq-question">What is the Caffeine Intake Calculator?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">The Caffeine Intake Calculator is a tool that helps you track your daily caffeine consumption.</div></div></div><div class="faq-item"><button class="faq-question">How accurate is this calculator?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">This calculator provides an educational estimate. Its usefulness depends on the stated method, the quality of the inputs, and whether it was designed for your situation.</div></div></div><div class="faq-item"><button class="faq-question">How often should I use this calculator?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Repeat a calculation only when the underlying inputs have changed or when a qualified professional recommends monitoring.</div></div></div><div class="faq-item"><button class="faq-question">Can I rely on these results for medical decisions?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">This tool is for informational purposes only. Always consult qualified healthcare professionals for medical advice and decisions.</div></div></div><div class="faq-item"><button class="faq-question">What factors affect the accuracy?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Individual variation, measurement technique, and the limitations of estimation formulas can all affect accuracy.</div></div></div><div class="faq-item"><button class="faq-question">Should I share results with my doctor?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes, sharing calculator results with your healthcare provider can facilitate productive discussions about your health.</div></div></div><div class="faq-item"><button class="faq-question">Is this calculator suitable for all ages?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Most calculators are designed for adults. Pediatric assessments may require different formulas and professional evaluation.</div></div></div><div class="faq-item"><button class="faq-question">What do the colors mean?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Colors are interface prompts, not a diagnosis. Read the written explanation and discuss concerning results or symptoms with a qualified professional.</div></div></div><div class="faq-item"><button class="faq-question">Can lifestyle changes improve my results?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">The useful next step depends on what the calculator measures. Avoid changing treatment, medication, or a child’s care based only on an online result.</div></div></div><div class="faq-item"><button class="faq-question">Where do the formulas come from?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Methods differ between calculators. Use a result only when the page clearly identifies the method, intended population, required inputs, and limitations.</div></div></div></div>
+<div class="faq-list"><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-caffeine-intake-calculator-1">What is the Caffeine Intake Calculator?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-caffeine-intake-calculator-1"><div class="faq-answer-inner">The Caffeine Intake Calculator is a tool that helps you track your daily caffeine consumption.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-caffeine-intake-calculator-2">How accurate is this calculator?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-caffeine-intake-calculator-2"><div class="faq-answer-inner">This calculator provides an educational estimate. Its usefulness depends on the stated method, the quality of the inputs, and whether it was designed for your situation.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-caffeine-intake-calculator-3">How often should I use this calculator?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-caffeine-intake-calculator-3"><div class="faq-answer-inner">Repeat a calculation only when the underlying inputs have changed or when a qualified professional recommends monitoring.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-caffeine-intake-calculator-4">Can I rely on these results for medical decisions?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-caffeine-intake-calculator-4"><div class="faq-answer-inner">This tool is for informational purposes only. Always consult qualified healthcare professionals for medical advice and decisions.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-caffeine-intake-calculator-5">What factors affect the accuracy?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-caffeine-intake-calculator-5"><div class="faq-answer-inner">Individual variation, measurement technique, and the limitations of estimation formulas can all affect accuracy.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-caffeine-intake-calculator-6">Should I share results with my doctor?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-caffeine-intake-calculator-6"><div class="faq-answer-inner">Yes, sharing calculator results with your healthcare provider can facilitate productive discussions about your health.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-caffeine-intake-calculator-7">Is this calculator suitable for all ages?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-caffeine-intake-calculator-7"><div class="faq-answer-inner">Most calculators are designed for adults. Pediatric assessments may require different formulas and professional evaluation.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-caffeine-intake-calculator-8">What do the colors mean?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-caffeine-intake-calculator-8"><div class="faq-answer-inner">Colors are interface prompts, not a diagnosis. Read the written explanation and discuss concerning results or symptoms with a qualified professional.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-caffeine-intake-calculator-9">Can lifestyle changes improve my results?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-caffeine-intake-calculator-9"><div class="faq-answer-inner">The useful next step depends on what the calculator measures. Avoid changing treatment, medication, or a child’s care based only on an online result.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-caffeine-intake-calculator-10">Where do the formulas come from?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-caffeine-intake-calculator-10"><div class="faq-answer-inner">Methods differ between calculators. Use a result only when the page clearly identifies the method, intended population, required inputs, and limitations.</div></div></div></div>
 </div>
 </div>
 </section>
@@ -307,7 +307,7 @@
 <div class="container">
 <section class="seo-section fade-in">
 <h2>Related Calculators You Might Find Useful</h2>
-<div class="related-calcs-grid"><a href="/calculators/bmi-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="28" width="36" height="14" rx="3" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 28v-8a8 8 0 0 1 16 0v8" stroke="#52b788" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="35" r="2" fill="#2d6a4f"/></svg></div><div><h4>BMI Calculator</h4><p>Calculate your Body Mass Index based on height and weight.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/calorie-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c0 0-8 10-8 18a8 8 0 0 0 16 0c0-8-8-18-8-18z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 29c0-2.2 1.8-4 4-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Calorie Calculator</h4><p>Find out how many calories you need daily based on your goals.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/tdee-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><polyline points="8,36 17,22 25,28 33,16 42,8" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><polygon points="38,6 44,6 44,12" fill="#52b788"/></svg></div><div><h4>TDEE Calculator</h4><p>Calculate your Total Daily Energy Expenditure.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
+<div class="related-calcs-grid"><a href="/calculators/bmi-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="28" width="36" height="14" rx="3" stroke="#2d6a4f" stroke-width="2.5"/><path d="M16 28v-8a8 8 0 0 1 16 0v8" stroke="#52b788" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="35" r="2" fill="#2d6a4f"/></svg></div><div><h3>BMI Calculator</h3><p>Calculate your Body Mass Index based on height and weight.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/calorie-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c0 0-8 10-8 18a8 8 0 0 0 16 0c0-8-8-18-8-18z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 29c0-2.2 1.8-4 4-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Calorie Calculator</h4><p>Find out how many calories you need daily based on your goals.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/tdee-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><polyline points="8,36 17,22 25,28 33,16 42,8" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><polygon points="38,6 44,6 44,12" fill="#52b788"/></svg></div><div><h4>TDEE Calculator</h4><p>Calculate your Total Daily Energy Expenditure.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
 </section>
 </div>
 </section>
@@ -324,7 +324,7 @@
 <div class="ccs-xlink-img"><img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=440&h=220&fit=crop&auto=format&q=80" alt="How to use BMI calculator correctly measurement guide | VitalHealth Hub" width="440" height="220" loading="lazy"></div>
 <div class="ccs-xlink-body">
 <span class="ccs-xlink-badge">General Tools</span>
-<h4>How to Use a BMI Calculator: Common Mistakes and Better Metrics</h4>
+<h3>How to Use a BMI Calculator: Common Mistakes and Better Metrics</h3>
 <div class="ccs-xlink-meta">7 min read &bull; Educational guide</div>
 <span class="ccs-xlink-cta">Read Article &rarr;</span>
 </div></a><a href="/blog/calorie-calculator-complete-guide" class="ccs-xlink-card">
@@ -496,7 +496,7 @@ ma7122671@gmail.com
     showResult('result', '~' + Math.round(total) + ' mg/day', 'Caffeine estimate', 'Assumptions per entered serving: coffee 95 mg, tea 47 mg, and the third beverage 80 mg. Actual products vary widely. The general 400 mg/day reference is for most healthy adults; pregnancy, adolescence, medications, heart conditions, anxiety, and sleep problems require lower or individualized limits.', total > 400 ? 'yellow' : 'green');
   };</script>
 <div id="vh-chatbot">
-<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
+<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
 </button>
 <div id="vh-chat-window">

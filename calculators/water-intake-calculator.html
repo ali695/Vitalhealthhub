@@ -28,9 +28,9 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta name="keywords" content="water intake calculator, free water intake calculator, water intake calculator online, calculate water intake online, accurate water intake calculator, water intake for men, water intake for women, how to calculate water intake, what is a healthy water intake, water intake explained, water intake ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Water Intake Calculator","url":"https://vitalhealthhub.org/calculators/water-intake-calculator","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Dehydration drains your energy and sharpness. Calculate your personalized daily water target based on your weight and lifestyle. Stay hydrated."}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much water should I drink daily?","acceptedAnswer":{"@type":"Answer","text":"A general guideline is 33 ml per kg of body weight, adjusted for activity and climate. For a 70 kg person, that is about 2.3 liters."}},{"@type":"Question","name":"Does coffee count as water intake?","acceptedAnswer":{"@type":"Answer","text":"Yes. Caffeinated beverages contribute to hydration despite having a mild diuretic effect. The net hydration is still positive."}},{"@type":"Question","name":"Can I drink too much water?","acceptedAnswer":{"@type":"Answer","text":"Yes. Overhydration (hyponatremia) can be dangerous. It is rare but can occur during extreme exercise with excessive water intake."}},{"@type":"Question","name":"How do I know if I am dehydrated?","acceptedAnswer":{"@type":"Answer","text":"Check your urine color. Pale yellow indicates good hydration. Dark yellow or amber suggests you need more fluids."}},{"@type":"Question","name":"Should I drink more water during exercise?","acceptedAnswer":{"@type":"Answer","text":"Yes. Drink 200-300 ml every 15-20 minutes during exercise, and replenish fluids afterward."}},{"@type":"Question","name":"Does food count toward water intake?","acceptedAnswer":{"@type":"Answer","text":"Yes. About 20% of daily water intake comes from food, especially fruits and vegetables with high water content."}},{"@type":"Question","name":"Is cold or warm water better?","acceptedAnswer":{"@type":"Answer","text":"Both are equally effective for hydration. Choose whichever you prefer, as this encourages more intake."}},{"@type":"Question","name":"Does altitude affect water needs?","acceptedAnswer":{"@type":"Answer","text":"Yes. Higher altitudes increase respiratory water loss and urination, requiring additional fluid intake."}},{"@type":"Question","name":"Should children drink the same amount?","acceptedAnswer":{"@type":"Answer","text":"Children need less water. General guidelines suggest 1-1.7 liters per day depending on age and activity."}},{"@type":"Question","name":"Does sparkling water hydrate as well?","acceptedAnswer":{"@type":"Answer","text":"Yes. Sparkling water is just as hydrating as still water and can be a good alternative for those who prefer carbonation."}}]}</script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="ann-bar" role="marquee" aria-label="Site announcements">
 <div class="ann-ticker-wrap">
 <div class="ann-ticker">100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span>100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span></div>
@@ -43,20 +43,20 @@
 </div><nav class="navbar">
 <div class="nav-container">
 <a href="/" class="nav-logo" aria-label="VitalHealth Hub — Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="nav-logo-img"></a>
-<ul class="nav-links">
+<ul class="nav-links" id="primary-navigation">
 <li><a href="/">Home</a></li>
 <li class="nav-dropdown-wrap">
-<a href="/calculators/" class="nav-dropdown-trigger">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a href="/calculators/" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 <div class="mega-dropdown">
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false" aria-label="Search calculators...">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator">Body Fat Calculator</a></li>
@@ -66,7 +66,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator">Macro Calculator</a></li>
@@ -76,7 +76,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker">Blood Pressure</a></li>
@@ -86,7 +86,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator">Running Pace</a></li>
@@ -109,13 +109,13 @@
 <li><a href="/about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
-<button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+<button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button>
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/calculators/">Calculators</a><span>/</span><span>Water Intake Calculator</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://vitalhealthhub.org/calculators/"},{"@type":"ListItem","position":3,"name":"Water Intake Calculator","item":"https://vitalhealthhub.org/calculators/water-intake-calculator"}]}</script>
 
-<section class="calc-page-hero">
+<section class="calc-page-hero" id="main-content" tabindex="-1">
 <div class="container">
 <div class="calc-page-hero-inner">
 <div class="calc-page-hero-left">
@@ -207,7 +207,7 @@
 <div class="calc-input-header">
 <span class="calc-input-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span>
 <div>
-<h3 class="calc-input-title">Enter Your Details</h3>
+<h2 class="calc-input-title">Enter Your Details</h2>
 <p class="calc-input-sub">Fill in the fields below for instant results</p>
 </div>
 </div>
@@ -237,7 +237,7 @@
 <div class="calc-ph-step"><span>3</span>Get instant results</div>
 </div>
 </div>
-<div id="result" class="result-box">
+<div id="result" class="result-box" role="status" aria-live="polite">
 <div class="result-value"></div>
 <div class="result-label"></div>
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
@@ -311,7 +311,7 @@
 <div class="container">
 <div class="ccs-faq-wrap fade-in">
 <div class="ccs-section-heading"><h2>Frequently Asked Questions About Water Intake</h2></div>
-<div class="faq-list"><div class="faq-item"><button class="faq-question">How much water should I drink daily?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">A general guideline is 33 ml per kg of body weight, adjusted for activity and climate. For a 70 kg person, that is about 2.3 liters.</div></div></div><div class="faq-item"><button class="faq-question">Does coffee count as water intake?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Caffeinated beverages contribute to hydration despite having a mild diuretic effect. The net hydration is still positive.</div></div></div><div class="faq-item"><button class="faq-question">Can I drink too much water?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Overhydration (hyponatremia) can be dangerous. It is rare but can occur during extreme exercise with excessive water intake.</div></div></div><div class="faq-item"><button class="faq-question">How do I know if I am dehydrated?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Check your urine color. Pale yellow indicates good hydration. Dark yellow or amber suggests you need more fluids.</div></div></div><div class="faq-item"><button class="faq-question">Should I drink more water during exercise?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Drink 200-300 ml every 15-20 minutes during exercise, and replenish fluids afterward.</div></div></div><div class="faq-item"><button class="faq-question">Does food count toward water intake?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. About 20% of daily water intake comes from food, especially fruits and vegetables with high water content.</div></div></div><div class="faq-item"><button class="faq-question">Is cold or warm water better?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Both are equally effective for hydration. Choose whichever you prefer, as this encourages more intake.</div></div></div><div class="faq-item"><button class="faq-question">Does altitude affect water needs?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Higher altitudes increase respiratory water loss and urination, requiring additional fluid intake.</div></div></div><div class="faq-item"><button class="faq-question">Should children drink the same amount?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Children need less water. General guidelines suggest 1-1.7 liters per day depending on age and activity.</div></div></div><div class="faq-item"><button class="faq-question">Does sparkling water hydrate as well?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Sparkling water is just as hydrating as still water and can be a good alternative for those who prefer carbonation.</div></div></div></div>
+<div class="faq-list"><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-water-intake-calculator-1">How much water should I drink daily?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-water-intake-calculator-1"><div class="faq-answer-inner">A general guideline is 33 ml per kg of body weight, adjusted for activity and climate. For a 70 kg person, that is about 2.3 liters.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-water-intake-calculator-2">Does coffee count as water intake?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-water-intake-calculator-2"><div class="faq-answer-inner">Yes. Caffeinated beverages contribute to hydration despite having a mild diuretic effect. The net hydration is still positive.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-water-intake-calculator-3">Can I drink too much water?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-water-intake-calculator-3"><div class="faq-answer-inner">Yes. Overhydration (hyponatremia) can be dangerous. It is rare but can occur during extreme exercise with excessive water intake.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-water-intake-calculator-4">How do I know if I am dehydrated?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-water-intake-calculator-4"><div class="faq-answer-inner">Check your urine color. Pale yellow indicates good hydration. Dark yellow or amber suggests you need more fluids.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-water-intake-calculator-5">Should I drink more water during exercise?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-water-intake-calculator-5"><div class="faq-answer-inner">Yes. Drink 200-300 ml every 15-20 minutes during exercise, and replenish fluids afterward.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-water-intake-calculator-6">Does food count toward water intake?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-water-intake-calculator-6"><div class="faq-answer-inner">Yes. About 20% of daily water intake comes from food, especially fruits and vegetables with high water content.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-water-intake-calculator-7">Is cold or warm water better?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-water-intake-calculator-7"><div class="faq-answer-inner">Both are equally effective for hydration. Choose whichever you prefer, as this encourages more intake.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-water-intake-calculator-8">Does altitude affect water needs?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-water-intake-calculator-8"><div class="faq-answer-inner">Yes. Higher altitudes increase respiratory water loss and urination, requiring additional fluid intake.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-water-intake-calculator-9">Should children drink the same amount?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-water-intake-calculator-9"><div class="faq-answer-inner">Children need less water. General guidelines suggest 1-1.7 liters per day depending on age and activity.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-water-intake-calculator-10">Does sparkling water hydrate as well?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-water-intake-calculator-10"><div class="faq-answer-inner">Yes. Sparkling water is just as hydrating as still water and can be a good alternative for those who prefer carbonation.</div></div></div></div>
 </div>
 </div>
 </section>
@@ -320,7 +320,7 @@
 <div class="container">
 <section class="seo-section fade-in">
 <h2>Related Calculators You Might Find Useful</h2>
-<div class="related-calcs-grid"><a href="/calculators/calorie-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c0 0-8 10-8 18a8 8 0 0 0 16 0c0-8-8-18-8-18z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 29c0-2.2 1.8-4 4-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Calorie Calculator</h4><p>Find out how many calories you need daily based on your goals.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/fiber-intake-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 8v32" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M16 14l8 6 8-6M16 22l8 6 8-6M16 30l8 6 8-6" stroke="#52b788" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>Fiber Intake Calculator</h4><p>Calculate your recommended daily fiber intake.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/protein-intake-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M12 16c0-6.6 5.4-12 12-12s12 5.4 12 12-5.4 12-12 12-12-5.4-12-12z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M14 28h20l-2 14H16L14 28z" stroke="#52b788" stroke-width="2" stroke-linejoin="round"/></svg></div><div><h4>Protein Intake Calculator</h4><p>Calculate your daily protein requirements.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
+<div class="related-calcs-grid"><a href="/calculators/calorie-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c0 0-8 10-8 18a8 8 0 0 0 16 0c0-8-8-18-8-18z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M20 29c0-2.2 1.8-4 4-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h3>Calorie Calculator</h3><p>Find out how many calories you need daily based on your goals.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/fiber-intake-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 8v32" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round"/><path d="M16 14l8 6 8-6M16 22l8 6 8-6M16 30l8 6 8-6" stroke="#52b788" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>Fiber Intake Calculator</h4><p>Calculate your recommended daily fiber intake.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/protein-intake-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M12 16c0-6.6 5.4-12 12-12s12 5.4 12 12-5.4 12-12 12-12-5.4-12-12z" stroke="#2d6a4f" stroke-width="2.5"/><path d="M14 28h20l-2 14H16L14 28z" stroke="#52b788" stroke-width="2" stroke-linejoin="round"/></svg></div><div><h4>Protein Intake Calculator</h4><p>Calculate your daily protein requirements.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
 </section>
 </div>
 </section>
@@ -337,7 +337,7 @@
 <div class="ccs-xlink-img"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=440&h=220&fit=crop&auto=format&q=80" alt="Healthy balanced meal daily calorie planning | VitalHealth Hub" width="440" height="220" loading="lazy"></div>
 <div class="ccs-xlink-body">
 <span class="ccs-xlink-badge">Calories & Weight</span>
-<h4>How Many Calories Should I Eat Per Day? Complete Guide</h4>
+<h3>How Many Calories Should I Eat Per Day? Complete Guide</h3>
 <div class="ccs-xlink-meta">8 min read &bull; Educational guide</div>
 <span class="ccs-xlink-cta">Read Article &rarr;</span>
 </div></a><a href="/blog/calorie-deficit-for-weight-loss" class="ccs-xlink-card">
@@ -510,7 +510,7 @@ ma7122671@gmail.com
     showResult('result', low.toFixed(1) + '–' + high.toFixed(1) + ' L/day', 'Rough total-fluid starting range', 'Includes fluid from beverages and foods. Thirst, urine, sweat loss, pregnancy, illness, kidney/heart conditions, and medications can change needs; avoid forcing a fixed volume.', 'green');
   };</script>
 <div id="vh-chatbot">
-<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
+<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
 </button>
 <div id="vh-chat-window">

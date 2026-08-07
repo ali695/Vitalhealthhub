@@ -28,9 +28,9 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta name="keywords" content="pregnancy week calculator, free pregnancy week calculator, pregnancy week calculator online, calculate pregnancy week online, accurate pregnancy week calculator, pregnancy week for men, pregnancy week for women, how to calculate pregnancy week, what is a healthy pregnancy week, pregnancy week explained, pregnancy week ranges for adults">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Pregnancy Week Calculator","url":"https://vitalhealthhub.org/calculators/pregnancy-week-calculator","applicationCategory":"HealthApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Not sure exactly how many weeks pregnant you are? Calculate your pregnancy week and estimated due date instantly. Track every stage of your journey with."}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many weeks is a full-term pregnancy?","acceptedAnswer":{"@type":"Answer","text":"Full term is 37-42 weeks. 39-40 weeks is considered the optimal timing for most babies."}},{"@type":"Question","name":"What if my cycle is longer than 28 days?","acceptedAnswer":{"@type":"Answer","text":"Our calculator adjusts for cycle length. A 35-day cycle shifts ovulation and estimated due date by 7 days."}},{"@type":"Question","name":"How accurate is the due date calculation?","acceptedAnswer":{"@type":"Answer","text":"Only 4% of babies are born on their exact due date. Most arrive within 2 weeks before or after."}},{"@type":"Question","name":"When does each trimester start?","acceptedAnswer":{"@type":"Answer","text":"First: weeks 1-12. Second: weeks 13-26. Third: weeks 27-40."}},{"@type":"Question","name":"How does ultrasound due date differ?","acceptedAnswer":{"@type":"Answer","text":"Early ultrasound (8-12 weeks) is the most accurate dating method and may adjust the LMP-based estimate slightly."}}]}</script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="ann-bar" role="marquee" aria-label="Site announcements">
 <div class="ann-ticker-wrap">
 <div class="ann-ticker">100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span>100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span></div>
@@ -43,20 +43,20 @@
 </div><nav class="navbar">
 <div class="nav-container">
 <a href="/" class="nav-logo" aria-label="VitalHealth Hub — Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="nav-logo-img"></a>
-<ul class="nav-links">
+<ul class="nav-links" id="primary-navigation">
 <li><a href="/">Home</a></li>
 <li class="nav-dropdown-wrap">
-<a href="/calculators/" class="nav-dropdown-trigger">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a href="/calculators/" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Calculators <svg class="dd-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 <div class="mega-dropdown">
 <div class="mega-search-wrap">
 <div class="mega-search">
 <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>
-<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false">
+<input type="text" id="ddSearchInput" placeholder="Search calculators..." autocomplete="off" spellcheck="false" aria-label="Search calculators...">
 </div>
 </div>
 <div class="mega-dropdown-inner" id="ddGrid">
 <div class="mega-col">
-<h4 class="mega-col-title">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Weight &amp; Body <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/bmi-calculator">BMI Calculator</a></li>
 <li><a href="/calculators/body-fat-calculator">Body Fat Calculator</a></li>
@@ -66,7 +66,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Nutrition &amp; Diet <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/calorie-calculator">Calorie Calculator</a></li>
 <li><a href="/calculators/macro-calculator">Macro Calculator</a></li>
@@ -76,7 +76,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Heart &amp; Health <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/heart-rate-calculator">Heart Rate Zones</a></li>
 <li><a href="/calculators/blood-pressure-checker">Blood Pressure</a></li>
@@ -86,7 +86,7 @@
 </ul>
 </div>
 <div class="mega-col">
-<h4 class="mega-col-title">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
+<h4 class="mega-col-title" role="button" tabindex="0" aria-expanded="false">Fitness &amp; Performance <svg class="mega-col-arrow" viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></h4>
 <ul>
 <li><a href="/calculators/vo2-max-calculator">VO2 Max</a></li>
 <li><a href="/calculators/running-pace-calculator">Running Pace</a></li>
@@ -109,13 +109,13 @@
 <li><a href="/about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
-<button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+<button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button>
 </div></nav>
 
 <div class="breadcrumbs"><div class="breadcrumbs-inner"><a href="/">Home</a><span>/</span><a href="/calculators/">Calculators</a><span>/</span><span>Pregnancy Week Calculator</span></div></div>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vitalhealthhub.org/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://vitalhealthhub.org/calculators/"},{"@type":"ListItem","position":3,"name":"Pregnancy Week Calculator","item":"https://vitalhealthhub.org/calculators/pregnancy-week-calculator"}]}</script>
 
-<section class="calc-page-hero">
+<section class="calc-page-hero" id="main-content" tabindex="-1">
 <div class="container">
 <div class="calc-page-hero-inner">
 <div class="calc-page-hero-left">
@@ -164,7 +164,7 @@
 <div class="calc-input-header">
 <span class="calc-input-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span>
 <div>
-<h3 class="calc-input-title">Enter Your Details</h3>
+<h2 class="calc-input-title">Enter Your Details</h2>
 <p class="calc-input-sub">Fill in the fields below for instant results</p>
 </div>
 </div>
@@ -194,7 +194,7 @@
 <div class="calc-ph-step"><span>3</span>Get instant results</div>
 </div>
 </div>
-<div id="result" class="result-box">
+<div id="result" class="result-box" role="status" aria-live="polite">
 <div class="result-value"></div>
 <div class="result-label"></div>
 <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
@@ -268,7 +268,7 @@
 <div class="container">
 <div class="ccs-faq-wrap fade-in">
 <div class="ccs-section-heading"><h2>Frequently Asked Questions About Pregnancy Week</h2></div>
-<div class="faq-list"><div class="faq-item"><button class="faq-question">How many weeks is a full-term pregnancy?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Full term is 37-42 weeks. 39-40 weeks is considered the optimal timing for most babies.</div></div></div><div class="faq-item"><button class="faq-question">What if my cycle is longer than 28 days?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Our calculator adjusts for cycle length. A 35-day cycle shifts ovulation and estimated due date by 7 days.</div></div></div><div class="faq-item"><button class="faq-question">How accurate is the due date calculation?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Only 4% of babies are born on their exact due date. Most arrive within 2 weeks before or after.</div></div></div><div class="faq-item"><button class="faq-question">When does each trimester start?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">First: weeks 1-12. Second: weeks 13-26. Third: weeks 27-40.</div></div></div><div class="faq-item"><button class="faq-question">How does ultrasound due date differ?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Early ultrasound (8-12 weeks) is the most accurate dating method and may adjust the LMP-based estimate slightly.</div></div></div></div>
+<div class="faq-list"><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-pregnancy-week-calculator-1">How many weeks is a full-term pregnancy?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-pregnancy-week-calculator-1"><div class="faq-answer-inner">Full term is 37-42 weeks. 39-40 weeks is considered the optimal timing for most babies.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-pregnancy-week-calculator-2">What if my cycle is longer than 28 days?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-pregnancy-week-calculator-2"><div class="faq-answer-inner">Our calculator adjusts for cycle length. A 35-day cycle shifts ovulation and estimated due date by 7 days.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-pregnancy-week-calculator-3">How accurate is the due date calculation?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-pregnancy-week-calculator-3"><div class="faq-answer-inner">Only 4% of babies are born on their exact due date. Most arrive within 2 weeks before or after.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-pregnancy-week-calculator-4">When does each trimester start?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-pregnancy-week-calculator-4"><div class="faq-answer-inner">First: weeks 1-12. Second: weeks 13-26. Third: weeks 27-40.</div></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false" aria-controls="faq-answer-pregnancy-week-calculator-5">How does ultrasound due date differ?<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><div class="faq-answer" id="faq-answer-pregnancy-week-calculator-5"><div class="faq-answer-inner">Early ultrasound (8-12 weeks) is the most accurate dating method and may adjust the LMP-based estimate slightly.</div></div></div></div>
 </div>
 </div>
 </section>
@@ -277,7 +277,7 @@
 <div class="container">
 <section class="seo-section fade-in">
 <h2>Related Calculators You Might Find Useful</h2>
-<div class="related-calcs-grid"><a href="/calculators/pregnancy-due-date-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="32" rx="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M6 20h36" stroke="#2d6a4f" stroke-width="2"/><path d="M16 6v8M32 6v8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M24 30a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#2d6a4f" stroke-width="2"/><path d="M21 28l2-2 4 2" stroke="#52b788" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><h4>Pregnancy Due Date Calculator</h4><p>Estimate your baby's due date from your last menstrual period.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/pregnancy-weight-gain-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="14" r="6" stroke="#2d6a4f" stroke-width="2.5"/><path d="M14 24c0-4 4.5-8 10-8s10 4 10 8c0 6-2 12-10 14-8-2-10-8-10-14z" stroke="#52b788" stroke-width="2.5"/></svg></div><div><h4>Pregnancy Weight Gain Calculator</h4><p>Calculate recommended weight gain during pregnancy based on your pre-pregnancy BMI.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/baby-weight-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="10" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="20" cy="16" r="1.5" fill="#2d6a4f"/><circle cx="28" cy="16" r="1.5" fill="#2d6a4f"/><path d="M20 22c2 2 6 2 8 0" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/><rect x="8" y="32" width="32" height="10" rx="3" stroke="#52b788" stroke-width="2"/><path d="M24 32v-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Baby Weight Measurement Tracker</h4><p>Record a baby's weight for use with an official growth chart.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
+<div class="related-calcs-grid"><a href="/calculators/pregnancy-due-date-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="32" rx="4" stroke="#2d6a4f" stroke-width="2.5"/><path d="M6 20h36" stroke="#2d6a4f" stroke-width="2"/><path d="M16 6v8M32 6v8" stroke="#52b788" stroke-width="2" stroke-linecap="round"/><path d="M24 30a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#2d6a4f" stroke-width="2"/><path d="M21 28l2-2 4 2" stroke="#52b788" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><h3>Pregnancy Due Date Calculator</h3><p>Estimate your baby's due date from your last menstrual period.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/pregnancy-weight-gain-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="14" r="6" stroke="#2d6a4f" stroke-width="2.5"/><path d="M14 24c0-4 4.5-8 10-8s10 4 10 8c0 6-2 12-10 14-8-2-10-8-10-14z" stroke="#52b788" stroke-width="2.5"/></svg></div><div><h4>Pregnancy Weight Gain Calculator</h4><p>Calculate recommended weight gain during pregnancy based on your pre-pregnancy BMI.</p><span class="read-more">Use Calculator &rarr;</span></div></a><a href="/calculators/baby-weight-calculator" class="related-calc-card"><div class="related-calc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="10" stroke="#2d6a4f" stroke-width="2.5"/><circle cx="20" cy="16" r="1.5" fill="#2d6a4f"/><circle cx="28" cy="16" r="1.5" fill="#2d6a4f"/><path d="M20 22c2 2 6 2 8 0" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round"/><rect x="8" y="32" width="32" height="10" rx="3" stroke="#52b788" stroke-width="2"/><path d="M24 32v-4" stroke="#52b788" stroke-width="2" stroke-linecap="round"/></svg></div><div><h4>Baby Weight Measurement Tracker</h4><p>Record a baby's weight for use with an official growth chart.</p><span class="read-more">Use Calculator &rarr;</span></div></a></div>
 </section>
 </div>
 </section>
@@ -294,7 +294,7 @@
 <div class="ccs-xlink-img"><img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=440&h=220&fit=crop&auto=format&q=80" alt="Ovulation calculator complete guide fertility tracking women | VitalHealth Hub" width="440" height="220" loading="lazy"></div>
 <div class="ccs-xlink-body">
 <span class="ccs-xlink-badge">Women's Health</span>
-<h4>Ovulation Calculator Guide: How to Find Your Most Fertile Days</h4>
+<h3>Ovulation Calculator Guide: How to Find Your Most Fertile Days</h3>
 <div class="ccs-xlink-meta">8 min read &bull; Educational guide</div>
 <span class="ccs-xlink-cta">Read Article &rarr;</span>
 </div></a><a href="/blog/pregnancy-week-by-week-guide" class="ccs-xlink-card">
@@ -464,7 +464,7 @@ ma7122671@gmail.com
     showResult('result', weeks + ' weeks ' + extraDays + ' days', trimester, 'Cycle-adjusted estimated due date: ' + due.toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) + '. Ultrasound and clinician dating take priority; this tool does not estimate fetal size.', 'green');
   };</script>
 <div id="vh-chatbot">
-<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant">
+<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
 </button>
 <div id="vh-chat-window">
