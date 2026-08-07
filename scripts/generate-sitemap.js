@@ -8,7 +8,8 @@ const OUT_DIR   = path.join(ROOT, 'sitemaps');
 const TODAY     = new Date().toISOString().slice(0, 10);
 
 const EXCLUDE_DIRS = new Set([
-  'node_modules', '.git', 'scripts', 'uploads',
+  'node_modules', '.git', '.runtime', 'admin', 'content', 'database', 'deployment', 'dist',
+  'scripts', 'server', 'shared', 'svgs', 'templates', 'uploads', 'wp-plugin', 'wp-theme',
   'attached_assets', '.local', 'css', 'js', 'images', 'fonts', 'icons'
 ]);
 
@@ -23,7 +24,7 @@ const CATEGORIES = {
 function getPriority(urlPath) {
   if (urlPath === '/')                     return '1.0';
   if (/^\/(calculators|blog|tools|quizzes)\/?$/.test(urlPath)) return '0.9';
-  if (/^\/(about|contact|faq)\.html$/.test(urlPath))           return '0.8';
+  if (/^\/(about|contact|faq)$/.test(urlPath))                 return '0.8';
   if (/^\/calculators\//.test(urlPath))   return '0.8';
   if (/^\/blog\//.test(urlPath))          return '0.7';
   if (/^\/tools\//.test(urlPath))         return '0.8';
@@ -61,6 +62,7 @@ function scanHtml(dir, base = '') {
       let urlPath = '/' + relPath;
 
       urlPath = urlPath.replace(/\/index\.html$/, '/');
+      urlPath = urlPath.replace(/\.html$/, '');
 
       urls.push(urlPath);
     }

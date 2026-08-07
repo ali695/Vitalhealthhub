@@ -1,4 +1,5 @@
 const express  = require('express');
+const crypto   = require('crypto');
 const path     = require('path');
 const fs       = require('fs');
 const ejs      = require('ejs');
@@ -7,26 +8,34 @@ const db       = require('../database/db');
 const { NAV, FOOTER, CHATBOT, BTT } = require('../shared/site-parts');
 
 const router = express.Router();
-const SITE   = 'https://vitalhealthhub.com';
+const SITE   = 'https://vitalhealthhub.org';
 
 const UPLOADS_DIR = path.join(__dirname, '..', 'uploads');
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, UPLOADS_DIR),
-  filename:    (req, file, cb) => {
-    const safe = file.originalname.replace(/[^a-zA-Z0-9._-]/g, '-');
-    cb(null, Date.now() + '-' + safe);
-  }
-});
 const upload = multer({
-  storage,
-  limits: { fileSize: 10 * 1024 * 1024 },
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024, files: 1, fields: 20, fieldSize: 64 * 1024 },
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) cb(null, true);
+    if (['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(file.mimetype)) cb(null, true);
     else cb(new Error('Only image files are allowed'));
   }
 });
+
+function detectedImage(buffer) {
+  if (!Buffer.isBuffer(buffer)) return null;
+  if (buffer.length >= 8 && buffer.subarray(0, 8).equals(Buffer.from([0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a]))) return { extension: '.png', mime: 'image/png' };
+  if (buffer.length >= 3 && buffer.subarray(0, 3).equals(Buffer.from([0xff,0xd8,0xff]))) return { extension: '.jpg', mime: 'image/jpeg' };
+  if (buffer.length >= 6 && ['GIF87a', 'GIF89a'].includes(buffer.subarray(0, 6).toString('ascii'))) return { extension: '.gif', mime: 'image/gif' };
+  if (buffer.length >= 12 && buffer.subarray(0, 4).toString('ascii') === 'RIFF' && buffer.subarray(8, 12).toString('ascii') === 'WEBP') return { extension: '.webp', mime: 'image/webp' };
+  return null;
+}
+
+function adminError(res, error) {
+  const reference = crypto.randomUUID();
+  console.error(`[admin:${reference}]`, error);
+  if (!res.headersSent) res.status(500).send(`The operation could not be completed. Reference: ${reference}`);
+}
 
 const LAYOUT_PATH = path.join(__dirname, '..', 'admin', 'views', 'layout.ejs');
 
@@ -89,7 +98,8 @@ function updateSitemap(urlPath, action = 'add') {
   if (!fs.existsSync(sitemapFile)) return;
   let xml  = fs.readFileSync(sitemapFile, 'utf8');
   const today = new Date().toISOString().split('T')[0];
-  const fullUrl = SITE + urlPath;
+  const canonicalPath = urlPath.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+  const fullUrl = SITE + canonicalPath;
   if (action === 'add') {
     if (xml.includes('<loc>' + fullUrl + '</loc>')) return;
     const entry = `\n  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`;
@@ -141,7 +151,7 @@ router.get('/', async (req, res) => {
     });
     res.send(html);
   } catch (e) {
-    res.status(500).send(`<pre>Error: ${e.message}</pre>`);
+    adminError(res, e);
   }
 });
 
@@ -165,7 +175,7 @@ router.get('/blogs', async (req, res) => {
       <form method="POST" action="/admin/regenerate-blogs" style="display:inline"><button type="submit" class="btn btn-secondary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> Regenerate All</button></form>`;
     const html = await renderView('blogs', { blogs, categories, q, cat, flash, pageTitle: 'Blog Manager', topbarActions });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.get('/blogs/new', async (req, res) => {
@@ -173,7 +183,7 @@ router.get('/blogs/new', async (req, res) => {
     const mediaFiles = db.prepare('SELECT * FROM media ORDER BY uploaded_at DESC').all();
     const html = await renderView('blog-form', { blog: null, mediaFiles, flash: null, pageTitle: 'New Blog Post', topbarActions: '' });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/blogs/new', async (req, res) => {
@@ -195,7 +205,7 @@ router.post('/blogs/new', async (req, res) => {
     res.redirect('/admin/blogs');
   } catch (e) {
     if (e.message.includes('UNIQUE')) return res.status(400).send('A blog with that slug already exists.');
-    res.status(500).send(`<pre>Error: ${e.message}</pre>`);
+    adminError(res, e);
   }
 });
 
@@ -206,7 +216,7 @@ router.get('/blogs/:id/edit', async (req, res) => {
     const mediaFiles = db.prepare('SELECT * FROM media ORDER BY uploaded_at DESC').all();
     const html = await renderView('blog-form', { blog, mediaFiles, flash: null, pageTitle: 'Edit Post: ' + blog.title, topbarActions: `<a href="/blog/${blog.slug}.html" target="_blank" class="btn btn-secondary btn-sm">View Post ↗</a>` });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/blogs/:id/edit', async (req, res) => {
@@ -229,7 +239,7 @@ router.post('/blogs/:id/edit', async (req, res) => {
     fs.writeFileSync(path.join(outDir, slug + '.html'), htmlContent);
     flashMsg(req, 'success', `Blog updated and regenerated at /blog/${slug}.html`);
     res.redirect('/admin/blogs');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/blogs/:id/delete', (req, res) => {
@@ -242,7 +252,7 @@ router.post('/blogs/:id/delete', (req, res) => {
     updateSitemap('/blog/' + post.slug + '.html', 'remove');
     flashMsg(req, 'info', `Blog "${post.title}" deleted.`);
     res.redirect('/admin/blogs');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/regenerate-blogs', async (req, res) => {
@@ -258,7 +268,7 @@ router.post('/regenerate-blogs', async (req, res) => {
     }
     flashMsg(req, 'success', `Regenerated ${count} blog pages.`);
     res.redirect('/admin/blogs');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 /* ══════════════════════════════════════════════════
@@ -272,14 +282,14 @@ router.get('/calculators', async (req, res) => {
     const calcTopbar = `<a href="/admin/calculators/new" class="btn btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Calculator</a>`;
     const html = await renderView('calculators', { calculators, categories, flash, pageTitle: 'Calculator Manager', topbarActions: calcTopbar });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.get('/calculators/new', async (req, res) => {
   try {
     const html = await renderView('calculator-form', { calc: null, flash: null, pageTitle: 'New Calculator', topbarActions: '' });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/calculators/new', async (req, res) => {
@@ -300,7 +310,7 @@ router.post('/calculators/new', async (req, res) => {
     res.redirect('/admin/calculators');
   } catch (e) {
     if (e.message.includes('UNIQUE')) return res.status(400).send('A calculator with that slug already exists.');
-    res.status(500).send(`<pre>Error: ${e.message}</pre>`);
+    adminError(res, e);
   }
 });
 
@@ -310,7 +320,7 @@ router.get('/calculators/:id/edit', async (req, res) => {
     if (!calc) return res.status(404).send('Not found');
     const html = await renderView('calculator-form', { calc, flash: null, pageTitle: 'Edit: ' + calc.title, topbarActions: '' });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/calculators/:id/edit', async (req, res) => {
@@ -332,7 +342,7 @@ router.post('/calculators/:id/edit', async (req, res) => {
     fs.writeFileSync(path.join(outDir, slug + '.html'), htmlContent);
     flashMsg(req, 'success', `Calculator updated at /calculators/${slug}.html`);
     res.redirect('/admin/calculators');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/calculators/:id/delete', (req, res) => {
@@ -345,7 +355,7 @@ router.post('/calculators/:id/delete', (req, res) => {
     updateSitemap('/calculators/' + calc.slug + '.html', 'remove');
     flashMsg(req, 'info', `Calculator "${calc.title}" deleted.`);
     res.redirect('/admin/calculators');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 /* ══════════════════════════════════════════════════
@@ -367,7 +377,7 @@ router.get('/tools', async (req, res) => {
     const topbarActions = `<a href="/admin/tools/new" class="btn btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Tool</a>`;
     const html = await renderView('tools', { tools, categories, q, cat, flash, pageTitle: 'Tools Manager', topbarActions });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.get('/tools/new', async (req, res) => {
@@ -375,7 +385,7 @@ router.get('/tools/new', async (req, res) => {
     const mediaFiles = db.prepare('SELECT * FROM media ORDER BY uploaded_at DESC').all();
     const html = await renderView('tool-form', { tool: null, mediaFiles, flash: null, pageTitle: 'New Tool', topbarActions: '' });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/tools/new', async (req, res) => {
@@ -396,7 +406,7 @@ router.post('/tools/new', async (req, res) => {
     res.redirect('/admin/tools');
   } catch (e) {
     if (e.message.includes('UNIQUE')) return res.status(400).send('A tool with that slug already exists.');
-    res.status(500).send(`<pre>Error: ${e.message}</pre>`);
+    adminError(res, e);
   }
 });
 
@@ -407,7 +417,7 @@ router.get('/tools/:id/edit', async (req, res) => {
     const mediaFiles = db.prepare('SELECT * FROM media ORDER BY uploaded_at DESC').all();
     const html = await renderView('tool-form', { tool, mediaFiles, flash: null, pageTitle: 'Edit: ' + tool.title, topbarActions: `<a href="/tools/${tool.slug}.html" target="_blank" class="btn btn-secondary btn-sm">View Tool ↗</a>` });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/tools/:id/edit', async (req, res) => {
@@ -429,7 +439,7 @@ router.post('/tools/:id/edit', async (req, res) => {
     fs.writeFileSync(path.join(outDir, slug + '.html'), htmlContent);
     flashMsg(req, 'success', `Tool updated at /tools/${slug}.html`);
     res.redirect('/admin/tools');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/tools/:id/delete', (req, res) => {
@@ -442,7 +452,7 @@ router.post('/tools/:id/delete', (req, res) => {
     updateSitemap('/tools/' + tool.slug + '.html', 'remove');
     flashMsg(req, 'info', `Tool "${tool.title}" deleted.`);
     res.redirect('/admin/tools');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 /* ══════════════════════════════════════════════════
@@ -455,14 +465,14 @@ router.get('/quizzes', async (req, res) => {
     const topbarActions = `<a href="/admin/quizzes/new" class="btn btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New Quiz</a>`;
     const html = await renderView('quizzes', { quizzes, flash, pageTitle: 'Quiz Manager', topbarActions });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.get('/quizzes/new', async (req, res) => {
   try {
     const html = await renderView('quiz-form', { quiz: null, flash: null, pageTitle: 'New Quiz', topbarActions: '' });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/quizzes/new', async (req, res) => {
@@ -486,7 +496,7 @@ router.post('/quizzes/new', async (req, res) => {
     res.redirect('/admin/quizzes');
   } catch (e) {
     if (e.message.includes('UNIQUE')) return res.status(400).send('A quiz with that slug already exists.');
-    res.status(500).send(`<pre>Error: ${e.message}</pre>`);
+    adminError(res, e);
   }
 });
 
@@ -496,7 +506,7 @@ router.get('/quizzes/:id/edit', async (req, res) => {
     if (!quiz) return res.status(404).send('Not found');
     const html = await renderView('quiz-form', { quiz, flash: null, pageTitle: 'Edit Quiz: ' + quiz.title, topbarActions: `<a href="/quizzes/${quiz.slug}.html" target="_blank" class="btn btn-secondary btn-sm">View Quiz ↗</a>` });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/quizzes/:id/edit', async (req, res) => {
@@ -521,7 +531,7 @@ router.post('/quizzes/:id/edit', async (req, res) => {
     fs.writeFileSync(path.join(outDir, slug + '.html'), htmlContent);
     flashMsg(req, 'success', `Quiz updated at /quizzes/${slug}.html`);
     res.redirect('/admin/quizzes');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/quizzes/:id/delete', (req, res) => {
@@ -534,7 +544,7 @@ router.post('/quizzes/:id/delete', (req, res) => {
     updateSitemap('/quizzes/' + quiz.slug + '.html', 'remove');
     flashMsg(req, 'info', `Quiz "${quiz.title}" deleted.`);
     res.redirect('/admin/quizzes');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 /* ══════════════════════════════════════════════════
@@ -568,7 +578,7 @@ router.get('/seo-audit', async (req, res) => {
     scanDir(ROOT, '');
     const html = await renderView('seo-audit', { issues, flash: null, pageTitle: 'SEO Audit', topbarActions: '' });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 /* ══════════════════════════════════════════════════
@@ -580,34 +590,45 @@ router.get('/media', async (req, res) => {
     const flash      = getFlash(req);
     const html = await renderView('media', { mediaFiles, flash, pageTitle: 'Media Library', topbarActions: '' });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/upload', upload.single('image'), (req, res) => {
+  let storedPath = '';
   try {
     if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
-    const { originalname, filename, size, mimetype } = req.file;
+    if (!req.verifyCsrf?.()) return res.status(403).json({ error: 'Request verification failed' });
+    const detected = detectedImage(req.file.buffer);
+    if (!detected) return res.status(400).json({ error: 'The uploaded file is not a supported image' });
+    const { originalname, size } = req.file;
+    const filename = `${Date.now()}-${crypto.randomBytes(16).toString('hex')}${detected.extension}`;
+    storedPath = path.join(UPLOADS_DIR, filename);
+    fs.writeFileSync(storedPath, req.file.buffer, { flag: 'wx', mode: 0o640 });
     const altText = req.body.alt_text || '';
     db.prepare('INSERT INTO media (filename, original_name, file_size, mime_type, alt_text) VALUES (?,?,?,?,?)')
-      .run(filename, originalname, size, mimetype, altText);
+      .run(filename, originalname, size, detected.mime, altText);
     if (req.xhr || req.headers.accept?.includes('json')) {
       return res.json({ url: '/uploads/' + filename, filename });
     }
     flashMsg(req, 'success', `"${originalname}" uploaded successfully.`);
     res.redirect('/admin/media');
-  } catch (e) { res.status(500).json({ error: e.message }); }
+  } catch (e) {
+    if (storedPath && path.dirname(storedPath) === path.resolve(UPLOADS_DIR) && fs.existsSync(storedPath)) fs.unlinkSync(storedPath);
+    adminError(res, e);
+  }
 });
 
 router.post('/media/:id/delete', (req, res) => {
   try {
     const file = db.prepare('SELECT * FROM media WHERE id=?').get(req.params.id);
     if (!file) return res.status(404).send('Not found');
-    db.prepare('DELETE FROM media WHERE id=?').run(req.params.id);
-    const fp = path.join(UPLOADS_DIR, file.filename);
+    const fp = path.resolve(UPLOADS_DIR, file.filename);
+    if (path.dirname(fp) !== path.resolve(UPLOADS_DIR)) return res.status(400).send('Invalid media path');
     if (fs.existsSync(fp)) fs.unlinkSync(fp);
+    db.prepare('DELETE FROM media WHERE id=?').run(req.params.id);
     flashMsg(req, 'info', `"${file.original_name}" deleted.`);
     res.redirect('/admin/media');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 /* ══════════════════════════════════════════════════
@@ -649,14 +670,14 @@ router.get('/pages', async (req, res) => {
       <form method="POST" action="/admin/pages/regenerate-all" style="display:inline"><button type="submit" class="btn btn-secondary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> Regenerate All</button></form>`;
     const html = await renderView('pages', { pages, q, statusFilter, flash, pageTitle: 'Pages Manager', topbarActions });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.get('/pages/new', async (req, res) => {
   try {
     const html = await renderView('page-form', { page: null, flash: null, pageTitle: 'New Page', topbarActions: '' });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/pages/new', async (req, res) => {
@@ -677,7 +698,7 @@ router.post('/pages/new', async (req, res) => {
     res.redirect('/admin/pages');
   } catch (e) {
     if (e.message.includes('UNIQUE')) return res.status(400).send('A page with that slug already exists.');
-    res.status(500).send(`<pre>Error: ${e.message}</pre>`);
+    adminError(res, e);
   }
 });
 
@@ -689,7 +710,7 @@ router.get('/pages/:id/edit', async (req, res) => {
     const topbarActions = `<a href="${viewUrl}" target="_blank" class="btn btn-secondary btn-sm">View Page ↗</a>`;
     const html = await renderView('page-form', { page, flash: null, pageTitle: 'Edit: ' + page.title, topbarActions });
     res.send(html);
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/pages/:id/edit', async (req, res) => {
@@ -715,7 +736,7 @@ router.post('/pages/:id/edit', async (req, res) => {
     }
     flashMsg(req, 'success', `Page "${title}" saved${page.status==='published'?' and published':' as draft'}.`);
     res.redirect('/admin/pages');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/pages/:id/toggle-status', async (req, res) => {
@@ -735,7 +756,7 @@ router.post('/pages/:id/toggle-status', async (req, res) => {
       flashMsg(req, 'info', `"${page.title}" set to draft.`);
     }
     res.redirect('/admin/pages');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/pages/:id/delete', (req, res) => {
@@ -752,7 +773,7 @@ router.post('/pages/:id/delete', (req, res) => {
     updateSitemap(pageSitemapUrl(page.slug), 'remove');
     flashMsg(req, 'info', `Page "${page.title}" deleted.`);
     res.redirect('/admin/pages');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 router.post('/pages/regenerate-all', async (req, res) => {
@@ -767,7 +788,7 @@ router.post('/pages/regenerate-all', async (req, res) => {
     }
     flashMsg(req, 'success', `Regenerated ${count} page${count!==1?'s':''}.`);
     res.redirect('/admin/pages');
-  } catch (e) { res.status(500).send(`<pre>Error: ${e.message}</pre>`); }
+  } catch (e) { adminError(res, e); }
 });
 
 module.exports = router;

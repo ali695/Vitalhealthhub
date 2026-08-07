@@ -6,11 +6,11 @@
 <title><%= metaTitle || title %></title>
 <meta name="description" content="<%= metaDesc || description %>">
 <% const canon = canonical || ('/calculators/' + slug + '.html'); %>
-<link rel="canonical" href="https://vitalhealthhub.com<%= canon %>">
+<link rel="canonical" href="https://vitalhealthhub.org<%= canon.replace(/\.html$/, '') %>">
 <meta property="og:title" content="<%= metaTitle || title %>">
 <meta property="og:description" content="<%= metaDesc || description %>">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com<%= canon %>">
+<meta property="og:url" content="https://vitalhealthhub.org<%= canon.replace(/\.html$/, '') %>">
 <link rel="stylesheet" href="/css/style.css">
 <% if (schemaJson) { %>
 <script type="application/ld+json"><%- schemaJson %></script>

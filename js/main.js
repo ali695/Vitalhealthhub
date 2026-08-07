@@ -141,7 +141,7 @@ const vhChat = (function() {
   function rc(type, name, slug, note) {
     var base  = type==='calc'?'/calculators/':type==='tool'?'/tools/':'/quizzes/';
     var label = type==='calc'?'Calculator':type==='tool'?'Free Tool':'Health Quiz';
-    return '<a href="'+base+slug+'.html" class="vh-rc vh-rc-'+type+'">' +
+    return '<a href="'+base+slug+'" class="vh-rc vh-rc-'+type+'">' +
       '<span class="vh-rc-label">'+label+'</span>' +
       '<span class="vh-rc-name">'+name+'</span>' +
       (note?'<span class="vh-rc-note">'+note+'</span>':'') +
@@ -388,7 +388,7 @@ const vhChat = (function() {
     return liveGrid(
       'Live exchange rates for <strong>1 USD</strong> (updated daily):',
       rows,
-      'Source: Frankfurter API &mdash; rates refresh daily &middot; <a href="/calculators/loan-emi-calculator.html">Loan EMI Calculator &rarr;</a>'
+      'Source: Frankfurter API &mdash; rates refresh daily &middot; <a href="/calculators/loan-emi-calculator">Loan EMI Calculator &rarr;</a>'
     );
   }
 
@@ -539,7 +539,8 @@ const vhChat = (function() {
     if (results.length > 0) {
       var rcs = results.map(function(item){ return rc(item.t, item.n, item.s, item.cat||''); });
       setTimeout(function(){
-        cb(cards('Here\'s what I found for &ldquo;<strong>'+text.replace(/</g,'&lt;')+'</strong>&rdquo; on VitalHealth Hub:', rcs));
+        var escapedText = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        cb(cards('Here\'s what I found for &ldquo;<strong>'+escapedText+'</strong>&rdquo; on VitalHealth Hub:', rcs));
       }, 500);
       return;
     }
@@ -552,14 +553,42 @@ const vhChat = (function() {
   var isOpen = false;
 
   // ── DOM helpers ───────────────────────────────────────────────────────────
-  function addMessage(type, html) {
+  function safeBotFragment(html) {
+    var template = document.createElement('template');
+    template.innerHTML = String(html || '');
+    var allowedTags = new Set(['A','BR','DIV','EM','LI','P','SPAN','STRONG','UL']);
+    Array.from(template.content.querySelectorAll('*')).forEach(function(el) {
+      if (!allowedTags.has(el.tagName)) {
+        el.replaceWith(document.createTextNode(el.textContent || ''));
+        return;
+      }
+      Array.from(el.attributes).forEach(function(attr) {
+        var keepClass = attr.name === 'class';
+        var keepHref = el.tagName === 'A' && attr.name === 'href';
+        var keepTarget = el.tagName === 'A' && attr.name === 'target' && attr.value === '_blank';
+        var keepRel = el.tagName === 'A' && attr.name === 'rel';
+        if (!keepClass && !keepHref && !keepTarget && !keepRel) el.removeAttribute(attr.name);
+      });
+      if (el.tagName === 'A') {
+        var href = el.getAttribute('href') || '';
+        if (!/^\/(?!\/)/.test(href) && !/^https:\/\/(?:goldprice\.org|coinmarketcap\.com|www\.xe\.com)(?:\/|$)/i.test(href)) {
+          el.removeAttribute('href');
+        }
+        if (el.getAttribute('target') === '_blank') el.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+    return template.content;
+  }
+
+  function addMessage(type, content) {
     var msgs = document.getElementById('vh-chat-messages');
     if (!msgs) return;
     var wrap = document.createElement('div');
     wrap.className = 'vh-msg-wrap vh-msg-wrap-'+type;
     var bubble = document.createElement('div');
     bubble.className = 'vh-msg vh-msg-'+type;
-    bubble.innerHTML = html;
+    if (type === 'user') bubble.textContent = String(content || '');
+    else bubble.appendChild(safeBotFragment(content));
     wrap.appendChild(bubble);
     msgs.appendChild(wrap);
     requestAnimationFrame(function(){ msgs.scrollTop = msgs.scrollHeight; });
@@ -670,7 +699,7 @@ function vhhDdSearch(q) {
   var res  = document.getElementById('ddResults');
   if (!q || !q.trim()) {
     grid.style.display = '';
-    res.innerHTML = '';
+    res.replaceChildren();
     res.style.display = 'none';
     return;
   }
@@ -680,11 +709,25 @@ function vhhDdSearch(q) {
   });
   grid.style.display = 'none';
   res.style.display  = '';
-  res.innerHTML = matches.length
-    ? matches.map(function(a) {
-        return '<a href="' + a.getAttribute('href') + '" class="dd-result-item">' + a.textContent + '</a>';
-      }).join('')
-    : '<p class="dd-no-result">No results found — <a href="/calculators/">browse all calculators</a></p>';
+  res.replaceChildren();
+  if (matches.length) {
+    matches.forEach(function(a) {
+      var link = document.createElement('a');
+      link.href = a.getAttribute('href');
+      link.className = 'dd-result-item';
+      link.textContent = a.textContent;
+      res.appendChild(link);
+    });
+  } else {
+    var message = document.createElement('p');
+    message.className = 'dd-no-result';
+    message.appendChild(document.createTextNode('No results found — '));
+    var browse = document.createElement('a');
+    browse.href = '/calculators/';
+    browse.textContent = 'browse all calculators';
+    message.appendChild(browse);
+    res.appendChild(message);
+  }
 }
 
 function vhhToggleCol(h4) {
@@ -980,7 +1023,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (recent.length) {
         var pills = recent.filter(function(s) { return toolNames[s]; }).map(function(s) {
           var t = toolNames[s];
-          return '<a href="/tools/' + s + '.html" class="tools-activity-pill">' + t.icon + ' ' + t.name + '</a>';
+          return '<a href="/tools/' + s + '" class="tools-activity-pill">' + t.icon + ' ' + t.name + '</a>';
         }).join('');
         if (pills) { panel.classList.add('has-activity'); list.innerHTML = pills; }
       }
@@ -1150,15 +1193,26 @@ window.blogHeroSearch = function(q) {
   var sugg = document.getElementById('blogHeroSugg');
   if (!sugg) return;
   q = (q || '').toLowerCase().trim();
-  if (!q) { sugg.classList.remove('active'); sugg.innerHTML = ''; return; }
+  if (!q) { sugg.classList.remove('active'); sugg.replaceChildren(); return; }
   var data = _getBlogData();
   var matches = data.filter(function(p) {
     return p.title.toLowerCase().indexOf(q) !== -1 || p.category.toLowerCase().indexOf(q) !== -1;
   }).slice(0, 6);
   if (!matches.length) { sugg.classList.remove('active'); return; }
-  sugg.innerHTML = matches.map(function(p) {
-    return '<a href="/blog/' + p.slug + '.html" class="blog-hero-sugg-item"><span class="blog-hero-sugg-cat">' + p.category + '</span><span class="blog-hero-sugg-title">' + p.title + '</span></a>';
-  }).join('');
+  sugg.replaceChildren();
+  matches.forEach(function(p) {
+    var link = document.createElement('a');
+    link.href = '/blog/' + encodeURIComponent(p.slug);
+    link.className = 'blog-hero-sugg-item';
+    var category = document.createElement('span');
+    category.className = 'blog-hero-sugg-cat';
+    category.textContent = p.category;
+    var title = document.createElement('span');
+    title.className = 'blog-hero-sugg-title';
+    title.textContent = p.title;
+    link.append(category, title);
+    sugg.appendChild(link);
+  });
   sugg.classList.add('active');
 };
 
@@ -1176,7 +1230,7 @@ window.closeBlogSearch = function() {
   var results = document.getElementById('blogSearchResults');
   if (overlay) overlay.classList.remove('active');
   if (inp) inp.value = '';
-  if (results) results.innerHTML = '';
+  if (results) results.replaceChildren();
   document.body.style.overflow = '';
 };
 
@@ -1185,18 +1239,28 @@ window.liveSearchBlog = function() {
   var results = document.getElementById('blogSearchResults');
   if (!inp || !results) return;
   var q = inp.value.toLowerCase().trim();
-  if (!q) { results.innerHTML = ''; return; }
+  if (!q) { results.replaceChildren(); return; }
   var data = _getBlogData();
   var matches = data.filter(function(p) {
     return p.title.toLowerCase().indexOf(q) !== -1 || p.category.toLowerCase().indexOf(q) !== -1;
   }).slice(0, 12);
   if (!matches.length) {
-    results.innerHTML = '<a style="pointer-events:none;color:var(--gray-500);">No articles found for "' + q + '"</a>';
+    var empty = document.createElement('span');
+    empty.style.cssText = 'pointer-events:none;color:var(--gray-500);';
+    empty.textContent = 'No articles found for "' + q + '"';
+    results.replaceChildren(empty);
     return;
   }
-  results.innerHTML = matches.map(function(p) {
-    return '<a href="/blog/' + p.slug + '.html"><span class="search-result-category">' + p.category + '</span> ' + p.title + '</a>';
-  }).join('');
+  results.replaceChildren();
+  matches.forEach(function(p) {
+    var link = document.createElement('a');
+    link.href = '/blog/' + encodeURIComponent(p.slug);
+    var category = document.createElement('span');
+    category.className = 'search-result-category';
+    category.textContent = p.category;
+    link.append(category, document.createTextNode(' ' + p.title));
+    results.appendChild(link);
+  });
 };
 
 window.blogTagClick = function(tag) {

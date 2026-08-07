@@ -9,6 +9,9 @@ const report = {};
 const robotsOf = (html) => html.match(/<meta\s+name=["']robots["'][^>]*content=["']([^"']+)["']/i)?.[1] || '';
 const count = (text, pattern) => (text.match(pattern) || []).length;
 const words = (html) => html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/&[a-z0-9#]+;/gi, ' ').toLowerCase().match(/[a-z0-9]+/g) || [];
+const internalHtmlLinksOf = (html) => [...html.matchAll(/\b(?:href|action)=["']([^"']+)["']/gi)]
+  .map((match) => match[1])
+  .filter((url) => /^(?:\/|\.\/|\.\.\/|https?:\/\/(?:www\.)?vitalhealthhub\.(?:org|com)\/)/i.test(url) && /\.html(?:[?#]|$)/i.test(url));
 
 function shingles(html, size = 5) {
   const tokens = words(html);
@@ -21,7 +24,9 @@ function validateJsonLd(file, html) {
   }
 }
 
-const trackedHtml = execFileSync('git', ['ls-files', '*.html'], { cwd: root, encoding: 'utf8' }).trim().split(/\r?\n/).filter(Boolean);
+const trackedHtml = execFileSync('git', ['ls-files', '*.html'], { cwd: root, encoding: 'utf8' })
+  .trim().split(/\r?\n/).filter(Boolean)
+  .filter((file) => !file.startsWith('deployment/'));
 let indexable = 0;
 let noindex = 0;
 for (const file of trackedHtml) {
@@ -37,6 +42,8 @@ for (const file of trackedHtml) {
   if (!title || title.length > 60) failures.push(`${file}: title length ${title.length}`);
   if (!description || description.length > 160) failures.push(`${file}: description length ${description.length}`);
   if (!/<link rel="canonical" href="https:\/\/vitalhealthhub\.org\//i.test(current)) failures.push(`${file}: missing .org canonical`);
+  if (/<link rel="canonical" href="https:\/\/vitalhealthhub\.org\/[^"#?]+\.html(?:[?#][^"]*)?"/i.test(current)) failures.push(`${file}: canonical redirects through .html`);
+  if (internalHtmlLinksOf(current).length) failures.push(`${file}: internal .html link remains`);
   if (!/<nav class="navbar">/i.test(current) || !/<footer class="site-footer">/i.test(current)) failures.push(`${file}: shared shell marker missing`);
   validateJsonLd(file, current);
 }
@@ -126,7 +133,7 @@ const sitemapFiles = fs.readdirSync(path.join(root, 'sitemaps')).filter((name) =
 const sitemapUrls = sitemapFiles.flatMap((name) => [...fs.readFileSync(path.join(root, 'sitemaps', name), 'utf8').matchAll(/<loc>https:\/\/vitalhealthhub\.org([^<]*)<\/loc>/g)].map((match) => match[1]));
 if (sitemapUrls.length !== indexable) failures.push(`sitemap has ${sitemapUrls.length} URLs; expected ${indexable}`);
 for (const url of sitemapUrls) {
-  const relative = url === '/' ? 'index.html' : url.endsWith('/') ? `${url.slice(1)}index.html` : url.slice(1);
+  const relative = url === '/' ? 'index.html' : url.endsWith('/') ? `${url.slice(1)}index.html` : `${url.slice(1)}.html`;
   const html = fs.readFileSync(path.join(root, relative), 'utf8');
   if (/\bnoindex\b/i.test(robotsOf(html))) failures.push(`${relative}: noindex page included in sitemap`);
 }

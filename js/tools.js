@@ -227,13 +227,13 @@ document.addEventListener('DOMContentLoaded', function() {
       var habitData = JSON.parse(localStorage.getItem('vhh_habits') || '{"habits":[]}');
       var today = new Date().toISOString().split('T')[0]; var metrics = [];
       var ls = sleepData[0];
-      metrics.push({ icon: '😴', label: 'Last Sleep', val: ls ? ls.hrs + 'h (score ' + ls.score + ')' : 'Not logged yet', sub: ls ? ls.date : '', href: '/tools/sleep-tracker.html', empty: !ls });
+      metrics.push({ icon: '😴', label: 'Last Sleep', val: ls ? ls.hrs + 'h (score ' + ls.score + ')' : 'Not logged yet', sub: ls ? ls.date : '', href: '/tools/sleep-tracker', empty: !ls });
       var todayMood = moodData[today]; var moodLabels = ['', '😞 Low', '😟 Down', '😐 OK', '😊 Good', '😄 Great'];
-      metrics.push({ icon: '🌈', label: "Today's Mood", val: todayMood ? moodLabels[todayMood.mood] : 'Not logged yet', sub: todayMood ? todayMood.note : '', href: '/tools/mood-tracker.html', empty: !todayMood });
+      metrics.push({ icon: '🌈', label: "Today's Mood", val: todayMood ? moodLabels[todayMood.mood] : 'Not logged yet', sub: todayMood ? todayMood.note : '', href: '/tools/mood-tracker', empty: !todayMood });
       var ts = stepData.find(function(e) { return e.date === today; });
-      metrics.push({ icon: '👟', label: "Today's Steps", val: ts ? ts.steps.toLocaleString() + ' / ' + ts.goal.toLocaleString() : 'Not logged yet', sub: ts ? Math.round((ts.steps / ts.goal) * 100) + '% of goal' : '', href: '/tools/step-tracker.html', empty: !ts });
+      metrics.push({ icon: '👟', label: "Today's Steps", val: ts ? ts.steps.toLocaleString() + ' / ' + ts.goal.toLocaleString() : 'Not logged yet', sub: ts ? Math.round((ts.steps / ts.goal) * 100) + '% of goal' : '', href: '/tools/step-tracker', empty: !ts });
       var total = habitData.habits.length; var done = habitData.habits.filter(function(h) { return h.history && h.history[today]; }).length;
-      metrics.push({ icon: '🔥', label: 'Habits Today', val: total ? done + ' / ' + total + ' done' : 'No habits set', sub: total ? Math.round((done / total) * 100) + '% completion' : '', href: '/tools/habit-tracker.html', empty: !total });
+      metrics.push({ icon: '🔥', label: 'Habits Today', val: total ? done + ' / ' + total + ' done' : 'No habits set', sub: total ? Math.round((done / total) * 100) + '% completion' : '', href: '/tools/habit-tracker', empty: !total });
       var grid = document.getElementById('dashGrid');
       grid.innerHTML = metrics.map(function(m) {
         return '<a href="' + m.href + '" class="dashboard-metric-card' + (m.empty ? ' empty-metric' : '') + '">' +

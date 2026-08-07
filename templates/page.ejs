@@ -6,12 +6,12 @@
 <title><%= meta_title || title %></title>
 <meta name="description" content="<%= meta_desc %>">
 <% const canon = canonical || ('/' + (slug === 'home' ? '' : slug + '.html')); %>
-<link rel="canonical" href="https://vitalhealthhub.com<%= canon %>">
+<link rel="canonical" href="https://vitalhealthhub.org<%= canon.replace(/\.html$/, '') %>">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="<%= meta_title || title %>">
 <meta property="og:description" content="<%= meta_desc %>">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vitalhealthhub.com<%= canon %>">
+<meta property="og:url" content="https://vitalhealthhub.org<%= canon.replace(/\.html$/, '') %>">
 <meta property="og:site_name" content="VitalHealth Hub">
 <link rel="stylesheet" href="/css/style.css">
 <% if (page_type === 'about') { %>
@@ -21,12 +21,12 @@
   "@type": "AboutPage",
   "name": "<%= title %>",
   "description": "<%= meta_desc %>",
-  "url": "https://vitalhealthhub.com<%= canon %>",
+  "url": "https://vitalhealthhub.org<%= canon.replace(/\.html$/, '') %>",
   "publisher": {
     "@type": "Organization",
     "name": "VitalHealth Hub",
-    "url": "https://vitalhealthhub.com",
-    "logo": {"@type": "ImageObject", "url": "https://vitalhealthhub.com/images/logo.png"}
+    "url": "https://vitalhealthhub.org",
+    "logo": {"@type": "ImageObject", "url": "https://vitalhealthhub.org/images/logo.png"}
   }
 }
 </script>
@@ -37,8 +37,8 @@
   "@type": "ContactPage",
   "name": "<%= title %>",
   "description": "<%= meta_desc %>",
-  "url": "https://vitalhealthhub.com<%= canon %>",
-  "publisher": {"@type": "Organization", "name": "VitalHealth Hub", "url": "https://vitalhealthhub.com"}
+  "url": "https://vitalhealthhub.org<%= canon.replace(/\.html$/, '') %>",
+  "publisher": {"@type": "Organization", "name": "VitalHealth Hub", "url": "https://vitalhealthhub.org"}
 }
 </script>
 <% } else if (page_type === 'faq') { %>
@@ -48,7 +48,7 @@
   "@type": "FAQPage",
   "name": "<%= title %>",
   "description": "<%= meta_desc %>",
-  "url": "https://vitalhealthhub.com<%= canon %>"
+  "url": "https://vitalhealthhub.org<%= canon.replace(/\.html$/, '') %>"
 }
 </script>
 <% } else if (page_type === 'home') { %>
@@ -58,8 +58,8 @@
   "@type": "WebSite",
   "name": "VitalHealth Hub",
   "description": "<%= meta_desc %>",
-  "url": "https://vitalhealthhub.com",
-  "potentialAction": {"@type": "SearchAction", "target": "https://vitalhealthhub.com/blog.html?q={search_term_string}", "query-input": "required name=search_term_string"}
+  "url": "https://vitalhealthhub.org",
+  "potentialAction": {"@type": "SearchAction", "target": "https://vitalhealthhub.org/blog?q={search_term_string}", "query-input": "required name=search_term_string"}
 }
 </script>
 <% } else { %>
@@ -69,8 +69,8 @@
   "@type": "WebPage",
   "name": "<%= title %>",
   "description": "<%= meta_desc %>",
-  "url": "https://vitalhealthhub.com<%= canon %>",
-  "publisher": {"@type": "Organization", "name": "VitalHealth Hub", "url": "https://vitalhealthhub.com"}
+  "url": "https://vitalhealthhub.org<%= canon.replace(/\.html$/, '') %>",
+  "publisher": {"@type": "Organization", "name": "VitalHealth Hub", "url": "https://vitalhealthhub.org"}
 }
 </script>
 <% } %>

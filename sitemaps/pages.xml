@@ -5,55 +5,55 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://vitalhealthhub.org/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/about.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/about</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/blog.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/blog</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/contact.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vitalhealthhub.org/disclaimer.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://vitalhealthhub.org/faq.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/contact</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/privacy.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/disclaimer</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/sitemap.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/faq</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vitalhealthhub.org/privacy</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/terms.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/sitemap</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://vitalhealthhub.org/terms</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

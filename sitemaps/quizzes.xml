@@ -5,139 +5,139 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://vitalhealthhub.org/quizzes/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/anxiety-awareness-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/anxiety-awareness-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/biological-age-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/biological-age-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/body-fat-and-composition-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/body-fat-and-composition-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/brain-health-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/brain-health-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/burnout-risk-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/burnout-risk-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/calorie-and-metabolism-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/calorie-and-metabolism-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/diabetes-and-blood-sugar-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/diabetes-and-blood-sugar-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/diet-type-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/diet-type-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/fitness-level-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/fitness-level-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/gut-health-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/gut-health-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/health-trivia-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/health-trivia-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/heart-health-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/heart-health-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/hormone-balance-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/hormone-balance-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/hydration-health-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/hydration-health-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/lifestyle-health-score-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/lifestyle-health-score-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/menstrual-health-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/menstrual-health-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/nutrient-deficiency-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/nutrient-deficiency-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/nutrition-knowledge-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/nutrition-knowledge-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/sleep-quality-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/sleep-quality-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/stress-awareness-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/stress-awareness-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/weight-loss-science-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/weight-loss-science-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vitalhealthhub.org/quizzes/workout-type-quiz.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://vitalhealthhub.org/quizzes/workout-type-quiz</loc>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

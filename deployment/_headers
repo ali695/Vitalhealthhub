@@ -1,0 +1,18 @@
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://analytics.google.com https://pagead2.googlesyndication.com https://adservice.google.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com https://image.pollinations.ai https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://ssl.gstatic.com https://*.googleapis.com; connect-src 'self' https://api.frankfurter.app https://api.coingecko.com https://metals.live https://image.pollinations.ai https://www.google-analytics.com https://analytics.google.com https://ssl.google-analytics.com https://www.googletagmanager.com https://cloudflareinsights.com https://static.cloudflareinsights.com; frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net https://googleads.g.doubleclick.net; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests; block-all-mixed-content
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  X-Permitted-Cross-Domain-Policies: none
+
+/404.html
+  X-Robots-Tag: noindex, follow
+
+https://vitalhealthhub.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:branch.vitalhealthhub.pages.dev/*
+  X-Robots-Tag: noindex

@@ -1,4 +1,4 @@
-const SITE      = 'https://vitalhealthhub.com';
+const SITE      = 'https://vitalhealthhub.org';
 const SITE_NAME = 'VitalHealth Hub';
 
 const TOPBAR = `<div class="top-bar"><div class="top-bar-inner">
