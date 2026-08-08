@@ -18,9 +18,14 @@
   "author": "",
   "license": "ISC",
   "description": "Static health information, calculators, quizzes and browser-based tools for VitalHealth Hub",
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "clean-css": "^5.3.3",
-    "sharp": "^0.35.3",
     "terser": "^5.49.2"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.35.3"
   }
 }
