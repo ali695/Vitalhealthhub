@@ -23,6 +23,7 @@ const ROOT_PUBLIC_EXTENSIONS = new Set([
 ]);
 
 const ROOT_PUBLIC_FILES = new Set([
+  'ads.txt',
   'robots.txt',
   'site.webmanifest',
   'sitemap.xml',
