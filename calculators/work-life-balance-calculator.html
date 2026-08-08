@@ -25,6 +25,7 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -438,6 +439,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -463,20 +465,10 @@ contact@vitalhealthhub.org
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top" type="button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="/js/page/calculators/work-life-balance-calculator.js" defer></script>
 <script src="/js/main.js" defer></script>
+<script src="/js/consent-banner.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function () {
-    var work = parseFloat(document.getElementById('workhours').value);
-    var commute = parseFloat(document.getElementById('commute').value);
-    var vacation = parseFloat(document.getElementById('vacation').value);
-    var exercise = parseFloat(document.getElementById('exercise').value);
-    var social = parseFloat(document.getElementById('social').value);
-    var sleep = parseFloat(document.getElementById('sleep').value);
-    if ([work, commute, vacation, exercise, social, sleep].some(function (value) { return !Number.isFinite(value) || value < 0; })) { alert('Complete every field with a non-negative value'); return; }
-    var concerns = [];
-    if (work > 50) concerns.push('more than 50 work hours'); if (commute > 60) concerns.push('long daily commute'); if (vacation < 10) concerns.push('limited annual leave'); if (exercise < 2) concerns.push('low activity'); if (social < 5) concerns.push('limited social time'); if (sleep < 7) concerns.push('short sleep');
-    showResult('result', concerns.length + '/6 concerns', 'Work-life check-in', concerns.length ? 'Reported: ' + concerns.join(', ') + '. This is a transparent checklist, not a validated wellbeing score. Use it to choose one realistic change or seek support if strain is persistent.' : 'No listed concerns were flagged. This short checklist is not a clinical wellbeing measure.', concerns.length >= 4 ? 'red' : concerns.length ? 'yellow' : 'green');
-  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window" type="button">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

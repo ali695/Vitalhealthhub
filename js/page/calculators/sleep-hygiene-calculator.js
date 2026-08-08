@@ -1,0 +1,5 @@
+/* Extracted from calculators/sleep-hygiene-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var labels = [['bedtime', 'inconsistent schedule'], ['screen', 'late screen use'], ['caffeine', 'late caffeine'], ['temp', 'uncomfortable temperature'], ['dark', 'light exposure'], ['wind', 'limited wind-down'], ['alcohol', 'alcohol near bedtime']]; var concerns = labels.filter(function (item) { return (parseFloat(document.getElementById(item[0]).value) || 0) < 2; }).map(function (item) { return item[1]; });
+    showResult('result', concerns.length + '/7 improvement areas', 'Sleep-hygiene checklist', concerns.length ? 'Possible areas: ' + concerns.join(', ') + '. This custom checklist is not a sleep-disorder test. Persistent insomnia, snoring with breathing pauses, or severe daytime sleepiness warrants clinical assessment.' : 'No listed improvement areas were flagged. Sleep symptoms and duration still matter.', concerns.length >= 4 ? 'red' : concerns.length ? 'yellow' : 'green');
+  };

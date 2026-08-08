@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"nutrient-deficiency-quiz","name":"Nutrient & Vitamin Deficiency Quiz","questions":[{"q":"Vitamin C deficiency causes which classic disease?","opts":["Rickets","Scurvy (bleeding gums, poor wound healing)","Iron-deficiency anaemia","Pellagra"],"ans":1,"exp":"Scurvy (Vitamin C deficiency) causes collagen breakdown — bleeding gums, bruising, joint pain, and impaired healing."},{"q":"Which B vitamin is essential for preventing neural tube defects in early pregnancy?","opts":["B1 (Thiamine)","B6 (Pyridoxine)","B9 (Folate/Folic Acid)","B12 (Cobalamin)"],"ans":2,"exp":"Folate is critical in the first 28 days of pregnancy for neural tube closure. Deficiency causes spina bifida and anencephaly."},{"q":"Zinc is most important for?","opts":["Bone strength only","Immune function, wound healing, and protein synthesis","Regulating heart rate","Blood sugar control alone"],"ans":1,"exp":"Zinc supports over 300 enzyme functions, immune cell production, wound healing, taste/smell, and testosterone synthesis."},{"q":"The best natural source of Vitamin D is?","opts":["Orange juice","Milk alone","Sunlight (UVB) exposure — triggering skin synthesis","Red meat"],"ans":2,"exp":"Skin exposure to UVB rays (wavelength 290–315 nm) triggers cholesterol conversion to pre-vitamin D3 — far more efficient than diet alone."},{"q":"Magnesium is involved in approximately how many enzymatic reactions in the body?","opts":["About 10","About 50","Over 300","About 5"],"ans":2,"exp":"Magnesium is a cofactor in over 300 enzymatic reactions including energy production (ATP), protein synthesis, and muscle contraction."},{"q":"Iodine deficiency primarily causes?","opts":["Scurvy","Goitre and hypothyroidism (impaired thyroid hormone production)","Iron-deficiency anaemia","Night blindness"],"ans":1,"exp":"Iodine is required for thyroid hormone synthesis. Deficiency causes goitre (enlarged thyroid) and is the leading cause of preventable brain damage."},{"q":"Night blindness is classically associated with deficiency of?","opts":["Vitamin C","Vitamin D","Vitamin A","Vitamin E"],"ans":2,"exp":"Vitamin A is required for rhodopsin production in rod cells. Deficiency first manifests as night blindness, then corneal damage."},{"q":"Vitamin K2 (menaquinone) plays a unique role in?","opts":["Vitamin D synthesis","Blood clotting alone","Directing calcium into bones (not arteries) — arterial calcification prevention","Energy production"],"ans":2,"exp":"K2 activates osteocalcin (bone building) and matrix-Gla protein (prevents arterial calcification) — distinct from K1's role in clotting."},{"q":"The best plant-based sources of non-haem iron are?","opts":["Apples and bananas","Spinach, lentils, chickpeas, and tofu","Potatoes and bread","Rice and pasta only"],"ans":1,"exp":"Non-haem iron from plants has lower bioavailability but spinach, lentils, tofu, and fortified cereals are the best sources. Vitamin C enhances absorption."},{"q":"Biotin (Vitamin B7) deficiency classically causes?","opts":["Night blindness","Scurvy","Hair loss, brittle nails, and skin rash","Peripheral neuropathy"],"ans":2,"exp":"Biotin is essential for fatty acid synthesis and keratin production. Deficiency causes hair thinning, brittle nails, and skin inflammation."}],"scoring":[{"min":0,"max":40,"label":"Nutrition Novice","icon":"📚","feedback":"Nutrient knowledge is powerful for preventive health. Explore our vitamin and mineral guides to understand what your body needs."},{"min":41,"max":70,"label":"Nutrition Aware","icon":"💊","feedback":"Good understanding of vitamins and minerals! Use our Vitamin D calculator and nutrition articles to optimise your micronutrient intake."},{"min":71,"max":100,"label":"Micronutrition Expert","icon":"🏆","feedback":"Excellent! Your micronutrition knowledge is impressive. Apply it to identify gaps in your diet and support optimal health."}]};</script>
+<script src="/js/page/quizzes/nutrient-deficiency-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

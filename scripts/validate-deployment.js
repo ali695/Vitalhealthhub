@@ -80,9 +80,65 @@ for (const header of ['Content-Security-Policy', 'Strict-Transport-Security', 'X
   if (!headers.includes(`${header}:`)) failures.push(`${header}: production header missing`);
 }
 
+// CSP enforcement guard. script-src no longer carries 'unsafe-inline', so an inline
+// <script> or an onclick= attribute reaching production is not a style problem, it is
+// dead code: the browser will refuse to run it. Fail the build instead of shipping a
+// page whose buttons silently do nothing.
+const cspInline = { scripts: 0, handlers: 0, thirdPartyScripts: 0, examples: [] };
+const INLINE_HANDLER = /\son(?:click|load|error|change|submit|input|focus|blur|keydown|keyup|mouseover|mouseout|touchstart|dblclick|contextmenu)\s*=/gi;
+// Read the real directive only. _headers carries explanatory comments that mention
+// script-src and 'unsafe-inline' in prose, and matching those would silently disable
+// this whole guard.
+const activeCsp = headers
+  .split(/\r?\n/)
+  .filter((line) => !line.trim().startsWith('#'))
+  .find((line) => /Content-Security-Policy:/i.test(line)) || '';
+const cspAllowsInlineScript = /script-src[^;]*'unsafe-inline'/i.test(activeCsp);
+
+for (const file of htmlFiles) {
+  const html = fs.readFileSync(path.join(DIST, file), 'utf8');
+
+  for (const match of html.matchAll(/<script(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/gi)) {
+    // Data blocks such as JSON-LD are not executed and not governed by script-src.
+    if (/\btype\s*=/i.test(match[1]) && !/text\/javascript|module/i.test(match[1])) continue;
+    if (!match[2].trim()) continue;
+    cspInline.scripts += 1;
+    if (cspInline.examples.length < 10) cspInline.examples.push(`${file}: inline <script>`);
+  }
+
+  const handlers = html.match(INLINE_HANDLER) || [];
+  if (handlers.length) {
+    cspInline.handlers += handlers.length;
+    if (cspInline.examples.length < 10) cspInline.examples.push(`${file}: ${handlers[0].trim()}`);
+  }
+
+  for (const match of html.matchAll(/<script[^>]*\bsrc="(https?:\/\/[^"]+)"/gi)) {
+    const host = match[1].replace(/^https?:\/\//, '').split('/')[0];
+    if (!headers.includes(host)) {
+      cspInline.thirdPartyScripts += 1;
+      if (cspInline.examples.length < 10) cspInline.examples.push(`${file}: ${host} not in CSP`);
+    }
+  }
+}
+
+if (!cspAllowsInlineScript && cspInline.scripts) {
+  failures.push(`${cspInline.scripts} inline <script> blocks would be blocked by the CSP`);
+}
+if (!cspAllowsInlineScript && cspInline.handlers) {
+  failures.push(`${cspInline.handlers} inline event handlers would be blocked by the CSP`);
+}
+if (cspInline.thirdPartyScripts) {
+  failures.push(`${cspInline.thirdPartyScripts} third-party scripts are not whitelisted in the CSP`);
+}
+
 const report = {
   productionFiles: files.length,
   htmlFiles: htmlFiles.length,
+  cspAllowsInlineScript,
+  inlineScriptsBlockedByCsp: cspInline.scripts,
+  inlineHandlersBlockedByCsp: cspInline.handlers,
+  thirdPartyScriptsNotInCsp: cspInline.thirdPartyScripts,
+  cspExamples: cspInline.examples,
   forbiddenFiles: failures.filter((failure) => /forbidden/.test(failure)).length,
   internalHtmlLinks: htmlLinks,
   redirectingCanonicals: redirectedCanonicals,

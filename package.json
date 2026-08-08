@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node scripts/seo-hardening.js && node scripts/normalize-accessibility-schema.js && node scripts/normalize-site-urls.js && node scripts/generate-redirects.js && node scripts/generate-sitemap.js && node scripts/build-static.js && node scripts/minify-assets.js && node scripts/validate-deployment.js",
+    "build": "node scripts/seo-hardening.js && node scripts/extract-inline-scripts.js && node scripts/normalize-accessibility-schema.js && node scripts/normalize-site-urls.js && node scripts/generate-redirects.js && node scripts/generate-sitemap.js && node scripts/build-static.js && node scripts/minify-assets.js && node scripts/validate-deployment.js",
     "assets": "node scripts/generate-brand-assets.js",
     "eeat": "node scripts/build-eeat-pages.js && node scripts/seo-hardening.js",
     "review": "node scripts/apply-medical-review.js",
@@ -12,7 +12,8 @@
     "sitemap": "node scripts/normalize-site-urls.js && node scripts/generate-sitemap.js",
     "test": "npm run test:calculators && npm run content:validate && npm run test:deployment",
     "test:calculators": "node scripts/validate-calculators.js && node scripts/test-calculator-formulas.js",
-    "test:deployment": "npm run build"
+    "test:deployment": "npm run build",
+    "handlers": "node scripts/convert-inline-handlers.js"
   },
   "keywords": [],
   "author": "",

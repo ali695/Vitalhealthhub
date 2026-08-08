@@ -25,6 +25,7 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -468,6 +469,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -493,15 +495,10 @@ contact@vitalhealthhub.org
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top" type="button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="/js/page/calculators/iron-intake-calculator.js" defer></script>
 <script src="/js/main.js" defer></script>
+<script src="/js/consent-banner.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function () {
-    var age = parseFloat(document.getElementById('age').value); var sex = document.getElementById('gender').value; var state = document.getElementById('pregnant').value;
-    if (!Number.isFinite(age) || age < 1 || age > 120) { alert('Enter a valid age'); return; }
-    var iron = age <= 3 ? 7 : age <= 8 ? 10 : age <= 13 ? 8 : age <= 18 ? (sex === 'Male' ? 11 : 15) : age <= 50 ? (sex === 'Male' ? 8 : 18) : 8;
-    if (state === 'Pregnant') iron = 27; else if (state === 'Breastfeeding') iron = age <= 18 ? 10 : 9;
-    showResult('result', iron + ' mg/day', 'Iron RDA', 'Reference amount for the selected age, sex, and life stage. Do not use this as an iron-supplement dose; excess iron can be harmful and suspected deficiency needs appropriate testing.', 'green');
-  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window" type="button">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

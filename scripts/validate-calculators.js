@@ -79,9 +79,29 @@ function elementMap(html) {
   return { map, resultChildren };
 }
 
+/**
+ * The calculator function used to be an inline <script> in the page. It now lives in
+ * js/page/calculators/<slug>.js so the site can run a CSP without 'unsafe-inline'.
+ * Read the external file first and fall back to the inline form, so this validator
+ * works against either layout.
+ */
+function readCalculatorSource(directory, name, html) {
+  const slug = path.basename(name, '.html');
+  const external = path.resolve(directory, '..', 'js', 'page', 'calculators', `${slug}.js`);
+  if (fs.existsSync(external)) {
+    const code = fs.readFileSync(external, 'utf8');
+    const start = code.indexOf('window._vhCalcFn');
+    // Slice to end of file rather than regex to the first "};" -- several calculators
+    // declare an object literal (var multipliers = {...};) inside the function, and a
+    // lazy match stops there and hands back a truncated, unparseable body.
+    if (start !== -1) return code.slice(start);
+  }
+  return html.match(/<script>\s*(window\._vhCalcFn\s*=\s*function\s*\(\)\s*\{[\s\S]*?\};)\s*<\/script>/i)?.[1] || null;
+}
+
 for (const name of files) {
   const html = fs.readFileSync(path.join(directory, name), 'utf8');
-  const source = html.match(/<script>\s*(window\._vhCalcFn\s*=\s*function\s*\(\)\s*\{[\s\S]*?\};)\s*<\/script>/i)?.[1];
+  const source = readCalculatorSource(directory, name, html);
   if (!source) {
     failures.push(`${name}: calculator function not found`);
     continue;

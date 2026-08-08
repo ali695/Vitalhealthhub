@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"biological-age-quiz","name":"Biological Ageing Knowledge Quiz","questions":[{"q":"Biological age differs from chronological age because?","opts":["It measures your exact date of birth","It measures how well your body functions relative to average","They are always identical","It measures intelligence quotient"],"ans":1,"exp":"Biological age reflects cellular and physiological health — you can be 50 chronologically but have the biology of a 35-year-old with good habits."},{"q":"Which combination of factors most accelerates biological ageing?","opts":["Regular exercise and good sleep","Chronic stress, smoking, and poor diet","Healthy diet and socialising","Good sleep and avoiding alcohol"],"ans":1,"exp":"Chronic stress, smoking, ultra-processed diets, and sedentary behaviour are the most potent accelerators of cellular ageing."},{"q":"Telomeres are associated with?","opts":["Muscle contraction","Cellular ageing — shorter telomeres indicate older cells","Blood pressure regulation","Brain function exclusively"],"ans":1,"exp":"Telomeres are protective caps on chromosomes that shorten with each cell division. Short telomeres are associated with disease and ageing."},{"q":"The maximum scientifically confirmed human lifespan is around?","opts":["100 years","115–122 years (Jeanne Calment lived to 122)","130 years","150 years"],"ans":1,"exp":"Jeanne Calment of France lived to 122 years and 164 days — the verified longest human lifespan on record."},{"q":"Which lifestyle factor has the strongest evidence for extending healthy lifespan?","opts":["Supplement regimens","Regular physical activity combined with caloric balance","Positive thinking alone","Sleeping 12+ hours daily"],"ans":1,"exp":"Regular physical activity is the single most evidence-backed intervention for extending both lifespan and healthspan."},{"q":"Blue Zones (Okinawa, Sardinia, Loma Linda, Nicoya, Ikaria) are notable for?","opts":["High pollution and industrial output","The highest concentrations of people living past 100","Extreme sports and athletics","High-fat dietary traditions"],"ans":1,"exp":"Blue Zones have 10× more centenarians than average. Common factors: plant-heavy diets, movement, community, and purpose."},{"q":"Grip strength is used as a biomarker for ageing because?","opts":["It only measures hand muscles","It correlates strongly with overall muscle mass, health, and longevity","It measures heart rate variability","It predicts bone density exclusively"],"ans":1,"exp":"Large population studies show grip strength is one of the strongest predictors of all-cause mortality and functional health in ageing."},{"q":"Which activity is most strongly linked to preserving brain function with age?","opts":["Watching educational television","Learning new complex skills and physical exercise","Sleeping 10+ hours","Avoiding all social interaction"],"ans":1,"exp":"Both cognitive challenge (learning languages, instruments) and aerobic exercise increase BDNF and new neuron growth in the hippocampus."},{"q":"Chronic inflammation (inflammaging) is associated with ageing because?","opts":["It has no link to ageing","It accelerates cellular damage, telomere shortening, and organ decline","It only affects the immune system","It improves with age automatically"],"ans":1,"exp":"Low-grade chronic inflammation damages tissue, shortens telomeres, and drives age-related diseases like cardiovascular disease and dementia."},{"q":"Regular social connection is associated with?","opts":["No significant health effect","Up to 50% reduced risk of premature death","Higher cortisol levels","Worse sleep quality"],"ans":1,"exp":"Julianne Holt-Lunstad's meta-analysis found strong social connections reduce mortality risk by 50% — comparable to quitting smoking."}],"scoring":[{"min":0,"max":40,"label":"Ageing Novice","icon":"📚","feedback":"Fascinating field! Understanding biological ageing helps you make choices that keep you younger longer. Try our Biological Age Calculator."},{"min":41,"max":70,"label":"Longevity Aware","icon":"🌱","feedback":"Good knowledge of longevity science! Apply Blue Zone principles — movement, community, plant foods, and purpose — to your daily life."},{"min":71,"max":100,"label":"Longevity Expert","icon":"🏆","feedback":"Impressive! You clearly understand the science of healthy ageing. Track your biological age progress with our calculator tools."}]};</script>
+<script src="/js/page/quizzes/biological-age-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

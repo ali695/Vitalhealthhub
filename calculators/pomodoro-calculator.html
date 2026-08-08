@@ -25,6 +25,7 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -438,6 +439,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -463,12 +465,10 @@ contact@vitalhealthhub.org
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top" type="button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="/js/page/calculators/pomodoro-calculator.js" defer></script>
 <script src="/js/main.js" defer></script>
+<script src="/js/consent-banner.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function () {
-    var tasks = parseInt(document.getElementById('tasks').value, 10); var perTask = parseInt(document.getElementById('pomodoros').value, 10); var start = document.getElementById('workstart').value; var type = document.getElementById('breaktype').value; if (!Number.isInteger(tasks) || tasks < 1 || !Number.isInteger(perTask) || perTask < 1 || !start) { alert('Enter valid tasks, sessions, and start time'); return; } var work = type === 'Classic (25/5/15)' ? 25 : type === 'Extended (50/10/30)' ? 50 : 15; var shortBreak = type === 'Classic (25/5/15)' ? 5 : type === 'Extended (50/10/30)' ? 10 : 3; var longBreak = type === 'Classic (25/5/15)' ? 15 : type === 'Extended (50/10/30)' ? 30 : 10; var sessions = tasks * perTask; var totalMinutes = sessions * work; for (var index = 1; index < sessions; index += 1) totalMinutes += index % 4 === 0 ? longBreak : shortBreak; var parts = start.split(':'); var finish = (parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10) + totalMinutes) % 1440; var hour = Math.floor(finish / 60); var minute = finish % 60;
-    showResult('result', sessions + ' sessions', 'Pomodoro plan', 'Total scheduled time: ' + totalMinutes + ' minutes; estimated finish: ' + (hour % 12 || 12) + ':' + String(minute).padStart(2, '0') + ' ' + (hour < 12 ? 'AM' : 'PM') + '. No break is added after the final work session.', 'green');
-  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window" type="button">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

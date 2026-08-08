@@ -8754,3 +8754,42 @@ html, body { overflow-x: hidden; }
   color: #12805c;
 }
 .medical-review-badge a { color: inherit; text-decoration: underline; }
+
+/* ---- Consent banner (js/consent-banner.js) ---- */
+.vhh-consent {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 20px 22px;
+  background: #ffffff;
+  border: 1px solid #d7e3da;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(12, 40, 26, 0.18);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.vhh-consent-title { margin: 0 0 8px; font-size: 1.05rem; font-weight: 700; color: #14432c; }
+.vhh-consent-body { margin: 0 0 10px; color: #3f5a4c; }
+.vhh-consent-link { display: inline-block; margin-bottom: 14px; color: #176B43; text-decoration: underline; font-size: 0.85rem; }
+.vhh-consent-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.vhh-consent-btn {
+  flex: 1 1 160px;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid #176B43;
+  min-height: 44px;
+}
+.vhh-consent-btn-primary { background: #176B43; color: #ffffff; }
+.vhh-consent-btn-secondary { background: #ffffff; color: #176B43; }
+.vhh-consent-btn:hover { filter: brightness(1.08); }
+.vhh-consent-btn:focus-visible { outline: 3px solid #F5943D; outline-offset: 2px; }
+@media (max-width: 480px) {
+  .vhh-consent { left: 10px; right: 10px; bottom: 10px; padding: 16px; }
+}

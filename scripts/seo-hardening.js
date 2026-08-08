@@ -121,6 +121,41 @@ function transform(html) {
     }
   );
 
+  // Consent Mode v2. consent-defaults.js is deliberately NOT deferred and sits in
+  // <head>: the default state has to be registered before any tag could fire, and a
+  // deferred script would run too late to deny anything. The banner UI is deferred.
+  if (!out.includes('/js/consent-defaults.js')) {
+    out = out.replace(/(<link rel="stylesheet" href="\/css\/style\.css">)/, (m) => {
+      bump('consentDefaultsAdded');
+      return '<script src="/js/consent-defaults.js"></script>' + eol + m;
+    });
+  }
+
+  // The quiz pages and a couple of index pages never load main.js, so anchor on it
+  // when it is there and fall back to the end of <body> when it is not.
+  if (!out.includes('/js/consent-banner.js')) {
+    const bannerTag = '<script src="/js/consent-banner.js" defer></script>';
+    if (/[ \t]*<script src="\/js\/main\.js" defer><\/script>/.test(out)) {
+      out = out.replace(/([ \t]*<script src="\/js\/main\.js" defer><\/script>)/, (m) => {
+        bump('consentBannerAdded');
+        return m + eol + bannerTag;
+      });
+    } else if (out.includes('</body>')) {
+      out = out.replace('</body>', () => {
+        bump('consentBannerAdded');
+        return bannerTag + eol + '</body>';
+      });
+    }
+  }
+
+  // Consent must be as easy to withdraw as it was to give.
+  if (!out.includes('data-consent-open')) {
+    out = out.replace('<li><a href="/disclaimer">Medical Disclaimer</a></li>', (m) => {
+      bump('consentFooterLinksAdded');
+      return m + eol + '<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>';
+    });
+  }
+
   // M7 -- the editorial policy has to be reachable from every page to count.
   if (!out.includes('href="/editorial-policy"')) {
     out = out.replace(

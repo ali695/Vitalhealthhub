@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"brain-health-quiz","name":"Brain Health & Neuroplasticity Quiz","questions":[{"q":"Neuroplasticity means?","opts":["The physical flexibility of the skull","The brain's ability to form new neural connections throughout life","Irreversible nerve damage","Natural brain shrinkage with age"],"ans":1,"exp":"Neuroplasticity is the brain's lifelong ability to reorganise itself by forming new neural connections in response to experience."},{"q":"Which activity most powerfully increases BDNF (Brain-Derived Neurotrophic Factor)?","opts":["Watching educational TV","Aerobic exercise (especially running)","Increasing sugar intake","Prolonged sitting"],"ans":1,"exp":"Aerobic exercise is the most potent evidence-based way to increase BDNF — sometimes called \"Miracle-Gro for the brain.\""},{"q":"Sleep supports brain health primarily because?","opts":["It rests your eyes from screens","It activates the glymphatic system — clearing toxic waste proteins like amyloid-beta","It has no proven cognitive effect","It only prevents dreams"],"ans":1,"exp":"The glymphatic system clears metabolic waste (including Alzheimer's-linked amyloid-beta) from the brain primarily during deep sleep."},{"q":"The hippocampus is most associated with?","opts":["Voluntary motor control","Processing visual information","Memory formation and spatial navigation","Triggering the fear/threat response"],"ans":2,"exp":"The hippocampus is critical for converting short-term memories to long-term storage and for spatial navigation."},{"q":"Omega-3 DHA is especially critical for brain function because?","opts":["It provides energy for neurons","It forms the structural component of neuronal cell membranes","It only helps muscle recovery","It improves digestion"],"ans":1,"exp":"DHA (docosahexaenoic acid) makes up ~25% of brain fat content and is essential for membrane fluidity, synaptic function, and cognition."},{"q":"When does cognitive decline typically become noticeable in most people?","opts":["Around age 30","Around age 45","Around age 60–70","Only after age 80"],"ans":2,"exp":"While some cognitive changes begin in the 40s–50s, meaningful functional decline is typically noticeable around age 60–70."},{"q":"Learning a new skill or language benefits the brain by?","opts":["Having no measurable neurological effect","Creating new synaptic connections and dendritic growth","Only helping children's development","Causing cognitive confusion"],"ans":1,"exp":"Skill acquisition drives synaptogenesis (new synapses) and axonal growth — keeping the brain structurally resilient with age."},{"q":"Social isolation in older adults significantly increases risk of?","opts":["No measurable health risk","Dementia and depression — up to 50% higher risk","Better sleep through increased solitude","Improved cognitive focus"],"ans":1,"exp":"Chronic loneliness and isolation are as harmful as smoking 15 cigarettes per day and dramatically increase dementia risk."},{"q":"Chronic sleep deprivation damages the brain by?","opts":["Having no lasting effect","Accumulating amyloid-beta plaques and damaging neural tissue","Only temporarily reducing concentration","Only affecting emotional regulation"],"ans":1,"exp":"Without adequate sleep, amyloid-beta and tau proteins accumulate — the hallmarks of Alzheimer's — increasing long-term dementia risk."},{"q":"Which vitamin deficiency is most strongly linked to cognitive decline?","opts":["Vitamin A","Vitamin B12","Vitamin C","Vitamin E"],"ans":1,"exp":"Vitamin B12 deficiency causes myelin sheath degeneration, leading to memory loss, confusion, and nerve damage if untreated."}],"scoring":[{"min":0,"max":40,"label":"Brain Health Novice","icon":"📚","feedback":"Your brain is your most important organ — learn how to protect it! Check out our focus and sleep tools for practical brain health tips."},{"min":41,"max":70,"label":"Brain Aware","icon":"💡","feedback":"Good brain health knowledge! Apply exercise, quality sleep, omega-3s, and learning to keep your brain sharp and resilient."},{"min":71,"max":100,"label":"Neuroscience Expert","icon":"🏆","feedback":"Outstanding! Your brain health knowledge is at an expert level. Apply this science daily to protect and enhance your cognitive performance."}]};</script>
+<script src="/js/page/quizzes/brain-health-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

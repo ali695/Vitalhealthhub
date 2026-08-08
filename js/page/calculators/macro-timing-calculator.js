@@ -1,0 +1,5 @@
+/* Extracted from calculators/macro-timing-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var calories = parseFloat(document.getElementById('calories').value); var protein = parseFloat(document.getElementById('protein').value); var meals = parseInt(document.getElementById('meals').value, 10); var workout = document.getElementById('workouttime').value; if (!Number.isFinite(calories) || calories < 800 || !Number.isFinite(protein) || protein <= 0 || !Number.isInteger(meals) || meals < 2 || meals > 6) { alert('Enter valid calories, protein, and 2–6 meals'); return; } var perMeal = protein / meals;
+    showResult('result', '~' + Math.round(perMeal) + ' g protein/meal', 'Simple distribution plan', 'Spread ' + protein + ' g across ' + meals + ' meals around a ' + workout + ' workout. A practical per-meal average is ' + perMeal.toFixed(1) + ' g; there is no requirement for exactly 25% before and 35% within one hour after training.', 'green');
+  };

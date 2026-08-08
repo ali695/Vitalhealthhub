@@ -25,6 +25,7 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -452,6 +453,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -477,19 +479,10 @@ contact@vitalhealthhub.org
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top" type="button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="/js/page/calculators/stroke-risk-calculator.js" defer></script>
 <script src="/js/main.js" defer></script>
+<script src="/js/consent-banner.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function () {
-    var age = parseFloat(document.getElementById('age').value);
-    if (!Number.isFinite(age) || age < 18 || age > 120) { alert('Enter a valid adult age'); return; }
-    var factors = [];
-    if (age >= 65) factors.push('age 65 or older');
-    if (document.getElementById('bp').value === 'Yes') factors.push('high blood pressure');
-    if (document.getElementById('smoking').value === 'Yes') factors.push('smoking');
-    if (document.getElementById('diabetes').value === 'Yes') factors.push('diabetes');
-    if (document.getElementById('afib').value === 'Yes') factors.push('atrial fibrillation');
-    showResult('result', factors.length + ' factor' + (factors.length === 1 ? '' : 's'), 'Stroke risk-factor summary', factors.length ? 'Reported: ' + factors.join(', ') + '. This is not a percentage or validated stroke-risk score. Atrial fibrillation requires a specific clinician-assessed model, and sudden stroke symptoms require emergency services.' : 'No listed factors were reported, but this short checklist cannot calculate or rule out stroke risk.', factors.length >= 3 ? 'red' : factors.length ? 'yellow' : 'green');
-  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window" type="button">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

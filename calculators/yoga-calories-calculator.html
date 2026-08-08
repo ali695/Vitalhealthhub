@@ -25,6 +25,7 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -468,6 +469,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -493,12 +495,10 @@ contact@vitalhealthhub.org
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top" type="button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="/js/page/calculators/yoga-calories-calculator.js" defer></script>
 <script src="/js/main.js" defer></script>
+<script src="/js/consent-banner.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function () {
-    var weight = parseFloat(document.getElementById('weight').value); var duration = parseFloat(document.getElementById('duration').value); var style = document.getElementById('style').value; if (!Number.isFinite(weight) || weight <= 0 || !Number.isFinite(duration) || duration <= 0) { alert('Enter valid weight and duration'); return; } var mets = {'Hatha': 2.5, 'Vinyasa': 4, 'Ashtanga': 5, 'Bikram/Hot Yoga': 5, 'Power Yoga': 5.5, 'Restorative': 2}; var met = mets[style]; if (!met) { alert('Choose a yoga style'); return; } var calories = met * 3.5 * weight / 200 * duration;
-    showResult('result', '~' + Math.round(calories) + ' kcal', 'MET-based yoga estimate', met + ' MET for ' + duration + ' minutes. Class pace, room temperature, rest periods, and individual effort affect actual energy use.', 'green');
-  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window" type="button">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

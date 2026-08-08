@@ -5,9 +5,28 @@ const vm = require('vm');
 
 const calculatorDirectory = path.resolve(__dirname, '..', 'calculators');
 
-function calculate(slug, values) {
+const pageScriptDirectory = path.resolve(__dirname, '..', 'js', 'page', 'calculators');
+
+/**
+ * Calculator functions moved out of inline <script> into js/page/calculators/<slug>.js
+ * so the site can drop 'unsafe-inline' from its CSP. Prefer the external file and fall
+ * back to the inline form.
+ */
+function readSource(slug) {
+  const external = path.join(pageScriptDirectory, `${slug}.js`);
+  if (fs.existsSync(external)) {
+    const code = fs.readFileSync(external, 'utf8');
+    const start = code.indexOf('window._vhCalcFn');
+    // To end of file, not a lazy regex: several calculators declare an object literal
+    // inside the function, and "};" there would truncate the body.
+    if (start !== -1) return code.slice(start);
+  }
   const html = fs.readFileSync(path.join(calculatorDirectory, `${slug}.html`), 'utf8');
-  const source = html.match(/<script>\s*(window\._vhCalcFn\s*=\s*function\s*\(\)\s*\{[\s\S]*?\};)\s*<\/script>/i)?.[1];
+  return html.match(/<script>\s*(window\._vhCalcFn\s*=\s*function\s*\(\)\s*\{[\s\S]*?\};)\s*<\/script>/i)?.[1] || null;
+}
+
+function calculate(slug, values) {
+  const source = readSource(slug);
   assert(source, `${slug}: calculator source not found`);
   let rendered = null;
   let alertMessage = null;

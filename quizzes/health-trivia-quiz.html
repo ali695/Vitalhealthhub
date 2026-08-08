@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"health-trivia-quiz","name":"Human Body Trivia Quiz","questions":[{"q":"The human heart beats approximately how many times per day?","opts":["50,000 times","86,400 times","100,000 times","200,000 times"],"ans":2,"exp":"At a resting rate of ~70 bpm, the heart beats approximately 100,800 times per day — over 3 billion times in a lifetime."},{"q":"Which organ produces insulin?","opts":["Liver","Kidney","Pancreas","Stomach"],"ans":2,"exp":"The pancreatic beta cells (islets of Langerhans) produce insulin, which regulates blood glucose levels."},{"q":"The longest bone in the human body is?","opts":["Humerus (upper arm)","Tibia (shin)","Femur (thigh)","Vertebral column"],"ans":2,"exp":"The femur (thigh bone) is the longest, strongest, and heaviest bone — typically 25–30% of a person's height."},{"q":"How many bones does the adult human body contain?","opts":["106","206","306","406"],"ans":1,"exp":"Adults have 206 bones. Babies are born with ~270, which fuse over time. The smallest bone is the stapes in the ear."},{"q":"The largest organ of the human body (by surface area) is?","opts":["Liver","Brain","Skin","Lungs"],"ans":2,"exp":"The skin is the largest organ, covering approximately 1.5–2 m² in adults and weighing 3–4 kg."},{"q":"Blood type O negative is known as the universal?","opts":["Recipient — can receive any blood type","Donor — can give to any recipient","Blood type for athletes","None — this is a myth"],"ans":1,"exp":"O negative blood lacks A, B, and Rh antigens, so it can be given to anyone in emergencies — hence \"universal donor.\""},{"q":"The frontal lobe of the brain primarily controls?","opts":["Balance and coordination","Vision and spatial processing","Personality, decision-making, and voluntary movement","Hearing and speech comprehension"],"ans":2,"exp":"The frontal lobe handles executive functions — decision-making, personality, voluntary movement, and working memory."},{"q":"Red blood cells survive in the body for approximately?","opts":["24 hours","7 days","120 days","1 year"],"ans":2,"exp":"Red blood cells live approximately 120 days before being broken down in the spleen and recycled by the liver."},{"q":"Peristalsis refers to?","opts":["Blood pumping through arteries","Wave-like muscle contractions moving food through the digestive tract","Air movement through the lungs","Electrical signals in the brain"],"ans":1,"exp":"Peristalsis is the coordinated smooth muscle contraction that propels food from the oesophagus through the intestines."},{"q":"The brain uses approximately what percentage of the body's total energy?","opts":["5%","10%","20%","35%"],"ans":2,"exp":"Despite being only ~2% of body weight, the brain consumes ~20% of total energy — about 400 kcal per day at rest."}],"scoring":[{"min":0,"max":40,"label":"Body Trivia Novice","icon":"📚","feedback":"The human body is truly amazing! Explore our health tools and blog articles to discover more fascinating body science."},{"min":41,"max":70,"label":"Body Aware","icon":"🫀","feedback":"Good knowledge of human body facts! Keep exploring health topics through our 150+ evidence-based articles."},{"min":71,"max":100,"label":"Body Science Expert","icon":"🏆","feedback":"Outstanding! You know the human body inside out. You would ace a biology exam!"}]};</script>
+<script src="/js/page/quizzes/health-trivia-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

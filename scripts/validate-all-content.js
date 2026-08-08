@@ -120,7 +120,14 @@ for (const name of calculatorFiles) {
   const html = fs.readFileSync(path.join(root, 'calculators', name), 'utf8');
   if (/\bnoindex\b/i.test(robotsOf(html))) calculatorRobots.noindex += 1; else calculatorRobots.index += 1;
   if (/valuable health tool|Our calculators use peer-reviewed, established|Green indicates healthy\/optimal/i.test(html)) failures.push(`calculators/${name}: old generic claim remains`);
-  if (!/<div class="form-group">/i.test(html) || !/window\._vhCalcFn/i.test(html)) failures.push(`calculators/${name}: calculator inputs or logic marker missing`);
+  // The logic marker moved out of the page and into js/page/calculators/<slug>.js when
+  // inline scripts were extracted so the CSP could drop 'unsafe-inline'. Accept either
+  // location, but require that it exists somewhere.
+  const calculatorScript = path.join(root, 'js', 'page', 'calculators', name.replace(/\.html$/, '.js'));
+  const hasLogic =
+    /window\._vhCalcFn/i.test(html) ||
+    (fs.existsSync(calculatorScript) && /window\._vhCalcFn/i.test(fs.readFileSync(calculatorScript, 'utf8')));
+  if (!/<div class="form-group">/i.test(html) || !hasLogic) failures.push(`calculators/${name}: calculator inputs or logic marker missing`);
 }
 
 const safetySlugs = ['baby-weight-calculator', 'body-fat-calculator', 'child-bmi-calculator', 'child-growth-calculator', 'depression-screening-calculator', 'diabetes-risk-calculator', 'heart-age-calculator', 'medication-dosage-calculator', 'stroke-risk-calculator'];

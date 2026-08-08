@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"anxiety-awareness-quiz","name":"Anxiety Awareness Quiz","questions":[{"q":"Anxiety disorders are the most common mental health condition globally?","opts":["No — depression is more common","Yes — affecting approximately 1 in 13 people","Only in high-income countries","Only in women"],"ans":1,"exp":"WHO estimates anxiety disorders affect approximately 301 million people globally, making them the most common mental health condition."},{"q":"The \"fight or flight\" stress response is primarily triggered by?","opts":["Serotonin release","Adrenaline and norepinephrine","Dopamine","Insulin"],"ans":1,"exp":"The amygdala triggers adrenaline (epinephrine) and norepinephrine release during perceived threat, causing the fight-or-flight response."},{"q":"Which psychological therapy has the strongest evidence for treating anxiety disorders?","opts":["Hypnotherapy","Medication alone","Cognitive Behavioural Therapy (CBT)","Meditation alone"],"ans":2,"exp":"CBT has the strongest evidence base for anxiety disorders, including generalised anxiety, phobias, panic disorder, and social anxiety."},{"q":"Box breathing (4-4-4-4 pattern) reduces anxiety by?","opts":["Increasing CO2 to induce drowsiness","Activating the parasympathetic nervous system","Simply distracting the mind","Having no proven physiological effect"],"ans":1,"exp":"Controlled breathing lengthens the exhale relative to inhale, stimulating the vagus nerve and activating the parasympathetic system."},{"q":"Avoidance of anxiety-provoking situations typically?","opts":["Cures anxiety over time","Worsens anxiety long-term by reinforcing fear","Has no long-term effect","Helps both short-term and long-term"],"ans":1,"exp":"Avoidance provides short-term relief but prevents habituation to the feared stimulus, strengthening the anxiety response long-term."},{"q":"Regular aerobic exercise has been shown to reduce anxiety symptoms by?","opts":["5%","10–20%","Up to 48%","It worsens anxiety"],"ans":2,"exp":"Meta-analyses show aerobic exercise reduces anxiety symptoms by up to 48% — comparable to some pharmacological treatments."},{"q":"Anxiety and stress are the same thing?","opts":["Yes, they are identical","No — anxiety persists even without an identifiable trigger","Only in clinical cases are they different","Sometimes, depending on severity"],"ans":1,"exp":"Stress typically has an identifiable cause and resolves when the stressor is removed. Anxiety can persist without a clear trigger."},{"q":"Caffeine can worsen anxiety in sensitive individuals because it?","opts":["Calms the nervous system","Increases heart rate and mimics anxiety symptoms","Only affects mood in high doses","Only affects sleep, not anxiety"],"ans":1,"exp":"Caffeine blocks adenosine receptors and increases adrenaline, which can amplify physiological anxiety symptoms in sensitive individuals."},{"q":"The gut-brain axis is relevant to anxiety because?","opts":["Your gut has no connection to your brain","Gut microbiome influences neurotransmitter production and mood","Anxiety only exists in the brain","Diet has no proven effect on mood"],"ans":1,"exp":"The gut produces ~90% of serotonin. Gut microbiome imbalance (dysbiosis) is linked to higher anxiety and depression rates."},{"q":"Social support reduces anxiety primarily because?","opts":["It distracts you from worries","Other people solve your problems","Connection releases oxytocin and reduces cortisol","It has no proven biological mechanism"],"ans":2,"exp":"Social bonding releases oxytocin (\"bonding hormone\") which directly suppresses cortisol and reduces amygdala reactivity."}],"scoring":[{"min":0,"max":40,"label":"Anxiety Novice","icon":"📚","feedback":"Understanding anxiety science helps demystify it. Explore our stress calculators and mental health articles to learn more."},{"min":41,"max":70,"label":"Anxiety Aware","icon":"🧘","feedback":"Good understanding of anxiety fundamentals! Apply evidence-based strategies like CBT principles, exercise, and breathing techniques."},{"min":71,"max":100,"label":"Mental Health Expert","icon":"🏆","feedback":"Outstanding knowledge of anxiety science! You are well-equipped to understand, manage, and support others with anxiety."}]};</script>
+<script src="/js/page/quizzes/anxiety-awareness-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

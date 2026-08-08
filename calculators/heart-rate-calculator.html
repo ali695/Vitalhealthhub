@@ -25,6 +25,7 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -464,6 +465,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -489,12 +491,10 @@ contact@vitalhealthhub.org
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top" type="button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="/js/page/calculators/heart-rate-calculator.js" defer></script>
 <script src="/js/main.js" defer></script>
+<script src="/js/consent-banner.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function () {
-    var age = parseFloat(document.getElementById('age').value); var resting = parseFloat(document.getElementById('rhr').value); if (!Number.isFinite(age) || age < 18 || age > 100 || !Number.isFinite(resting) || resting < 30 || resting > 150) { alert('Enter valid adult age and resting heart rate'); return; } var maximum = 208 - 0.7 * age; var reserve = maximum - resting; var zone = function (low, high) { return Math.round(resting + reserve * low) + '–' + Math.round(resting + reserve * high); };
-    showResult('result', 'Est. max ' + Math.round(maximum) + ' bpm', 'Heart-rate reserve training zones', '50–60%: ' + zone(0.5, 0.6) + ' bpm | 60–70%: ' + zone(0.6, 0.7) + ' bpm | 70–80%: ' + zone(0.7, 0.8) + ' bpm | 80–90%: ' + zone(0.8, 0.9) + ' bpm. Estimated maximum heart rate has individual error; medications and conditions can change safe targets.', 'green');
-  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window" type="button">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

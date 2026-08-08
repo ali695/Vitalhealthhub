@@ -1,0 +1,5 @@
+/* Extracted from calculators/fertility-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var raw = document.getElementById('lmp').value; var cycle = parseFloat(document.getElementById('cycle').value); if (!raw || !Number.isFinite(cycle) || cycle < 21 || cycle > 45) { alert('Enter a date and typical cycle length from 21 to 45 days'); return; } var start = new Date(raw + 'T00:00:00'); var ovulation = new Date(start); ovulation.setDate(ovulation.getDate() + cycle - 14); var first = new Date(ovulation); first.setDate(first.getDate() - 5); var last = new Date(ovulation); last.setDate(last.getDate() + 1); var format = function (date) { return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear(); };
+    showResult('result', format(first) + ' – ' + format(last), 'Estimated fertile window', 'Estimated ovulation: ' + format(ovulation) + '. Calendar estimates vary and cannot confirm fertility, ovulation, or safe days for contraception.', 'yellow');
+  };

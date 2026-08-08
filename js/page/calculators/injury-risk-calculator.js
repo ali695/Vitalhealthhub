@@ -1,0 +1,6 @@
+/* Extracted from calculators/injury-risk-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var factors = [];
+    if ((parseFloat(document.getElementById('increase').value) || 0) > 10) factors.push('training increase above 10%'); if ((parseFloat(document.getElementById('warmup').value) || 0) <= 2) factors.push('limited warm-up'); if ((parseFloat(document.getElementById('sleep').value) || 0) <= 2) factors.push('poor sleep'); if (document.getElementById('history').value !== 'None') factors.push('injury history'); if (document.getElementById('pain').value !== 'Never') factors.push('current or recurring pain'); if ((parseFloat(document.getElementById('rest').value) || 0) < 1) factors.push('little recovery time');
+    showResult('result', factors.length + '/6 factors', 'Training risk-factor checklist', factors.length ? 'Reported: ' + factors.join(', ') + '. This is not a validated injury probability. Stop or modify activity for significant pain and seek an appropriate clinical assessment.' : 'No listed factors were reported. Injury risk still depends on sport, workload, technique, health, and prior injury.', factors.length >= 4 ? 'red' : factors.length ? 'yellow' : 'green');
+  };

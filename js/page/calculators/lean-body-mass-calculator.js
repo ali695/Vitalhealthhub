@@ -1,0 +1,5 @@
+/* Extracted from calculators/lean-body-mass-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var weight = parseFloat(document.getElementById('weight').value); var height = parseFloat(document.getElementById('height').value); var sex = document.getElementById('gender').value; if (!Number.isFinite(weight) || weight <= 0 || !Number.isFinite(height) || height <= 0) { alert('Enter valid weight and height'); return; } var lean = sex === 'Male' ? 0.407 * weight + 0.267 * height - 19.2 : 0.252 * weight + 0.473 * height - 48.3; if (!Number.isFinite(lean) || lean <= 0 || lean > weight) { alert('These measurements are outside the valid range for this estimate'); return; }
+    showResult('result', lean.toFixed(1) + ' kg', 'Hume lean-body-mass estimate', 'Estimated lean mass is ' + (lean / weight * 100).toFixed(0) + '% of body weight. This regression estimate is not a direct body-composition measurement.', 'green');
+  };

@@ -1,0 +1,5 @@
+/* Extracted from calculators/menstrual-cycle-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var raw = document.getElementById('lmp').value; var cycle = parseFloat(document.getElementById('cycle').value); if (!raw || !Number.isFinite(cycle) || cycle < 21 || cycle > 45) { alert('Enter a period start date and typical cycle length from 21 to 45 days'); return; } var start = new Date(raw + 'T00:00:00'); var next = new Date(start); next.setDate(next.getDate() + cycle); var ovulation = new Date(start); ovulation.setDate(ovulation.getDate() + cycle - 14); var fertileStart = new Date(ovulation); fertileStart.setDate(fertileStart.getDate() - 5); var format = function (date) { return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear(); };
+    showResult('result', format(next), 'Estimated next period', 'Estimated ovulation: ' + format(ovulation) + '; possible fertile window begins around ' + format(fertileStart) + '. Cycle timing varies and calendar estimates cannot confirm ovulation or provide reliable contraception.', 'yellow');
+  };

@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"lifestyle-health-score-quiz","name":"Lifestyle Health Score Quiz","questions":[{"q":"How many hours of sleep do most adults need per night?","opts":["5–6 hours","6–7 hours","7–9 hours","10–12 hours"],"ans":2,"exp":"The National Sleep Foundation recommends 7–9 hours per night for adults aged 18–64."},{"q":"How many servings of fruits and vegetables are recommended daily?","opts":["2 servings","3 servings","5 servings","8 servings"],"ans":2,"exp":"WHO and most national guidelines recommend at least 5 servings (400 g) of fruit and veg per day."},{"q":"Chronic stress primarily elevates which hormone?","opts":["Insulin","Cortisol","Testosterone","Oestrogen"],"ans":1,"exp":"Cortisol is the primary stress hormone, elevated by the HPA axis during chronic stress."},{"q":"Sitting for more than 8 hours daily is associated with?","opts":["Improved posture","Increased mortality risk","Better productivity","No measurable health effects"],"ans":1,"exp":"Prolonged sitting is an independent risk factor for cardiovascular disease and all-cause mortality, even in those who exercise."},{"q":"What is the healthy BMI range for most adults?","opts":["15–18","18.5–24.9","25–29","30+"],"ans":1,"exp":"A BMI of 18.5–24.9 is classified as \"normal weight\" by WHO, though BMI has limitations."},{"q":"Smoking significantly increases risk of which set of diseases?","opts":["Heart disease only","Lung cancer only","Heart disease, multiple cancers, stroke, and COPD","Diabetes only"],"ans":2,"exp":"Smoking is a risk factor for heart disease, many cancers, stroke, COPD, and numerous other conditions."},{"q":"How often should adults ideally have a general health check?","opts":["Every 10 years","Only when sick","Annually or as clinically advised","Every 5 years"],"ans":2,"exp":"Annual health screenings allow early detection of conditions like hypertension, diabetes, and high cholesterol."},{"q":"Which single habit has the strongest evidence for improving longevity?","opts":["Taking supplements","Not smoking","Daily multivitamins","Avoiding coffee"],"ans":1,"exp":"Not smoking is the single most impactful lifestyle change for longevity, reducing risk of dozens of diseases."},{"q":"The recommended daily step count for general health is around?","opts":["2,000 steps","5,000 steps","8,000–10,000 steps","15,000 steps"],"ans":2,"exp":"Research supports 8,000–10,000 steps per day for general health benefits, though any increase helps."},{"q":"Which healthy habit reduces dementia risk most significantly?","opts":["Puzzle games only","Regular physical exercise","Supplements","Watching educational content"],"ans":1,"exp":"Regular physical exercise is the most evidence-backed intervention for reducing dementia risk."}],"scoring":[{"min":0,"max":40,"label":"Lifestyle Overhaul Needed","icon":"🔄","feedback":"Small changes add up. Start with one habit — better sleep or daily walks — and build from there. Our tools can help."},{"min":41,"max":70,"label":"Health Conscious","icon":"🌱","feedback":"You are making good choices! Identify your weak areas using our health calculators and keep building."},{"min":71,"max":100,"label":"Lifestyle Champion","icon":"🏆","feedback":"Excellent lifestyle knowledge! You clearly prioritise your wellbeing. Keep tracking with our free health tools."}]};</script>
+<script src="/js/page/quizzes/lifestyle-health-score-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

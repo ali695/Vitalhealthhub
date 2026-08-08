@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"heart-health-quiz","name":"Heart Health Knowledge Quiz","questions":[{"q":"Normal resting blood pressure for adults is approximately?","opts":["90/60 mmHg","120/80 mmHg","140/90 mmHg","160/100 mmHg"],"ans":1,"exp":"Optimal blood pressure is around 120/80 mmHg (systolic/diastolic). Above 130/80 is considered elevated."},{"q":"LDL cholesterol is often called \"bad\" cholesterol because?","opts":["It tastes unpleasant","It deposits in artery walls, forming plaques (atherosclerosis)","It is always elevated in overweight people","It reduces blood flow to muscles"],"ans":1,"exp":"LDL particles deposit cholesterol in arterial walls, forming plaques that narrow arteries — the primary cause of heart attacks and stroke."},{"q":"A resting heart rate below 60 bpm in adults is called?","opts":["Tachycardia","Bradycardia","Arrhythmia","Fibrillation"],"ans":1,"exp":"Bradycardia is a resting HR below 60 bpm. In athletes it's normal (40–50 bpm); in sedentary individuals it may need investigation."},{"q":"Which lifestyle change most effectively lowers LDL cholesterol without medication?","opts":["Increasing dietary fat","Replacing saturated fat with unsaturated fat and increasing soluble fibre","Reducing water intake","Increasing red meat consumption"],"ans":1,"exp":"Replacing saturated fat (from butter, fatty meat) with unsaturated fat (nuts, olive oil, oily fish) and adding oats/legumes reduces LDL most effectively."},{"q":"Heart rate variability (HRV) is a measure of?","opts":["Your maximum heart rate","Variation in time between heartbeats — a marker of autonomic nervous system health","Blood pressure fluctuation","Cardiac output"],"ans":1,"exp":"Higher HRV indicates better autonomic nervous system balance, cardiovascular fitness, and resilience to stress."},{"q":"Aerobic exercise improves heart health by?","opts":["Increasing resting heart rate","Strengthening the heart muscle, reducing resting HR and blood pressure, improving lipid profile","Reducing blood volume","Only burning calories"],"ans":1,"exp":"Regular cardio enlarges and strengthens the heart, improving stroke volume so it pumps more blood per beat — lowering resting HR."},{"q":"Smoking increases cardiovascular disease risk by?","opts":["10%","2–4× compared to non-smokers","No significant increase","Only in combination with poor diet"],"ans":1,"exp":"Smoking 2–4× increases cardiovascular disease risk through endothelial damage, inflammation, and arterial stiffness."},{"q":"Which type of fat increases LDL cholesterol most?","opts":["Monounsaturated fat","Polyunsaturated fat","Saturated and trans fat","Omega-3 fat"],"ans":2,"exp":"Saturated fat (coconut oil, butter, fatty meat) and especially trans fat raise LDL and lower HDL — the most atherogenic combination."},{"q":"Target heart rate zone for cardiovascular fitness (aerobic zone) is?","opts":["30–40% of maximum HR","50–60% of maximum HR","70–85% of maximum HR","95–100% of maximum HR"],"ans":2,"exp":"The aerobic training zone (70–85% max HR) improves cardiovascular efficiency and VO2 max most effectively."},{"q":"The DASH diet was specifically developed to?","opts":["Maximise athletic performance","Lower blood pressure through dietary changes","Treat type 2 diabetes","Help with weight loss exclusively"],"ans":1,"exp":"The DASH diet (low sodium, high potassium, magnesium, calcium) reduces systolic blood pressure by 8–14 mmHg in clinical trials."}],"scoring":[{"min":0,"max":40,"label":"Heart Health Novice","icon":"📚","feedback":"Your heart is your engine. Use our Blood Pressure Checker and Heart Rate Calculator to understand your cardiovascular health better."},{"min":41,"max":70,"label":"Heart Health Aware","icon":"❤️","feedback":"Good cardiovascular knowledge! Apply exercise, dietary changes, and stress management to protect your heart for life."},{"min":71,"max":100,"label":"Cardio Health Expert","icon":"🏆","feedback":"Outstanding! You clearly understand heart health science. Use our cholesterol and heart rate tools to keep your heart in peak condition."}]};</script>
+<script src="/js/page/quizzes/heart-health-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

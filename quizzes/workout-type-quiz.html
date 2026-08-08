@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"workout-type-quiz","name":"Exercise Science Knowledge Quiz","questions":[{"q":"Which type of exercise is most beneficial for cardiovascular health?","opts":["Bodybuilding (high load, low rep)","Static stretching","Aerobic / cardio exercise","Heavy powerlifting"],"ans":2,"exp":"Aerobic exercise (running, cycling, swimming) most directly improves VO2 max, cardiac output, and cardiovascular risk profiles."},{"q":"Compound exercises are superior to isolation exercises because they?","opts":["Target only one muscle group more precisely","Involve multiple muscle groups and joints simultaneously","Require no equipment","Are always safer"],"ans":1,"exp":"Compound movements (squats, deadlifts, bench press) recruit multiple muscle groups, providing greater hormonal response and calorie burn."},{"q":"The minimum recommended recovery time between training the same muscle group?","opts":["12 hours","24–48 hours","72+ hours","1 week"],"ans":1,"exp":"Most research supports 48–72 hours recovery between sessions targeting the same muscle group for optimal hypertrophy."},{"q":"LISS (Low Intensity Steady State) cardio refers to?","opts":["Low Impact Sprint Sessions","Low Intensity Steady State cardio — sustained moderate effort","Light Interval Speed Sets","Long Interval Strength Sessions"],"ans":1,"exp":"LISS is continuous cardio performed at a steady, moderate intensity (60–70% max HR) — e.g., a 45-minute brisk walk."},{"q":"Weight-bearing exercise is particularly important for?","opts":["Lung capacity","Bone density — stimulating osteoblast activity","Cardiovascular health only","Flexibility"],"ans":1,"exp":"Weight-bearing activities (walking, running, weightlifting) mechanically stress bones, promoting bone formation and reducing osteoporosis risk."},{"q":"Active recovery involves?","opts":["Complete bed rest","Light activity (walking, yoga, swimming) to promote blood flow","High-intensity cardio the day after lifting","Only massage and stretching"],"ans":1,"exp":"Active recovery uses gentle movement to increase blood flow, clear metabolic waste, and reduce soreness without adding training stress."},{"q":"An effective warm-up should last at minimum?","opts":["30 seconds","2 minutes","5–10 minutes","30 minutes"],"ans":2,"exp":"A proper warm-up of 5–10 minutes elevates core temperature, increases joint mobility, and primes the nervous system for exercise."},{"q":"Eccentric muscle contractions occur when?","opts":["Muscle shortens under load (concentric)","Muscle lengthens under load (lowering phase)","No load is present","Muscle is completely relaxed"],"ans":1,"exp":"Eccentric contractions happen when a muscle lengthens while resisting force — e.g., lowering a dumbbell. They cause the most DOMS."},{"q":"Periodisation in training means?","opts":["Training at the same intensity every session","Systematically varying volume and intensity over planned cycles","Only training in winter months","Doing only HIIT"],"ans":1,"exp":"Periodisation divides training into cycles (micro, meso, macrocycle) with planned variation to optimise adaptation and prevent overtraining."},{"q":"What is the primary purpose of creatine monohydrate supplementation?","opts":["Increase fat burning","Replenish ATP for short, high-intensity bursts (3–10 seconds)","Replace protein","Improve cardiovascular endurance"],"ans":1,"exp":"Creatine replenishes phosphocreatine stores, enabling faster ATP regeneration during high-intensity, short-duration exercise."}],"scoring":[{"min":0,"max":40,"label":"Exercise Novice","icon":"🌱","feedback":"Great starting point! Use our heart rate and strength calculators to build your first workout plan with proper foundations."},{"min":41,"max":70,"label":"Active Learner","icon":"💪","feedback":"Solid exercise knowledge! Apply progressive overload, compound movements, and smart recovery to accelerate your progress."},{"min":71,"max":100,"label":"Exercise Science Expert","icon":"🏆","feedback":"Impressive! Your exercise science knowledge is at an advanced level. Use our 1RM and VO2 Max calculators for precision training."}]};</script>
+<script src="/js/page/quizzes/workout-type-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

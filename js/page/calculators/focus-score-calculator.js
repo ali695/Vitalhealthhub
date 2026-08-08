@@ -1,0 +1,6 @@
+/* Extracted from calculators/focus-score-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var concerns = [];
+    if ((parseFloat(document.getElementById('distract').value) || 0) >= 3) concerns.push('frequent distraction'); if ((parseFloat(document.getElementById('complete').value) || 0) >= 3) concerns.push('difficulty completing tasks'); if ((parseFloat(document.getElementById('forget').value) || 0) >= 3) concerns.push('forgetfulness'); if ((parseFloat(document.getElementById('wander').value) || 0) >= 3) concerns.push('mind wandering'); if ((parseFloat(document.getElementById('sleep').value) || 0) <= 2) concerns.push('poor sleep'); if ((parseFloat(document.getElementById('exercise').value) || 0) <= 1) concerns.push('low activity');
+    showResult('result', concerns.length + '/6 concerns', 'Focus check-in', concerns.length ? 'Reported: ' + concerns.join(', ') + '. This custom checklist is not an ADHD test or cognitive assessment. Persistent difficulties should be discussed with a qualified professional.' : 'No major listed concerns were reported. This checklist cannot measure attention or rule out a condition.', concerns.length >= 4 ? 'red' : concerns.length ? 'yellow' : 'green');
+  };

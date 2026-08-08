@@ -25,6 +25,7 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -459,6 +460,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -484,25 +486,10 @@ contact@vitalhealthhub.org
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top" type="button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="/js/page/calculators/body-fat-calculator.js" defer></script>
 <script src="/js/main.js" defer></script>
+<script src="/js/consent-banner.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function () {
-    var sex = document.getElementById('gender').value;
-    var waist = parseFloat(document.getElementById('waist').value);
-    var neck = parseFloat(document.getElementById('neck').value);
-    var height = parseFloat(document.getElementById('height').value);
-    var hip = parseFloat(document.getElementById('hip').value);
-    if (!Number.isFinite(waist) || !Number.isFinite(neck) || !Number.isFinite(height) || waist <= neck || height <= 0 || (sex === 'Female' && (!Number.isFinite(hip) || hip <= 0))) {
-      alert(sex === 'Female' ? 'Enter valid waist, hip, neck, and height measurements' : 'Enter valid waist, neck, and height measurements');
-      return;
-    }
-    var denominator = sex === 'Male'
-      ? 1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)
-      : 1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.221 * Math.log10(height);
-    var bodyFat = 495 / denominator - 450;
-    if (!Number.isFinite(bodyFat) || bodyFat <= 0 || bodyFat >= 75) { alert('These measurements cannot produce a valid estimate; check the tape measurements'); return; }
-    showResult('result', bodyFat.toFixed(1) + '%', 'U.S. Navy circumference estimate', 'This estimate uses measured waist, neck, height' + (sex === 'Female' ? ', and hip' : '') + '. Tape placement and body shape affect accuracy; it is not a clinical measurement.', 'green');
-  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window" type="button">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"burnout-risk-quiz","name":"Burnout Knowledge Quiz","questions":[{"q":"Burnout is primarily caused by?","opts":["Sleeping too much","Chronic unmanaged workplace stress","Not eating enough protein","Exercising too little"],"ans":1,"exp":"WHO defines burnout as resulting from \"chronic workplace stress that has not been successfully managed.\""},{"q":"The three core dimensions of burnout are?","opts":["Sadness, anger, fear","Exhaustion, cynicism, reduced efficacy","Insomnia, weight gain, irritability","Anxiety, depression, OCD"],"ans":1,"exp":"Maslach's Burnout Inventory identifies exhaustion, cynicism/depersonalisation, and reduced personal accomplishment as the three burnout dimensions."},{"q":"Physical symptoms of burnout include?","opts":["Increased motivation and energy","Chronic fatigue, headaches, and frequent illness","Better concentration","Improved mood and creativity"],"ans":1,"exp":"Chronic stress from burnout manifests physically as persistent fatigue, headaches, digestive issues, and reduced immune function."},{"q":"Burnout is officially recognised by?","opts":["No medical body","AMA only","WHO as an occupational phenomenon","CDC as a mental illness"],"ans":2,"exp":"WHO classifies burnout as an \"occupational phenomenon\" in ICD-11, not a medical condition, but acknowledges its impact on health."},{"q":"Which profession category has statistically the highest burnout rates?","opts":["Artists","Healthcare workers and teachers","Professional athletes","Software developers"],"ans":1,"exp":"Healthcare workers and teachers consistently show the highest burnout rates globally, particularly post-pandemic."},{"q":"Recovery from moderate burnout typically takes?","opts":["1–2 days","3–7 days","Several weeks to months","It is permanent and never improves"],"ans":2,"exp":"Meaningful burnout recovery takes weeks to months and requires addressing root causes, not just rest alone."},{"q":"Cynicism and emotional detachment from work are symptoms of which burnout stage?","opts":["Early stage — just getting started","Middle stage — deepening burnout","Advanced burnout — full collapse","Post-burnout recovery"],"ans":1,"exp":"Cynicism and depersonalisation typically emerge in the middle stages of burnout, as a self-protective mechanism."},{"q":"The most effective first step when you recognise burnout is?","opts":["Work even harder to clear the backlog","Quit your job immediately","Acknowledge it and reduce stressors — seek support","Ignore it and hope it passes"],"ans":2,"exp":"Early recognition and intervention are key. Reducing demands, improving recovery, and seeking support are most effective."},{"q":"How significantly does chronic sleep deprivation contribute to burnout risk?","opts":["It has no connection to burnout","Slightly — only a minor factor","Significantly — poor sleep worsens stress reactivity and emotional regulation","Only in night-shift workers"],"ans":2,"exp":"Sleep deprivation amplifies the HPA stress axis, impairs emotional regulation, and is a major driver of burnout vulnerability."},{"q":"Setting firm boundaries between work and personal time is?","opts":["Selfish and unprofessional","An essential burnout prevention strategy supported by research","Ineffective — burnout happens regardless","Only useful for managers"],"ans":1,"exp":"Research consistently shows that work-life boundaries protect against burnout by preserving psychological recovery time."}],"scoring":[{"min":0,"max":40,"label":"Burnout Beginner","icon":"📚","feedback":"Learning about burnout is the first step to preventing it. Use our Burnout Risk Calculator to assess your current risk level."},{"min":41,"max":70,"label":"Burnout Aware","icon":"🌿","feedback":"Good knowledge! You understand burnout risks and recovery. Apply these insights to protect your energy and wellbeing."},{"min":71,"max":100,"label":"Burnout Expert","icon":"🏆","feedback":"Excellent! Your deep understanding of burnout means you are well-equipped to prevent and address it in yourself and others."}]};</script>
+<script src="/js/page/quizzes/burnout-risk-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

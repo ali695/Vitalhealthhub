@@ -1,0 +1,5 @@
+/* Extracted from calculators/fiber-score-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var fruit = parseFloat(document.getElementById('fruits').value) || 0; var vegetables = parseFloat(document.getElementById('veggies').value) || 0; var grains = parseFloat(document.getElementById('grains').value) || 0; var legumes = parseFloat(document.getElementById('legumes').value) || 0; var nuts = parseFloat(document.getElementById('nuts').value) || 0; if ([fruit, vegetables, grains, legumes, nuts].some(function (value) { return value < 0; })) { alert('Enter non-negative servings'); return; } var estimate = fruit * 2.5 + vegetables * 2.5 + grains * 3 + legumes * 7 + nuts * 3;
+    showResult('result', '~' + Math.round(estimate) + ' g/day', 'Serving-based fiber estimate', 'Uses broad assumptions per serving, so package labels or a food database will be more accurate. Adult reference amounts commonly range from about 21 to 38 g/day depending on age and sex.', estimate >= 25 ? 'green' : 'yellow');
+  };

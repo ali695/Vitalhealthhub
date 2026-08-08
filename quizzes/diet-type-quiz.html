@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"diet-type-quiz","name":"Diet Types Knowledge Quiz","questions":[{"q":"The Mediterranean diet is primarily characterised by?","opts":["High red meat and low fat","Olive oil, fish, vegetables, whole grains, and moderate wine","Dairy as the primary fat source","Complete elimination of carbohydrates"],"ans":1,"exp":"The Mediterranean diet is associated with reduced cardiovascular disease, dementia, and all-cause mortality — one of the most researched diets."},{"q":"A ketogenic diet works by putting the body into?","opts":["Glucolysis — burning carbohydrates","Ketosis — burning fat and producing ketone bodies","Anaerobic state from lack of carbs","A caloric surplus"],"ans":1,"exp":"Ketosis occurs when carb intake drops below ~50g/day, forcing the liver to produce ketones from fat as an alternative fuel."},{"q":"Intermittent fasting primarily produces results by?","opts":["Dramatically reducing food choices","Creating a caloric deficit and improving insulin sensitivity","Eliminating all carbohydrates","Increasing protein intake"],"ans":1,"exp":"IF works mainly through calorie reduction and improvements in insulin sensitivity, inflammation markers, and cellular autophagy."},{"q":"A vegan diet excludes which foods?","opts":["Only meat and fish","All animal products including dairy, eggs, and honey","Only gluten-containing grains","Only dairy and eggs"],"ans":1,"exp":"Veganism excludes all animal products — meat, fish, dairy, eggs, and honey — for ethical, environmental, or health reasons."},{"q":"The DASH diet was specifically designed to address?","opts":["Athletic performance","High blood pressure (Hypertension)","Weight loss only","Children's nutrition"],"ans":1,"exp":"DASH (Dietary Approaches to Stop Hypertension) was developed specifically to reduce blood pressure through food choices."},{"q":"The Zone diet's macro ratio (carb/protein/fat) is approximately?","opts":["80/10/10","40/30/30","70/15/15","60/20/20"],"ans":1,"exp":"The Zone diet prescribes 40% carbs, 30% protein, 30% fat at every meal to optimise hormonal balance according to its creator."},{"q":"The Paleo diet allows which foods?","opts":["Grains and legumes","Dairy products","Lean meats, vegetables, fruits, nuts, and seeds","Processed foods and refined sugar"],"ans":2,"exp":"The Paleo diet mimics pre-agricultural eating — including whole meats, fish, vegetables, fruits, and nuts, but not grains or dairy."},{"q":"Calorie density refers to?","opts":["How filling a food is","Calories per unit weight of food (kcal/100g)","Total calorie count of a meal","How quickly calories are absorbed"],"ans":1,"exp":"Calorie density (kcal per gram) determines how much food you get per calorie — vegetables are low density, oils are high density."},{"q":"Which diet has the strongest scientific evidence for longevity and disease prevention?","opts":["Strict ketogenic","Very low fat","Mediterranean diet","Carnivore diet"],"ans":2,"exp":"The Mediterranean diet has the most robust evidence for reducing heart disease, dementia, type 2 diabetes, and overall mortality."},{"q":"FODMAPs (Fermentable Oligosaccharides, Disaccharides, Monosaccharides, and Polyols) are most relevant for people with?","opts":["Type 2 diabetes","IBS (Irritable Bowel Syndrome)","Heart disease","Arthritis"],"ans":1,"exp":"A low-FODMAP diet reduces fermentable carbohydrates that cause bloating and pain in IBS sufferers — effective in ~75% of cases."}],"scoring":[{"min":0,"max":40,"label":"Diet Beginner","icon":"📚","feedback":"There are many ways to eat well! Start with our Calorie and Macro calculators to find the approach that fits your lifestyle."},{"min":41,"max":70,"label":"Diet Knowledgeable","icon":"🥗","feedback":"Good understanding of different dietary approaches! Use our diet comparison and macro tools to personalise your eating plan."},{"min":71,"max":100,"label":"Nutrition Strategy Expert","icon":"🏆","feedback":"Outstanding! You have a deep understanding of dietary strategies. Apply this to help yourself and others make informed food choices."}]};</script>
+<script src="/js/page/quizzes/diet-type-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

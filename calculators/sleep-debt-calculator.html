@@ -25,6 +25,7 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -470,6 +471,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -495,14 +497,10 @@ contact@vitalhealthhub.org
 </div>
 </footer>
 <button class="back-to-top" aria-label="Back to top" type="button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M4 10l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="/js/page/calculators/sleep-debt-calculator.js" defer></script>
 <script src="/js/main.js" defer></script>
+<script src="/js/consent-banner.js" defer></script>
 <script src="/js/calculators.js" defer></script>
-<script>window._vhCalcFn=function () {
-    var needed = parseFloat(document.getElementById('needed').value); var actual = parseFloat(document.getElementById('actual').value); var days = parseInt(document.getElementById('days').value, 10);
-    if (!Number.isFinite(needed) || needed <= 0 || needed > 16 || !Number.isFinite(actual) || actual < 0 || actual > 24 || !Number.isInteger(days) || days <= 0 || days > 365) { alert('Enter valid sleep hours and number of days'); return; }
-    var shortfall = Math.max(0, (needed - actual) * days);
-    showResult('result', shortfall.toFixed(1) + ' hours', 'Cumulative reported sleep shortfall', shortfall ? 'This is arithmetic, not a clinical “debt” that can be repaid hour for hour. Aim for a consistent opportunity to sleep and seek care for persistent insomnia, excessive sleepiness, or breathing symptoms.' : 'Reported sleep meets or exceeds the selected need. Sleep quality and symptoms still matter.', shortfall > 14 ? 'red' : shortfall > 0 ? 'yellow' : 'green');
-  };</script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window" type="button">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>

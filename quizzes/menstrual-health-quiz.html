@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"menstrual-health-quiz","name":"Menstrual Health Knowledge Quiz","questions":[{"q":"The average menstrual cycle length is?","opts":["21 days","28 days (normal range: 21–35 days)","35 days","14 days"],"ans":1,"exp":"While 28 days is average, a normal cycle ranges from 21–35 days. What matters most is consistency."},{"q":"Heavy menstrual bleeding is clinically defined as?","opts":["Any amount of bleeding","Soaking a pad or tampon fully within an hour for consecutive hours","Bleeding for exactly 3 days","The presence of any clots"],"ans":1,"exp":"Menorrhagia (heavy bleeding) is defined as soaking protection hourly for 2+ consecutive hours — affecting quality of life."},{"q":"Dysmenorrhea means?","opts":["Irregular periods","Painful menstrual cramps","Abnormally heavy bleeding","Complete absence of periods"],"ans":1,"exp":"Dysmenorrhea is the medical term for painful menstruation caused by prostaglandin release causing uterine contractions."},{"q":"Women who menstruate are at higher risk of iron deficiency because?","opts":["They exercise more","Monthly blood loss depletes iron stores","Their diet is typically lower in meat","Oestrogen blocks iron absorption"],"ans":1,"exp":"Menstrual blood loss can deplete iron, particularly in women with heavy periods — making dietary iron and monitoring essential."},{"q":"The luteal phase of the menstrual cycle occurs?","opts":["During menstruation (days 1–5)","Before ovulation (follicular phase)","After ovulation until next period","Only at puberty"],"ans":2,"exp":"The luteal phase begins after ovulation (~day 14) and ends with menstruation. Progesterone dominates this phase."},{"q":"PMS (Premenstrual Syndrome) symptoms typically occur?","opts":["During ovulation","1–2 weeks before menstruation (luteal phase)","Immediately after menstruation","Randomly throughout the month"],"ans":1,"exp":"PMS symptoms arise during the luteal phase (after ovulation), driven by hormonal fluctuations in oestrogen and progesterone."},{"q":"Endometriosis is characterised by?","opts":["Absence of menstrual periods","Endometrial-like tissue growing outside the uterus","Exclusively high oestrogen levels","A viral or bacterial infection"],"ans":1,"exp":"Endometriosis affects ~10% of reproductive-age women and causes endometrial tissue to implant on organs outside the uterus."},{"q":"Light-to-moderate exercise during menstruation?","opts":["Should be completely avoided","Can reduce cramps by increasing endorphins and circulation","Causes heavier bleeding","Has no physiological effect"],"ans":1,"exp":"Exercise increases endorphins and improves blood flow, which can reduce prostaglandin-driven cramps during menstruation."},{"q":"Hormonal contraceptives primarily prevent pregnancy by?","opts":["Physically blocking sperm in the vagina","Suppressing ovulation and thickening cervical mucus","Changing vaginal pH to acidic","Creating a physical barrier in the uterus"],"ans":1,"exp":"Combined hormonal contraceptives suppress the LH surge preventing ovulation and increase cervical mucus viscosity."},{"q":"A typical healthy period lasts?","opts":["1–2 days","3–7 days","10+ days","2 full weeks"],"ans":1,"exp":"Normal menstrual bleeding lasts 3–7 days. Periods outside this range may warrant investigation."}],"scoring":[{"min":0,"max":40,"label":"Cycle Beginner","icon":"📚","feedback":"Understanding your cycle is empowering. Use our Menstrual Cycle and Ovulation calculators to start tracking yours."},{"min":41,"max":70,"label":"Cycle Aware","icon":"🌸","feedback":"Good knowledge! You understand the basics of menstrual health. Explore cycle syncing to optimise your fitness and nutrition."},{"min":71,"max":100,"label":"Menstrual Health Expert","icon":"🏆","feedback":"Excellent! Your menstrual health knowledge is impressive. Use this understanding to optimise training, nutrition, and wellbeing."}]};</script>
+<script src="/js/page/quizzes/menstrual-health-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"fitness-level-quiz","name":"Fitness Level Knowledge Quiz","questions":[{"q":"What is the WHO-recommended amount of moderate aerobic exercise per week for adults?","opts":["60 minutes","150 minutes","300 minutes","30 minutes"],"ans":1,"exp":"WHO guidelines recommend at least 150–300 minutes of moderate-intensity activity per week."},{"q":"A resting heart rate of 60–70 bpm is generally considered?","opts":["High","Normal to excellent","Dangerously low","A sign of disease"],"ans":1,"exp":"A resting HR of 60–70 bpm is normal. Athletes can have rates as low as 40 bpm."},{"q":"What does VO2 max measure?","opts":["Blood pressure","Maximum aerobic capacity (oxygen uptake)","Muscle strength","Flexibility"],"ans":1,"exp":"VO2 max is the maximum rate at which your body can use oxygen during intense exercise — the gold standard for cardio fitness."},{"q":"Progressive overload means?","opts":["Eating more protein each week","Gradually increasing exercise demands over time","Taking extra rest days","Reducing workout volume"],"ans":1,"exp":"Progressive overload is the principle of gradually increasing stress on the body to continue making fitness gains."},{"q":"What does HIIT stand for?","opts":["Heavy Interval Intense Training","High Intensity Interval Training","High Impact Indoor Training","Heart Interval Intensity Test"],"ans":1,"exp":"HIIT is High Intensity Interval Training — alternating short bursts of intense effort with recovery periods."},{"q":"Which muscle group does a deadlift primarily target?","opts":["Chest and shoulders","Biceps and forearms","Posterior chain (back, glutes, hamstrings)","Core only"],"ans":2,"exp":"The deadlift is a compound movement primarily working the posterior chain — lower back, glutes, and hamstrings."},{"q":"What heart rate zone is considered optimal for fat burning?","opts":["90–100% max HR","70–85% max HR","50–70% max HR","30–50% max HR"],"ans":2,"exp":"The fat-burning zone is roughly 50–70% of maximum heart rate, where fat is the primary fuel source."},{"q":"Flexibility is best improved through?","opts":["Weightlifting","Cardio only","Regular static and dynamic stretching","HIIT training"],"ans":2,"exp":"Regular stretching — both static (holding) and dynamic (moving) — is the most effective way to improve flexibility."},{"q":"What does DOMS stand for?","opts":["Daily Overload Muscle Strain","Delayed Onset Muscle Soreness","Deep Oxygen Muscle Stress","Dynamic Over-training Muscle Syndrome"],"ans":1,"exp":"DOMS (Delayed Onset Muscle Soreness) is the muscle tenderness felt 24–72 hours after unaccustomed exercise."},{"q":"What does RPE stand for in exercise?","opts":["Rate of Perceived Exertion","Resting Physical Energy","Repetition Performance Evaluation","Recovery Period Exercise"],"ans":0,"exp":"RPE (Rate of Perceived Exertion) is a self-reported measure of how hard you feel you are working during exercise."}],"scoring":[{"min":0,"max":40,"label":"Fitness Beginner","icon":"🌱","feedback":"Everyone starts somewhere! Use our heart rate and VO2 max calculators to set your baseline fitness goals."},{"min":41,"max":70,"label":"Fitness Enthusiast","icon":"💪","feedback":"Solid foundations! You understand the key principles. Now apply them consistently with our fitness tools."},{"min":71,"max":100,"label":"Fitness Expert","icon":"🏆","feedback":"Impressive knowledge! You clearly understand exercise science. Use our 1RM and VO2 max calculators to optimise performance."}]};</script>
+<script src="/js/page/quizzes/fitness-level-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

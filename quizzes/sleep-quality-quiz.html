@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://vitalhealthhub.org/images/og-default.jpg">
 <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/js/consent-defaults.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -219,7 +220,7 @@
 <p>Health literacy — understanding the science behind your body and lifestyle choices — is one of the strongest predictors of better health outcomes. People with higher health literacy make better dietary choices, exercise more consistently, attend preventive screenings, and manage chronic conditions more effectively. Use these quizzes to identify gaps and build a stronger foundation.</p>
 </div>
 
-<script>window.vhQuizData={"slug":"sleep-quality-quiz","name":"Sleep Quality Knowledge Quiz","questions":[{"q":"REM sleep is most important for?","opts":["Physical tissue repair","Memory consolidation and emotional processing","Growth hormone release","Body temperature regulation"],"ans":1,"exp":"REM (Rapid Eye Movement) sleep is critical for memory consolidation, emotional processing, and creative thinking."},{"q":"Blue light from screens affects sleep by?","opts":["Helping you relax before bed","Suppressing melatonin production","Causing nightmares","Having no measurable effect"],"ans":1,"exp":"Blue light (wavelength ~480 nm) inhibits pineal gland melatonin release, delaying sleep onset."},{"q":"What is the ideal bedroom temperature for optimal sleep?","opts":["10–14°C","16–19°C (60–67°F)","24–28°C","30°C+"],"ans":1,"exp":"Core body temperature drops during sleep onset. A cool room of 16–19°C facilitates this drop, improving sleep quality."},{"q":"Adults should avoid caffeine at minimum how many hours before bedtime?","opts":["1 hour","3 hours","6–8 hours","No restriction"],"ans":2,"exp":"Caffeine has a half-life of 5–6 hours, meaning coffee consumed 6 hours before bed still significantly impairs sleep."},{"q":"Sleep inertia refers to?","opts":["Snoring during sleep","The grogginess felt immediately upon waking","Clinical insomnia","Sleepwalking episodes"],"ans":1,"exp":"Sleep inertia is the transitional state between sleep and wakefulness — the groggy feeling lasting 15–60 minutes after waking."},{"q":"Keeping consistent sleep and wake times improves sleep because?","opts":["Being boring reduces stimulation","It regulates your circadian rhythm (internal clock)","It reduces dreaming","It increases REM duration"],"ans":1,"exp":"A regular sleep schedule entrains the circadian rhythm, optimising hormone release (melatonin, cortisol) for natural sleep-wake cycles."},{"q":"How long does a typical complete sleep cycle last?","opts":["30 minutes","60 minutes","90 minutes","120 minutes"],"ans":2,"exp":"A complete sleep cycle (NREM 1-2-3 + REM) takes approximately 90 minutes. Most people have 4–6 cycles per night."},{"q":"Which supplement has the strongest scientific evidence for improving sleep onset?","opts":["Vitamin C","Zinc","Melatonin","Iron"],"ans":2,"exp":"Melatonin supplementation (0.5–5 mg) has the most robust evidence for reducing sleep onset latency, especially for jet lag and shift work."},{"q":"Sleep apnoea is most strongly associated with?","opts":["Being underweight","Obesity and loud snoring","Teenagers and young adults","Anxiety disorder alone"],"ans":1,"exp":"Obesity is the primary risk factor for obstructive sleep apnoea, as excess tissue narrows the airway during sleep."},{"q":"In a healthy person, how long does it typically take to fall asleep?","opts":["Instantly (under 1 minute)","5–20 minutes","30–60 minutes","Over 1 hour"],"ans":1,"exp":"A sleep latency of 5–20 minutes is considered normal. Under 5 minutes may indicate sleep deprivation; over 30 suggests insomnia."}],"scoring":[{"min":0,"max":40,"label":"Sleep Novice","icon":"😪","feedback":"Improving your sleep knowledge can transform your health. Use our Sleep Calculator to find your ideal bedtime and wake time."},{"min":41,"max":70,"label":"Sleep Aware","icon":"🌙","feedback":"Good foundations! You understand key sleep principles. Try our Sleep Debt and Sleep Hygiene calculators to optimise your rest."},{"min":71,"max":100,"label":"Sleep Expert","icon":"⭐","feedback":"Excellent! You clearly prioritise sleep science. Keep applying these principles for peak cognitive and physical recovery."}]};</script>
+<script src="/js/page/quizzes/sleep-quality-quiz.js" defer></script>
 <script src="/js/quiz.js" defer></script>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -292,6 +293,7 @@ contact@vitalhealthhub.org
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="#" data-consent-open="1">Cookie Preferences</a></li>
 <li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
@@ -360,4 +362,5 @@ contact@vitalhealthhub.org
 <p id="vh-chat-disclaimer">Educational purposes only &mdash; not medical advice. Always consult your doctor.</p>
 </div>
 </div>
+<script src="/js/consent-banner.js" defer></script>
 </body></html>

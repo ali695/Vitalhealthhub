@@ -1,0 +1,5 @@
+/* Extracted from calculators/heart-rate-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var age = parseFloat(document.getElementById('age').value); var resting = parseFloat(document.getElementById('rhr').value); if (!Number.isFinite(age) || age < 18 || age > 100 || !Number.isFinite(resting) || resting < 30 || resting > 150) { alert('Enter valid adult age and resting heart rate'); return; } var maximum = 208 - 0.7 * age; var reserve = maximum - resting; var zone = function (low, high) { return Math.round(resting + reserve * low) + '–' + Math.round(resting + reserve * high); };
+    showResult('result', 'Est. max ' + Math.round(maximum) + ' bpm', 'Heart-rate reserve training zones', '50–60%: ' + zone(0.5, 0.6) + ' bpm | 60–70%: ' + zone(0.6, 0.7) + ' bpm | 70–80%: ' + zone(0.7, 0.8) + ' bpm | 80–90%: ' + zone(0.8, 0.9) + ' bpm. Estimated maximum heart rate has individual error; medications and conditions can change safe targets.', 'green');
+  };

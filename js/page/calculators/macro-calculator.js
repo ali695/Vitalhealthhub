@@ -1,0 +1,5 @@
+/* Extracted from calculators/macro-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var calories = parseFloat(document.getElementById('calories').value); var goal = document.getElementById('goal').value; if (!Number.isFinite(calories) || calories < 800 || calories > 10000) { alert('Enter a valid calorie target'); return; } var profiles = {'Balanced': [0.30, 0.40, 0.30], 'Low Carb': [0.35, 0.25, 0.40], 'High Protein': [0.40, 0.30, 0.30], 'Keto': [0.25, 0.05, 0.70]}; var profile = profiles[goal]; if (!profile) { alert('Choose a macro profile'); return; } var protein = Math.round(calories * profile[0] / 4); var carbs = Math.round(calories * profile[1] / 4); var fat = Math.round(calories * profile[2] / 9);
+    showResult('result', 'P ' + protein + 'g | C ' + carbs + 'g | F ' + fat + 'g', 'Illustrative macro split', 'Arithmetic conversion from the selected percentage profile. This is not personalized to body weight, training, pregnancy, or medical conditions.', 'green');
+  };

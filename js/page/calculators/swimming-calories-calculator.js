@@ -1,0 +1,5 @@
+/* Extracted from calculators/swimming-calories-calculator.html so the site can drop 'unsafe-inline' from script-src. Edit this file, not the HTML. */
+window._vhCalcFn=function () {
+    var weight = parseFloat(document.getElementById('weight').value); var duration = parseFloat(document.getElementById('duration').value); var stroke = document.getElementById('stroke').value; if (!Number.isFinite(weight) || weight <= 0 || !Number.isFinite(duration) || duration <= 0) { alert('Enter valid weight and duration'); return; } var mets = {'Leisurely': 6, 'Moderate Freestyle': 7, 'Vigorous Freestyle': 10, 'Backstroke': 7, 'Breaststroke': 10, 'Butterfly': 13.8}; var met = mets[stroke]; if (!met) { alert('Choose a stroke'); return; } var calories = met * 3.5 * weight / 200 * duration;
+    showResult('result', '~' + Math.round(calories) + ' kcal', 'MET-based swimming estimate', met + ' MET for ' + duration + ' minutes. Stroke efficiency, rest intervals, water conditions, and actual effort affect energy use.', 'green');
+  };
