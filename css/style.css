@@ -3270,7 +3270,7 @@ img, svg { max-width: 100%; height: auto; }
 
 /* Hero with background image */
 .hero-bg {
-  background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1600&q=85');
+  background-image: url('/images/editorial/fitness.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

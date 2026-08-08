@@ -33,11 +33,6 @@ const DEAD_PRECONNECTS = [
   /[ \t]*<link rel="dns-prefetch" href="https:\/\/fonts\.(googleapis|gstatic)\.com"[^>]*>\n?/g
 ];
 
-const UNSPLASH_HINTS = [
-  '<link rel="preconnect" href="https://images.unsplash.com" crossorigin>',
-  '<link rel="dns-prefetch" href="https://images.unsplash.com">'
-];
-
 // Both fonts are now served from our own origin, so preloading them starts the
 // download in parallel with style.css instead of waiting for it to be parsed.
 const FONT_PRELOADS = [
@@ -91,14 +86,6 @@ function transform(html) {
     out = out.replace(pattern, () => {
       bump('deadPreconnectsRemoved');
       return '';
-    });
-  }
-
-  // M4 -- Unsplash is the host actually on the critical path for hero imagery.
-  if (out.includes('images.unsplash.com') && !out.includes('rel="preconnect" href="https://images.unsplash.com"')) {
-    out = out.replace(/(<link rel="stylesheet" href="\/css\/style\.css">)/, (m) => {
-      bump('unsplashHintsAdded');
-      return UNSPLASH_HINTS.join(eol) + eol + m;
     });
   }
 
