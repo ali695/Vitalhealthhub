@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node scripts/seo-hardening.js && node scripts/extract-inline-scripts.js && node scripts/normalize-accessibility-schema.js && node scripts/normalize-site-urls.js && node scripts/generate-redirects.js && node scripts/generate-sitemap.js && node scripts/build-static.js && node scripts/minify-assets.js && node scripts/validate-deployment.js",
     "assets": "node scripts/generate-brand-assets.js",
-    "images:localize": "node scripts/localize-editorial-images.js",
+    "images:assign": "node scripts/assign-blog-images.js",
     "eeat": "node scripts/build-eeat-pages.js && node scripts/seo-hardening.js",
     "review": "node scripts/apply-medical-review.js",
     "content:update": "node scripts/apply-indexed-blog-content.js && node scripts/apply-remaining-blog-content.js && node scripts/clean-all-page-claims.js && node scripts/upgrade-calculator-content.js && node scripts/optimize-page-metadata.js && node scripts/normalize-site-urls.js && node scripts/generate-sitemap.js",

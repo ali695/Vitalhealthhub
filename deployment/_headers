@@ -1,23 +1,35 @@
-# script-src no longer needs 'unsafe-inline': all 224 KB of inline JS was moved into
-# files under /js/page/, and pdf-lib is self-hosted instead of pulled from unpkg.com
-# (which was never whitelisted here, so both PDF tools were silently broken).
+# VitalHealth Hub security headers
 #
-# Hosts below are only the ones something actually requests. If you add analytics or
-# ads later you must widen this, or the tags will be blocked:
-#   GA4 / GTM  -> script-src + connect-src: https://www.googletagmanager.com
-#                 https://www.google-analytics.com https://analytics.google.com
-#                 img-src: https://www.google-analytics.com
-#   AdSense    -> script-src: https://pagead2.googlesyndication.com
-#                 https://adservice.google.com
-#                 img-src: https://pagead2.googlesyndication.com
-#                 frame-src: https://googleads.g.doubleclick.net https://td.doubleclick.net
-# static.cloudflareinsights.com stays because Cloudflare injects that beacon itself
-# when Web Analytics is enabled in the dashboard; it is cookieless.
+# UPDATED FOR ADSENSE + GOOGLE CMP (Funding Choices).
 #
-# style-src keeps 'unsafe-inline' because 204 pages use style="" attributes. That is a
-# far smaller risk than inline script and removing it means rewriting those attributes.
+# What changed from the previous version and why:
+#
+# script-src   Added Google's ad and consent hosts. Still no 'unsafe-inline' —
+#              that stays gone. This is where the real XSS protection lives, so
+#              it is kept as tight as AdSense allows.
+#
+# img-src      Widened to https:. AdSense creatives are served from whatever
+#              domain the advertiser uses, and that list is not publishable.
+#              A strict allowlist here will silently break creatives. Images
+#              cannot execute code, so this is a much smaller risk than script.
+#
+# frame-src    Widened to https: for the same reason: ad iframes come from
+#              arbitrary advertiser domains.
+#
+# connect-src  Added Google's ad measurement and consent endpoints.
+#
+# frame-ancestors / X-Frame-Options
+#              STILL LOCKED. See the note at the bottom about the AdSense
+#              "Excluded areas" tool, which needs a TEMPORARY change.
+#
+# If an ad or the consent banner still does not appear, open the live site,
+# check the browser console for "Refused to load ... violates the following
+# Content Security Policy directive", and add the host it names. Google does
+# not publish a complete, stable list, so console-driven is more reliable
+# than guessing.
+
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https://image.pollinations.ai; connect-src 'self' https://api.web3forms.com https://api.frankfurter.app https://api.coingecko.com https://metals.live https://image.pollinations.ai https://cloudflareinsights.com https://static.cloudflareinsights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests; block-all-mixed-content
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://adservice.google.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.web3forms.com https://api.frankfurter.app https://api.coingecko.com https://metals.live https://image.pollinations.ai https://cloudflareinsights.com https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ep1.adtrafficquality.google https://csi.gstatic.com https://fundingchoicesmessages.google.com https://www.google-analytics.com https://analytics.google.com; frame-src https:; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
@@ -41,3 +53,22 @@ https://vitalhealthhub.pages.dev/*
 
 https://:branch.vitalhealthhub.pages.dev/*
   X-Robots-Tag: noindex
+
+# ---------------------------------------------------------------------------
+# TEMPORARY CHANGE NEEDED FOR THE ADSENSE "EXCLUDED AREAS" TOOL
+#
+# That tool loads this site inside an iframe on Google's domain. Both
+# frame-ancestors 'none' and X-Frame-Options: DENY block that, which is why
+# the panel renders blank.
+#
+# To use the tool, swap the two lines in the /* block above for:
+#
+#     frame-ancestors 'self' https://*.google.com
+#     (and DELETE the X-Frame-Options line entirely — that header cannot list
+#      a second origin, and leaving DENY there overrides frame-ancestors in
+#      some browsers)
+#
+# Deploy, mark the excluded areas in AdSense, then PUT BOTH LINES BACK.
+# Leaving the site framable long-term reopens clickjacking risk for no benefit,
+# because the exclusions are stored on Google's side once saved.
+# ---------------------------------------------------------------------------
