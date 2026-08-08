@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (numEl) numEl.textContent = 'Question ' + (ci + 1) + ' of ' + total;
     gi('quiz-q-text').textContent = q.q;
     gi('quiz-opts').innerHTML = q.opts.map(function(o, i) {
-      return '<button class="quiz-opt" data-ans="' + i + '">' + o + '</button>';
+      return '<button type="button" class="quiz-opt" data-ans="' + i + '">' + o + '</button>';
     }).join('');
     gi('quiz-exp').style.display = 'none';
     gi('quiz-exp').className = 'quiz-explanation';

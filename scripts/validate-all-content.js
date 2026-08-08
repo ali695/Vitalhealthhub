@@ -29,12 +29,22 @@ const trackedHtml = execFileSync('git', ['ls-files', '*.html'], { cwd: root, enc
   .filter((file) => !file.startsWith('deployment/'));
 let indexable = 0;
 let noindex = 0;
+const newPages = [];
 for (const file of trackedHtml) {
   const current = fs.readFileSync(path.join(root, file), 'utf8');
-  const previous = execFileSync('git', ['show', `HEAD:${file}`], { cwd: root, encoding: 'utf8' });
+  // A page staged for the first time has no HEAD revision to compare against, so the
+  // robots drift check simply does not apply to it yet.
+  let previous = null;
+  try {
+    previous = execFileSync('git', ['show', `HEAD:${file}`], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+  } catch {
+    newPages.push(file);
+  }
   const currentRobots = robotsOf(current);
-  const previousRobots = robotsOf(previous);
-  if (currentRobots !== previousRobots) failures.push(`${file}: robots changed from "${previousRobots}" to "${currentRobots}"`);
+  if (previous !== null) {
+    const previousRobots = robotsOf(previous);
+    if (currentRobots !== previousRobots) failures.push(`${file}: robots changed from "${previousRobots}" to "${currentRobots}"`);
+  }
   if (/\bnoindex\b/i.test(currentRobots)) noindex += 1; else indexable += 1;
   if (count(current, /<h1\b/gi) !== 1) failures.push(`${file}: expected exactly one H1`);
   const title = current.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() || '';
@@ -157,6 +167,7 @@ report.calculatorPages = calculatorFiles.length;
 report.indexedCalculators = calculatorRobots.index;
 report.noindexCalculators = calculatorRobots.noindex;
 report.sitemapUrls = sitemapUrls.length;
+report.newPagesNotYetInHead = newPages;
 report.failures = failures;
 
 console.log(JSON.stringify(report, null, 2));

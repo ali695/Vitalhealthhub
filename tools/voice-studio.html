@@ -9,16 +9,19 @@
 <link rel="canonical" href="https://vitalhealthhub.org/tools/voice-studio">
 <meta property="og:title" content="AI Voice Generator – Free Tool">
 <meta property="og:description" content="Convert text into natural speech using free AI voices. Create narration, storytelling, and wellness audio instantly. No API key, no sign-up required.">
+<meta property="og:locale" content="en_US">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vitalhealthhub.org/tools/voice-studio">
 <meta property="og:site_name" content="VitalHealth Hub">
 <meta property="og:image" content="https://vitalhealthhub.org/images/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="VitalHealth Hub - free health calculators and evidence-based guides">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AI Voice Generator – Free Tool">
 <meta name="twitter:description" content="Convert text into natural speech using free AI voices. Create narration, storytelling, and wellness audio instantly. No API key, no sign-up required.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/style.css">
 <style>
 /* ── Voice Studio Dark Theme ── */
@@ -33,18 +36,15 @@
 .vs-btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(34,197,94,.35);color:#fff}
 .vs-btn-outline{padding:13px 28px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.15);border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
 .vs-btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:#fff}
-
 /* ── Stats row ── */
 .vs-stats{display:flex;gap:0;justify-content:center;margin-bottom:40px}
 .vs-stat{padding:10px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
 .vs-stat:last-child{border-right:none}
 .vs-stat strong{display:block;font-size:1.2rem;font-weight:800;color:#52b788}
 .vs-stat span{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.5px}
-
 /* ── Studio Layout ── */
 .vs-container{max-width:1340px;margin:0 auto;padding:0 20px}
 .vs-studio{display:grid;grid-template-columns:280px 1fr 340px;gap:20px;align-items:start}
-
 /* ── Sidebar ── */
 .vs-sidebar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden}
 .vs-sidebar-head{padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:10px}
@@ -71,7 +71,6 @@
 .vs-voice-name{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);display:block}
 .vs-voice-btn.selected .vs-voice-name{color:#52b788}
 .vs-voice-sub{font-size:10.5px;color:rgba(255,255,255,.35);display:block;margin-top:1px}
-
 /* ── Center Editor ── */
 .vs-editor{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden}
 .vs-editor-head{padding:18px 24px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -86,7 +85,6 @@
 .vs-char-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
 .vs-char-count{font-size:11px;color:rgba(255,255,255,.3)}
 .vs-tip{font-size:11px;color:#f4a261;font-weight:600}
-
 /* Builder controls */
 .vs-builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
 .vs-select{width:100%;padding:10px 14px;background:rgba(0,0,0,.3);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;color:rgba(255,255,255,.8);font-size:13px;font-family:inherit;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5l3 3 3-3' stroke='rgba(255,255,255,.4)' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;transition:border-color .2s}
@@ -97,12 +95,10 @@
 .vs-slider-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
 .vs-slider-val{font-size:12px;color:#52b788;font-weight:700}
 .vs-slider-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.3)}
-
 /* Quick prompts */
 .vs-prompts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
 .vs-prompt-chip{padding:6px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;font-size:11.5px;color:rgba(255,255,255,.6);cursor:pointer;transition:all .15s;white-space:nowrap}
 .vs-prompt-chip:hover{background:rgba(82,183,136,.15);border-color:#52b788;color:#52b788}
-
 /* Action buttons */
 .vs-actions{display:flex;gap:10px;flex-wrap:wrap}
 .vs-btn-gen{flex:1;min-width:160px;padding:14px 20px;background:linear-gradient(135deg,#22c55e,#2d6a4f);color:#fff;border:none;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:all .2s;box-shadow:0 4px 16px rgba(34,197,94,.2)}
@@ -113,7 +109,6 @@
 .vs-btn-sec:disabled{opacity:.4;cursor:not-allowed}
 .vs-spinner{width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
 @keyframes spin{to{transform:rotate(360deg)}}
-
 /* ── Right Panel ── */
 .vs-output{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;position:sticky;top:90px}
 .vs-output-head{padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px}
@@ -123,13 +118,11 @@
 .vs-status-dot.loading{background:#f59e0b;animation:pulse-dot 1s ease-in-out infinite}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
 .vs-output-body{padding:24px}
-
 /* Visualizer */
 .vs-visualizer{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:60px;margin-bottom:20px;background:rgba(0,0,0,.2);border-radius:12px;padding:10px 16px}
 .vs-bar{width:4px;border-radius:3px;background:rgba(82,183,136,.3);transition:height .1s ease}
 .vs-bar.playing{animation:vs-bounce var(--d,.6s) ease-in-out infinite alternate}
 @keyframes vs-bounce{from{height:6px;background:rgba(82,183,136,.4)}to{height:var(--h,30px);background:#52b788}}
-
 /* Audio player */
 .vs-audio-wrap{margin-bottom:20px}
 .vs-audio-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;background:rgba(0,0,0,.2);border-radius:14px;border:1.5px dashed rgba(255,255,255,.08)}
@@ -143,7 +136,6 @@
 .vs-info-row:last-child{margin-bottom:0}
 .vs-info-label{font-size:10.5px;color:rgba(255,255,255,.35);width:56px;flex-shrink:0}
 .vs-info-val{font-size:11.5px;color:rgba(255,255,255,.7);font-weight:600}
-
 /* Output controls */
 .vs-out-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;display:none}
 .vs-ctrl-btn{padding:10px;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;border:1px solid transparent}
@@ -155,15 +147,12 @@
 .vs-ctrl-stop:hover{background:rgba(239,68,68,.2)}
 .vs-ctrl-dl{background:rgba(82,183,136,.15);color:#52b788;border-color:rgba(82,183,136,.25)}
 .vs-ctrl-dl:hover{background:rgba(82,183,136,.25)}
-
 /* Voice description */
 .vs-voice-desc{background:rgba(82,183,136,.06);border:1px solid rgba(82,183,136,.15);border-radius:12px;padding:14px;margin-bottom:16px}
 .vs-voice-desc h4{font-size:12px;font-weight:700;color:#52b788;margin-bottom:6px}
 .vs-voice-desc p{font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.6;margin:0}
-
 /* Error toast */
 .vs-error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#fca5a5;border-radius:10px;padding:10px 14px;font-size:12.5px;margin-top:12px;display:none}
-
 /* ── Responsive ── */
 @media(max-width:1100px){
   .vs-studio{grid-template-columns:240px 1fr;grid-template-rows:auto auto}
@@ -177,7 +166,6 @@
   .vs-stats{flex-wrap:wrap}
   .vs-stat{border:none;padding:6px 12px}
 }
-
 /* ── Related Tools ── */
 .vs-related{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.06);padding:60px 0}
 .vs-related-inner{max-width:1100px;margin:0 auto;padding:0 20px}
@@ -195,7 +183,7 @@
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="ann-bar" role="marquee" aria-label="Site announcements">
 <div class="ann-ticker-wrap">
-<div class="ann-ticker">100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span>100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>155 Health Articles<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span></div>
+<div class="ann-ticker">100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>Evidence-Based Health Guides<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span>100+ Free Health Calculators<span class="ann-sep">&bull;</span>Practical Tools and Clear Guides<span class="ann-sep">&bull;</span>20+ Interactive Quizzes<span class="ann-sep">&bull;</span>Evidence-Based Health Guides<span class="ann-sep">&bull;</span>Instant Results &mdash; No Sign-Up Required<span class="ann-sep">&bull;</span>Designed for Clarity and Simplicity<span class="ann-sep">&bull;</span></div>
 </div>
 <div class="ann-right">
 <a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ann-social-link"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
@@ -205,7 +193,7 @@
 </div>
 <nav class="navbar">
 <div class="nav-container">
-<a href="/" class="nav-logo" aria-label="VitalHealth Hub — Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="nav-logo-img"></a>
+<a href="/" class="nav-logo" aria-label="VitalHealth Hub — Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="nav-logo-img" width="946" height="283" decoding="async"></a>
 <ul class="nav-links" id="primary-navigation">
 <li><a href="/">Home</a></li>
 <li class="nav-dropdown-wrap">
@@ -218,7 +206,7 @@
 <li><a href="/about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
-<button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button>
+<button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation" type="button"><span></span><span></span><span></span></button>
 </div>
 </nav>
 
@@ -282,12 +270,12 @@
         <div class="vs-field">
           <label class="vs-label">Quick Script Starters</label>
           <div class="vs-prompts" id="quickPrompts">
-            <button class="vs-prompt-chip" onclick="useQuickPrompt('Welcome to today\'s mindfulness session. Take a deep breath and let go of any tension you\'ve been holding.')">🧘 Mindfulness Intro</button>
-            <button class="vs-prompt-chip" onclick="useQuickPrompt('In a land far beyond the mountains, where the rivers sang ancient songs, there lived a wise old healer who knew the secrets of nature.')">📖 Storytelling</button>
-            <button class="vs-prompt-chip" onclick="useQuickPrompt('Today\'s health tip: Drinking enough water throughout the day improves focus, skin health, and energy levels. Aim for 8 glasses daily.')">💊 Health Tip</button>
-            <button class="vs-prompt-chip" onclick="useQuickPrompt('Hey everyone! Welcome back to the channel. Today we\'re going to talk about something that changed my life — daily journaling.')">📱 Social Media</button>
-            <button class="vs-prompt-chip" onclick="useQuickPrompt('As the night settles in, let your body relax completely. Starting from your toes, feel each muscle gently releasing all tension.')">🌙 Sleep Story</button>
-            <button class="vs-prompt-chip" onclick="useQuickPrompt('Breaking news: Scientists have discovered a new compound in green tea that shows promising results in supporting cardiovascular health.')">📰 News Style</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('Welcome to today\'s mindfulness session. Take a deep breath and let go of any tension you\'ve been holding.')" type="button">🧘 Mindfulness Intro</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('In a land far beyond the mountains, where the rivers sang ancient songs, there lived a wise old healer who knew the secrets of nature.')" type="button">📖 Storytelling</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('Today\'s health tip: Drinking enough water throughout the day improves focus, skin health, and energy levels. Aim for 8 glasses daily.')" type="button">💊 Health Tip</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('Hey everyone! Welcome back to the channel. Today we\'re going to talk about something that changed my life — daily journaling.')" type="button">📱 Social Media</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('As the night settles in, let your body relax completely. Starting from your toes, feel each muscle gently releasing all tension.')" type="button">🌙 Sleep Story</button>
+            <button class="vs-prompt-chip" onclick="useQuickPrompt('Breaking news: Scientists have discovered a new compound in green tea that shows promising results in supporting cardiovascular health.')" type="button">📰 News Style</button>
           </div>
         </div>
 
@@ -333,16 +321,16 @@
 
         <!-- Action buttons -->
         <div class="vs-actions">
-          <button class="vs-btn-gen" id="generateBtn" onclick="generateAudio()">
+          <button class="vs-btn-gen" id="generateBtn" onclick="generateAudio()" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             <span id="btnText">Generate Audio</span>
             <div class="vs-spinner" id="spinner"></div>
           </button>
-          <button class="vs-btn-sec" id="variationBtn" onclick="generateVariation()" title="Generate with slight variation">
+          <button class="vs-btn-sec" id="variationBtn" onclick="generateVariation()" title="Generate with slight variation" type="button">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
             Variation
           </button>
-          <button class="vs-btn-sec" id="pitchBtn" onclick="toggleHighPitch()" title="High pitch mode">
+          <button class="vs-btn-sec" id="pitchBtn" onclick="toggleHighPitch()" title="High pitch mode" type="button">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
             High Pitch
           </button>
@@ -410,16 +398,16 @@
 
         <!-- Controls -->
         <div class="vs-out-controls" id="outControls">
-          <button class="vs-ctrl-btn vs-ctrl-play" onclick="playAudio()">
+          <button class="vs-ctrl-btn vs-ctrl-play" onclick="playAudio()" type="button">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Play
           </button>
-          <button class="vs-ctrl-btn vs-ctrl-pause" onclick="pauseAudio()">
+          <button class="vs-ctrl-btn vs-ctrl-pause" onclick="pauseAudio()" type="button">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pause
           </button>
-          <button class="vs-ctrl-btn vs-ctrl-stop" onclick="stopAudio()">
+          <button class="vs-ctrl-btn vs-ctrl-stop" onclick="stopAudio()" type="button">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16"/></svg> Stop
           </button>
-          <button class="vs-ctrl-btn vs-ctrl-dl" onclick="downloadAudio()">
+          <button class="vs-ctrl-btn vs-ctrl-dl" onclick="downloadAudio()" type="button">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Export
           </button>
         </div>
@@ -476,9 +464,9 @@
 <div class="footer-inner">
 <div class="footer-grid">
 <div class="footer-brand">
-<a href="/" class="footer-logo-link" aria-label="VitalHealth Hub Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="footer-logo-img2"></a>
+<a href="/" class="footer-logo-link" aria-label="VitalHealth Hub Home"><img src="/images/logo.png" alt="VitalHealth Hub" class="footer-logo-img2" width="946" height="283" loading="lazy" decoding="async"></a>
 <p class="footer-brand-desc">Practical health calculators, useful tools, and clear guides to help you make better decisions every day.</p>
-<a href="mailto:ma7122671@gmail.com" class="footer-email-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>ma7122671@gmail.com</a>
+<a href="mailto:contact@vitalhealthhub.org" class="footer-email-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@vitalhealthhub.org</a>
 <div class="footer-socials2">
 <a href="https://www.linkedin.com/in/ali-haider-seo-consultant/" target="_blank" rel="noopener noreferrer" class="fsoc fsoc-li" title="LinkedIn" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
 <a href="https://www.facebook.com/AliHadi768" target="_blank" rel="noopener noreferrer" class="fsoc fsoc-fb" title="Facebook" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
@@ -525,6 +513,7 @@
 <li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/terms">Terms of Use</a></li>
 <li><a href="/disclaimer">Medical Disclaimer</a></li>
+<li><a href="/editorial-policy">Editorial Policy</a></li>
 <li><a href="/sitemap">Sitemap</a></li>
 </ul>
 <div class="footer-notice">
@@ -546,19 +535,19 @@
 </footer>
 
 <div id="vh-chatbot">
-<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window">
+<button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window" type="button">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
 </button>
 <div id="vh-chat-window">
 <div id="vh-chat-header">
 <div class="vh-header-left">
-<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="36" height="36" loading="lazy"></div>
+<div id="vh-bot-avatar"><img src="/images/logo.png" alt="VitalHealth Hub health assistant chatbot" width="36" height="36" loading="lazy" decoding="async"></div>
 <div class="vh-header-info">
 <span class="vh-header-name">VitalHealth Assistant</span>
 <span class="vh-header-sub"><span class="vh-online-dot"></span>AI-powered health tools &amp; insights</span>
 </div>
 </div>
-<button id="vh-chat-minimize" aria-label="Close chat">
+<button id="vh-chat-minimize" aria-label="Close chat" type="button">
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 </div>
@@ -566,15 +555,15 @@
 <div id="vh-quick-topics">
 <p class="vh-topics-label">Quick actions</p>
 <div class="vh-actions-primary">
-<button class="vh-action-btn" data-vh-ask="BMI">Calculate BMI</button>
-<button class="vh-action-btn" data-vh-ask="Calories">Check Calories</button>
-<button class="vh-action-btn" data-vh-ask="health quiz">Health Quiz</button>
-<button class="vh-action-btn" data-vh-ask="tools">Explore Tools</button>
+<button class="vh-action-btn" data-vh-ask="BMI" type="button">Calculate BMI</button>
+<button class="vh-action-btn" data-vh-ask="Calories" type="button">Check Calories</button>
+<button class="vh-action-btn" data-vh-ask="health quiz" type="button">Health Quiz</button>
+<button class="vh-action-btn" data-vh-ask="tools" type="button">Explore Tools</button>
 </div>
 </div>
 <div id="vh-chat-input-area">
 <input type="text" id="vh-chat-input" placeholder="Ask about health, tools, or results..." autocomplete="off" maxlength="300" aria-label="Chat message">
-<button id="vh-chat-send" aria-label="Send message">
+<button id="vh-chat-send" aria-label="Send message" type="button">
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="white" stroke="none"/></svg>
 </button>
 </div>

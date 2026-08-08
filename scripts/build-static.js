@@ -6,9 +6,11 @@ const DIST = path.join(ROOT, 'dist');
 const DEPLOYMENT = path.join(ROOT, 'deployment');
 
 const PUBLIC_DIRECTORIES = [
+  'author',
   'blog',
   'calculators',
   'css',
+  'fonts',
   'images',
   'js',
   'quizzes',
@@ -49,7 +51,7 @@ function copyRootAssets() {
 }
 
 function copyDeploymentControls() {
-  for (const name of ['404.html', '_headers']) {
+  for (const name of ['404.html', '_headers', '_redirects']) {
     fs.copyFileSync(path.join(DEPLOYMENT, name), path.join(DIST, name));
   }
 }

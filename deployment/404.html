@@ -7,12 +7,14 @@
   <title>Page Not Found | VitalHealth Hub</title>
   <meta name="description" content="The requested VitalHealth Hub page could not be found. Browse our health calculators, wellness tools, quizzes, and educational articles.">
   <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <nav class="navbar" aria-label="Main navigation">
     <div class="nav-container">
-      <a href="/" class="nav-logo" aria-label="VitalHealth Hub home"><img src="/images/logo.png" alt="VitalHealth Hub" width="180" height="50"></a>
+      <a href="/" class="nav-logo" aria-label="VitalHealth Hub home"><img src="/images/logo.png" alt="VitalHealth Hub" width="180" height="50" decoding="async"></a>
       <div class="nav-links">
         <a href="/calculators/">Calculators</a>
         <a href="/blog">Blog</a>

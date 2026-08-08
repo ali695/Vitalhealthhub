@@ -1,0 +1,36 @@
+{
+  "_readme": [
+    "Drives the 'Medically reviewed by' byline and the schema.org reviewedBy property.",
+    "It is EMPTY on purpose. Nothing on this site has been clinically reviewed yet, and",
+    "labelling YMYL health content as reviewed when it has not been is the exact",
+    "fabrication Google's quality rater guidelines are written to catch.",
+    "",
+    "When you engage a licensed reviewer (MBBS, MD, RD, RN, etc.):",
+    "  1. Add them to 'reviewers', keyed by an id you choose.",
+    "  2. List the pages they have ACTUALLY read and signed off in 'reviews',",
+    "     with the date they did it.",
+    "  3. Run: node scripts/apply-medical-review.js",
+    "",
+    "Only pages listed in 'reviews' get the badge and the reviewedBy schema.",
+    "Removing a page from 'reviews' and re-running strips both back off it."
+  ],
+
+  "reviewers": {},
+
+  "reviews": {},
+
+  "_example": {
+    "reviewers": {
+      "jane-doe": {
+        "name": "Dr Jane Doe",
+        "credential": "MBBS, MRCGP",
+        "jobTitle": "General Practitioner",
+        "url": "https://vitalhealthhub.org/author/jane-doe",
+        "sameAs": ["https://www.linkedin.com/in/example/"]
+      }
+    },
+    "reviews": {
+      "blog/what-is-a-healthy-bmi.html": { "reviewer": "jane-doe", "date": "2026-09-01" }
+    }
+  }
+}

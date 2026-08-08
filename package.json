@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node scripts/normalize-accessibility-schema.js && node scripts/normalize-site-urls.js && node scripts/generate-sitemap.js && node scripts/build-static.js && node scripts/validate-deployment.js",
+    "build": "node scripts/seo-hardening.js && node scripts/normalize-accessibility-schema.js && node scripts/normalize-site-urls.js && node scripts/generate-redirects.js && node scripts/generate-sitemap.js && node scripts/build-static.js && node scripts/minify-assets.js && node scripts/validate-deployment.js",
+    "assets": "node scripts/generate-brand-assets.js",
+    "eeat": "node scripts/build-eeat-pages.js && node scripts/seo-hardening.js",
+    "review": "node scripts/apply-medical-review.js",
     "content:update": "node scripts/apply-indexed-blog-content.js && node scripts/apply-remaining-blog-content.js && node scripts/clean-all-page-claims.js && node scripts/upgrade-calculator-content.js && node scripts/optimize-page-metadata.js && node scripts/normalize-site-urls.js && node scripts/generate-sitemap.js",
     "content:validate": "node scripts/validate-all-content.js",
     "sitemap": "node scripts/normalize-site-urls.js && node scripts/generate-sitemap.js",
@@ -14,5 +17,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "Static health information, calculators, quizzes and browser-based tools for VitalHealth Hub"
+  "description": "Static health information, calculators, quizzes and browser-based tools for VitalHealth Hub",
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "sharp": "^0.35.3",
+    "terser": "^5.49.2"
+  }
 }

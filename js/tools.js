@@ -1,5 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+  // ── HTML escaping ─────────────────────────────────────────────────────────
+  // Every value below that a person typed goes through this before it is
+  // concatenated into innerHTML. The data lives in this browser's localStorage,
+  // so the immediate risk is self-XSS rather than attacker-to-victim — but a
+  // habit or task called "a < b" currently corrupts the markup either way, and
+  // the moment these tools gain import, sync or share it becomes a real vector.
+  function esc(value) {
+    return String(value === null || value === undefined ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   // ── Tool page tracker (replaces TOOL_TRACKER_JS inline) ──────────────────
   (function() {
     var sl = window.location.pathname.split('/').pop().replace('.html', '');
@@ -59,10 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
         var hotClass = streak >= 3 ? ' hot' : '';
         return '<div class="habit-item' + (done ? ' done-today' : '') + '" id="hi-' + h.id + '">' +
           '<div class="habit-checkbox" data-tool-action="toggle-habit" data-id="' + h.id + '" title="Mark as done">' + (done ? '✓' : '') + '</div>' +
-          '<span class="habit-name">' + h.name + '</span>' +
+          '<span class="habit-name">' + esc(h.name) + '</span>' +
           '<div class="habit-weekly">' + dots + '</div>' +
           '<span class="habit-streak-badge' + hotClass + '">' + (streak >= 3 ? '🔥' : '') + streak + ' day' + (streak === 1 ? '' : 's') + '</span>' +
-          '<button class="habit-del-btn" data-tool-action="del-habit" data-id="' + h.id + '" title="Delete habit">✕</button>' +
+          '<button type="button" class="habit-del-btn" data-tool-action="del-habit" data-id="' + h.id + '" title="Delete habit">✕</button>' +
           '</div>';
       }).join('');
     }
@@ -117,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var data = loadSleep(); var el = document.getElementById('sleepHistory');
       if (!data.length) { el.innerHTML = '<div class="saas-empty-state"><div class="saas-empty-icon">📋</div><p class="saas-empty-text">No sleep entries yet. Log your first night above!</p></div>'; return; }
       var html = '<table class="sleep-history-table"><thead><tr><th>Date</th><th>Hours</th><th>Quality</th><th>Score</th><th>Notes</th></tr></thead><tbody>';
-      data.forEach(function(e) { var g = scoreGrade(e.score); html += '<tr><td>' + e.date + '</td><td>' + e.hrs + 'h</td><td>' + (['', '😞', '😕', '😐', '😊', '😄'][e.quality] || '-') + '</td><td><span class="saas-badge ' + g[1] + '">' + e.score + '</span></td><td style="color:#9ca3af;font-size:0.8rem">' + e.note + '</td></tr>'; });
+      data.forEach(function(e) { var g = scoreGrade(e.score); html += '<tr><td>' + e.date + '</td><td>' + e.hrs + 'h</td><td>' + (['', '😞', '😕', '😐', '😊', '😄'][e.quality] || '-') + '</td><td><span class="saas-badge ' + g[1] + '">' + e.score + '</span></td><td style="color:#9ca3af;font-size:0.8rem">' + esc(e.note) + '</td></tr>'; });
       html += '</tbody></table>'; el.innerHTML = html;
     }
     renderSleepHistory();
@@ -239,8 +254,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return '<a href="' + m.href + '" class="dashboard-metric-card' + (m.empty ? ' empty-metric' : '') + '">' +
           '<div class="dashboard-metric-icon">' + m.icon + '</div>' +
           '<div class="dashboard-metric-label">' + m.label + '</div>' +
-          '<div class="dashboard-metric-value">' + m.val + '</div>' +
-          (m.sub ? '<div class="dashboard-metric-sub">' + m.sub + '</div>' : '') + '</a>';
+          '<div class="dashboard-metric-value">' + esc(m.val) + '</div>' +
+          (m.sub ? '<div class="dashboard-metric-sub">' + esc(m.sub) + '</div>' : '') + '</a>';
       }).join('');
       var hasAny = sleepData.length || Object.keys(moodData).length || stepData.length || habitData.habits.length;
       document.getElementById('dashNotice').style.display = hasAny ? 'none' : 'flex';
@@ -276,10 +291,10 @@ document.addEventListener('DOMContentLoaded', function() {
         var badgeMap = { high: 'saas-badge-red', medium: 'saas-badge-yellow', low: 'saas-badge-green' };
         return '<div class="planner-task' + (tk.done ? ' done-task' : '') + '">' +
           '<input type="checkbox" class="planner-task-cb"' + (tk.done ? ' checked' : '') + ' data-tool-action="toggle-task" data-id="' + tk.id + '">' +
-          '<span class="planner-task-time">' + tk.time + '</span>' +
-          '<span class="planner-task-name">' + tk.name + '</span>' +
+          '<span class="planner-task-time">' + esc(tk.time) + '</span>' +
+          '<span class="planner-task-name">' + esc(tk.name) + '</span>' +
           '<span class="planner-priority"><span class="saas-badge ' + badgeMap[tk.priority] + '">' + PLABELS[tk.priority] + '</span></span>' +
-          '<button class="planner-task-del" data-tool-action="del-task" data-id="' + tk.id + '">✕</button>' +
+          '<button type="button" class="planner-task-del" data-tool-action="del-task" data-id="' + tk.id + '">✕</button>' +
           '</div>';
       }).join('');
       var done = tasks.filter(function(t) { return t.done; }).length;
@@ -389,10 +404,10 @@ document.addEventListener('DOMContentLoaded', function() {
         var pct = calcPct(g.current, g.target); var fillClass = pct >= 80 ? '' : pct >= 50 ? '' : pct < 30 ? 'danger' : 'warn'; var complete = pct >= 100;
         return '<div class="goal-card">' +
           '<div class="goal-card-header">' +
-            '<div><div class="goal-name">' + g.name + '</div><div class="goal-target-info">' + g.current + ' / ' + g.target + ' ' + g.unit + '</div></div>' +
+            '<div><div class="goal-name">' + esc(g.name) + '</div><div class="goal-target-info">' + esc(g.current) + ' / ' + esc(g.target) + ' ' + esc(g.unit) + '</div></div>' +
             '<div class="goal-card-actions">' +
               '<span class="saas-badge ' + (pct >= 100 ? 'saas-badge-green' : pct >= 70 ? 'saas-badge-blue' : pct >= 40 ? 'saas-badge-yellow' : 'saas-badge-red') + '">' + pct + '%</span>' +
-              '<button class="saas-btn saas-btn-danger saas-btn-sm" data-tool-action="del-goal" data-id="' + g.id + '">Delete</button>' +
+              '<button type="button" class="saas-btn saas-btn-danger saas-btn-sm" data-tool-action="del-goal" data-id="' + g.id + '">Delete</button>' +
             '</div>' +
           '</div>' +
           '<div class="saas-progress-wrap"><div class="saas-progress-bar"><div class="saas-progress-fill ' + fillClass + '" style="width:' + pct + '%"></div></div></div>' +
@@ -538,7 +553,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var audEl = document.getElementById('ideaAudience');
       var audience = audEl.options[audEl.selectedIndex].text;
       var output = document.getElementById('ideaOutput');
-      output.innerHTML = '<div class="idea-gen-generating">⚡ Generating ideas for "<strong>' + topic + '</strong>"…</div>';
+      output.innerHTML = '<div class="idea-gen-generating">⚡ Generating ideas for "<strong>' + esc(topic) + '</strong>"…</div>';
       setTimeout(function() {
         var sections = [
           { label: '📝 Blog Post Ideas', key: 'blog', icon: '📝' }, { label: '📲 Social Media Angles', key: 'social', icon: '📲' },
@@ -547,8 +562,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var html = sections.map(function(s) {
           var ideas = FRAMEWORKS[s.key].slice(0, s.key === 'action' ? 4 : 6).map(function(t) { return fillTemplate(t, topic, audience); });
           var cards = ideas.map(function(idea) {
-            var safeIdea = idea.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
-            return '<div class="idea-card"><span class="idea-card-text">' + cap(idea) + '</span><button class="idea-copy-btn" data-tool-action="copy-idea" data-idea="' + safeIdea + '">Copy</button></div>';
+            return '<div class="idea-card"><span class="idea-card-text">' + esc(cap(idea)) + '</span><button type="button" class="idea-copy-btn" data-tool-action="copy-idea" data-idea="' + esc(idea) + '">Copy</button></div>';
           }).join('');
           return '<div class="idea-category-block"><div class="idea-category-title">' + s.icon + ' ' + s.label + '</div><div class="idea-cards">' + cards + '</div></div>';
         }).join('');
@@ -678,7 +692,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderMFiles() {
       var el = document.getElementById('mergeFileList');
       el.innerHTML = mFiles.map(function(f, i) {
-        return '<div class="util-file-item"><span>📄</span><span class="util-file-name">' + f.name + '</span><span class="util-file-size">' + Math.round(f.size / 1024) + 'KB</span><button class="util-file-del" data-tool-action="remove-merge-file" data-idx="' + i + '">✕</button></div>';
+        return '<div class="util-file-item"><span>📄</span><span class="util-file-name">' + esc(f.name) + '</span><span class="util-file-size">' + Math.round(f.size / 1024) + 'KB</span><button type="button" class="util-file-del" data-tool-action="remove-merge-file" data-idx="' + i + '">✕</button></div>';
       }).join('');
       document.getElementById('mergeBtn').disabled = mFiles.length < 2;
     }
