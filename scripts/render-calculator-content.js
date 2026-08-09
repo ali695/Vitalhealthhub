@@ -33,49 +33,67 @@ function escapeJson(value) {
   return tidy(String(value).replace(/<[^>]*>/g, ''));
 }
 
-function buildFaqHtml(slug, faqs) {
+/**
+ * Wrap content in the site's existing section shell. The calculators alternate
+ * ccs-white and ccs-gray for visual rhythm, and prose lives in .ccs-article, which
+ * already carries all the heading, paragraph, list and link styling. Nothing here
+ * invents a class -- an earlier version did, and the page rendered unstyled.
+ */
+function shell(tone, inner, wrapper = 'ccs-article') {
+  return (
+    `<section class="ccs-section ccs-${tone}">\n<div class="container">\n` +
+    `<div class="${wrapper} fade-in">\n${inner}\n</div>\n</div>\n</section>`
+  );
+}
+
+function buildFaqSection(slug, faqs, heading) {
   const items = faqs
     .map((faq, index) => {
-      const id = `${slug}-q${index}`;
+      const id = `faq-answer-${slug}-${index + 1}`;
       return (
-        `<div class="faq-item">` +
-        `<button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-a-${id}" id="faq-q-${id}">` +
-        `${faq.q}<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>` +
-        `</button>` +
-        `<div class="faq-answer" id="faq-a-${id}" role="region" aria-labelledby="faq-q-${id}">` +
-        `<div class="faq-answer-inner">${faq.a}</div></div></div>`
+        `<div class="faq-item"><button class="faq-question" type="button" aria-expanded="false" aria-controls="${id}">` +
+        `${faq.q}<svg viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>` +
+        `</button><div class="faq-answer" id="${id}"><div class="faq-answer-inner">${faq.a}</div></div></div>`
       );
     })
     .join('');
-  return `<h2>Frequently asked questions</h2><div class="faq-list">${items}</div>`;
+  return shell(
+    'gray',
+    `<div class="ccs-section-heading"><h2>${heading}</h2></div>\n<div class="faq-list">${items}</div>`,
+    'ccs-faq-wrap'
+  );
 }
 
-function buildSourcesHtml(sources) {
+function buildSourcesSection(sources) {
   const items = sources
     .map(
       (source) =>
         `<li><a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a></li>`
     )
     .join('');
-  return (
-    `<h2>Sources</h2><p class="sources-note">Each source below supports a specific figure on this page.</p>` +
-    `<ul class="sources-list">${items}</ul>`
+  return shell(
+    'white',
+    `<h2>Sources</h2>\n<p>Each source below supports a specific figure used on this page.</p>\n<ul>${items}</ul>`
   );
 }
 
 function buildBlock(content) {
-  const sections = content.sections
-    .map((section) => `<h2>${section.h2}</h2>${section.html}`)
-    .join('\n');
+  const blocks = [];
 
-  return (
-    `${BLOCK_MARKER}\n${RENDER_MARK}\n<div class="container">\n<section class="seo-section fade-in">\n` +
-    `<div class="calc-answer-box"><p>${tidy(content.answer)}</p></div>\n` +
-    `${sections}\n` +
-    `${buildFaqHtml(content.slug, content.faqs)}\n` +
-    `${buildSourcesHtml(content.sources)}\n` +
-    `</section>\n</div>\n</section>`
+  // The direct answer opens the first section rather than sitting in its own box.
+  const first = content.sections[0];
+  blocks.push(
+    shell('white', `<p><strong>${tidy(content.answer)}</strong></p>\n<h2>${first.h2}</h2>\n${first.html}`)
   );
+
+  content.sections.slice(1).forEach((section, index) => {
+    blocks.push(shell(index % 2 === 0 ? 'gray' : 'white', `<h2>${section.h2}</h2>\n${section.html}`));
+  });
+
+  blocks.push(buildFaqSection(content.slug, content.faqs, content.faqHeading || 'Frequently Asked Questions'));
+  blocks.push(buildSourcesSection(content.sources));
+
+  return `${RENDER_MARK}\n` + blocks.join('\n\n');
 }
 
 function buildFaqSchema(content, url) {

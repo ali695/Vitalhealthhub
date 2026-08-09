@@ -10,6 +10,7 @@
  */
 module.exports = {
   slug: 'bmi-calculator',
+  faqHeading: 'Frequently Asked Questions About BMI',
 
   // Featured-snippet target. Answer first, context second.
   answer: `Body mass index is your weight in kilograms divided by the square of your
@@ -23,7 +24,7 @@ module.exports = {
     {
       h2: 'BMI ranges for adults',
       html: `<p>These cut-offs come from the <a href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" target="_blank" rel="noopener noreferrer">World Health Organization</a> and are used by the <a href="https://www.nhlbi.nih.gov/health/overweight-and-obesity" target="_blank" rel="noopener noreferrer">NIH</a> and the <a href="https://www.nhs.uk/conditions/obesity/" target="_blank" rel="noopener noreferrer">NHS</a> alike. They apply to adults aged 20 and over.</p>
-<div class="table-scroll"><table class="calc-data-table">
+<table class="data-table">
 <caption>Adult BMI categories (kg/m&sup2;)</caption>
 <thead><tr><th scope="col">BMI</th><th scope="col">Category</th></tr></thead>
 <tbody>
@@ -33,7 +34,7 @@ module.exports = {
 <tr><td>30.0 &ndash; 34.9</td><td>Obesity, class I</td></tr>
 <tr><td>35.0 &ndash; 39.9</td><td>Obesity, class II</td></tr>
 <tr><td>40.0 and above</td><td>Obesity, class III</td></tr>
-</tbody></table></div>
+</tbody></table>
 <p><strong>These thresholds change if you are of South Asian, Chinese, or other Asian background.</strong> A WHO expert consultation found that health risk rises at a lower body weight in these populations, and the <a href="https://www.nhs.uk/conditions/obesity/" target="_blank" rel="noopener noreferrer">NHS</a> now advises a threshold of 23 for overweight and 27.5 for obesity rather than 25 and 30. If that applies to you, read your result against the lower figures.</p>`
     },
     {
