@@ -29,9 +29,10 @@
 # than guessing.
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://adservice.google.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.web3forms.com https://api.frankfurter.app https://api.coingecko.com https://metals.live https://image.pollinations.ai https://cloudflareinsights.com https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ep1.adtrafficquality.google https://csi.gstatic.com https://fundingchoicesmessages.google.com https://www.google-analytics.com https://analytics.google.com; frame-src https:; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'self' https://*.google.com https://google.com; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://adservice.google.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.web3forms.com https://api.frankfurter.app https://api.coingecko.com https://metals.live https://image.pollinations.ai https://cloudflareinsights.com https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ep1.adtrafficquality.google https://csi.gstatic.com https://fundingchoicesmessages.google.com https://www.google-analytics.com https://analytics.google.com; frame-src https:; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: accelerometer=(), autoplay=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
@@ -52,21 +53,6 @@ https://vitalhealthhub.pages.dev/*
 
 https://:branch.vitalhealthhub.pages.dev/*
   X-Robots-Tag: noindex
-
-# ###########################################################################
-# !! THE TEMPORARY FRAMING CHANGE IS CURRENTLY ACTIVE -- REVERT IT !!
-#
-# This site is framable by google.com right now so the AdSense "Excluded areas"
-# tool can load it. That is a clickjacking exposure and must not stay on.
-#
-# TO REVERT once the excluded areas are saved, in the /* block above:
-#   1. frame-ancestors 'self' https://*.google.com https://google.com
-#      -> frame-ancestors 'none'
-#   2. add back:  X-Frame-Options: DENY
-#
-# The exclusions live on Google's side once saved, so nothing is lost by
-# locking the site back down straight afterwards.
-# ###########################################################################
 
 # ---------------------------------------------------------------------------
 # TEMPORARY CHANGE NEEDED FOR THE ADSENSE "EXCLUDED AREAS" TOOL
