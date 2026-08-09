@@ -76,8 +76,11 @@ const sitemapXml = files.filter((file) => file.endsWith('.xml')).map((file) => f
 if (/https:\/\/vitalhealthhub\.org\/[^<\s]+\.html/i.test(sitemapXml)) failures.push('HTML-extension URLs remain in production sitemaps');
 
 const headers = fs.existsSync(path.join(DIST, '_headers')) ? fs.readFileSync(path.join(DIST, '_headers'), 'utf8') : '';
-for (const header of ['Content-Security-Policy', 'Strict-Transport-Security', 'X-Frame-Options', 'Permissions-Policy']) {
+for (const header of ['Content-Security-Policy', 'Strict-Transport-Security', 'Permissions-Policy']) {
   if (!headers.includes(`${header}:`)) failures.push(`${header}: production header missing`);
+}
+if (!headers.includes('X-Frame-Options:') && !/frame-ancestors\s+(?!\*)[^;]+;/i.test(headers)) {
+  failures.push('Neither X-Frame-Options nor a restrictive CSP frame-ancestors policy is present');
 }
 
 // CSP enforcement guard. script-src no longer carries 'unsafe-inline', so an inline

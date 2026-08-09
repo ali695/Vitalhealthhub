@@ -19,8 +19,8 @@
 # connect-src  Added Google's ad measurement and consent endpoints.
 #
 # frame-ancestors / X-Frame-Options
-#              STILL LOCKED. See the note at the bottom about the AdSense
-#              "Excluded areas" tool, which needs a TEMPORARY change.
+#              Temporarily permits Google's AdSense editor to frame the site
+#              so the "Excluded areas" preview can load and be saved.
 #
 # If an ad or the consent banner still does not appear, open the live site,
 # check the browser console for "Refused to load ... violates the following
@@ -29,10 +29,9 @@
 # than guessing.
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://adservice.google.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.web3forms.com https://api.frankfurter.app https://api.coingecko.com https://metals.live https://image.pollinations.ai https://cloudflareinsights.com https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ep1.adtrafficquality.google https://csi.gstatic.com https://fundingchoicesmessages.google.com https://www.google-analytics.com https://analytics.google.com; frame-src https:; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://adservice.google.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.web3forms.com https://api.frankfurter.app https://api.coingecko.com https://metals.live https://image.pollinations.ai https://cloudflareinsights.com https://static.cloudflareinsights.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ep1.adtrafficquality.google https://csi.gstatic.com https://fundingchoicesmessages.google.com https://www.google-analytics.com https://analytics.google.com; frame-src https:; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'self' https://google.com https://*.google.com; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: accelerometer=(), autoplay=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
@@ -55,20 +54,19 @@ https://:branch.vitalhealthhub.pages.dev/*
   X-Robots-Tag: noindex
 
 # ---------------------------------------------------------------------------
-# TEMPORARY CHANGE NEEDED FOR THE ADSENSE "EXCLUDED AREAS" TOOL
+# TEMPORARY ADSENSE "EXCLUDED AREAS" ACCESS IS ACTIVE
 #
-# That tool loads this site inside an iframe on Google's domain. Both
-# frame-ancestors 'none' and X-Frame-Options: DENY block that, which is why
-# the panel renders blank.
+# The policy above permits this site and Google origins to embed the site.
+# X-Frame-Options is intentionally omitted because DENY blocks the editor.
 #
-# To use the tool, swap the two lines in the /* block above for:
+# Active framing exception:
 #
 #     frame-ancestors 'self' https://*.google.com
 #     (and DELETE the X-Frame-Options line entirely — that header cannot list
 #      a second origin, and leaving DENY there overrides frame-ancestors in
 #      some browsers)
 #
-# Deploy, mark the excluded areas in AdSense, then PUT BOTH LINES BACK.
+# After marking and saving the excluded areas in AdSense, restore both protections.
 # Leaving the site framable long-term reopens clickjacking risk for no benefit,
 # because the exclusions are stored on Google's side once saved.
 # ---------------------------------------------------------------------------
