@@ -7,8 +7,7 @@
  * paragraph word for word, the same "Step 1 - Enter your weight in the weight field"
  * padding. This swaps it for content written to content/CONTENT-STANDARD.md.
  *
- * Also emits FAQPage structured data, which no calculator had, so the FAQs become
- * eligible for rich results instead of being invisible to Google.
+ * Emits no FAQPage structured data, deliberately. See the note further down.
  *
  * Only rewrites slugs that have a content module. Calculators without one are left
  * exactly as they are, so this can be rolled out page by page.
@@ -20,17 +19,12 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content', 'calculator-content');
 const CALC_DIR = path.join(ROOT, 'calculators');
-const SITE = 'https://vitalhealthhub.org';
 
 const BLOCK_MARKER = '<section class="ccs-section ccs-white">';
 const RENDER_MARK = '<!-- content:standard -->';
 
 function tidy(text) {
   return text.replace(/\s+/g, ' ').trim();
-}
-
-function escapeJson(value) {
-  return tidy(String(value).replace(/<[^>]*>/g, ''));
 }
 
 /**
@@ -96,19 +90,6 @@ function buildBlock(content) {
   return `${RENDER_MARK}\n` + blocks.join('\n\n');
 }
 
-function buildFaqSchema(content, url) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: content.faqs.map((faq) => ({
-      '@type': 'Question',
-      name: escapeJson(faq.q),
-      acceptedAnswer: { '@type': 'Answer', text: escapeJson(faq.a) }
-    })),
-    isPartOf: { '@type': 'WebPage', '@id': url }
-  };
-}
-
 const modules = fs.existsSync(CONTENT_DIR)
   ? fs.readdirSync(CONTENT_DIR).filter((name) => name.endsWith('.js'))
   : [];
@@ -158,11 +139,13 @@ for (const moduleName of modules) {
 
   let html = before.slice(0, start) + buildBlock(content) + '\n\n' + before.slice(next);
 
-  // FAQPage structured data, replacing any previous render.
-  const url = `${SITE}/calculators/${slug}`;
-  html = html.replace(/<script type="application\/ld\+json">\{"@context":"https:\/\/schema\.org","@type":"FAQPage"[\s\S]*?<\/script>\s*/g, '');
-  const schemaTag = `<script type="application/ld+json">${JSON.stringify(buildFaqSchema(content, url))}</script>`;
-  html = html.replace('</head>', `${schemaTag}\n</head>`);
+  // No FAQPage structured data on purpose.
+  //
+  // An earlier version of this script emitted it, and normalize-accessibility-schema.js
+  // stripped it straight back out on the next build. That strip is deliberate and
+  // correct: since August 2023 Google restricts FAQ rich results to well-known
+  // government and health authorities, so the markup earns nothing here and only adds
+  // weight. The visible FAQ content is what does the work.
 
   if (html !== before) {
     fs.writeFileSync(file, html);
