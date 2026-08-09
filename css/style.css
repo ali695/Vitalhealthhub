@@ -8793,3 +8793,36 @@ html, body { overflow-x: hidden; }
 @media (max-width: 480px) {
   .vhh-consent { left: 10px; right: 10px; bottom: 10px; padding: 16px; }
 }
+
+/* ---- Metric / Imperial toggle (js/unit-toggle.js) ---- */
+.unit-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 18px;
+  padding: 10px 12px;
+  background: var(--bg-soft, #f4faf6);
+  border: 1px solid #dbe8df;
+  border-radius: 10px;
+}
+.unit-toggle-label { font-size: 0.82rem; font-weight: 600; color: #3f5a4c; }
+.unit-toggle-btns { display: inline-flex; background: #ffffff; border: 1px solid #cfe0d5; border-radius: 8px; overflow: hidden; }
+.unit-btn {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3f5a4c;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  min-height: 40px;
+}
+.unit-btn.is-active { background: #176B43; color: #ffffff; }
+.unit-btn:focus-visible { outline: 3px solid #F5943D; outline-offset: -3px; }
+.form-group input[id$="-inches"] { margin-top: 8px; }
+@media (max-width: 480px) {
+  .unit-toggle { flex-direction: column; align-items: stretch; }
+  .unit-toggle-btns { width: 100%; }
+  .unit-btn { flex: 1; }
+}

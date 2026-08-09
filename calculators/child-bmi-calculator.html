@@ -195,7 +195,8 @@
 <p class="calc-input-sub">Fill in the fields below for instant results</p>
 </div>
 </div>
-<div class="form-group"><label for="age">Age (years)</label><input type="number" id="age" placeholder="10"></div><div class="form-group"><label for="weight">Weight (kg)</label><input type="number" id="weight" placeholder="30"></div><div class="form-group"><label for="height">Height (cm)</label><input type="number" id="height" placeholder="140"></div><div class="form-group"><label for="gender">Gender</label><select id="gender"><option value="Male">Male</option><option value="Female">Female</option></select></div>
+<div class="unit-toggle" role="group" aria-label="Measurement units"><span class="unit-toggle-label">Units</span><div class="unit-toggle-btns"><button type="button" class="unit-btn is-active" data-unit-system="metric" aria-pressed="true">Metric</button><button type="button" class="unit-btn" data-unit-system="imperial" aria-pressed="false">Imperial</button></div></div>
+<div class="form-group"><label for="age">Age (years)</label><input type="number" id="age" placeholder="10"></div><div class="form-group"><label for="weight">Weight (kg)</label><input type="number" id="weight" placeholder="30" data-unit="kg" data-unit-label="Weight"></div><div class="form-group"><label for="height">Height (cm)</label><input type="number" id="height" placeholder="140" data-unit="cm" data-unit-label="Height"></div><div class="form-group"><label for="gender">Gender</label><select id="gender"><option value="Male">Male</option><option value="Female">Female</option></select></div>
 <div class="calc-btn-row">
 <button class="btn btn-primary calc-submit-btn" type="button"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Calculate Results</button>
 <button class="calc-reset-btn" id="vhResetBtn" type="button">&#8635; Reset</button>
@@ -489,6 +490,7 @@ contact@vitalhealthhub.org
 <script src="/js/page/calculators/child-bmi-calculator.js" defer></script>
 <script src="/js/main.js" defer></script>
 <script src="/js/consent-banner.js" defer></script>
+<script src="/js/unit-toggle.js" defer></script>
 <script src="/js/calculators.js" defer></script>
 <div id="vh-chatbot">
 <button id="vh-chat-toggle" aria-label="Open VitalHealth Assistant" aria-expanded="false" aria-controls="vh-chat-window" type="button">
